@@ -62,7 +62,7 @@
     .section-lead { font-size:1rem; color:var(--muted); line-height:1.75; max-width:560px; margin-bottom:40px; }
 
     /* ── PILLARS ── */
-    .pillars { display:grid; grid-template-columns:repeat(3,1fr); gap:16px; }
+    .pillars { display:flex; flex-direction:column; gap:16px; }
     .pillar { background:#fff; border:1px solid var(--line); border-radius:12px; padding:28px 24px; transition:box-shadow .2s,transform .2s; }
     .pillar:hover { box-shadow:0 6px 24px rgba(0,0,0,.07); transform:translateY(-2px); }
     .pillar-num { font-size:.68rem; font-weight:700; letter-spacing:.12em; text-transform:uppercase; color:var(--green); margin-bottom:16px; }
@@ -70,6 +70,8 @@
     .pillar-icon svg { width:20px; height:20px; stroke:var(--green); fill:none; stroke-width:1.8; stroke-linecap:round; stroke-linejoin:round; }
     .pillar h3 { font-size:1rem; font-weight:700; color:var(--text); margin-bottom:8px; }
     .pillar p { font-size:.87rem; color:var(--muted); line-height:1.65; }
+    .pillars-row { display:grid; grid-template-columns:1fr 1fr; gap:16px; }
+    .pillar-img { width:100%; aspect-ratio:16/9; object-fit:cover; border-radius:8px; margin-top:16px; }
 
     /* ── PROJET ── */
     .projet-grid { display:grid; grid-template-columns:1fr 1fr; gap:40px; align-items:start; }
@@ -120,7 +122,8 @@
 
     /* ── RESPONSIVE ── */
     @media (max-width:900px) {
-      .pillars { grid-template-columns:1fr 1fr; }
+      .pillars { flex-direction:column; }
+      .pillars-row { grid-template-columns:1fr; }
       .projet-grid,.tech-grid { grid-template-columns:1fr; }
     }
     @media (max-width:640px) {
@@ -246,51 +249,64 @@
       <h2 class="section-title">Trois piliers, un système cohérent.</h2>
       <p class="section-lead">MODULIMO ne vend pas un seul bâtiment — il construit un modèle reproductible qui crée de la valeur à chaque nouveau déploiement.</p>
       <div class="pillars">
+        <!-- PILIER 01 — pleine largeur -->
         <div class="pillar">
           <p class="pillar-num">Pilier 01</p>
-          <div class="pillar-icon">
-            <svg viewBox="0 0 24 24"><path d="M3 10 L12 3 L21 10 L21 20 L3 20 Z"/><rect x="9" y="14" width="6" height="6"/></svg>
-          </div>
-          <h3>Logement familial intégré</h3>
-          <p>Unités conçues autour de la vie familiale — espaces généreux, services partagés, qualité de vie pensée dès la conception de l'immeuble.</p>
-          <div class="amenities">
-            <div class="amenity">
-              <img src="images/EspacesCommun.png" alt="Espaces communs" />
-              <p class="amenity-label">Salle commune & cinéma</p>
+          <div style="display:flex;gap:24px;align-items:flex-start;flex-wrap:wrap;">
+            <div style="flex:1;min-width:220px;">
+              <div class="pillar-icon">
+                <svg viewBox="0 0 24 24"><path d="M3 10 L12 3 L21 10 L21 20 L3 20 Z"/><rect x="9" y="14" width="6" height="6"/></svg>
+              </div>
+              <h3>Logement familial intégré</h3>
+              <p>Unités conçues autour de la vie familiale — espaces généreux, services partagés, qualité de vie pensée dès la conception de l'immeuble.</p>
             </div>
-            <div class="amenity">
-              <img src="images/EspaceEntrainement.png" alt="Espace entraînement" />
-              <p class="amenity-label">Fitness partagé</p>
-            </div>
-            <div class="amenity">
-              <img src="images/Ascenseur.png" alt="Ascenseur" />
-              <p class="amenity-label">Ascenseur du garage au toit</p>
-            </div>
-            <div class="amenity">
-              <img src="images/Verdure.png" alt="Arbres fruitiers" />
-              <p class="amenity-label">Arbres fruitiers</p>
-            </div>
-            <div class="amenity">
-              <img src="images/chien.png" alt="Animaux permis" />
-              <p class="amenity-label">Animaux permis</p>
+            <div style="flex:2;min-width:300px;">
+              <div class="amenities">
+                <div class="amenity">
+                  <img src="images/EspacesCommun.png" alt="Espaces communs" />
+                  <p class="amenity-label">Salle commune & cinéma</p>
+                </div>
+                <div class="amenity">
+                  <img src="images/EspaceEntrainement.png" alt="Espace entraînement" />
+                  <p class="amenity-label">Fitness partagé</p>
+                </div>
+                <div class="amenity">
+                  <img src="images/Ascenseur.png" alt="Ascenseur" />
+                  <p class="amenity-label">Ascenseur du garage au toit</p>
+                </div>
+                <div class="amenity">
+                  <img src="images/Verdure.png" alt="Arbres fruitiers" />
+                  <p class="amenity-label">Arbres fruitiers</p>
+                </div>
+                <div class="amenity">
+                  <img src="images/chien.png" alt="Animaux permis" />
+                  <p class="amenity-label">Animaux permis</p>
+                </div>
+              </div>
             </div>
           </div>
         </div>
-        <div class="pillar">
-          <p class="pillar-num">Pilier 02</p>
-          <div class="pillar-icon">
-            <svg viewBox="0 0 24 24"><rect x="1" y="11" width="14" height="8" rx="2"/><path d="M15 15 L19 15 L21 12 L19 9 L15 9"/><circle cx="5" cy="19" r="2"/><circle cx="17" cy="19" r="2"/></svg>
+
+        <!-- PILIERS 02 + 03 — côte à côte -->
+        <div class="pillars-row">
+          <div class="pillar">
+            <p class="pillar-num">Pilier 02</p>
+            <div class="pillar-icon">
+              <svg viewBox="0 0 24 24"><rect x="1" y="11" width="14" height="8" rx="2"/><path d="M15 15 L19 15 L21 12 L19 9 L15 9"/><circle cx="5" cy="19" r="2"/><circle cx="17" cy="19" r="2"/></svg>
+            </div>
+            <h3>Mobilité inter-modale</h3>
+            <p>Covoiturage intégré, vélomobile, accès direct aux transports en commun — la mobilité fait partie du milieu de vie, pas un ajout.</p>
+            <img src="images/Velomobile.png" alt="Vélomobile Modulimo" class="pillar-img" />
           </div>
-          <h3>Mobilité inter-modale</h3>
-          <p>Covoiturage intégré, vélomobile, accès direct aux transports en commun — la mobilité fait partie du milieu de vie, pas un ajout.</p>
-        </div>
-        <div class="pillar">
-          <p class="pillar-num">Pilier 03</p>
-          <div class="pillar-icon">
-            <svg viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21 L16 21 M12 17 L12 21"/><path d="M7 10 L10 13 L17 7"/></svg>
+          <div class="pillar">
+            <p class="pillar-num">Pilier 03</p>
+            <div class="pillar-icon">
+              <svg viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21 L16 21 M12 17 L12 21"/><path d="M7 10 L10 13 L17 7"/></svg>
+            </div>
+            <h3>Plateforme logicielle</h3>
+            <p>CoHabitat gère les ressources, la mobilité et les services partagés de chaque immeuble. Déjà déployé et démontrable maintenant.</p>
+            <img src="images/CoHabitat.png" alt="CoHabitat — plateforme Modulimo" class="pillar-img" />
           </div>
-          <h3>Plateforme logicielle</h3>
-          <p>CoHabitat gère les ressources, la mobilité et les services partagés de chaque immeuble. Déjà déployé et démontrable maintenant.</p>
         </div>
       </div>
     </div>
@@ -452,6 +468,9 @@
               <h4>16. Acceptation</h4>
               <p>La signature du bail implique l'acceptation de ce règlement dans son intégralité par le locataire et toutes les personnes occupant le logement.</p>
             </div>
+          </div>
+          <div style="padding:16px 24px 20px;">
+            <img src="images/reglement.png" alt="Règlement Modulimo" style="width:100%;border-radius:8px;border:1px solid var(--line);" />
           </div>
         </div>
       </div>
