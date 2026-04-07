@@ -151,6 +151,13 @@
     .regl-article h4 { font-size:.84rem; font-weight:700; color:var(--text); margin-bottom:6px; }
     .regl-article p { font-size:.8rem; color:var(--muted); line-height:1.6; }
     @media (max-width:640px) { .regl-grid { grid-template-columns:1fr; } .regl-article:last-child { border-bottom:none; } }
+
+    .amenities { display:grid; grid-template-columns:repeat(5,1fr); gap:8px; margin-top:16px; }
+    .amenity { border-radius:8px; overflow:hidden; }
+    .amenity img { width:100%; aspect-ratio:1/1; object-fit:cover; display:block; transition:transform .25s; }
+    .amenity:hover img { transform:scale(1.05); }
+    .amenity-label { font-size:.72rem; color:var(--muted); text-align:center; padding:6px 4px 2px; line-height:1.4; }
+    @media (max-width:640px) { .amenities { grid-template-columns:repeat(3,1fr); } }
   </style>
 </head>
 <body>
@@ -189,7 +196,7 @@
         <a href="/" class="active">Accueil</a>
         <a href="/mobilite">Mobilité</a>
         <a href="/securite">Sécurité</a>
-        <a href="https://cohabitat.modulimo.com" target="_blank" rel="noopener">Plateforme</a>
+        <a href="https://cohabitat.modulimo.com" target="_blank" rel="noopener">CoHabitat</a>
         <a href="/projets">Projets</a>
       </nav>
     </div>
@@ -205,7 +212,7 @@
       <p>MODULIMO structure un écosystème résidentiel intégré — logement, mobilité, services et logiciel — conçu pour être déployé à grande échelle.</p>
       <div class="hero-actions">
         <a href="/projets" class="btn-primary">Voir Pointe Est</a>
-        <a href="https://cohabitat.modulimo.com" target="_blank" rel="noopener" class="btn-ghost">Explorer la plateforme</a>
+        <a href="https://cohabitat.modulimo.com" target="_blank" rel="noopener" class="btn-ghost">Explorer CoHabitat</a>
       </div>
     </div>
   </section>
@@ -246,6 +253,28 @@
           </div>
           <h3>Logement familial intégré</h3>
           <p>Unités conçues autour de la vie familiale — espaces généreux, services partagés, qualité de vie pensée dès la conception de l'immeuble.</p>
+          <div class="amenities">
+            <div class="amenity">
+              <img src="images/EspacesCommun.png" alt="Espaces communs" />
+              <p class="amenity-label">Salle commune & cinéma</p>
+            </div>
+            <div class="amenity">
+              <img src="images/EspaceEntrainement.png" alt="Espace entraînement" />
+              <p class="amenity-label">Fitness partagé</p>
+            </div>
+            <div class="amenity">
+              <img src="images/Ascenseur.png" alt="Ascenseur" />
+              <p class="amenity-label">Ascenseur du garage au toit</p>
+            </div>
+            <div class="amenity">
+              <img src="images/Verdure.png" alt="Arbres fruitiers" />
+              <p class="amenity-label">Arbres fruitiers</p>
+            </div>
+            <div class="amenity">
+              <img src="images/chien.png" alt="Animaux permis" />
+              <p class="amenity-label">Animaux permis</p>
+            </div>
+          </div>
         </div>
         <div class="pillar">
           <p class="pillar-num">Pilier 02</p>
@@ -436,7 +465,7 @@
     <p>Les préparatifs avancent — informez-vous pour ne pas manquer votre chance. Baux pré-construction disponibles.</p>
     <div class="cta-btns">
       <a href="/projets" class="btn-white">Voir le projet</a>
-      <a href="https://cohabitat.modulimo.com" target="_blank" rel="noopener" class="btn-outline-w">Explorer la plateforme</a>
+      <a href="https://cohabitat.modulimo.com" target="_blank" rel="noopener" class="btn-outline-w">Explorer CoHabitat</a>
     </div>
   </section>
 
@@ -475,7 +504,7 @@
           <h5>Navigation</h5>
           <a href="/mobilite">Mobilité</a>
           <a href="/securite">Sécurité</a>
-          <a href="https://cohabitat.modulimo.com" target="_blank" rel="noopener">Plateforme</a>
+          <a href="https://cohabitat.modulimo.com" target="_blank" rel="noopener">CoHabitat</a>
           <a href="/projets">Projets</a>
         </div>
         <div class="footer-nav">
