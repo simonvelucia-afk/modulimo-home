@@ -6,9 +6,9 @@
   <title>MODULIMO | Produits</title>
   <meta name="description" content="MODULIMO structure un écosystème intégré combinant habitation familiale, mobilité, services, infrastructure logicielle, construction industrialisée et innovation avancée." />
   <meta name="theme-color" content="#0a1117" />
-  <link rel="icon" href="images/modulimo_favicon_v7.ico" />
-  <link rel="shortcut icon" href="images/modulimo_favicon_v7.ico" />
-  <link rel="apple-touch-icon" href="images/modulimo_favicon_v7.png" />
+  <link rel="icon" href="../images/modulimo_favicon_v7.ico" />
+  <link rel="shortcut icon" href="../images/modulimo_favicon_v7.ico" />
+  <link rel="apple-touch-icon" href="../images/modulimo_favicon_v7.png" />
   <style>
     :root{
       --bg:#081018;
@@ -28,7 +28,7 @@
     html{scroll-behavior:smooth}
     body{
       margin:0;
-      padding-top:60px;
+      padding-top:120px;
       font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
       color:var(--text);
       background:
@@ -70,24 +70,17 @@
       display:flex;
       align-items:center;
       flex-shrink:0;
-      background:none;
-      border:none;
-      padding:0;
     }
     .brand-logo img{
-      height:44px;
+      height:104px;
       width:auto;
       display:block;
       object-fit:contain;
-      mix-blend-mode:screen;
-      filter:brightness(1.1) contrast(1.05);
-      transition:opacity .2s ease, transform .2s ease;
-      cursor:zoom-in;
-      border-radius:4px;
+      filter:drop-shadow(0 2px 8px rgba(0,0,0,.4));
+      transition:opacity .2s ease;
     }
     .brand-logo:hover img{
       opacity:.85;
-      transform:scale(1.04);
     }
     .menu-toggle{
       display:none;
@@ -122,8 +115,8 @@
       background:rgba(255,255,255,.05);
     }
 
-    .hero{padding:18px 0 10px}
-    .hero-grid{display:grid;grid-template-columns:1fr;gap:0;align-items:stretch}
+    .hero{padding:28px 0 18px}
+    .hero-grid{display:grid;grid-template-columns:1.04fr .96fr;gap:18px;align-items:stretch}
     .panel{
       background:var(--panel);
       border:1px solid var(--line);
@@ -132,7 +125,7 @@
       position:relative;
       box-shadow:var(--shadow);
     }
-    .hero-copy{padding:28px 0}
+    .hero-copy{padding:34px}
     .eyebrow{
       display:inline-flex;align-items:center;gap:10px;
       padding:8px 12px;border-radius:999px;
@@ -185,9 +178,11 @@
       background:#081018;
     }
     .hero-media-app iframe{
-      width:100%;
-      height:100%;
+      width:144%;
+      height:144%;
       border:none;
+      transform:scale(.694);
+      transform-origin:top left;
       pointer-events:none;
       filter:brightness(.96) contrast(1.03);
     }
@@ -620,70 +615,12 @@
 
 
     section.block{padding:18px 0}
-    .legal-accordion{
-      border-left:4px solid var(--gold);
-      background:linear-gradient(180deg,rgba(255,216,117,.09),rgba(255,216,117,.03));
-      border-radius:0 10px 10px 0;
-      overflow:hidden;
-    }
-    .legal-accordion-trigger{
-      width:100%; display:flex; align-items:center; justify-content:space-between;
-      gap:12px; padding:13px 20px;
-      background:none; border:none;
-      font:inherit; font-size:.88rem; font-weight:600;
-      cursor:pointer; text-align:left;
-      color:#f4e7bd;
-    }
-    .legal-accordion-trigger:hover{ background:rgba(255,216,117,.06); }
-    .legal-accordion-icon{
-      font-size:1rem; flex-shrink:0;
-      transition:transform .25s ease;
-      color:var(--gold);
-    }
-    .legal-accordion.is-open .legal-accordion-icon{ transform:rotate(180deg); }
-    .legal-accordion-body{
-      max-height:0; overflow:hidden;
-      transition:max-height .3s ease, padding .3s ease;
-      padding:0 20px;
-    }
-    .legal-accordion.is-open .legal-accordion-body{
-      max-height:300px;
-      padding:0 20px 16px;
-    }
-    .legal-accordion-body div{
-      font-size:.84rem; line-height:1.75; color:#f4e7bd;
-    }
     .legal{
       padding:22px; border-left:4px solid var(--gold);
       background:linear-gradient(180deg, rgba(255,216,117,.11), rgba(255,216,117,.04));
       border-radius:24px; line-height:1.75; color:#f4e7bd;
     }
     .smallcaps{text-transform:uppercase;letter-spacing:.12em;font-size:.78rem;color:var(--accent2);margin-bottom:8px}
-    .section-banner{
-      background:var(--accent);
-      color:#0a1a12;
-      padding:18px 28px 16px;
-      border-radius:10px;
-      margin-bottom:32px;
-      display:flex;
-      align-items:center;
-      gap:14px;
-    }
-    .section-banner .banner-label{
-      font-size:.72rem;
-      font-weight:700;
-      letter-spacing:.12em;
-      text-transform:uppercase;
-      opacity:.55;
-      white-space:nowrap;
-    }
-    .section-banner h2{
-      font-size:1.05rem;
-      font-weight:700;
-      margin:0;
-      letter-spacing:.02em;
-      color:#0a1a12;
-    }
     .section-title{
       margin:0 0 10px;
       font-size:clamp(1.55rem,3vw,2.5rem);
@@ -744,10 +681,10 @@
     html.lang-fr .nav a [data-lang="fr"]{display:inline}
     html.lang-en .nav a [data-lang="en"]{display:inline}
     html.lang-es .nav a [data-lang="es"]{display:inline}
-    .btn [data-lang], .eyebrow [data-lang], .smallcaps [data-lang], h1 [data-lang], h2 [data-lang], h3 [data-lang], p [data-lang], .legal [data-lang], .footer [data-lang], .chip [data-lang], .pill [data-lang], .list [data-lang], .section-banner h2 [data-lang]{display:none}
-    html.lang-fr .btn [data-lang="fr"], html.lang-fr .eyebrow [data-lang="fr"], html.lang-fr .smallcaps [data-lang="fr"], html.lang-fr h1 [data-lang="fr"], html.lang-fr h2 [data-lang="fr"], html.lang-fr h3 [data-lang="fr"], html.lang-fr p [data-lang="fr"], html.lang-fr .legal [data-lang="fr"], html.lang-fr .footer [data-lang="fr"], html.lang-fr .chip [data-lang="fr"], html.lang-fr .pill [data-lang="fr"], html.lang-fr .list [data-lang="fr"], html.lang-fr .section-banner h2 [data-lang="fr"]{display:inline}
-    html.lang-en .btn [data-lang="en"], html.lang-en .eyebrow [data-lang="en"], html.lang-en .smallcaps [data-lang="en"], html.lang-en h1 [data-lang="en"], html.lang-en h2 [data-lang="en"], html.lang-en h3 [data-lang="en"], html.lang-en p [data-lang="en"], html.lang-en .legal [data-lang="en"], html.lang-en .footer [data-lang="en"], html.lang-en .chip [data-lang="en"], html.lang-en .pill [data-lang="en"], html.lang-en .list [data-lang="en"], html.lang-en .section-banner h2 [data-lang="en"]{display:inline}
-    html.lang-es .btn [data-lang="es"], html.lang-es .eyebrow [data-lang="es"], html.lang-es .smallcaps [data-lang="es"], html.lang-es h1 [data-lang="es"], html.lang-es h2 [data-lang="es"], html.lang-es h3 [data-lang="es"], html.lang-es p [data-lang="es"], html.lang-es .legal [data-lang="es"], html.lang-es .footer [data-lang="es"], html.lang-es .chip [data-lang="es"], html.lang-es .pill [data-lang="es"], html.lang-es .list [data-lang="es"], html.lang-es .section-banner h2 [data-lang="es"]{display:inline}
+    .btn [data-lang], .eyebrow [data-lang], .smallcaps [data-lang], h1 [data-lang], h2 [data-lang], h3 [data-lang], p [data-lang], .legal [data-lang], .footer [data-lang], .chip [data-lang], .pill [data-lang], .list [data-lang]{display:none}
+    html.lang-fr .btn [data-lang="fr"], html.lang-fr .eyebrow [data-lang="fr"], html.lang-fr .smallcaps [data-lang="fr"], html.lang-fr h1 [data-lang="fr"], html.lang-fr h2 [data-lang="fr"], html.lang-fr h3 [data-lang="fr"], html.lang-fr p [data-lang="fr"], html.lang-fr .legal [data-lang="fr"], html.lang-fr .footer [data-lang="fr"], html.lang-fr .chip [data-lang="fr"], html.lang-fr .pill [data-lang="fr"], html.lang-fr .list [data-lang="fr"]{display:inline}
+    html.lang-en .btn [data-lang="en"], html.lang-en .eyebrow [data-lang="en"], html.lang-en .smallcaps [data-lang="en"], html.lang-en h1 [data-lang="en"], html.lang-en h2 [data-lang="en"], html.lang-en h3 [data-lang="en"], html.lang-en p [data-lang="en"], html.lang-en .legal [data-lang="en"], html.lang-en .footer [data-lang="en"], html.lang-en .chip [data-lang="en"], html.lang-en .pill [data-lang="en"], html.lang-en .list [data-lang="en"]{display:inline}
+    html.lang-es .btn [data-lang="es"], html.lang-es .eyebrow [data-lang="es"], html.lang-es .smallcaps [data-lang="es"], html.lang-es h1 [data-lang="es"], html.lang-es h2 [data-lang="es"], html.lang-es h3 [data-lang="es"], html.lang-es p [data-lang="es"], html.lang-es .legal [data-lang="es"], html.lang-es .footer [data-lang="es"], html.lang-es .chip [data-lang="es"], html.lang-es .pill [data-lang="es"], html.lang-es .list [data-lang="es"]{display:inline}
 
     
     .reveal{opacity:0;transform:translateY(20px);transition:opacity .65s ease, transform .65s ease}
@@ -779,7 +716,7 @@
         border:1px solid var(--line);
         background:rgba(255,255,255,.03);
       }
-      .brand-logo img{height:44px}
+      .brand-logo img{height:80px}
     }
     @media (max-width:640px){
       .actions{flex-direction:column}
@@ -790,9 +727,9 @@
 <body id="top">
   <header class="topbar" id="top">
     <div class="topbar-inner">
-      <button type="button" class="brand-logo" id="logoBtn" aria-label="MODULIMO — voir le logo">
-        <img src="images/Logo_Produits_Modulimo.png" alt="MODULIMO" />
-      </button>
+      <a href="/" class="brand-logo" aria-label="MODULIMO — Accueil">
+        <img src="../images/Logo_Produits_Modulimo.png" alt="MODULIMO" />
+      </a>
       <button class="menu-toggle" id="menuToggle" aria-expanded="false" aria-controls="siteNav" aria-label="Open menu">
         <span></span><span></span><span></span>
       </button>
@@ -807,89 +744,147 @@
     </div>
   </header>
 
-  <!-- Avis important accordéon -->
-  <div class="wrap" style="margin-bottom:0;">
-    <div class="legal-accordion" id="legalAccordion">
-      <button class="legal-accordion-trigger" id="legalTrigger" aria-expanded="false" aria-controls="legalBody">
-        <span>
-          <span data-lang="fr">⚠ Avis important</span>
-          <span data-lang="en">⚠ Important notice</span>
-          <span data-lang="es">⚠ Aviso importante</span>
-        </span>
-        <span class="legal-accordion-icon" aria-hidden="true">▾</span>
-      </button>
-      <div class="legal-accordion-body" id="legalBody" role="region" aria-labelledby="legalTrigger">
-        <div data-lang="fr">Les concepts, visuels, scénarios et fonctionnalités présentés sur cette page sont fournis à titre informatif et illustratif seulement. Ils ne constituent ni une offre de vente, ni une offre d'investissement, ni des plans d'ingénierie, ni une attestation de conformité, ni une garantie de performance, de sécurité, de disponibilité, d'économies ou de résultats. Toute mise en œuvre réelle devra être validée par les professionnels compétents et conforme aux exigences techniques, réglementaires, contractuelles et financières applicables.</div>
-        <div data-lang="en">The concepts, visuals, scenarios, and features presented on this page are provided for informational and illustrative purposes only. They do not constitute an offer for sale, an investment offer, engineering plans, compliance certification, or any guarantee of performance, safety, availability, savings, or outcomes. Any real-world implementation must be validated by qualified professionals and comply with applicable technical, regulatory, contractual, and financial requirements.</div>
-        <div data-lang="es">Los conceptos, visuales, escenarios y funcionalidades presentados en esta página se proporcionan únicamente con fines informativos e ilustrativos. No constituyen una oferta de venta, oferta de inversión, planos de ingeniería, certificación de cumplimiento ni garantía de rendimiento, seguridad, disponibilidad, ahorros o resultados. Cualquier implementación real deberá ser validada por profesionales calificados y cumplir con los requisitos técnicos, regulatorios, contractuales y financieros aplicables.</div>
-      </div>
-    </div>
-  </div>
-
   <main class="wrap">
     <section class="hero">
-      <div class="hero-grid" style="grid-template-columns:1fr;">
-        <div>
+      <div class="hero-grid">
+        <div class="panel">
           <div class="hero-copy">
             <div class="eyebrow">
               <span data-lang="fr">Innovation modulaire • Logiciel • Construction • Mobilité</span>
               <span data-lang="en">Modular innovation • Software • Construction • Mobility</span>
               <span data-lang="es">Innovación modular • Software • Construcción • Movilidad</span>
             </div>
+
             <h1>
               <span data-lang="fr">Une plateforme résidentielle intégrée, conçue pour être déployée à grande échelle.</span>
               <span data-lang="en">An integrated residential platform designed for large-scale deployment.</span>
-              <span data-lang="es">Una plataforma residencial integrada, diseñada para desplegarse a gran escala.</span>
             </h1>
+
+            <p class="lede">
+              <span data-lang="fr">MODULIMO structure un écosystème intégré combinant habitation familiale, mobilité, services et infrastructure logicielle. L’ensemble s’appuie sur une logique de construction industrialisée et sur un laboratoire d’innovation avancée. Certaines composantes sont déjà démontrables, tandis que d’autres poursuivent leur développement dans un cadre d’exploration structuré.</span>
+              <span data-lang="en">MODULIMO structures an integrated ecosystem combining family housing, mobility, services, and software infrastructure. The whole system is supported by an industrialized construction logic and an advanced innovation lab. Some components are already demonstrable, while others continue their development within a structured exploration framework.</span>
+            </p>
+
             <div class="actions">
               <a class="btn primary" href="https://cohabitat.modulimo.com/" target="_blank" rel="noopener">
                 <span data-lang="fr">Voir la démo logicielle</span>
                 <span data-lang="en">View software demo</span>
-                <span data-lang="es">Ver la demo</span>
               </a>
               <a class="btn" href="#lab">
-                <span data-lang="fr">Explorer l'innovation</span>
+                <span data-lang="fr">Explorer l’innovation</span>
                 <span data-lang="en">Explore innovation</span>
                 <span data-lang="es">Explorar innovación</span>
               </a>
             </div>
+
+            <div class="split-note">
+              <span class="chip">
+                <span data-lang="fr">Démo accessible dès maintenant</span>
+                <span data-lang="en">Demo available now</span>
+                <span data-lang="es">Demo disponible ahora</span>
+              </span>
+              <span class="chip">
+                <span data-lang="fr">Positionnement investisseurs et partenaires</span>
+                <span data-lang="en">Investor and partner positioning</span>
+                <span data-lang="es">Posicionamiento para inversores</span>
+              </span>
+            </div>
+          </div>
+        </div>
+
+        <div class="panel hero-media-app">
+          <iframe
+            src="https://cohabitat.modulimo.com/"
+            loading="lazy"
+            allowfullscreen>
+          </iframe>
+
+          <div class="hero-overlay">
+            <span data-lang="fr">Plateforme opérationnelle — gestion des ressources et du milieu de vie</span>
+            <span data-lang="en">Operational platform — resource and living environment management</span><span data-lang="es">Plataforma operacional — gestión de recursos y entorno residencial</span>
           </div>
         </div>
       </div>
     </section>
 
-    <section class="block" id="commercialises">
-      <div class="section-banner">
-        <span class="banner-label">01</span>
-        <h2><span data-lang="fr">Produits commercialisés</span><span data-lang="en">Available products</span><span data-lang="es">Productos disponibles</span></h2>
-      </div>
-      <div class="panel card-pad">
-        <div style="display:flex;gap:40px;align-items:flex-start;flex-wrap:wrap;">
-          <div style="flex:1;min-width:220px;">
-            <div class="smallcaps"><span data-lang="fr">Valeur stratégique</span><span data-lang="en">Strategic value</span><span data-lang="es">Valor estratégico</span></div>
-            <h2 class="section-title"><span data-lang="fr">Plateforme logicielle déjà accessible</span><span data-lang="en">Software platform already accessible</span><span data-lang="es">Plataforma de software ya disponible</span></h2>
-            <p class="section-text">
-              <span data-lang="fr">Cohabitat est la première brique opérationnelle de l'écosystème MODULIMO — gestion résidentielle, ressources partagées, coordination du milieu de vie. Une preuve d'exécution concrète.</span>
-              <span data-lang="en">Cohabitat is the first operational layer of the MODULIMO ecosystem — residential management, shared resources, living environment coordination. A concrete proof of execution.</span>
-              <span data-lang="es">Cohabitat es la primera capa operacional del ecosistema MODULIMO — gestión residencial, recursos compartidos, coordinación del entorno de vida. Una prueba concreta de ejecución.</span>
-            </p>
-            <p class="section-text" style="margin-top:12px;">
-              <span data-lang="fr">Pour des investisseurs sérieux, la présence d'une démo accessible change le niveau de crédibilité. Une composante opérationnelle existe déjà et démontre la capacité de matérialisation.</span>
-              <span data-lang="en">For serious investors, an accessible demo materially changes credibility. An operational component already exists and demonstrates execution capability.</span>
-              <span data-lang="es">Para inversores serios, una demo accesible cambia la credibilidad. Ya existe un componente operacional que demuestra capacidad de ejecución.</span>
-            </p>
-            <a class="btn primary" href="https://cohabitat.modulimo.com/" target="_blank" rel="noopener" style="margin-top:20px;display:inline-flex;">
-              <span data-lang="fr">Accéder à la démo</span><span data-lang="en">Access the demo</span><span data-lang="es">Acceder a la demo</span>
-            </a>
-          </div>
-          <a href="https://cohabitat.modulimo.com/" target="_blank" rel="noopener" style="flex:1.3;min-width:280px;display:block;border-radius:12px;overflow:hidden;cursor:pointer;position:relative;transition:transform .2s,box-shadow .2s;" onmouseover="this.style.transform='scale(1.01)';this.style.boxShadow='0 8px 32px rgba(0,0,0,.5)'" onmouseout="this.style.transform='';this.style.boxShadow=''">
-            <div class="hero-media-app" style="min-height:480px;border-radius:12px;">
-              <iframe src="https://cohabitat.modulimo.com/" loading="lazy" tabindex="-1" style="pointer-events:none;" allowfullscreen></iframe>
-            </div>
-          </a>
-        </div>
+    <section class="block">
+      <div class="legal">
+        <div data-lang="fr"><strong>⚠ Avis important</strong><br>Les concepts, visuels, scénarios et fonctionnalités présentés sur cette page sont fournis à titre informatif et illustratif seulement. Ils ne constituent ni une offre de vente, ni une offre d’investissement, ni des plans d’ingénierie, ni une attestation de conformité, ni une garantie de performance, de sécurité, de disponibilité, d’économies ou de résultats. Toute mise en œuvre réelle devra être validée par les professionnels compétents et conforme aux exigences techniques, réglementaires, contractuelles et financières applicables.</div>
+        <div data-lang="en"><strong>⚠ Important notice</strong><br>The concepts, visuals, scenarios, and features presented on this page are provided for informational and illustrative purposes only. They do not constitute an offer for sale, an investment offer, engineering plans, compliance certification, or any guarantee of performance, safety, availability, savings, or outcomes. Any real-world implementation must be validated by qualified professionals and comply with applicable technical, regulatory, contractual, and financial requirements.</div>
       </div>
     </section>
+
+
+    <section class="block" id="thesis">
+      <div class="grid-3">
+        <article class="panel card-pad">
+          <div class="smallcaps"><span data-lang="fr">Thèse 01</span><span data-lang="en">Thesis 01</span></div>
+          <h2 class="section-title"><span data-lang="fr">Le logement familial manque d’intégration</span><span data-lang="en">Family housing lacks integration</span></h2>
+          <p class="section-text"><span data-lang="fr">Le marché combine souvent immeuble, gestion, mobilité et services dans des systèmes séparés. MODULIMO propose de les réunir dans une même architecture de valeur.</span><span data-lang="en">The market often treats buildings, management, mobility, and services as separate systems. MODULIMO aims to combine them into a single value architecture.</span></p>
+        </article>
+        <article class="panel card-pad">
+          <div class="smallcaps"><span data-lang="fr">Thèse 02</span><span data-lang="en">Thesis 02</span></div>
+          <h2 class="section-title"><span data-lang="fr">Le logiciel crée l’avantage opérationnel</span><span data-lang="en">Software creates the operational edge</span></h2>
+          <p class="section-text"><span data-lang="fr">La couche logicielle rend le modèle mesurable, pilotable et améliorable. Elle transforme un projet immobilier en système opérable.</span><span data-lang="en">The software layer makes the model measurable, manageable, and improvable. It turns a real estate project into an operable system.</span></p>
+        </article>
+        <article class="panel card-pad">
+          <div class="smallcaps"><span data-lang="fr">Thèse 03</span><span data-lang="en">Thesis 03</span></div>
+          <h2 class="section-title"><span data-lang="fr">L’industrialisation ouvre la voie au déploiement</span><span data-lang="en">Industrialization enables deployment</span></h2>
+          <p class="section-text"><span data-lang="fr">La standardisation constructive, combinée à une logique de marque et à des actifs numériques, peut soutenir un modèle duplicable et scalable.</span><span data-lang="en">Construction standardization, combined with brand logic and digital assets, can support a duplicable and scalable model.</span></p>
+        </article>
+      </div>
+    </section>
+
+    <section class="block">
+      <div class="band">
+        <div class="smallcaps"><span data-lang="fr">Message investisseur</span><span data-lang="en">Investor message</span></div>
+        <h2 class="section-title soft"><span data-lang="fr">MODULIMO ne vend pas un seul bâtiment. MODULIMO construit un modèle.</span><span data-lang="en">MODULIMO is not selling a single building. MODULIMO is building a model.</span></h2>
+        <p class="section-text soft"><span data-lang="fr">Le potentiel du projet réside dans l’intégration entre habitation familiale, logiciel, mobilité, services et standardisation constructive. La valeur créée ne repose pas uniquement sur l’actif immobilier, mais sur la capacité à reproduire un système cohérent.</span><span data-lang="en">The project’s potential lies in the integration of family housing, software, mobility, services, and construction standardization. The value created does not rely only on the real estate asset, but on the ability to reproduce a coherent system.</span></p>
+      </div>
+    </section>
+
+    <section class="block">
+      <div class="grid-3">
+        <article class="panel card-pad">
+          <div class="pill"><span data-lang="fr">Signal 01</span><span data-lang="en">Signal 01</span></div>
+          <p class="section-text"><span data-lang="fr"><strong>Démo active.</strong> Une composante logicielle est déjà accessible publiquement.</span><span data-lang="en"><strong>Live demo.</strong> A software component is already publicly accessible.</span></p>
+        </article>
+        <article class="panel card-pad">
+          <div class="pill"><span data-lang="fr">Signal 02</span><span data-lang="en">Signal 02</span></div>
+          <p class="section-text"><span data-lang="fr"><strong>Vision structurée.</strong> Les piliers habitation, mobilité et services sont déjà articulés dans une logique de système.</span><span data-lang="en"><strong>Structured vision.</strong> The living, mobility, and services pillars are already articulated within a systems logic.</span></p>
+        </article>
+        <article class="panel card-pad">
+          <div class="pill"><span data-lang="fr">Signal 03</span><span data-lang="en">Signal 03</span></div>
+          <p class="section-text"><span data-lang="fr"><strong>Voie de croissance.</strong> La construction industrialisée crée une base potentielle pour le déploiement futur.</span><span data-lang="en"><strong>Growth path.</strong> Industrialized construction creates a potential base for future deployment.</span></p>
+        </article>
+      </div>
+    </section>
+
+    <section class="block" id="commercialises">
+      <div class="grid-2">
+        <div class="panel card-pad">
+          <div class="smallcaps"><span data-lang="fr">Pilier 01</span><span data-lang="en">Pillar 01</span></div>
+          <h2 class="section-title"><span data-lang="fr">Plateforme logicielle déjà accessible</span><span data-lang="en">Software platform already accessible</span></h2>
+          <p class="section-text">
+            <span data-lang="fr">Une première brique de l’écosystème est déjà accessible en démonstration via Cohabitat. Cette couche numérique illustre concrètement la gestion résidentielle, la coordination des ressources, les usages partagés et la logique de système que MODULIMO souhaite déployer à plus grande échelle. Cette plateforme constitue une première preuve d’exécution du modèle MODULIMO.</span>
+            <span data-lang="en">A first layer of the ecosystem is already accessible through the Cohabitat demo. This digital layer concretely illustrates residential management, resource coordination, shared usage, and the system logic MODULIMO aims to deploy at a larger scale. This platform represents an initial proof of execution of the MODULIMO model.</span>
+          </p>
+          <div class="actions">
+            <a class="btn primary" href="https://cohabitat.modulimo.com/" target="_blank" rel="noopener">
+              <span data-lang="fr">Accéder à la démo</span><span data-lang="en">Access the demo</span>
+            </a>
+          </div>
+        </div>
+
+        <div class="band">
+          <div class="smallcaps"><span data-lang="fr">Valeur stratégique</span><span data-lang="en">Strategic value</span></div>
+          <h2 class="section-title soft"><span data-lang="fr">Une preuve d’exécution, pas seulement une vision</span><span data-lang="en">Proof of execution, not just vision</span></h2>
+          <p class="section-text soft">
+            <span data-lang="fr">Pour des investisseurs sérieux, la présence d’une démo accessible change le niveau de crédibilité du projet. MODULIMO n’est pas présenté comme une simple idée : une composante opérationnelle existe déjà et démontre la capacité de matérialisation.</span>
+            <span data-lang="en">For serious investors, the presence of an accessible demo materially changes the project’s credibility. MODULIMO is not presented as a mere idea: an operational component already exists and demonstrates execution capability.</span>
+          </p>
+        </div>
+      </div>
     </section>
 
     <section class="block" id="build">
@@ -910,7 +905,7 @@
 
         <article class="panel">
           <div class="media media-building">
-            <img src="images/immeuble_reve_11.png" alt="Concept résidentiel Modulimo" />
+            <img src="../images/immeuble_reve_11.png" alt="Concept résidentiel Modulimo" />
             <button class="media-open-btn" type="button" data-image-fullscreen="images/immeuble_reve_11.png">
               <span data-lang="fr">Voir en pleine page</span><span data-lang="en">View full page</span>
             </button>
@@ -927,15 +922,11 @@
     </section>
 
     <section class="block" id="court-terme">
-      <div class="section-banner">
-        <span class="banner-label">02</span>
-        <h2><span data-lang="fr">Innovation court terme</span><span data-lang="en">Near-term innovation</span><span data-lang="es">Innovación próxima</span></h2>
-      </div>
-      <div class="smallcaps"><span data-lang="fr">Pilier 03</span><span data-lang="en">Pillar 03</span><span data-lang="es">Pilar 03</span></div>
+      <div class="smallcaps"><span data-lang="fr">Pilier 03</span><span data-lang="en">Pillar 03</span></div>
       <h2 class="section-title"><span data-lang="fr">Habitation familiale, services et qualité d’usage</span><span data-lang="en">Family housing, services, and quality of use</span></h2>
       <div class="grid-3">
         <article class="panel">
-          <div class="media"><img src="images/frig_auto.webp" alt="Service alimentaire intégré" /></div>
+          <div class="media"><img src="../images/frig_auto.webp" alt="Service alimentaire intégré" /></div>
           <div class="card-pad">
             <h3><span data-lang="fr">Services intégrés</span><span data-lang="en">Integrated services</span></h3>
             <p class="section-text"><span data-lang="fr">Certaines commodités peuvent être intégrées au milieu de vie pour simplifier l’accès à des services utiles au quotidien, dans une logique de confort, d’efficacité et de soutien à la vie familiale.</span><span data-lang="en">Certain amenities can be integrated into the living environment to simplify access to useful daily services within a logic of comfort, efficiency, and support for family life.</span></p>
@@ -943,7 +934,7 @@
         </article>
 
         <article class="panel">
-          <div class="media"><img src="images/sabloponie.webp" alt="Culture intérieure expérimentale" /></div>
+          <div class="media"><img src="../images/sabloponie.webp" alt="Culture intérieure expérimentale" /></div>
           <div class="card-pad">
             <h3><span data-lang="fr">Production locale</span><span data-lang="en">Local production</span></h3>
             <p class="section-text"><span data-lang="fr">MODULIMO explore aussi certaines pistes liées à la production intérieure, à la fraîcheur des aliments et à la résilience pratique des services résidentiels, avec une attention particulière aux besoins d’un cadre de vie familial.</span><span data-lang="en">MODULIMO is also exploring paths related to indoor production, food freshness, and the practical resilience of residential services, with particular attention to the needs of a family-oriented living environment.</span></p>
@@ -1032,11 +1023,7 @@
     </section>
 
     <section class="block" id="ambitieux">
-      <div class="section-banner">
-        <span class="banner-label">03</span>
-        <h2><span data-lang="fr">Innovation ambitieuse</span><span data-lang="en">Ambitious innovation</span><span data-lang="es">Innovación ambiciosa</span></h2>
-      </div>
-      <div class="smallcaps"><span data-lang="fr">Pilier 04</span><span data-lang="en">Pillar 04</span><span data-lang="es">Pilar 04</span></div>
+      <div class="smallcaps"><span data-lang="fr">Pilier 04</span><span data-lang="en">Pillar 04</span></div>
       <h2 class="section-title"><span data-lang="fr">Mobilité légère intégrée</span><span data-lang="en">Integrated light mobility</span></h2>
 
       <!-- Dashboard pleine largeur -->
@@ -1075,21 +1062,21 @@
       <!-- 3 cards en dessous -->
       <div class="grid-3" style="margin-bottom:18px;">
         <article class="panel">
-          <div class="media"><img src="images/concept_velomobile.webp" alt="Concept de vélomobile" /></div>
+          <div class="media"><img src="../images/concept_velomobile.webp" alt="Concept de vélomobile" /></div>
           <div class="card-pad">
             <h3><span data-lang="fr">Direction de design</span><span data-lang="en">Design direction</span></h3>
             <p class="section-text"><span data-lang="fr">MODULIMO développe une réflexion sur la mobilité légère fermée, pensée pour mieux relier le bâtiment, le quotidien et certains usages climatiques exigeants.</span><span data-lang="en">MODULIMO is developing a line of thinking around enclosed light mobility, designed to better connect the building, daily life, and certain demanding climate conditions.</span></p>
           </div>
         </article>
         <article class="panel">
-          <div class="media"><img src="images/vue_cote_velom.webp" alt="Vue latérale du concept" /></div>
+          <div class="media"><img src="../images/vue_cote_velom.webp" alt="Vue latérale du concept" /></div>
           <div class="card-pad">
             <h3><span data-lang="fr">Déploiement futur</span><span data-lang="en">Future deployment</span></h3>
             <p class="section-text"><span data-lang="fr">Cette composante demeure en développement conceptuel, mais elle renforce la cohérence d’ensemble du système MODULIMO en liant habitat, déplacement et infrastructure.</span><span data-lang="en">This component remains in conceptual development, but it strengthens the overall coherence of the MODULIMO system by linking housing, movement, and infrastructure.</span></p>
           </div>
         </article>
         <article class="panel">
-          <div class="media"><img src="images/vue_ar_velom.webp" alt="Capacité arrière du véhicule" /></div>
+          <div class="media"><img src="../images/vue_ar_velom.webp" alt="Capacité arrière du véhicule" /></div>
           <div class="card-pad">
             <p class="section-text"><span data-lang="fr">Les capacités utilitaires, de transport léger ou d’emport font partie des pistes explorées pour augmenter la valeur fonctionnelle du véhicule dans un contexte résidentiel.</span><span data-lang="en">Utility, light transport, and carrying capacity are among the paths explored to increase the vehicle’s functional value in a residential context.</span></p>
           </div>
@@ -1100,7 +1087,7 @@
         <div class="smallcaps"><span data-lang="fr">Rôle stratégique</span><span data-lang="en">Strategic role</span></div>
         <p class="section-text soft"><span data-lang="fr">La mobilité n’est pas présentée comme un élément isolé. Elle constitue une extension naturelle du bâtiment, du logiciel et des services, dans une logique d’intégration verticale rare sur le marché.</span><span data-lang="en">Mobility is not presented as an isolated element. It is a natural extension of the building, software, and services, within a vertically integrated logic that is rare in the market.</span></p>
         <div class="premium-image-card">
-          <img src="images/iso_concept_ultime.webp" alt="Vélomobile MODULIMO" />
+          <img src="../images/iso_concept_ultime.webp" alt="Vélomobile MODULIMO" />
 
         </div>
       </div>
@@ -1119,7 +1106,7 @@
           </div>
         </article>
         <article class="panel">
-          <div class="media"><img src="images/velom_nav.webp" alt="Vision expérimentale de transport" /></div>
+          <div class="media"><img src="../images/velom_nav.webp" alt="Vision expérimentale de transport" /></div>
           <div class="card-pad">
             <div class="pill"><span data-lang="fr">Prospective</span><span data-lang="en">Prospective</span></div>
             <p class="section-text"><span data-lang="fr">Ce volet doit être lu comme un cadre de recherche et d’exploration. Il ne constitue ni une offre de produit immédiat ni une promesse de déploiement, mais un moteur d’apprentissage stratégique pour l’ensemble de la marque.</span><span data-lang="en">This branch should be understood as a research and exploration framework. It does not constitute an immediate product offer or deployment promise, but rather a strategic learning engine for the broader brand.</span></p>
@@ -1198,7 +1185,7 @@
   <a class="minette-anchor" id="minetteAnchor" href="#top" aria-label="Minette">
     <div class="minette-badge"><span data-lang="fr">Minette</span><span data-lang="en">Minette</span></div>
     <div class="minette-mascot">
-      <img src="images/Minette.png" alt="Minette" />
+      <img src="../images/Minette.png" alt="Minette" />
     </div>
   </a>
 
@@ -1370,211 +1357,33 @@
     })();
   </script>
 
-  <!-- Modal logo dédié -->
-  <div id="logoModal" style="display:none;position:fixed;inset:0;z-index:200;background:rgba(0,0,0,.88);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);align-items:center;justify-content:center;" aria-hidden="true">
-    <button id="logoModalClose" type="button" style="position:absolute;top:20px;right:20px;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.2);color:#fff;border-radius:50%;width:44px;height:44px;font-size:1.1rem;cursor:pointer;display:flex;align-items:center;justify-content:center;z-index:1;">&#x2715;</button>
-    <img src="images/Logo_Produits_Modulimo.png" alt="MODULIMO" style="max-width:90vw;max-height:80vh;object-fit:contain;border-radius:10px;box-shadow:0 12px 60px rgba(0,0,0,.7);" />
-  </div>
-
   <script>
+    // Fallback ES → FR pour les éléments sans traduction espagnole
     (function() {
-      var BLOCK_TAGS = {'DIV':1,'SECTION':1,'ARTICLE':1,'ASIDE':1,'LI':1,'TD':1,'TH':1,'FIGURE':1,'FIGCAPTION':1};
-      function naturalDisplay(el){ return BLOCK_TAGS[el.tagName] ? 'block' : 'inline'; }
-
-      function applyEsFallback(lang) {
-        document.querySelectorAll('[data-lang="fr"]').forEach(function(el){ el.style.display = ''; });
-        if (lang !== 'es') return;
-        document.querySelectorAll('[data-lang="fr"]').forEach(function(frEl) {
+      function applyEsFallback() {
+        var lang = document.documentElement.className;
+        if (lang.indexOf('lang-es') === -1) return;
+        // Pour chaque élément qui contient des spans data-lang
+        var parents = document.querySelectorAll('[data-lang="fr"]');
+        parents.forEach(function(frEl) {
           var parent = frEl.parentElement;
           if (!parent) return;
-          if (!parent.querySelector('[data-lang="es"]')) {
-            frEl.style.display = naturalDisplay(frEl);
+          var hasEs = parent.querySelector('[data-lang="es"]');
+          if (!hasEs) {
+            // Pas de traduction ES → montrer le FR
+            frEl.style.display = '';
           }
         });
       }
-
-      function updateActiveLangBtn(lang) {
-        document.querySelectorAll('[data-set-lang]').forEach(function(b) {
-          b.classList.toggle('active', b.getAttribute('data-set-lang') === lang);
-        });
-      }
-
-      const root = document.documentElement;
-      const stored = localStorage.getItem('modulimo_lang');
-      const browser = (navigator.language || navigator.userLanguage || 'fr').toLowerCase();
-      const initial = stored || (browser.startsWith('fr') ? 'fr' : browser.startsWith('es') ? 'es' : 'en');
-      const nav = document.getElementById('siteNav');
-      const toggle = document.getElementById('menuToggle');
-
-      function setLang(lang) {
-        root.classList.remove('lang-fr','lang-en','lang-es');
-        root.classList.add('lang-' + lang);
-        root.setAttribute('lang', lang);
-        localStorage.setItem('modulimo_lang', lang);
-        applyEsFallback(lang);
-        updateActiveLangBtn(lang);
-      }
-      function closeMenu() {
-        if (!nav || !toggle) return;
-        nav.classList.remove('is-open');
-        toggle.classList.remove('is-open');
-        toggle.setAttribute('aria-expanded','false');
-      }
-      function toggleMenu() {
-        if (!nav || !toggle) return;
-        const isOpen = nav.classList.toggle('is-open');
-        toggle.classList.toggle('is-open', isOpen);
-        toggle.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
-      }
-
-      if (document.readyState === 'loading') {
-        document.addEventListener('DOMContentLoaded', function(){ setLang(initial); });
-      } else {
-        setLang(initial);
-      }
-
-      document.querySelectorAll('[data-set-lang]').forEach(function(btn) {
-        btn.addEventListener('click', function() {
-          setLang(this.getAttribute('data-set-lang'));
-          closeMenu();
+      // Appliquer au chargement et à chaque changement de langue
+      document.addEventListener('DOMContentLoaded', applyEsFallback);
+      // Observer les changements de class sur html
+      var observer = new MutationObserver(function(mutations) {
+        mutations.forEach(function(m) {
+          if (m.attributeName === 'class') applyEsFallback();
         });
       });
-
-      if (toggle) toggle.addEventListener('click', toggleMenu);
-      document.querySelectorAll('#siteNav a').forEach(function(link) {
-        link.addEventListener('click', function(e) {
-          var href = this.getAttribute('href');
-          if (href && href.startsWith('#')) {
-            e.preventDefault();
-            closeMenu();
-            var target = document.querySelector(href);
-            if (target) {
-              var offset = 80;
-              var top = target.getBoundingClientRect().top + window.scrollY - offset;
-              window.scrollTo({ top: top, behavior: 'smooth' });
-            }
-          } else {
-            closeMenu();
-          }
-        });
-      });
-      window.addEventListener('resize', function(){ if(window.innerWidth>760) closeMenu(); });
-
-      // Logo modal
-      const logoModal = document.getElementById('logoModal');
-      const logoModalClose = document.getElementById('logoModalClose');
-      const logoBtn = document.getElementById('logoBtn');
-      function openLogoModal() {
-        if (!logoModal) return;
-        logoModal.style.display = 'flex';
-        logoModal.setAttribute('aria-hidden','false');
-        document.body.style.overflow = 'hidden';
-      }
-      function closeLogoModal() {
-        if (!logoModal) return;
-        logoModal.style.display = 'none';
-        logoModal.setAttribute('aria-hidden','true');
-        document.body.style.overflow = '';
-      }
-      if (logoBtn) logoBtn.addEventListener('click', openLogoModal);
-      if (logoModalClose) logoModalClose.addEventListener('click', closeLogoModal);
-      if (logoModal) logoModal.addEventListener('click', function(e){ if(e.target===logoModal) closeLogoModal(); });
-      document.addEventListener('keydown', function(e){ if(e.key==='Escape'){ closeLogoModal(); } });
-
-      // Legal accordion
-      const legalAccordion = document.getElementById('legalAccordion');
-      const legalTrigger = document.getElementById('legalTrigger');
-      if (legalTrigger && legalAccordion) {
-        legalTrigger.addEventListener('click', function() {
-          const isOpen = legalAccordion.classList.toggle('is-open');
-          legalTrigger.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
-        });
-      }
-
-      // Dashboard modal
-      const dashboardModal = document.getElementById('dashboardModal');
-      const dashboardModalFrame = document.getElementById('dashboardModalFrame');
-      const dashboardClose = document.getElementById('dashboardClose');
-      const dashboardExternalLink = document.getElementById('dashboardExternalLink');
-      function openDashboardModal(url) {
-        if (!dashboardModal || !dashboardModalFrame) return;
-        dashboardModalFrame.src = url;
-        if (dashboardExternalLink) dashboardExternalLink.href = url;
-        dashboardModal.classList.add('is-open');
-        dashboardModal.setAttribute('aria-hidden','false');
-        document.body.style.overflow = 'hidden';
-      }
-      function closeDashboardModal() {
-        if (!dashboardModal || !dashboardModalFrame) return;
-        dashboardModal.classList.remove('is-open');
-        dashboardModal.setAttribute('aria-hidden','true');
-        dashboardModalFrame.src = 'about:blank';
-        document.body.style.overflow = '';
-      }
-      document.querySelectorAll('[data-dashboard-url]').forEach(function(btn) {
-        btn.addEventListener('click', function(){ openDashboardModal(this.getAttribute('data-dashboard-url')); });
-      });
-      if (dashboardClose) dashboardClose.addEventListener('click', closeDashboardModal);
-      if (dashboardModal) dashboardModal.addEventListener('click', function(e){ if(e.target===dashboardModal) closeDashboardModal(); });
-
-      // Image modal
-      const imageModal = document.getElementById('imageModal');
-      const imageModalTarget = document.getElementById('imageModalTarget');
-      const imageModalClose = document.getElementById('imageModalClose');
-      function openImageModal(src) {
-        if (!imageModal || !imageModalTarget) return;
-        imageModalTarget.src = src;
-        imageModal.classList.add('is-open');
-        imageModal.setAttribute('aria-hidden','false');
-        document.body.style.overflow = 'hidden';
-      }
-      function closeImageModal() {
-        if (!imageModal) return;
-        imageModal.classList.remove('is-open');
-        imageModal.setAttribute('aria-hidden','true');
-        if (imageModalTarget) imageModalTarget.src = '';
-        document.body.style.overflow = '';
-      }
-      document.querySelectorAll('[data-image-fullscreen]').forEach(function(btn) {
-        btn.addEventListener('click', function(){ openImageModal(this.getAttribute('data-image-fullscreen')); });
-      });
-      if (imageModalClose) imageModalClose.addEventListener('click', closeImageModal);
-      if (imageModal) imageModal.addEventListener('click', function(e){ if(e.target===imageModal) closeImageModal(); });
-
-      // Minette scroll behavior
-      const minetteAnchor = document.getElementById('minetteAnchor');
-      if (minetteAnchor) {
-        window.addEventListener('scroll', function() {
-          const st = window.scrollY;
-          if (st < 60) { minetteAnchor.classList.remove('is-hidden','is-reading','is-cinematic'); }
-          else if (st > 400) { minetteAnchor.classList.add('is-reading'); minetteAnchor.classList.remove('is-hidden','is-cinematic'); }
-          else { minetteAnchor.classList.add('is-hidden'); minetteAnchor.classList.remove('is-reading','is-cinematic'); }
-        });
-      }
-
-      // Dashboard preview scale
-      const DASH_W = 1280, DASH_H = 800;
-      function scaleDashPreview() {
-        var wrap = document.getElementById('dashboardPreviewWrap');
-        var frame = document.getElementById('dashboardPreviewFrame');
-        if (!wrap || !frame) return;
-        var containerW = wrap.getBoundingClientRect().width || wrap.offsetWidth;
-        if (containerW < 10) return;
-        var scale = containerW / DASH_W;
-        wrap.style.height = Math.round(DASH_H * scale) + 'px';
-        frame.style.width = DASH_W + 'px';
-        frame.style.height = DASH_H + 'px';
-        frame.style.transform = 'scale(' + scale + ')';
-        frame.style.transformOrigin = 'top left';
-      }
-      requestAnimationFrame(function(){ scaleDashPreview(); requestAnimationFrame(scaleDashPreview); });
-      window.addEventListener('load', scaleDashPreview);
-      window.addEventListener('resize', scaleDashPreview);
-      if (typeof ResizeObserver !== 'undefined') {
-        var wrap = document.getElementById('dashboardPreviewWrap');
-        if (wrap) new ResizeObserver(scaleDashPreview).observe(wrap);
-      }
-
+      observer.observe(document.documentElement, { attributes: true });
     })();
   </script>
 </body>
