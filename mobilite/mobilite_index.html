@@ -1,0 +1,477 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Mobilité inter-modale — Modulimo</title>
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --white:#ffffff; --off:#f7f5f0; --light:#eeecea; --dark:#1a1a1a;
+      --mid:#4a4a4a; --muted:#888; --green:#2d7a4f; --green-lt:#e8f5ee;
+      --green-md:#4aaa74; --border:#e0ddd8;
+      --gdk:#1e3d32; --max:1140px;
+    }
+    *, *::before, *::after { box-sizing:border-box; margin:0; padding:0; }
+    html { scroll-behavior:smooth; }
+    body { background:var(--white); color:var(--dark); font-family:'DM Sans',sans-serif; font-weight:400; line-height:1.65; overflow-x:hidden; }
+    a { color:inherit; text-decoration:none; }
+    img { display:block; max-width:100%; }
+
+    /* ── TOPBAR ── */
+    .topbar { position:sticky; top:0; z-index:50; background:var(--off); border-bottom:1px solid var(--border); }
+    .topbar-inner { max-width:var(--max); margin:0 auto; padding:0 24px; height:68px; display:flex; align-items:center; justify-content:space-between; gap:24px; }
+    .brand { display:flex; align-items:center; gap:11px; color:var(--green); flex-shrink:0; }
+    .brand svg { width:44px; height:44px; }
+    .brand-name { font-family:'Syne',sans-serif; font-size:1.25rem; font-weight:700; letter-spacing:.07em; text-transform:uppercase; }
+    .nav { display:flex; align-items:center; gap:2px; }
+    .nav a { font-size:.72rem; font-weight:600; letter-spacing:.07em; text-transform:uppercase; color:var(--muted); padding:7px 13px; border-radius:5px; transition:color .15s,background .15s; white-space:nowrap; }
+    .nav a:hover { color:var(--green); background:var(--green-lt); }
+    .nav a.active { color:var(--green); border-bottom:2px solid var(--green); border-radius:0; padding-bottom:5px; }
+    .menu-toggle { display:none; flex-direction:column; justify-content:center; gap:5px; width:40px; height:40px; background:none; border:1px solid var(--border); border-radius:6px; cursor:pointer; padding:8px; }
+    .menu-toggle span { display:block; height:2px; background:var(--green); border-radius:2px; }
+
+    /* ── HERO ── */
+    .hero { background:var(--off); padding:5rem; display:grid; grid-template-columns:1fr 1fr; gap:4rem; align-items:center; border-bottom:1px solid var(--border); position:relative; overflow:hidden; }
+    .hero::after { content:''; position:absolute; top:-80px; right:-80px; width:400px; height:400px; border-radius:50%; background:radial-gradient(circle,rgba(45,122,79,.08) 0%,transparent 70%); pointer-events:none; }
+    .hero-tag { display:inline-flex; align-items:center; gap:.6rem; font-size:.72rem; font-weight:500; letter-spacing:.18em; text-transform:uppercase; color:var(--green); margin-bottom:1.75rem; opacity:0; animation:fadeUp .7s .1s forwards; }
+    .hero-tag::before { content:''; width:1.5rem; height:1px; background:var(--green); }
+    .hero-title { font-family:'Syne',sans-serif; font-size:clamp(2.8rem,5vw,4.8rem); font-weight:800; line-height:1.0; letter-spacing:-.025em; margin-bottom:1.5rem; color:var(--dark); opacity:0; animation:fadeUp .7s .25s forwards; }
+    .hero-title .green { color:var(--green); }
+    .hero-desc { font-size:1.05rem; color:var(--mid); max-width:42ch; margin-bottom:2.5rem; line-height:1.75; opacity:0; animation:fadeUp .7s .4s forwards; }
+    .hero-visual { display:flex; align-items:center; justify-content:center; opacity:0; animation:fadeIn 1s .4s forwards; }
+    .transit { position:relative; width:380px; height:380px; }
+    .t-ring { position:absolute; border-radius:50%; border:1px solid var(--border); }
+    .t-ring:nth-child(1){inset:0}
+    .t-ring:nth-child(2){inset:18%;border-color:rgba(45,122,79,.15)}
+    .t-ring:nth-child(3){inset:36%;border-color:rgba(45,122,79,.25)}
+    .t-center { position:absolute; top:50%; left:50%; transform:translate(-50%,-50%); width:68px; height:68px; background:var(--green); border-radius:50%; display:flex; align-items:center; justify-content:center; font-family:'Syne',sans-serif; font-size:.6rem; font-weight:800; color:#fff; letter-spacing:.04em; text-transform:uppercase; text-align:center; z-index:5; box-shadow:0 4px 24px rgba(45,122,79,.3); }
+    .t-spoke { position:absolute; top:50%; left:50%; height:1px; background:linear-gradient(to right,rgba(45,122,79,.3),transparent); transform-origin:left center; }
+    .t-node { position:absolute; transform:translate(-50%,-50%); display:flex; flex-direction:column; align-items:center; gap:5px; z-index:4; }
+    .t-dot { width:11px; height:11px; border-radius:50%; background:var(--white); border:2px solid var(--green); box-shadow:0 0 8px rgba(45,122,79,.3); }
+    .t-label { font-size:.6rem; font-weight:500; letter-spacing:.07em; text-transform:uppercase; color:var(--mid); white-space:nowrap; background:var(--off); padding:2px 6px; border:1px solid var(--border); }
+
+    /* ── STATS ── */
+    .stats { display:grid; grid-template-columns:repeat(4,1fr); border-bottom:1px solid var(--border); }
+    .stat { padding:2.25rem 2rem; border-right:1px solid var(--border); opacity:0; animation:fadeUp .5s forwards; }
+    .stat:last-child { border-right:none; }
+    .stat:nth-child(1){animation-delay:.05s} .stat:nth-child(2){animation-delay:.15s}
+    .stat:nth-child(3){animation-delay:.25s} .stat:nth-child(4){animation-delay:.35s}
+    .stat-n { font-family:'Syne',sans-serif; font-size:2.6rem; font-weight:800; color:var(--green); line-height:1; margin-bottom:.3rem; }
+    .stat-l { font-size:.75rem; color:var(--muted); letter-spacing:.04em; text-transform:uppercase; }
+
+    /* ── SECTIONS ── */
+    section { padding:6rem 5rem; }
+    .sec-tag { font-size:.68rem; font-weight:600; letter-spacing:.2em; text-transform:uppercase; color:var(--green); margin-bottom:1.25rem; display:flex; align-items:center; gap:.6rem; }
+    .sec-tag::after { content:''; width:2rem; height:1px; background:var(--green); }
+    .sec-title { font-family:'Syne',sans-serif; font-size:clamp(1.8rem,3vw,2.8rem); font-weight:800; line-height:1.1; letter-spacing:-.02em; margin-bottom:1.25rem; color:var(--dark); }
+    .sec-body { font-size:1rem; color:var(--mid); max-width:52ch; line-height:1.75; }
+
+    /* ── PILLIERS ── */
+    .pilliers { background:var(--off); border-top:1px solid var(--border); border-bottom:1px solid var(--border); }
+    .pilliers-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:1px; background:var(--border); margin-top:3rem; }
+    .pillier-card { background:var(--white); padding:2.5rem 2rem; position:relative; overflow:hidden; transition:background .25s; }
+    .pillier-card::after { content:''; position:absolute; bottom:0; left:0; right:0; height:3px; background:var(--green); transform:scaleX(0); transform-origin:left; transition:transform .35s; }
+    .pillier-card:hover { background:var(--green-lt); }
+    .pillier-card:hover::after { transform:scaleX(1); }
+    .pillier-num { font-family:'Syne',sans-serif; font-size:.62rem; font-weight:800; color:var(--green); letter-spacing:.12em; text-transform:uppercase; margin-bottom:1rem; }
+    .pillier-img { width:100%; aspect-ratio:4/3; object-fit:cover; border-radius:8px; margin-bottom:1.25rem; }
+    .pillier-name { font-family:'Syne',sans-serif; font-weight:700; font-size:1rem; color:var(--dark); margin-bottom:.5rem; }
+    .pillier-desc { font-size:.85rem; color:var(--muted); line-height:1.65; }
+
+    /* ── TRAIN ── */
+    .train-section { background:var(--dark); color:#fff; padding:0; overflow:hidden; position:relative; }
+    .train-img { width:100%; max-height:520px; object-fit:cover; opacity:.7; }
+    .train-overlay { position:absolute; inset:0; background:linear-gradient(to right,rgba(10,20,15,.85) 0%,rgba(10,20,15,.4) 60%,rgba(10,20,15,.1) 100%); }
+    .train-content { position:absolute; top:50%; left:5rem; transform:translateY(-50%); max-width:540px; }
+    .train-tag { font-size:.68rem; font-weight:600; letter-spacing:.2em; text-transform:uppercase; color:var(--green-md); margin-bottom:1.25rem; display:flex; align-items:center; gap:.6rem; }
+    .train-tag::after { content:''; width:2rem; height:1px; background:var(--green-md); }
+    .train-title { font-family:'Syne',sans-serif; font-size:clamp(2rem,4vw,3.5rem); font-weight:800; line-height:1.05; letter-spacing:-.03em; color:#fff; margin-bottom:1.25rem; }
+    .train-title .green { color:var(--green-md); }
+    .train-desc { font-size:1rem; color:rgba(255,255,255,.75); line-height:1.75; max-width:44ch; margin-bottom:2rem; }
+    .train-cities { display:flex; gap:2rem; }
+    .train-city { display:flex; flex-direction:column; }
+    .train-city-name { font-family:'Syne',sans-serif; font-size:.72rem; font-weight:800; letter-spacing:.15em; text-transform:uppercase; color:rgba(255,255,255,.5); margin-bottom:.2rem; }
+    .train-city-time { font-family:'Syne',sans-serif; font-size:1.4rem; font-weight:800; color:#fff; }
+    .train-city-label { font-size:.7rem; color:rgba(255,255,255,.45); }
+    .train-divider { width:1px; background:rgba(255,255,255,.15); align-self:stretch; margin:0 1rem; }
+    /* Placeholder si pas d'image */
+    .train-placeholder { background:linear-gradient(135deg,#0a1a0f,#1e3d32); min-height:480px; display:flex; align-items:center; position:relative; }
+
+    /* ── CONCEPT ── */
+    .concept { background:var(--green-lt); display:grid; grid-template-columns:1fr 1fr; gap:5rem; align-items:center; border-top:1px solid rgba(45,122,79,.15); border-bottom:1px solid rgba(45,122,79,.15); }
+    .chain { display:flex; flex-direction:column; gap:0; }
+    .chain-step { display:flex; align-items:stretch; gap:1rem; opacity:0; animation:fadeUp .5s forwards; }
+    .chain-step:nth-child(1){animation-delay:.05s} .chain-step:nth-child(2){animation-delay:.15s}
+    .chain-step:nth-child(3){animation-delay:.25s} .chain-step:nth-child(4){animation-delay:.35s}
+    .chain-step:nth-child(5){animation-delay:.45s} .chain-step:nth-child(6){animation-delay:.55s}
+    .chain-step:nth-child(7){animation-delay:.65s}
+    .chain-left { display:flex; flex-direction:column; align-items:center; width:44px; flex-shrink:0; }
+    .chain-icon { width:44px; height:44px; border:1.5px solid var(--border); background:var(--white); display:flex; align-items:center; justify-content:center; font-size:1.2rem; flex-shrink:0; transition:border-color .2s,background .2s; }
+    .chain-step:hover .chain-icon { border-color:var(--green); background:var(--green-lt); }
+    .chain-line { flex:1; width:1.5px; background:linear-gradient(to bottom,var(--green-md),var(--green-lt)); margin:2px 0; min-height:20px; }
+    .chain-step:last-child .chain-line { display:none; }
+    .chain-body { flex:1; padding:.6rem 0 1.5rem 0; }
+    .chain-mode { font-family:'Syne',sans-serif; font-weight:700; font-size:.9rem; color:var(--dark); margin-bottom:.2rem; }
+    .chain-detail { font-size:.78rem; color:var(--muted); }
+    .chain-badge { font-size:.62rem; font-weight:600; letter-spacing:.08em; text-transform:uppercase; padding:.15rem .5rem; border:1px solid var(--green); color:var(--green); align-self:center; white-space:nowrap; flex-shrink:0; }
+
+    /* ── MODES GRID ── */
+    .modes { background:var(--white); }
+    .modes-header { display:grid; grid-template-columns:1fr 1fr; gap:4rem; align-items:end; margin-bottom:4rem; }
+    .modes-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:1px; background:var(--border); border:1px solid var(--border); }
+    .mode-card { background:var(--white); padding:2.25rem 1.75rem; position:relative; overflow:hidden; transition:background .25s; cursor:default; }
+    .mode-card::after { content:''; position:absolute; bottom:0; left:0; right:0; height:2px; background:var(--green); transform:scaleX(0); transform-origin:left; transition:transform .35s; }
+    .mode-card:hover { background:var(--green-lt); }
+    .mode-card:hover::after { transform:scaleX(1); }
+    .mode-emoji { font-size:1.8rem; margin-bottom:1rem; display:block; }
+    .mode-name { font-family:'Syne',sans-serif; font-weight:700; font-size:.9rem; margin-bottom:.4rem; color:var(--dark); }
+    .mode-desc { font-size:.8rem; color:var(--muted); line-height:1.6; }
+    .mode-num { position:absolute; top:1.25rem; right:1.25rem; font-family:'Syne',sans-serif; font-size:.6rem; font-weight:800; color:var(--border); }
+
+    /* ── PHILOSOPHIE ── */
+    .philosophy { background:var(--off); display:grid; grid-template-columns:1fr 1fr; gap:6rem; align-items:center; border-top:1px solid var(--border); border-bottom:1px solid var(--border); }
+    .pull-quote { font-family:'Syne',sans-serif; font-size:clamp(1.4rem,2.2vw,2rem); font-weight:700; line-height:1.35; color:var(--dark); border-left:3px solid var(--green); padding-left:1.75rem; }
+    .pull-quote em { color:var(--green); font-style:normal; }
+    .phil-points { display:flex; flex-direction:column; gap:0; }
+    .phil-point { display:flex; gap:1.25rem; align-items:flex-start; padding:1.75rem 0; border-bottom:1px solid var(--border); }
+    .phil-point:first-child { padding-top:0; }
+    .phil-point:last-child { border-bottom:none; }
+    .phil-num { font-family:'Syne',sans-serif; font-size:.68rem; font-weight:800; color:var(--green); width:1.75rem; flex-shrink:0; padding-top:.1rem; }
+    .phil-text strong { display:block; font-family:'Syne',sans-serif; font-weight:700; font-size:.9rem; margin-bottom:.3rem; color:var(--dark); }
+    .phil-text p { font-size:.85rem; color:var(--mid); line-height:1.65; }
+
+    /* ── FOOTER ── */
+    .footer { background:var(--off); border-top:1px solid var(--border); padding:44px 5rem 32px; }
+    .footer-inner { max-width:var(--max); margin:0 auto; }
+    .footer-top { display:flex; justify-content:space-between; align-items:flex-start; flex-wrap:wrap; gap:32px; margin-bottom:32px; }
+    .footer-brand { display:flex; align-items:center; gap:10px; color:var(--green); }
+    .footer-brand svg { width:34px; height:34px; }
+    .footer-brand span { font-family:'Syne',sans-serif; font-size:.95rem; font-weight:700; letter-spacing:.07em; text-transform:uppercase; }
+    .footer-tagline { font-size:.82rem; color:var(--muted); margin-top:8px; max-width:260px; line-height:1.6; }
+    .footer-nav h5 { font-size:.7rem; font-weight:700; letter-spacing:.1em; text-transform:uppercase; color:var(--muted); margin-bottom:12px; }
+    .footer-nav a { display:block; font-size:.84rem; color:var(--dark); margin-bottom:8px; }
+    .footer-nav a:hover { color:var(--green); }
+    .footer-bottom { border-top:1px solid var(--border); padding-top:20px; display:flex; justify-content:space-between; flex-wrap:wrap; gap:12px; }
+    .footer-bottom p { font-size:.75rem; color:var(--muted); }
+
+    /* ── ANIMATIONS ── */
+    @keyframes fadeUp { from{opacity:0;transform:translateY(20px)} to{opacity:1;transform:translateY(0)} }
+    @keyframes fadeIn { from{opacity:0} to{opacity:1} }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width:900px) {
+      .hero { grid-template-columns:1fr; padding:4rem 2rem; }
+      .hero-visual { display:none; }
+      .stats { grid-template-columns:1fr 1fr; }
+      .stat { border-bottom:1px solid var(--border); }
+      section { padding:4rem 2rem; }
+      .concept,.philosophy { grid-template-columns:1fr; gap:3rem; }
+      .modes-header { grid-template-columns:1fr; gap:1.5rem; }
+      .modes-grid,.pilliers-grid { grid-template-columns:1fr 1fr; }
+      .train-content { left:2rem; }
+      .footer { padding:44px 2rem 32px; }
+    }
+    @media (max-width:640px) {
+      .modes-grid,.pilliers-grid { grid-template-columns:1fr; }
+      .stats { grid-template-columns:1fr; }
+      .menu-toggle { display:flex; }
+      .nav { display:none; position:absolute; top:68px; left:0; right:0; background:var(--off); border-bottom:1px solid var(--border); flex-direction:column; align-items:stretch; padding:8px 16px 16px; gap:2px; }
+      .nav.is-open { display:flex; }
+      .nav a { padding:12px 14px; border-bottom:1px solid var(--border); border-radius:0; }
+      .nav a.active { border-left:3px solid var(--green); padding-left:11px; }
+      .train-content { left:1.5rem; right:1.5rem; }
+      .train-cities { flex-wrap:wrap; gap:1rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- TOPBAR -->
+  <header class="topbar">
+    <div class="topbar-inner">
+      <a href="/" class="brand">
+        <svg viewBox="0 0 44 44" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <rect x="1" y="1" width="42" height="42" rx="5" stroke="#2d7a4f" stroke-width="1.8"/>
+          <line x1="22" y1="1" x2="22" y2="43" stroke="#2d7a4f" stroke-width="1.2"/>
+          <line x1="1" y1="22" x2="43" y2="22" stroke="#2d7a4f" stroke-width="1.2"/>
+          <line x1="9" y1="6" x2="9" y2="15" stroke="#2d7a4f" stroke-width="1.8" stroke-linecap="round"/>
+          <path d="M7 6 Q7 11 9 12 Q11 11 11 6" stroke="#2d7a4f" stroke-width="1.5" fill="none" stroke-linecap="round"/>
+          <line x1="13" y1="6" x2="13" y2="15" stroke="#2d7a4f" stroke-width="1.8" stroke-linecap="round"/>
+          <rect x="25" y="10" width="13" height="7" rx="2" stroke="#2d7a4f" stroke-width="1.4" fill="none"/>
+          <circle cx="28" cy="17" r="1.8" stroke="#2d7a4f" stroke-width="1.4" fill="none"/>
+          <circle cx="35" cy="17" r="1.8" stroke="#2d7a4f" stroke-width="1.4" fill="none"/>
+          <path d="M27 10 L29 7.5 H34 L36 10" stroke="#2d7a4f" stroke-width="1.4" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+          <rect x="6" y="26" width="10" height="13" rx="1" stroke="#2d7a4f" stroke-width="1.4" fill="none"/>
+          <rect x="8" y="28" width="2.2" height="2.2" stroke="#2d7a4f" stroke-width="1" fill="none"/>
+          <rect x="11.8" y="28" width="2.2" height="2.2" stroke="#2d7a4f" stroke-width="1" fill="none"/>
+          <rect x="8" y="31.5" width="2.2" height="2.2" stroke="#2d7a4f" stroke-width="1" fill="none"/>
+          <rect x="11.8" y="31.5" width="2.2" height="2.2" stroke="#2d7a4f" stroke-width="1" fill="none"/>
+          <rect x="9" y="35" width="4" height="4" stroke="#2d7a4f" stroke-width="1" fill="none"/>
+          <circle cx="33" cy="38" r="1.2" fill="#2d7a4f"/>
+          <path d="M29.5 35 Q33 31.5 36.5 35" stroke="#2d7a4f" stroke-width="1.4" fill="none" stroke-linecap="round"/>
+          <path d="M26.5 32 Q33 27 39.5 32" stroke="#2d7a4f" stroke-width="1.4" fill="none" stroke-linecap="round"/>
+        </svg>
+        <span class="brand-name">Modulimo</span>
+      </a>
+      <button class="menu-toggle" id="menuToggle" aria-expanded="false" aria-controls="siteNav" aria-label="Menu">
+        <span></span><span></span><span></span>
+      </button>
+      <nav class="nav" id="siteNav">
+        <a href="/">Accueil</a>
+        <a href="https://cohabitat.modulimo.com" target="_blank" rel="noopener">CoHabitat</a>
+        <a href="/mobilite" class="active">Mobilité</a>
+        <a href="/securite">Sécurité</a>
+        <a href="/projets">Projets</a>
+        <a href="/produits">Produits</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div>
+      <span class="hero-tag">Mobilité · Modulimo</span>
+      <h1 class="hero-title">Votre ville,<br><span class="green">sans voiture.</span></h1>
+      <p class="hero-desc">Modulimo intègre une chaîne complète de mobilité inter-modale directement dans votre milieu de vie — du vélomobile au train, du fleuve au REM.</p>
+    </div>
+    <div class="hero-visual">
+      <div class="transit">
+        <div class="t-ring"></div>
+        <div class="t-ring"></div>
+        <div class="t-ring"></div>
+        <div class="t-spoke" style="width:160px;transform:translateY(-50%) rotate(0deg);"></div>
+        <div class="t-spoke" style="width:160px;transform:translateY(-50%) rotate(60deg);"></div>
+        <div class="t-spoke" style="width:160px;transform:translateY(-50%) rotate(120deg);"></div>
+        <div class="t-spoke" style="width:160px;transform:translateY(-50%) rotate(180deg);"></div>
+        <div class="t-spoke" style="width:160px;transform:translateY(-50%) rotate(240deg);"></div>
+        <div class="t-spoke" style="width:160px;transform:translateY(-50%) rotate(300deg);"></div>
+        <div class="t-center">Modu<br>limo</div>
+        <div class="t-node" style="top:50%;left:91%"><div class="t-dot"></div><div class="t-label">Autobus STM</div></div>
+        <div class="t-node" style="top:10%;left:75%"><div class="t-dot"></div><div class="t-label">Train Est</div></div>
+        <div class="t-node" style="top:10%;left:25%"><div class="t-dot"></div><div class="t-label">Navette fluviale</div></div>
+        <div class="t-node" style="top:50%;left:9%"><div class="t-dot"></div><div class="t-label">Métro</div></div>
+        <div class="t-node" style="top:90%;left:25%"><div class="t-dot"></div><div class="t-label">REM</div></div>
+        <div class="t-node" style="top:90%;left:75%"><div class="t-dot"></div><div class="t-label">YUL ✈️</div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- STATS -->
+  <div class="stats">
+    <div class="stat"><div class="stat-n">6+</div><div class="stat-l">Modes de transport connectés</div></div>
+    <div class="stat"><div class="stat-n">30'</div><div class="stat-l">Centre-ville en navette fluviale</div></div>
+    <div class="stat"><div class="stat-n">0</div><div class="stat-l">Voiture nécessaire au quotidien</div></div>
+    <div class="stat"><div class="stat-n">1er</div><div class="stat-l">Terminus STM à votre porte</div></div>
+  </div>
+
+  <!-- PILLIERS MOBILITÉ -->
+  <section class="pilliers">
+    <div class="sec-tag">Inter-modalité intégrée au milieu</div>
+    <h2 class="sec-title">Trois modes,<br>un seul milieu de vie.</h2>
+    <div class="pilliers-grid">
+      <div class="pillier-card">
+        <div class="pillier-num">Pilier 01</div>
+        <img src="../images/minivan.png" alt="Auto partage et covoiturage" class="pillier-img" />
+        <div class="pillier-name">Auto partage et covoiturage</div>
+        <p class="pillier-desc">1 à 2 minivans électriques inclus. Réservation en ligne pour résidents. Innovations pour véhicules autonomes à venir — plus besoin de chauffeur pour venir vous chercher.</p>
+      </div>
+      <div class="pillier-card">
+        <div class="pillier-num">Pilier 02</div>
+        <img src="../images/Terminus.png" alt="Transport en commun" class="pillier-img" />
+        <div class="pillier-name">Transport en commun</div>
+        <p class="pillier-desc">L'arrêt d'autobus Bureau / 100e Avenue (PAT) est le voisin immédiat. Lignes 86, 410, 487 — terminus adjacent au projet.</p>
+      </div>
+      <div class="pillier-card">
+        <div class="pillier-num">Pilier 03</div>
+        <img src="../images/Velomobile.png" alt="Micro mobilité" class="pillier-img" />
+        <div class="pillier-name">Micro mobilité</div>
+        <p class="pillier-desc">Stationnement vélo et 2 vélomobiles empruntables — une innovation futuriste au cœur du projet Modulimo.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- TRAIN TGV -->
+  <div class="train-section">
+    <div class="train-placeholder">
+      <img src="../images/Train.png" alt="TGV Québec-Toronto — Modulimo" class="train-img" onerror="this.style.display='none'" />
+      <div class="train-overlay"></div>
+      <div class="train-content">
+        <div class="train-tag">L'horizon interurbain</div>
+        <h2 class="train-title">Le maillon<br>qui <span class="green">s'en vient.</span></h2>
+        <p class="train-desc">La chaîne inter-modale de Modulimo sera connectée au futur train rapide Québec-Toronto. Comme Hydro-Québec a établi de nouveaux standards en élevant la tension de transport à 750 kV, le TGV/TGF représente une occasion de redéfinir la mobilité interurbaine au Québec — et Modulimo sera sur ce réseau.</p>
+        <div class="train-cities">
+          <div class="train-city">
+            <span class="train-city-name">Montréal</span>
+            <span class="train-city-time">0 h</span>
+            <span class="train-city-label">Point de départ</span>
+          </div>
+          <div class="train-divider"></div>
+          <div class="train-city">
+            <span class="train-city-name">Québec City</span>
+            <span class="train-city-time">~1 h</span>
+            <span class="train-city-label">TGV prévu</span>
+          </div>
+          <div class="train-divider"></div>
+          <div class="train-city">
+            <span class="train-city-name">Toronto</span>
+            <span class="train-city-time">~3 h</span>
+            <span class="train-city-label">TGV prévu</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- CONCEPT CHAÎNE -->
+  <section class="concept">
+    <div>
+      <div class="sec-tag">Le concept</div>
+      <h2 class="sec-title">Une chaîne,<br>pas une liste<br>de stops.</h2>
+      <p class="sec-body">L'inter-modalité, ce n'est pas d'être "proche du métro". C'est de concevoir chaque déplacement comme une séquence fluide — où chaque mode passe le relais au suivant, sans friction, sans voiture personnelle.</p>
+      <br>
+      <p class="sec-body">Chez Modulimo, cette chaîne commence dans l'immeuble même avec les vélomobiles et s'étend jusqu'à l'aéroport international via le REM.</p>
+    </div>
+    <div class="chain">
+      <div class="chain-step">
+        <div class="chain-left"><div class="chain-icon">🚐</div><div class="chain-line"></div></div>
+        <div class="chain-body"><div class="chain-mode">Minivan électrique — Autopartage & covoiturage</div><div class="chain-detail">Confort et capacité — réservation en ligne via CoHabitat</div></div>
+        <div class="chain-badge">Sur site</div>
+      </div>
+      <div class="chain-step">
+        <div class="chain-left"><div class="chain-icon">🚲</div><div class="chain-line"></div></div>
+        <div class="chain-body"><div class="chain-mode">Vélomobile — Micro-mobilité futuriste</div><div class="chain-detail">Innovation au cœur du projet — 2 unités disponibles pour les résidents</div></div>
+        <div class="chain-badge">Innovant</div>
+      </div>
+      <div class="chain-step">
+        <div class="chain-left"><div class="chain-icon">🚌</div><div class="chain-line"></div></div>
+        <div class="chain-body"><div class="chain-mode">Autobus STM</div><div class="chain-detail">Lignes 86, 410, 487 — terminus adjacent</div></div>
+        <div class="chain-badge">0 min</div>
+      </div>
+      <div class="chain-step">
+        <div class="chain-left"><div class="chain-icon">⛴️</div><div class="chain-line"></div></div>
+        <div class="chain-body"><div class="chain-mode">Navette fluviale</div><div class="chain-detail">PAT → Vieux-Port, vélos acceptés</div></div>
+        <div class="chain-badge">30 min</div>
+      </div>
+      <div class="chain-step">
+        <div class="chain-left"><div class="chain-icon">🚆</div><div class="chain-line"></div></div>
+        <div class="chain-body"><div class="chain-mode">Train de l'Est</div><div class="chain-detail">Ligne Mascouche → Gare Centrale</div></div>
+        <div class="chain-badge">Proche</div>
+      </div>
+      <div class="chain-step">
+        <div class="chain-left"><div class="chain-icon">🚇</div><div class="chain-line"></div></div>
+        <div class="chain-body"><div class="chain-mode">Métro ligne verte</div><div class="chain-detail">Station Honoré-Beaugrand</div></div>
+        <div class="chain-badge">Réseau</div>
+      </div>
+      <div class="chain-step">
+        <div class="chain-left"><div class="chain-icon">✈️</div></div>
+        <div class="chain-body"><div class="chain-mode">REM + TGV + Aéroport YUL</div><div class="chain-detail">Connexion prévue 2026–2027 · TGV Québec-Toronto en développement</div></div>
+        <div class="chain-badge">2027</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- MODES -->
+  <section class="modes" id="modes">
+    <div class="modes-header">
+      <div>
+        <div class="sec-tag">Les modes</div>
+        <h2 class="sec-title">Tout ce dont<br>vous avez besoin,<br>intégré.</h2>
+      </div>
+      <p class="sec-body">Chaque mode répond à un besoin précis. Ensemble, ils couvrent l'intégralité de vos déplacements — du quotidien à l'international.</p>
+    </div>
+    <div class="modes-grid">
+      <div class="mode-card"><span class="mode-num">01</span><span class="mode-emoji">🚲</span><div class="mode-name">Vélomobile ✦ Innovation</div><div class="mode-desc">Un véhicule à propulsion humaine réinventé. En développement — disponible en prêt pour les résidents.</div></div>
+      <div class="mode-card"><span class="mode-num">02</span><span class="mode-emoji">🚌</span><div class="mode-name">Autobus STM</div><div class="mode-desc">Terminus de 3 lignes à votre porte. Départs régulés, fréquence optimale.</div></div>
+      <div class="mode-card"><span class="mode-num">03</span><span class="mode-emoji">⛴️</span><div class="mode-name">Navette fluviale</div><div class="mode-desc">30 minutes jusqu'au Vieux-Port. Une alternative panoramique — avec votre vélo à bord.</div></div>
+      <div class="mode-card"><span class="mode-num">04</span><span class="mode-emoji">🚆</span><div class="mode-name">Train de l'Est</div><div class="mode-desc">La gare de Pointe-aux-Trembles relie directement la Gare Centrale. Accessible PMR.</div></div>
+      <div class="mode-card"><span class="mode-num">05</span><span class="mode-emoji">🚇</span><div class="mode-name">Métro + REM</div><div class="mode-desc">La ligne verte et le futur REM ouvrent l'ensemble du Grand Montréal depuis un seul nœud.</div></div>
+      <div class="mode-card"><span class="mode-num">06</span><span class="mode-emoji">🚐</span><div class="mode-name">Autopartage & covoiturage</div><div class="mode-desc">Minivan électrique partagée, réservable via CoHabitat. Idéal pour les trajets en groupe.</div></div>
+    </div>
+  </section>
+
+  <!-- PHILOSOPHIE -->
+  <section class="philosophy">
+    <div class="pull-quote">L'immeuble n'est pas <em>près</em> des transports.<br>Il <em>fait partie</em> du réseau.</div>
+    <div class="phil-points">
+      <div class="phil-point">
+        <div class="phil-num">01</div>
+        <div class="phil-text"><strong>Zéro voiture contrainte</strong><p>Vivre sans voiture ne signifie pas vivre sans liberté. La chaîne inter-modale de Modulimo offre une portée équivalente ou supérieure à celle d'un ménage motorisé.</p></div>
+      </div>
+      <div class="phil-point">
+        <div class="phil-num">02</div>
+        <div class="phil-text"><strong>Économies réelles</strong><p>Un ménage sans voiture économise en moyenne 10 000 $ à 15 000 $ par année au Québec. L'inter-modalité de Modulimo transforme cette économie en qualité de vie.</p></div>
+      </div>
+      <div class="phil-point">
+        <div class="phil-num">03</div>
+        <div class="phil-text"><strong>Résilient dans le temps</strong><p>Le réseau de transport collectif ne fait que croître — Train de l'Est, REM, navette fluviale. Chaque amélioration bénéficie automatiquement aux résidents Modulimo.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="footer-inner">
+      <div class="footer-top">
+        <div>
+          <div class="footer-brand">
+            <svg viewBox="0 0 44 44" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <rect x="1" y="1" width="42" height="42" rx="5" stroke="#2d7a4f" stroke-width="1.8"/>
+              <line x1="22" y1="1" x2="22" y2="43" stroke="#2d7a4f" stroke-width="1.2"/>
+              <line x1="1" y1="22" x2="43" y2="22" stroke="#2d7a4f" stroke-width="1.2"/>
+              <line x1="9" y1="6" x2="9" y2="15" stroke="#2d7a4f" stroke-width="1.8" stroke-linecap="round"/>
+              <path d="M7 6 Q7 11 9 12 Q11 11 11 6" stroke="#2d7a4f" stroke-width="1.5" fill="none" stroke-linecap="round"/>
+              <line x1="13" y1="6" x2="13" y2="15" stroke="#2d7a4f" stroke-width="1.8" stroke-linecap="round"/>
+              <rect x="25" y="10" width="13" height="7" rx="2" stroke="#2d7a4f" stroke-width="1.4" fill="none"/>
+              <circle cx="28" cy="17" r="1.8" stroke="#2d7a4f" stroke-width="1.4" fill="none"/>
+              <circle cx="35" cy="17" r="1.8" stroke="#2d7a4f" stroke-width="1.4" fill="none"/>
+              <path d="M27 10 L29 7.5 H34 L36 10" stroke="#2d7a4f" stroke-width="1.4" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+              <rect x="6" y="26" width="10" height="13" rx="1" stroke="#2d7a4f" stroke-width="1.4" fill="none"/>
+              <rect x="8" y="28" width="2.2" height="2.2" stroke="#2d7a4f" stroke-width="1" fill="none"/>
+              <rect x="11.8" y="28" width="2.2" height="2.2" stroke="#2d7a4f" stroke-width="1" fill="none"/>
+              <rect x="8" y="31.5" width="2.2" height="2.2" stroke="#2d7a4f" stroke-width="1" fill="none"/>
+              <rect x="11.8" y="31.5" width="2.2" height="2.2" stroke="#2d7a4f" stroke-width="1" fill="none"/>
+              <rect x="9" y="35" width="4" height="4" stroke="#2d7a4f" stroke-width="1" fill="none"/>
+              <circle cx="33" cy="38" r="1.2" fill="#2d7a4f"/>
+              <path d="M29.5 35 Q33 31.5 36.5 35" stroke="#2d7a4f" stroke-width="1.4" fill="none" stroke-linecap="round"/>
+              <path d="M26.5 32 Q33 27 39.5 32" stroke="#2d7a4f" stroke-width="1.4" fill="none" stroke-linecap="round"/>
+            </svg>
+            <span>Modulimo</span>
+          </div>
+          <p class="footer-tagline">Écosystème résidentiel intégré — logement, mobilité, services et logiciel.</p>
+        </div>
+        <div class="footer-nav">
+          <h5>Navigation</h5>
+          <a href="https://cohabitat.modulimo.com" target="_blank" rel="noopener">CoHabitat</a>
+          <a href="/mobilite">Mobilité</a>
+          <a href="/securite">Sécurité</a>
+          <a href="/projets">Projets</a>
+          <a href="/produits">Produits</a>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>© 2026 Modulimo — Tous droits réservés</p>
+        <p>Pointe-aux-Trembles, Montréal</p>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    const toggle = document.getElementById('menuToggle');
+    const nav = document.getElementById('siteNav');
+    if (toggle && nav) {
+      toggle.addEventListener('click', function() {
+        const open = nav.classList.toggle('is-open');
+        toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+      });
+      document.querySelectorAll('#siteNav a').forEach(function(a) {
+        a.addEventListener('click', function() {
+          nav.classList.remove('is-open');
+          toggle.setAttribute('aria-expanded', 'false');
+        });
+      });
+    }
+  </script>
+
+</body>
+</html>
