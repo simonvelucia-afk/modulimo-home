@@ -1,23 +1,36 @@
-# modulimo-home
-
-Site corporatif de [MODULIMO](https://modulimo.com) — hébergé sur GitHub Pages.
-
-## Structure
+modulimo-home
+Site corporatif de MODULIMO — hébergé sur GitHub Pages.
+Structure
 ```
 /
-├── index.html        ← Page d'accueil
+├── index.html              ← Page d'accueil
+├── mobilite/
+│   └── index.html
+├── securite/
+│   └── index.html
+├── projets/
+│   └── index.html
+├── produits/
+│   └── index.html
 ├── images/
 │   ├── hero_home.png
-│   ├── immeuble_annote.png
-│   └── concept.png
-├── CNAME             ← modulimo.com
+│   ├── ResidentsForme.png
+│   ├── Menace guerre.webp
+│   ├── Plan_assault.webp
+│   ├── Menace nucléaire.webp
+│   ├── Plan_radiation.webp
+│   └── (+ autres)
+├── CNAME                   ← modulimo.com
 └── README.md
 ```
-
-## Déploiement
+Déploiement
 GitHub Pages → branch `main` → dossier racine `/`
-
-## DNS GoDaddy
-- Type : CNAME
-- Nom : www
-- Valeur : simonvelucia-afk.github.io
+DNS GoDaddy
+Enregistrements `A` (racine `@`) pointant vers GitHub Pages :
+`185.199.108.153`
+`185.199.109.153`
+`185.199.110.153`
+`185.199.111.153`
+Enregistrement `CNAME` pour le sous-domaine `www` :
+Nom : `www`
+Valeur : `simonvelucia-afk.github.io`
