@@ -31,14 +31,14 @@
     .menu-toggle span { display:block; height:2px; background:var(--green-md); border-radius:2px; }
 
     /* ── HERO ── */
-    .mhero { background:var(--dark); display:grid; grid-template-columns:1fr 1fr; overflow:hidden; position:relative; }
-    .mhero-left { padding:5rem; display:flex; flex-direction:column; justify-content:center; position:relative; z-index:2; }
+    .mhero { background:var(--dark); display:grid; grid-template-columns:1fr 1fr; overflow:hidden; position:relative; max-height:420px; }
+    .mhero-left { padding:3rem; display:flex; flex-direction:column; justify-content:center; position:relative; z-index:2; }
     .mhero-tag { display:inline-flex; align-items:center; gap:.6rem; font-size:.72rem; font-weight:500; letter-spacing:.18em; text-transform:uppercase; color:var(--green-md); margin-bottom:1.75rem; }
     .mhero-tag::before { content:''; width:1.5rem; height:1px; background:var(--green-md); }
     .mhero-title { font-family:'Syne',sans-serif; font-size:clamp(2.5rem,4.5vw,4.2rem); font-weight:800; line-height:1.0; letter-spacing:-.025em; color:#fff; margin-bottom:1.5rem; }
     .mhero-title .mgreen { color:var(--green-md); }
     .mhero-desc { font-size:1rem; color:rgba(255,255,255,.6); max-width:44ch; line-height:1.75; }
-    .mhero-right { aspect-ratio:1/1; position:relative; overflow:hidden; }
+    .mhero-right { position:relative; overflow:hidden; height:420px; }
     .mhero-right img { width:100%; height:100%; object-fit:cover; object-position:center top; filter:brightness(.6); }
     .mhero-right::after { content:''; position:absolute; inset:0; background:linear-gradient(to right,var(--dark) 0%,transparent 40%); }
 
@@ -68,7 +68,7 @@
 
     /* ── SCÉNARIOS ── */
     .mscenario { position:relative; width:100%; min-height:120px; overflow:hidden; display:block; }
-    .mscenario img { width:100%; height:100%; object-fit:cover; object-position:center; filter:brightness(.55); transition:transform 6s ease; }
+    .mscenario img { width:100%; height:120px; object-fit:cover; object-position:center; filter:brightness(.55); transition:transform 6s ease; }
     .mscenario:hover img { transform:scale(1.04); }
     .mscenario-overlay { position:absolute; inset:0; display:flex; align-items:flex-end; padding:2rem 3rem; min-height:210px; box-sizing:border-box; }
     .moverlay-left { background:linear-gradient(to right,rgba(10,10,10,.88) 0%,rgba(10,10,10,.5) 55%,transparent 100%); }
@@ -86,7 +86,7 @@
 
     /* ── NUCLÉAIRE + RADIATION (ms2) ── */
     .ms2-scenario { position:relative; width:100%; min-height:120px; overflow:hidden; display:block; }
-    .ms2-scenario img { width:100%; height:100%; object-fit:cover; object-position:center; filter:brightness(.55); transition:transform 6s ease; }
+    .ms2-scenario img { width:100%; height:120px; object-fit:cover; object-position:center; filter:brightness(.55); transition:transform 6s ease; }
     .ms2-scenario:hover img { transform:scale(1.04); }
     .ms2-overlay { position:absolute; inset:0; display:flex; align-items:flex-end; padding:2rem 3rem; box-sizing:border-box; }
     .ms2-left { background:linear-gradient(to right,rgba(10,10,10,.9) 0%,rgba(10,10,10,.55) 50%,transparent 100%); }
@@ -132,7 +132,7 @@
       .mintrinsic { padding:4rem 2rem; }
       .mscenario { aspect-ratio:16/9; }
       .mscenario-overlay { padding:2.5rem 2rem; }
-      .ms2-scenario { height:420px; }
+      .ms2-scenario { height:120px; }
       .ms2-overlay { padding:2.5rem 2rem; }
       .ms2-disclaimer { padding:2.5rem 2rem; flex-direction:column; }
       .footer { padding:44px 2rem 32px; }
