@@ -38,7 +38,7 @@
     .mhero-title { font-family:'Syne',sans-serif; font-size:clamp(2.5rem,4.5vw,4.2rem); font-weight:800; line-height:1.0; letter-spacing:-.025em; color:#fff; margin-bottom:1.5rem; }
     .mhero-title .mgreen { color:var(--green-md); }
     .mhero-desc { font-size:1rem; color:rgba(255,255,255,.6); max-width:44ch; line-height:1.75; }
-    .mhero-right { height:600px; position:relative; overflow:hidden; }
+    .mhero-right { aspect-ratio:16/9; position:relative; overflow:hidden; }
     .mhero-right img { width:100%; height:100%; object-fit:contain; object-position:center top; filter:brightness(.6); }
     .mhero-right::after { content:''; position:absolute; inset:0; background:linear-gradient(to right,var(--dark) 0%,transparent 40%); }
 
@@ -125,7 +125,7 @@
     /* ── RESPONSIVE ── */
     @media (max-width:900px) {
       .mhero { grid-template-columns:1fr; }
-      .mhero-right { height:600px; }
+      .mhero-right { aspect-ratio:16/9; }
       .mhero-left { padding:3rem 2rem; }
       .malerts { grid-template-columns:1fr; }
       .malert-item { border-right:none; border-bottom:1px solid var(--border); }
@@ -279,7 +279,7 @@
 
   <!-- SCÉNARIO : MENACE CIVILE -->
   <div class="mscenario">
-    <img src="../images/Menace guerre.webp" alt="Menace civile" style="width:100%;height:100%;object-fit:cover;object-position:center;filter:brightness(.55);" />
+    <img src="../images/Menace guerre.webp" alt="Menace civile" style="width:100%;height:100%;object-fit:contain;object-position:center;filter:brightness(.55);" />
     <div class="mscenario-overlay moverlay-left">
       <div class="mscenario-content">
         <div class="mscenario-badge mbadge-blue">🔵 Niveau Bleu · En développement</div>
