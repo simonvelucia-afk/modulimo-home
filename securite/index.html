@@ -98,7 +98,11 @@
     .ms2-right { background:linear-gradient(to left,rgba(10,10,10,.9) 0%,rgba(10,10,10,.55) 50%,transparent 100%); justify-content:flex-end; text-align:right; }
     .ms2-content { max-width:540px; }
     .ms2-badge { display:inline-flex; align-items:center; gap:.5rem; font-family:'Syne',sans-serif; font-size:.65rem; font-weight:700; letter-spacing:.15em; text-transform:uppercase; padding:.3rem .9rem; border:1px solid; margin-bottom:1.25rem; }
+    .ms2-badge-blue { color:#3498db; border-color:#3498db; }
     .ms2-badge-orange { color:#e67e22; border-color:#e67e22; }
+    .ms2-side-reverse { grid-template-columns:1fr 1fr; }
+    .ms2-side-reverse .ms2-overlay { text-align:right; justify-content:flex-end; }
+    .ms2-pills-right { justify-content:flex-end; }
     .ms2-badge-red { color:#e74c3c; border-color:#e74c3c; }
     .ms2-badge-green { color:#4aaa74; border-color:#4aaa74; }
     .ms2-title { font-family:'Syne',sans-serif; font-size:clamp(1.8rem,3vw,2.8rem); font-weight:800; line-height:1.05; letter-spacing:-.02em; color:#fff; margin-bottom:1rem; }
@@ -283,38 +287,42 @@
   </section>
 
   <!-- SCÉNARIO : MENACE CIVILE -->
-  <div class="mscenario">
-    <img src="../images/Menace guerre.webp" alt="Menace civile" style="width:100%;height:100%;object-fit:contain;object-position:center;filter:brightness(.55);" />
-    <div class="mscenario-overlay moverlay-left">
-      <div class="mscenario-content">
-        <div class="mscenario-badge mbadge-blue">🔵 Niveau Bleu · En développement</div>
-        <h2 class="mscenario-title">Plan de sécurité<br>en cas de menace civile.</h2>
-        <p class="mscenario-desc">En situation de trouble civil, Modulimo active son protocole de confinement. L'éclairage passe au bleu, les accès se verrouillent, et les responsables désignés prennent position selon le plan établi.</p>
-        <div class="mscenario-pills">
-          <span class="mpill">Confinement automatique</span>
-          <span class="mpill">Éclairage d'alerte bleu</span>
-          <span class="mpill">Protocole de défense passive</span>
-          <span class="mpill">Communication interne</span>
+  <div class="ms2-side">
+    <div class="ms2-img-wrap">
+      <img src="../images/Menace guerre.webp" alt="Menace civile" />
+    </div>
+    <div class="ms2-overlay ms2-left">
+      <div class="ms2-content">
+        <div class="ms2-badge ms2-badge-blue">🔵 Niveau Bleu · En développement</div>
+        <h2 class="ms2-title">Plan de sécurité<br>en cas de menace civile.</h2>
+        <p class="ms2-desc">En situation de trouble civil, Modulimo active son protocole de confinement. L'éclairage passe au bleu, les accès se verrouillent, et les responsables désignés prennent position selon le plan établi.</p>
+        <div class="ms2-pills">
+          <span class="ms2-pill">Confinement automatique</span>
+          <span class="ms2-pill">Éclairage d'alerte bleu</span>
+          <span class="ms2-pill">Protocole de défense passive</span>
+          <span class="ms2-pill">Communication interne</span>
         </div>
       </div>
     </div>
   </div>
 
   <!-- SCÉNARIO : PLAN D'ASSAUT -->
-  <div class="mscenario">
-    <img src="../images/Plan_assault.webp" alt="Plan d'assaut" style="width:100%;height:100%;object-fit:cover;object-position:center;filter:brightness(.55);" />
-    <div class="mscenario-overlay moverlay-right">
-      <div class="mscenario-content">
-        <div class="mscenario-badge mbadge-orange">🟠 Niveau Intermédiaire · En développement</div>
-        <h2 class="mscenario-title">Protocole d'assaut<br>et de confinement.</h2>
-        <p class="mscenario-desc">Face à une intrusion active, le protocole d'assaut est déclenché. Chaque étage dispose d'un responsable formé. Les résidents suivent un plan clair, pensé pour minimiser l'exposition et maximiser la protection.</p>
-        <div class="mscenario-pills">
-          <span class="mpill">Zones de refuge désignées</span>
-          <span class="mpill">Responsables par étage</span>
-          <span class="mpill">Défense non-létale</span>
-          <span class="mpill">Gradation selon le danger</span>
+  <div class="ms2-side ms2-side-reverse">
+    <div class="ms2-overlay ms2-right">
+      <div class="ms2-content">
+        <div class="ms2-badge ms2-badge-orange">🟠 Niveau Intermédiaire · En développement</div>
+        <h2 class="ms2-title">Protocole d'assaut<br>et de confinement.</h2>
+        <p class="ms2-desc">Face à une intrusion active, le protocole d'assaut est déclenché. Chaque étage dispose d'un responsable formé. Les résidents suivent un plan clair, pensé pour minimiser l'exposition et maximiser la protection.</p>
+        <div class="ms2-pills ms2-pills-right">
+          <span class="ms2-pill">Zones de refuge désignées</span>
+          <span class="ms2-pill">Responsables par étage</span>
+          <span class="ms2-pill">Défense non-létale</span>
+          <span class="ms2-pill">Gradation selon le danger</span>
         </div>
       </div>
+    </div>
+    <div class="ms2-img-wrap">
+      <img src="../images/Plan_assault.webp" alt="Plan d'assaut" />
     </div>
   </div>
 
@@ -339,20 +347,22 @@
   </div>
 
   <!-- SCÉNARIO : RADIATION -->
-  <div class="ms2-scenario">
-    <img src="../images/Plan_radiation.webp" alt="Plan radiation" style="width:100%;height:100%;object-fit:cover;object-position:center;filter:brightness(.55);" />
+  <div class="ms2-side ms2-side-reverse">
     <div class="ms2-overlay ms2-right">
       <div class="ms2-content">
         <div class="ms2-badge ms2-badge-orange">☢️ Protocole Radiation · En développement</div>
         <h2 class="ms2-title">Gestion des<br>retombées radioactives.</h2>
         <p class="ms2-desc">Un protocole détaillé sera remis à chaque résident. L'architecture favorise le refuge au centre du bâtiment, là où la masse de matériaux offre la meilleure protection naturelle.</p>
-        <div class="ms2-pills">
+        <div class="ms2-pills ms2-pills-right">
           <span class="ms2-pill">Refuge central du bâtiment</span>
           <span class="ms2-pill">Kit 72h par logement</span>
           <span class="ms2-pill">Radio à manivelle</span>
           <span class="ms2-pill">Protocole de décontamination</span>
         </div>
       </div>
+    </div>
+    <div class="ms2-img-wrap">
+      <img src="../images/Plan_radiation.webp" alt="Plan radiation" />
     </div>
   </div>
 
