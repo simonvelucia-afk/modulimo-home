@@ -20,9 +20,8 @@
     /* ── TOPBAR ── */
     .topbar { position:sticky; top:0; z-index:50; background:var(--dark); border-bottom:1px solid rgba(255,255,255,.1); }
     .topbar-inner { max-width:var(--max); margin:0 auto; padding:0 24px; height:68px; display:flex; align-items:center; justify-content:space-between; gap:24px; }
-    .brand { display:flex; align-items:center; gap:11px; color:var(--green-md); flex-shrink:0; }
-    .brand svg { width:44px; height:44px; }
-    .brand-name { font-family:'Syne',sans-serif; font-size:1.25rem; font-weight:700; letter-spacing:.07em; text-transform:uppercase; }
+    .brand { display:flex; align-items:center; flex-shrink:0; background:#fff; padding:4px 10px; border-radius:8px; }
+    .brand img { height:42px; width:auto; display:block; }
     .nav { display:flex; align-items:center; gap:2px; }
     .nav a { font-size:.72rem; font-weight:600; letter-spacing:.07em; text-transform:uppercase; color:rgba(255,255,255,.55); padding:7px 13px; border-radius:5px; transition:color .15s,background .15s; white-space:nowrap; }
     .nav a:hover { color:var(--green-md); background:rgba(255,255,255,.06); }
@@ -121,9 +120,19 @@
     .footer { background:var(--dark); border-top:1px solid rgba(255,255,255,.1); padding:44px 5rem 32px; }
     .footer-inner { max-width:var(--max); margin:0 auto; }
     .footer-top { display:flex; justify-content:space-between; align-items:flex-start; flex-wrap:wrap; gap:32px; margin-bottom:32px; }
-    .footer-brand { display:flex; align-items:center; gap:10px; color:var(--green-md); }
-    .footer-brand svg { width:34px; height:34px; }
-    .footer-brand span { font-family:'Syne',sans-serif; font-size:.95rem; font-weight:700; letter-spacing:.07em; text-transform:uppercase; }
+    .footer-brand { display:flex; align-items:center; background:#fff; padding:4px 10px; border-radius:8px; align-self:flex-start; }
+    .footer-brand img { height:32px; width:auto; display:block; }
+
+    /* ── THÈME ÉVÉNEMENTIEL (piloté depuis modulimo-admin) ── */
+    body.theme-femme .topbar { background:#f8bbd0; border-bottom-color:rgba(0,0,0,.08); }
+    body.theme-terre .topbar { background:#43a047; border-bottom-color:rgba(0,0,0,.15); }
+    body.theme-femme .topbar .nav a,
+    body.theme-femme .topbar .nav a:hover,
+    body.theme-femme .topbar .nav a.active { color:#880e4f; background:transparent; border-color:#880e4f; }
+    body.theme-terre .topbar .nav a,
+    body.theme-terre .topbar .nav a:hover,
+    body.theme-terre .topbar .nav a.active,
+    body.theme-terre .menu-toggle span { color:#e53935; background:transparent; border-color:#e53935; }
     .footer-tagline { font-size:.82rem; color:rgba(255,255,255,.4); margin-top:8px; max-width:260px; line-height:1.6; }
     .footer-nav h5 { font-size:.7rem; font-weight:700; letter-spacing:.1em; text-transform:uppercase; color:rgba(255,255,255,.35); margin-bottom:12px; }
     .footer-nav a { display:block; font-size:.84rem; color:rgba(255,255,255,.55); margin-bottom:8px; }
@@ -164,29 +173,8 @@
   <!-- TOPBAR -->
   <header class="topbar">
     <div class="topbar-inner">
-      <a href="/" class="brand">
-        <svg viewBox="0 0 44 44" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <rect x="1" y="1" width="42" height="42" rx="5" stroke="#4aaa74" stroke-width="1.8"/>
-          <line x1="22" y1="1" x2="22" y2="43" stroke="#4aaa74" stroke-width="1.2"/>
-          <line x1="1" y1="22" x2="43" y2="22" stroke="#4aaa74" stroke-width="1.2"/>
-          <line x1="9" y1="6" x2="9" y2="15" stroke="#4aaa74" stroke-width="1.8" stroke-linecap="round"/>
-          <path d="M7 6 Q7 11 9 12 Q11 11 11 6" stroke="#4aaa74" stroke-width="1.5" fill="none" stroke-linecap="round"/>
-          <line x1="13" y1="6" x2="13" y2="15" stroke="#4aaa74" stroke-width="1.8" stroke-linecap="round"/>
-          <rect x="25" y="10" width="13" height="7" rx="2" stroke="#4aaa74" stroke-width="1.4" fill="none"/>
-          <circle cx="28" cy="17" r="1.8" stroke="#4aaa74" stroke-width="1.4" fill="none"/>
-          <circle cx="35" cy="17" r="1.8" stroke="#4aaa74" stroke-width="1.4" fill="none"/>
-          <path d="M27 10 L29 7.5 H34 L36 10" stroke="#4aaa74" stroke-width="1.4" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
-          <rect x="6" y="26" width="10" height="13" rx="1" stroke="#4aaa74" stroke-width="1.4" fill="none"/>
-          <rect x="8" y="28" width="2.2" height="2.2" stroke="#4aaa74" stroke-width="1" fill="none"/>
-          <rect x="11.8" y="28" width="2.2" height="2.2" stroke="#4aaa74" stroke-width="1" fill="none"/>
-          <rect x="8" y="31.5" width="2.2" height="2.2" stroke="#4aaa74" stroke-width="1" fill="none"/>
-          <rect x="11.8" y="31.5" width="2.2" height="2.2" stroke="#4aaa74" stroke-width="1" fill="none"/>
-          <rect x="9" y="35" width="4" height="4" stroke="#4aaa74" stroke-width="1" fill="none"/>
-          <circle cx="33" cy="38" r="1.2" fill="#4aaa74"/>
-          <path d="M29.5 35 Q33 31.5 36.5 35" stroke="#4aaa74" stroke-width="1.4" fill="none" stroke-linecap="round"/>
-          <path d="M26.5 32 Q33 27 39.5 32" stroke="#4aaa74" stroke-width="1.4" fill="none" stroke-linecap="round"/>
-        </svg>
-        <span class="brand-name">Modulimo</span>
+      <a href="/" class="brand" aria-label="Modulimo — Accueil">
+        <img src="/images/ModulimoLogoSobre.png" alt="Modulimo" />
       </a>
       <button class="menu-toggle" id="menuToggle" aria-expanded="false" aria-controls="siteNav" aria-label="Menu">
         <span></span><span></span><span></span>
@@ -382,28 +370,7 @@
       <div class="footer-top">
         <div>
           <div class="footer-brand">
-            <svg viewBox="0 0 44 44" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <rect x="1" y="1" width="42" height="42" rx="5" stroke="#4aaa74" stroke-width="1.8"/>
-              <line x1="22" y1="1" x2="22" y2="43" stroke="#4aaa74" stroke-width="1.2"/>
-              <line x1="1" y1="22" x2="43" y2="22" stroke="#4aaa74" stroke-width="1.2"/>
-              <line x1="9" y1="6" x2="9" y2="15" stroke="#4aaa74" stroke-width="1.8" stroke-linecap="round"/>
-              <path d="M7 6 Q7 11 9 12 Q11 11 11 6" stroke="#4aaa74" stroke-width="1.5" fill="none" stroke-linecap="round"/>
-              <line x1="13" y1="6" x2="13" y2="15" stroke="#4aaa74" stroke-width="1.8" stroke-linecap="round"/>
-              <rect x="25" y="10" width="13" height="7" rx="2" stroke="#4aaa74" stroke-width="1.4" fill="none"/>
-              <circle cx="28" cy="17" r="1.8" stroke="#4aaa74" stroke-width="1.4" fill="none"/>
-              <circle cx="35" cy="17" r="1.8" stroke="#4aaa74" stroke-width="1.4" fill="none"/>
-              <path d="M27 10 L29 7.5 H34 L36 10" stroke="#4aaa74" stroke-width="1.4" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
-              <rect x="6" y="26" width="10" height="13" rx="1" stroke="#4aaa74" stroke-width="1.4" fill="none"/>
-              <rect x="8" y="28" width="2.2" height="2.2" stroke="#4aaa74" stroke-width="1" fill="none"/>
-              <rect x="11.8" y="28" width="2.2" height="2.2" stroke="#4aaa74" stroke-width="1" fill="none"/>
-              <rect x="8" y="31.5" width="2.2" height="2.2" stroke="#4aaa74" stroke-width="1" fill="none"/>
-              <rect x="11.8" y="31.5" width="2.2" height="2.2" stroke="#4aaa74" stroke-width="1" fill="none"/>
-              <rect x="9" y="35" width="4" height="4" stroke="#4aaa74" stroke-width="1" fill="none"/>
-              <circle cx="33" cy="38" r="1.2" fill="#4aaa74"/>
-              <path d="M29.5 35 Q33 31.5 36.5 35" stroke="#4aaa74" stroke-width="1.4" fill="none" stroke-linecap="round"/>
-              <path d="M26.5 32 Q33 27 39.5 32" stroke="#4aaa74" stroke-width="1.4" fill="none" stroke-linecap="round"/>
-            </svg>
-            <span>Modulimo</span>
+            <img src="/images/ModulimoLogoSobre.png" alt="Modulimo" />
           </div>
           <p class="footer-tagline">Écosystème résidentiel intégré — logement, mobilité, services et logiciel.</p>
         </div>
@@ -439,6 +406,7 @@
       });
     }
   </script>
+  <script type="module" src="/js/theme.js"></script>
 
 </body>
 </html>
