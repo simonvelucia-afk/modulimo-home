@@ -21,7 +21,7 @@
     /* TOPBAR */
     .topbar { position:sticky; top:0; z-index:50; background:var(--bg); border-bottom:1px solid var(--line); }
     .topbar-inner { max-width:var(--max); margin:0 auto; padding:0 24px; height:68px; display:flex; align-items:center; justify-content:space-between; gap:24px; }
-    .brand { display:flex; align-items:center; flex-shrink:0; }
+    .brand { display:flex; align-items:center; flex-shrink:0; background:#fff; padding:4px 10px; border-radius:8px; }
     .brand img { height:42px; width:auto; display:block; }
     .nav { display:flex; align-items:center; gap:2px; }
     .nav a { font-size:.78rem; font-weight:600; letter-spacing:.07em; text-transform:uppercase; color:var(--muted); padding:7px 13px; border-radius:5px; transition:color .15s,background .15s; white-space:nowrap; }
@@ -110,8 +110,16 @@
     .footer { background:var(--bg); border-top:1px solid var(--line); padding:44px 24px 32px; }
     .footer-inner { max-width:var(--max); margin:0 auto; }
     .footer-top { display:flex; justify-content:space-between; align-items:flex-start; flex-wrap:wrap; gap:32px; margin-bottom:32px; }
-    .footer-brand { display:flex; align-items:center; }
+    .footer-brand { display:flex; align-items:center; background:#fff; padding:4px 10px; border-radius:8px; align-self:flex-start; }
     .footer-brand img { height:32px; width:auto; display:block; }
+
+    /* ── THÈME ÉVÉNEMENTIEL (piloté depuis modulimo-admin) ── */
+    body.theme-femme .topbar { background:#f8bbd0; border-bottom-color:rgba(0,0,0,.08); }
+    body.theme-terre .topbar { background:#43a047; border-bottom-color:rgba(0,0,0,.15); }
+    body.theme-terre .topbar .nav a,
+    body.theme-terre .topbar .nav a:hover,
+    body.theme-terre .topbar .nav a.active,
+    body.theme-terre .menu-toggle span { color:#e53935; background:transparent; border-color:#e53935; }
     .footer-tagline { font-size:.82rem; color:var(--muted); margin-top:8px; max-width:260px; line-height:1.6; }
     .footer-nav h5 { font-size:.7rem; font-weight:700; letter-spacing:.1em; text-transform:uppercase; color:var(--muted); margin-bottom:12px; }
     .footer-nav a { display:block; font-size:.84rem; color:var(--text); margin-bottom:8px; }
@@ -417,6 +425,7 @@
       });
     }
   </script>
+  <script type="module" src="/js/theme.js"></script>
 
 </body>
 </html>
