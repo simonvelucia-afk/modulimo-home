@@ -746,7 +746,8 @@
 
   <main class="wrap">
     <section class="hero">
-      <div class="panel" style="max-width:900px;margin:0 auto;">
+      <div class="hero-grid">
+        <div class="panel">
           <div class="hero-copy">
             <div class="eyebrow">
               <span data-lang="fr">Innovation modulaire • Logiciel • Construction • Mobilité</span>
@@ -790,6 +791,20 @@
             </div>
           </div>
         </div>
+
+        <div class="panel hero-media-app">
+          <iframe
+            src="https://cohabitat.modulimo.com/"
+            loading="lazy"
+            allowfullscreen>
+          </iframe>
+          <div class="hero-overlay">
+            <span data-lang="fr">Plateforme opérationnelle — gestion des ressources et du milieu de vie</span>
+            <span data-lang="en">Operational platform — resource and living environment management</span>
+            <span data-lang="es">Plataforma operacional — gestión de recursos y entorno residencial</span>
+          </div>
+        </div>
+      </div>
     </section>
 
     <section class="block">
@@ -841,45 +856,31 @@
       </div>
     </section>
 
-    <!-- Section consolidee CoHabitat : iframe vedette + description + CTA + valeur strategique -->
+    <!-- Section consolidee CoHabitat : description + CTA + valeur strategique
+         (l'iframe vit dans le hero pour rester visible et vedette) -->
     <section class="block" id="cohabitat">
-      <div class="grid-2">
-        <div class="panel hero-media-app">
-          <iframe
-            src="https://cohabitat.modulimo.com/"
-            loading="lazy"
-            allowfullscreen>
-          </iframe>
-          <div class="hero-overlay">
-            <span data-lang="fr">Plateforme opérationnelle — gestion des ressources et du milieu de vie</span>
-            <span data-lang="en">Operational platform — resource and living environment management</span>
-            <span data-lang="es">Plataforma operacional — gestión de recursos y entorno residencial</span>
-          </div>
+      <div class="panel card-pad" style="max-width:900px;margin:0 auto;">
+        <div class="smallcaps"><span data-lang="fr">Plateforme logicielle</span><span data-lang="en">Software platform</span></div>
+        <h2 class="section-title"><span data-lang="fr">CoHabitat — déjà accessible</span><span data-lang="en">CoHabitat — already accessible</span></h2>
+        <p class="section-text">
+          <span data-lang="fr">Une première brique de l’écosystème est déjà accessible en démonstration via CoHabitat. Cette couche numérique illustre concrètement la gestion résidentielle, la coordination des ressources, les usages partagés et la logique de système que MODULIMO souhaite déployer à plus grande échelle. Cette plateforme constitue une première preuve d’exécution du modèle MODULIMO.</span>
+          <span data-lang="en">A first layer of the ecosystem is already accessible through the CoHabitat demo. This digital layer concretely illustrates residential management, resource coordination, shared usage, and the system logic MODULIMO aims to deploy at a larger scale. This platform represents an initial proof of execution of the MODULIMO model.</span>
+        </p>
+        <div class="actions">
+          <a class="btn primary" href="https://cohabitat.modulimo.com/" target="_blank" rel="noopener">
+            <span data-lang="fr">Accéder à la démo</span><span data-lang="en">Access the demo</span>
+          </a>
+          <a class="btn" href="https://simonvelucia-afk.github.io/LunchMachine/?demo=1" target="_blank" rel="noopener">
+            <span data-lang="fr">🧪 Faire l’essai de la machine lunch</span><span data-lang="en">🧪 Try the lunch machine</span>
+          </a>
         </div>
-
-        <div class="panel card-pad">
-          <div class="smallcaps"><span data-lang="fr">Plateforme logicielle</span><span data-lang="en">Software platform</span></div>
-          <h2 class="section-title"><span data-lang="fr">CoHabitat — déjà accessible</span><span data-lang="en">CoHabitat — already accessible</span></h2>
-          <p class="section-text">
-            <span data-lang="fr">Une première brique de l’écosystème est déjà accessible en démonstration via CoHabitat. Cette couche numérique illustre concrètement la gestion résidentielle, la coordination des ressources, les usages partagés et la logique de système que MODULIMO souhaite déployer à plus grande échelle. Cette plateforme constitue une première preuve d’exécution du modèle MODULIMO.</span>
-            <span data-lang="en">A first layer of the ecosystem is already accessible through the CoHabitat demo. This digital layer concretely illustrates residential management, resource coordination, shared usage, and the system logic MODULIMO aims to deploy at a larger scale. This platform represents an initial proof of execution of the MODULIMO model.</span>
-          </p>
-          <div class="actions">
-            <a class="btn primary" href="https://cohabitat.modulimo.com/" target="_blank" rel="noopener">
-              <span data-lang="fr">Accéder à la démo</span><span data-lang="en">Access the demo</span>
-            </a>
-            <a class="btn" href="https://simonvelucia-afk.github.io/LunchMachine/?demo=1" target="_blank" rel="noopener">
-              <span data-lang="fr">🧪 Faire l’essai de la machine lunch</span><span data-lang="en">🧪 Try the lunch machine</span>
-            </a>
-          </div>
-          <div class="split-note">
-            <span class="chip"><span data-lang="fr">Démo active</span><span data-lang="en">Live demo</span></span>
-            <span class="chip"><span data-lang="fr">Aucune donnée réelle requise</span><span data-lang="en">No real data required</span></span>
-          </div>
+        <div class="split-note">
+          <span class="chip"><span data-lang="fr">Démo active</span><span data-lang="en">Live demo</span></span>
+          <span class="chip"><span data-lang="fr">Aucune donnée réelle requise</span><span data-lang="en">No real data required</span></span>
         </div>
       </div>
 
-      <!-- Valeur strategique : note discrète sous la grille, anciennement bande latérale séparée. -->
+      <!-- Valeur strategique : bande discrète sous le bloc CoHabitat. -->
       <div class="band" style="margin-top:18px;">
         <div class="smallcaps"><span data-lang="fr">Valeur stratégique</span><span data-lang="en">Strategic value</span></div>
         <h2 class="section-title soft"><span data-lang="fr">Une preuve d’exécution, pas seulement une vision</span><span data-lang="en">Proof of execution, not just vision</span></h2>
