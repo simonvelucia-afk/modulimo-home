@@ -1,0 +1,727 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Postuler chez Modulimo — Demande de location</title>
+<meta name="description" content="Déposez votre candidature pour un logement Modulimo à Pointe-aux-Trembles. Processus conforme Loi 25.">
+<link rel="icon" type="image/png" href="/images/favicon_Modulimo.png">
+
+<!-- Open Graph -->
+<meta property="og:title" content="Postuler chez Modulimo">
+<meta property="og:description" content="Devenez résident dans la communauté Modulimo — écosystème résidentiel intégré à Pointe-aux-Trembles.">
+<meta property="og:url" content="https://www.modulimo.com/postuler/">
+<meta property="og:image" content="https://www.modulimo.com/images/hero_home.png">
+<meta property="og:type" content="website">
+
+<style>
+  *, *::before, *::after { box-sizing:border-box; margin:0; padding:0; }
+  :root {
+    --green:#2d5a4a; --green-lt:#3a7a62; --green-dk:#1e3d32;
+    --bg:#f4f3f0; --line:#d0cec8;
+    --text:#1a1a18; --muted:#5c5c56; --max:1140px;
+    --primary:#2d5a4a; --primary-dark:#1e3d32; --primary-soft:#e8efe9;
+    --accent:#c8a951;
+    --eco:#2f7a4d; --security:#5a4a8a; --innovation:#c2722e;
+    --error:#a94442; --success:#2f7a4d;
+    --radius:6px;
+  }
+  html { scroll-behavior:smooth; scroll-padding-top:80px; }
+  body { font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif; background:var(--bg); color:var(--text); line-height:1.6; }
+  a { color:inherit; text-decoration:none; }
+  img { display:block; max-width:100%; }
+
+  /* TOPBAR Modulimo standard */
+  .topbar { position:sticky; top:0; z-index:50; background:var(--bg); border-bottom:1px solid var(--line); }
+  .topbar-inner { max-width:var(--max); margin:0 auto; padding:0 24px; height:68px; display:flex; align-items:center; justify-content:space-between; gap:24px; }
+  .brand { display:flex; align-items:center; flex-shrink:0; background:#fff; padding:4px 10px; border-radius:8px; }
+  .brand img { height:42px; width:auto; display:block; }
+  .nav { display:flex; align-items:center; gap:2px; }
+  .nav a { font-size:.78rem; font-weight:600; letter-spacing:.07em; text-transform:uppercase; color:var(--muted); padding:7px 13px; border-radius:5px; transition:color .15s,background .15s; white-space:nowrap; }
+  .nav a:hover { color:var(--green); background:rgba(45,90,74,.07); }
+  .nav a.active { color:var(--green-dk); border-bottom:2px solid var(--green); border-radius:0; padding-bottom:5px; }
+  .nav a.postuler-cta { background:var(--green); color:#fff; }
+  .nav a.postuler-cta:hover { background:var(--green-lt); color:#fff; }
+  .menu-toggle { display:none; flex-direction:column; justify-content:center; gap:5px; width:40px; height:40px; background:none; border:1px solid var(--line); border-radius:6px; cursor:pointer; padding:8px; }
+  .menu-toggle span { display:block; height:2px; background:var(--green); border-radius:2px; }
+
+  /* PAGE HERO */
+  .page-hero { background:var(--green-dk); padding:56px 24px 48px; }
+  .page-hero-inner { max-width:var(--max); margin:0 auto; }
+  .page-eyebrow { font-size:.72rem; font-weight:700; letter-spacing:.14em; text-transform:uppercase; color:rgba(255,255,255,.6); margin-bottom:12px; }
+  .page-hero h1 { font-size:clamp(2rem,4vw,3rem); font-weight:800; letter-spacing:-.04em; color:#fff; margin-bottom:12px; line-height:1.1; }
+  .page-hero p { font-size:1rem; color:rgba(255,255,255,.72); max-width:680px; line-height:1.7; }
+
+  /* CONTAINER FORM */
+  main.form-wrap { max-width:920px; margin:48px auto; background:#fff; border:1px solid var(--line); border-radius:8px; box-shadow:0 1px 3px rgba(20,30,50,.04), 0 1px 2px rgba(20,30,50,.06); overflow:hidden; }
+
+  .notice { background:#fcf9ed; border-left:3px solid var(--accent); padding:18px 24px; font-size:.92rem; color:#5a4a1f; }
+  .notice strong { color:#3a2f10; }
+
+  form { padding:8px 48px 48px; }
+  fieldset { border:none; margin-top:40px; padding-top:28px; border-top:1px solid var(--line); }
+  fieldset:first-of-type { border-top:none; padding-top:24px; }
+  legend { font-weight:700; font-size:1.4rem; color:var(--green-dk); padding-right:16px; background:#fff; letter-spacing:-.02em; }
+  legend.eco { color:var(--eco); }
+  legend.sec { color:var(--security); }
+  legend.inn { color:var(--innovation); }
+  legend.cohabitat { color:var(--green); }
+  .legend-num { display:inline-block; font-size:.72rem; color:var(--muted); font-weight:600; letter-spacing:.14em; margin-bottom:6px; text-transform:uppercase; }
+  .subsection { font-weight:700; font-size:1rem; margin:24px 0 12px; padding-bottom:6px; border-bottom:1px dashed var(--line); color:var(--text); }
+  .help { font-size:.85rem; color:var(--muted); font-style:italic; margin:8px 0 16px; }
+  .grid { display:grid; grid-template-columns:repeat(2,1fr); gap:16px; margin-bottom:8px; }
+  .grid-3 { grid-template-columns:repeat(3,1fr); }
+  .full { grid-column:1 / -1; }
+
+  label { display:block; font-size:.85rem; font-weight:500; margin-bottom:6px; }
+  .req::after { content:" *"; color:var(--error); }
+  input[type="text"], input[type="email"], input[type="tel"],
+  input[type="number"], input[type="date"], select, textarea {
+    width:100%; padding:10px 12px; border:1px solid var(--line); border-radius:var(--radius); font-family:inherit; font-size:.92rem; background:#fff;
+    transition:border-color .15s, box-shadow .15s;
+  }
+  input:focus, select:focus, textarea:focus { outline:none; border-color:var(--green); box-shadow:0 0 0 3px rgba(45,90,74,.12); }
+  textarea { resize:vertical; min-height:80px; }
+
+  .checkbox-group, .radio-group { display:flex; flex-direction:column; gap:10px; margin:8px 0; }
+  .check, .radio { display:flex; align-items:flex-start; gap:10px; cursor:pointer; padding:10px 14px; border:1px solid var(--line); border-radius:var(--radius); transition:background .15s, border-color .15s; font-size:.92rem; }
+  .check:hover, .radio:hover { background:var(--primary-soft); border-color:var(--green); }
+  .check input, .radio input { margin-top:2px; accent-color:var(--green); flex-shrink:0; }
+
+  .scale-group { display:grid; grid-template-columns:repeat(5,1fr); gap:8px; margin:8px 0; }
+  .scale-item { position:relative; padding:12px 6px; border:1px solid var(--line); border-radius:var(--radius); cursor:pointer; transition:all .15s; text-align:center; }
+  .scale-item:hover { background:var(--primary-soft); border-color:var(--green); }
+  .scale-item input { position:absolute; opacity:0; pointer-events:none; }
+  .scale-item .num { font-weight:700; font-size:1.2rem; color:var(--text); margin-bottom:2px; line-height:1; }
+  .scale-item:has(input:checked) { background:var(--primary-soft); border-color:var(--green); border-width:2px; }
+  .scale-item .lbl { font-size:.65rem; color:var(--muted); display:block; }
+  .scale-anchor { display:flex; justify-content:space-between; font-size:.72rem; color:var(--muted); margin-bottom:6px; font-style:italic; }
+
+  .consent-block { background:var(--primary-soft); border-left:3px solid var(--green); padding:20px 24px; margin:16px 0; border-radius:0 var(--radius) var(--radius) 0; font-size:.92rem; }
+  .consent-block p { margin-bottom:10px; }
+  .consent-block p:last-child { margin-bottom:0; }
+  .law25-tag { display:inline-block; font-size:.62rem; font-weight:700; letter-spacing:.15em; text-transform:uppercase; background:var(--green); color:#fff; padding:3px 8px; border-radius:2px; margin-bottom:8px; }
+
+  .declarations { border:1px solid var(--line); border-radius:var(--radius); overflow:hidden; margin:8px 0 16px; }
+  .declarations .row { display:grid; grid-template-columns:1fr 180px; gap:16px; padding:14px 16px; border-bottom:1px solid var(--line); align-items:center; font-size:.92rem; }
+  .declarations .row:last-child { border-bottom:none; }
+  .declarations .row:nth-child(even) { background:#fafaf7; }
+  .yn { display:flex; gap:14px; justify-content:flex-end; font-size:.84rem; }
+  .yn label { margin:0; cursor:pointer; display:flex; align-items:center; gap:4px; }
+
+  .cohabitat-card { background:linear-gradient(135deg, #f4f8f6 0%, #e8efe9 100%); border:1px solid var(--primary-soft); border-radius:var(--radius); padding:20px 24px; margin:16px 0 24px; }
+  .cohabitat-card h4 { font-size:.95rem; color:var(--green); margin-bottom:8px; font-weight:700; }
+  .cohabitat-card p { font-size:.85rem; color:var(--text); }
+
+  .footer-rights { margin-top:32px; padding:20px; background:#f6f4ee; border-radius:var(--radius); font-size:.78rem; color:var(--muted); line-height:1.6; }
+  .footer-rights strong { color:var(--text); }
+
+  .actions { display:flex; gap:12px; justify-content:flex-end; flex-wrap:wrap; margin-top:32px; padding-top:24px; border-top:1px solid var(--line); }
+  button { font-family:inherit; font-size:.92rem; font-weight:500; padding:12px 28px; border-radius:var(--radius); cursor:pointer; border:1px solid var(--line); background:#fff; transition:all .15s; }
+  button:hover { border-color:var(--green); }
+  button.primary { background:var(--green); color:#fff; border-color:var(--green); }
+  button.primary:hover { background:var(--green-lt); }
+  button:disabled { opacity:.5; cursor:not-allowed; }
+
+  .toast { position:fixed; bottom:24px; left:50%; transform:translateX(-50%); background:var(--text); color:#fff; padding:14px 24px; border-radius:var(--radius); font-size:.92rem; box-shadow:0 4px 20px rgba(0,0,0,.2); z-index:100; opacity:0; transition:opacity .3s; pointer-events:none; }
+  .toast.show { opacity:1; }
+  .toast.success { background:var(--success); }
+  .toast.error { background:var(--error); }
+
+  .success-screen { text-align:center; padding:80px 40px; }
+  .success-screen h2 { font-size:2rem; color:var(--success); margin-bottom:16px; font-weight:800; letter-spacing:-.02em; }
+  .success-screen p { color:var(--muted); margin-bottom:8px; }
+  .checkmark { width:64px; height:64px; border-radius:50%; background:var(--success); color:#fff; display:inline-flex; align-items:center; justify-content:center; font-size:2.2rem; margin-bottom:24px; }
+
+  /* FOOTER Modulimo standard */
+  .footer { background:var(--bg); border-top:1px solid var(--line); padding:44px 24px 32px; }
+  .footer-inner { max-width:var(--max); margin:0 auto; }
+  .footer-top { display:flex; justify-content:space-between; align-items:flex-start; flex-wrap:wrap; gap:32px; margin-bottom:32px; }
+  .footer-brand { display:flex; align-items:center; background:#fff; padding:4px 10px; border-radius:8px; align-self:flex-start; }
+  .footer-brand img { height:32px; width:auto; display:block; }
+  .footer-tagline { font-size:.82rem; color:var(--muted); margin-top:8px; max-width:260px; line-height:1.6; }
+  .footer-nav h5 { font-size:.7rem; font-weight:700; letter-spacing:.1em; text-transform:uppercase; color:var(--muted); margin-bottom:12px; }
+  .footer-nav a { display:block; font-size:.84rem; color:var(--text); margin-bottom:8px; }
+  .footer-nav a:hover { color:var(--green); }
+  .footer-bottom { border-top:1px solid var(--line); padding-top:20px; display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:12px; }
+  .footer-bottom p { font-size:.75rem; color:var(--muted); }
+
+  /* Themes evenementiels (pilotes depuis modulimo-admin) */
+  body.theme-femme .topbar { background:#f8bbd0; border-bottom-color:rgba(0,0,0,.08); }
+  body.theme-terre .topbar { background:#43a047; border-bottom-color:rgba(0,0,0,.15); }
+  body.theme-terre .topbar .nav a,
+  body.theme-terre .topbar .nav a:hover,
+  body.theme-terre .topbar .nav a.active,
+  body.theme-terre .menu-toggle span { color:#e53935; background:transparent; border-color:#e53935; }
+
+  /* Responsive */
+  @media (max-width:640px) {
+    .grid, .grid-3 { grid-template-columns:1fr; }
+    .declarations .row { grid-template-columns:1fr; }
+    .yn { justify-content:flex-start; margin-top:6px; }
+    form { padding:8px 24px 32px; }
+    main.form-wrap { margin:24px 12px; }
+    .menu-toggle { display:flex; }
+    .nav { display:none; position:absolute; top:68px; left:0; right:0; background:var(--bg); border-bottom:1px solid var(--line); flex-direction:column; align-items:stretch; padding:8px 16px 16px; gap:2px; }
+    .nav.is-open { display:flex; }
+    .nav a { padding:12px 14px; border-bottom:1px solid var(--line); border-radius:0; }
+    .footer-top { flex-direction:column; }
+  }
+</style>
+<script src="/js/analytics.js" defer></script>
+</head>
+<body>
+
+<!-- TOPBAR -->
+<header class="topbar">
+  <div class="topbar-inner">
+    <a href="/" class="brand" aria-label="Modulimo — Accueil">
+      <img src="/images/ModulimoLogoSobre.png" alt="Modulimo" />
+    </a>
+    <button class="menu-toggle" id="menuToggle" aria-expanded="false" aria-controls="siteNav" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+    <nav class="nav" id="siteNav">
+      <a href="/">Accueil</a>
+      <a href="https://cohabitat.modulimo.com" target="_blank" rel="noopener">CoHabitat</a>
+      <a href="/mobilite">Mobilité</a>
+      <a href="/securite">Sécurité</a>
+      <a href="/projets">Projets</a>
+      <a href="/produits">Produits</a>
+      <a href="/postuler" class="postuler-cta active">Postuler</a>
+    </nav>
+  </div>
+</header>
+
+<!-- HERO -->
+<div class="page-hero">
+  <div class="page-hero-inner">
+    <p class="page-eyebrow">Devenir résident</p>
+    <h1>Demande de location</h1>
+    <p>Modulimo bâtit un écosystème résidentiel propulsé par sa plateforme CoHabitat. Ce formulaire vise à évaluer votre candidature et à mieux comprendre votre alignement avec nos valeurs : environnement, sécurité, innovation. Les renseignements sont traités selon la Loi 25 et la Charte des droits et libertés de la personne du Québec.</p>
+  </div>
+</div>
+
+<main class="form-wrap" id="appContainer">
+  <div class="notice">
+    <strong>Bienvenue.</strong> Votre candidature sera analysée avec l'aide d'un traitement automatisé ; la décision finale demeure humaine. Les champs marqués d'un astérisque (*) sont obligatoires.
+  </div>
+
+  <form id="rentalForm" autocomplete="on" novalidate>
+
+    <!-- 1. IDENTITE -->
+    <fieldset>
+      <span class="legend-num">Section 01</span>
+      <legend>Identité du demandeur principal</legend>
+      <div class="grid">
+        <div><label class="req" for="last_name">Nom</label><input id="last_name" name="last_name" type="text" required></div>
+        <div><label class="req" for="first_name">Prénom</label><input id="first_name" name="first_name" type="text" required></div>
+        <div><label class="req" for="email">Courriel</label><input id="email" name="email" type="email" required></div>
+        <div><label class="req" for="phone_cell">Téléphone (cellulaire)</label><input id="phone_cell" name="phone_cell" type="tel" required></div>
+        <div><label for="phone_day">Téléphone (jour)</label><input id="phone_day" name="phone_day" type="tel"></div>
+        <div><label for="birth_year">Année de naissance</label><input id="birth_year" name="birth_year" type="number" min="1920" max="2010" placeholder="ex. 1985"></div>
+        <div class="full">
+          <label for="status_canada">Statut au Canada</label>
+          <select id="status_canada" name="status_canada">
+            <option value="">— Sélectionner —</option>
+            <option>Citoyen(ne) canadien(ne)</option>
+            <option>Résident(e) permanent(e)</option>
+            <option>Étudiant(e) international(e)</option>
+            <option>Permis de travail</option>
+            <option>Autre</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="subsection">Co-demandeur (s'il y a lieu)</div>
+      <div class="grid">
+        <div><label for="co_name">Nom complet</label><input id="co_name" name="co_name" type="text"></div>
+        <div><label for="co_relation">Lien</label><input id="co_relation" name="co_relation" type="text" placeholder="conjoint(e), colocataire"></div>
+        <div><label for="co_email">Courriel</label><input id="co_email" name="co_email" type="email"></div>
+        <div><label for="co_phone">Téléphone</label><input id="co_phone" name="co_phone" type="tel"></div>
+      </div>
+    </fieldset>
+
+    <!-- 2. OCCUPANTS -->
+    <fieldset>
+      <span class="legend-num">Section 02</span>
+      <legend>Occupants du logement</legend>
+      <div class="grid grid-3">
+        <div><label class="req" for="adults">Adultes</label><input id="adults" name="adults" type="number" min="1" required></div>
+        <div><label for="children">Enfants</label><input id="children" name="children" type="number" min="0"></div>
+        <div><label for="child_ages">Âges des enfants</label><input id="child_ages" name="child_ages" type="text" placeholder="ex. 3, 7"></div>
+      </div>
+      <div class="grid">
+        <div class="full"><label for="pets">Animaux de compagnie</label><input id="pets" name="pets" type="text" placeholder="type, nombre, taille — ou « aucun »"></div>
+      </div>
+    </fieldset>
+
+    <!-- 3. LOGEMENT ACTUEL -->
+    <fieldset>
+      <span class="legend-num">Section 03</span>
+      <legend>Logement actuel</legend>
+      <div class="grid">
+        <div class="full"><label class="req" for="current_address">Adresse complète actuelle</label><input id="current_address" name="current_address" type="text" required></div>
+        <div><label for="current_since">Depuis quelle date ?</label><input id="current_since" name="current_since" type="date"></div>
+        <div><label for="current_rent">Loyer mensuel actuel ($)</label><input id="current_rent" name="current_rent" type="number" min="0"></div>
+        <div>
+          <label for="current_tenancy">Statut</label>
+          <select id="current_tenancy" name="current_tenancy">
+            <option value="">— Sélectionner —</option>
+            <option>Locataire</option>
+            <option>Propriétaire</option>
+            <option>Chez un proche</option>
+            <option>Autre</option>
+          </select>
+        </div>
+        <div><label for="current_landlord">Nom du propriétaire actuel</label><input id="current_landlord" name="current_landlord" type="text"></div>
+        <div><label for="current_landlord_phone">Téléphone du propriétaire</label><input id="current_landlord_phone" name="current_landlord_phone" type="tel"></div>
+        <div class="full"><label for="move_reason">Raison du déménagement</label><textarea id="move_reason" name="move_reason" rows="2"></textarea></div>
+      </div>
+    </fieldset>
+
+    <!-- 4. EMPLOI ET REVENUS -->
+    <fieldset>
+      <span class="legend-num">Section 04</span>
+      <legend>Situation professionnelle et financière</legend>
+      <p class="help">Cette information sert à évaluer votre capacité à assumer le loyer.</p>
+
+      <div class="subsection">Demandeur principal</div>
+      <div class="grid">
+        <div><label class="req" for="employer">Employeur</label><input id="employer" name="employer" type="text" required></div>
+        <div><label for="position">Poste / titre</label><input id="position" name="position" type="text"></div>
+        <div><label for="employment_since">Date d'entrée en fonction</label><input id="employment_since" name="employment_since" type="date"></div>
+        <div>
+          <label class="req" for="employment_type">Type d'emploi</label>
+          <select id="employment_type" name="employment_type" required>
+            <option value="">— Sélectionner —</option>
+            <option value="permanent_temps_plein">Permanent temps plein</option>
+            <option value="permanent_temps_partiel">Permanent temps partiel</option>
+            <option value="temporaire">Temporaire / contractuel</option>
+            <option value="autonome">Travailleur autonome</option>
+            <option value="etudiant">Étudiant</option>
+            <option value="retraite">Retraité</option>
+            <option value="autre">Autre</option>
+          </select>
+        </div>
+        <div><label class="req" for="annual_income">Revenu brut annuel ($)</label><input id="annual_income" name="annual_income" type="number" min="0" required></div>
+        <div><label for="employer_phone">Téléphone professionnel</label><input id="employer_phone" name="employer_phone" type="tel"></div>
+      </div>
+
+      <div class="subsection">Co-demandeur (s'il y a lieu)</div>
+      <div class="grid">
+        <div><label for="co_employer">Employeur</label><input id="co_employer" name="co_employer" type="text"></div>
+        <div><label for="co_income">Revenu brut annuel ($)</label><input id="co_income" name="co_income" type="number"></div>
+      </div>
+
+      <div class="subsection">Logement convoité</div>
+      <div class="grid">
+        <div><label class="req" for="target_rent">Loyer mensuel du logement convoité ($)</label><input id="target_rent" name="target_rent" type="number" min="0" required></div>
+        <div><label for="move_in_date">Date d'occupation souhaitée</label><input id="move_in_date" name="move_in_date" type="date"></div>
+      </div>
+    </fieldset>
+
+    <!-- 5. REFERENCES -->
+    <fieldset>
+      <span class="legend-num">Section 05</span>
+      <legend>Références personnelles</legend>
+      <p class="help">Deux (2) références qui ne sont pas membres de votre famille.</p>
+      <div class="subsection">Référence 1</div>
+      <div class="grid">
+        <div><label for="ref1_name">Nom complet</label><input id="ref1_name" name="ref1_name" type="text"></div>
+        <div><label for="ref1_relation">Lien</label><input id="ref1_relation" name="ref1_relation" type="text"></div>
+        <div><label for="ref1_phone">Téléphone</label><input id="ref1_phone" name="ref1_phone" type="tel"></div>
+        <div><label for="ref1_email">Courriel</label><input id="ref1_email" name="ref1_email" type="email"></div>
+      </div>
+      <div class="subsection">Référence 2</div>
+      <div class="grid">
+        <div><label for="ref2_name">Nom complet</label><input id="ref2_name" name="ref2_name" type="text"></div>
+        <div><label for="ref2_relation">Lien</label><input id="ref2_relation" name="ref2_relation" type="text"></div>
+        <div><label for="ref2_phone">Téléphone</label><input id="ref2_phone" name="ref2_phone" type="tel"></div>
+        <div><label for="ref2_email">Courriel</label><input id="ref2_email" name="ref2_email" type="email"></div>
+      </div>
+    </fieldset>
+
+    <!-- 6. COHABITAT -->
+    <fieldset>
+      <span class="legend-num">Section 06</span>
+      <legend class="cohabitat">Votre vie avec CoHabitat</legend>
+      <div class="cohabitat-card">
+        <h4>Qu'est-ce que CoHabitat ?</h4>
+        <p>CoHabitat est la plateforme web qui accompagne votre quotidien chez Modulimo : paiement du loyer, réservation d'espaces communs, auto-partage entre résidents, communication avec la gestion, babillard de quartier, et plus encore. Elle est incluse sans frais pour tous les résidents.</p>
+      </div>
+
+      <div class="subsection">Aisance numérique</div>
+      <p>Comment vous déririez-vous avec les outils numériques au quotidien ?</p>
+      <div class="scale-anchor"><span>Pas du tout à l'aise</span><span>Très à l'aise</span></div>
+      <div class="scale-group">
+        <label class="scale-item"><input type="radio" name="digital_comfort" value="1"><span class="num">1</span><span class="lbl">Difficile</span></label>
+        <label class="scale-item"><input type="radio" name="digital_comfort" value="2"><span class="num">2</span><span class="lbl">Limitée</span></label>
+        <label class="scale-item"><input type="radio" name="digital_comfort" value="3"><span class="num">3</span><span class="lbl">Correcte</span></label>
+        <label class="scale-item"><input type="radio" name="digital_comfort" value="4"><span class="num">4</span><span class="lbl">Bonne</span></label>
+        <label class="scale-item"><input type="radio" name="digital_comfort" value="5"><span class="num">5</span><span class="lbl">Excellente</span></label>
+      </div>
+
+      <div class="subsection">Mode de paiement du loyer préféré</div>
+      <div class="radio-group">
+        <label class="radio"><input type="radio" name="payment_pref" value="cohabitat_auto"><span>Paiement automatique via CoHabitat (recommandé)</span></label>
+        <label class="radio"><input type="radio" name="payment_pref" value="cohabitat_manuel"><span>Virement Interac via CoHabitat à chaque mois</span></label>
+        <label class="radio"><input type="radio" name="payment_pref" value="cheque"><span>Chèque postdaté</span></label>
+        <label class="radio"><input type="radio" name="payment_pref" value="autre"><span>Autre / à discuter</span></label>
+      </div>
+
+      <div class="subsection">Communication avec la gestion</div>
+      <div class="radio-group">
+        <label class="radio"><input type="radio" name="comm_pref" value="cohabitat"><span>Via la messagerie intégrée dans CoHabitat</span></label>
+        <label class="radio"><input type="radio" name="comm_pref" value="email"><span>Par courriel</span></label>
+        <label class="radio"><input type="radio" name="comm_pref" value="phone"><span>Par téléphone</span></label>
+        <label class="radio"><input type="radio" name="comm_pref" value="papier"><span>Sur papier</span></label>
+      </div>
+
+      <div class="subsection">Services CoHabitat qui vous intéressent</div>
+      <p class="help">Cochez tous ceux qui vous intéressent.</p>
+      <div class="checkbox-group">
+        <label class="check"><input type="checkbox" name="ch_salle_commune"><span>Réservation de salles communes (fêtes, réunions, télétravail)</span></label>
+        <label class="check"><input type="checkbox" name="ch_autopartage"><span>Auto-partage entre résidents</span></label>
+        <label class="check"><input type="checkbox" name="ch_babillard"><span>Babillard et événements communautaires</span></label>
+        <label class="check"><input type="checkbox" name="ch_atelier"><span>Atelier et rangement partagés</span></label>
+        <label class="check"><input type="checkbox" name="ch_reseau"><span>Services réseau Modulimo (ressources partagées entre immeubles)</span></label>
+        <label class="check"><input type="checkbox" name="ch_evenements"><span>Participer à des événements organisés par les résidents</span></label>
+      </div>
+    </fieldset>
+
+    <!-- 7. ENVIRONNEMENT -->
+    <fieldset>
+      <span class="legend-num" style="color:var(--eco)">Section 07 · Valeurs</span>
+      <legend class="eco">Environnement</legend>
+      <p class="help">Modulimo s'engage dans une démarche écoresponsable. Comment cela résonne-t-il chez vous ?</p>
+      <div class="subsection">Importance accordée aux pratiques écologiques</div>
+      <div class="scale-anchor"><span>Peu important</span><span>Essentiel</span></div>
+      <div class="scale-group">
+        <label class="scale-item"><input type="radio" name="eco_importance" value="1"><span class="num">1</span></label>
+        <label class="scale-item"><input type="radio" name="eco_importance" value="2"><span class="num">2</span></label>
+        <label class="scale-item"><input type="radio" name="eco_importance" value="3"><span class="num">3</span></label>
+        <label class="scale-item"><input type="radio" name="eco_importance" value="4"><span class="num">4</span></label>
+        <label class="scale-item"><input type="radio" name="eco_importance" value="5"><span class="num">5</span></label>
+      </div>
+      <div class="subsection">Habitudes que vous pratiquez régulièrement</div>
+      <div class="checkbox-group">
+        <label class="check"><input type="checkbox" name="eco_recyclage"><span>Tri sélectif et recyclage</span></label>
+        <label class="check"><input type="checkbox" name="eco_compost"><span>Compostage organique</span></label>
+        <label class="check"><input type="checkbox" name="eco_transport"><span>Transport collectif, vélo ou marche au quotidien</span></label>
+        <label class="check"><input type="checkbox" name="eco_ve"><span>J'ai ou je prévois un véhicule électrique / hybride</span></label>
+        <label class="check"><input type="checkbox" name="eco_local"><span>Achats locaux et de saison</span></label>
+        <label class="check"><input type="checkbox" name="eco_economie"><span>Économies d'eau et d'énergie à la maison</span></label>
+        <label class="check"><input type="checkbox" name="eco_jardinage"><span>Jardinage, agriculture urbaine, plantes</span></label>
+      </div>
+      <div class="grid">
+        <div class="full"><label for="eco_motivation">Une habitude écologique dont vous êtes fier(e) (optionnel)</label><textarea id="eco_motivation" name="eco_motivation" rows="2"></textarea></div>
+      </div>
+    </fieldset>
+
+    <!-- 8. SECURITE -->
+    <fieldset>
+      <span class="legend-num" style="color:var(--security)">Section 08 · Valeurs</span>
+      <legend class="sec">Sécurité</legend>
+      <p class="help">La sécurité des lieux et des personnes est un pilier chez Modulimo.</p>
+      <div class="subsection">Importance d'un milieu sécuritaire pour vous</div>
+      <div class="scale-anchor"><span>Peu important</span><span>Essentiel</span></div>
+      <div class="scale-group">
+        <label class="scale-item"><input type="radio" name="sec_importance" value="1"><span class="num">1</span></label>
+        <label class="scale-item"><input type="radio" name="sec_importance" value="2"><span class="num">2</span></label>
+        <label class="scale-item"><input type="radio" name="sec_importance" value="3"><span class="num">3</span></label>
+        <label class="scale-item"><input type="radio" name="sec_importance" value="4"><span class="num">4</span></label>
+        <label class="scale-item"><input type="radio" name="sec_importance" value="5"><span class="num">5</span></label>
+      </div>
+      <div class="subsection">Caméras dans les espaces communs</div>
+      <p class="help">Modulimo déploie un système de caméras IP dans les aires communes (entrées, stationnements, corridors). Aucune caméra dans les logements privés. Conformité Loi 25 assurée.</p>
+      <div class="radio-group">
+        <label class="radio"><input type="radio" name="sec_cameras" value="favorable"><span>Favorable — la sécurité passe avant tout</span></label>
+        <label class="radio"><input type="radio" name="sec_cameras" value="acceptable"><span>Acceptable, dans la mesure où la vie privée est respectée</span></label>
+        <label class="radio"><input type="radio" name="sec_cameras" value="reserve"><span>J'ai des réserves, j'aimerais en discuter</span></label>
+        <label class="radio"><input type="radio" name="sec_cameras" value="defavorable"><span>Défavorable</span></label>
+      </div>
+      <div class="subsection">Comportements collectifs</div>
+      <div style="margin-top:12px">
+        <label style="font-weight:500;font-size:.92rem">« Je verrouille systématiquement la porte commune et je signale les anomalies. »</label>
+        <div class="scale-anchor"><span>Pas du tout</span><span>Tout à fait</span></div>
+        <div class="scale-group">
+          <label class="scale-item"><input type="radio" name="sec_behavior" value="1"><span class="num">1</span></label>
+          <label class="scale-item"><input type="radio" name="sec_behavior" value="2"><span class="num">2</span></label>
+          <label class="scale-item"><input type="radio" name="sec_behavior" value="3"><span class="num">3</span></label>
+          <label class="scale-item"><input type="radio" name="sec_behavior" value="4"><span class="num">4</span></label>
+          <label class="scale-item"><input type="radio" name="sec_behavior" value="5"><span class="num">5</span></label>
+        </div>
+      </div>
+    </fieldset>
+
+    <!-- 9. INNOVATION -->
+    <fieldset>
+      <span class="legend-num" style="color:var(--innovation)">Section 09 · Valeurs</span>
+      <legend class="inn">Innovation</legend>
+      <p class="help">Modulimo expérimente continuellement de nouvelles idées : technologies, mobilité partagée, agriculture urbaine, modes d'habiter.</p>
+      <div class="subsection">Ouverture aux nouvelles idées et technologies</div>
+      <div class="scale-anchor"><span>Plutôt traditionnel(le)</span><span>Curieux(se) et ouvert(e)</span></div>
+      <div class="scale-group">
+        <label class="scale-item"><input type="radio" name="inn_openness" value="1"><span class="num">1</span></label>
+        <label class="scale-item"><input type="radio" name="inn_openness" value="2"><span class="num">2</span></label>
+        <label class="scale-item"><input type="radio" name="inn_openness" value="3"><span class="num">3</span></label>
+        <label class="scale-item"><input type="radio" name="inn_openness" value="4"><span class="num">4</span></label>
+        <label class="scale-item"><input type="radio" name="inn_openness" value="5"><span class="num">5</span></label>
+      </div>
+      <div class="subsection">Sujets qui vous interpellent</div>
+      <div class="checkbox-group">
+        <label class="check"><input type="checkbox" name="inn_mobilite"><span>Mobilité partagée et transport durable</span></label>
+        <label class="check"><input type="checkbox" name="inn_iot"><span>Maison intelligente et objets connectés</span></label>
+        <label class="check"><input type="checkbox" name="inn_agriculture"><span>Agriculture urbaine, serres, hydroponie</span></label>
+        <label class="check"><input type="checkbox" name="inn_energie"><span>Énergies renouvelables et efficacité énergétique</span></label>
+        <label class="check"><input type="checkbox" name="inn_communaute"><span>Nouveaux modèles d'habitation et de communauté</span></label>
+        <label class="check"><input type="checkbox" name="inn_diy"><span>Bricolage, fabrication, ateliers partagés</span></label>
+      </div>
+      <div class="grid">
+        <div class="full"><label for="inn_idea">Avez-vous une idée ou un projet à proposer pour la communauté Modulimo ? (optionnel)</label><textarea id="inn_idea" name="inn_idea" rows="2"></textarea></div>
+      </div>
+    </fieldset>
+
+    <!-- 10. DECLARATIONS -->
+    <fieldset>
+      <span class="legend-num">Section 10</span>
+      <legend>Déclarations</legend>
+      <div class="declarations">
+        <div class="row">
+          <div>Avez-vous déjà fait l'objet d'une procédure devant le Tribunal administratif du logement ?</div>
+          <div class="yn"><label><input type="radio" name="dec_tal" value="oui"> Oui</label><label><input type="radio" name="dec_tal" value="non"> Non</label></div>
+        </div>
+        <div class="row">
+          <div>Avez-vous déjà été expulsé(e) d'un logement ?</div>
+          <div class="yn"><label><input type="radio" name="dec_eviction" value="oui"> Oui</label><label><input type="radio" name="dec_eviction" value="non"> Non</label></div>
+        </div>
+        <div class="row">
+          <div>Avez-vous déjà fait faillite ou êtes-vous en proposition de consommateur ?</div>
+          <div class="yn"><label><input type="radio" name="dec_bankruptcy" value="oui"> Oui</label><label><input type="radio" name="dec_bankruptcy" value="non"> Non</label></div>
+        </div>
+        <div class="row">
+          <div>Y a-t-il actuellement des poursuites en cours contre vous pour non-paiement de loyer ?</div>
+          <div class="yn"><label><input type="radio" name="dec_lawsuit" value="oui"> Oui</label><label><input type="radio" name="dec_lawsuit" value="non"> Non</label></div>
+        </div>
+      </div>
+      <div class="grid">
+        <div class="full"><label for="dec_explain">Si vous avez répondu Oui, veuillez fournir des explications</label><textarea id="dec_explain" name="dec_explain" rows="3"></textarea></div>
+      </div>
+    </fieldset>
+
+    <!-- 11. CONSENTEMENTS LOI 25 -->
+    <fieldset>
+      <span class="legend-num">Section 11</span>
+      <legend>Consentements</legend>
+      <div class="consent-block">
+        <div class="law25-tag">Loi 25</div>
+        <p>Conformément à la <em>Loi sur la protection des renseignements personnels dans le secteur privé</em>, votre consentement explicite est requis pour les vérifications suivantes. Vous pouvez refuser ; toutefois, l'absence de vérification pourrait être prise en considération dans l'évaluation.</p>
+      </div>
+      <div class="checkbox-group">
+        <label class="check"><input type="checkbox" name="consent_credit" id="consent_credit"><span>J'autorise Modulimo inc. à effectuer une vérification de mon dossier de crédit auprès d'<strong>Equifax Canada</strong> et/ou <strong>TransUnion Canada</strong>.</span></label>
+        <label class="check"><input type="checkbox" name="consent_employer"><span>J'autorise la communication avec mon employeur actuel pour confirmer mon emploi et mon revenu.</span></label>
+        <label class="check"><input type="checkbox" name="consent_landlord"><span>J'autorise la communication avec mon propriétaire actuel et mes propriétaires précédents.</span></label>
+        <label class="check"><input type="checkbox" name="consent_references"><span>J'autorise la communication avec les références personnelles fournies.</span></label>
+      </div>
+      <div class="consent-block" style="margin-top:24px">
+        <div class="law25-tag">Décision automatisée</div>
+        <p>Je comprends que ma candidature peut faire l'objet d'une analyse assistée par traitement automatisé visant à évaluer mon dossier (capacité financière, références, alignement avec les valeurs de Modulimo). <strong>La décision finale demeure humaine</strong>, prise par un représentant de Modulimo inc. Je peux en tout temps demander des explications ou contester l'évaluation.</p>
+      </div>
+      <div class="checkbox-group">
+        <label class="check"><input type="checkbox" name="consent_automated" required><span class="req">Je comprends et j'accepte que ma candidature soit évaluée selon ce processus.</span></label>
+      </div>
+      <div class="consent-block" style="margin-top:24px">
+        <p><strong>Conservation :</strong> en cas de refus, vos renseignements seront détruits dans un délai maximal de douze (12) mois. En cas d'acceptation, ils seront conservés pour la durée du bail et pour les périodes prescrites par la loi.</p>
+        <p><strong>Vos droits :</strong> vous pouvez accéder à vos renseignements, en demander la rectification ou retirer votre consentement en communiquant avec le responsable de la protection des renseignements personnels de Modulimo inc.</p>
+      </div>
+    </fieldset>
+
+    <!-- 12. DECLARATION FINALE -->
+    <fieldset>
+      <span class="legend-num">Section 12</span>
+      <legend>Déclaration finale</legend>
+      <div class="checkbox-group">
+        <label class="check"><input type="checkbox" name="declaration_truthful" required><span class="req">Je déclare que les renseignements fournis sont exacts et complets. Je comprends que toute fausse déclaration peut entraîner le rejet de ma candidature ou la résiliation d'un bail éventuel.</span></label>
+      </div>
+    </fieldset>
+
+    <div class="footer-rights">
+      <strong>Charte des droits et libertés de la personne du Québec.</strong> Modulimo inc. ne discrimine pas sur la base de la race, la couleur, le sexe, l'identité ou l'expression de genre, la grossesse, l'orientation sexuelle, l'état civil, l'âge (sauf dans la mesure prévue par la loi), la religion, les convictions politiques, la langue, l'origine ethnique ou nationale, la condition sociale, le handicap ou l'utilisation d'un moyen pour pallier ce handicap.
+    </div>
+
+    <div class="actions">
+      <button type="reset">Effacer</button>
+      <button type="submit" class="primary" id="submitBtn">Soumettre ma candidature</button>
+    </div>
+  </form>
+</main>
+
+<div class="toast" id="toast"></div>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="footer-inner">
+    <div class="footer-top">
+      <div>
+        <div class="footer-brand"><img src="/images/ModulimoLogoSobre.png" alt="Modulimo" /></div>
+        <p class="footer-tagline">Écosystème résidentiel intégré — logement, mobilité, services et logiciel.</p>
+      </div>
+      <div class="footer-nav">
+        <h5>Navigation</h5>
+        <a href="https://cohabitat.modulimo.com" target="_blank" rel="noopener">CoHabitat</a>
+        <a href="/mobilite">Mobilité</a>
+        <a href="/securite">Sécurité</a>
+        <a href="/projets">Projets</a>
+        <a href="/produits">Produits</a>
+      </div>
+      <div class="footer-nav">
+        <h5>Devenir résident</h5>
+        <a href="/postuler/">Postuler</a>
+        <a href="/projets/pointe-est/">Pointe Est</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2026 Modulimo — Tous droits réservés</p>
+      <p>Pointe-aux-Trembles, Montréal</p>
+    </div>
+  </div>
+</footer>
+
+<script>
+  // Menu mobile
+  const toggle = document.getElementById('menuToggle');
+  const nav = document.getElementById('siteNav');
+  if (toggle && nav) {
+    toggle.addEventListener('click', function() {
+      const open = nav.classList.toggle('is-open');
+      toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+    });
+    document.querySelectorAll('#siteNav a').forEach(function(a) {
+      a.addEventListener('click', function() {
+        nav.classList.remove('is-open');
+        toggle.setAttribute('aria-expanded', 'false');
+      });
+    });
+  }
+
+  // ============================================================
+  // CONFIGURATION SUPABASE
+  // ============================================================
+  // Hardcoded -- meme projet que js/theme.js (anon key publique).
+  const SUPABASE_URL = 'https://bpxscgrbxjscicpnheep.supabase.co';
+  const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImJweHNjZ3JieGpzY2ljcG5oZWVwIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzUzOTYxNzIsImV4cCI6MjA5MDk3MjE3Mn0._M6HHhCwKuuqAzicDZzJp7ul0M3KpDBBDb6ImDWWcLo';
+
+  // UUID Pointe Est par defaut, overridable via ?building=UUID
+  let BUILDING_ID = 'a41b3b31-1681-4cb1-b54c-69486d27e132';
+  const params = new URLSearchParams(window.location.search);
+  if (params.get('building')) {
+    BUILDING_ID = params.get('building');
+  }
+
+  // ============================================================
+  // Theme dynamique (partage avec les autres pages via app_config)
+  // ============================================================
+  // Note : on n'importe pas js/theme.js pour eviter une double instance
+  // du client Supabase. On lit la meme table app_config.
+  (async function applyTheme() {
+    try {
+      const url = `${SUPABASE_URL}/rest/v1/app_config?select=value&key=eq.home_theme`;
+      const r = await fetch(url, { headers: { apikey: SUPABASE_ANON_KEY, Authorization: 'Bearer ' + SUPABASE_ANON_KEY } });
+      const data = await r.json();
+      const theme = (data && data[0] && data[0].value) || 'none';
+      if (theme && theme !== 'none') document.body.classList.add('theme-' + theme);
+    } catch (e) { /* ignore */ }
+  })();
+
+  // ============================================================
+  // SOUMISSION
+  // ============================================================
+  const form = document.getElementById('rentalForm');
+  const submitBtn = document.getElementById('submitBtn');
+  const toast = document.getElementById('toast');
+
+  function showToast(msg, type = '') {
+    toast.textContent = msg;
+    toast.className = 'toast show ' + type;
+    setTimeout(() => toast.className = 'toast', 4000);
+  }
+
+  function collectFormData() {
+    const fd = new FormData(form);
+    const data = {};
+    for (const [k, v] of fd.entries()) {
+      if (data[k] !== undefined) {
+        if (!Array.isArray(data[k])) data[k] = [data[k]];
+        data[k].push(v);
+      } else {
+        data[k] = v;
+      }
+    }
+    form.querySelectorAll('input[type="checkbox"]').forEach(cb => {
+      if (cb.name && !Object.prototype.hasOwnProperty.call(data, cb.name)) {
+        data[cb.name] = cb.checked;
+      } else if (cb.name && data[cb.name] === 'on') {
+        data[cb.name] = true;
+      }
+    });
+    return data;
+  }
+
+  form.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    if (!form.checkValidity()) {
+      form.reportValidity();
+      showToast('Veuillez remplir les champs obligatoires.', 'error');
+      return;
+    }
+    submitBtn.disabled = true;
+    submitBtn.textContent = 'Envoi en cours...';
+
+    const payload = {
+      building_id: BUILDING_ID,
+      submitted_at: new Date().toISOString(),
+      form_data: collectFormData(),
+      user_agent: navigator.userAgent,
+      locale: navigator.language
+    };
+
+    try {
+      const res = await fetch(`${SUPABASE_URL}/functions/v1/submit-candidature`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'apikey': SUPABASE_ANON_KEY,
+          'Authorization': `Bearer ${SUPABASE_ANON_KEY}`
+        },
+        body: JSON.stringify(payload)
+      });
+      if (!res.ok) {
+        const err = await res.text();
+        throw new Error(err || 'Erreur lors de la soumission');
+      }
+      const result = await res.json();
+      showSuccessScreen(result.candidature_id);
+    } catch (err) {
+      console.error(err);
+      showToast('Erreur : ' + err.message, 'error');
+      submitBtn.disabled = false;
+      submitBtn.textContent = 'Soumettre ma candidature';
+    }
+  });
+
+  function showSuccessScreen(id) {
+    document.getElementById('appContainer').innerHTML = `
+      <div class="success-screen">
+        <div class="checkmark">✓</div>
+        <h2>Merci !</h2>
+        <p>Votre candidature a été reçue avec succès.</p>
+        <p>Numéro de référence : <strong>${id || '—'}</strong></p>
+        <p style="margin-top:24px">Un représentant de Modulimo communiquera avec vous sous peu.</p>
+      </div>
+    `;
+    window.scrollTo(0, 0);
+  }
+</script>
+</body>
+</html>
