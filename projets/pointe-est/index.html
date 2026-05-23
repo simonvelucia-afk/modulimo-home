@@ -46,6 +46,13 @@
 
     .grid-2 { display:grid; grid-template-columns:1fr 1fr; gap:32px; align-items:start; }
 
+    .concept-badge { display:inline-flex; align-items:center; gap:6px; font-size:.7rem; font-weight:700; letter-spacing:.14em; text-transform:uppercase; color:#fff; background:rgba(255,255,255,.14); border:1px solid rgba(255,255,255,.28); padding:5px 12px; border-radius:20px; margin-bottom:14px; }
+    .concept-badge::before { content:""; width:6px; height:6px; border-radius:50%; background:#f4c542; box-shadow:0 0 0 3px rgba(244,197,66,.25); }
+    .concept-notice { display:flex; gap:14px; align-items:flex-start; background:#fff8e6; border:1px solid #f0d68a; border-left:4px solid #d9a82a; border-radius:8px; padding:14px 18px; margin-bottom:28px; }
+    .concept-notice-icon { flex-shrink:0; width:24px; height:24px; border-radius:50%; background:#d9a82a; color:#fff; display:flex; align-items:center; justify-content:center; font-size:.8rem; font-weight:800; }
+    .concept-notice p { font-size:.85rem; color:#6a4f00; line-height:1.6; margin:0; }
+    .concept-notice p strong { color:#3d2c00; }
+
     .info-list { display:flex; flex-direction:column; gap:0; }
     .info-row { display:flex; gap:14px; align-items:flex-start; padding:18px 0; border-bottom:1px solid var(--line); }
     .info-row:first-child { padding-top:0; }
@@ -70,6 +77,22 @@
     .loc-icon svg { width:18px; height:18px; stroke:var(--green); fill:none; stroke-width:1.8; stroke-linecap:round; }
     .loc-item h4 { font-size:.88rem; font-weight:700; color:var(--text); margin-bottom:2px; }
     .loc-item p { font-size:.8rem; color:var(--muted); }
+
+    .timeline { position:relative; margin-top:8px; padding-left:28px; }
+    .timeline::before { content:""; position:absolute; left:8px; top:6px; bottom:6px; width:2px; background:var(--line); border-radius:2px; }
+    .tl-item { position:relative; padding:0 0 28px 14px; }
+    .tl-item:last-child { padding-bottom:0; }
+    .tl-marker { position:absolute; left:-28px; top:4px; width:18px; height:18px; border-radius:50%; background:#fff; border:2px solid var(--green); box-shadow:0 0 0 4px var(--bg); }
+    .tl-item.is-current .tl-marker { background:var(--green); }
+    .tl-item.is-future .tl-marker { border-style:dashed; }
+    .tl-date { font-size:.72rem; font-weight:700; letter-spacing:.12em; text-transform:uppercase; color:var(--green); margin-bottom:4px; }
+    .tl-title { font-size:1rem; font-weight:700; color:var(--text); margin-bottom:6px; line-height:1.3; }
+    .tl-text { font-size:.88rem; color:var(--muted); line-height:1.65; }
+    .tl-text strong { color:var(--text); font-weight:600; }
+    .tl-tags { display:flex; flex-wrap:wrap; gap:6px; margin-top:10px; }
+    .tl-tag { font-size:.7rem; font-weight:600; letter-spacing:.04em; color:var(--green-dk); background:rgba(45,90,74,.1); padding:4px 10px; border-radius:20px; }
+    .tl-tag.warn { color:#8a4a00; background:rgba(200,120,0,.12); }
+    .tl-tag.ok { color:#1e5b3a; background:rgba(45,140,80,.13); }
 
     .accordion { border:1px solid var(--line); border-radius:10px; overflow:hidden; background:#fff; margin-top:32px; }
     .acc-trigger { width:100%; display:flex; align-items:center; justify-content:space-between; gap:16px; padding:18px 24px; background:none; border:none; font:inherit; font-size:.92rem; font-weight:700; color:var(--green-dk); cursor:pointer; text-align:left; transition:background .15s; }
@@ -150,7 +173,8 @@
     <div class="page-hero-inner">
       <p class="page-eyebrow">Projets Modulimo</p>
       <h1>Pointe Est — Montréal</h1>
-      <p>Premier déploiement du modèle Modulimo. Un immeuble résidentiel familial ancré dans son milieu, conçu pour durer et servir de référence pour les projets futurs.</p>
+      <span class="concept-badge">Concept préliminaire · en cheminement PPCMOI</span>
+      <p>Premier déploiement du modèle Modulimo — un immeuble multigénérationnel en bois massif sur la rue Bureau, à Pointe-aux-Trembles. Trois familles élargies, autopartage collectif, forêt nourricière. Caractéristiques finales à définir avec l'architecte.</p>
     </div>
   </div>
 
@@ -164,13 +188,18 @@
           <p class="section-label">Projet #1</p>
           <h2 class="section-title">La campagne en pleine ville.</h2>
           <p class="section-lead">Pointe-aux-Trembles offre un cadre de vie exceptionnel à l'extrémité est de Montréal — nature, école et transports à distance de marche.</p>
-          <div class="info-list">
-            <div class="info-row"><div class="info-dot"></div><div><h4>Structure bois massif CLT</h4><p>Panneaux lamellé-croisé préfabriqués en usine — rapidité, qualité contrôlée, faible empreinte carbone. Noyau béton pour l'ascenseur et les escaliers.</p></div></div>
-            <div class="info-row"><div class="info-dot"></div><div><h4>Toit-terrasse végétalisé + solaire</h4><p>Panneaux photovoltaïques, espaces verts collectifs et vue sur le fleuve Saint-Laurent et la rivière des Prairies.</p></div></div>
-            <div class="info-row"><div class="info-dot"></div><div><h4>Unités 6½ familiales</h4><p>Laveuse-sécheuse, îlot, appareils inclus. Animaux permis. Vue sur le fleuve disponible. Bail pré-construction disponible.</p></div></div>
-            <div class="info-row"><div class="info-dot"></div><div><h4>CoHabitat intégré dès jour 1</h4><p>Gestion des ressources communes, covoiturage, réservations et communications résidentielles — opérationnel à la livraison.</p></div></div>
+          <div class="concept-notice">
+            <div class="concept-notice-icon" aria-hidden="true">i</div>
+            <p><strong>Présentation conceptuelle.</strong> Les caractéristiques ci-dessous illustrent l'intention du projet ajusté soumis au cadre PPCMOI. Les dimensions, surfaces, nombre de logements et aménagements <strong>seront finalisés avec l'architecte mandaté (Jonathan Tremblay)</strong> et sont sujets à l'approbation de l'arrondissement.</p>
           </div>
-          <a href="/postuler/?building=a41b3b31-1681-4cb1-b54c-69486d27e132" class="btn-primary">Postuler pour Pointe Est →</a>
+          <div class="info-list">
+            <div class="info-row"><div class="info-dot"></div><div><h4>Structure bois massif CLT — 3 étages</h4><p>Panneaux lamellé-croisé préfabriqués en usine — rapidité, qualité contrôlée, faible empreinte carbone. Bâtiment ~7,8 × 27 m, empreinte ~210 m² (~30 % du lot de 701,8 m²).</p></div></div>
+            <div class="info-row"><div class="info-dot"></div><div><h4>5½ + studio par étage — modèle multigénérationnel</h4><p>Chaque palier est un logement complet pour une famille élargie : un 5½ familial et un studio annexé sur le même étage — parent et grand-parent, ou jeune adulte autonome, sous un même toit. 3 familles, 6 logements au total. Animaux permis, vue sur le fleuve.</p></div></div>
+            <div class="info-row"><div class="info-dot"></div><div><h4>Autopartage collectif au sous-sol</h4><p>4 cases Modulimo en autopartage CoHabitat dès le jour 1 — aucune case privée. Réservation via l'application, minivans électriques partagées entre les résidents.</p></div></div>
+            <div class="info-row"><div class="info-dot"></div><div><h4>Forêt nourricière + toit végétalisé</h4><p>Cour arrière dédiée au verdissement : arbres fruitiers, plantes comestibles et corridor de biodiversité. Toit-terrasse végétalisé avec panneaux photovoltaïques et vue sur le fleuve.</p></div></div>
+            <div class="info-row"><div class="info-dot"></div><div><h4>Propriétaire-occupant + CoHabitat</h4><p>Le fondateur habite l'immeuble — ancrage local et gouvernance de proximité. Gestion des ressources, réservations et communications résidentielles via CoHabitat, opérationnel à la livraison.</p></div></div>
+          </div>
+          <a href="/postuler/?building=a41b3b31-1681-4cb1-b54c-69486d27e132" class="btn-primary">Manifester mon intérêt →</a>
         </div>
         <div><img src="../../images/immeuble_annote.png" alt="Pointe Est — structure annotée" style="border-radius:12px;width:100%;" loading="lazy"/></div>
       </div>
@@ -207,13 +236,76 @@
 
   <section class="section">
     <div class="wrap">
+      <p class="section-label">Cheminement du projet</p>
+      <h2 class="section-title">De l'idée au permis — étape par étape.</h2>
+      <p class="section-lead">Le projet Pointe Est est le premier déploiement Modulimo. Voici son cheminement réglementaire au sein de l'arrondissement Rivière-des-Prairies–Pointe-aux-Trembles.</p>
+      <div class="timeline">
+
+        <div class="tl-item">
+          <span class="tl-marker"></span>
+          <p class="tl-date">Hiver 2026</p>
+          <h3 class="tl-title">Concept initial — Pointe Est</h3>
+          <p class="tl-text">Premier projet Modulimo : immeuble multifamilial en bois CLT au <strong>16365, rue Bureau</strong>. Conception intégrée dès le départ — autopartage collectif, gestion CoHabitat, modèle multigénérationnel et forêt nourricière en cour arrière.</p>
+        </div>
+
+        <div class="tl-item">
+          <span class="tl-marker"></span>
+          <p class="tl-date">Avril 2026</p>
+          <h3 class="tl-title">Dépôt — Analyse préliminaire de recevabilité</h3>
+          <p class="tl-text">Soumission auprès de la <strong>Direction du développement du territoire et études techniques</strong> de l'arrondissement, en vertu du Règlement RCA03-11009. Évaluation sur la base du Plan d'urbanisme, du Règlement de zonage RCA09-Z01 et de la grille des spécifications 007.</p>
+        </div>
+
+        <div class="tl-item">
+          <span class="tl-marker"></span>
+          <p class="tl-date">9 mai 2026 — Avis de la Ville</p>
+          <h3 class="tl-title">Non-recevabilité dans le cadre courant — ouverture PPCMOI</h3>
+          <p class="tl-text">L'arrondissement constate que le projet déposé dépasse la capacité d'accueil du site dans le cadre courant du zonage 007 (densité, implantation, marges latérales, stationnement). La Ville se dit toutefois <strong>disposée à étudier une proposition révisée dans le cadre du PPCMOI</strong> (Projet particulier de construction, de modification ou d'occupation d'un immeuble), aux conditions suivantes :</p>
+          <div class="tl-tags">
+            <span class="tl-tag">Max. 3 étages</span>
+            <span class="tl-tag">Min. 4 logements</span>
+            <span class="tl-tag">Min. 4 cases de stationnement</span>
+            <span class="tl-tag">Marges latérales ≥ 1,5 m</span>
+            <span class="tl-tag">Taux d'implantation aligné au secteur (15–30 %)</span>
+            <span class="tl-tag">Intégration au cadre bâti et verdissement</span>
+          </div>
+        </div>
+
+        <div class="tl-item is-current">
+          <span class="tl-marker"></span>
+          <p class="tl-date">Mai 2026 — En cours</p>
+          <h3 class="tl-title">Projet ajusté — conforme au cadre PPCMOI</h3>
+          <p class="tl-text">Modulimo soumet une version révisée alignée sur les paramètres demandés par l'arrondissement. Le concept de base — autopartage, multigénérationnel, forêt nourricière, gestion CoHabitat — est préservé.</p>
+          <div class="tl-tags">
+            <span class="tl-tag ok">3 étages — conforme</span>
+            <span class="tl-tag ok">6 logements · 3 familles élargies</span>
+            <span class="tl-tag ok">4 cases d'autopartage collectif</span>
+            <span class="tl-tag ok">Implantation ~30 % du lot</span>
+            <span class="tl-tag ok">Marges latérales 1,5 m (côté min.)</span>
+            <span class="tl-tag ok">Forêt nourricière en cour arrière</span>
+            <span class="tl-tag ok">Propriétaire-occupant — ancrage local</span>
+          </div>
+        </div>
+
+        <div class="tl-item is-future">
+          <span class="tl-marker"></span>
+          <p class="tl-date">Été 2026 — Prochaines étapes</p>
+          <h3 class="tl-title">Soumission formelle PPCMOI</h3>
+          <p class="tl-text">Rencontre avec la conseillère en aménagement pour valider la recevabilité du modèle ajusté, révision des plans (implantation, stationnements collectifs, aménagement paysager) et dépôt formel de la demande PPCMOI auprès de l'arrondissement.</p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <section class="section section-alt">
+    <div class="wrap">
       <p class="section-label">Commodités</p>
       <h2 class="section-title">Un milieu de vie complet.</h2>
       <p class="section-lead">Chaque immeuble Modulimo intègre des commodités collectives conçues pour la vie familiale.</p>
       <div class="cards">
         <div class="card"><img src="../../images/EspacesCommun.png" alt="Salle commune" loading="lazy"/><div class="card-body"><h4>Salle commune</h4><p>Cinéma maison, musique, rencontres — un espace de vie partagé et polyvalent.</p></div></div>
         <div class="card"><img src="../../images/EspaceEntrainement.png" alt="Espace fitness" loading="lazy"/><div class="card-body"><h4>Espace fitness</h4><p>Elliptique, vélo stationnaire, poids — à votre disposition en tout temps.</p></div></div>
-        <div class="card"><img src="../../images/Ascenseur.png" alt="Ascenseur" loading="lazy"/><div class="card-body"><h4>Ascenseur</h4><p>Du garage souterrain à la terrasse sur le toit — accessibilité totale.</p></div></div>
+        <div class="card"><img src="../../images/Ascenseur.png" alt="Monte-charge" loading="lazy"/><div class="card-body"><h4>Monte-charge</h4><p>Du sous-sol à la terrasse — transport pratique des courses, vélos et équipements entre les étages.</p></div></div>
         <div class="card"><img src="../../images/Verdure.png" alt="Arbres fruitiers" loading="lazy"/><div class="card-body"><h4>Arbres fruitiers</h4><p>Pommiers, cerisiers, amélanchiers, pruniers — nature et autosuffisance.</p></div></div>
         <div class="card"><img src="../../images/chien.png" alt="Animaux permis" loading="lazy"/><div class="card-body"><h4>Animaux permis</h4><p>Propres, silencieux, pacifiques — votre compagnon est le bienvenu.</p></div></div>
         <div class="card"><img src="../../images/minivan.png" alt="Auto partage" loading="lazy"/><div class="card-body"><h4>Auto partage</h4><p>1 à 2 minivans électriques Modulimo — réservation via CoHabitat.</p></div></div>
@@ -258,10 +350,10 @@
   </section>
 
   <section class="cta">
-    <h2>Prêt à rejoindre Pointe Est ?</h2>
-    <p>Les préparatifs avancent — déposez votre candidature pour ne pas manquer votre chance. Baux pré-construction disponibles.</p>
+    <h2>Intéressé par Pointe Est ?</h2>
+    <p>Le projet est en cheminement PPCMOI auprès de l'arrondissement et les caractéristiques finales restent à définir avec l'architecte. Déposez votre manifestation d'intérêt — nous vous tiendrons informé à mesure que le projet se précise.</p>
     <div class="cta-btns">
-      <a href="/postuler/?building=a41b3b31-1681-4cb1-b54c-69486d27e132" class="btn-white">Postuler pour Pointe Est</a>
+      <a href="/postuler/?building=a41b3b31-1681-4cb1-b54c-69486d27e132" class="btn-white">Manifester mon intérêt</a>
       <a href="https://cohabitat.modulimo.com" target="_blank" rel="noopener" class="btn-outline-w">Accéder à CoHabitat</a>
     </div>
   </section>
