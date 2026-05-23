@@ -46,6 +46,13 @@
 
     .grid-2 { display:grid; grid-template-columns:1fr 1fr; gap:32px; align-items:start; }
 
+    .concept-badge { display:inline-flex; align-items:center; gap:6px; font-size:.7rem; font-weight:700; letter-spacing:.14em; text-transform:uppercase; color:#fff; background:rgba(255,255,255,.14); border:1px solid rgba(255,255,255,.28); padding:5px 12px; border-radius:20px; margin-bottom:14px; }
+    .concept-badge::before { content:""; width:6px; height:6px; border-radius:50%; background:#f4c542; box-shadow:0 0 0 3px rgba(244,197,66,.25); }
+    .concept-notice { display:flex; gap:14px; align-items:flex-start; background:#fff8e6; border:1px solid #f0d68a; border-left:4px solid #d9a82a; border-radius:8px; padding:14px 18px; margin-bottom:28px; }
+    .concept-notice-icon { flex-shrink:0; width:24px; height:24px; border-radius:50%; background:#d9a82a; color:#fff; display:flex; align-items:center; justify-content:center; font-size:.8rem; font-weight:800; }
+    .concept-notice p { font-size:.85rem; color:#6a4f00; line-height:1.6; margin:0; }
+    .concept-notice p strong { color:#3d2c00; }
+
     .info-list { display:flex; flex-direction:column; gap:0; }
     .info-row { display:flex; gap:14px; align-items:flex-start; padding:18px 0; border-bottom:1px solid var(--line); }
     .info-row:first-child { padding-top:0; }
@@ -166,7 +173,8 @@
     <div class="page-hero-inner">
       <p class="page-eyebrow">Projets Modulimo</p>
       <h1>Pointe Est — Montréal</h1>
-      <p>Premier déploiement du modèle Modulimo — un immeuble multigénérationnel en bois massif sur la rue Bureau, à Pointe-aux-Trembles. Trois familles élargies, autopartage collectif, forêt nourricière. En cheminement PPCMOI avec l'arrondissement.</p>
+      <span class="concept-badge">Concept préliminaire · en cheminement PPCMOI</span>
+      <p>Premier déploiement du modèle Modulimo — un immeuble multigénérationnel en bois massif sur la rue Bureau, à Pointe-aux-Trembles. Trois familles élargies, autopartage collectif, forêt nourricière. Caractéristiques finales à définir avec l'architecte.</p>
     </div>
   </div>
 
@@ -180,6 +188,10 @@
           <p class="section-label">Projet #1</p>
           <h2 class="section-title">La campagne en pleine ville.</h2>
           <p class="section-lead">Pointe-aux-Trembles offre un cadre de vie exceptionnel à l'extrémité est de Montréal — nature, école et transports à distance de marche.</p>
+          <div class="concept-notice">
+            <div class="concept-notice-icon" aria-hidden="true">i</div>
+            <p><strong>Présentation conceptuelle.</strong> Les caractéristiques ci-dessous illustrent l'intention du projet ajusté soumis au cadre PPCMOI. Les dimensions, surfaces, nombre de logements et aménagements <strong>seront finalisés avec l'architecte mandaté (Jonathan Tremblay)</strong> et sont sujets à l'approbation de l'arrondissement.</p>
+          </div>
           <div class="info-list">
             <div class="info-row"><div class="info-dot"></div><div><h4>Structure bois massif CLT — 3 étages</h4><p>Panneaux lamellé-croisé préfabriqués en usine — rapidité, qualité contrôlée, faible empreinte carbone. Bâtiment ~7,8 × 27 m, empreinte ~210 m² (~30 % du lot de 701,8 m²).</p></div></div>
             <div class="info-row"><div class="info-dot"></div><div><h4>5½ + studio par étage — modèle multigénérationnel</h4><p>Chaque palier est un logement complet pour une famille élargie : un 5½ familial et un studio annexé sur le même étage — parent et grand-parent, ou jeune adulte autonome, sous un même toit. 3 familles, 6 logements au total. Animaux permis, vue sur le fleuve.</p></div></div>
@@ -187,7 +199,7 @@
             <div class="info-row"><div class="info-dot"></div><div><h4>Forêt nourricière + toit végétalisé</h4><p>Cour arrière dédiée au verdissement : arbres fruitiers, plantes comestibles et corridor de biodiversité. Toit-terrasse végétalisé avec panneaux photovoltaïques et vue sur le fleuve.</p></div></div>
             <div class="info-row"><div class="info-dot"></div><div><h4>Propriétaire-occupant + CoHabitat</h4><p>Le fondateur habite l'immeuble — ancrage local et gouvernance de proximité. Gestion des ressources, réservations et communications résidentielles via CoHabitat, opérationnel à la livraison.</p></div></div>
           </div>
-          <a href="/postuler/?building=a41b3b31-1681-4cb1-b54c-69486d27e132" class="btn-primary">Postuler pour Pointe Est →</a>
+          <a href="/postuler/?building=a41b3b31-1681-4cb1-b54c-69486d27e132" class="btn-primary">Manifester mon intérêt →</a>
         </div>
         <div><img src="../../images/immeuble_annote.png" alt="Pointe Est — structure annotée" style="border-radius:12px;width:100%;" loading="lazy"/></div>
       </div>
@@ -338,10 +350,10 @@
   </section>
 
   <section class="cta">
-    <h2>Prêt à rejoindre Pointe Est ?</h2>
-    <p>Les préparatifs avancent — déposez votre candidature pour ne pas manquer votre chance. Baux pré-construction disponibles.</p>
+    <h2>Intéressé par Pointe Est ?</h2>
+    <p>Le projet est en cheminement PPCMOI auprès de l'arrondissement et les caractéristiques finales restent à définir avec l'architecte. Déposez votre manifestation d'intérêt — nous vous tiendrons informé à mesure que le projet se précise.</p>
     <div class="cta-btns">
-      <a href="/postuler/?building=a41b3b31-1681-4cb1-b54c-69486d27e132" class="btn-white">Postuler pour Pointe Est</a>
+      <a href="/postuler/?building=a41b3b31-1681-4cb1-b54c-69486d27e132" class="btn-white">Manifester mon intérêt</a>
       <a href="https://cohabitat.modulimo.com" target="_blank" rel="noopener" class="btn-outline-w">Accéder à CoHabitat</a>
     </div>
   </section>
