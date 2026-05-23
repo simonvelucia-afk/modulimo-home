@@ -156,6 +156,13 @@
     .amenity:hover img { transform:scale(1.05); }
     .amenity-label { font-size:.72rem; color:var(--muted); text-align:center; padding:6px 4px 2px; line-height:1.4; }
     @media (max-width:640px) { .amenities { grid-template-columns:repeat(3,1fr); } }
+
+    .lb-overlay { position:fixed; inset:0; background:rgba(10,12,14,.92); display:none; align-items:center; justify-content:center; z-index:1000; padding:24px; }
+    .lb-overlay.is-open { display:flex; }
+    .lb-image { max-width:min(100%,1100px); max-height:90vh; object-fit:contain; border-radius:6px; box-shadow:0 12px 60px rgba(0,0,0,.5); animation:lb-in .2s ease-out; }
+    .lb-close { position:absolute; top:18px; right:22px; width:44px; height:44px; border-radius:50%; background:rgba(255,255,255,.12); color:#fff; border:1px solid rgba(255,255,255,.2); font-size:1.6rem; line-height:1; cursor:pointer; display:flex; align-items:center; justify-content:center; transition:background .15s; }
+    .lb-close:hover, .lb-close:focus { background:rgba(255,255,255,.22); outline:none; }
+    @keyframes lb-in { from { opacity:0; transform:scale(.96); } to { opacity:1; transform:scale(1); } }
   </style>
   <script src="js/analytics.js" defer></script>
 </head>
@@ -221,7 +228,7 @@
               <div class="amenities">
                 <div class="amenity"><img src="images/EspacesCommun.png" alt="Espaces communs" loading="lazy"/><p class="amenity-label">Salle commune & cinéma</p></div>
                 <div class="amenity"><img src="images/EspaceEntrainement.png" alt="Espace entraînement" loading="lazy"/><p class="amenity-label">Fitness partagé</p></div>
-                <div class="amenity"><img src="images/Monte-Charge.png" alt="Monte-charge" loading="lazy"/><p class="amenity-label">Monte-charge — du sous-sol à la terrasse</p></div>
+                <div class="amenity"><img src="images/Monte-Charge-thumb.webp" alt="Monte-charge" loading="lazy" width="600" height="750" data-lightbox="images/Monte-Charge.webp" data-lightbox-alt="Monte-charge résidentiel — du garage au toit, 3 étages"/><p class="amenity-label">Monte-charge — du sous-sol à la terrasse</p></div>
                 <div class="amenity"><img src="images/Verdure.png" alt="Arbres fruitiers" loading="lazy"/><p class="amenity-label">Arbres fruitiers</p></div>
                 <div class="amenity"><img src="images/chien.png" alt="Animaux permis" loading="lazy"/><p class="amenity-label">Animaux permis</p></div>
               </div>
@@ -331,6 +338,7 @@
       });
     }
   </script>
+  <script defer src="/js/lightbox.js"></script>
   <script type="module" src="/js/theme.js"></script>
 
 </body>
