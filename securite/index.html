@@ -30,13 +30,16 @@
     .menu-toggle span { display:block; height:2px; background:var(--green-md); border-radius:2px; }
 
     /* ── HERO ── */
-    .mhero { background:var(--dark); overflow:hidden; position:relative; }
-    .mhero-left { max-width:var(--max); margin:0 auto; padding:5rem 5rem 4.5rem; display:flex; flex-direction:column; justify-content:center; position:relative; z-index:2; }
+    .mhero { background:var(--dark); display:grid; grid-template-columns:1.15fr 1fr; overflow:hidden; position:relative; }
+    .mhero-left { padding:5rem 4rem 4.5rem; display:flex; flex-direction:column; justify-content:center; position:relative; z-index:2; }
     .mhero-tag { display:inline-flex; align-items:center; gap:.6rem; font-size:.72rem; font-weight:500; letter-spacing:.18em; text-transform:uppercase; color:var(--green-md); margin-bottom:1.75rem; }
     .mhero-tag::before { content:''; width:1.5rem; height:1px; background:var(--green-md); }
-    .mhero-title { font-family:'Syne',sans-serif; font-size:clamp(2.2rem,4vw,3.6rem); font-weight:800; line-height:1.05; letter-spacing:-.025em; color:#fff; margin-bottom:1.5rem; }
+    .mhero-title { font-family:'Syne',sans-serif; font-size:clamp(2.2rem,4vw,3.4rem); font-weight:800; line-height:1.05; letter-spacing:-.025em; color:#fff; margin-bottom:1.5rem; }
     .mhero-title .mgreen { color:var(--green-md); }
-    .mhero-desc { font-size:1rem; color:rgba(255,255,255,.7); max-width:60ch; line-height:1.75; }
+    .mhero-desc { font-size:1rem; color:rgba(255,255,255,.7); max-width:58ch; line-height:1.75; }
+    .mhero-right { position:relative; overflow:hidden; min-height:420px; }
+    .mhero-right img { width:100%; height:100%; object-fit:cover; object-position:center; filter:brightness(.85) saturate(.95); }
+    .mhero-right::after { content:''; position:absolute; inset:0; background:linear-gradient(to right,var(--dark) 0%,transparent 35%); pointer-events:none; }
 
     /* ── ALERT LEVELS ── */
     .malerts { display:grid; grid-template-columns:repeat(3,1fr); border-bottom:1px solid var(--border); }
@@ -112,6 +115,9 @@
 
     /* ── RESPONSIVE ── */
     @media (max-width:900px) {
+      .mhero { grid-template-columns:1fr; }
+      .mhero-right { min-height:280px; order:-1; }
+      .mhero-right::after { background:linear-gradient(to bottom,transparent 60%,var(--dark) 100%); }
       .mhero-left { padding:3.5rem 2rem; }
       .malerts { grid-template-columns:1fr; }
       .malert-item { border-right:none; border-bottom:1px solid var(--border); }
@@ -166,6 +172,9 @@
       <p class="mhero-desc">
         Chez Modulimo, la préparation aux risques courants est portée par le bâtiment, pas par les résidents. Les scénarios sont identifiés à l'avance, les protocoles écrits, les exercices tenus chaque année — selon le programme « Préparez-vous » du gouvernement du Canada. <strong style="color:#fff;font-weight:600;">Une démarche bienveillante et responsable, où rien n'est laissé au hasard.</strong>
       </p>
+    </div>
+    <div class="mhero-right">
+      <img src="../images/ResidentsForme.png" alt="Résidents Modulimo en salle de surveillance" loading="lazy" />
     </div>
   </section>
 
