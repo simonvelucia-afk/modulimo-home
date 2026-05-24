@@ -30,16 +30,13 @@
     .menu-toggle span { display:block; height:2px; background:var(--green-md); border-radius:2px; }
 
     /* ── HERO ── */
-    .mhero { background:var(--dark); display:grid; grid-template-columns:1fr 1fr; overflow:hidden; position:relative; }
-    .mhero-left { padding:3rem; display:flex; flex-direction:column; justify-content:center; position:relative; z-index:2; }
+    .mhero { background:var(--dark); overflow:hidden; position:relative; }
+    .mhero-left { max-width:var(--max); margin:0 auto; padding:5rem 5rem 4.5rem; display:flex; flex-direction:column; justify-content:center; position:relative; z-index:2; }
     .mhero-tag { display:inline-flex; align-items:center; gap:.6rem; font-size:.72rem; font-weight:500; letter-spacing:.18em; text-transform:uppercase; color:var(--green-md); margin-bottom:1.75rem; }
     .mhero-tag::before { content:''; width:1.5rem; height:1px; background:var(--green-md); }
-    .mhero-title { font-family:'Syne',sans-serif; font-size:clamp(2.5rem,4.5vw,4.2rem); font-weight:800; line-height:1.0; letter-spacing:-.025em; color:#fff; margin-bottom:1.5rem; }
+    .mhero-title { font-family:'Syne',sans-serif; font-size:clamp(2.2rem,4vw,3.6rem); font-weight:800; line-height:1.05; letter-spacing:-.025em; color:#fff; margin-bottom:1.5rem; }
     .mhero-title .mgreen { color:var(--green-md); }
-    .mhero-desc { font-size:1rem; color:rgba(255,255,255,.6); max-width:44ch; line-height:1.75; }
-    .mhero-right { aspect-ratio:16/9; position:relative; overflow:hidden; }
-    .mhero-right img { width:100%; height:100%; object-fit:contain; object-position:center top; filter:brightness(.6); }
-    .mhero-right::after { content:''; position:absolute; inset:0; background:linear-gradient(to right,var(--dark) 0%,transparent 40%); }
+    .mhero-desc { font-size:1rem; color:rgba(255,255,255,.7); max-width:60ch; line-height:1.75; }
 
     /* ── ALERT LEVELS ── */
     .malerts { display:grid; grid-template-columns:repeat(3,1fr); border-bottom:1px solid var(--border); }
@@ -51,6 +48,8 @@
     .mdot-orange { background:var(--orange); color:var(--orange); }
     .malert-text strong { display:block; font-family:'Syne',sans-serif; font-weight:700; font-size:.85rem; margin-bottom:.15rem; }
     .malert-text span { font-size:.75rem; color:var(--muted); }
+    .malerts-note { padding:1rem 2rem; background:var(--off); border-bottom:1px solid var(--border); font-size:.78rem; color:var(--mid); text-align:center; line-height:1.6; }
+    .malerts-note strong { color:var(--dark); font-weight:600; }
 
     /* ── SÉCURITÉ INTRINSÈQUE ── */
     .mintrinsic { padding:6rem 5rem; background:var(--off); border-bottom:1px solid var(--border); }
@@ -65,50 +64,21 @@
     .mfeature-name { font-family:'Syne',sans-serif; font-weight:700; font-size:.82rem; margin-bottom:.25rem; color:var(--dark); }
     .mfeature-desc { font-size:.75rem; color:var(--muted); line-height:1.5; }
 
-    /* ── SCÉNARIOS ── */
-    .mscenario { position:relative; width:100%; overflow:hidden; display:block; }
-    .mscenario img { width:100%; height:auto; display:block; filter:brightness(.55); transition:transform 6s ease; }
-    .mscenario:hover img { transform:scale(1.04); }
-    .mscenario-overlay { position:absolute; inset:0; display:flex; align-items:flex-end; padding:2rem 3rem; box-sizing:border-box; }
-    .moverlay-left { background:linear-gradient(to right,rgba(10,10,10,.88) 0%,rgba(10,10,10,.5) 55%,transparent 100%); }
-    .moverlay-right { background:linear-gradient(to left,rgba(10,10,10,.88) 0%,rgba(10,10,10,.5) 55%,transparent 100%); justify-content:flex-end; text-align:right; }
-    .mscenario-content { max-width:540px; padding:0 0.5rem; }
-    .mscenario-badge { display:inline-flex; align-items:center; gap:.5rem; font-family:'Syne',sans-serif; font-size:.65rem; font-weight:700; letter-spacing:.15em; text-transform:uppercase; padding:.3rem .9rem; border:1px solid; margin-bottom:1.25rem; }
-    .mbadge-blue { color:#5dade2; border-color:#5dade2; }
-    .mbadge-orange { color:var(--orange); border-color:var(--orange); }
-    .mbadge-red { color:#e74c3c; border-color:#e74c3c; }
-    .mscenario-title { font-family:'Syne',sans-serif; font-size:clamp(1.8rem,3vw,2.8rem); font-weight:800; line-height:1.05; letter-spacing:-.02em; color:#fff; margin-bottom:1rem; }
-    .mscenario-desc { font-size:.92rem; color:rgba(255,255,255,.72); line-height:1.75; margin-bottom:1.5rem; max-width:46ch; }
-    .mscenario-pills { display:flex; flex-wrap:wrap; gap:.5rem; }
-    .moverlay-right .mscenario-pills { justify-content:flex-end; }
-    .mpill { font-size:.7rem; font-weight:500; letter-spacing:.05em; padding:.25rem .75rem; background:rgba(255,255,255,.1); color:rgba(255,255,255,.8); border:1px solid rgba(255,255,255,.2); }
-
-    /* ── NUCLÉAIRE + RADIATION (ms2) ── */
-    .ms2-scenario { position:relative; width:100%; overflow:hidden; display:block; }
-    .ms2-scenario img { width:100%; height:auto; display:block; filter:brightness(.55); transition:transform 6s ease; }
-    .ms2-scenario:hover img { transform:scale(1.04); }
-    .ms2-overlay { position:absolute; inset:0; display:flex; align-items:flex-end; padding:2rem 3rem; box-sizing:border-box; }
-    /* Side-by-side layout */
-    .ms2-side { display:grid; grid-template-columns:1fr 1fr; align-items:stretch; overflow:hidden; background:var(--dark); }
-    .ms2-side .ms2-img-wrap { overflow:hidden; }
-    .ms2-side .ms2-img-wrap img { width:100%; height:100%; object-fit:contain; display:block; filter:brightness(.75); }
-    .ms2-side .ms2-overlay { position:static; background:none; padding:3rem; align-items:center; }
-    .ms2-left { background:linear-gradient(to right,rgba(10,10,10,.9) 0%,rgba(10,10,10,.55) 50%,transparent 100%); }
-    .ms2-right { background:linear-gradient(to left,rgba(10,10,10,.9) 0%,rgba(10,10,10,.55) 50%,transparent 100%); justify-content:flex-end; text-align:right; }
-    .ms2-content { max-width:540px; }
-    .ms2-badge { display:inline-flex; align-items:center; gap:.5rem; font-family:'Syne',sans-serif; font-size:.65rem; font-weight:700; letter-spacing:.15em; text-transform:uppercase; padding:.3rem .9rem; border:1px solid; margin-bottom:1.25rem; }
-    .ms2-badge-blue { color:#3498db; border-color:#3498db; }
-    .ms2-badge-orange { color:#e67e22; border-color:#e67e22; }
-    .ms2-side-reverse { grid-template-columns:1fr 1fr; }
-    .ms2-side-reverse .ms2-overlay { text-align:right; justify-content:flex-end; }
-    .ms2-pills-right { justify-content:flex-end; }
-    .ms2-badge-red { color:#e74c3c; border-color:#e74c3c; }
-    .ms2-badge-green { color:#4aaa74; border-color:#4aaa74; }
-    .ms2-title { font-family:'Syne',sans-serif; font-size:clamp(1.8rem,3vw,2.8rem); font-weight:800; line-height:1.05; letter-spacing:-.02em; color:#fff; margin-bottom:1rem; }
-    .ms2-desc { font-size:.92rem; color:rgba(255,255,255,.8); line-height:1.75; margin-bottom:1.5rem; max-width:46ch; }
-    .ms2-pills { display:flex; flex-wrap:wrap; gap:.5rem; }
-    .ms2-right .ms2-pills { justify-content:flex-end; }
-    .ms2-pill { font-size:.7rem; font-weight:500; padding:.25rem .75rem; background:rgba(255,255,255,.15); color:rgba(255,255,255,.9); border:1px solid rgba(255,255,255,.3); }
+    /* ── RISQUES PRIS EN CHARGE (cartes sobres) ── */
+    .mrisks { padding:6rem 5rem; background:var(--white); border-bottom:1px solid var(--border); }
+    .mrisks-header { max-width:var(--max); margin:0 auto 3rem; }
+    .mrisks-grid { max-width:var(--max); margin:0 auto; display:grid; grid-template-columns:repeat(3,1fr); gap:1.25rem; }
+    .mrisk-card { background:var(--off); border:1px solid var(--border); padding:2rem 1.75rem; display:flex; flex-direction:column; gap:.85rem; transition:border-color .2s,background .2s; }
+    .mrisk-card:hover { border-color:var(--green-md); background:var(--green-lt); }
+    .mrisk-card-head { display:flex; align-items:center; gap:.7rem; }
+    .mrisk-dot { width:10px; height:10px; border-radius:50%; flex-shrink:0; }
+    .mdot-greenmd { background:var(--green-md); }
+    .mrisk-level { font-size:.66rem; font-weight:700; letter-spacing:.15em; text-transform:uppercase; color:var(--muted); }
+    .mrisk-title { font-family:'Syne',sans-serif; font-size:1.05rem; font-weight:700; line-height:1.3; color:var(--dark); }
+    .mrisk-desc { font-size:.88rem; color:var(--mid); line-height:1.65; }
+    .mrisk-list { list-style:none; margin-top:.35rem; display:grid; gap:.4rem; }
+    .mrisk-list li { font-size:.8rem; color:var(--mid); line-height:1.5; padding-left:1.1rem; position:relative; }
+    .mrisk-list li::before { content:''; position:absolute; left:0; top:.55rem; width:.45rem; height:1px; background:var(--green-md); }
 
     /* ── DISCLAIMER ── */
     .ms2-disclaimer { padding:3rem 5rem; background:var(--green-lt); border-top:2px solid var(--green); display:flex; align-items:flex-start; gap:1.5rem; }
@@ -142,24 +112,17 @@
 
     /* ── RESPONSIVE ── */
     @media (max-width:900px) {
-      .mhero { grid-template-columns:1fr; }
-      .mhero-right { aspect-ratio:16/9; }
-      .mhero-left { padding:3rem 2rem; }
+      .mhero-left { padding:3.5rem 2rem; }
       .malerts { grid-template-columns:1fr; }
       .malert-item { border-right:none; border-bottom:1px solid var(--border); }
       .mintrinsic { padding:4rem 2rem; }
-      .mscenario { aspect-ratio:16/9; }
-      .mscenario-overlay { padding:2.5rem 2rem; }
-      
-      .ms2-overlay { padding:2.5rem 2rem; }
+      .mrisks { padding:4rem 2rem; }
+      .mrisks-grid { grid-template-columns:1fr; }
       .ms2-disclaimer { padding:2.5rem 2rem; flex-direction:column; }
       .footer { padding:44px 2rem 32px; }
     }
     @media (max-width:640px) {
       .mfeatures { grid-template-columns:1fr; }
-      .mscenario-title, .ms2-title { font-size:1.6rem; }
-      .mscenario-overlay, .ms2-overlay { padding:2rem 1.5rem; align-items:flex-start; padding-top:3rem; }
-      .mscenario-content, .ms2-content { max-width:100%; }
       .menu-toggle { display:flex; }
       .nav { display:none; position:absolute; top:68px; left:0; right:0; background:#1a1a1a; border-bottom:1px solid rgba(255,255,255,.1); flex-direction:column; align-items:stretch; padding:8px 16px 16px; gap:2px; }
       .nav.is-open { display:flex; }
@@ -195,17 +158,14 @@
   <!-- HERO -->
   <section class="mhero">
     <div class="mhero-left">
-      <span class="mhero-tag">Sécurité · Modulimo</span>
+      <span class="mhero-tag">Préparation · Modulimo</span>
       <h1 class="mhero-title">
-        Préparés pour<br>
-        <span class="mgreen">l'imprévu.</span>
+        Un milieu qui prend en charge<br>
+        <span class="mgreen">la gestion des risques.</span>
       </h1>
       <p class="mhero-desc">
-        Modulimo intègre dès la conception des protocoles de sécurité à plusieurs niveaux — du quotidien au scénario extrême. Parce qu'un milieu de vie sécuritaire se planifie avant d'en avoir besoin.
+        Chez Modulimo, la préparation aux risques courants est portée par le bâtiment, pas par les résidents. Les scénarios sont identifiés à l'avance, les protocoles écrits, les exercices tenus chaque année — selon le programme « Préparez-vous » du gouvernement du Canada. <strong style="color:#fff;font-weight:600;">Une démarche bienveillante et responsable, où rien n'est laissé au hasard.</strong>
       </p>
-    </div>
-    <div class="mhero-right">
-      <img src="../images/ResidentsForme.png" alt="Agents de sécurité Modulimo" style="width:100%;height:100%;object-fit:contain;object-position:center top;filter:brightness(.6);"  loading="lazy"/>
     </div>
   </section>
 
@@ -214,32 +174,35 @@
     <div class="malert-item">
       <div class="malert-dot mdot-green"></div>
       <div class="malert-text">
-        <strong>Niveau Nominal</strong>
-        <span>Surveillance quotidienne active</span>
+        <strong>Niveau Vert — Quotidien</strong>
+        <span>Surveillance et entretien continus</span>
       </div>
     </div>
     <div class="malert-item">
       <div class="malert-dot mdot-blue"></div>
       <div class="malert-text">
-        <strong>Niveau Bleu — Assaut</strong>
-        <span>Confinement et protocole d'assaut</span>
+        <strong>Niveau Bleu — Préparation</strong>
+        <span>Trousse 72 h, plan familial et exercices annuels</span>
       </div>
     </div>
     <div class="malert-item">
       <div class="malert-dot mdot-orange"></div>
       <div class="malert-text">
-        <strong>Niveau Orange — Nucléaire</strong>
-        <span>Confinement renforcé et décontamination</span>
+        <strong>Niveau Orange — Mise à l'abri</strong>
+        <span>Protocoles d'urgence et directives officielles</span>
       </div>
     </div>
+  </div>
+  <div class="malerts-note">
+    Voyants <strong>clignotants</strong> pendant un exercice annoncé · voyants <strong>fixes</strong> en situation réelle.
   </div>
 
   <!-- SÉCURITÉ INTRINSÈQUE -->
   <section class="mintrinsic">
     <div class="msec-tag">Sécurité intrinsèque</div>
-    <h2 class="msec-title">Un immeuble conçu<br>pour protéger.</h2>
+    <h2 class="msec-title">Un immeuble pensé<br>pour la quiétude.</h2>
     <p class="msec-body">
-      La sécurité de Modulimo n'est pas un ajout — elle est intégrée à l'architecture même du bâtiment. Chaque accès, chaque espace commun et chaque protocole est pensé pour assurer la tranquillité des résidents au quotidien.
+      La sécurité de Modulimo n'est pas un ajout — elle est intégrée à l'architecture du bâtiment. Chaque accès, chaque espace commun et chaque protocole vise la tranquillité des résidents au quotidien, sans en faire un sujet d'inquiétude.
     </p>
     <div class="mfeatures">
       <div class="mfeature">
@@ -260,7 +223,7 @@
       <div class="mfeature">
         <span class="mfeature-icon">🎓</span>
         <div class="mfeature-name">Formation des résidents</div>
-        <div class="mfeature-desc">Chaque résident aura accès à une formation sur les protocoles d'urgence de l'immeuble.</div>
+        <div class="mfeature-desc">Chaque résident est formé aux protocoles d'urgence de l'immeuble dès l'emménagement.</div>
       </div>
       <div class="mfeature">
         <span class="mfeature-icon">🌿</span>
@@ -268,99 +231,84 @@
         <div class="mfeature-desc">Processus de sélection rigoureux pour maintenir un milieu de vie serein.</div>
       </div>
       <div class="mfeature">
+        <span class="mfeature-icon">🗓️</span>
+        <div class="mfeature-name">Exercices annuels</div>
+        <div class="mfeature-desc">Exercices simulés et révisions des protocoles, tenus chaque année avec les résidents.</div>
+      </div>
+      <div class="mfeature">
+        <span class="mfeature-icon">🎤</span>
+        <div class="mfeature-name">Conférences thématiques</div>
+        <div class="mfeature-desc">Sessions d'information sur la préparation aux urgences, inspirées du programme « Préparez-vous ».</div>
+      </div>
+      <div class="mfeature">
         <span class="mfeature-icon">📋</span>
-        <div class="mfeature-name">Plan d'évacuation</div>
-        <div class="mfeature-desc">Plan de confinement et d'évacuation remis à chaque résident.</div>
+        <div class="mfeature-name">Plan d'évacuation ou de confinement</div>
+        <div class="mfeature-desc">Selon le scénario, évacuation vers un point de rassemblement extérieur ou mise à l'abri au refuge central. Plan remis à chaque résident et affiché à chaque étage.</div>
       </div>
     </div>
   </section>
 
-  <!-- SCÉNARIO : MENACE CIVILE -->
-  <div class="ms2-side">
-    <div class="ms2-img-wrap">
-      <img src="../images/Menace-guerre.webp" alt="Menace civile" loading="lazy" />
+  <!-- RISQUES PRIS EN CHARGE -->
+  <section class="mrisks">
+    <div class="mrisks-header">
+      <div class="msec-tag">Risques pris en charge</div>
+      <h2 class="msec-title">Trois volets,<br>un cadre commun.</h2>
+      <p class="msec-body">
+        Modulimo prépare ses résidents aux situations courantes envisagées par les autorités canadiennes, selon une trame inspirée des Plans Particuliers de Mise en Sûreté (PPMS). L'ensemble repose sur une cellule de coordination identifiée, une mallette de mise en sûreté accessible à chaque palier et un programme annuel d'exercices et d'actualisation.
+      </p>
     </div>
-    <div class="ms2-overlay ms2-left">
-      <div class="ms2-content">
-        <div class="ms2-badge ms2-badge-blue">🔵 Niveau Bleu · En développement</div>
-        <h2 class="ms2-title">Plan de sécurité<br>en cas de menace civile.</h2>
-        <p class="ms2-desc">En situation de trouble civil, Modulimo active son protocole de confinement. L'éclairage passe au bleu, les accès se verrouillent, et les responsables désignés prennent position selon le plan établi.</p>
-        <div class="ms2-pills">
-          <span class="ms2-pill">Confinement automatique</span>
-          <span class="ms2-pill">Éclairage d'alerte bleu</span>
-          <span class="ms2-pill">Protocole de défense passive</span>
-          <span class="ms2-pill">Communication interne</span>
+    <div class="mrisks-grid">
+      <article class="mrisk-card">
+        <div class="mrisk-card-head">
+          <span class="mrisk-dot mdot-blue"></span>
+          <span class="mrisk-level">Niveau Bleu · Préparation</span>
         </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- SCÉNARIO : PLAN D'ASSAUT -->
-  <div class="ms2-side ms2-side-reverse">
-    <div class="ms2-overlay ms2-right">
-      <div class="ms2-content">
-        <div class="ms2-badge ms2-badge-orange">🟠 Niveau Intermédiaire · En développement</div>
-        <h2 class="ms2-title">Protocole d'assaut<br>et de confinement.</h2>
-        <p class="ms2-desc">Face à une intrusion active, le protocole d'assaut est déclenché. Chaque étage dispose d'un responsable formé. Les résidents suivent un plan clair, pensé pour minimiser l'exposition et maximiser la protection.</p>
-        <div class="ms2-pills ms2-pills-right">
-          <span class="ms2-pill">Zones de refuge désignées</span>
-          <span class="ms2-pill">Responsables par étage</span>
-          <span class="ms2-pill">Défense non-létale</span>
-          <span class="ms2-pill">Gradation selon le danger</span>
+        <h3 class="mrisk-title">Trousse 72 h et plan familial</h3>
+        <p class="mrisk-desc">Chaque logement reçoit l'information et le matériel recommandés par le programme Préparez-vous, ainsi qu'un plan familial écrit révisé en exercice annuel.</p>
+        <ul class="mrisk-list">
+          <li>Eau, nourriture, lampe, couverture de survie</li>
+          <li>Radio à piles + radio dynamo, piles de rechange</li>
+          <li>Feuilles plastique &amp; ruban adhésif pour calfeutrer</li>
+          <li>Plan familial écrit et numéros d'urgence</li>
+        </ul>
+      </article>
+      <article class="mrisk-card">
+        <div class="mrisk-card-head">
+          <span class="mrisk-dot mdot-orange"></span>
+          <span class="mrisk-level">Niveau Intermédiaire · Continuité</span>
         </div>
-      </div>
-    </div>
-    <div class="ms2-img-wrap">
-      <img src="../images/Plan_assault.webp" alt="Plan d'assaut"  loading="lazy"/>
-    </div>
-  </div>
-
-  <!-- SCÉNARIO : MENACE NUCLÉAIRE -->
-  <div class="ms2-side">
-    <div class="ms2-img-wrap">
-      <img src="../images/Menace-nucl%C3%A9aire.webp" alt="Menace nucléaire" loading="lazy" />
-    </div>
-    <div class="ms2-overlay ms2-left">
-      <div class="ms2-content">
-        <div class="ms2-badge ms2-badge-red">🟠 Niveau Orange · En développement</div>
-        <h2 class="ms2-title">Plan de protection<br>en cas de menace nucléaire.</h2>
-        <p class="ms2-desc">À l'activation du niveau orange, l'éclairage signale l'alerte et le protocole de décontamination s'enclenche. Des responsables sécurisent les ouvertures. Une entrée dédiée permet le retour sécuritaire des résidents exposés.</p>
-        <div class="ms2-pills">
-          <span class="ms2-pill">Éclairage d'alerte orange</span>
-          <span class="ms2-pill">Calfeutrage des ouvertures</span>
-          <span class="ms2-pill">Entrée de décontamination</span>
-          <span class="ms2-pill">Attente des directives officielles</span>
+        <h3 class="mrisk-title">Continuité en cas de perturbation</h3>
+        <p class="mrisk-desc">Panne électrique, événement météo ou interruption des services : le bâtiment maintient ses fonctions essentielles le temps que les services normaux reprennent.</p>
+        <ul class="mrisk-list">
+          <li>Alimentation électrique de secours</li>
+          <li>Réserves d'eau et de matériel communes 72 h</li>
+          <li>Communication interne par étage</li>
+          <li>Coordination via responsables désignés</li>
+        </ul>
+      </article>
+      <article class="mrisk-card">
+        <div class="mrisk-card-head">
+          <span class="mrisk-dot mdot-orange"></span>
+          <span class="mrisk-level">Niveau Orange · Mise à l'abri</span>
         </div>
-      </div>
+        <h3 class="mrisk-title">Mise à l'abri</h3>
+        <p class="mrisk-desc">Un même protocole couvre l'urgence radiologique, le phénomène naturel (tempête, événement climatique) et le désordre social aux abords du site. Triptyque officiel du gouvernement du Canada : <strong>RESTEZ</strong> à l'intérieur, <strong>ÉCOUTEZ</strong> les médias officiels, <strong>SUIVEZ</strong> les directives provinciales et municipales.</p>
+        <ul class="mrisk-list">
+          <li>Refuge central (cœur du bâtiment)</li>
+          <li>Calfeutrage des portes, fenêtres et aérations</li>
+          <li>Éloignement des fenêtres et murs extérieurs</li>
+          <li>Suivi des fréquences radio officielles</li>
+        </ul>
+      </article>
     </div>
-  </div>
-
-  <!-- SCÉNARIO : RADIATION -->
-  <div class="ms2-side ms2-side-reverse">
-    <div class="ms2-overlay ms2-right">
-      <div class="ms2-content">
-        <div class="ms2-badge ms2-badge-orange">☢️ Protocole Radiation · En développement</div>
-        <h2 class="ms2-title">Gestion des<br>retombées radioactives.</h2>
-        <p class="ms2-desc">Un protocole détaillé sera remis à chaque résident. L'architecture favorise le refuge au centre du bâtiment, là où la masse de matériaux offre la meilleure protection naturelle.</p>
-        <div class="ms2-pills ms2-pills-right">
-          <span class="ms2-pill">Refuge central du bâtiment</span>
-          <span class="ms2-pill">Kit 72h par logement</span>
-          <span class="ms2-pill">Radio à manivelle</span>
-          <span class="ms2-pill">Protocole de décontamination</span>
-        </div>
-      </div>
-    </div>
-    <div class="ms2-img-wrap">
-      <img src="../images/Plan_radiation.webp" alt="Plan radiation"  loading="lazy"/>
-    </div>
-  </div>
+  </section>
 
   <!-- DISCLAIMER -->
   <div class="ms2-disclaimer">
     <div class="ms2-disclaimer-icon">ℹ️</div>
     <div class="ms2-disclaimer-text">
-      <strong>Note importante</strong>
-      Ces protocoles de sécurité sont en cours de développement et seront intégrés progressivement à l'immeuble Pointe Est. Ils ne constituent pas une garantie absolue de protection, mais reflètent la volonté de Modulimo d'offrir un cadre de vie pensé pour toutes les situations. Les résidents seront formés et informés de l'ensemble des procédures avant l'emménagement.
+      <strong>Une préparation alignée sur les standards reconnus</strong>
+      Ces protocoles s'inspirent du programme <a href="https://www.preparez-vous.gc.ca" target="_blank" rel="noopener" style="color:var(--green);text-decoration:underline;">Préparez-vous</a> du gouvernement du Canada et de la trame des <em>Plans Particuliers de Mise en Sûreté (PPMS)</em> utilisée en France pour les établissements recevant du public. En cas d'urgence réelle, les directives officielles des autorités provinciales et municipales prévalent toujours. Les résidents sont formés à l'ensemble des procédures avant l'emménagement et lors d'exercices annuels.
     </div>
   </div>
 
