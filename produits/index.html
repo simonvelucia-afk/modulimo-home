@@ -46,19 +46,20 @@
       max-width:var(--max);
       margin:0 auto;
       padding:0 24px;
-      height:68px;
+      height:76px;
       display:flex;
       align-items:center;
       justify-content:space-between;
-      gap:24px;
+      gap:18px;
     }
     .brand-logo{
       display:flex;
       align-items:center;
       flex-shrink:0;
+      background:transparent;
     }
     .brand-logo img{
-      height:52px;
+      height:56px;
       width:auto;
       display:block;
       object-fit:contain;
@@ -97,7 +98,7 @@
       white-space:nowrap;
       transition:color .15s,background .15s;
     }
-    .nav a:hover,.lang-btn:hover,.lang-btn.active{
+    .nav a:hover{
       color:var(--accent);
       background:#e8f5ee;
     }
@@ -107,6 +108,35 @@
       border-radius:0;
       padding-bottom:5px;
     }
+    .nav-cta{
+      color:var(--accent) !important;
+      border:1px solid var(--accent) !important;
+      border-radius:5px !important;
+      padding:6px 12px !important;
+      margin-left:6px;
+      background:transparent !important;
+      transition:background .15s,color .15s;
+    }
+    .nav-cta:hover{
+      background:var(--accent) !important;
+      color:#fff !important;
+    }
+    .lang-switch{
+      display:inline-flex; align-items:center; gap:0;
+      margin-left:10px; padding-left:10px;
+      border-left:1px solid var(--line);
+    }
+    .lang-btn{
+      font-size:.7rem !important; font-weight:700 !important; letter-spacing:.06em;
+      color:var(--muted); padding:5px 7px !important; background:transparent !important;
+      border:none !important; border-radius:0 !important; cursor:pointer;
+      font-family:inherit; transition:color .15s; text-transform:uppercase;
+    }
+    .lang-btn:hover, .lang-btn.active{
+      color:var(--accent);
+      background:transparent !important;
+    }
+    .lang-btn.active{ font-weight:800 !important; }
 
     .hero{padding:28px 0 18px}
     .hero-grid{display:grid;grid-template-columns:1.04fr .96fr;gap:18px;align-items:stretch}
@@ -737,9 +767,12 @@
         <a href="/securite">Sécurité</a>
         <a href="/projets">Projets</a>
         <a href="/produits" class="active">Produits</a>
-        <button class="lang-btn" data-set-lang="fr" aria-label="Afficher en français">FR</button>
-        <button class="lang-btn" data-set-lang="en" aria-label="Display in English">EN</button>
-        <button class="lang-btn" data-set-lang="es" aria-label="Mostrar en español">ES</button>
+        <a href="https://cohabitat.modulimo.com" target="_blank" rel="noopener" class="nav-cta">CoHabitat ↗</a>
+        <div class="lang-switch">
+          <button class="lang-btn" data-set-lang="fr" aria-label="Afficher en français">FR</button>
+          <button class="lang-btn" data-set-lang="en" aria-label="Display in English">EN</button>
+          <button class="lang-btn" data-set-lang="es" aria-label="Mostrar en español">ES</button>
+        </div>
       </nav>
     </div>
   </header>
