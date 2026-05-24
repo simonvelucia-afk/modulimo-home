@@ -14,13 +14,21 @@
     img { display:block; max-width:100%; }
     .wrap { max-width:var(--max); margin:0 auto; padding:0 24px; }
     .topbar { position:sticky; top:0; z-index:50; background:var(--bg); border-bottom:1px solid var(--line); }
-    .topbar-inner { max-width:var(--max); margin:0 auto; padding:0 24px; height:68px; display:flex; align-items:center; justify-content:space-between; gap:24px; }
-    .brand { display:flex; align-items:center; flex-shrink:0; background:#fff; padding:4px 10px; border-radius:8px; }
-    .brand img { height:42px; width:auto; display:block; }
+    .topbar-inner { max-width:var(--max); margin:0 auto; padding:0 24px; height:76px; display:flex; align-items:center; justify-content:space-between; gap:18px; }
+    .brand { display:flex; align-items:center; flex-shrink:0; background:transparent; padding:0; border-radius:0; }
+    .brand img { height:56px; width:auto; display:block; }
     .nav { display:flex; align-items:center; gap:2px; }
-    .nav a { font-size:.78rem; font-weight:600; letter-spacing:.07em; text-transform:uppercase; color:var(--muted); padding:7px 13px; border-radius:5px; transition:color .15s,background .15s; white-space:nowrap; }
+    .nav a { font-size:.72rem; font-weight:600; letter-spacing:.07em; text-transform:uppercase; color:var(--muted); padding:7px 13px; border-radius:5px; transition:color .15s,background .15s; white-space:nowrap; }
     .nav a:hover { color:var(--green); background:rgba(45,90,74,.07); }
-    .nav a.active { color:var(--green-dk); border-bottom:2px solid var(--green); border-radius:0; padding-bottom:5px; }
+    .nav a.active { color:var(--green); border-bottom:2px solid var(--green); border-radius:0; padding-bottom:5px; }
+    .nav-cta { color:var(--green) !important; border:1px solid var(--green); border-radius:5px; padding:6px 12px !important; margin-left:6px; transition:background .15s,color .15s; }
+    .nav-cta:hover { background:var(--green); color:#fff !important; }
+    .lang-switch { display:inline-flex; align-items:center; gap:0; margin-left:10px; padding-left:10px; border-left:1px solid var(--line); }
+    .lang-btn { font-size:.7rem; font-weight:700; letter-spacing:.06em; color:var(--muted); padding:5px 7px; background:none; border:none; cursor:pointer; font-family:inherit; transition:color .15s; }
+    .lang-btn:hover, .lang-btn.active { color:var(--green); }
+    .lang-btn.active { font-weight:800; }
+    [data-lang] { display:none; }
+    html.lang-fr [data-lang="fr"], html.lang-en [data-lang="en"], html.lang-es [data-lang="es"] { display:revert; }
     .menu-toggle { display:none; flex-direction:column; justify-content:center; gap:5px; width:40px; height:40px; background:none; border:1px solid var(--line); border-radius:6px; cursor:pointer; padding:8px; }
     .menu-toggle span { display:block; height:2px; background:var(--green); border-radius:2px; }
     .page-hero { background:var(--bg); padding:56px 24px 48px; border-bottom:1px solid var(--line); }
@@ -85,11 +93,16 @@
       <button class="menu-toggle" id="menuToggle" aria-expanded="false" aria-controls="siteNav" aria-label="Menu"><span></span><span></span><span></span></button>
       <nav class="nav" id="siteNav">
         <a href="/">Accueil</a>
-        <a href="https://cohabitat.modulimo.com" target="_blank" rel="noopener">CoHabitat</a>
         <a href="/mobilite">Mobilité</a>
         <a href="/securite">Sécurité</a>
         <a href="/projets" class="active">Projets</a>
         <a href="/produits">Produits</a>
+        <a href="https://cohabitat.modulimo.com" target="_blank" rel="noopener" class="nav-cta">CoHabitat ↗</a>
+        <div class="lang-switch">
+          <button class="lang-btn" data-set-lang="fr" aria-label="Afficher en français">FR</button>
+          <button class="lang-btn" data-set-lang="en" aria-label="Display in English">EN</button>
+          <button class="lang-btn" data-set-lang="es" aria-label="Mostrar en español">ES</button>
+        </div>
       </nav>
     </div>
   </header>
@@ -152,6 +165,7 @@
     </div>
   </footer>
 
+  <script src="../js/lang-switch.js" defer></script>
   <script>
     const toggle = document.getElementById('menuToggle');
     const nav = document.getElementById('siteNav');
