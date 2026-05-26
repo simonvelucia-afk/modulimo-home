@@ -66,32 +66,16 @@
     .placeholder-icon { width:48px; height:48px; border-radius:50%; background:rgba(45,90,74,.1); display:flex; align-items:center; justify-content:center; margin:0 auto 16px; }
     .placeholder-icon svg { width:24px; height:24px; stroke:var(--green); fill:none; stroke-width:1.8; }
 
-    .section-alt { background:var(--bg); }
-    .section-lead { font-size:1rem; color:var(--muted); line-height:1.75; max-width:640px; margin-bottom:36px; }
-    .standards-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:16px; margin-bottom:48px; }
-    .standard-card { background:#fff; border:1px solid var(--line); border-left:3px solid var(--green); border-radius:10px; padding:20px 22px; }
-    .standard-code { font-size:.72rem; font-weight:800; letter-spacing:.08em; color:var(--green); margin-bottom:8px; }
-    .standard-card h4 { font-size:.95rem; font-weight:700; color:var(--text); margin-bottom:8px; line-height:1.35; }
-    .standard-card p { font-size:.84rem; color:var(--muted); line-height:1.6; }
-    .phase-grid { display:grid; grid-template-columns:repeat(4,1fr); gap:14px; margin-bottom:48px; }
-    .phase-card { background:#fff; border:1px solid var(--line); border-radius:10px; padding:18px 18px 20px; position:relative; transition:transform .15s,box-shadow .15s; }
-    .phase-card:hover { transform:translateY(-2px); box-shadow:0 6px 22px rgba(0,0,0,.06); }
-    .phase-num { display:inline-flex; align-items:center; justify-content:center; width:28px; height:28px; border-radius:50%; background:var(--green); color:#fff; font-size:.78rem; font-weight:800; margin-bottom:12px; }
-    .phase-card h4 { font-size:.9rem; font-weight:700; color:var(--text); margin-bottom:8px; line-height:1.3; }
-    .phase-card p { font-size:.8rem; color:var(--muted); line-height:1.55; }
-    .roles-strip { display:grid; grid-template-columns:repeat(5,1fr); gap:10px; border:1px solid var(--line); border-radius:10px; overflow:hidden; }
-    .role-col { padding:18px 16px; background:#fff; }
-    .role-col:nth-child(odd) { background:var(--bg); }
-    .role-col h5 { font-size:.7rem; font-weight:800; letter-spacing:.08em; text-transform:uppercase; color:var(--green); margin-bottom:8px; line-height:1.4; }
-    .role-col p { font-size:.78rem; color:var(--muted); line-height:1.55; }
-    @media (max-width:900px) {
-      .standards-grid { grid-template-columns:1fr; }
-      .phase-grid { grid-template-columns:repeat(2,1fr); }
-      .roles-strip { grid-template-columns:1fr; }
-    }
-    @media (max-width:520px) {
-      .phase-grid { grid-template-columns:1fr; }
-    }
+    .csa-note { background:var(--bg); border-top:1px solid var(--line); padding:40px 0; }
+    .csa-note-inner { max-width:var(--max); margin:0 auto; padding:0 24px; }
+    .csa-label { font-size:.68rem; font-weight:700; letter-spacing:.14em; text-transform:uppercase; color:var(--green); margin-bottom:8px; }
+    .csa-title { font-size:1.05rem; font-weight:700; color:var(--text); margin-bottom:8px; letter-spacing:-.01em; }
+    .csa-intro { font-size:.86rem; color:var(--muted); line-height:1.65; max-width:680px; margin-bottom:18px; }
+    .csa-standards { display:flex; flex-wrap:wrap; gap:8px 14px; margin-bottom:14px; padding:0; list-style:none; }
+    .csa-standards li { font-size:.8rem; color:var(--muted); }
+    .csa-standards strong { color:var(--green); font-weight:800; letter-spacing:.04em; }
+    .csa-phases { font-size:.78rem; color:var(--muted); line-height:1.6; }
+    .csa-phases em { font-style:normal; color:var(--text); }
     .footer { background:var(--bg); border-top:1px solid var(--line); padding:44px 24px 32px; }
     .footer-inner { max-width:var(--max); margin:0 auto; }
     .footer-top { display:flex; justify-content:space-between; align-items:flex-start; flex-wrap:wrap; gap:32px; margin-bottom:32px; }
@@ -160,154 +144,6 @@
     </div>
   </div>
 
-  <section class="section section-alt">
-    <div class="wrap">
-      <p class="section-label">
-        <span data-lang="fr">Cadre normatif</span>
-        <span data-lang="en">Standards framework</span>
-        <span data-lang="es">Marco normativo</span>
-      </p>
-      <h2 class="section-title">
-        <span data-lang="fr">Construction modulaire alignée sur les normes CSA</span>
-        <span data-lang="en">Modular construction aligned with CSA standards</span>
-        <span data-lang="es">Construcción modular alineada con las normas CSA</span>
-      </h2>
-      <p class="section-lead">
-        <span data-lang="fr">Chaque projet Modulimo est conduit en cohérence avec le cadre normatif canadien pour la construction modulaire volumétrique. Trois normes structurent la démarche : la certification des produits préfabriqués, le processus de livraison, et les exigences de conformité et d'approbation.</span>
-        <span data-lang="en">Every Modulimo project is run in alignment with the Canadian standards framework for volumetric modular construction. Three standards structure the approach: certification of prefabricated products, the delivery process, and compliance and approval requirements.</span>
-        <span data-lang="es">Cada proyecto Modulimo se desarrolla en coherencia con el marco normativo canadiense para la construcción modular volumétrica. Tres normas estructuran el enfoque: certificación de productos prefabricados, proceso de entrega, y requisitos de conformidad y aprobación.</span>
-      </p>
-
-      <div class="standards-grid">
-        <div class="standard-card">
-          <p class="standard-code">CSA A277</p>
-          <h4>
-            <span data-lang="fr">Certification des bâtiments, modules et panneaux préfabriqués</span>
-            <span data-lang="en">Certification of prefabricated buildings, modules and panels</span>
-            <span data-lang="es">Certificación de edificios, módulos y paneles prefabricados</span>
-          </h4>
-          <p>
-            <span data-lang="fr">Procédure de certification appliquée à la fabrication en usine et au contrôle qualité des modules.</span>
-            <span data-lang="en">Certification procedure applied to factory fabrication and module quality control.</span>
-            <span data-lang="es">Procedimiento de certificación aplicado a la fabricación en fábrica y al control de calidad de los módulos.</span>
-          </p>
-        </div>
-        <div class="standard-card">
-          <p class="standard-code">CSA Z250</p>
-          <h4>
-            <span data-lang="fr">Processus de livraison des bâtiments modulaires volumétriques</span>
-            <span data-lang="en">Process for delivery of volumetric modular buildings</span>
-            <span data-lang="es">Proceso de entrega de edificios modulares volumétricos</span>
-          </h4>
-          <p>
-            <span data-lang="fr">Encadre la conception, la fabrication, la logistique, le levage et la mise en service.</span>
-            <span data-lang="en">Frames design, fabrication, logistics, lifting and commissioning.</span>
-            <span data-lang="es">Enmarca el diseño, la fabricación, la logística, el izaje y la puesta en servicio.</span>
-          </p>
-        </div>
-        <div class="standard-card">
-          <p class="standard-code">CSA Z252</p>
-          <h4>
-            <span data-lang="fr">Guide de conformité et processus d'approbation</span>
-            <span data-lang="en">Guide to compliance and approval processes</span>
-            <span data-lang="es">Guía de conformidad y procesos de aprobación</span>
-          </h4>
-          <p>
-            <span data-lang="fr">Repère commun pour la coordination des permis, des inspections et des autorités compétentes.</span>
-            <span data-lang="en">Common reference for coordinating permits, inspections and authorities having jurisdiction.</span>
-            <span data-lang="es">Referencia común para coordinar permisos, inspecciones y autoridades competentes.</span>
-          </p>
-        </div>
-      </div>
-
-      <p class="section-label">
-        <span data-lang="fr">Huit phases d'un projet modulaire</span>
-        <span data-lang="en">Eight phases of a modular project</span>
-        <span data-lang="es">Ocho fases de un proyecto modular</span>
-      </p>
-      <h3 style="font-size:1.15rem;font-weight:700;color:var(--text);margin-bottom:22px;letter-spacing:-.02em;">
-        <span data-lang="fr">Du concept à l'occupation — une démarche structurée.</span>
-        <span data-lang="en">From concept to occupancy — a structured approach.</span>
-        <span data-lang="es">Del concepto a la ocupación — un enfoque estructurado.</span>
-      </h3>
-      <div class="phase-grid">
-        <div class="phase-card">
-          <div class="phase-num">1</div>
-          <h4><span data-lang="fr">Préqualification</span><span data-lang="en">Prequalifying</span><span data-lang="es">Precalificación</span></h4>
-          <p><span data-lang="fr">Évaluation stratégique et tactique du projet : pertinence, bénéfices et risques de l'approche modulaire.</span><span data-lang="en">Strategic and tactical assessment of the project: relevance, benefits and risks of the modular approach.</span><span data-lang="es">Evaluación estratégica y táctica del proyecto: pertinencia, beneficios y riesgos del enfoque modular.</span></p>
-        </div>
-        <div class="phase-card">
-          <div class="phase-num">2</div>
-          <h4><span data-lang="fr">Conception modulaire</span><span data-lang="en">Modular design</span><span data-lang="es">Diseño modular</span></h4>
-          <p><span data-lang="fr">Codes applicables, standardisation des modules, usage du bâtiment, transport et assemblage anticipés dès la conception.</span><span data-lang="en">Applicable codes, module standardization, building use, transport and assembly anticipated from design stage.</span><span data-lang="es">Códigos aplicables, estandarización de módulos, uso del edificio, transporte y ensamble anticipados desde el diseño.</span></p>
-        </div>
-        <div class="phase-card">
-          <div class="phase-num">3</div>
-          <h4><span data-lang="fr">Préconstruction</span><span data-lang="en">Preconstruction</span><span data-lang="es">Preconstrucción</span></h4>
-          <p><span data-lang="fr">Planification intégrée et mise en place des processus fondamentaux à la réussite du projet.</span><span data-lang="en">Integrated planning and rollout of processes foundational to project success.</span><span data-lang="es">Planificación integrada y despliegue de los procesos fundamentales para el éxito del proyecto.</span></p>
-        </div>
-        <div class="phase-card">
-          <div class="phase-num">4</div>
-          <h4><span data-lang="fr">Approvisionnement</span><span data-lang="en">Procurement</span><span data-lang="es">Aprovisionamiento</span></h4>
-          <p><span data-lang="fr">Collaboration intensive en amont et achats coordonnés tôt dans le projet.</span><span data-lang="en">Intensive front-end collaboration and coordinated early-stage purchasing.</span><span data-lang="es">Colaboración intensa al inicio y compras coordinadas en etapas tempranas.</span></p>
-        </div>
-        <div class="phase-card">
-          <div class="phase-num">5</div>
-          <h4><span data-lang="fr">Fabrication</span><span data-lang="en">Fabrication</span><span data-lang="es">Fabricación</span></h4>
-          <p><span data-lang="fr">Conformité aux exigences normatives en usine et contrôle qualité pour une fabrication hors site fiable.</span><span data-lang="en">Compliance with standards requirements in-factory and quality control for reliable off-site fabrication.</span><span data-lang="es">Conformidad con los requisitos normativos en fábrica y control de calidad para una fabricación fuera del sitio confiable.</span></p>
-        </div>
-        <div class="phase-card">
-          <div class="phase-num">6</div>
-          <h4><span data-lang="fr">Transport et logistique</span><span data-lang="en">Transport and logistics</span><span data-lang="es">Transporte y logística</span></h4>
-          <p><span data-lang="fr">Articulation entre la fin de la fabrication hors site et le début de l'installation sur site.</span><span data-lang="en">Articulation between end of off-site fabrication and start of on-site installation.</span><span data-lang="es">Articulación entre el fin de la fabricación fuera del sitio y el inicio de la instalación en sitio.</span></p>
-        </div>
-        <div class="phase-card">
-          <div class="phase-num">7</div>
-          <h4><span data-lang="fr">Site et assemblage</span><span data-lang="en">Site and assembly</span><span data-lang="es">Sitio y ensamble</span></h4>
-          <p><span data-lang="fr">Travaux de site non modulaires, livraison, levage, placement et finition des modules.</span><span data-lang="en">Non-modular site work, delivery, lifting, placement and module finishing.</span><span data-lang="es">Trabajos de sitio no modulares, entrega, izaje, colocación y acabado de los módulos.</span></p>
-        </div>
-        <div class="phase-card">
-          <div class="phase-num">8</div>
-          <h4><span data-lang="fr">Occupation finale</span><span data-lang="en">Final occupancy</span><span data-lang="es">Ocupación final</span></h4>
-          <p><span data-lang="fr">Mise en service, transfert au client, inspections finales et performance du bâtiment.</span><span data-lang="en">Commissioning, handover, final inspections and building performance.</span><span data-lang="es">Puesta en servicio, entrega al cliente, inspecciones finales y desempeño del edificio.</span></p>
-        </div>
-      </div>
-
-      <p class="section-label">
-        <span data-lang="fr">Rôles coordonnés</span>
-        <span data-lang="en">Coordinated roles</span>
-        <span data-lang="es">Roles coordinados</span>
-      </p>
-      <h3 style="font-size:1.15rem;font-weight:700;color:var(--text);margin-bottom:22px;letter-spacing:-.02em;">
-        <span data-lang="fr">Cinq équipes, un projet.</span>
-        <span data-lang="en">Five teams, one project.</span>
-        <span data-lang="es">Cinco equipos, un proyecto.</span>
-      </h3>
-      <div class="roles-strip">
-        <div class="role-col">
-          <h5><span data-lang="fr">Équipe de conception</span><span data-lang="en">Design team</span><span data-lang="es">Equipo de diseño</span></h5>
-          <p><span data-lang="fr">Architecte et ingénieurs — préconception, plans, documents contractuels et révisions en cours de projet.</span><span data-lang="en">Architect and engineers — preliminary design, drawings, contract documents and ongoing reviews.</span><span data-lang="es">Arquitecto e ingenieros — diseño preliminar, planos, documentos contractuales y revisiones continuas.</span></p>
-        </div>
-        <div class="role-col">
-          <h5><span data-lang="fr">Équipe des modules</span><span data-lang="en">Module team</span><span data-lang="es">Equipo de módulos</span></h5>
-          <p><span data-lang="fr">Conception, assurance qualité et fabrication en usine — dessins d'atelier et préparation à l'expédition.</span><span data-lang="en">Design, quality assurance and factory fabrication — shop drawings and shipping preparation.</span><span data-lang="es">Diseño, aseguramiento de calidad y fabricación en fábrica — dibujos de taller y preparación para el envío.</span></p>
-        </div>
-        <div class="role-col">
-          <h5><span data-lang="fr">Équipe de construction</span><span data-lang="en">Construction team</span><span data-lang="es">Equipo de construcción</span></h5>
-          <p><span data-lang="fr">Entrepreneur général, sous-traitants et métiers — bâtiment de base, mobilisation, installation et raccordements.</span><span data-lang="en">General contractor, subcontractors and trades — base building, mobilization, installation and connections.</span><span data-lang="es">Contratista general, subcontratistas y oficios — edificio base, movilización, instalación y conexiones.</span></p>
-        </div>
-        <div class="role-col">
-          <h5><span data-lang="fr">Autorité compétente et certification</span><span data-lang="en">Authority and certification</span><span data-lang="es">Autoridad y certificación</span></h5>
-          <p><span data-lang="fr">Examen du zonage, des plans et du permis, inspections du bâtiment de base, de l'usine et des modules.</span><span data-lang="en">Zoning, plan and permit review, inspections of the base building, factory and modules.</span><span data-lang="es">Revisión de zonificación, planos y permisos, inspecciones del edificio base, fábrica y módulos.</span></p>
-        </div>
-        <div class="role-col">
-          <h5><span data-lang="fr">Permis, inspections, livrables</span><span data-lang="en">Permits, inspections, deliverables</span><span data-lang="es">Permisos, inspecciones, entregables</span></h5>
-          <p><span data-lang="fr">Approbations de zonage et de plan de site, permis de construction, permis d'occupation et clôture du dossier.</span><span data-lang="en">Zoning and site plan approvals, building permit, occupancy permit and project closeout.</span><span data-lang="es">Aprobaciones de zonificación y plano de sitio, permiso de construcción, permiso de ocupación y cierre del expediente.</span></p>
-        </div>
-      </div>
-    </div>
-  </section>
-
   <section class="section">
     <div class="wrap">
       <p class="section-label">
@@ -358,6 +194,35 @@
       </div>
     </div>
   </section>
+
+  <aside class="csa-note">
+    <div class="csa-note-inner">
+      <p class="csa-label">
+        <span data-lang="fr">Cadre normatif</span>
+        <span data-lang="en">Standards framework</span>
+        <span data-lang="es">Marco normativo</span>
+      </p>
+      <p class="csa-title">
+        <span data-lang="fr">Nos projets s'inscrivent dans le cadre canadien de la construction modulaire volumétrique.</span>
+        <span data-lang="en">Our projects align with the Canadian framework for volumetric modular construction.</span>
+        <span data-lang="es">Nuestros proyectos se inscriben en el marco canadiense de la construcción modular volumétrica.</span>
+      </p>
+      <p class="csa-intro">
+        <span data-lang="fr">Trois normes CSA structurent la démarche, de la fabrication en usine à l'occupation du bâtiment.</span>
+        <span data-lang="en">Three CSA standards structure the approach, from factory fabrication to building occupancy.</span>
+        <span data-lang="es">Tres normas CSA estructuran el enfoque, desde la fabricación en fábrica hasta la ocupación del edificio.</span>
+      </p>
+      <ul class="csa-standards">
+        <li><strong>CSA A277</strong> · <span data-lang="fr">certification des modules préfabriqués</span><span data-lang="en">prefabricated module certification</span><span data-lang="es">certificación de módulos prefabricados</span></li>
+        <li><strong>CSA Z250</strong> · <span data-lang="fr">processus de livraison</span><span data-lang="en">delivery process</span><span data-lang="es">proceso de entrega</span></li>
+        <li><strong>CSA Z252</strong> · <span data-lang="fr">conformité et approbation</span><span data-lang="en">compliance and approval</span><span data-lang="es">conformidad y aprobación</span></li>
+      </ul>
+      <p class="csa-phases">
+        <span data-lang="fr">Huit phases :</span><span data-lang="en">Eight phases:</span><span data-lang="es">Ocho fases:</span>
+        <em> <span data-lang="fr">préqualification · conception · préconstruction · approvisionnement · fabrication · transport · site et assemblage · occupation</span><span data-lang="en">prequalifying · design · preconstruction · procurement · fabrication · transport · site and assembly · occupancy</span><span data-lang="es">precalificación · diseño · preconstrucción · aprovisionamiento · fabricación · transporte · sitio y ensamble · ocupación</span></em>
+      </p>
+    </div>
+  </aside>
 
   <footer class="footer">
     <div class="footer-inner">
