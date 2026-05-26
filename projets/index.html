@@ -65,6 +65,14 @@
     .project-card.placeholder .project-body { display:flex; flex-direction:column; align-items:center; justify-content:center; min-height:220px; text-align:center; }
     .placeholder-icon { width:48px; height:48px; border-radius:50%; background:rgba(45,90,74,.1); display:flex; align-items:center; justify-content:center; margin:0 auto 16px; }
     .placeholder-icon svg { width:24px; height:24px; stroke:var(--green); fill:none; stroke-width:1.8; }
+    .project-card.invite { background:linear-gradient(180deg,#fff 0%,var(--bg) 100%); border:1px solid var(--line); }
+    .project-card.invite .project-body { display:flex; flex-direction:column; align-items:flex-start; padding:32px 28px; min-height:260px; }
+    .project-card.invite .placeholder-icon { margin:0 0 18px 0; }
+    .project-card.invite .invite-eyebrow { font-size:.66rem; font-weight:700; letter-spacing:.12em; text-transform:uppercase; color:var(--green); margin-bottom:8px; }
+    .project-card.invite h3 { font-size:1.1rem; font-weight:700; color:var(--text); margin-bottom:10px; line-height:1.3; }
+    .project-card.invite > .project-body > p { font-size:.85rem; color:var(--muted); line-height:1.65; margin-bottom:18px; }
+    .invite-cta { display:inline-flex; align-items:center; gap:6px; font-size:.84rem; font-weight:700; color:var(--green); border-bottom:1px solid currentColor; padding-bottom:2px; transition:color .15s; margin-top:auto; }
+    .invite-cta:hover { color:var(--green-lt); }
 
     .csa-note { background:var(--bg); border-top:1px solid var(--line); padding:40px 0; }
     .csa-note-inner { max-width:var(--max); margin:0 auto; padding:0 24px; }
@@ -176,19 +184,29 @@
             </div>
           </a>
         </div>
-        <div class="project-card placeholder">
+        <div class="project-card invite">
           <div class="project-body">
-            <div class="placeholder-icon"><svg viewBox="0 0 24 24"><path d="M12 5 L12 19 M5 12 L19 12"/></svg></div>
-            <h3 style="color:var(--muted);margin-bottom:8px;">
-              <span data-lang="fr">Prochain projet</span>
-              <span data-lang="en">Next project</span>
-              <span data-lang="es">Próximo proyecto</span>
-            </h3>
-            <p style="font-size:.82rem;">
-              <span data-lang="fr">Le modèle Modulimo est conçu pour être déployé à grande échelle. Le prochain projet sera annoncé prochainement.</span>
-              <span data-lang="en">The Modulimo model is designed for large-scale deployment. The next project will be announced soon.</span>
-              <span data-lang="es">El modelo Modulimo está diseñado para desplegarse a gran escala. El próximo proyecto será anunciado pronto.</span>
+            <div class="placeholder-icon"><svg viewBox="0 0 24 24"><path d="M12 2C8 2 5 5 5 9C5 15 12 22 12 22C12 22 19 15 19 9C19 5 16 2 12 2Z"/><circle cx="12" cy="9" r="2.5"/></svg></div>
+            <p class="invite-eyebrow">
+              <span data-lang="fr">Investisseurs · Propriétaires de terrain</span>
+              <span data-lang="en">Investors · Landowners</span>
+              <span data-lang="es">Inversores · Propietarios de terreno</span>
             </p>
+            <h3>
+              <span data-lang="fr">Un terrain au potentiel Modulimo ?</span>
+              <span data-lang="en">A site with Modulimo potential?</span>
+              <span data-lang="es">¿Un terreno con potencial Modulimo?</span>
+            </h3>
+            <p>
+              <span data-lang="fr">Le modèle est conçu pour être déployé à grande échelle. Si vous souhaitez vendre un terrain compatible avec le concept, ou investir dans un prochain déploiement, écrivez-nous.</span>
+              <span data-lang="en">The model is designed to scale. If you'd like to sell land that fits the concept, or invest in an upcoming deployment, get in touch.</span>
+              <span data-lang="es">El modelo está diseñado para escalar. Si desea vender un terreno compatible con el concepto, o invertir en un próximo despliegue, escríbanos.</span>
+            </p>
+            <a href="mailto:contribution@modulimo.com?subject=Terrain%20ou%20investissement%20Modulimo" class="invite-cta">
+              <span data-lang="fr">contribution@modulimo.com →</span>
+              <span data-lang="en">contribution@modulimo.com →</span>
+              <span data-lang="es">contribution@modulimo.com →</span>
+            </a>
           </div>
         </div>
       </div>
