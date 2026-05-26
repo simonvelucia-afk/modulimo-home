@@ -65,6 +65,17 @@
     .project-card.placeholder .project-body { display:flex; flex-direction:column; align-items:center; justify-content:center; min-height:220px; text-align:center; }
     .placeholder-icon { width:48px; height:48px; border-radius:50%; background:rgba(45,90,74,.1); display:flex; align-items:center; justify-content:center; margin:0 auto 16px; }
     .placeholder-icon svg { width:24px; height:24px; stroke:var(--green); fill:none; stroke-width:1.8; }
+
+    .csa-note { background:var(--bg); border-top:1px solid var(--line); padding:40px 0; }
+    .csa-note-inner { max-width:var(--max); margin:0 auto; padding:0 24px; }
+    .csa-label { font-size:.68rem; font-weight:700; letter-spacing:.14em; text-transform:uppercase; color:var(--green); margin-bottom:8px; }
+    .csa-title { font-size:1.05rem; font-weight:700; color:var(--text); margin-bottom:8px; letter-spacing:-.01em; }
+    .csa-intro { font-size:.86rem; color:var(--muted); line-height:1.65; max-width:680px; margin-bottom:18px; }
+    .csa-standards { display:flex; flex-wrap:wrap; gap:8px 14px; margin-bottom:14px; padding:0; list-style:none; }
+    .csa-standards li { font-size:.8rem; color:var(--muted); }
+    .csa-standards strong { color:var(--green); font-weight:800; letter-spacing:.04em; }
+    .csa-phases { font-size:.78rem; color:var(--muted); line-height:1.6; }
+    .csa-phases em { font-style:normal; color:var(--text); }
     .footer { background:var(--bg); border-top:1px solid var(--line); padding:44px 24px 32px; }
     .footer-inner { max-width:var(--max); margin:0 auto; }
     .footer-top { display:flex; justify-content:space-between; align-items:flex-start; flex-wrap:wrap; gap:32px; margin-bottom:32px; }
@@ -183,6 +194,35 @@
       </div>
     </div>
   </section>
+
+  <aside class="csa-note">
+    <div class="csa-note-inner">
+      <p class="csa-label">
+        <span data-lang="fr">Cadre normatif</span>
+        <span data-lang="en">Standards framework</span>
+        <span data-lang="es">Marco normativo</span>
+      </p>
+      <p class="csa-title">
+        <span data-lang="fr">Nos projets s'inscrivent dans le cadre canadien de la construction modulaire volumétrique.</span>
+        <span data-lang="en">Our projects align with the Canadian framework for volumetric modular construction.</span>
+        <span data-lang="es">Nuestros proyectos se inscriben en el marco canadiense de la construcción modular volumétrica.</span>
+      </p>
+      <p class="csa-intro">
+        <span data-lang="fr">Trois normes CSA structurent la démarche, de la fabrication en usine à l'occupation du bâtiment.</span>
+        <span data-lang="en">Three CSA standards structure the approach, from factory fabrication to building occupancy.</span>
+        <span data-lang="es">Tres normas CSA estructuran el enfoque, desde la fabricación en fábrica hasta la ocupación del edificio.</span>
+      </p>
+      <ul class="csa-standards">
+        <li><strong>CSA A277</strong> · <span data-lang="fr">certification des modules préfabriqués</span><span data-lang="en">prefabricated module certification</span><span data-lang="es">certificación de módulos prefabricados</span></li>
+        <li><strong>CSA Z250</strong> · <span data-lang="fr">processus de livraison</span><span data-lang="en">delivery process</span><span data-lang="es">proceso de entrega</span></li>
+        <li><strong>CSA Z252</strong> · <span data-lang="fr">conformité et approbation</span><span data-lang="en">compliance and approval</span><span data-lang="es">conformidad y aprobación</span></li>
+      </ul>
+      <p class="csa-phases">
+        <span data-lang="fr">Huit phases :</span><span data-lang="en">Eight phases:</span><span data-lang="es">Ocho fases:</span>
+        <em> <span data-lang="fr">préqualification · conception · préconstruction · approvisionnement · fabrication · transport · site et assemblage · occupation</span><span data-lang="en">prequalifying · design · preconstruction · procurement · fabrication · transport · site and assembly · occupancy</span><span data-lang="es">precalificación · diseño · preconstrucción · aprovisionamiento · fabricación · transporte · sitio y ensamble · ocupación</span></em>
+      </p>
+    </div>
+  </aside>
 
   <footer class="footer">
     <div class="footer-inner">
