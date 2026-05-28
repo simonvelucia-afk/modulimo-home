@@ -11,7 +11,8 @@ create table if not exists public.candidatures (
   updated_at      timestamptz not null default now(),
 
   -- Référence à l'immeuble (optionnel — si formulaire intégré à un immeuble précis)
-  building_id     uuid references public.buildings(id) on delete set null,
+  -- FK ajoutée conditionnellement en §1b si public.buildings existe.
+  building_id     uuid,
 
   -- Statut du dossier
   status          text not null default 'recu'
@@ -55,6 +56,29 @@ create table if not exists public.candidatures (
   locale          text,
   ip_hash         text           -- hash sha256 de l'IP, jamais l'IP brute
 );
+
+-- 1b. FK conditionnelle vers public.buildings
+-- Le kit candidatures peut être installé avant le module "immeubles".
+-- On n'attache la contrainte que si la table cible existe, et seulement
+-- si elle n'a pas déjà été créée (idempotent).
+do $$
+begin
+  if exists (
+    select 1
+    from pg_class c
+    join pg_namespace n on n.oid = c.relnamespace
+    where n.nspname = 'public' and c.relname = 'buildings' and c.relkind = 'r'
+  ) and not exists (
+    select 1 from pg_constraint
+    where conname = 'candidatures_building_id_fkey'
+      and conrelid = 'public.candidatures'::regclass
+  ) then
+    alter table public.candidatures
+      add constraint candidatures_building_id_fkey
+      foreign key (building_id) references public.buildings(id) on delete set null;
+  end if;
+end
+$$;
 
 create index if not exists idx_candidatures_status on public.candidatures(status);
 create index if not exists idx_candidatures_building on public.candidatures(building_id);
@@ -198,3 +222,24 @@ comment on column public.candidatures.score_total is
   'Score sur 100. Calculé par l''Edge Function submit-candidature. Outil d''aide à la décision uniquement — la décision finale demeure humaine.';
 comment on column public.candidatures.retention_until is
   'Date limite de conservation des PII. Loi 25 : 12 mois max après refus.';
+
+-- 7. Grants Data API (Supabase — changement de défaut)
+-- Depuis le 30 mai 2026 (nouveaux projets) et le 30 octobre 2026 (nouvelles
+-- tables des projets existants), les tables du schéma public ne sont plus
+-- exposées automatiquement à la Data API (PostgREST / GraphQL / supabase-js).
+-- Sans ces GRANTs, le panneau admin (04_admin_panel.html) ne peut plus lire
+-- ni mettre à jour les candidatures via supabase-js.
+--
+-- Modèle d'accès :
+--   anon          → AUCUN grant. Les soumissions publiques passent par
+--                   l'Edge Function submit-candidature, qui utilise la
+--                   service_role key et contourne à la fois les grants
+--                   et la RLS. Ne pas accorder de droits à anon sans
+--                   repenser la confidentialité du score.
+--   authenticated → SELECT / UPDATE / DELETE, alignés sur les policies
+--                   RLS 3b/3c/3d. La RLS reste la garde principale —
+--                   ces GRANTs ne font que rendre la table joignable
+--                   par PostgREST. INSERT reste fermé (aucune policy).
+--   service_role  → tous les droits par défaut, non concerné.
+grant select, update, delete on public.candidatures to authenticated;
+grant select on public.candidatures_analytics to authenticated;
