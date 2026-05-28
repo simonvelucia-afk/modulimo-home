@@ -4,6 +4,37 @@
 -- ============================================================
 -- À exécuter dans Supabase SQL Editor (modulimo-central de préférence)
 
+-- 0. Prérequis — table des rôles utilisateurs
+-- Référencée par les policies RLS §3 et la fonction §4.
+-- Idempotente : si vous avez déjà cette table (ou un équivalent) dans un
+-- autre module, vous pouvez retirer cette section. Le schéma minimal ici
+-- (user_id, role) suffit aux besoins du kit candidatures.
+create table if not exists public.user_roles (
+  user_id    uuid not null references auth.users(id) on delete cascade,
+  role       text not null,
+  granted_at timestamptz not null default now(),
+  primary key (user_id, role)
+);
+
+alter table public.user_roles enable row level security;
+
+-- Chaque utilisateur peut lire SES propres rôles. C'est nécessaire pour
+-- que les policies RLS de candidatures (§3b/3c/3d) puissent résoudre le
+-- check `where ur.user_id = auth.uid()` côté authenticated.
+drop policy if exists user_roles_self_read on public.user_roles;
+create policy user_roles_self_read on public.user_roles
+  for select
+  using (user_id = auth.uid());
+
+-- Grant Data API (cf. §7) — SELECT seulement ; la RLS limite aux propres rôles.
+-- Aucun grant INSERT/UPDATE/DELETE à anon/authenticated : la gestion des
+-- rôles doit passer par la service_role (SQL Editor, scripts admin, etc.).
+grant select on public.user_roles to authenticated;
+
+-- Pour seeder un administrateur :
+--   insert into public.user_roles (user_id, role) values
+--     ('<uuid de l''utilisateur Supabase Auth>', 'admin');
+
 -- 1. Table principale
 create table if not exists public.candidatures (
   id              uuid primary key default gen_random_uuid(),
@@ -241,5 +272,6 @@ comment on column public.candidatures.retention_until is
 --                   ces GRANTs ne font que rendre la table joignable
 --                   par PostgREST. INSERT reste fermé (aucune policy).
 --   service_role  → tous les droits par défaut, non concerné.
+-- (Le grant SELECT sur public.user_roles est déclaré en §0.)
 grant select, update, delete on public.candidatures to authenticated;
 grant select on public.candidatures_analytics to authenticated;
