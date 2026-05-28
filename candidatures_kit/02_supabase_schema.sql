@@ -11,7 +11,8 @@ create table if not exists public.candidatures (
   updated_at      timestamptz not null default now(),
 
   -- Référence à l'immeuble (optionnel — si formulaire intégré à un immeuble précis)
-  building_id     uuid references public.buildings(id) on delete set null,
+  -- FK ajoutée conditionnellement en §1b si public.buildings existe.
+  building_id     uuid,
 
   -- Statut du dossier
   status          text not null default 'recu'
@@ -55,6 +56,29 @@ create table if not exists public.candidatures (
   locale          text,
   ip_hash         text           -- hash sha256 de l'IP, jamais l'IP brute
 );
+
+-- 1b. FK conditionnelle vers public.buildings
+-- Le kit candidatures peut être installé avant le module "immeubles".
+-- On n'attache la contrainte que si la table cible existe, et seulement
+-- si elle n'a pas déjà été créée (idempotent).
+do $$
+begin
+  if exists (
+    select 1
+    from pg_class c
+    join pg_namespace n on n.oid = c.relnamespace
+    where n.nspname = 'public' and c.relname = 'buildings' and c.relkind = 'r'
+  ) and not exists (
+    select 1 from pg_constraint
+    where conname = 'candidatures_building_id_fkey'
+      and conrelid = 'public.candidatures'::regclass
+  ) then
+    alter table public.candidatures
+      add constraint candidatures_building_id_fkey
+      foreign key (building_id) references public.buildings(id) on delete set null;
+  end if;
+end
+$$;
 
 create index if not exists idx_candidatures_status on public.candidatures(status);
 create index if not exists idx_candidatures_building on public.candidatures(building_id);
