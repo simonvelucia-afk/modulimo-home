@@ -198,3 +198,24 @@ comment on column public.candidatures.score_total is
   'Score sur 100. Calculé par l''Edge Function submit-candidature. Outil d''aide à la décision uniquement — la décision finale demeure humaine.';
 comment on column public.candidatures.retention_until is
   'Date limite de conservation des PII. Loi 25 : 12 mois max après refus.';
+
+-- 7. Grants Data API (Supabase — changement de défaut)
+-- Depuis le 30 mai 2026 (nouveaux projets) et le 30 octobre 2026 (nouvelles
+-- tables des projets existants), les tables du schéma public ne sont plus
+-- exposées automatiquement à la Data API (PostgREST / GraphQL / supabase-js).
+-- Sans ces GRANTs, le panneau admin (04_admin_panel.html) ne peut plus lire
+-- ni mettre à jour les candidatures via supabase-js.
+--
+-- Modèle d'accès :
+--   anon          → AUCUN grant. Les soumissions publiques passent par
+--                   l'Edge Function submit-candidature, qui utilise la
+--                   service_role key et contourne à la fois les grants
+--                   et la RLS. Ne pas accorder de droits à anon sans
+--                   repenser la confidentialité du score.
+--   authenticated → SELECT / UPDATE / DELETE, alignés sur les policies
+--                   RLS 3b/3c/3d. La RLS reste la garde principale —
+--                   ces GRANTs ne font que rendre la table joignable
+--                   par PostgREST. INSERT reste fermé (aucune policy).
+--   service_role  → tous les droits par défaut, non concerné.
+grant select, update, delete on public.candidatures to authenticated;
+grant select on public.candidatures_analytics to authenticated;
