@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Projects — MODULIMO</title>
+  <meta name="description" content="Modulimo real estate projects — Pointe Est and future deployments of the integrated residential model." />
+  <link rel="canonical" href="https://www.modulimo.com/en/projets/" />
+  <link rel="alternate" hreflang="fr-CA" href="https://www.modulimo.com/projets/" />
+  <link rel="alternate" hreflang="en" href="https://www.modulimo.com/en/projets/" />
+  <link rel="alternate" hreflang="es" href="https://www.modulimo.com/es/projets/" />
+  <link rel="alternate" hreflang="x-default" href="https://www.modulimo.com/projets/" />
+  <style>
+    *, *::before, *::after { box-sizing:border-box; margin:0; padding:0; }
+    :root { --green:#2d5a4a; --green-lt:#3a7a62; --green-dk:#1e3d32; --bg:#f4f3f0; --line:#d0cec8; --text:#1a1a18; --muted:#5c5c56; --max:1140px; }
+    html { scroll-behavior:smooth; }
+    body { font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif; background:#fff; color:var(--text); line-height:1.6; }
+    a { color:inherit; text-decoration:none; }
+    img { display:block; max-width:100%; }
+    .wrap { max-width:var(--max); margin:0 auto; padding:0 24px; }
+    .topbar { position:sticky; top:0; z-index:50; background:var(--bg); border-bottom:1px solid var(--line); }
+    .topbar-inner { max-width:var(--max); margin:0 auto; padding:0 24px; height:76px; display:flex; align-items:center; justify-content:space-between; gap:18px; }
+    .brand { display:flex; align-items:center; flex-shrink:0; background:transparent; padding:0; border:none; border-radius:0; cursor:pointer; font:inherit; color:inherit; }
+    .lb-overlay { position:fixed; inset:0; background:rgba(10,12,14,.92); display:none; align-items:center; justify-content:center; z-index:1000; padding:24px; }
+    .lb-overlay.is-open { display:flex; }
+    .lb-image { max-width:min(100%,1100px); max-height:90vh; object-fit:contain; border-radius:6px; box-shadow:0 12px 60px rgba(0,0,0,.5); animation:lb-in .2s ease-out; }
+    .lb-close { position:absolute; top:18px; right:22px; width:44px; height:44px; border-radius:50%; background:rgba(255,255,255,.12); color:#fff; border:1px solid rgba(255,255,255,.2); font-size:1.6rem; line-height:1; cursor:pointer; display:flex; align-items:center; justify-content:center; transition:background .15s; }
+    .lb-close:hover, .lb-close:focus { background:rgba(255,255,255,.22); outline:none; }
+    @keyframes lb-in { from { opacity:0; transform:scale(.96); } to { opacity:1; transform:scale(1); } }
+    .brand img { height:56px; width:auto; display:block; }
+    .nav { display:flex; align-items:center; gap:2px; }
+    .nav a { font-size:.72rem; font-weight:600; letter-spacing:.07em; text-transform:uppercase; color:var(--muted); padding:7px 13px; border-radius:5px; transition:color .15s,background .15s; white-space:nowrap; }
+    .nav a:hover { color:var(--green); background:rgba(45,90,74,.07); }
+    .nav a.active { color:var(--green); border-bottom:2px solid var(--green); border-radius:0; padding-bottom:5px; }
+    .nav-cta { color:var(--green) !important; border:1px solid var(--green); border-radius:5px; padding:6px 12px !important; margin-left:6px; transition:background .15s,color .15s; }
+    .nav-cta:hover { background:var(--green); color:#fff !important; }
+    .lang-switch { display:inline-flex; align-items:center; gap:0; margin-left:10px; padding-left:10px; border-left:1px solid var(--line); }
+    .lang-btn { font-size:.7rem; font-weight:700; letter-spacing:.06em; color:var(--muted); padding:5px 7px; background:none; border:none; cursor:pointer; font-family:inherit; transition:color .15s; }
+    .lang-btn:hover, .lang-btn.active { color:var(--green); }
+    .lang-btn.active { font-weight:800; }
+    [data-lang] { display:none; }
+    html.lang-fr [data-lang="fr"], html.lang-en [data-lang="en"], html.lang-es [data-lang="es"] { display:revert; }
+    .menu-toggle { display:none; flex-direction:column; justify-content:center; gap:5px; width:40px; height:40px; background:none; border:1px solid var(--line); border-radius:6px; cursor:pointer; padding:8px; }
+    .menu-toggle span { display:block; height:2px; background:var(--green); border-radius:2px; }
+    .page-hero { background:var(--bg); padding:56px 24px 48px; border-bottom:1px solid var(--line); }
+    .page-hero-inner { max-width:var(--max); margin:0 auto; }
+    .page-eyebrow { font-size:.72rem; font-weight:700; letter-spacing:.14em; text-transform:uppercase; color:var(--green); margin-bottom:12px; }
+    .page-hero h1 { font-size:clamp(2rem,4vw,3rem); font-weight:800; letter-spacing:-.04em; color:var(--text); margin-bottom:12px; line-height:1.1; }
+    .page-hero p { font-size:1rem; color:var(--muted); max-width:560px; line-height:1.7; }
+    .section { padding:72px 0; }
+    .section-alt { background:var(--bg); }
+    .section-label { font-size:.7rem; font-weight:700; letter-spacing:.14em; text-transform:uppercase; color:var(--green); margin-bottom:10px; }
+    .section-title { font-size:clamp(1.5rem,3vw,2rem); font-weight:800; letter-spacing:-.04em; color:var(--text); margin-bottom:32px; line-height:1.15; }
+    .project-grid { display:grid; grid-template-columns:repeat(2,1fr); gap:24px; }
+    .project-card { border:1px solid var(--line); border-radius:14px; overflow:hidden; background:#fff; transition:box-shadow .2s,transform .2s; }
+    .project-card:hover { box-shadow:0 8px 32px rgba(0,0,0,.08); transform:translateY(-3px); }
+    .project-card a { display:block; }
+    .project-img { position:relative; }
+    .project-img img { width:100%; aspect-ratio:16/9; object-fit:cover; }
+    .project-status { position:absolute; top:14px; left:14px; font-size:.66rem; font-weight:700; letter-spacing:.1em; text-transform:uppercase; padding:5px 12px; border-radius:4px; }
+    .status-active { background:var(--green); color:#fff; }
+    .status-soon { background:rgba(255,255,255,.9); color:var(--muted); border:1px solid var(--line); }
+    .project-body { padding:22px 24px; }
+    .project-body h3 { font-size:1.1rem; font-weight:700; color:var(--text); margin-bottom:6px; }
+    .project-body .location { font-size:.78rem; color:var(--green); font-weight:600; letter-spacing:.05em; text-transform:uppercase; margin-bottom:10px; }
+    .project-body p { font-size:.87rem; color:var(--muted); line-height:1.65; margin-bottom:16px; }
+    .project-link { font-size:.84rem; font-weight:700; color:var(--green); display:inline-flex; align-items:center; gap:6px; }
+    .project-link:hover { color:var(--green-lt); }
+    .project-card.placeholder { border-style:dashed; background:var(--bg); }
+    .project-card.placeholder .project-body { display:flex; flex-direction:column; align-items:center; justify-content:center; min-height:220px; text-align:center; }
+    .placeholder-icon { width:48px; height:48px; border-radius:50%; background:rgba(45,90,74,.1); display:flex; align-items:center; justify-content:center; margin:0 auto 16px; }
+    .placeholder-icon svg { width:24px; height:24px; stroke:var(--green); fill:none; stroke-width:1.8; }
+    .project-card.invite { background:linear-gradient(180deg,#fff 0%,var(--bg) 100%); border:1px solid var(--line); }
+    .project-card.invite .project-body { display:flex; flex-direction:column; align-items:flex-start; padding:32px 28px; min-height:260px; }
+    .project-card.invite .placeholder-icon { margin:0 0 18px 0; }
+    .project-card.invite .invite-eyebrow { font-size:.66rem; font-weight:700; letter-spacing:.12em; text-transform:uppercase; color:var(--green); margin-bottom:8px; }
+    .project-card.invite h3 { font-size:1.1rem; font-weight:700; color:var(--text); margin-bottom:10px; line-height:1.3; }
+    .project-card.invite > .project-body > p { font-size:.85rem; color:var(--muted); line-height:1.65; margin-bottom:18px; }
+    .invite-cta { display:inline-flex; align-items:center; gap:6px; font-size:.84rem; font-weight:700; color:var(--green); border-bottom:1px solid currentColor; padding-bottom:2px; transition:color .15s; margin-top:auto; }
+    .invite-cta:hover { color:var(--green-lt); }
+
+    .csa-note { background:var(--bg); border-top:1px solid var(--line); padding:40px 0; }
+    .csa-note-inner { max-width:var(--max); margin:0 auto; padding:0 24px; }
+    .csa-label { font-size:.68rem; font-weight:700; letter-spacing:.14em; text-transform:uppercase; color:var(--green); margin-bottom:8px; }
+    .csa-title { font-size:1.05rem; font-weight:700; color:var(--text); margin-bottom:8px; letter-spacing:-.01em; }
+    .csa-intro { font-size:.86rem; color:var(--muted); line-height:1.65; max-width:680px; margin-bottom:18px; }
+    .csa-standards { display:flex; flex-wrap:wrap; gap:8px 14px; margin-bottom:14px; padding:0; list-style:none; }
+    .csa-standards li { font-size:.8rem; color:var(--muted); }
+    .csa-standards strong { color:var(--green); font-weight:800; letter-spacing:.04em; }
+    .csa-phases { font-size:.78rem; color:var(--muted); line-height:1.6; }
+    .csa-phases em { font-style:normal; color:var(--text); }
+
+    .cta { background:var(--green-dk); padding:72px 24px; text-align:center; }
+    .cta h2 { font-size:clamp(1.5rem,3vw,2rem); font-weight:800; letter-spacing:-.04em; color:#fff; margin-bottom:14px; }
+    .cta > p { font-size:1rem; color:rgba(255,255,255,.68); margin-bottom:8px; max-width:480px; margin-left:auto; margin-right:auto; }
+    .lead-form { background:#fff; border-radius:12px; padding:28px 26px; max-width:560px; margin:40px auto 0; text-align:left; box-shadow:0 10px 36px rgba(0,0,0,.22); position:relative; }
+    .lf-grid { display:grid; grid-template-columns:1fr 1fr; gap:0 14px; }
+    .lf-field { margin-bottom:14px; }
+    .lf-field > label:not(.lf-consent) { display:block; font-size:.76rem; font-weight:700; letter-spacing:.04em; text-transform:uppercase; color:var(--muted); margin-bottom:5px; }
+    .lf-field input[type="text"], .lf-field input[type="email"], .lf-field textarea { width:100%; padding:10px 12px; border:1px solid var(--line); border-radius:6px; font:inherit; font-size:.9rem; color:var(--text); background:#fff; }
+    .lf-field input:focus, .lf-field textarea:focus { outline:none; border-color:var(--green); box-shadow:0 0 0 3px rgba(45,90,74,.15); }
+    .lf-field.lf-invalid input, .lf-field.lf-invalid textarea { border-color:#c0392b; box-shadow:0 0 0 3px rgba(192,57,43,.12); }
+    .lf-consent { display:flex; gap:10px; align-items:flex-start; font-size:.78rem; color:var(--muted); line-height:1.55; cursor:pointer; }
+    .lf-consent input { margin-top:2px; width:16px; height:16px; flex-shrink:0; accent-color:var(--green); }
+    .lf-field.lf-invalid .lf-consent span { color:#c0392b; }
+    .lf-hp { position:absolute !important; left:-9999px !important; width:1px; height:1px; overflow:hidden; }
+    .lf-submit { display:inline-flex; align-items:center; background:var(--green); color:#fff; padding:12px 24px; border-radius:6px; font-size:.88rem; font-weight:600; border:none; cursor:pointer; transition:background .15s; font-family:inherit; width:100%; justify-content:center; margin-top:4px; }
+    .lf-submit:hover { background:var(--green-lt); }
+    .lead-form.lf-sending .lf-submit { opacity:.7; pointer-events:none; }
+    .lf-submit .lf-label-sending { display:none; }
+    .lead-form.lf-sending .lf-submit .lf-label-idle { display:none; }
+    .lead-form.lf-sending .lf-submit .lf-label-sending { display:inline; }
+    .lf-status { display:none; margin-top:12px; font-size:.84rem; padding:10px 14px; border-radius:6px; background:#fdecea; color:#86281c; border:1px solid #f3c0ba; }
+    .lf-status.is-visible { display:block; }
+    .lf-success { display:none; text-align:center; padding:18px 6px; }
+    .lead-form.is-done .lf-fields { display:none; }
+    .lead-form.is-done .lf-success { display:block; }
+    .lf-check { width:48px; height:48px; border-radius:50%; background:rgba(45,90,74,.12); color:var(--green); font-size:1.5rem; font-weight:800; display:flex; align-items:center; justify-content:center; margin:0 auto 12px; }
+    .lf-success h3 { font-size:1.05rem; font-weight:800; color:var(--text); margin-bottom:6px; }
+    .lf-success p { font-size:.88rem; color:var(--muted); margin:0; }
+    .lf-more { margin-top:16px; padding-top:14px; border-top:1px solid var(--line); font-size:.82rem; color:var(--muted); text-align:center; }
+    .lf-more a { color:var(--green); font-weight:700; text-decoration:underline; }
+    .lf-more a:hover { color:var(--green-lt); }
+    @media (max-width:520px) { .lf-grid { grid-template-columns:1fr; } }
+    .footer { background:var(--bg); border-top:1px solid var(--line); padding:44px 24px 32px; }
+    .footer-inner { max-width:var(--max); margin:0 auto; }
+    .footer-top { display:flex; justify-content:space-between; align-items:flex-start; flex-wrap:wrap; gap:32px; margin-bottom:32px; }
+    .footer-brand { display:flex; align-items:center; background:#fff; padding:4px 10px; border-radius:8px; align-self:flex-start; }
+    .footer-brand img { height:32px; width:auto; display:block; }
+    body.theme-femme .topbar { background:#f8bbd0; border-bottom-color:rgba(0,0,0,.08); }
+    body.theme-terre .topbar { background:#43a047; border-bottom-color:rgba(0,0,0,.15); }
+    body.theme-terre .topbar .nav a,
+    body.theme-terre .topbar .nav a:hover,
+    body.theme-terre .topbar .nav a.active,
+    body.theme-terre .menu-toggle span { color:#e53935; background:transparent; border-color:#e53935; }
+    .footer-tagline { font-size:.82rem; color:var(--muted); margin-top:8px; max-width:260px; line-height:1.6; }
+    .footer-nav h5 { font-size:.7rem; font-weight:700; letter-spacing:.1em; text-transform:uppercase; color:var(--muted); margin-bottom:12px; }
+    .footer-nav a { display:block; font-size:.84rem; color:var(--text); margin-bottom:8px; }
+    .footer-nav a:hover { color:var(--green); }
+    .footer-bottom { border-top:1px solid var(--line); padding-top:20px; display:flex; justify-content:space-between; flex-wrap:wrap; gap:12px; }
+    .footer-bottom p { font-size:.75rem; color:var(--muted); }
+    @media (max-width:760px) { .project-grid { grid-template-columns:1fr; } }
+    @media (max-width:640px) {
+      .menu-toggle { display:flex; }
+      .nav { display:none; position:absolute; top:68px; left:0; right:0; background:var(--bg); border-bottom:1px solid var(--line); flex-direction:column; align-items:stretch; padding:8px 16px 16px; gap:2px; }
+      .nav.is-open { display:flex; }
+      .nav a { padding:12px 14px; border-bottom:1px solid var(--line); border-radius:0; }
+      .nav a.active { border-left:3px solid var(--green); padding-left:11px; }
+    }
+  </style>
+</head>
+<body>
+  <header class="topbar">
+    <div class="topbar-inner">
+      <button type="button" class="brand" data-lightbox="/images/ModulimoLogoSobre.png" data-lightbox-alt="Modulimo" aria-label="Voir le logo en grand"><img src="/images/ModulimoLogoSobre.png" alt="Modulimo" /></button>
+      <button class="menu-toggle" id="menuToggle" aria-expanded="false" aria-controls="siteNav" aria-label="Menu"><span></span><span></span><span></span></button>
+      <nav class="nav" id="siteNav">
+        <a href="/en/"><span>Home</span></a>
+        <a href="/en/mobilite/"><span>Mobility</span></a>
+        <a href="/en/securite/"><span>Security</span></a>
+        <a href="/en/projets/" class="active"><span>Projects</span></a>
+        <a href="/en/produits/"><span>Products</span></a>
+        <a href="https://cohabitat.modulimo.com" target="_blank" rel="noopener" class="nav-cta">CoHabitat ↗</a>
+        <div class="lang-switch">
+          <a class="lang-btn" href="/projets/" lang="fr" hreflang="fr-CA" aria-label="Afficher en français">FR</a>
+          <a class="lang-btn active" href="/en/projets/" lang="en" hreflang="en" aria-label="Display in English">EN</a>
+          <a class="lang-btn" href="/es/projets/" lang="es" hreflang="es" aria-label="Mostrar en español">ES</a>
+        </div>
+      </nav>
+    </div>
+  </header>
+
+  <div class="page-hero">
+    <div class="page-hero-inner">
+      <p class="page-eyebrow">
+        <span>Modulimo model deployments</span>
+      </p>
+      <h1>
+        <span>Real estate projects</span>
+      </h1>
+      <p>
+        <span>Each project is a concrete deployment of the Modulimo model — integrated family housing, shared mobility, and software management from day one.</span>
+      </p>
+    </div>
+  </div>
+
+  <section class="section">
+    <div class="wrap">
+      <p class="section-label">
+        <span>Current projects</span>
+      </p>
+      <h2 class="section-title">
+        <span>First active deployment</span>
+      </h2>
+      <div class="project-grid">
+        <div class="project-card">
+          <a href="/en/projets/pointe-est/">
+            <div class="project-img"><img src="/images/hero_home.webp" alt="Pointe Est — Modulimo" loading="lazy"/><span class="project-status status-active"><span>In development</span></span></div>
+            <div class="project-body">
+              <p class="location">Pointe-aux-Trembles · Montréal</p>
+              <h3>Pointe Est</h3>
+              <p>
+                <span>First building of the Modulimo network. CLT mass timber structure, rooftop terrace, collective amenities and CoHabitat integrated from day one.</span>
+              </p>
+              <span class="project-link">
+                <span>View project →</span>
+              </span>
+            </div>
+          </a>
+        </div>
+        <div class="project-card invite">
+          <div class="project-body">
+            <div class="placeholder-icon"><svg viewBox="0 0 24 24"><path d="M12 2C8 2 5 5 5 9C5 15 12 22 12 22C12 22 19 15 19 9C19 5 16 2 12 2Z"/><circle cx="12" cy="9" r="2.5"/></svg></div>
+            <p class="invite-eyebrow">
+              <span>Investors · Landowners</span>
+            </p>
+            <h3>
+              <span>A site with Modulimo potential?</span>
+            </h3>
+            <p>
+              <span>The model is designed to scale. If you'd like to sell land that fits the concept, or invest in an upcoming deployment, get in touch.</span>
+            </p>
+            <a href="mailto:contribution@modulimo.com?subject=Terrain%20ou%20investissement%20Modulimo" class="invite-cta">
+              <span>contribution@modulimo.com →</span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <aside class="csa-note">
+    <div class="csa-note-inner">
+      <p class="csa-label">
+        <span>Standards framework</span>
+      </p>
+      <p class="csa-title">
+        <span>Our projects align with the Canadian framework for volumetric modular construction.</span>
+      </p>
+      <p class="csa-intro">
+        <span>Three CSA standards structure the approach, from factory fabrication to building occupancy.</span>
+      </p>
+      <ul class="csa-standards">
+        <li><strong>CSA A277</strong> · <span>prefabricated module certification</span></li>
+        <li><strong>CSA Z250</strong> · <span>delivery process</span></li>
+        <li><strong>CSA Z252</strong> · <span>compliance and approval</span></li>
+      </ul>
+      <p class="csa-phases">
+        <span>Eight phases:</span>
+        <em> <span>prequalifying · design · preconstruction · procurement · fabrication · transport · site and assembly · occupancy</span></em>
+      </p>
+    </div>
+  </aside>
+
+  <section class="cta" id="contact">
+    <h2><span>Interested in Pointe Est?</span></h2>
+    <p><span>Preparations are advancing — get informed so you don't miss your chance. Pre-construction leases available.</span></p>
+    <form class="lead-form" id="leadForm" method="post" action="#">
+      <div class="lf-fields">
+        <div class="lf-grid">
+          <div class="lf-field">
+            <label for="lf-first"><span>First name</span></label>
+            <input type="text" id="lf-first" name="first_name" autocomplete="given-name" required />
+          </div>
+          <div class="lf-field">
+            <label for="lf-last"><span>Last name</span></label>
+            <input type="text" id="lf-last" name="last_name" autocomplete="family-name" required />
+          </div>
+        </div>
+        <div class="lf-field">
+          <label for="lf-email"><span>Email</span></label>
+          <input type="email" id="lf-email" name="email" autocomplete="email" required />
+        </div>
+        <div class="lf-field">
+          <label for="lf-message"><span>Message (optional)</span></label>
+          <textarea id="lf-message" name="message" rows="3"></textarea>
+        </div>
+        <p class="lf-hp" aria-hidden="true"><label>Ne pas remplir / Do not fill<input type="text" name="website" tabindex="-1" autocomplete="off" /></label></p>
+        <div class="lf-field">
+          <label class="lf-consent"><input type="checkbox" name="consent" required /><span><span>I consent to Modulimo inc. collecting and using the information provided (name, email, message) to contact me about the Pointe Est project. I may withdraw my consent at any time by writing to contribution@modulimo.com.</span></span></label>
+        </div>
+        <button type="submit" class="lf-submit">
+          <span class="lf-label-idle"><span>Keep me informed</span></span>
+          <span class="lf-label-sending"><span>Sending…</span></span>
+        </button>
+        <div class="lf-status" data-status="invalid" role="alert"><span>Please fill in the required fields (first name, last name, valid email) and check the consent box.</span></div>
+        <div class="lf-status" data-status="fail" role="alert"><span>Something went wrong while sending. Please try again, or write to us at contribution@modulimo.com.</span></div>
+      </div>
+      <div class="lf-success" role="status">
+        <div class="lf-check" aria-hidden="true">✓</div>
+        <h3><span>Thank you!</span></h3>
+        <p><span>Your request has been received — we will keep you informed as the Pointe Est project moves forward.</span></p>
+      </div>
+      <p class="lf-more"><span>Ready to go further? <a href="/postuler/?building=a41b3b31-1681-4cb1-b54c-69486d27e132">Submit your application →</a></span></p>
+    </form>
+  </section>
+
+  <footer class="footer">
+    <div class="footer-inner">
+      <div class="footer-top">
+        <div>
+          <div class="footer-brand"><img src="/images/ModulimoLogoSobre.png" alt="Modulimo" /></div>
+          <p class="footer-tagline">
+            <span>Integrated residential ecosystem — housing, mobility, services, and software.</span>
+          </p>
+        </div>
+        <div class="footer-nav">
+          <h5><span>Navigation</span></h5>
+          <a href="https://cohabitat.modulimo.com" target="_blank" rel="noopener">CoHabitat</a>
+          <a href="/en/mobilite/"><span>Mobility</span></a>
+          <a href="/en/securite/"><span>Security</span></a>
+          <a href="/en/projets/"><span>Projects</span></a>
+          <a href="/en/produits/"><span>Products</span></a>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>
+          <span>© 2026 Modulimo inc. — All rights reserved</span>
+        </p>
+        <p><a href="/en/confidentialite/"><span>Privacy Policy</span></a></p>
+        <p>Pointe-aux-Trembles, Montréal</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="/js/lightbox.js" defer></script>
+  <script src="/js/lead-form.js" defer></script>
+  <script>
+    const toggle = document.getElementById('menuToggle');
+    const nav = document.getElementById('siteNav');
+    if (toggle && nav) {
+      toggle.addEventListener('click', function() {
+        const open = nav.classList.toggle('is-open');
+        toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+      });
+      document.querySelectorAll('#siteNav a').forEach(function(a) {
+        a.addEventListener('click', function() {
+          nav.classList.remove('is-open');
+          toggle.setAttribute('aria-expanded', 'false');
+        });
+      });
+    }
+  </script>
+  <script type="module" src="/js/theme.js"></script>
+</body>
+</html>
