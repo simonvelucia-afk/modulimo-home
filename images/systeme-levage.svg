@@ -1,126 +1,174 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 1000" font-family="'Segoe UI', Arial, sans-serif">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 1000" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif">
+  <defs>
+    <linearGradient id="gWall" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#ffffff"/>
+      <stop offset="1" stop-color="#faf9f6"/>
+    </linearGradient>
+    <linearGradient id="gBeamLight" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#fffdf2" stop-opacity="0.55"/>
+      <stop offset="1" stop-color="#fdf6df" stop-opacity="0"/>
+    </linearGradient>
+    <linearGradient id="gCard" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#2d5a4a"/>
+      <stop offset="1" stop-color="#224637"/>
+    </linearGradient>
+  </defs>
+
   <!-- fond -->
   <rect width="800" height="1000" fill="#f4f3f0"/>
 
-  <!-- ── COUPE DU BÂTIMENT ── -->
+  <!-- ════ COUPE DU BÂTIMENT ════ -->
+  <!-- ombre portée -->
+  <rect x="54" y="104" width="380" height="816" rx="6" fill="#1a1a18" opacity="0.07"/>
   <!-- enveloppe -->
-  <rect x="50" y="110" width="380" height="800" rx="4" fill="#ffffff" stroke="#2b3a4a" stroke-width="3"/>
-  <!-- toiture -->
-  <rect x="50" y="110" width="380" height="22" fill="#2b3a4a"/>
-  <!-- puits central (vide de la cage d'escalier) -->
-  <rect x="195" y="132" width="90" height="776" fill="#eef4ef"/>
-  <!-- volées d'escalier suggérées (gauche) -->
-  <g stroke="#d8d4cc" stroke-width="3" fill="none">
-    <polyline points="62,388 90,388 90,360 118,360 118,332 146,332 146,304 174,304 174,276"/>
-    <polyline points="62,646 90,646 90,618 118,618 118,590 146,590 146,562 174,562 174,534"/>
-    <polyline points="62,904 90,904 90,876 118,876 118,848 146,848 146,820 174,820 174,792"/>
+  <rect x="48" y="98" width="380" height="816" rx="6" fill="url(#gWall)" stroke="#243140" stroke-width="3"/>
+
+  <!-- vide central de la cage d'escalier -->
+  <rect x="196" y="120" width="84" height="792" fill="#edf2ee"/>
+  <!-- puits de lumière : faisceau -->
+  <polygon points="204,122 272,122 280,910 196,910" fill="url(#gBeamLight)"/>
+
+  <!-- toiture + lanterneau -->
+  <rect x="48" y="98" width="380" height="22" fill="#243140"/>
+  <rect x="200" y="100" width="76" height="18" rx="3" fill="#bcd7e8" stroke="#243140" stroke-width="2"/>
+
+  <!-- planchers -->
+  <g fill="#243140">
+    <rect x="51" y="388" width="145" height="15"/>
+    <rect x="280" y="388" width="145" height="15"/>
+    <rect x="51" y="648" width="145" height="15"/>
+    <rect x="280" y="648" width="145" height="15"/>
   </g>
-  <!-- planchers (interrompus par le puits) -->
-  <g fill="#2b3a4a">
-    <rect x="53" y="391" width="142" height="14"/>
-    <rect x="285" y="391" width="142" height="14"/>
-    <rect x="53" y="650" width="142" height="14"/>
-    <rect x="285" y="650" width="142" height="14"/>
+
+  <!-- volées d'escalier (suggestion, bay gauche) -->
+  <g stroke="#cfccc4" stroke-width="3" fill="none">
+    <polyline points="60,386 88,386 88,358 116,358 116,330 144,330 144,302 172,302 172,274 196,274"/>
+    <polyline points="60,646 88,646 88,618 116,618 116,590 144,590 144,562 172,562 172,534 196,534"/>
+    <polyline points="60,906 88,906 88,878 116,878 116,850 144,850 144,822 172,822 172,794 196,794"/>
   </g>
+
   <!-- étiquettes d'étages -->
-  <g fill="#9a958c" font-size="13" font-weight="600">
-    <text x="64" y="215">3e ÉTAGE</text>
-    <text x="64" y="420">2e ÉTAGE</text>
-    <text x="64" y="679">1er ÉTAGE</text>
+  <g fill="#9a958c" font-size="11" font-weight="700" letter-spacing="2">
+    <text x="62" y="218">3e ÉTAGE</text>
+    <text x="62" y="430">2e ÉTAGE</text>
+    <text x="62" y="690">1er ÉTAGE</text>
   </g>
 
   <!-- poutrelle + monorail -->
-  <rect x="110" y="148" width="260" height="14" fill="#1f3a5f"/>
-  <g fill="#9a958c" font-size="11">
-    <text x="116" y="143">poutrelle + monorail</text>
+  <g>
+    <rect x="112" y="148" width="252" height="6" fill="#243140"/>
+    <rect x="120" y="154" width="236" height="10" fill="#36465c"/>
+    <rect x="112" y="164" width="252" height="6" fill="#243140"/>
   </g>
   <!-- chariot -->
-  <rect x="222" y="162" width="36" height="10" rx="2" fill="#3a7a52"/>
+  <rect x="220" y="170" width="36" height="9" rx="3" fill="#2d5a4a"/>
+  <circle cx="227" cy="170" r="3.5" fill="#1a1a18"/>
+  <circle cx="249" cy="170" r="3.5" fill="#1a1a18"/>
   <!-- palan -->
-  <rect x="228" y="172" width="24" height="22" rx="3" fill="#55606b"/>
-  <!-- câble -->
-  <line x1="240" y1="194" x2="240" y2="430" stroke="#55606b" stroke-width="3"/>
+  <rect x="225" y="179" width="26" height="24" rx="4" fill="#55606b"/>
+  <rect x="231" y="186" width="14" height="3" fill="#8b97a3"/>
+  <rect x="231" y="192" width="14" height="3" fill="#8b97a3"/>
+  <!-- câble + crochet -->
+  <line x1="238" y1="203" x2="238" y2="428" stroke="#55606b" stroke-width="3"/>
+  <path d="M238,428 q-7,9 1,14" stroke="#55606b" stroke-width="3" fill="none"/>
   <!-- sangles -->
-  <line x1="240" y1="430" x2="208" y2="466" stroke="#55606b" stroke-width="2"/>
-  <line x1="240" y1="430" x2="272" y2="466" stroke="#55606b" stroke-width="2"/>
+  <line x1="238" y1="442" x2="206" y2="474" stroke="#55606b" stroke-width="2"/>
+  <line x1="238" y1="442" x2="270" y2="474" stroke="#55606b" stroke-width="2"/>
+
   <!-- sofa hissé -->
   <g>
-    <rect x="200" y="446" width="80" height="26" rx="8" fill="#c9a47e"/>
-    <rect x="200" y="466" width="80" height="22" rx="6" fill="#b08968"/>
-    <rect x="196" y="456" width="12" height="32" rx="5" fill="#b08968"/>
-    <rect x="272" y="456" width="12" height="32" rx="5" fill="#b08968"/>
+    <ellipse cx="238" cy="902" rx="52" ry="7" fill="#1a1a18" opacity="0.08"/>
+    <rect x="198" y="452" width="80" height="28" rx="9" fill="#c9a47e"/>
+    <rect x="206" y="458" width="30" height="18" rx="6" fill="#d6b694"/>
+    <rect x="240" y="458" width="30" height="18" rx="6" fill="#d6b694"/>
+    <rect x="198" y="476" width="80" height="22" rx="7" fill="#b08968"/>
+    <rect x="192" y="462" width="13" height="36" rx="6" fill="#b08968"/>
+    <rect x="271" y="462" width="13" height="36" rx="6" fill="#b08968"/>
+    <line x1="206" y1="498" x2="206" y2="506" stroke="#7a5c42" stroke-width="3"/>
+    <line x1="270" y1="498" x2="270" y2="506" stroke="#7a5c42" stroke-width="3"/>
   </g>
 
-  <!-- garde-corps aux paliers (fermés) -->
-  <g stroke="#3a7a52" stroke-width="3">
-    <line x1="178" y1="391" x2="178" y2="357"/>
-    <line x1="190" y1="391" x2="190" y2="357"/>
-    <line x1="170" y1="357" x2="195" y2="357"/>
-    <line x1="178" y1="650" x2="178" y2="616"/>
-    <line x1="190" y1="650" x2="190" y2="616"/>
-    <line x1="170" y1="616" x2="195" y2="616"/>
+  <!-- résident guidant la charge (palier 2e) -->
+  <g fill="#5c5c56">
+    <circle cx="330" cy="600" r="8"/>
+    <path d="M330,608 q-3,2 -4,12 l-3,26 6,0 2,-20 2,20 6,0 -3,-26 q-1,-10 -4,-12 z"/>
+    <line x1="324" y1="616" x2="284" y2="492" stroke="#9a958c" stroke-width="1.6"/>
   </g>
-  <!-- garde-corps ouvert (palier 2e, côté droit) -->
-  <g stroke="#3a7a52" stroke-width="3">
-    <line x1="293" y1="650" x2="293" y2="614"/>
-    <line x1="293" y1="614" x2="326" y2="600" stroke-dasharray="6 5"/>
+
+  <!-- garde-corps fermés (paliers, bord du vide) -->
+  <g stroke="#2d5a4a" stroke-width="3" stroke-linecap="round">
+    <line x1="176" y1="388" x2="176" y2="354"/>
+    <line x1="188" y1="388" x2="188" y2="354"/>
+    <line x1="168" y1="354" x2="196" y2="354"/>
+    <line x1="176" y1="648" x2="176" y2="614"/>
+    <line x1="188" y1="648" x2="188" y2="614"/>
+    <line x1="168" y1="614" x2="196" y2="614"/>
   </g>
+  <!-- garde-corps ouvert (2e, côté droit) -->
+  <g stroke="#2d5a4a" stroke-width="3" stroke-linecap="round">
+    <line x1="288" y1="648" x2="288" y2="614"/>
+    <line x1="288" y1="614" x2="322" y2="598" stroke-dasharray="6 5"/>
+  </g>
+  <circle cx="288" cy="614" r="3.5" fill="#2d5a4a"/>
 
   <!-- repères numérotés -->
-  <g font-size="15" font-weight="700" text-anchor="middle">
-    <circle cx="385" cy="155" r="13" fill="#3a7a52"/><text x="385" y="160" fill="#ffffff">1</text>
-    <circle cx="285" cy="183" r="13" fill="#3a7a52"/><text x="285" y="188" fill="#ffffff">2</text>
-    <circle cx="338" cy="632" r="13" fill="#3a7a52"/><text x="338" y="637" fill="#ffffff">3</text>
-    <circle cx="240" cy="868" r="13" fill="#3a7a52"/><text x="240" y="873" fill="#ffffff">4</text>
+  <g font-size="14" font-weight="700" text-anchor="middle">
+    <circle cx="386" cy="158" r="12" fill="#2d5a4a"/><text x="386" y="163" fill="#ffffff">1</text>
+    <circle cx="282" cy="191" r="12" fill="#2d5a4a"/><text x="282" y="196" fill="#ffffff">2</text>
+    <circle cx="380" cy="624" r="12" fill="#2d5a4a"/><text x="380" y="629" fill="#ffffff">3</text>
+    <circle cx="238" cy="866" r="12" fill="#2d5a4a"/><text x="238" y="871" fill="#ffffff">4</text>
   </g>
 
-  <!-- ── PANNEAU D'INFORMATION ── -->
-  <rect x="465" y="110" width="295" height="800" rx="12" fill="#ffffff" stroke="#e0ddd6"/>
-  <text x="487" y="160" font-size="25" font-weight="800" fill="#1f3a5f">SYSTÈME DE</text>
-  <text x="487" y="192" font-size="25" font-weight="800" fill="#1f3a5f">LEVAGE RÉSIDENTIEL</text>
-  <text x="487" y="222" font-size="14" font-weight="600" fill="#3a7a52">DANS LA CAGE D'ESCALIER · 3 ÉTAGES</text>
-  <line x1="487" y1="244" x2="738" y2="244" stroke="#e0ddd6" stroke-width="2"/>
+  <!-- ════ PANNEAU D'INFORMATION ════ -->
+  <rect x="466" y="104" width="296" height="816" rx="14" fill="#1a1a18" opacity="0.06"/>
+  <rect x="460" y="98" width="296" height="816" rx="14" fill="#ffffff" stroke="#d0cec8"/>
 
-  <g font-size="15">
-    <circle cx="500" cy="284" r="13" fill="#3a7a52"/>
-    <text x="500" y="289" fill="#ffffff" font-weight="700" text-anchor="middle">1</text>
-    <text x="524" y="280" font-weight="700" fill="#1f3a5f">Poutrelle + monorail</text>
-    <text x="524" y="300" font-size="13" fill="#666">Au sommet du puits central,</text>
-    <text x="524" y="318" font-size="13" fill="#666">intégrés à la structure.</text>
+  <text x="488" y="148" font-size="11" font-weight="700" letter-spacing="3" fill="#2d5a4a">PRODUIT MODULIMO</text>
+  <text x="488" y="186" font-size="27" font-weight="700" fill="#1a1a18">Système de levage</text>
+  <text x="488" y="218" font-size="27" font-weight="300" fill="#1a1a18">résidentiel</text>
+  <text x="488" y="248" font-size="13" fill="#5c5c56">Dans la cage d'escalier · 3 étages</text>
+  <line x1="488" y1="272" x2="734" y2="272" stroke="#d0cec8" stroke-width="1.5"/>
 
-    <circle cx="500" cy="368" r="13" fill="#3a7a52"/>
-    <text x="500" y="373" fill="#ffffff" font-weight="700" text-anchor="middle">2</text>
-    <text x="524" y="364" font-weight="700" fill="#1f3a5f">Palan électrique partagé</text>
-    <text x="524" y="384" font-size="13" fill="#666">Réservation via CoHabitat —</text>
-    <text x="524" y="402" font-size="13" fill="#666">meubles et électroménagers.</text>
+  <g>
+    <circle cx="501" cy="310" r="12" fill="#2d5a4a"/>
+    <text x="501" y="315" font-size="14" fill="#ffffff" font-weight="700" text-anchor="middle">1</text>
+    <text x="524" y="307" font-size="15" font-weight="600" fill="#1a1a18">Poutrelle + monorail</text>
+    <text x="524" y="327" font-size="12.5" fill="#5c5c56">Au sommet du puits central,</text>
+    <text x="524" y="344" font-size="12.5" fill="#5c5c56">intégrés à la structure.</text>
 
-    <circle cx="500" cy="452" r="13" fill="#3a7a52"/>
-    <text x="500" y="457" fill="#ffffff" font-weight="700" text-anchor="middle">3</text>
-    <text x="524" y="448" font-weight="700" fill="#1f3a5f">Garde-corps ouvrants</text>
-    <text x="524" y="468" font-size="13" fill="#666">Verrouillés au quotidien,</text>
-    <text x="524" y="486" font-size="13" fill="#666">ouverts le jour du levage.</text>
+    <circle cx="501" cy="390" r="12" fill="#2d5a4a"/>
+    <text x="501" y="395" font-size="14" fill="#ffffff" font-weight="700" text-anchor="middle">2</text>
+    <text x="524" y="387" font-size="15" font-weight="600" fill="#1a1a18">Palan électrique partagé</text>
+    <text x="524" y="407" font-size="12.5" fill="#5c5c56">Réservation via CoHabitat —</text>
+    <text x="524" y="424" font-size="12.5" fill="#5c5c56">meubles et électroménagers.</text>
 
-    <circle cx="500" cy="536" r="13" fill="#3a7a52"/>
-    <text x="500" y="541" fill="#ffffff" font-weight="700" text-anchor="middle">4</text>
-    <text x="524" y="532" font-weight="700" fill="#1f3a5f">Tous les étages desservis</text>
-    <text x="524" y="552" font-size="13" fill="#666">Déménagements et charges</text>
-    <text x="524" y="570" font-size="13" fill="#666">lourdes, à l'abri des intempéries.</text>
+    <circle cx="501" cy="470" r="12" fill="#2d5a4a"/>
+    <text x="501" y="475" font-size="14" fill="#ffffff" font-weight="700" text-anchor="middle">3</text>
+    <text x="524" y="467" font-size="15" font-weight="600" fill="#1a1a18">Garde-corps ouvrants</text>
+    <text x="524" y="487" font-size="12.5" fill="#5c5c56">Verrouillés au quotidien,</text>
+    <text x="524" y="504" font-size="12.5" fill="#5c5c56">ouverts le jour du levage.</text>
+
+    <circle cx="501" cy="550" r="12" fill="#2d5a4a"/>
+    <text x="501" y="555" font-size="14" fill="#ffffff" font-weight="700" text-anchor="middle">4</text>
+    <text x="524" y="547" font-size="15" font-weight="600" fill="#1a1a18">Tous les étages desservis</text>
+    <text x="524" y="567" font-size="12.5" fill="#5c5c56">Déménagements et charges</text>
+    <text x="524" y="584" font-size="12.5" fill="#5c5c56">lourdes, à l'abri des intempéries.</text>
   </g>
 
   <!-- encadré avantages -->
-  <rect x="487" y="612" width="251" height="252" rx="10" fill="#1f3a5f"/>
+  <rect x="488" y="622" width="246" height="252" rx="10" fill="url(#gCard)"/>
   <g fill="#ffffff">
-    <text x="507" y="652" font-size="14" font-weight="700">CAPACITÉ</text>
-    <text x="507" y="672" font-size="12.5" fill="#c7d2de">≈ 300 à 500 kg</text>
-    <text x="507" y="708" font-size="14" font-weight="700">SÉCURITAIRE</text>
-    <text x="507" y="728" font-size="12.5" fill="#c7d2de">Ancrages certifiés, usage encadré</text>
-    <text x="507" y="764" font-size="14" font-weight="700">ÉCONOMIQUE</text>
-    <text x="507" y="784" font-size="12.5" fill="#c7d2de">Une fraction du coût d'un</text>
-    <text x="507" y="800" font-size="12.5" fill="#c7d2de">monte-charge traditionnel</text>
-    <text x="507" y="836" font-size="14" font-weight="700">QUATRE SAISONS</text>
-    <text x="507" y="856" font-size="12.5" fill="#c7d2de">Levage intérieur, hiver comme été</text>
+    <text x="508" y="660" font-size="13" font-weight="700" letter-spacing="1.5">CAPACITÉ</text>
+    <text x="508" y="679" font-size="12.5" fill="#cfe0d6">≈ 300 à 500 kg</text>
+    <text x="508" y="714" font-size="13" font-weight="700" letter-spacing="1.5">SÉCURITAIRE</text>
+    <text x="508" y="733" font-size="12.5" fill="#cfe0d6">Ancrages certifiés, usage encadré</text>
+    <text x="508" y="768" font-size="13" font-weight="700" letter-spacing="1.5">ÉCONOMIQUE</text>
+    <text x="508" y="787" font-size="12.5" fill="#cfe0d6">Une fraction du coût d'un</text>
+    <text x="508" y="803" font-size="12.5" fill="#cfe0d6">monte-charge traditionnel</text>
+    <text x="508" y="838" font-size="13" font-weight="700" letter-spacing="1.5">QUATRE SAISONS</text>
+    <text x="508" y="857" font-size="12.5" fill="#cfe0d6">Levage intérieur, hiver comme été</text>
   </g>
 
   <!-- note conceptuelle -->
-  <text x="400" y="952" font-size="12.5" font-style="italic" fill="#9a958c" text-anchor="middle">Illustration conceptuelle — la conception sera finalisée avec l'architecte mandaté.</text>
+  <text x="400" y="956" font-size="12" font-style="italic" fill="#9a958c" text-anchor="middle">Illustration conceptuelle — la conception sera finalisée avec l'architecte mandaté.</text>
 </svg>
