@@ -106,6 +106,36 @@
     .btn-outline-w { background:transparent; color:#fff; border:1px solid rgba(255,255,255,.38); padding:13px 28px; border-radius:6px; font-size:.9rem; font-weight:600; cursor:pointer; transition:background .15s; }
     .btn-outline-w:hover { background:rgba(255,255,255,.1); }
 
+    .lead-form { background:#fff; border-radius:12px; padding:28px 26px; max-width:560px; margin:40px auto 0; text-align:left; box-shadow:0 10px 36px rgba(0,0,0,.22); position:relative; }
+    .lf-grid { display:grid; grid-template-columns:1fr 1fr; gap:0 14px; }
+    .lf-field { margin-bottom:14px; }
+    .lf-field > label:not(.lf-consent) { display:block; font-size:.76rem; font-weight:700; letter-spacing:.04em; text-transform:uppercase; color:var(--muted); margin-bottom:5px; }
+    .lf-field input[type="text"], .lf-field input[type="email"], .lf-field textarea { width:100%; padding:10px 12px; border:1px solid var(--line); border-radius:6px; font:inherit; font-size:.9rem; color:var(--text); background:#fff; }
+    .lf-field input:focus, .lf-field textarea:focus { outline:none; border-color:var(--green); box-shadow:0 0 0 3px rgba(45,90,74,.15); }
+    .lf-field.lf-invalid input, .lf-field.lf-invalid textarea { border-color:#c0392b; box-shadow:0 0 0 3px rgba(192,57,43,.12); }
+    .lf-consent { display:flex; gap:10px; align-items:flex-start; font-size:.78rem; color:var(--muted); line-height:1.55; cursor:pointer; }
+    .lf-consent input { margin-top:2px; width:16px; height:16px; flex-shrink:0; accent-color:var(--green); }
+    .lf-field.lf-invalid .lf-consent span { color:#c0392b; }
+    .lf-hp { position:absolute !important; left:-9999px !important; width:1px; height:1px; overflow:hidden; }
+    .lf-submit { display:inline-flex; align-items:center; background:var(--green); color:#fff; padding:12px 24px; border-radius:6px; font-size:.88rem; font-weight:600; border:none; cursor:pointer; transition:background .15s; font-family:inherit; width:100%; justify-content:center; margin-top:4px; }
+    .lf-submit:hover { background:var(--green-lt); }
+    .lead-form.lf-sending .lf-submit { opacity:.7; pointer-events:none; }
+    .lf-submit .lf-label-sending { display:none; }
+    .lead-form.lf-sending .lf-submit .lf-label-idle { display:none; }
+    .lead-form.lf-sending .lf-submit .lf-label-sending { display:inline; }
+    .lf-status { display:none; margin-top:12px; font-size:.84rem; padding:10px 14px; border-radius:6px; background:#fdecea; color:#86281c; border:1px solid #f3c0ba; }
+    .lf-status.is-visible { display:block; }
+    .lf-success { display:none; text-align:center; padding:18px 6px; }
+    .lead-form.is-done .lf-fields { display:none; }
+    .lead-form.is-done .lf-success { display:block; }
+    .lf-check { width:48px; height:48px; border-radius:50%; background:rgba(45,90,74,.12); color:var(--green); font-size:1.5rem; font-weight:800; display:flex; align-items:center; justify-content:center; margin:0 auto 12px; }
+    .lf-success h3 { font-size:1.05rem; font-weight:800; color:var(--text); margin-bottom:6px; }
+    .lf-success p { font-size:.88rem; color:var(--muted) !important; margin:0 !important; }
+    .lf-more { margin-top:16px; padding-top:14px; border-top:1px solid var(--line); font-size:.82rem; color:var(--muted); text-align:center; }
+    .lf-more a { color:var(--green); font-weight:700; text-decoration:underline; }
+    .lf-more a:hover { color:var(--green-lt); }
+    @media (max-width:520px) { .lf-grid { grid-template-columns:1fr; } }
+
     .footer { background:var(--bg); border-top:1px solid var(--line); padding:44px 24px 32px; }
     .footer-inner { max-width:var(--max); margin:0 auto; }
     .footer-top { display:flex; justify-content:space-between; align-items:flex-start; flex-wrap:wrap; gap:32px; margin-bottom:32px; }
@@ -300,6 +330,44 @@
       <a href="/projets" class="btn-white"><span data-lang="fr">Voir le projet</span><span data-lang="en">View the project</span><span data-lang="es">Ver el proyecto</span></a>
       <a href="https://cohabitat.modulimo.com" target="_blank" rel="noopener" class="btn-outline-w">Explorer CoHabitat</a>
     </div>
+    <form class="lead-form" id="leadForm" method="post" action="#">
+      <div class="lf-fields">
+        <div class="lf-grid">
+          <div class="lf-field">
+            <label for="lf-first"><span data-lang="fr">Prénom</span><span data-lang="en">First name</span><span data-lang="es">Nombre</span></label>
+            <input type="text" id="lf-first" name="first_name" autocomplete="given-name" required />
+          </div>
+          <div class="lf-field">
+            <label for="lf-last"><span data-lang="fr">Nom</span><span data-lang="en">Last name</span><span data-lang="es">Apellido</span></label>
+            <input type="text" id="lf-last" name="last_name" autocomplete="family-name" required />
+          </div>
+        </div>
+        <div class="lf-field">
+          <label for="lf-email"><span data-lang="fr">Courriel</span><span data-lang="en">Email</span><span data-lang="es">Correo electrónico</span></label>
+          <input type="email" id="lf-email" name="email" autocomplete="email" required />
+        </div>
+        <div class="lf-field">
+          <label for="lf-message"><span data-lang="fr">Message (facultatif)</span><span data-lang="en">Message (optional)</span><span data-lang="es">Mensaje (opcional)</span></label>
+          <textarea id="lf-message" name="message" rows="3"></textarea>
+        </div>
+        <p class="lf-hp" aria-hidden="true"><label>Ne pas remplir / Do not fill<input type="text" name="website" tabindex="-1" autocomplete="off" /></label></p>
+        <div class="lf-field">
+          <label class="lf-consent"><input type="checkbox" name="consent" required /><span><span data-lang="fr">Je consens à ce que Modulimo inc. recueille et utilise les renseignements fournis (nom, courriel, message) afin de me contacter au sujet du projet Pointe Est. Je peux retirer mon consentement en tout temps en écrivant à contribution@modulimo.com.</span><span data-lang="en">I consent to Modulimo inc. collecting and using the information provided (name, email, message) to contact me about the Pointe Est project. I may withdraw my consent at any time by writing to contribution@modulimo.com.</span><span data-lang="es">Doy mi consentimiento para que Modulimo inc. recopile y utilice la información proporcionada (nombre, correo, mensaje) para contactarme sobre el proyecto Pointe Est. Puedo retirar mi consentimiento en cualquier momento escribiendo a contribution@modulimo.com.</span></span></label>
+        </div>
+        <button type="submit" class="lf-submit">
+          <span class="lf-label-idle"><span data-lang="fr">Informez-moi</span><span data-lang="en">Keep me informed</span><span data-lang="es">Manténganme informado</span></span>
+          <span class="lf-label-sending"><span data-lang="fr">Envoi en cours…</span><span data-lang="en">Sending…</span><span data-lang="es">Enviando…</span></span>
+        </button>
+        <div class="lf-status" data-status="invalid" role="alert"><span data-lang="fr">Veuillez remplir les champs requis (prénom, nom, courriel valide) et cocher la case de consentement.</span><span data-lang="en">Please fill in the required fields (first name, last name, valid email) and check the consent box.</span><span data-lang="es">Complete los campos obligatorios (nombre, apellido, correo válido) y marque la casilla de consentimiento.</span></div>
+        <div class="lf-status" data-status="fail" role="alert"><span data-lang="fr">Une erreur est survenue lors de l'envoi. Veuillez réessayer, ou écrivez-nous à contribution@modulimo.com.</span><span data-lang="en">Something went wrong while sending. Please try again, or write to us at contribution@modulimo.com.</span><span data-lang="es">Ocurrió un error durante el envío. Inténtelo de nuevo o escríbanos a contribution@modulimo.com.</span></div>
+      </div>
+      <div class="lf-success" role="status">
+        <div class="lf-check" aria-hidden="true">✓</div>
+        <h3><span data-lang="fr">Merci !</span><span data-lang="en">Thank you!</span><span data-lang="es">¡Gracias!</span></h3>
+        <p><span data-lang="fr">Votre demande a bien été reçue — nous vous tiendrons informé de l'évolution du projet Pointe Est.</span><span data-lang="en">Your request has been received — we will keep you informed as the Pointe Est project moves forward.</span><span data-lang="es">Su solicitud ha sido recibida — le mantendremos informado de la evolución del proyecto Pointe Est.</span></p>
+      </div>
+      <p class="lf-more"><span data-lang="fr">Prêt à aller plus loin ? <a href="/postuler/?building=a41b3b31-1681-4cb1-b54c-69486d27e132">Déposez votre candidature →</a></span><span data-lang="en">Ready to go further? <a href="/postuler/?building=a41b3b31-1681-4cb1-b54c-69486d27e132">Submit your application →</a></span><span data-lang="es">¿Listo para ir más lejos? <a href="/postuler/?building=a41b3b31-1681-4cb1-b54c-69486d27e132">Presente su candidatura →</a></span></p>
+    </form>
   </section>
 
   <footer class="footer">
@@ -353,6 +421,7 @@
     }
   </script>
   <script defer src="/js/lightbox.js"></script>
+  <script defer src="/js/lead-form.js"></script>
   <script type="module" src="/js/theme.js"></script>
 
 </body>
