@@ -8,7 +8,7 @@
     'cohabitat':      'CoHabitat — plateforme',
     'build':          'Construction industrialisée',
     'court-terme':    'Services & habitation',
-    'equipements':    'Équipements — Monte-charge',
+    'equipements':    'Équipements — Système de levage',
     'autosuffisance': 'Autosuffisance urbaine',
     'family':         'Habitation familiale',
     'ambitieux':      'Mobilité — vélomobile',
