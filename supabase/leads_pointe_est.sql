@@ -1,0 +1,130 @@
+-- ============================================================
+-- MODULIMO — Table des leads Pointe Est (formulaire de contact)
+-- Conforme Loi 25 (Québec)
+-- ============================================================
+-- À exécuter dans le SQL Editor du projet Central (bpxscgrbxjscicpnheep).
+-- Idempotent : peut être rejoué sans danger.
+
+-- 1. Table principale
+create table if not exists public.leads_pointe_est (
+  id          uuid primary key default gen_random_uuid(),
+  created_at  timestamptz not null default now(),
+  updated_at  timestamptz not null default now(),
+
+  -- Identité et message (renseignements personnels — Loi 25)
+  first_name  text not null,
+  last_name   text not null,
+  email       text not null,
+  message     text,
+
+  -- Consentement explicite (récap horodaté, version du texte affiché)
+  consent     jsonb not null,
+
+  -- Suivi commercial
+  status      text not null default 'nouveau'
+    check (status in ('nouveau', 'contacte', 'converti', 'ferme')),
+  admin_notes text,
+
+  -- Métadonnées techniques (Loi 25 : hash de l'IP, jamais l'IP brute)
+  locale      text,
+  source_page text,
+  user_agent  text,
+  ip_hash     text,
+
+  -- Date de destruction effective des renseignements personnels
+  destroyed_at timestamptz
+);
+
+create index if not exists idx_leads_pe_created on public.leads_pointe_est(created_at desc);
+create index if not exists idx_leads_pe_status  on public.leads_pointe_est(status);
+create index if not exists idx_leads_pe_email   on public.leads_pointe_est(email);
+
+-- 2. Trigger updated_at (réutilise la fonction partagée si déjà créée
+-- par le kit candidatures ; sinon la crée)
+create or replace function public.set_updated_at()
+returns trigger language plpgsql as $$
+begin
+  new.updated_at = now();
+  return new;
+end;
+$$;
+
+drop trigger if exists trg_leads_pe_updated on public.leads_pointe_est;
+create trigger trg_leads_pe_updated
+  before update on public.leads_pointe_est
+  for each row execute function public.set_updated_at();
+
+-- 3. RLS — Row Level Security
+alter table public.leads_pointe_est enable row level security;
+
+-- 3a. INSERT : AUCUNE policy anon. Toute insertion passe par l'Edge
+-- Function submit-lead-pointe-est (service_role), qui valide le
+-- consentement et filtre le spam.
+
+-- 3b. SELECT / UPDATE pour les administrateurs Modulimo uniquement
+drop policy if exists leads_pe_admin_select on public.leads_pointe_est;
+create policy leads_pe_admin_select on public.leads_pointe_est
+  for select
+  using (
+    exists (
+      select 1 from public.user_roles ur
+      where ur.user_id = auth.uid()
+        and ur.role in ('admin', 'gestionnaire')
+    )
+  );
+
+drop policy if exists leads_pe_admin_update on public.leads_pointe_est;
+create policy leads_pe_admin_update on public.leads_pointe_est
+  for update
+  using (
+    exists (
+      select 1 from public.user_roles ur
+      where ur.user_id = auth.uid()
+        and ur.role in ('admin', 'gestionnaire')
+    )
+  );
+
+drop policy if exists leads_pe_admin_delete on public.leads_pointe_est;
+create policy leads_pe_admin_delete on public.leads_pointe_est
+  for delete
+  using (
+    exists (
+      select 1 from public.user_roles ur
+      where ur.user_id = auth.uid()
+        and ur.role = 'admin'
+    )
+  );
+
+-- 4. Destruction des renseignements personnels (droit de retrait — Loi 25)
+create or replace function public.destroy_lead_pointe_est_pii(p_lead_id uuid)
+returns void language plpgsql security definer as $$
+begin
+  if not exists (
+    select 1 from public.user_roles
+    where user_id = auth.uid() and role in ('admin', 'gestionnaire')
+  ) then
+    raise exception 'Permission refusée';
+  end if;
+
+  update public.leads_pointe_est
+  set
+    first_name  = '[détruit]',
+    last_name   = '[détruit]',
+    email       = '[détruit]',
+    message     = null,
+    consent     = jsonb_build_object('_destroyed', true),
+    user_agent  = null,
+    ip_hash     = null,
+    destroyed_at = now()
+  where id = p_lead_id;
+end;
+$$;
+
+-- 5. Grants Data API (cf. note §7 du kit candidatures : les nouvelles
+-- tables ne sont plus exposées automatiquement à PostgREST).
+--   anon          → aucun grant : tout passe par l'Edge Function.
+--   authenticated → lecture/gestion alignée sur les policies RLS.
+grant select, update, delete on public.leads_pointe_est to authenticated;
+
+comment on table public.leads_pointe_est is
+  'Leads du formulaire de contact Pointe Est (modulimo.com). Conforme Loi 25 : consentement explicite horodaté, IP hashée, fonction de destruction des PII.';
