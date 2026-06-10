@@ -1,0 +1,510 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Pointe Est — Proyectos MODULIMO</title>
+  <meta name="description" content="Pointe Est — primer proyecto inmobiliario Modulimo en Pointe-aux-Trembles, Montreal. 6 viviendas multigeneracionales, madera maciza CLT, trámite PPCMOI en curso." />
+  <link rel="canonical" href="https://www.modulimo.com/es/projets/pointe-est/" />
+  <link rel="alternate" hreflang="fr-CA" href="https://www.modulimo.com/projets/pointe-est/" />
+  <link rel="alternate" hreflang="en" href="https://www.modulimo.com/en/projets/pointe-est/" />
+  <link rel="alternate" hreflang="es" href="https://www.modulimo.com/es/projets/pointe-est/" />
+  <link rel="alternate" hreflang="x-default" href="https://www.modulimo.com/projets/pointe-est/" />
+  <style>
+    *, *::before, *::after { box-sizing:border-box; margin:0; padding:0; }
+    :root {
+      --green:#2d5a4a; --green-lt:#3a7a62; --green-dk:#1e3d32;
+      --bg:#f4f3f0; --line:#d0cec8;
+      --text:#1a1a18; --muted:#5c5c56; --max:1140px;
+    }
+    html { scroll-behavior:smooth; scroll-padding-top:72px; }
+    body { font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif; background:#fff; color:var(--text); line-height:1.6; }
+    a { color:inherit; text-decoration:none; }
+    img { display:block; max-width:100%; }
+    .wrap { max-width:var(--max); margin:0 auto; padding:0 24px; }
+
+    .topbar { position:sticky; top:0; z-index:50; background:var(--bg); border-bottom:1px solid var(--line); }
+    .topbar-inner { max-width:var(--max); margin:0 auto; padding:0 24px; height:76px; display:flex; align-items:center; justify-content:space-between; gap:18px; }
+    .brand { display:flex; align-items:center; flex-shrink:0; background:transparent; padding:0; border:none; border-radius:0; cursor:pointer; font:inherit; color:inherit; }
+    .brand img { height:56px; width:auto; display:block; }
+    .nav { display:flex; align-items:center; gap:2px; }
+    .nav a { font-size:.72rem; font-weight:600; letter-spacing:.07em; text-transform:uppercase; color:var(--muted); padding:7px 13px; border-radius:5px; transition:color .15s,background .15s; white-space:nowrap; }
+    .nav a:hover { color:var(--green); background:rgba(45,90,74,.07); }
+    .nav a.active { color:var(--green); border-bottom:2px solid var(--green); border-radius:0; padding-bottom:5px; }
+    .nav-cta { color:var(--green) !important; border:1px solid var(--green); border-radius:5px; padding:6px 12px !important; margin-left:6px; transition:background .15s,color .15s; }
+    .nav-cta:hover { background:var(--green); color:#fff !important; }
+    .lang-switch { display:inline-flex; align-items:center; gap:0; margin-left:10px; padding-left:10px; border-left:1px solid var(--line); }
+    .lang-btn { font-size:.7rem; font-weight:700; letter-spacing:.06em; color:var(--muted); padding:5px 7px; background:none; border:none; cursor:pointer; font-family:inherit; transition:color .15s; }
+    .lang-btn:hover, .lang-btn.active { color:var(--green); }
+    .lang-btn.active { font-weight:800; }
+    [data-lang] { display:none; }
+    html.lang-fr [data-lang="fr"], html.lang-en [data-lang="en"], html.lang-es [data-lang="es"] { display:revert; }
+    .menu-toggle { display:none; flex-direction:column; justify-content:center; gap:5px; width:40px; height:40px; background:none; border:1px solid var(--line); border-radius:6px; cursor:pointer; padding:8px; }
+    .menu-toggle span { display:block; height:2px; background:var(--green); border-radius:2px; }
+
+    .page-hero { background:var(--green-dk); padding:56px 24px 48px; }
+    .page-hero-inner { max-width:var(--max); margin:0 auto; }
+    .page-eyebrow { font-size:.72rem; font-weight:700; letter-spacing:.14em; text-transform:uppercase; color:rgba(255,255,255,.6); margin-bottom:12px; }
+    .page-hero h1 { font-size:clamp(2rem,4vw,3rem); font-weight:800; letter-spacing:-.04em; color:#fff; margin-bottom:12px; line-height:1.1; }
+    .page-hero p { font-size:1rem; color:rgba(255,255,255,.72); max-width:560px; line-height:1.7; }
+
+    .section { padding:72px 0; }
+    .section-alt { background:var(--bg); }
+    .section-label { font-size:.7rem; font-weight:700; letter-spacing:.14em; text-transform:uppercase; color:var(--green); margin-bottom:10px; }
+    .section-title { font-size:clamp(1.5rem,3vw,2rem); font-weight:800; letter-spacing:-.04em; color:var(--text); margin-bottom:14px; line-height:1.15; }
+    .section-lead { font-size:1rem; color:var(--muted); line-height:1.75; max-width:560px; margin-bottom:36px; }
+
+    .hero-img-wrap { border-radius:12px; overflow:hidden; margin-bottom:48px; box-shadow:0 8px 40px rgba(0,0,0,.12); }
+    .hero-img-wrap img { width:100%; max-height:520px; object-fit:cover; }
+
+    .grid-2 { display:grid; grid-template-columns:1fr 1fr; gap:32px; align-items:start; }
+
+    .concept-badge { display:inline-flex; align-items:center; gap:6px; font-size:.7rem; font-weight:700; letter-spacing:.14em; text-transform:uppercase; color:#fff; background:rgba(255,255,255,.14); border:1px solid rgba(255,255,255,.28); padding:5px 12px; border-radius:20px; margin-bottom:14px; }
+    .concept-badge::before { content:""; width:6px; height:6px; border-radius:50%; background:#f4c542; box-shadow:0 0 0 3px rgba(244,197,66,.25); }
+    .concept-notice { display:flex; gap:14px; align-items:flex-start; background:#fff8e6; border:1px solid #f0d68a; border-left:4px solid #d9a82a; border-radius:8px; padding:14px 18px; margin-bottom:28px; }
+    .concept-notice-icon { flex-shrink:0; width:24px; height:24px; border-radius:50%; background:#d9a82a; color:#fff; display:flex; align-items:center; justify-content:center; font-size:.8rem; font-weight:800; }
+    .concept-notice p { font-size:.85rem; color:#6a4f00; line-height:1.6; margin:0; }
+    .concept-notice p strong { color:#3d2c00; }
+
+    .info-list { display:flex; flex-direction:column; gap:0; }
+    .info-row { display:flex; gap:14px; align-items:flex-start; padding:18px 0; border-bottom:1px solid var(--line); }
+    .info-row:first-child { padding-top:0; }
+    .info-row:last-child { border-bottom:none; }
+    .info-dot { width:7px; height:7px; border-radius:50%; background:var(--green); flex-shrink:0; margin-top:7px; }
+    .info-row h4 { font-size:.9rem; font-weight:700; color:var(--text); margin-bottom:4px; }
+    .info-row p { font-size:.84rem; color:var(--muted); line-height:1.6; }
+
+    .cards { display:grid; grid-template-columns:repeat(3,1fr); gap:16px; }
+    .card { background:#fff; border:1px solid var(--line); border-radius:12px; overflow:hidden; }
+    .card img { width:100%; aspect-ratio:4/3; object-fit:cover; }
+    .card-body { padding:16px; }
+    .card-body h4 { font-size:.9rem; font-weight:700; color:var(--text); margin-bottom:6px; }
+    .card-body p { font-size:.82rem; color:var(--muted); line-height:1.6; }
+
+    .map-wrap { border-radius:12px; overflow:hidden; border:1px solid var(--line); }
+    .map-wrap img { width:100%; height:auto; display:block; }
+
+    .loc-list { display:flex; flex-direction:column; gap:12px; }
+    .loc-item { display:flex; gap:14px; align-items:flex-start; padding:14px 16px; background:#fff; border:1px solid var(--line); border-radius:8px; }
+    .loc-icon { width:36px; height:36px; border-radius:6px; flex-shrink:0; background:rgba(45,90,74,.1); display:flex; align-items:center; justify-content:center; }
+    .loc-icon svg { width:18px; height:18px; stroke:var(--green); fill:none; stroke-width:1.8; stroke-linecap:round; }
+    .loc-item h4 { font-size:.88rem; font-weight:700; color:var(--text); margin-bottom:2px; }
+    .loc-item p { font-size:.8rem; color:var(--muted); }
+
+    .timeline { position:relative; margin-top:8px; padding-left:28px; }
+    .timeline::before { content:""; position:absolute; left:8px; top:6px; bottom:6px; width:2px; background:var(--line); border-radius:2px; }
+    .tl-item { position:relative; padding:0 0 28px 14px; }
+    .tl-item:last-child { padding-bottom:0; }
+    .tl-marker { position:absolute; left:-28px; top:4px; width:18px; height:18px; border-radius:50%; background:#fff; border:2px solid var(--green); box-shadow:0 0 0 4px var(--bg); }
+    .tl-item.is-current .tl-marker { background:var(--green); }
+    .tl-item.is-future .tl-marker { border-style:dashed; }
+    .tl-date { font-size:.72rem; font-weight:700; letter-spacing:.12em; text-transform:uppercase; color:var(--green); margin-bottom:4px; }
+    .tl-title { font-size:1rem; font-weight:700; color:var(--text); margin-bottom:6px; line-height:1.3; }
+    .tl-text { font-size:.88rem; color:var(--muted); line-height:1.65; }
+    .tl-text strong { color:var(--text); font-weight:600; }
+    .tl-tags { display:flex; flex-wrap:wrap; gap:6px; margin-top:10px; }
+    .tl-tag { font-size:.7rem; font-weight:600; letter-spacing:.04em; color:var(--green-dk); background:rgba(45,90,74,.1); padding:4px 10px; border-radius:20px; }
+    .tl-tag.warn { color:#8a4a00; background:rgba(200,120,0,.12); }
+    .tl-tag.ok { color:#1e5b3a; background:rgba(45,140,80,.13); }
+
+    .accordion { border:1px solid var(--line); border-radius:10px; overflow:hidden; background:#fff; margin-top:32px; }
+    .acc-trigger { width:100%; display:flex; align-items:center; justify-content:space-between; gap:16px; padding:18px 24px; background:none; border:none; font:inherit; font-size:.92rem; font-weight:700; color:var(--green-dk); cursor:pointer; text-align:left; transition:background .15s; }
+    .acc-trigger:hover { background:rgba(45,90,74,.04); }
+    .acc-icon { font-size:1rem; color:var(--green); transition:transform .25s; flex-shrink:0; }
+    .accordion.is-open .acc-icon { transform:rotate(180deg); }
+    .acc-body { max-height:0; overflow:hidden; transition:max-height .35s ease; }
+    .accordion.is-open .acc-body { max-height:3000px; }
+    .acc-note { padding:0 24px 20px; font-size:.84rem; color:var(--muted); font-style:italic; border-bottom:1px solid var(--line); }
+    .acc-grid { display:grid; grid-template-columns:repeat(2,1fr); gap:0; }
+    .acc-article { padding:16px 24px; border-bottom:1px solid var(--line); }
+    .acc-article:nth-last-child(-n+2) { border-bottom:none; }
+    .acc-article h4 { font-size:.84rem; font-weight:700; color:var(--text); margin-bottom:6px; }
+    .acc-article p { font-size:.8rem; color:var(--muted); line-height:1.6; }
+
+    .btn-primary { display:inline-flex; align-items:center; background:var(--green); color:#fff; padding:12px 24px; border-radius:6px; font-size:.88rem; font-weight:600; border:none; cursor:pointer; transition:background .15s; margin-top:24px; }
+    .btn-primary:hover { background:var(--green-lt); }
+
+    .cta { background:var(--green-dk); padding:72px 24px; text-align:center; }
+    .cta h2 { font-size:clamp(1.5rem,3vw,2rem); font-weight:800; letter-spacing:-.04em; color:#fff; margin-bottom:14px; }
+    .cta p { font-size:1rem; color:rgba(255,255,255,.68); margin-bottom:32px; max-width:480px; margin-left:auto; margin-right:auto; }
+    .cta-btns { display:flex; gap:12px; justify-content:center; flex-wrap:wrap; }
+    .btn-white { background:#fff; color:var(--green-dk); padding:13px 28px; border-radius:6px; font-size:.9rem; font-weight:700; border:none; cursor:pointer; }
+    .btn-outline-w { background:transparent; color:#fff; border:1px solid rgba(255,255,255,.38); padding:13px 28px; border-radius:6px; font-size:.9rem; font-weight:600; cursor:pointer; transition:background .15s; }
+    .btn-outline-w:hover { background:rgba(255,255,255,.1); }
+
+    .lead-form { background:#fff; border-radius:12px; padding:28px 26px; max-width:560px; margin:40px auto 0; text-align:left; box-shadow:0 10px 36px rgba(0,0,0,.22); position:relative; }
+    .lf-grid { display:grid; grid-template-columns:1fr 1fr; gap:0 14px; }
+    .lf-field { margin-bottom:14px; }
+    .lf-field > label:not(.lf-consent) { display:block; font-size:.76rem; font-weight:700; letter-spacing:.04em; text-transform:uppercase; color:var(--muted); margin-bottom:5px; }
+    .lf-field input[type="text"], .lf-field input[type="email"], .lf-field textarea { width:100%; padding:10px 12px; border:1px solid var(--line); border-radius:6px; font:inherit; font-size:.9rem; color:var(--text); background:#fff; }
+    .lf-field input:focus, .lf-field textarea:focus { outline:none; border-color:var(--green); box-shadow:0 0 0 3px rgba(45,90,74,.15); }
+    .lf-field.lf-invalid input, .lf-field.lf-invalid textarea { border-color:#c0392b; box-shadow:0 0 0 3px rgba(192,57,43,.12); }
+    .lf-consent { display:flex; gap:10px; align-items:flex-start; font-size:.78rem; color:var(--muted); line-height:1.55; cursor:pointer; }
+    .lf-consent input { margin-top:2px; width:16px; height:16px; flex-shrink:0; accent-color:var(--green); }
+    .lf-field.lf-invalid .lf-consent span { color:#c0392b; }
+    .lf-hp { position:absolute !important; left:-9999px !important; width:1px; height:1px; overflow:hidden; }
+    .lf-submit { display:inline-flex; align-items:center; background:var(--green); color:#fff; padding:12px 24px; border-radius:6px; font-size:.88rem; font-weight:600; border:none; cursor:pointer; transition:background .15s; font-family:inherit; width:100%; justify-content:center; margin-top:4px; }
+    .lf-submit:hover { background:var(--green-lt); }
+    .lead-form.lf-sending .lf-submit { opacity:.7; pointer-events:none; }
+    .lf-submit .lf-label-sending { display:none; }
+    .lead-form.lf-sending .lf-submit .lf-label-idle { display:none; }
+    .lead-form.lf-sending .lf-submit .lf-label-sending { display:inline; }
+    .lf-status { display:none; margin-top:12px; font-size:.84rem; padding:10px 14px; border-radius:6px; background:#fdecea; color:#86281c; border:1px solid #f3c0ba; }
+    .lf-status.is-visible { display:block; }
+    .lf-success { display:none; text-align:center; padding:18px 6px; }
+    .lead-form.is-done .lf-fields { display:none; }
+    .lead-form.is-done .lf-success { display:block; }
+    .lf-check { width:48px; height:48px; border-radius:50%; background:rgba(45,90,74,.12); color:var(--green); font-size:1.5rem; font-weight:800; display:flex; align-items:center; justify-content:center; margin:0 auto 12px; }
+    .lf-success h3 { font-size:1.05rem; font-weight:800; color:var(--text); margin-bottom:6px; }
+    .lf-success p { font-size:.88rem; color:var(--muted) !important; margin:0 !important; }
+    @media (max-width:520px) { .lf-grid { grid-template-columns:1fr; } }
+
+    .footer { background:var(--bg); border-top:1px solid var(--line); padding:44px 24px 32px; }
+    .footer-inner { max-width:var(--max); margin:0 auto; }
+    .footer-top { display:flex; justify-content:space-between; align-items:flex-start; flex-wrap:wrap; gap:32px; margin-bottom:32px; }
+    .footer-brand { display:flex; align-items:center; background:#fff; padding:4px 10px; border-radius:8px; align-self:flex-start; }
+    .footer-brand img { height:32px; width:auto; display:block; }
+
+    body.theme-femme .topbar { background:#f8bbd0; border-bottom-color:rgba(0,0,0,.08); }
+    body.theme-terre .topbar { background:#43a047; border-bottom-color:rgba(0,0,0,.15); }
+    body.theme-terre .topbar .nav a,
+    body.theme-terre .topbar .nav a:hover,
+    body.theme-terre .topbar .nav a.active,
+    body.theme-terre .menu-toggle span { color:#e53935; background:transparent; border-color:#e53935; }
+    .footer-tagline { font-size:.82rem; color:var(--muted); margin-top:8px; max-width:260px; line-height:1.6; }
+    .footer-nav h5 { font-size:.7rem; font-weight:700; letter-spacing:.1em; text-transform:uppercase; color:var(--muted); margin-bottom:12px; }
+    .footer-nav a { display:block; font-size:.84rem; color:var(--text); margin-bottom:8px; }
+    .footer-nav a:hover { color:var(--green); }
+    .footer-bottom { border-top:1px solid var(--line); padding-top:20px; display:flex; justify-content:space-between; flex-wrap:wrap; gap:12px; }
+    .footer-bottom p { font-size:.75rem; color:var(--muted); }
+
+    @media (max-width:900px) { .grid-2, .cards { grid-template-columns:1fr; } }
+    @media (max-width:640px) {
+      .menu-toggle { display:flex; }
+      .nav { display:none; position:absolute; top:68px; left:0; right:0; background:var(--bg); border-bottom:1px solid var(--line); flex-direction:column; align-items:stretch; padding:8px 16px 16px; gap:2px; }
+      .nav.is-open { display:flex; }
+      .nav a { padding:12px 14px; border-bottom:1px solid var(--line); border-radius:0; }
+      .nav a.active { border-left:3px solid var(--green); padding-left:11px; }
+      .acc-grid { grid-template-columns:1fr; }
+      .acc-article:last-child { border-bottom:none; }
+      .footer-top { flex-direction:column; }
+    }
+
+    .lb-overlay { position:fixed; inset:0; background:rgba(10,12,14,.92); display:none; align-items:center; justify-content:center; z-index:1000; padding:24px; }
+    .lb-overlay.is-open { display:flex; }
+    .lb-image { max-width:min(100%,1100px); max-height:90vh; object-fit:contain; border-radius:6px; box-shadow:0 12px 60px rgba(0,0,0,.5); animation:lb-in .2s ease-out; }
+    .lb-close { position:absolute; top:18px; right:22px; width:44px; height:44px; border-radius:50%; background:rgba(255,255,255,.12); color:#fff; border:1px solid rgba(255,255,255,.2); font-size:1.6rem; line-height:1; cursor:pointer; display:flex; align-items:center; justify-content:center; transition:background .15s; }
+    .lb-close:hover, .lb-close:focus { background:rgba(255,255,255,.22); outline:none; }
+    @keyframes lb-in { from { opacity:0; transform:scale(.96); } to { opacity:1; transform:scale(1); } }
+  </style>
+  <script src="/js/analytics.js" defer></script>
+</head>
+<body>
+
+  <header class="topbar">
+    <div class="topbar-inner">
+      <button type="button" class="brand" data-lightbox="/images/ModulimoLogoSobre.png" data-lightbox-alt="Modulimo" aria-label="Voir le logo en grand"><img src="/images/ModulimoLogoSobre.png" alt="Modulimo" /></button>
+      <button class="menu-toggle" id="menuToggle" aria-expanded="false" aria-controls="siteNav" aria-label="Menu"><span></span><span></span><span></span></button>
+      <nav class="nav" id="siteNav">
+        <a href="/es/"><span>Inicio</span></a>
+        <a href="/es/mobilite/"><span>Movilidad</span></a>
+        <a href="/es/securite/"><span>Seguridad</span></a>
+        <a href="/es/projets/" class="active"><span>Proyectos</span></a>
+        <a href="/es/produits/"><span>Productos</span></a>
+        <a href="https://cohabitat.modulimo.com" target="_blank" rel="noopener" class="nav-cta">CoHabitat ↗</a>
+        <div class="lang-switch">
+          <a class="lang-btn" href="/projets/pointe-est/" lang="fr" hreflang="fr-CA" aria-label="Afficher en français">FR</a>
+          <a class="lang-btn" href="/en/projets/pointe-est/" lang="en" hreflang="en" aria-label="Display in English">EN</a>
+          <a class="lang-btn active" href="/es/projets/pointe-est/" lang="es" hreflang="es" aria-label="Mostrar en español">ES</a>
+        </div>
+      </nav>
+    </div>
+  </header>
+
+  <div class="page-hero">
+    <div class="page-hero-inner">
+      <p class="page-eyebrow"><span>Proyectos Modulimo</span></p>
+      <h1><span>Pointe Est — Montreal</span></h1>
+      <span class="concept-badge"><span>Concepto preliminar · PPCMOI en curso</span></span>
+      <p><span>Primer despliegue del modelo Modulimo — un edificio multigeneracional de madera maciza en la rue Bureau, en Pointe-aux-Trembles. Tres familias extensas, coche compartido colectivo, bosque comestible. Las características finales se definirán con el arquitecto.</span></p>
+    </div>
+  </div>
+
+  <section class="section">
+    <div class="wrap">
+      <div class="hero-img-wrap">
+        <img src="/images/hero_home.webp" alt="Pointe Est — Modulimo, Pointe-aux-Trembles" loading="lazy"/>
+      </div>
+      <div class="grid-2">
+        <div>
+          <p class="section-label"><span>Proyecto #1</span></p>
+          <h2 class="section-title"><span>El campo en plena ciudad.</span></h2>
+          <p class="section-lead"><span>Pointe-aux-Trembles ofrece un entorno de vida excepcional en el extremo este de Montreal — naturaleza, escuela y transporte a distancia caminable.</span></p>
+          <div class="concept-notice">
+            <div class="concept-notice-icon" aria-hidden="true">i</div>
+            <p><strong><span>Presentación conceptual.</span></strong> <span>Las características a continuación ilustran la intención del proyecto ajustado presentado bajo el marco PPCMOI. Las dimensiones, superficies, número de viviendas y servicios</span> <strong><span>serán finalizados con el arquitecto designado</span></strong> <span>y están sujetos a la aprobación del distrito.</span></p>
+          </div>
+          <div class="info-list">
+            <div class="info-row"><div class="info-dot"></div><div><h4><span>Estructura de madera maciza CLT — 3 plantas</span></h4><p><span>Paneles laminados cruzados prefabricados en fábrica — rapidez, calidad controlada, baja huella de carbono. Núcleo de hormigón para el montacargas y las escaleras. Implantación propuesta de cerca del 38 % del lote de la rue Bureau (zona 007), muy por debajo del máximo permitido del 50 %.</span></p></div></div>
+            <div class="info-row"><div class="info-dot"></div><div><h4><span>6 viviendas emparejadas — modelo multigeneracional</span></h4><p><span>Cada planta empareja una vivienda familiar de 3 habitaciones (5½) con una vivienda de 1 o 2 habitaciones — abuelos o un joven adulto independiente junto a la familia, bajo un mismo techo. 6 viviendas en total en 3 plantas. Mascotas permitidas, vista al río.</span></p></div></div>
+            <div class="info-row"><div class="info-dot"></div><div><h4><span>Coche compartido colectivo en el sótano</span></h4><p><span>4 plazas Modulimo en coche compartido CoHabitat desde el día 1 — ninguna plaza privada. Reserva por la aplicación, minivans eléctricas compartidas entre los residentes.</span></p></div></div>
+            <div class="info-row"><div class="info-dot"></div><div><h4><span>Bosque comestible + techo verde</span></h4><p><span>Patio trasero dedicado al verdeo: árboles frutales, plantas comestibles y corredor de biodiversidad. Azotea-terraza verde con paneles fotovoltaicos y vista al río.</span></p></div></div>
+            <div class="info-row"><div class="info-dot"></div><div><h4><span>Propietario-ocupante + CoHabitat</span></h4><p><span>El fundador habita el edificio — anclaje local y gobernanza de proximidad. Gestión de recursos, reservas y comunicaciones residenciales mediante CoHabitat, operativo en la entrega.</span></p></div></div>
+          </div>
+          <a href="/postuler/?building=a41b3b31-1681-4cb1-b54c-69486d27e132" class="btn-primary"><span>Manifestar mi interés →</span></a>
+        </div>
+        <div><img src="/images/immeuble_annote.webp" alt="Pointe Est — structure annotée" style="border-radius:12px;width:100%;" loading="lazy"/></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section-alt">
+    <div class="wrap">
+      <p class="section-label"><span>Atractivos locales</span></p>
+      <h2 class="section-title"><span>La estrella es la naturaleza.</span></h2>
+      <p class="section-lead"><span>Pointe-aux-Trembles, en el extremo este de la isla de Montreal, entre el río San Lorenzo y el Rivière des Prairies — un entorno donde lo esencial se alcanza caminando.</span></p>
+      <div class="grid-2">
+        <div class="map-wrap"><img src="https://simonvelucia-afk.github.io/modulimo-home/images/Localisation_16365.webp" alt="Vue aérienne du secteur Pointe Est — Pointe-aux-Trembles" loading="lazy"/></div>
+        <div class="loc-list">
+          <div class="loc-item"><div class="loc-icon"><svg viewBox="0 0 24 24"><path d="M3 9 L12 3 L21 9 L21 20 L3 20Z"/><rect x="9" y="14" width="6" height="6"/></svg></div><div><h4><span>Terminal de autobús</span></h4><p><span>Vecino inmediato del edificio — acceso directo a la red STM</span></p></div></div>
+          <div class="loc-item"><div class="loc-icon"><svg viewBox="0 0 24 24"><path d="M2 14 Q7 10 12 14 T22 14"/><path d="M2 18 Q7 14 12 18 T22 18"/></svg></div><div><h4><span>Río San Lorenzo y Rivière des Prairies</span></h4><p><span>Dos cuerpos de agua principales rodean el sector</span></p></div></div>
+          <div class="loc-item"><div class="loc-icon"><svg viewBox="0 0 24 24"><path d="M12 2C8 2 5 5 5 9C5 15 12 22 12 22C12 22 19 15 19 9C19 5 16 2 12 2Z"/><circle cx="12" cy="9" r="3"/></svg></div><div><h4><span>Escuela primaria De La Belle-Rive</span></h4><p><span>Adyacente al proyecto, patio escolar junto al río</span></p></div></div>
+          <div class="loc-item"><div class="loc-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 20C4 16 8 13 12 13C16 13 20 16 20 20"/></svg></div><div><h4><span>Parques a distancia caminable</span></h4><p><span>Plage de l'Est, Parc du Bout-de-l'Île, Parc Médéric-Archambault y jardín comunitario Sainte-Maria-Goretti</span></p></div></div>
+          <div class="loc-item"><div class="loc-icon"><svg viewBox="0 0 24 24"><rect x="4" y="8" width="16" height="12"/><path d="M4 8 L12 3 L20 8"/><path d="M9 20 L9 14 L15 14 L15 20"/></svg></div><div><h4><span>Sala comunitaria</span></h4><p><span>Espacio del barrio para encuentros y actividades</span></p></div></div>
+          <div class="loc-item"><div class="loc-icon"><svg viewBox="0 0 24 24"><path d="M12 2 L12 8"/><path d="M9 5 L15 5"/><path d="M5 22 L5 11 L12 7 L19 11 L19 22 Z"/></svg></div><div><h4><span>Iglesia Sainte-Maria-Goretti</span></h4><p><span>Lugar de culto histórico del barrio</span></p></div></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section-alt">
+    <div class="wrap">
+      <p class="section-label"><span>Implantación</span></p>
+      <h2 class="section-title"><span>Pointe-aux-Trembles — Rue Bureau</span></h2>
+      <p class="section-lead"><span>Implantación propuesta de cerca del 38 % del lote — muy por debajo del máximo permitido del 50 % (zona 007). Retiro frontal de 6 m y márgenes laterales de 1,5 m. Sótano con 4 plazas de estacionamiento interior. Vista conceptual simplificada — proyecto en desarrollo, trámite PPCMOI en curso.</span></p>
+      <div class="map-wrap" style="max-width:720px;"><img src="/images/axono-pointe-est.webp" alt="Axonométrie conceptuelle du projet Pointe Est — rue Bureau" loading="lazy"/></div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="wrap">
+      <p class="section-label"><span>Trayectoria del proyecto</span></p>
+      <h2 class="section-title"><span>De la idea al permiso — paso a paso.</span></h2>
+      <p class="section-lead"><span>El proyecto Pointe Est es el primer despliegue Modulimo. Esta es su trayectoria regulatoria en el distrito Rivière-des-Prairies–Pointe-aux-Trembles.</span></p>
+      <div class="timeline">
+
+        <div class="tl-item">
+          <span class="tl-marker"></span>
+          <p class="tl-date"><span>Invierno 2026</span></p>
+          <h3 class="tl-title"><span>Concepto inicial — Pointe Est</span></h3>
+          <p class="tl-text"><span>Primer proyecto Modulimo: edificio multifamiliar de madera CLT en el</span> <strong>16365, rue Bureau</strong><span>. Diseño integrado desde el inicio — coche compartido colectivo, gestión CoHabitat, modelo multigeneracional y bosque comestible en el patio trasero.</span></p>
+        </div>
+
+        <div class="tl-item">
+          <span class="tl-marker"></span>
+          <p class="tl-date"><span>Abril de 2026</span></p>
+          <h3 class="tl-title"><span>Presentación — Análisis preliminar de admisibilidad</span></h3>
+          <p class="tl-text"><span>Presentado a la</span> <strong><span>Dirección de desarrollo del territorio y estudios técnicos</span></strong> <span>del distrito, en virtud del Reglamento RCA03-11009. Evaluación sobre la base del Plan de Urbanismo, el Reglamento de Zonificación RCA09-Z01 y la cuadrícula de especificaciones 007.</span></p>
+        </div>
+
+        <div class="tl-item">
+          <span class="tl-marker"></span>
+          <p class="tl-date"><span>9 de mayo de 2026 — Respuesta de la Ciudad</span></p>
+          <h3 class="tl-title"><span>No admisible en el marco habitual — apertura del PPCMOI</span></h3>
+          <p class="tl-text"><span>El distrito constata que el proyecto presentado supera la capacidad del sitio en el marco actual de la zonificación 007 (densidad, implantación, márgenes laterales, estacionamiento). Sin embargo, la Ciudad indica estar</span> <strong><span>dispuesta a estudiar una propuesta revisada bajo el marco del PPCMOI</span></strong> <span>(Proyecto particular de construcción, modificación u ocupación de un edificio), bajo las siguientes condiciones:</span></p>
+          <div class="tl-tags">
+            <span class="tl-tag"><span>Máx. 3 plantas</span></span>
+            <span class="tl-tag"><span>Mín. 4 viviendas</span></span>
+            <span class="tl-tag"><span>Mín. 4 plazas de aparcamiento</span></span>
+            <span class="tl-tag"><span>Márgenes laterales ≥ 1,5 m</span></span>
+            <span class="tl-tag"><span>Tasa de implantación alineada al sector (15–30 %)</span></span>
+            <span class="tl-tag"><span>Integración al marco construido y verdeo</span></span>
+          </div>
+        </div>
+
+        <div class="tl-item">
+          <span class="tl-marker"></span>
+          <p class="tl-date"><span>Mayo de 2026</span></p>
+          <h3 class="tl-title"><span>Proyecto ajustado — conforme al marco PPCMOI</span></h3>
+          <p class="tl-text"><span>Modulimo presenta una versión revisada alineada con los parámetros solicitados por el distrito. El concepto base — coche compartido, multigeneracional, bosque comestible, gestión CoHabitat — se mantiene.</span></p>
+          <div class="tl-tags">
+            <span class="tl-tag ok"><span>3 plantas — conforme</span></span>
+            <span class="tl-tag ok"><span>6 viviendas · 3 familias extensas</span></span>
+            <span class="tl-tag ok"><span>4 plazas de coche compartido colectivo</span></span>
+            <span class="tl-tag ok"><span>Implantación 38 % del lote (máx. permitido 50 %)</span></span>
+            <span class="tl-tag ok"><span>Márgenes laterales 1,5 m (lado mín.)</span></span>
+            <span class="tl-tag ok"><span>Bosque comestible en el patio trasero</span></span>
+            <span class="tl-tag ok"><span>Propietario-ocupante — anclaje local</span></span>
+          </div>
+        </div>
+
+        <div class="tl-item is-current">
+          <span class="tl-marker"></span>
+          <p class="tl-date"><span>3 de junio de 2026 — En curso</span></p>
+          <h3 class="tl-title"><span>Plano de implantación revisado (r2)</span></h3>
+          <p class="tl-text"><span>El arquitecto designado emite la revisión r2 del plano de implantación. El programa se concreta: <strong>6 viviendas multigeneracionales en 3 plantas</strong> — cada planta empareja una vivienda de 3 habitaciones con una de 1 o 2 habitaciones — con una implantación del 38 % del lote y 4 plazas de estacionamiento interior en el sótano. Documentos emitidos con carácter preliminar («no para construcción»), sujetos a la aprobación del distrito.</span></p>
+        </div>
+
+        <div class="tl-item is-future">
+          <span class="tl-marker"></span>
+          <p class="tl-date"><span>Verano de 2026 — Próximos pasos</span></p>
+          <h3 class="tl-title"><span>Presentación formal del PPCMOI</span></h3>
+          <p class="tl-text"><span>Reunión con la asesora de planificación para validar la admisibilidad del modelo ajustado, revisión de los planos (implantación, estacionamientos colectivos, paisajismo) y presentación formal de la solicitud PPCMOI al distrito.</span></p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <section class="section section-alt">
+    <div class="wrap">
+      <p class="section-label"><span>Comodidades</span></p>
+      <h2 class="section-title"><span>Un entorno de vida completo.</span></h2>
+      <p class="section-lead"><span>Cada edificio Modulimo integra comodidades colectivas diseñadas para la vida familiar.</span></p>
+      <div class="cards">
+        <div class="card"><img src="/images/EspacesCommun.webp" alt="Salle commune" loading="lazy"/><div class="card-body"><h4><span>Sala común</span></h4><p><span>Cine en casa, música, encuentros — un espacio de vida compartido y polivalente.</span></p></div></div>
+        <div class="card"><img src="/images/EspaceEntrainement.webp" alt="Espace fitness" loading="lazy"/><div class="card-body"><h4><span>Espacio fitness</span></h4><p><span>Elíptica, bicicleta estática, pesas — a tu disposición en todo momento.</span></p></div></div>
+        <div class="card"><img src="/images/Monte-Charge-thumb.webp" alt="Monte-charge" loading="lazy" data-lightbox="/images/Monte-Charge.webp" data-lightbox-alt="Monte-charge résidentiel — du garage au toit, 3 étages" style="aspect-ratio:auto;object-fit:contain;background:#f4f3f0;"/><div class="card-body"><h4>Monte-charge <span style="font-size:.7rem;color:#3a7a52;font-weight:600;text-transform:uppercase;letter-spacing:.06em;"><span>· Producto Modulimo</span></span></h4><p>Premier déploiement du <a href="/es/produits/#equipements" style="color:inherit;text-decoration:underline;"><span>montacargas residencial Modulimo</span></a><span> — del sótano a la terraza, para compras, bicicletas, equipos y pequeñas mudanzas entre plantas.</span></p></div></div>
+        <div class="card"><img src="/images/Verdure.webp" alt="Arbres fruitiers" loading="lazy"/><div class="card-body"><h4><span>Árboles frutales</span></h4><p><span>Manzanos, cerezos, amelanchiers, ciruelos — naturaleza y autosuficiencia.</span></p></div></div>
+        <div class="card"><img src="/images/chien.webp" alt="Animaux permis" loading="lazy"/><div class="card-body"><h4><span>Mascotas permitidas</span></h4><p><span>Limpios, silenciosos, pacíficos — tu compañero es bienvenido.</span></p></div></div>
+        <div class="card"><img src="/images/minivan.webp" alt="Auto partage" loading="lazy"/><div class="card-body"><h4><span>Coche compartido</span></h4><p><span>1 a 2 minivans eléctricas Modulimo — reserva mediante CoHabitat.</span></p></div></div>
+        <div class="card"><img src="/images/SpaNage.webp" alt="Spa de nage" loading="lazy"/><div class="card-body"><h4><span>Spa de natación</span></h4><p><span>Piscina climatizada a contracorriente — baño y relajación en las cuatro estaciones.</span></p></div></div>
+        <div class="card"><img src="/images/PlageEst.webp" alt="Plage de l'Est" loading="lazy"/><div class="card-body"><h4><span>Playa del Este</span></h4><p><span>Acceso directo al río San Lorenzo a pocos minutos a pie.</span></p></div></div>
+        <div class="card"><img src="/images/Rangement.webp" alt="Rangement" loading="lazy"/><div class="card-body"><h4><span>Almacenamiento</span></h4><p><span>Casilleros individuales en el sótano — para tus artículos de temporada.</span></p></div></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section-alt">
+    <div class="wrap">
+      <p class="section-label"><span>Marco de vida</span></p>
+      <h2 class="section-title"><span>Reglamento del edificio.</span></h2>
+      <p class="section-lead"><span>Un marco común claro, diseñado para garantizar la calidad de vida de todos los residentes.</span></p>
+      <div class="accordion" id="reglAccordion">
+        <button class="acc-trigger" id="reglTrigger" aria-expanded="false"><span><span>Reglamento Modulimo Estándar — 16 artículos</span></span><span class="acc-icon">▾</span></button>
+        <div class="acc-body" id="reglBody">
+          <p class="acc-note"><span>Este reglamento se aplica a todos los edificios de la red Modulimo y constituye un anexo al contrato de arrendamiento.</span></p>
+          <div class="acc-grid">
+            <div class="acc-article"><h4><span>1. Uso de la vivienda</span></h4><p><span>La vivienda se alquila con fines exclusivamente residenciales. Toda actividad comercial que cause molestias está prohibida sin autorización escrita.</span></p></div>
+            <div class="acc-article"><h4><span>2. Edificio libre de humo</span></h4><p><span>Está prohibido fumar o vapear en las viviendas, en los balcones, en las áreas comunes y en el terreno.</span></p></div>
+            <div class="acc-article"><h4><span>3. Mascotas</span></h4><p><span>Se puede permitir un animal doméstico con autorización. Debe ser limpio, silencioso y no agresivo.</span></p></div>
+            <div class="acc-article"><h4><span>4. Ruido y tranquilidad</span></h4><p><span>Respetar la tranquilidad de los ocupantes. Evitar todo ruido excesivo entre las 22 h y las 7 h.</span></p></div>
+            <div class="acc-article"><h4><span>5. Seguro del inquilino</span></h4><p><span>Debe mantenerse en todo momento un seguro de responsabilidad civil mínimo de 2 000 000 CAD.</span></p></div>
+            <div class="acc-article"><h4><span>6. Responsabilidad y mantenimiento</span></h4><p><span>El inquilino mantiene la vivienda limpia y es responsable de los daños causados por sí mismo, los ocupantes o los animales.</span></p></div>
+            <div class="acc-article"><h4><span>7. Prevención de daños por agua</span></h4><p><span>Toda fuga debe señalarse de inmediato. Temperatura mínima de 15 °C en invierno obligatoria.</span></p></div>
+            <div class="acc-article"><h4><span>8. Modificaciones</span></h4><p><span>No se puede realizar ninguna modificación sin la autorización escrita del propietario.</span></p></div>
+            <div class="acc-article"><h4><span>9. Aparatos de riesgo</span></h4><p><span>Los aparatos que puedan causar daños por agua o sobrecarga eléctrica están prohibidos sin autorización.</span></p></div>
+            <div class="acc-article"><h4><span>10. Subarriendo</span></h4><p><span>Todo subarriendo debe autorizarse por escrito. Cualquier alquiler a corto plazo (Airbnb) está prohibido.</span></p></div>
+            <div class="acc-article"><h4><span>11. Aparcamiento</span></h4><p><span>Plazas reservadas a vehículos en estado de marcha. Reparaciones mecánicas y almacenamiento prohibidos.</span></p></div>
+            <div class="acc-article"><h4><span>12. Espacios exteriores</span></h4><p><span>Las áreas comunes deben mantenerse limpias. Está prohibido almacenar objetos allí.</span></p></div>
+            <div class="acc-article"><h4><span>13. Llaves y seguridad</span></h4><p><span>La reproducción de llaves o dispositivos de acceso está prohibida sin autorización.</span></p></div>
+            <div class="acc-article"><h4><span>14. Inspección</span></h4><p><span>El propietario puede inspeccionar con un aviso previo mínimo de 24 horas, conforme a la ley.</span></p></div>
+            <div class="acc-article"><h4><span>15. Ajuste del alquiler</span></h4><p><span>El alquiler puede ajustarse en el momento de la renovación conforme a las reglas aplicables.</span></p></div>
+            <div class="acc-article"><h4><span>16. Aceptación</span></h4><p><span>La firma del contrato de arrendamiento implica la aceptación integral de este reglamento por parte de todos los ocupantes.</span></p></div>
+          </div>
+          <div style="padding:16px 24px 20px;"><img src="/images/reglement.webp" alt="Règlement Modulimo" style="width:100%;border-radius:8px;border:1px solid var(--line);" loading="lazy"/></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="cta">
+    <h2><span>¿Interesado en Pointe Est?</span></h2>
+    <p><span>El proyecto está en trámite PPCMOI con el distrito y las características finales aún se definirán con el arquitecto. Presenta tu manifestación de interés — te mantendremos informado a medida que el proyecto se concrete.</span></p>
+    <div class="cta-btns">
+      <a href="/postuler/?building=a41b3b31-1681-4cb1-b54c-69486d27e132" class="btn-white"><span>Manifestar mi interés</span></a>
+      <a href="https://cohabitat.modulimo.com" target="_blank" rel="noopener" class="btn-outline-w"><span>Acceder a CoHabitat</span></a>
+    </div>
+    <form class="lead-form" id="leadForm" method="post" action="#">
+      <div class="lf-fields">
+        <p style="font-size:.86rem;color:var(--muted);margin-bottom:16px;"><span>¿Aún no está listo para postular? Déjenos sus datos — le mantendremos informado.</span></p>
+        <div class="lf-grid">
+          <div class="lf-field">
+            <label for="lf-first"><span>Nombre</span></label>
+            <input type="text" id="lf-first" name="first_name" autocomplete="given-name" required />
+          </div>
+          <div class="lf-field">
+            <label for="lf-last"><span>Apellido</span></label>
+            <input type="text" id="lf-last" name="last_name" autocomplete="family-name" required />
+          </div>
+        </div>
+        <div class="lf-field">
+          <label for="lf-email"><span>Correo electrónico</span></label>
+          <input type="email" id="lf-email" name="email" autocomplete="email" required />
+        </div>
+        <div class="lf-field">
+          <label for="lf-message"><span>Mensaje (opcional)</span></label>
+          <textarea id="lf-message" name="message" rows="3"></textarea>
+        </div>
+        <p class="lf-hp" aria-hidden="true"><label>Ne pas remplir / Do not fill<input type="text" name="website" tabindex="-1" autocomplete="off" /></label></p>
+        <div class="lf-field">
+          <label class="lf-consent"><input type="checkbox" name="consent" required /><span><span>Doy mi consentimiento para que Modulimo inc. recopile y utilice la información proporcionada (nombre, correo, mensaje) para contactarme sobre el proyecto Pointe Est. Puedo retirar mi consentimiento en cualquier momento escribiendo a contribution@modulimo.com.</span></span></label>
+        </div>
+        <button type="submit" class="lf-submit">
+          <span class="lf-label-idle"><span>Manténganme informado</span></span>
+          <span class="lf-label-sending"><span>Enviando…</span></span>
+        </button>
+        <div class="lf-status" data-status="invalid" role="alert"><span>Complete los campos obligatorios (nombre, apellido, correo válido) y marque la casilla de consentimiento.</span></div>
+        <div class="lf-status" data-status="fail" role="alert"><span>Ocurrió un error durante el envío. Inténtelo de nuevo o escríbanos a contribution@modulimo.com.</span></div>
+      </div>
+      <div class="lf-success" role="status">
+        <div class="lf-check" aria-hidden="true">✓</div>
+        <h3><span>¡Gracias!</span></h3>
+        <p><span>Su solicitud ha sido recibida — le mantendremos informado de la evolución del proyecto Pointe Est.</span></p>
+      </div>
+    </form>
+  </section>
+
+  <footer class="footer">
+    <div class="footer-inner">
+      <div class="footer-top">
+        <div>
+          <div class="footer-brand"><img src="/images/ModulimoLogoSobre.png" alt="Modulimo" /></div>
+          <p class="footer-tagline"><span>Ecosistema residencial integrado — vivienda, movilidad, servicios y software.</span></p>
+        </div>
+        <div class="footer-nav">
+          <h5><span>Navegación</span></h5>
+          <a href="https://cohabitat.modulimo.com" target="_blank" rel="noopener">CoHabitat</a>
+          <a href="/es/mobilite/"><span>Movilidad</span></a>
+          <a href="/es/securite/"><span>Seguridad</span></a>
+          <a href="/es/projets/"><span>Proyectos</span></a>
+          <a href="/es/produits/"><span>Productos</span></a>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p><span>© 2026 Modulimo — Todos los derechos reservados</span></p>
+        <p>Pointe-aux-Trembles, Montréal</p>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    const toggle = document.getElementById('menuToggle');
+    const nav = document.getElementById('siteNav');
+    if (toggle && nav) {
+      toggle.addEventListener('click', function() {
+        const open = nav.classList.toggle('is-open');
+        toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+      });
+      document.querySelectorAll('#siteNav a').forEach(function(a) {
+        a.addEventListener('click', function() {
+          nav.classList.remove('is-open');
+          toggle.setAttribute('aria-expanded', 'false');
+        });
+      });
+    }
+    const reglTrigger = document.getElementById('reglTrigger');
+    const reglAccordion = document.getElementById('reglAccordion');
+    if (reglTrigger && reglAccordion) {
+      reglTrigger.addEventListener('click', function() {
+        const open = reglAccordion.classList.toggle('is-open');
+        reglTrigger.setAttribute('aria-expanded', open ? 'true' : 'false');
+      });
+    }
+  </script>
+  <script defer src="/js/lightbox.js"></script>
+  <script defer src="/js/lead-form.js"></script>
+  <script type="module" src="/js/theme.js"></script>
+
+</body>
+</html>

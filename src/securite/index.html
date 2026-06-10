@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Sécurité — Modulimo</title>
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --white:#ffffff; --off:#f7f5f0; --dark:#1a1a1a; --mid:#4a4a4a;
+      --muted:#888; --green:#2d7a4f; --green-lt:#e8f5ee; --green-md:#4aaa74;
+      --border:#e0ddd8; --red:#c0392b; --orange:#e67e22; --max:1140px;
+    }
+    *, *::before, *::after { box-sizing:border-box; margin:0; padding:0; }
+    html { scroll-behavior:smooth; }
+    body { background:var(--white); color:var(--dark); font-family:'DM Sans',sans-serif; font-weight:400; line-height:1.65; overflow-x:hidden; max-width:100vw; }
+    a { color:inherit; text-decoration:none; }
+    img { display:block; max-width:100%; }
+
+    /* ── TOPBAR ── */
+    .topbar { position:sticky; top:0; z-index:50; background:var(--off); border-bottom:1px solid var(--border); }
+    .topbar-inner { max-width:var(--max); margin:0 auto; padding:0 24px; height:76px; display:flex; align-items:center; justify-content:space-between; gap:18px; }
+    .brand { display:flex; align-items:center; flex-shrink:0; background:transparent; padding:0; border:none; border-radius:0; cursor:pointer; font:inherit; color:inherit; }
+    .lb-overlay { position:fixed; inset:0; background:rgba(10,12,14,.92); display:none; align-items:center; justify-content:center; z-index:1000; padding:24px; }
+    .lb-overlay.is-open { display:flex; }
+    .lb-image { max-width:min(100%,1100px); max-height:90vh; object-fit:contain; border-radius:6px; box-shadow:0 12px 60px rgba(0,0,0,.5); animation:lb-in .2s ease-out; }
+    .lb-close { position:absolute; top:18px; right:22px; width:44px; height:44px; border-radius:50%; background:rgba(255,255,255,.12); color:#fff; border:1px solid rgba(255,255,255,.2); font-size:1.6rem; line-height:1; cursor:pointer; display:flex; align-items:center; justify-content:center; transition:background .15s; }
+    .lb-close:hover, .lb-close:focus { background:rgba(255,255,255,.22); outline:none; }
+    @keyframes lb-in { from { opacity:0; transform:scale(.96); } to { opacity:1; transform:scale(1); } }
+    .brand img { height:56px; width:auto; display:block; }
+    .nav { display:flex; align-items:center; gap:2px; }
+    .nav a { font-size:.72rem; font-weight:600; letter-spacing:.07em; text-transform:uppercase; color:var(--muted); padding:7px 13px; border-radius:5px; transition:color .15s,background .15s; white-space:nowrap; }
+    .nav a:hover { color:var(--green); background:var(--green-lt); }
+    .nav a.active { color:var(--green); border-bottom:2px solid var(--green); border-radius:0; padding-bottom:5px; }
+    .nav-cta { color:var(--green) !important; border:1px solid var(--green); border-radius:5px; padding:6px 12px !important; margin-left:6px; transition:background .15s,color .15s; }
+    .nav-cta:hover { background:var(--green); color:#fff !important; }
+    .lang-switch { display:inline-flex; align-items:center; gap:0; margin-left:10px; padding-left:10px; border-left:1px solid var(--border); }
+    .lang-btn { font-size:.7rem; font-weight:700; letter-spacing:.06em; color:var(--muted); padding:5px 7px; background:none; border:none; cursor:pointer; font-family:inherit; transition:color .15s; }
+    .lang-btn:hover, .lang-btn.active { color:var(--green); }
+    .lang-btn.active { font-weight:800; }
+    [data-lang] { display:none; }
+    html.lang-fr [data-lang="fr"], html.lang-en [data-lang="en"], html.lang-es [data-lang="es"] { display:revert; }
+    .menu-toggle { display:none; flex-direction:column; justify-content:center; gap:5px; width:40px; height:40px; background:none; border:1px solid var(--border); border-radius:6px; cursor:pointer; padding:8px; }
+    .menu-toggle span { display:block; height:2px; background:var(--green); border-radius:2px; }
+
+    /* ── HERO ── */
+    .mhero { background:var(--off); display:grid; grid-template-columns:1.15fr 1fr; overflow:hidden; position:relative; border-bottom:1px solid var(--border); }
+    .mhero-left { padding:5rem 4rem 4.5rem; display:flex; flex-direction:column; justify-content:center; position:relative; z-index:2; }
+    .mhero-tag { display:inline-flex; align-items:center; gap:.6rem; font-size:.72rem; font-weight:500; letter-spacing:.18em; text-transform:uppercase; color:var(--green); margin-bottom:1.75rem; }
+    .mhero-tag::before { content:''; width:1.5rem; height:1px; background:var(--green); }
+    .mhero-title { font-family:'Syne',sans-serif; font-size:clamp(2.2rem,4vw,3.4rem); font-weight:800; line-height:1.05; letter-spacing:-.025em; color:var(--dark); margin-bottom:1.5rem; }
+    .mhero-title .mgreen { color:var(--green); }
+    .mhero-desc { font-size:1rem; color:var(--mid); max-width:58ch; line-height:1.75; }
+    .mhero-right { position:relative; overflow:hidden; min-height:420px; }
+    .mhero-right img { width:100%; height:100%; object-fit:cover; object-position:center; filter:saturate(.95); }
+    .mhero-right::after { content:''; position:absolute; inset:0; background:linear-gradient(to right,var(--off) 0%,transparent 35%); pointer-events:none; }
+
+    /* ── ALERT LEVELS ── */
+    .malerts { display:grid; grid-template-columns:repeat(3,1fr); border-bottom:1px solid var(--border); }
+    .malert-item { padding:2rem; border-right:1px solid var(--border); display:flex; align-items:center; gap:1.25rem; }
+    .malert-item:last-child { border-right:none; }
+    .malert-dot { width:14px; height:14px; border-radius:50%; flex-shrink:0; box-shadow:0 0 10px currentColor; }
+    .mdot-green { background:var(--green); color:var(--green); }
+    .mdot-blue { background:#2980b9; color:#2980b9; }
+    .mdot-orange { background:var(--orange); color:var(--orange); }
+    .malert-text strong { display:block; font-family:'Syne',sans-serif; font-weight:700; font-size:.85rem; margin-bottom:.15rem; }
+    .malert-text span { font-size:.75rem; color:var(--muted); }
+    .malerts-note { padding:1rem 2rem; background:var(--off); border-bottom:1px solid var(--border); font-size:.78rem; color:var(--mid); text-align:center; line-height:1.6; }
+    .malerts-note strong { color:var(--dark); font-weight:600; }
+
+    /* ── SÉCURITÉ INTRINSÈQUE ── */
+    .mintrinsic { padding:6rem 5rem; background:var(--off); border-bottom:1px solid var(--border); }
+    .msec-tag { font-size:.68rem; font-weight:600; letter-spacing:.2em; text-transform:uppercase; color:var(--green); margin-bottom:1.25rem; display:flex; align-items:center; gap:.6rem; }
+    .msec-tag::after { content:''; width:2rem; height:1px; background:var(--green); }
+    .msec-title { font-family:'Syne',sans-serif; font-size:clamp(1.8rem,3vw,2.8rem); font-weight:800; line-height:1.1; letter-spacing:-.02em; margin-bottom:1.25rem; color:var(--dark); }
+    .msec-body { font-size:1rem; color:var(--mid); line-height:1.75; max-width:52ch; }
+    .mfeatures { display:grid; grid-template-columns:1fr 1fr; gap:1px; background:var(--border); margin-top:2.5rem; border:1px solid var(--border); }
+    .mfeature { background:var(--off); padding:1.5rem; transition:background .2s; }
+    .mfeature:hover { background:var(--green-lt); }
+    .mfeature-icon { font-size:1.4rem; margin-bottom:.6rem; display:block; }
+    .mfeature-name { font-family:'Syne',sans-serif; font-weight:700; font-size:.82rem; margin-bottom:.25rem; color:var(--dark); }
+    .mfeature-desc { font-size:.75rem; color:var(--muted); line-height:1.5; }
+
+    /* ── RISQUES PRIS EN CHARGE (cartes sobres) ── */
+    .mrisks { padding:6rem 5rem; background:var(--white); border-bottom:1px solid var(--border); }
+    .mrisks-header { max-width:var(--max); margin:0 auto 3rem; }
+    .mrisks-grid { max-width:var(--max); margin:0 auto; display:grid; grid-template-columns:repeat(3,1fr); gap:1.25rem; }
+    .mrisk-card { background:var(--off); border:1px solid var(--border); padding:2rem 1.75rem; display:flex; flex-direction:column; gap:.85rem; transition:border-color .2s,background .2s; }
+    .mrisk-card:hover { border-color:var(--green-md); background:var(--green-lt); }
+    .mrisk-card-head { display:flex; align-items:center; gap:.7rem; }
+    .mrisk-dot { width:10px; height:10px; border-radius:50%; flex-shrink:0; }
+    .mdot-greenmd { background:var(--green-md); }
+    .mrisk-level { font-size:.66rem; font-weight:700; letter-spacing:.15em; text-transform:uppercase; color:var(--muted); }
+    .mrisk-title { font-family:'Syne',sans-serif; font-size:1.05rem; font-weight:700; line-height:1.3; color:var(--dark); }
+    .mrisk-desc { font-size:.88rem; color:var(--mid); line-height:1.65; }
+    .mrisk-list { list-style:none; margin-top:.35rem; display:grid; gap:.4rem; }
+    .mrisk-list li { font-size:.8rem; color:var(--mid); line-height:1.5; padding-left:1.1rem; position:relative; }
+    .mrisk-list li::before { content:''; position:absolute; left:0; top:.55rem; width:.45rem; height:1px; background:var(--green-md); }
+
+    /* ── DISCLAIMER ── */
+    .ms2-disclaimer { padding:3rem 5rem; background:var(--green-lt); border-top:2px solid var(--green); display:flex; align-items:flex-start; gap:1.5rem; }
+    .ms2-disclaimer-icon { font-size:1.5rem; flex-shrink:0; margin-top:.1rem; }
+    .ms2-disclaimer-text { font-size:.85rem; color:var(--mid); line-height:1.7; }
+    .ms2-disclaimer-text strong { display:block; font-family:'Syne',sans-serif; font-weight:700; font-size:.9rem; color:var(--green); margin-bottom:.3rem; }
+
+    /* ── FOOTER ── */
+    .footer { background:var(--off); border-top:1px solid var(--border); padding:44px 5rem 32px; }
+    .footer-inner { max-width:var(--max); margin:0 auto; }
+    .footer-top { display:flex; justify-content:space-between; align-items:flex-start; flex-wrap:wrap; gap:32px; margin-bottom:32px; }
+    .footer-brand { display:flex; align-items:center; background:#fff; padding:4px 10px; border-radius:8px; align-self:flex-start; }
+    .footer-brand img { height:32px; width:auto; display:block; }
+
+    /* ── THÈME ÉVÉNEMENTIEL (piloté depuis modulimo-admin) ── */
+    body.theme-femme .topbar { background:#f8bbd0; border-bottom-color:rgba(0,0,0,.08); }
+    body.theme-terre .topbar { background:#43a047; border-bottom-color:rgba(0,0,0,.15); }
+    body.theme-femme .topbar .nav a,
+    body.theme-femme .topbar .nav a:hover,
+    body.theme-femme .topbar .nav a.active { color:#880e4f; background:transparent; border-color:#880e4f; }
+    body.theme-terre .topbar .nav a,
+    body.theme-terre .topbar .nav a:hover,
+    body.theme-terre .topbar .nav a.active,
+    body.theme-terre .menu-toggle span { color:#e53935; background:transparent; border-color:#e53935; }
+    .footer-tagline { font-size:.82rem; color:var(--muted); margin-top:8px; max-width:260px; line-height:1.6; }
+    .footer-nav h5 { font-size:.7rem; font-weight:700; letter-spacing:.1em; text-transform:uppercase; color:var(--muted); margin-bottom:12px; }
+    .footer-nav a { display:block; font-size:.84rem; color:var(--dark); margin-bottom:8px; }
+    .footer-nav a:hover { color:var(--green); }
+    .footer-bottom { border-top:1px solid var(--border); padding-top:20px; display:flex; justify-content:space-between; flex-wrap:wrap; gap:12px; }
+    .footer-bottom p { font-size:.75rem; color:var(--muted); }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width:900px) {
+      .mhero { grid-template-columns:1fr; }
+      .mhero-right { min-height:280px; order:-1; }
+      .mhero-right::after { background:linear-gradient(to bottom,transparent 60%,var(--dark) 100%); }
+      .mhero-left { padding:3.5rem 2rem; }
+      .malerts { grid-template-columns:1fr; }
+      .malert-item { border-right:none; border-bottom:1px solid var(--border); }
+      .mintrinsic { padding:4rem 2rem; }
+      .mrisks { padding:4rem 2rem; }
+      .mrisks-grid { grid-template-columns:1fr; }
+      .ms2-disclaimer { padding:2.5rem 2rem; flex-direction:column; }
+      .footer { padding:44px 2rem 32px; }
+    }
+    @media (max-width:640px) {
+      .mfeatures { grid-template-columns:1fr; }
+      .menu-toggle { display:flex; }
+      .nav { display:none; position:absolute; top:68px; left:0; right:0; background:#1a1a1a; border-bottom:1px solid rgba(255,255,255,.1); flex-direction:column; align-items:stretch; padding:8px 16px 16px; gap:2px; }
+      .nav.is-open { display:flex; }
+      .nav a { padding:12px 14px; border-bottom:1px solid rgba(255,255,255,.08); border-radius:0; }
+      .nav a.active { border-left:3px solid var(--green-md); padding-left:11px; }
+    }
+  </style>
+  <script src="../js/analytics.js" defer></script>
+  <script src="/js/lightbox.js" defer></script>
+</head>
+<body>
+
+  <!-- TOPBAR -->
+  <header class="topbar">
+    <div class="topbar-inner">
+      <button type="button" class="brand" data-lightbox="/images/ModulimoLogoSobre.png" data-lightbox-alt="Modulimo" aria-label="Voir le logo en grand">
+        <img src="/images/ModulimoLogoSobre.png" alt="Modulimo" />
+      </button>
+      <button class="menu-toggle" id="menuToggle" aria-expanded="false" aria-controls="siteNav" aria-label="Menu">
+        <span></span><span></span><span></span>
+      </button>
+      <nav class="nav" id="siteNav">
+        <a href="/"><span data-lang="fr">Accueil</span><span data-lang="en">Home</span><span data-lang="es">Inicio</span></a>
+        <a href="/mobilite"><span data-lang="fr">Mobilité</span><span data-lang="en">Mobility</span><span data-lang="es">Movilidad</span></a>
+        <a href="/securite" class="active"><span data-lang="fr">Sécurité</span><span data-lang="en">Security</span><span data-lang="es">Seguridad</span></a>
+        <a href="/projets"><span data-lang="fr">Projets</span><span data-lang="en">Projects</span><span data-lang="es">Proyectos</span></a>
+        <a href="/produits"><span data-lang="fr">Produits</span><span data-lang="en">Products</span><span data-lang="es">Productos</span></a>
+        <a href="https://cohabitat.modulimo.com" target="_blank" rel="noopener" class="nav-cta">CoHabitat ↗</a>
+        <div class="lang-switch">
+          <button class="lang-btn" data-set-lang="fr" aria-label="Afficher en français">FR</button>
+          <button class="lang-btn" data-set-lang="en" aria-label="Display in English">EN</button>
+          <button class="lang-btn" data-set-lang="es" aria-label="Mostrar en español">ES</button>
+        </div>
+      </nav>
+    </div>
+  </header>
+
+
+  <!-- HERO -->
+  <section class="mhero">
+    <div class="mhero-left">
+      <span class="mhero-tag"><span data-lang="fr">Préparation · Modulimo</span><span data-lang="en">Preparedness · Modulimo</span><span data-lang="es">Preparación · Modulimo</span></span>
+      <h1 class="mhero-title">
+        Un milieu qui prend en charge<br>
+        <span class="mgreen"><span data-lang="fr">la gestion des risques.</span><span data-lang="en">risk management.</span><span data-lang="es">la gestión de riesgos.</span></span>
+      </h1>
+      <p class="mhero-desc">
+        <span data-lang="fr">Chez Modulimo, la préparation aux risques courants est portée par le bâtiment, pas par les résidents. Les scénarios sont identifiés à l'avance, les protocoles écrits, les exercices tenus chaque année — selon le programme « Préparez-vous » du gouvernement du Canada.</span><span data-lang="en">At Modulimo, preparedness for everyday risks is carried by the building, not by residents. Scenarios are identified in advance, protocols written down, drills held every year — following the Canadian government's “Get Prepared” program.</span><span data-lang="es">En Modulimo, la preparación ante los riesgos cotidianos la asume el edificio, no los residentes. Los escenarios se identifican con antelación, los protocolos se redactan y los simulacros se realizan cada año — siguiendo el programa «Get Prepared» del gobierno de Canadá.</span> <strong style="color:var(--dark);font-weight:600;"><span data-lang="fr">Une démarche bienveillante et responsable, où rien n'est laissé au hasard.</span><span data-lang="en">A caring and responsible approach, where nothing is left to chance.</span><span data-lang="es">Un enfoque atento y responsable, donde nada se deja al azar.</span></strong>
+      </p>
+    </div>
+    <div class="mhero-right">
+      <img src="../images/ResidentsForme.png" alt="Résidents Modulimo en salle de surveillance" loading="lazy" />
+    </div>
+  </section>
+
+  <!-- NIVEAUX D'ALERTE -->
+  <div class="malerts">
+    <div class="malert-item">
+      <div class="malert-dot mdot-green"></div>
+      <div class="malert-text">
+        <strong><span data-lang="fr">Niveau Vert — Quotidien</span><span data-lang="en">Green level — Daily</span><span data-lang="es">Nivel verde — Cotidiano</span></strong>
+        <span><span data-lang="fr">Surveillance et entretien continus</span><span data-lang="en">Continuous surveillance and maintenance</span><span data-lang="es">Vigilancia y mantenimiento continuos</span></span>
+      </div>
+    </div>
+    <div class="malert-item">
+      <div class="malert-dot mdot-blue"></div>
+      <div class="malert-text">
+        <strong><span data-lang="fr">Niveau Bleu — Préparation</span><span data-lang="en">Blue level — Preparedness</span><span data-lang="es">Nivel azul — Preparación</span></strong>
+        <span><span data-lang="fr">Trousse 72 h, plan familial et exercices annuels</span><span data-lang="en">72 h kit, family plan and yearly drills</span><span data-lang="es">Kit de 72 h, plan familiar y simulacros anuales</span></span>
+      </div>
+    </div>
+    <div class="malert-item">
+      <div class="malert-dot mdot-orange"></div>
+      <div class="malert-text">
+        <strong><span data-lang="fr">Niveau Orange — <span data-lang="fr">Mise à l'abri</span><span data-lang="en">Shelter-in-place</span><span data-lang="es">Refugio en el lugar</span></span><span data-lang="en">Orange level — Shelter-in-place</span><span data-lang="es">Nivel naranja — Refugio</span></strong>
+        <span><span data-lang="fr">Protocoles d'urgence et directives officielles</span><span data-lang="en">Emergency protocols and official directives</span><span data-lang="es">Protocolos de emergencia y directrices oficiales</span></span>
+      </div>
+    </div>
+  </div>
+  <div class="malerts-note">
+    Voyants <strong>clignotants</strong> pendant un exercice annoncé · voyants <strong>fixes</strong> en situation réelle.
+  </div>
+
+  <!-- SÉCURITÉ INTRINSÈQUE -->
+  <section class="mintrinsic">
+    <div class="msec-tag"><span data-lang="fr">Sécurité intrinsèque</span><span data-lang="en">Built-in security</span><span data-lang="es">Seguridad intrínseca</span></div>
+    <h2 class="msec-title"><span data-lang="fr">Un immeuble pensé</span><span data-lang="en">A building designed</span><span data-lang="es">Un edificio diseñado</span><br><span data-lang="fr">pour la quiétude.</span><span data-lang="en">for peace of mind.</span><span data-lang="es">para la tranquilidad.</span></h2>
+    <p class="msec-body">
+      La sécurité de Modulimo n'est pas un ajout — elle est intégrée à l'architecture du bâtiment. Chaque accès, chaque espace commun et chaque protocole vise la tranquillité des résidents au quotidien, sans en faire un sujet d'inquiétude.
+    </p>
+    <div class="mfeatures">
+      <div class="mfeature">
+        <span class="mfeature-icon">📹</span>
+        <div class="mfeature-name"><span data-lang="fr">Surveillance 24/7</span><span data-lang="en">24/7 surveillance</span><span data-lang="es">Vigilancia 24/7</span></div>
+        <div class="mfeature-desc"><span data-lang="fr">Caméras couvrant tous les accès et espaces communs en continu.</span><span data-lang="en">Cameras covering every entrance and common area continuously.</span><span data-lang="es">Cámaras que cubren todos los accesos y espacios comunes de forma continua.</span></div>
+      </div>
+      <div class="mfeature">
+        <span class="mfeature-icon">🪪</span>
+        <div class="mfeature-name"><span data-lang="fr">Accès magnétique</span><span data-lang="en">Keycard access</span><span data-lang="es">Acceso magnético</span></div>
+        <div class="mfeature-desc"><span data-lang="fr">Cartes magnétiques pour l'entrée, le monte-charge et les zones communes.</span><span data-lang="en">Keycards for the entrance, the freight elevator and common areas.</span><span data-lang="es">Tarjetas magnéticas para la entrada, el montacargas y las zonas comunes.</span></div>
+      </div>
+      <div class="mfeature">
+        <span class="mfeature-icon">🔒</span>
+        <div class="mfeature-name"><span data-lang="fr">Terrain clôturé</span><span data-lang="en">Fenced grounds</span><span data-lang="es">Terreno cercado</span></div>
+        <div class="mfeature-desc"><span data-lang="fr">Périmètre sécurisé avec accès contrôlé pour les résidents et visiteurs.</span><span data-lang="en">Secure perimeter with controlled access for residents and visitors.</span><span data-lang="es">Perímetro seguro con acceso controlado para residentes y visitantes.</span></div>
+      </div>
+      <div class="mfeature">
+        <span class="mfeature-icon">🎓</span>
+        <div class="mfeature-name"><span data-lang="fr">Formation des résidents</span><span data-lang="en">Resident training</span><span data-lang="es">Formación de los residentes</span></div>
+        <div class="mfeature-desc"><span data-lang="fr">Chaque résident est formé aux protocoles d'urgence de l'immeuble dès l'emménagement.</span><span data-lang="en">Every resident is trained on the building's emergency protocols upon moving in.</span><span data-lang="es">Cada residente recibe formación sobre los protocolos de emergencia del edificio al mudarse.</span></div>
+      </div>
+      <div class="mfeature">
+        <span class="mfeature-icon">🌿</span>
+        <div class="mfeature-name"><span data-lang="fr">Sélection des résidents</span><span data-lang="en">Resident selection</span><span data-lang="es">Selección de los residentes</span></div>
+        <div class="mfeature-desc"><span data-lang="fr">Processus de sélection rigoureux pour maintenir un milieu de vie serein.</span><span data-lang="en">Rigorous selection process to maintain a peaceful living environment.</span><span data-lang="es">Proceso de selección riguroso para mantener un entorno de vida sereno.</span></div>
+      </div>
+      <div class="mfeature">
+        <span class="mfeature-icon">🗓️</span>
+        <div class="mfeature-name"><span data-lang="fr">Exercices annuels</span><span data-lang="en">Yearly drills</span><span data-lang="es">Simulacros anuales</span></div>
+        <div class="mfeature-desc"><span data-lang="fr">Exercices simulés et révisions des protocoles, tenus chaque année avec les résidents.</span><span data-lang="en">Simulated drills and protocol reviews held each year with residents.</span><span data-lang="es">Simulacros y revisiones de protocolos realizados cada año con los residentes.</span></div>
+      </div>
+      <div class="mfeature">
+        <span class="mfeature-icon">🎤</span>
+        <div class="mfeature-name"><span data-lang="fr">Conférences thématiques</span><span data-lang="en">Themed talks</span><span data-lang="es">Conferencias temáticas</span></div>
+        <div class="mfeature-desc"><span data-lang="fr">Sessions d'information sur la préparation aux urgences, inspirées du programme « Préparez-vous ».</span><span data-lang="en">Information sessions on emergency preparedness, inspired by the “Get Prepared” program.</span><span data-lang="es">Sesiones informativas sobre preparación para emergencias, inspiradas en el programa «Get Prepared».</span></div>
+      </div>
+      <div class="mfeature">
+        <span class="mfeature-icon">📋</span>
+        <div class="mfeature-name"><span data-lang="fr">Plan d'évacuation ou de confinement</span><span data-lang="en">Evacuation or shelter plan</span><span data-lang="es">Plan de evacuación o de confinamiento</span></div>
+        <div class="mfeature-desc"><span data-lang="fr">Selon le scénario, évacuation vers un point de rassemblement extérieur ou mise à l'abri au refuge central. Plan remis à chaque résident et affiché à chaque étage.</span><span data-lang="en">Depending on the scenario, evacuation to an outside assembly point or shelter at the central refuge. Plan handed to each resident and posted on every floor.</span><span data-lang="es">Según el escenario, evacuación hacia un punto de reunión exterior o refugio en el área central. El plan se entrega a cada residente y se exhibe en cada planta.</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- RISQUES PRIS EN CHARGE -->
+  <section class="mrisks">
+    <div class="mrisks-header">
+      <div class="msec-tag"><span data-lang="fr">Risques pris en charge</span><span data-lang="en">Risks covered</span><span data-lang="es">Riesgos cubiertos</span></div>
+      <h2 class="msec-title"><span data-lang="fr">Trois volets,</span><span data-lang="en">Three sections,</span><span data-lang="es">Tres vertientes,</span><br><span data-lang="fr">un cadre commun.</span><span data-lang="en">a common framework.</span><span data-lang="es">un marco común.</span></h2>
+      <p class="msec-body">
+        Modulimo prépare ses résidents aux situations courantes envisagées par les autorités canadiennes, selon une trame inspirée des Plans Particuliers de Mise en Sûreté (PPMS). L'ensemble repose sur une cellule de coordination identifiée, une mallette de mise en sûreté accessible à chaque palier et un programme annuel d'exercices et d'actualisation.
+      </p>
+    </div>
+    <div class="mrisks-grid">
+      <article class="mrisk-card">
+        <div class="mrisk-card-head">
+          <span class="mrisk-dot mdot-blue"></span>
+          <span class="mrisk-level"><span data-lang="fr">Niveau Bleu · Préparation</span><span data-lang="en">Blue level · Preparedness</span><span data-lang="es">Nivel azul · Preparación</span></span>
+        </div>
+        <h3 class="mrisk-title"><span data-lang="fr">Trousse 72 h et plan familial</span><span data-lang="en">72 h kit and family plan</span><span data-lang="es">Kit de 72 h y plan familiar</span></h3>
+        <p class="mrisk-desc"><span data-lang="fr">Chaque logement reçoit l'information et le matériel recommandés par le programme Préparez-vous, ainsi qu'un plan familial écrit révisé en exercice annuel.</span><span data-lang="en">Each home receives the information and supplies recommended by the Get Prepared program, along with a written family plan reviewed during the yearly drill.</span><span data-lang="es">Cada vivienda recibe la información y el material recomendados por el programa Get Prepared, así como un plan familiar escrito que se revisa en el simulacro anual.</span></p>
+        <ul class="mrisk-list">
+          <li><span data-lang="fr">Eau, nourriture, lampe, couverture de survie</span><span data-lang="en">Water, food, flashlight, emergency blanket</span><span data-lang="es">Agua, comida, linterna, manta de emergencia</span></li>
+          <li><span data-lang="fr">Radio à piles + radio dynamo, piles de rechange</span><span data-lang="en">Battery radio + dynamo radio, spare batteries</span><span data-lang="es">Radio a pilas + radio dinamo, pilas de repuesto</span></li>
+          <li>Feuilles plastique &amp; ruban adhésif pour calfeutrer</li>
+          <li><span data-lang="fr">Plan familial écrit et numéros d'urgence</span><span data-lang="en">Written family plan and emergency numbers</span><span data-lang="es">Plan familiar escrito y números de emergencia</span></li>
+        </ul>
+      </article>
+      <article class="mrisk-card">
+        <div class="mrisk-card-head">
+          <span class="mrisk-dot mdot-orange"></span>
+          <span class="mrisk-level"><span data-lang="fr">Niveau Intermédiaire · Continuité</span><span data-lang="en">Intermediate level · Continuity</span><span data-lang="es">Nivel intermedio · Continuidad</span></span>
+        </div>
+        <h3 class="mrisk-title"><span data-lang="fr">Continuité en cas de perturbation</span><span data-lang="en">Continuity during disruption</span><span data-lang="es">Continuidad ante una perturbación</span></h3>
+        <p class="mrisk-desc"><span data-lang="fr">Panne électrique, événement météo ou interruption des services : le bâtiment maintient ses fonctions essentielles le temps que les services normaux reprennent.</span><span data-lang="en">Power outage, weather event, or service interruption: the building maintains its essential functions until normal services resume.</span><span data-lang="es">Corte eléctrico, evento meteorológico o interrupción de servicios: el edificio mantiene sus funciones esenciales hasta que los servicios normales se reanuden.</span></p>
+        <ul class="mrisk-list">
+          <li><span data-lang="fr">Alimentation électrique de secours</span><span data-lang="en">Backup power supply</span><span data-lang="es">Suministro eléctrico de emergencia</span></li>
+          <li><span data-lang="fr">Réserves d'eau et de matériel communes 72 h</span><span data-lang="en">Common 72 h water and material reserves</span><span data-lang="es">Reservas comunes de agua y material para 72 h</span></li>
+          <li><span data-lang="fr">Communication interne par étage</span><span data-lang="en">Floor-by-floor internal communication</span><span data-lang="es">Comunicación interna por planta</span></li>
+          <li><span data-lang="fr">Coordination via responsables désignés</span><span data-lang="en">Coordination by designated leads</span><span data-lang="es">Coordinación a través de responsables designados</span></li>
+        </ul>
+      </article>
+      <article class="mrisk-card">
+        <div class="mrisk-card-head">
+          <span class="mrisk-dot mdot-orange"></span>
+          <span class="mrisk-level"><span data-lang="fr">Niveau Orange · Mise à l'abri</span><span data-lang="en">Orange level · Shelter-in-place</span><span data-lang="es">Nivel naranja · Refugio</span></span>
+        </div>
+        <h3 class="mrisk-title">Mise à l'abri</h3>
+        <p class="mrisk-desc"><span data-lang="fr">Un même protocole couvre l'urgence radiologique, le phénomène naturel (tempête, événement climatique) et le désordre social aux abords du site. Triptyque officiel du gouvernement du Canada :</span><span data-lang="en">A single protocol covers radiological emergencies, natural events (storms, climate events) and social unrest around the site. Official triptych of the Canadian government:</span><span data-lang="es">Un mismo protocolo cubre la emergencia radiológica, el fenómeno natural (tormenta, evento climático) y el desorden social en los alrededores. Tríptico oficial del gobierno de Canadá:</span> <strong>RESTEZ</strong> <span data-lang="fr">à l'intérieur,</span><span data-lang="en">inside,</span><span data-lang="es">dentro,</span> <strong>ÉCOUTEZ</strong> <span data-lang="fr">les médias officiels,</span><span data-lang="en">official media,</span><span data-lang="es">los medios oficiales,</span> <strong>SUIVEZ</strong> <span data-lang="fr">les directives provinciales et municipales.</span><span data-lang="en">provincial and municipal directives.</span><span data-lang="es">las directrices provinciales y municipales.</span></p>
+        <ul class="mrisk-list">
+          <li><span data-lang="fr">Refuge central (cœur du bâtiment)</span><span data-lang="en">Central shelter (core of the building)</span><span data-lang="es">Refugio central (núcleo del edificio)</span></li>
+          <li><span data-lang="fr">Calfeutrage des portes, fenêtres et aérations</span><span data-lang="en">Sealing of doors, windows and vents</span><span data-lang="es">Sellado de puertas, ventanas y rejillas de ventilación</span></li>
+          <li><span data-lang="fr">Éloignement des fenêtres et murs extérieurs</span><span data-lang="en">Staying away from windows and exterior walls</span><span data-lang="es">Alejamiento de ventanas y muros exteriores</span></li>
+          <li><span data-lang="fr">Suivi des fréquences radio officielles</span><span data-lang="en">Listening to official radio frequencies</span><span data-lang="es">Escucha de las frecuencias de radio oficiales</span></li>
+        </ul>
+      </article>
+    </div>
+  </section>
+
+  <!-- DISCLAIMER -->
+  <div class="ms2-disclaimer">
+    <div class="ms2-disclaimer-icon">ℹ️</div>
+    <div class="ms2-disclaimer-text">
+      <strong><span data-lang="fr">Une préparation alignée sur les standards reconnus</span><span data-lang="en">Aligned with recognized standards</span><span data-lang="es">Alineado con estándares reconocidos</span></strong>
+      Ces protocoles s'inspirent du programme <a href="https://www.preparez-vous.gc.ca" target="_blank" rel="noopener" style="color:var(--green);text-decoration:underline;">Préparez-vous</a> <span data-lang="fr">du gouvernement du Canada et de la trame des</span><span data-lang="en">of the Canadian government and the framework of the</span><span data-lang="es">del gobierno de Canadá y del marco de los</span> <em>Plans Particuliers de Mise en Sûreté (PPMS)</em> <span data-lang="fr">utilisée en France pour les établissements recevant du public. En cas d'urgence réelle, les directives officielles des autorités provinciales et municipales prévalent toujours. Les résidents sont formés à l'ensemble des procédures avant l'emménagement et lors d'exercices annuels.</span><span data-lang="en">used in France for public-facing establishments. In a real emergency, the official directives of provincial and municipal authorities always prevail. Residents are trained on every procedure before moving in and at yearly drills.</span><span data-lang="es">utilizado en Francia para los establecimientos abiertos al público. En caso de emergencia real, las directrices oficiales de las autoridades provinciales y municipales siempre prevalecen. Los residentes reciben formación sobre todos los procedimientos antes de la mudanza y durante los simulacros anuales.</span>
+    </div>
+  </div>
+
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="footer-inner">
+      <div class="footer-top">
+        <div>
+          <div class="footer-brand">
+            <img src="/images/ModulimoLogoSobre.png" alt="Modulimo" />
+          </div>
+          <p class="footer-tagline"><span data-lang="fr">Écosystème résidentiel intégré — logement, mobilité, services et logiciel.</span><span data-lang="en">Integrated residential ecosystem — housing, mobility, services, and software.</span><span data-lang="es">Ecosistema residencial integrado — vivienda, movilidad, servicios y software.</span></p>
+        </div>
+        <div class="footer-nav">
+          <h5><span data-lang="fr">Navigation</span><span data-lang="en">Navigation</span><span data-lang="es">Navegación</span></h5>
+          <a href="https://cohabitat.modulimo.com" target="_blank" rel="noopener">CoHabitat</a>
+          <a href="/mobilite"><span data-lang="fr">Mobilité</span><span data-lang="en">Mobility</span><span data-lang="es">Movilidad</span></a>
+          <a href="/securite"><span data-lang="fr">Sécurité</span><span data-lang="en">Security</span><span data-lang="es">Seguridad</span></a>
+          <a href="/projets"><span data-lang="fr">Projets</span><span data-lang="en">Projects</span><span data-lang="es">Proyectos</span></a>
+          <a href="/produits"><span data-lang="fr">Produits</span><span data-lang="en">Products</span><span data-lang="es">Productos</span></a>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p><span data-lang="fr">© 2026 Modulimo — Tous droits réservés</span><span data-lang="en">© 2026 Modulimo — All rights reserved</span><span data-lang="es">© 2026 Modulimo — Todos los derechos reservados</span></p>
+        <p>Pointe-aux-Trembles, Montréal</p>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    const toggle = document.getElementById('menuToggle');
+    const nav = document.getElementById('siteNav');
+    if (toggle && nav) {
+      toggle.addEventListener('click', function() {
+        const open = nav.classList.toggle('is-open');
+        toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+      });
+      document.querySelectorAll('#siteNav a').forEach(function(a) {
+        a.addEventListener('click', function() {
+          nav.classList.remove('is-open');
+          toggle.setAttribute('aria-expanded', 'false');
+        });
+      });
+    }
+  </script>
+  <script type="module" src="/js/theme.js"></script>
+
+</body>
+</html>
