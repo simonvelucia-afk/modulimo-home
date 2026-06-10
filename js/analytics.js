@@ -62,7 +62,7 @@
       'font-size:.92rem', 'line-height:1.5', 'z-index:10000'
     ].join(';');
     banner.innerHTML =
-      '<p style="margin:0 0 12px;">Nous utilisons Google Analytics (IP anonymisée) pour mesurer la fréquentation du site. Acceptez-vous ces témoins&nbsp;?</p>' +
+      '<p style="margin:0 0 12px;">Nous utilisons Google Analytics (IP anonymisée) pour mesurer la fréquentation du site. Acceptez-vous ces témoins&nbsp;? <a href="/confidentialite/" style="color:#fff;text-decoration:underline;">Politique de confidentialité</a></p>' +
       '<div style="display:flex;gap:8px;flex-wrap:wrap;">' +
       '<button type="button" id="ga-accept" style="background:#3a7a62;color:#fff;border:0;padding:9px 18px;border-radius:6px;font-size:.9rem;cursor:pointer;font-weight:600;">Accepter</button>' +
       '<button type="button" id="ga-reject" style="background:transparent;color:#fff;border:1px solid rgba(255,255,255,.4);padding:9px 18px;border-radius:6px;font-size:.9rem;cursor:pointer;">Refuser</button>' +

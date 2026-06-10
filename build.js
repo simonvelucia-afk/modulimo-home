@@ -93,6 +93,19 @@ const PAGES = [
     },
   },
   {
+    src: 'src/confidentialite/index.html', route: 'confidentialite/',
+    title: {
+      fr: 'Politique de confidentialité — Modulimo',
+      en: 'Privacy Policy — Modulimo',
+      es: 'Política de privacidad — Modulimo',
+    },
+    desc: {
+      fr: "Politique de confidentialité de Modulimo inc. — renseignements personnels recueillis, finalités, témoins, droits d'accès et de rectification (Loi 25).",
+      en: "Modulimo inc. privacy policy — personal information collected, purposes, cookies, access and rectification rights (Quebec Law 25).",
+      es: "Política de privacidad de Modulimo inc. — información personal recopilada, finalidades, cookies, derechos de acceso y rectificación (Ley 25 de Quebec).",
+    },
+  },
+  {
     src: 'src/produits/index.html', route: 'produits/',
     title: {
       fr: 'MODULIMO | Produits',
@@ -109,7 +122,7 @@ const PAGES = [
 
 // Slugs internes réécrits avec préfixe de langue (le reste — /postuler,
 // /images, /js, ancres, externes — ne change pas).
-const ROUTE_SLUGS = ['mobilite', 'securite', 'projets/pointe-est', 'projets', 'produits'];
+const ROUTE_SLUGS = ['mobilite', 'securite', 'projets/pointe-est', 'projets', 'produits', 'confidentialite'];
 
 // ------------------------------------------------------------
 // Extraction d'une langue. Les éléments data-lang consécutifs
