@@ -5,11 +5,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Projets — MODULIMO</title>
   <meta name="description" content="Les projets immobiliers Modulimo — Pointe Est et futurs déploiements du modèle résidentiel intégré." />
-  <link rel="canonical" href="https://www.modulimo.com/projets/" />
-  <link rel="alternate" hreflang="fr-CA" href="https://www.modulimo.com/projets/" />
-  <link rel="alternate" hreflang="en" href="https://www.modulimo.com/en/projets/" />
-  <link rel="alternate" hreflang="es" href="https://www.modulimo.com/es/projets/" />
-  <link rel="alternate" hreflang="x-default" href="https://www.modulimo.com/projets/" />
   <style>
     *, *::before, *::after { box-sizing:border-box; margin:0; padding:0; }
     :root { --green:#2d5a4a; --green-lt:#3a7a62; --green-dk:#1e3d32; --bg:#f4f3f0; --line:#d0cec8; --text:#1a1a18; --muted:#5c5c56; --max:1140px; }
@@ -155,16 +150,16 @@
       <button type="button" class="brand" data-lightbox="/images/ModulimoLogoSobre.png" data-lightbox-alt="Modulimo" aria-label="Voir le logo en grand"><img src="/images/ModulimoLogoSobre.png" alt="Modulimo" /></button>
       <button class="menu-toggle" id="menuToggle" aria-expanded="false" aria-controls="siteNav" aria-label="Menu"><span></span><span></span><span></span></button>
       <nav class="nav" id="siteNav">
-        <a href="/"><span>Accueil</span></a>
-        <a href="/mobilite/"><span>Mobilité</span></a>
-        <a href="/securite/"><span>Sécurité</span></a>
-        <a href="/projets/" class="active"><span>Projets</span></a>
-        <a href="/produits/"><span>Produits</span></a>
+        <a href="/"><span data-lang="fr">Accueil</span><span data-lang="en">Home</span><span data-lang="es">Inicio</span></a>
+        <a href="/mobilite"><span data-lang="fr">Mobilité</span><span data-lang="en">Mobility</span><span data-lang="es">Movilidad</span></a>
+        <a href="/securite"><span data-lang="fr">Sécurité</span><span data-lang="en">Security</span><span data-lang="es">Seguridad</span></a>
+        <a href="/projets" class="active"><span data-lang="fr">Projets</span><span data-lang="en">Projects</span><span data-lang="es">Proyectos</span></a>
+        <a href="/produits"><span data-lang="fr">Produits</span><span data-lang="en">Products</span><span data-lang="es">Productos</span></a>
         <a href="https://cohabitat.modulimo.com" target="_blank" rel="noopener" class="nav-cta">CoHabitat ↗</a>
         <div class="lang-switch">
-          <a class="lang-btn active" href="/projets/" lang="fr" hreflang="fr-CA" aria-label="Afficher en français">FR</a>
-          <a class="lang-btn" href="/en/projets/" lang="en" hreflang="en" aria-label="Display in English">EN</a>
-          <a class="lang-btn" href="/es/projets/" lang="es" hreflang="es" aria-label="Mostrar en español">ES</a>
+          <button class="lang-btn" data-set-lang="fr" aria-label="Afficher en français">FR</button>
+          <button class="lang-btn" data-set-lang="en" aria-label="Display in English">EN</button>
+          <button class="lang-btn" data-set-lang="es" aria-label="Mostrar en español">ES</button>
         </div>
       </nav>
     </div>
@@ -173,13 +168,19 @@
   <div class="page-hero">
     <div class="page-hero-inner">
       <p class="page-eyebrow">
-        <span>Déploiements du modèle Modulimo</span>
+        <span data-lang="fr">Déploiements du modèle Modulimo</span>
+        <span data-lang="en">Modulimo model deployments</span>
+        <span data-lang="es">Despliegues del modelo Modulimo</span>
       </p>
       <h1>
-        <span>Projets immobiliers</span>
+        <span data-lang="fr">Projets immobiliers</span>
+        <span data-lang="en">Real estate projects</span>
+        <span data-lang="es">Proyectos inmobiliarios</span>
       </h1>
       <p>
-        <span>Chaque projet est un déploiement concret du modèle Modulimo — logement familial intégré, mobilité partagée et gestion logicielle dès la livraison.</span>
+        <span data-lang="fr">Chaque projet est un déploiement concret du modèle Modulimo — logement familial intégré, mobilité partagée et gestion logicielle dès la livraison.</span>
+        <span data-lang="en">Each project is a concrete deployment of the Modulimo model — integrated family housing, shared mobility, and software management from day one.</span>
+        <span data-lang="es">Cada proyecto es un despliegue concreto del modelo Modulimo — vivienda familiar integrada, movilidad compartida y gestión por software desde la entrega.</span>
       </p>
     </div>
   </div>
@@ -187,23 +188,31 @@
   <section class="section">
     <div class="wrap">
       <p class="section-label">
-        <span>Projets en cours</span>
+        <span data-lang="fr">Projets en cours</span>
+        <span data-lang="en">Current projects</span>
+        <span data-lang="es">Proyectos en curso</span>
       </p>
       <h2 class="section-title">
-        <span>Premier déploiement actif</span>
+        <span data-lang="fr">Premier déploiement actif</span>
+        <span data-lang="en">First active deployment</span>
+        <span data-lang="es">Primer despliegue activo</span>
       </h2>
       <div class="project-grid">
         <div class="project-card">
-          <a href="/projets/pointe-est/">
-            <div class="project-img"><img src="/images/hero_home.webp" alt="Pointe Est — Modulimo" loading="lazy"/><span class="project-status status-active"><span>En développement</span></span></div>
+          <a href="/projets/pointe-est">
+            <div class="project-img"><img src="../images/hero_home.webp" alt="Pointe Est — Modulimo" data-alt-en="Pointe Est — Modulimo" data-alt-es="Pointe Est — Modulimo" loading="lazy"/><span class="project-status status-active"><span data-lang="fr">En développement</span><span data-lang="en">In development</span><span data-lang="es">En desarrollo</span></span></div>
             <div class="project-body">
               <p class="location">Pointe-aux-Trembles · Montréal</p>
               <h3>Pointe Est</h3>
               <p>
-                <span>Premier immeuble du réseau Modulimo. Structure bois massif CLT, toit-terrasse, commodités collectives et CoHabitat intégré dès la livraison.</span>
+                <span data-lang="fr">Premier immeuble du réseau Modulimo. Structure bois massif CLT, toit-terrasse, commodités collectives et CoHabitat intégré dès la livraison.</span>
+                <span data-lang="en">First building of the Modulimo network. CLT mass timber structure, rooftop terrace, collective amenities and CoHabitat integrated from day one.</span>
+                <span data-lang="es">Primer edificio de la red Modulimo. Estructura de madera maciza CLT, azotea-terraza, comodidades colectivas y CoHabitat integrado desde la entrega.</span>
               </p>
               <span class="project-link">
-                <span>Voir le projet →</span>
+                <span data-lang="fr">Voir le projet →</span>
+                <span data-lang="en">View project →</span>
+                <span data-lang="es">Ver proyecto →</span>
               </span>
             </div>
           </a>
@@ -212,16 +221,24 @@
           <div class="project-body">
             <div class="placeholder-icon"><svg viewBox="0 0 24 24"><path d="M12 2C8 2 5 5 5 9C5 15 12 22 12 22C12 22 19 15 19 9C19 5 16 2 12 2Z"/><circle cx="12" cy="9" r="2.5"/></svg></div>
             <p class="invite-eyebrow">
-              <span>Investisseurs · Propriétaires de terrain</span>
+              <span data-lang="fr">Investisseurs · Propriétaires de terrain</span>
+              <span data-lang="en">Investors · Landowners</span>
+              <span data-lang="es">Inversores · Propietarios de terreno</span>
             </p>
             <h3>
-              <span>Un terrain au potentiel Modulimo ?</span>
+              <span data-lang="fr">Un terrain au potentiel Modulimo ?</span>
+              <span data-lang="en">A site with Modulimo potential?</span>
+              <span data-lang="es">¿Un terreno con potencial Modulimo?</span>
             </h3>
             <p>
-              <span>Le modèle est conçu pour être déployé à grande échelle. Si vous souhaitez vendre un terrain compatible avec le concept, ou investir dans un prochain déploiement, écrivez-nous.</span>
+              <span data-lang="fr">Le modèle est conçu pour être déployé à grande échelle. Si vous souhaitez vendre un terrain compatible avec le concept, ou investir dans un prochain déploiement, écrivez-nous.</span>
+              <span data-lang="en">The model is designed to scale. If you'd like to sell land that fits the concept, or invest in an upcoming deployment, get in touch.</span>
+              <span data-lang="es">El modelo está diseñado para escalar. Si desea vender un terreno compatible con el concepto, o invertir en un próximo despliegue, escríbanos.</span>
             </p>
             <a href="mailto:contribution@modulimo.com?subject=Terrain%20ou%20investissement%20Modulimo" class="invite-cta">
-              <span>contribution@modulimo.com →</span>
+              <span data-lang="fr">contribution@modulimo.com →</span>
+              <span data-lang="en">contribution@modulimo.com →</span>
+              <span data-lang="es">contribution@modulimo.com →</span>
             </a>
           </div>
         </div>
@@ -232,66 +249,72 @@
   <aside class="csa-note">
     <div class="csa-note-inner">
       <p class="csa-label">
-        <span>Cadre normatif</span>
+        <span data-lang="fr">Cadre normatif</span>
+        <span data-lang="en">Standards framework</span>
+        <span data-lang="es">Marco normativo</span>
       </p>
       <p class="csa-title">
-        <span>Nos projets s'inscrivent dans le cadre canadien de la construction modulaire volumétrique.</span>
+        <span data-lang="fr">Nos projets s'inscrivent dans le cadre canadien de la construction modulaire volumétrique.</span>
+        <span data-lang="en">Our projects align with the Canadian framework for volumetric modular construction.</span>
+        <span data-lang="es">Nuestros proyectos se inscriben en el marco canadiense de la construcción modular volumétrica.</span>
       </p>
       <p class="csa-intro">
-        <span>Trois normes CSA structurent la démarche, de la fabrication en usine à l'occupation du bâtiment.</span>
+        <span data-lang="fr">Trois normes CSA structurent la démarche, de la fabrication en usine à l'occupation du bâtiment.</span>
+        <span data-lang="en">Three CSA standards structure the approach, from factory fabrication to building occupancy.</span>
+        <span data-lang="es">Tres normas CSA estructuran el enfoque, desde la fabricación en fábrica hasta la ocupación del edificio.</span>
       </p>
       <ul class="csa-standards">
-        <li><strong>CSA A277</strong> · <span>certification des modules préfabriqués</span></li>
-        <li><strong>CSA Z250</strong> · <span>processus de livraison</span></li>
-        <li><strong>CSA Z252</strong> · <span>conformité et approbation</span></li>
+        <li><strong>CSA A277</strong> · <span data-lang="fr">certification des modules préfabriqués</span><span data-lang="en">prefabricated module certification</span><span data-lang="es">certificación de módulos prefabricados</span></li>
+        <li><strong>CSA Z250</strong> · <span data-lang="fr">processus de livraison</span><span data-lang="en">delivery process</span><span data-lang="es">proceso de entrega</span></li>
+        <li><strong>CSA Z252</strong> · <span data-lang="fr">conformité et approbation</span><span data-lang="en">compliance and approval</span><span data-lang="es">conformidad y aprobación</span></li>
       </ul>
       <p class="csa-phases">
-        <span>Huit phases :</span>
-        <em> <span>préqualification · conception · préconstruction · approvisionnement · fabrication · transport · site et assemblage · occupation</span></em>
+        <span data-lang="fr">Huit phases :</span><span data-lang="en">Eight phases:</span><span data-lang="es">Ocho fases:</span>
+        <em> <span data-lang="fr">préqualification · conception · préconstruction · approvisionnement · fabrication · transport · site et assemblage · occupation</span><span data-lang="en">prequalifying · design · preconstruction · procurement · fabrication · transport · site and assembly · occupancy</span><span data-lang="es">precalificación · diseño · preconstrucción · aprovisionamiento · fabricación · transporte · sitio y ensamble · ocupación</span></em>
       </p>
     </div>
   </aside>
 
   <section class="cta" id="contact">
-    <h2><span>Intéressé par Pointe Est ?</span></h2>
-    <p><span>Les préparatifs avancent — informez-vous pour ne pas manquer votre chance. Baux pré-construction disponibles.</span></p>
+    <h2><span data-lang="fr">Intéressé par Pointe Est ?</span><span data-lang="en">Interested in Pointe Est?</span><span data-lang="es">¿Interesado en Pointe Est?</span></h2>
+    <p><span data-lang="fr">Les préparatifs avancent — informez-vous pour ne pas manquer votre chance. Baux pré-construction disponibles.</span><span data-lang="en">Preparations are advancing — get informed so you don't miss your chance. Pre-construction leases available.</span><span data-lang="es">Los preparativos avanzan — infórmate para no perder la oportunidad. Contratos de arrendamiento previos a la construcción disponibles.</span></p>
     <form class="lead-form" id="leadForm" method="post" action="#">
       <div class="lf-fields">
         <div class="lf-grid">
           <div class="lf-field">
-            <label for="lf-first"><span>Prénom</span></label>
+            <label for="lf-first"><span data-lang="fr">Prénom</span><span data-lang="en">First name</span><span data-lang="es">Nombre</span></label>
             <input type="text" id="lf-first" name="first_name" autocomplete="given-name" required />
           </div>
           <div class="lf-field">
-            <label for="lf-last"><span>Nom</span></label>
+            <label for="lf-last"><span data-lang="fr">Nom</span><span data-lang="en">Last name</span><span data-lang="es">Apellido</span></label>
             <input type="text" id="lf-last" name="last_name" autocomplete="family-name" required />
           </div>
         </div>
         <div class="lf-field">
-          <label for="lf-email"><span>Courriel</span></label>
+          <label for="lf-email"><span data-lang="fr">Courriel</span><span data-lang="en">Email</span><span data-lang="es">Correo electrónico</span></label>
           <input type="email" id="lf-email" name="email" autocomplete="email" required />
         </div>
         <div class="lf-field">
-          <label for="lf-message"><span>Message (facultatif)</span></label>
+          <label for="lf-message"><span data-lang="fr">Message (facultatif)</span><span data-lang="en">Message (optional)</span><span data-lang="es">Mensaje (opcional)</span></label>
           <textarea id="lf-message" name="message" rows="3"></textarea>
         </div>
         <p class="lf-hp" aria-hidden="true"><label>Ne pas remplir / Do not fill<input type="text" name="website" tabindex="-1" autocomplete="off" /></label></p>
         <div class="lf-field">
-          <label class="lf-consent"><input type="checkbox" name="consent" required /><span><span>Je consens à ce que Modulimo inc. recueille et utilise les renseignements fournis (nom, courriel, message) afin de me contacter au sujet du projet Pointe Est. Je peux retirer mon consentement en tout temps en écrivant à contribution@modulimo.com.</span></span></label>
+          <label class="lf-consent"><input type="checkbox" name="consent" required /><span><span data-lang="fr">Je consens à ce que Modulimo inc. recueille et utilise les renseignements fournis (nom, courriel, message) afin de me contacter au sujet du projet Pointe Est. Je peux retirer mon consentement en tout temps en écrivant à contribution@modulimo.com.</span><span data-lang="en">I consent to Modulimo inc. collecting and using the information provided (name, email, message) to contact me about the Pointe Est project. I may withdraw my consent at any time by writing to contribution@modulimo.com.</span><span data-lang="es">Doy mi consentimiento para que Modulimo inc. recopile y utilice la información proporcionada (nombre, correo, mensaje) para contactarme sobre el proyecto Pointe Est. Puedo retirar mi consentimiento en cualquier momento escribiendo a contribution@modulimo.com.</span></span></label>
         </div>
         <button type="submit" class="lf-submit">
-          <span class="lf-label-idle"><span>Informez-moi</span></span>
-          <span class="lf-label-sending"><span>Envoi en cours…</span></span>
+          <span class="lf-label-idle"><span data-lang="fr">Informez-moi</span><span data-lang="en">Keep me informed</span><span data-lang="es">Manténganme informado</span></span>
+          <span class="lf-label-sending"><span data-lang="fr">Envoi en cours…</span><span data-lang="en">Sending…</span><span data-lang="es">Enviando…</span></span>
         </button>
-        <div class="lf-status" data-status="invalid" role="alert"><span>Veuillez remplir les champs requis (prénom, nom, courriel valide) et cocher la case de consentement.</span></div>
-        <div class="lf-status" data-status="fail" role="alert"><span>Une erreur est survenue lors de l'envoi. Veuillez réessayer, ou écrivez-nous à contribution@modulimo.com.</span></div>
+        <div class="lf-status" data-status="invalid" role="alert"><span data-lang="fr">Veuillez remplir les champs requis (prénom, nom, courriel valide) et cocher la case de consentement.</span><span data-lang="en">Please fill in the required fields (first name, last name, valid email) and check the consent box.</span><span data-lang="es">Complete los campos obligatorios (nombre, apellido, correo válido) y marque la casilla de consentimiento.</span></div>
+        <div class="lf-status" data-status="fail" role="alert"><span data-lang="fr">Une erreur est survenue lors de l'envoi. Veuillez réessayer, ou écrivez-nous à contribution@modulimo.com.</span><span data-lang="en">Something went wrong while sending. Please try again, or write to us at contribution@modulimo.com.</span><span data-lang="es">Ocurrió un error durante el envío. Inténtelo de nuevo o escríbanos a contribution@modulimo.com.</span></div>
       </div>
       <div class="lf-success" role="status">
         <div class="lf-check" aria-hidden="true">✓</div>
-        <h3><span>Merci !</span></h3>
-        <p><span>Votre demande a bien été reçue — nous vous tiendrons informé de l'évolution du projet Pointe Est.</span></p>
+        <h3><span data-lang="fr">Merci !</span><span data-lang="en">Thank you!</span><span data-lang="es">¡Gracias!</span></h3>
+        <p><span data-lang="fr">Votre demande a bien été reçue — nous vous tiendrons informé de l'évolution du projet Pointe Est.</span><span data-lang="en">Your request has been received — we will keep you informed as the Pointe Est project moves forward.</span><span data-lang="es">Su solicitud ha sido recibida — le mantendremos informado de la evolución del proyecto Pointe Est.</span></p>
       </div>
-      <p class="lf-more"><span>Prêt à aller plus loin ? <a href="/postuler/?building=a41b3b31-1681-4cb1-b54c-69486d27e132">Déposez votre candidature →</a></span></p>
+      <p class="lf-more"><span data-lang="fr">Prêt à aller plus loin ? <a href="/postuler/?building=a41b3b31-1681-4cb1-b54c-69486d27e132">Déposez votre candidature →</a></span><span data-lang="en">Ready to go further? <a href="/postuler/?building=a41b3b31-1681-4cb1-b54c-69486d27e132">Submit your application →</a></span><span data-lang="es">¿Listo para ir más lejos? <a href="/postuler/?building=a41b3b31-1681-4cb1-b54c-69486d27e132">Presente su candidatura →</a></span></p>
     </form>
   </section>
 
@@ -301,21 +324,25 @@
         <div>
           <div class="footer-brand"><img src="/images/ModulimoLogoSobre.png" alt="Modulimo" /></div>
           <p class="footer-tagline">
-            <span>Écosystème résidentiel intégré — logement, mobilité, services et logiciel.</span>
+            <span data-lang="fr">Écosystème résidentiel intégré — logement, mobilité, services et logiciel.</span>
+            <span data-lang="en">Integrated residential ecosystem — housing, mobility, services, and software.</span>
+            <span data-lang="es">Ecosistema residencial integrado — vivienda, movilidad, servicios y software.</span>
           </p>
         </div>
         <div class="footer-nav">
-          <h5><span>Navigation</span></h5>
+          <h5><span data-lang="fr">Navigation</span><span data-lang="en">Navigation</span><span data-lang="es">Navegación</span></h5>
           <a href="https://cohabitat.modulimo.com" target="_blank" rel="noopener">CoHabitat</a>
-          <a href="/mobilite/"><span>Mobilité</span></a>
-          <a href="/securite/"><span>Sécurité</span></a>
-          <a href="/projets/"><span>Projets</span></a>
-          <a href="/produits/"><span>Produits</span></a>
+          <a href="/mobilite"><span data-lang="fr">Mobilité</span><span data-lang="en">Mobility</span><span data-lang="es">Movilidad</span></a>
+          <a href="/securite"><span data-lang="fr">Sécurité</span><span data-lang="en">Security</span><span data-lang="es">Seguridad</span></a>
+          <a href="/projets"><span data-lang="fr">Projets</span><span data-lang="en">Projects</span><span data-lang="es">Proyectos</span></a>
+          <a href="/produits"><span data-lang="fr">Produits</span><span data-lang="en">Products</span><span data-lang="es">Productos</span></a>
         </div>
       </div>
       <div class="footer-bottom">
         <p>
-          <span>© 2026 Modulimo — Tous droits réservés</span>
+          <span data-lang="fr">© 2026 Modulimo — Tous droits réservés</span>
+          <span data-lang="en">© 2026 Modulimo — All rights reserved</span>
+          <span data-lang="es">© 2026 Modulimo — Todos los derechos reservados</span>
         </p>
         <p>Pointe-aux-Trembles, Montréal</p>
       </div>
