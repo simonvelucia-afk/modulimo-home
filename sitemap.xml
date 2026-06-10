@@ -122,6 +122,30 @@
     <xhtml:link rel="alternate" hreflang="x-default" href="https://www.modulimo.com/projets/pointe-est/"/>
   </url>
   <url>
+    <loc>https://www.modulimo.com/confidentialite/</loc>
+    <lastmod>2026-06-10</lastmod>
+    <xhtml:link rel="alternate" hreflang="fr-CA" href="https://www.modulimo.com/confidentialite/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.modulimo.com/en/confidentialite/"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://www.modulimo.com/es/confidentialite/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.modulimo.com/confidentialite/"/>
+  </url>
+  <url>
+    <loc>https://www.modulimo.com/en/confidentialite/</loc>
+    <lastmod>2026-06-10</lastmod>
+    <xhtml:link rel="alternate" hreflang="fr-CA" href="https://www.modulimo.com/confidentialite/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.modulimo.com/en/confidentialite/"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://www.modulimo.com/es/confidentialite/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.modulimo.com/confidentialite/"/>
+  </url>
+  <url>
+    <loc>https://www.modulimo.com/es/confidentialite/</loc>
+    <lastmod>2026-06-10</lastmod>
+    <xhtml:link rel="alternate" hreflang="fr-CA" href="https://www.modulimo.com/confidentialite/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.modulimo.com/en/confidentialite/"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://www.modulimo.com/es/confidentialite/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.modulimo.com/confidentialite/"/>
+  </url>
+  <url>
     <loc>https://www.modulimo.com/produits/</loc>
     <lastmod>2026-06-10</lastmod>
     <xhtml:link rel="alternate" hreflang="fr-CA" href="https://www.modulimo.com/produits/"/>
