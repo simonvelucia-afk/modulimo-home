@@ -87,9 +87,9 @@ const PAGES = [
       es: 'Pointe Est — Proyectos MODULIMO',
     },
     desc: {
-      fr: "Pointe Est — premier projet immobilier Modulimo à Pointe-aux-Trembles, Montréal. 6 logements multigénérationnels, bois massif CLT, démarche PPCMOI en cours.",
-      en: "Pointe Est — first Modulimo real estate project in Pointe-aux-Trembles, Montreal. 6 multigenerational homes, CLT mass timber, PPCMOI process underway.",
-      es: "Pointe Est — primer proyecto inmobiliario Modulimo en Pointe-aux-Trembles, Montreal. 6 viviendas multigeneracionales, madera maciza CLT, trámite PPCMOI en curso.",
+      fr: "Pointe Est — premier projet immobilier Modulimo à Pointe-aux-Trembles, Montréal. 6 logements multigénérationnels, construction industrialisée performante, démarche PPCMOI en cours.",
+      en: "Pointe Est — first Modulimo real estate project in Pointe-aux-Trembles, Montreal. 6 multigenerational homes, high-performance industrialized construction, PPCMOI process underway.",
+      es: "Pointe Est — primer proyecto inmobiliario Modulimo en Pointe-aux-Trembles, Montreal. 6 viviendas multigeneracionales, construcción industrializada de alto rendimiento, trámite PPCMOI en curso.",
     },
   },
   {
