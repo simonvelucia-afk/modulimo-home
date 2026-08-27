@@ -155,6 +155,71 @@
       .nav a { padding:12px 14px; border-bottom:1px solid rgba(255,255,255,.08); border-radius:0; }
       .nav a.active { border-left:3px solid var(--green-md); padding-left:11px; }
     }
+
+  /* ════════ IMMOTIQUE — sections ajoutées (préfixe mim-) ════════ */
+  .mim-intro { padding:6rem 5rem; background:var(--off); border-bottom:1px solid var(--border); }
+  .mim-wrap { max-width:var(--max); margin:0 auto; }
+  .mim-intro-grid { display:grid; grid-template-columns:1.1fr .9fr; gap:4rem; align-items:start; }
+  .mim-intro-body p { font-size:1rem; color:var(--mid); line-height:1.8; margin-bottom:1.1rem; max-width:56ch; }
+  .mim-intro-body p:last-child { margin-bottom:0; }
+  .mim-intro-body strong { color:var(--dark); font-weight:600; }
+  .mim-aside { border-left:2px solid var(--green); padding:.4rem 0 .4rem 1.6rem; }
+  .mim-aside-q { font-family:'Syne',sans-serif; font-weight:700; font-size:.95rem; color:var(--dark); margin-bottom:.5rem; line-height:1.35; }
+  .mim-aside-a { font-size:.87rem; color:var(--mid); line-height:1.7; margin-bottom:1.6rem; }
+  .mim-aside-a:last-child { margin-bottom:0; }
+
+  .mim-trip { padding:6rem 5rem; background:var(--white); border-bottom:1px solid var(--border); }
+  .mim-trip-grid { max-width:var(--max); margin:2.5rem auto 0; display:grid; grid-template-columns:repeat(3,1fr); gap:1.25rem; }
+  .mim-card { background:var(--off); border:1px solid var(--border); padding:2rem 1.75rem; display:flex; flex-direction:column; gap:.85rem; transition:border-color .2s,background .2s; }
+  .mim-card:hover { border-color:var(--green-md); background:var(--green-lt); }
+  .mim-card.mim-card-limit { background:var(--white); border-color:var(--dark); }
+  .mim-card.mim-card-limit:hover { background:var(--white); border-color:var(--dark); }
+  .mim-card-head { display:flex; align-items:center; gap:.7rem; }
+  .mim-card-dot { width:10px; height:10px; border-radius:50%; flex-shrink:0; background:var(--green-md); }
+  .mim-card-limit .mim-card-dot { background:var(--dark); }
+  .mim-card-kicker { font-size:.66rem; font-weight:700; letter-spacing:.15em; text-transform:uppercase; color:var(--muted); }
+  .mim-card-title { font-family:'Syne',sans-serif; font-size:1.05rem; font-weight:700; line-height:1.3; color:var(--dark); }
+  .mim-list { list-style:none; display:grid; gap:.55rem; margin-top:.2rem; }
+  .mim-list li { font-size:.85rem; color:var(--mid); line-height:1.55; padding-left:1.1rem; position:relative; }
+  .mim-list li::before { content:''; position:absolute; left:0; top:.6rem; width:.45rem; height:1px; background:var(--green-md); }
+  .mim-card-limit .mim-list li::before { background:var(--dark); }
+
+  .mim-benefits { padding:6rem 5rem; background:var(--off); border-bottom:1px solid var(--border); }
+  .mim-ben-grid { max-width:var(--max); margin:2.5rem auto 0; display:grid; grid-template-columns:repeat(3,1fr); gap:1px; background:var(--border); border:1px solid var(--border); }
+  .mim-ben { background:var(--off); padding:1.9rem 1.6rem; transition:background .2s; }
+  .mim-ben:hover { background:var(--green-lt); }
+  .mim-ben-icon { font-size:1.35rem; display:block; margin-bottom:.75rem; }
+  .mim-ben-name { font-family:'Syne',sans-serif; font-weight:700; font-size:.92rem; margin-bottom:.4rem; color:var(--dark); line-height:1.3; }
+  .mim-ben-desc { font-size:.83rem; color:var(--mid); line-height:1.65; }
+
+  .mim-data { padding:6rem 5rem; background:var(--white); border-bottom:1px solid var(--border); }
+  .mim-data-grid { display:grid; grid-template-columns:1fr 1fr; gap:4rem; align-items:center; }
+  .mim-flow { display:flex; align-items:stretch; gap:0; border:1px solid var(--border); background:var(--off); }
+  .mim-step { flex:1; padding:1.6rem 1.2rem; border-right:1px solid var(--border); }
+  .mim-step:last-child { border-right:none; }
+  .mim-step-n { font-size:.62rem; font-weight:700; letter-spacing:.16em; text-transform:uppercase; color:var(--green); display:block; margin-bottom:.6rem; }
+  .mim-step-t { font-family:'Syne',sans-serif; font-weight:700; font-size:.85rem; color:var(--dark); margin-bottom:.3rem; line-height:1.3; }
+  .mim-step-d { font-size:.76rem; color:var(--muted); line-height:1.55; }
+  .mim-flow-note { margin-top:1.2rem; font-size:.8rem; color:var(--muted); line-height:1.7; }
+  .mim-flow-note strong { color:var(--dark); font-weight:600; }
+
+  .mim-tie { padding:4.5rem 5rem; background:var(--green-lt); border-bottom:1px solid var(--border); }
+  .mim-tie-inner { max-width:var(--max); margin:0 auto; display:grid; grid-template-columns:auto 1fr; gap:2.5rem; align-items:center; }
+  .mim-tie-dots { display:flex; gap:.7rem; }
+  .mim-tie-dots span { width:16px; height:16px; border-radius:50%; }
+  .mim-tie-text h3 { font-family:'Syne',sans-serif; font-size:1.35rem; font-weight:800; letter-spacing:-.015em; color:var(--dark); margin-bottom:.6rem; line-height:1.25; }
+  .mim-tie-text p { font-size:.92rem; color:var(--mid); line-height:1.75; max-width:70ch; }
+
+  @media (max-width:900px) {
+    .mim-intro, .mim-trip, .mim-benefits, .mim-data { padding:4rem 2rem; }
+    .mim-tie { padding:3rem 2rem; }
+    .mim-intro-grid, .mim-data-grid { grid-template-columns:1fr; gap:2.5rem; }
+    .mim-trip-grid, .mim-ben-grid { grid-template-columns:1fr; }
+    .mim-flow { flex-direction:column; }
+    .mim-step { border-right:none; border-bottom:1px solid var(--border); }
+    .mim-step:last-child { border-bottom:none; }
+    .mim-tie-inner { grid-template-columns:1fr; gap:1.2rem; }
+  }
   </style>
   <script src="/js/analytics.js" defer></script>
   <script src="/js/lightbox.js" defer></script>
@@ -339,6 +404,164 @@
   </section>
 
   <!-- DISCLAIMER -->
+  <!-- ══ 1 · INTRODUCTION ══ -->
+  <section class="mim-intro">
+    <div class="mim-wrap">
+      <div class="msec-tag"><span>Immotique &#183; pr&#233;vue d&#232;s le premier plan</span></div>
+      <h2 class="msec-title"><span>Un immeuble qui veille<br>quand personne ne regarde.</span></h2>
+      <div class="mim-intro-grid" style="margin-top:2.5rem">
+        <div class="mim-intro-body">
+          <p><span>Les protocoles, les exercices et la trousse de 72 heures couvrent l'exceptionnel. <strong>L'immotique couvre l'ordinaire</strong> &#8212; la fuite sous le chauffe-eau un mardi apr&#232;s-midi, le chauffage qui l&#226;che pendant les vacances, la porte du garage rest&#233;e ouverte. Ce sont ces choses-l&#224; qui co&#251;tent cher et qui r&#233;veillent les gens &#224; trois heures du matin.</span></p>
+          <p><span>L'immotique, c'est la domotique &#224; l'&#233;chelle du b&#226;timent : des capteurs, quelques automatismes, et un ordinateur dans le local technique qui met le tout ensemble. Chez Modulimo, elle n'est pas un ajout de derni&#232;re minute : <strong>elle est pr&#233;vue au projet depuis le d&#233;part</strong>, au m&#234;me titre que l'escalier pens&#233; pour bien vieillir ou le puits central pr&#234;t &#224; recevoir une plateforme &#233;l&#233;vatrice. Les conduits, les attentes et les capteurs se posent pendant la construction, parce qu'apr&#232;s, il faut rouvrir les murs.</span></p>
+          <p><span>Le r&#233;sultat, pour un r&#233;sident, tient en une phrase : <strong>le b&#226;timent prend en charge ce qu'il peut prendre en charge</strong>, et vous laisse le reste.</span></p>
+        </div>
+        <div class="mim-aside">
+          <div class="mim-aside-q"><span>Est-ce que &#231;a veut dire une application de plus ?</span></div>
+          <div class="mim-aside-a"><span>Non. Tout passe par CoHabitat, l'application d&#233;j&#224; utilis&#233;e pour les r&#233;servations, l'autopartage et les espaces communs. Rien &#224; installer : &#231;a s'ouvre dans un navigateur.</span></div>
+          <div class="mim-aside-q"><span>Est-ce que je dois m'en occuper ?</span></div>
+          <div class="mim-aside-a"><span>Non plus. En fonctionnement normal, l'immotique ne se voit pas. Elle devient visible seulement quand quelque chose sort de l'ordinaire.</span></div>
+          <div class="mim-aside-q"><span>Et dans mon logement ?</span></div>
+          <div class="mim-aside-a"><span>Votre logement reste le v&#244;tre. Le b&#226;timent s'occupe des communs et de l'infrastructure ; ce que vous ajoutez chez vous, c'est votre choix.</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+  
+  <!-- ══ 2 · OBSERVE / AGIT / NE FERA JAMAIS ══ -->
+  <section class="mim-trip">
+    <div class="mim-wrap">
+      <div class="msec-tag"><span>Ce que fait le b&#226;timent</span></div>
+      <h2 class="msec-title"><span>Trois listes, dont la troisi&#232;me<br>compte autant que les deux autres.</span></h2>
+      <div class="mim-trip-grid">
+        <div class="mim-card">
+          <div class="mim-card-head"><span class="mim-card-dot"></span><span class="mim-card-kicker"><span>Il observe</span></span></div>
+          <div class="mim-card-title"><span>En continu, sans image ni micro</span></div>
+          <ul class="mim-list">
+            <li><span>L'eau : fuite, d&#233;bit anormal, risque de gel</span></li>
+            <li><span>La fum&#233;e et le monoxyde de carbone</span></li>
+            <li><span>La temp&#233;rature et l'humidit&#233; des espaces communs</span></li>
+            <li><span>Le courant : panne, retour, consommation de l'immeuble</span></li>
+            <li><span>Les portes et les acc&#232;s du terrain et du garage</span></li>
+            <li><span>Les &#233;quipements partag&#233;s : bornes, buanderie, serre</span></li>
+          </ul>
+        </div>
+        <div class="mim-card">
+          <div class="mim-card-head"><span class="mim-card-dot"></span><span class="mim-card-kicker"><span>Il agit seul</span></span></div>
+          <div class="mim-card-title"><span>Sans attendre que quelqu'un d&#233;cide</span></div>
+          <ul class="mim-list">
+            <li><span>Ferme la vanne d'eau d&#232;s les premiers millilitres</span></li>
+            <li><span>Maintient les communs hors gel en cas de panne</span></li>
+            <li><span>Allume la signalisation d'&#233;tage au bon niveau</span></li>
+            <li><span>Pr&#233;vient la bonne personne &#8212; pas tout l'immeuble</span></li>
+            <li><span>D&#233;cale la recharge et l'eau chaude aux heures creuses</span></li>
+            <li><span>Garde une trace de ce qui s'est pass&#233; et quand</span></li>
+          </ul>
+        </div>
+        <div class="mim-card mim-card-limit">
+          <div class="mim-card-head"><span class="mim-card-dot"></span><span class="mim-card-kicker"><span>Il ne le fera jamais</span></span></div>
+          <div class="mim-card-title"><span>Les limites font partie du syst&#232;me</span></div>
+          <ul class="mim-list">
+            <li><span>Aucune cam&#233;ra &#224; l'int&#233;rieur des logements</span></li>
+            <li><span>Aucune donn&#233;e qui sort du b&#226;timent</span></li>
+            <li><span>Aucun pilotage de votre logement par l'exploitant</span></li>
+            <li><span>Aucune mesure de votre consommation visible par un voisin</span></li>
+            <li><span>Aucune conservation ind&#233;finie : les dur&#233;es sont &#233;crites</span></li>
+            <li><span>Aucune fonction vitale confi&#233;e &#224; un logiciel : l'alarme incendie et l'&#233;l&#233;vateur restent des syst&#232;mes certifi&#233;s et ind&#233;pendants</span></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+  
+  <!-- ══ 3 · BÉNÉFICES RÉSIDENTS ══ -->
+  <section class="mim-benefits">
+    <div class="mim-wrap">
+      <div class="msec-tag"><span>Au quotidien</span></div>
+      <h2 class="msec-title"><span>Ce que &#231;a change,<br>concr&#232;tement, pour vous.</span></h2>
+      <p class="msec-body" style="margin-top:1rem"><span>Aucun de ces points n'est un gadget : chacun retire une corv&#233;e, un risque ou une d&#233;pense de la vie d'un m&#233;nage.</span></p>
+      <div class="mim-ben-grid">
+        <div class="mim-ben">
+          <span class="mim-ben-icon">&#128167;</span>
+          <div class="mim-ben-name"><span>L'eau se coupe avant le d&#233;g&#226;t</span></div>
+          <div class="mim-ben-desc"><span>Le d&#233;g&#226;t d'eau est la premi&#232;re cause de r&#233;clamation en assurance habitation au Qu&#233;bec. Ici, une sonde le voit au premier litre et une vanne se ferme &#8212; que vous soyez l&#224; ou non.</span></div>
+        </div>
+        <div class="mim-ben">
+          <span class="mim-ben-icon">&#128267;</span>
+          <div class="mim-ben-name"><span>La voiture est charg&#233;e &#224; l'heure du d&#233;part</span></div>
+          <div class="mim-ben-desc"><span>Les bornes se partagent la puissance disponible en fonction des r&#233;servations &#224; venir, pas de l'ordre d'arriv&#233;e. Vous r&#233;servez, elle est pr&#234;te.</span></div>
+        </div>
+        <div class="mim-ben">
+          <span class="mim-ben-icon">&#10052;</span>
+          <div class="mim-ben-name"><span>L'hiver travaille aux heures creuses</span></div>
+          <div class="mim-ben-desc"><span>Eau chaude et recharge se d&#233;calent hors des pointes de consommation, pendant que vous dormez. Vous ne changez rien &#224; vos habitudes ; l'immeuble s'en charge.</span></div>
+        </div>
+        <div class="mim-ben">
+          <span class="mim-ben-icon">&#127968;</span>
+          <div class="mim-ben-name"><span>La salle commune est pr&#234;te en arrivant</span></div>
+          <div class="mim-ben-desc"><span>Chauff&#233;e et &#233;clair&#233;e un quart d'heure avant votre r&#233;servation, en veille le reste du temps. Un espace agr&#233;able sans chauffer une pi&#232;ce vide toute la semaine.</span></div>
+        </div>
+        <div class="mim-ben">
+          <span class="mim-ben-icon">&#128273;</span>
+          <div class="mim-ben-name"><span>Faire entrer quelqu'un sans &#234;tre l&#224;</span></div>
+          <div class="mim-ben-desc"><span>Un droit d'acc&#232;s temporaire pour le plombier, la livraison ou la gardienne, valable le temps qu'il faut et r&#233;vocable en un geste. Plus de cl&#233; cach&#233;e sous le pot de fleurs.</span></div>
+        </div>
+        <div class="mim-ben">
+          <span class="mim-ben-icon">&#128663;</span>
+          <div class="mim-ben-name"><span>La place visiteur est r&#233;serv&#233;e d'avance</span></div>
+          <div class="mim-ben-desc"><span>Votre invit&#233; a une place, et elle est encore libre quand il arrive. La dur&#233;e est convenue &#224; la r&#233;servation, ce qui &#233;vite la seule chose qui g&#226;che une place visiteur.</span></div>
+        </div>
+        <div class="mim-ben">
+          <span class="mim-ben-icon">&#127793;</span>
+          <div class="mim-ben-name"><span>La serre se surveille toute seule</span></div>
+          <div class="mim-ben-desc"><span>Temp&#233;rature et niveaux des r&#233;servoirs sont relev&#233;s en continu et affich&#233;s dans l'application &#8212; c'est d&#233;j&#224; en fonction, et c'est la d&#233;monstration que le reste tient debout.</span></div>
+        </div>
+        <div class="mim-ben">
+          <span class="mim-ben-icon">&#128276;</span>
+          <div class="mim-ben-name"><span>Une alerte, pas cent notifications</span></div>
+          <div class="mim-ben-desc"><span>Chaque &#233;v&#233;nement va &#224; la personne concern&#233;e : le r&#233;sident pour son logement, la coordination pour l'immeuble. Le silence est le fonctionnement normal.</span></div>
+        </div>
+        <div class="mim-ben">
+          <span class="mim-ben-icon">&#128202;</span>
+          <div class="mim-ben-name"><span>Vous voyez ce que vous consommez</span></div>
+          <div class="mim-ben-desc"><span>Votre courbe, votre comparaison &#224; la moyenne de l'immeuble, l'effet d'un geste. Pour information et pour d&#233;cider &#8212; jamais pour vous refacturer quoi que ce soit.</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+  
+  <!-- ══ 4 · DONNÉES ══ -->
+  <section class="mim-data">
+    <div class="mim-wrap">
+      <div class="mim-data-grid">
+        <div>
+          <div class="msec-tag"><span>Vos donn&#233;es</span></div>
+          <h2 class="msec-title"><span>Tout reste<br>dans l'immeuble.</span></h2>
+          <p class="msec-body" style="margin-top:1.25rem"><span>Il n'y a pas de nuage dans cette histoire. Les capteurs parlent &#224; une machine install&#233;e dans le local technique, et c'est cette machine qui affiche l'information dans votre application. En fonctionnement normal, <strong>aucun octet ne quitte le b&#226;timent</strong>.</span></p>
+          <p class="msec-body" style="margin-top:1rem"><span>Quand vous &#234;tes &#224; l'ext&#233;rieur, vous passez par un tunnel priv&#233; vers cette m&#234;me machine &#8212; le trajet change, la destination non.</span></p>
+        </div>
+        <div>
+          <div class="mim-flow">
+            <div class="mim-step"><span class="mim-step-n">1</span><div class="mim-step-t"><span>Les capteurs</span></div><div class="mim-step-d"><span>Eau, temp&#233;rature, portes, bornes, serre. Aucune image, aucun son.</span></div></div>
+            <div class="mim-step"><span class="mim-step-n">2</span><div class="mim-step-t"><span>La machine du local technique</span></div><div class="mim-step-d"><span>Elle enregistre, d&#233;cide, alerte. Elle est ici, pas ailleurs.</span></div></div>
+            <div class="mim-step"><span class="mim-step-n">3</span><div class="mim-step-t"><span>Votre &#233;cran</span></div><div class="mim-step-d"><span>Dans CoHabitat, sur le r&#233;seau de l'immeuble ou par tunnel priv&#233; &#224; l'ext&#233;rieur.</span></div></div>
+          </div>
+          <p class="mim-flow-note"><span><strong>Ce que voit qui.</strong> Les donn&#233;es fines de votre logement ne sont visibles que par vous. L'immeuble ne travaille que sur des totaux. Les dur&#233;es de conservation sont &#233;crites et limit&#233;es, conform&#233;ment &#224; la loi qu&#233;b&#233;coise sur la protection des renseignements personnels.</span></p>
+        </div>
+      </div>
+    </div>
+  </section>
+  
+  <!-- ══ 5 · RETOUR AUX NIVEAUX ══ -->
+  <section class="mim-tie">
+    <div class="mim-tie-inner">
+      <div class="mim-tie-dots"><span class="mdot-green"></span><span class="mdot-blue"></span><span class="mdot-orange"></span></div>
+      <div class="mim-tie-text">
+        <h3><span>Les trois niveaux, en haut de cette page, sont l'&#233;cran de tout &#231;a.</span></h3>
+        <p><span>Vert, bleu, orange : ce ne sont pas des affiches, ce sont des &#233;tats du b&#226;timent. C'est l'immotique qui les tient &#224; jour, qui allume les voyants d'&#233;tage &#8212; clignotants pendant un exercice annonc&#233;, fixes en situation r&#233;elle &#8212; et qui affiche la consigne du moment dans l'application. Le reste du temps, elle ne se voit pas. C'est exactement ce qu'on lui demande.</span></p>
+      </div>
+    </div>
+  </section>
+
   <div class="ms2-disclaimer">
     <div class="ms2-disclaimer-icon">ℹ️</div>
     <div class="ms2-disclaimer-text">
