@@ -6,9 +6,12 @@ identifier les leviers économiques réellement attirants pour la clientèle —
 ceux qui font baisser une dépense que le ménage paie déjà, pas ceux qui
 ajoutent un gadget.
 
-**Périmètre de référence.** Pointe Est : 6 logements jumelés sur 3 étages,
-construction industrialisée, **5 cases de stationnement — 3 au sous-sol et 2
-en cour avant** (version de projet la plus récente), toit végétalisé avec
+**Périmètre de référence.** Pointe Est : **5 logements autorisés sur 3 étages,
+la sixième unité étant aménagée en salle commune avec possibilité de conversion
+en logement plus tard**,
+construction industrialisée, **5 cases de stationnement — 3 au sous-sol pour la
+flotte partagée, 1 case visiteur et 1 case louée à un résident en cour avant**
+(version de projet la plus récente), toit végétalisé avec
 panneaux photovoltaïques, forêt nourricière, propriétaire-occupant, CoHabitat
 opérationnel à la livraison.
 Concept préliminaire en cheminement PPCMOI — les caractéristiques finales
@@ -32,7 +35,7 @@ page Produits s'applique intégralement ici.
 
 L'immotique en petit multilogement est habituellement un mauvais calcul :
 l'ingénierie de contrôle est vendue au bâtiment tertiaire, elle coûte cher, et
-six logements ne l'amortissent pas. Quatre particularités renversent ce
+cinq logements ne l'amortissent pas. Quatre particularités renversent ce
 calcul dans le cas Modulimo.
 
 **1.1 — La construction industrialisée déplace le coût au bon moment.**
@@ -63,6 +66,18 @@ quelqu'un pour la tenir vivante après la deuxième année. Ici, le fondateur es
 propriétaire-occupant : la gouvernance de proximité annoncée sur la page
 Projets est aussi la condition technique de viabilité du système.
 
+**1.5 — Le bâtiment est explicitement évolutif, et l'évolutif se pré-équipe.**
+L'autorisation porte actuellement sur cinq logements ; la sixième unité est
+aménagée en salle commune, avec l'intention de la convertir en logement si le
+cadre le permet un jour. Un espace qui doit changer d'usage est précisément
+celui qu'il faut instrumenter et pré-équiper dès la construction : socle de
+compteur, place au panneau, attentes de plomberie et de ventilation, conduit de
+mesure. Fait au chantier, c'est marginal ; fait après, cela repasse par le
+raccordement électrique et par un permis. C'est le même raisonnement que
+l'escalier « pensé pour bien vieillir » et le puits central prêt à recevoir une
+plateforme élévatrice, déjà au concept — la conversion se prépare, elle ne
+s'improvise pas. Voir §3, rang 7.
+
 **1.4 — Le modèle promet déjà des choses qui *sont* de l'immotique.**
 Trois engagements déjà publiés ne peuvent pas être tenus sans automatisation de
 bâtiment :
@@ -71,7 +86,7 @@ bâtiment :
 |---|---|
 | Niveaux Vert / Bleu / Orange avec « voyants clignotants pendant un exercice, fixes en situation réelle » (page Sécurité) | Un bus de signalisation par étage piloté par un état central — c'est un automate de bâtiment |
 | Cartes d'accès pour l'entrée, les équipements partagés et les zones communes (page Sécurité) | Contrôle d'accès en réseau, avec droits liés aux réservations CoHabitat |
-| Autopartage électrique sans case privée, sur deux zones (3 au sous-sol, 2 en cour avant) | Réservation, déverrouillage, recharge pilotée et répartition de puissance entre deux tableaux |
+| Autopartage sur deux zones — 3 cases de flotte au sous-sol, 1 case visiteur et 1 case louée en cour avant | Réservation, accès temporaire, recharge pilotée et répartition de puissance entre deux tableaux |
 | Système de levage pour les déménagements ; puits central prêt pour une plateforme élévatrice (page Accueil / Pointe Est) | Commande, verrouillages de sécurité, journal d'usage |
 
 **Conclusion de section.** L'immotique n'est pas une option à ajouter au projet
@@ -169,17 +184,42 @@ elles sont des décisions de chantier, pas d'exploitation :
    socle ou bollard de protection, gestion du câble en hiver, et déneigement
    qui doit pouvoir se faire sans arracher l'équipement. Compter un surcoût
    par rapport à une borne intérieure, à faire chiffrer avec l'électricien.
-3. **Ce sont les cases naturellement destinées aux visiteurs et aux courtes
-   durées** — livraison, aide à domicile, invité, entrepreneur — donc les cases
-   dont l'usage se prête le mieux à la réservation et à l'accès temporaire dans
-   CoHabitat. La flotte partagée reste au sous-sol, à l'abri et sous contrôle
-   d'accès.
+3. **Leur affectation est arrêtée et elle n'est pas la même pour les deux :**
+   une **case visiteur temporaire** et une **case louée à un résident**. La
+   flotte partagée reste au sous-sol, à l'abri et sous contrôle d'accès.
 
-*Hypothèse à confirmer :* la répartition ci-dessus (3 cases de flotte au
-sous-sol, 2 cases de visiteurs et de courte durée en cour avant) est celle qui
-découle le plus naturellement de la configuration, mais elle n'est pas arrêtée.
-Si les cases extérieures sont plutôt destinées à des résidents, le nombre de
-bornes et la logique de réservation changent — dis-le et j'ajuste.
+**Les deux cases extérieures ne demandent pas le même outillage.**
+
+*La case visiteur* est un objet de réservation courte durée : créneau réservé
+dans CoHabitat par le résident qui reçoit, droit d'accès temporaire au terrain,
+durée maximale et rappel automatique à l'échéance. C'est du logiciel, pas du
+matériel — et c'est ce qui évite la seule chose qui empoisonne une place
+visiteur : celui qui s'y installe à demeure. Au départ, elle n'a pas besoin de
+borne : **le conduit suffit** (voir point 1), et on ajoute la borne le jour où
+le besoin se manifeste.
+
+*La case louée à un résident* est un contrat récurrent : elle produit un revenu
+mensuel, elle est attribuée à une personne, et c'est là que se logent deux
+questions d'exploitation à trancher avant la livraison.
+
+- **Comment on l'attribue.** Une seule case attribuée dans un immeuble qui dit
+  « aucune case privée » est visible par tout le monde. Une règle écrite
+  d'avance — rotation annuelle avec liste d'attente tenue dans CoHabitat, plutôt
+  que premier arrivé à perpétuité — coûte une décision aujourd'hui et évite une
+  rancune durable. C'est aussi, accessoirement, la première fonction de
+  gouvernance que le logiciel rend visible et vérifiable.
+- **Comment on facture la recharge.** Si la borne de cette case est alimentée
+  par le compteur des communs, **facturer les kWh au locataire de la case est
+  précisément ce que la loi interdit** (§5.1). La forme admissible est un
+  **forfait fixe inclus dans le loyer de la case**, calibré sur une
+  consommation raisonnable et révisable — pas une facture au kilowattheure.
+  À faire valider par un juriste, et à écrire dans le bail plutôt que dans un
+  règlement d'immeuble.
+
+**Conséquence de dimensionnement :** au départ, une seule borne extérieure est
+nécessaire (celle de la case louée), plus le conduit pour la seconde. Le
+répartiteur, lui, doit être prévu dès le début pour l'état final — sous-sol et
+cour avant sur une même enveloppe de puissance.
 
 *Point réglementaire à valider :* le stationnement en cour avant interagit avec
 le recul avant de 6 m, avec le taux de verdissement et avec les conditions
@@ -199,7 +239,7 @@ arbitrages de séquence maintenant.
 
 ### Rang 3 — La buanderie commune (1 500–2 500 $ de capital + 3–4 m² par logement)
 
-Six paires laveuse-sécheuse, c'est 9 000 à 15 000 $ d'appareils et environ 20 m²
+Cinq paires laveuse-sécheuse, c'est 7 500 à 12 500 $ d'appareils et environ 17 m²
 cumulés de plancher, dans un immeuble où le m² privé est ce qui coûte le plus
 cher à construire. Deux ou trois machines commerciales partagées font le même
 travail.
@@ -292,18 +332,54 @@ logement, environ 5 000 à 8 000 $ pour l'immeuble.
 l'échelle de l'immeuble et transféré au résident est un argument vérifiable,
 contrairement à une économie estimée.
 
-### Rang 7 — Les espaces communs qui remplacent des dépenses privées (500–900 $/an)
+### Rang 7 — La salle commune : un logement entier partagé par cinq ménages
 
-Salle commune, cinéma, fitness partagé : ces surfaces ne valent leur coût que
-si elles sont **effectivement utilisées**, et elles ne le sont que si l'accès
-est sans friction. CoHabitat gère déjà les espaces et leur tarification
-(`common_spaces`, `space_pricing`, `space_reservations`).
+Ce levier change de nature avec la dernière version du programme. Il ne s'agit
+plus d'une pièce commune d'appoint, mais d'**une unité complète — de l'ordre de
+90 à 110 m² — partagée par cinq ménages seulement**. Rapporté au ménage, c'est
+le plus gros équipement du bâtiment après le stationnement, et probablement ce
+qui compense le mieux, aux yeux d'un acheteur, la densité qu'on n'a pas obtenue :
+un voisin de moins, un logement entier de gagné en partage.
 
-**Brique immotique :** la réservation déclenche l'ouverture de porte, la
-montée en température et l'éclairage 15 minutes avant, puis la remise en veille
-après. Double effet : l'espace est agréable au moment exact où il est réservé,
-et il ne chauffe pas 24 h/24 pour trois heures d'usage hebdomadaire. C'est le
-seul poste où confort et économie pointent exactement dans la même direction.
+Ce qui compte économiquement, c'est ce que cette surface **retire des logements
+privés** : bureau de télétravail, chambre d'amis, salle de jeux, gym, cinéma,
+atelier, buanderie. Chacune de ces fonctions, laissée dans le privé, se paie en
+mètres carrés — c'est-à-dire au poste le plus cher du bâtiment. Un ménage qui
+n'a pas besoin d'une chambre d'amis parce que l'immeuble en fournit une
+économise plusieurs dizaines de milliers de dollars de construction.
+
+**Brique immotique :** la réservation déclenche l'ouverture de porte, la montée
+en température et l'éclairage 15 minutes avant, puis la remise en veille après.
+L'enjeu financier a changé d'échelle avec la surface : **chauffer une unité
+entière en continu pour quelques heures d'usage par semaine coûte de l'ordre de
+600 à 1 400 $ par an**, alors qu'un pilotage à la réservation en récupère une
+bonne part. C'est le seul poste où confort et économie pointent exactement dans
+la même direction. CoHabitat gère déjà les espaces et leur tarification
+(`common_spaces`, `space_pricing`, `space_reservations`) : la brique existe, il
+lui manque les actionneurs.
+
+**Ce que la conversion future exige — aujourd'hui, pas plus tard.** Convertir
+une salle commune en logement suppose des choses qui coûtent presque rien au
+chantier et très cher après :
+
+| À prévoir maintenant | Pourquoi ça ne se rattrape pas |
+|---|---|
+| Socle de compteur supplémentaire et place au panneau | Ajouter un compteur ensuite, c'est reprendre l'entrée électrique — le poste le plus lourd et le plus lent à faire autoriser |
+| Attentes de plomberie (alimentation, drain, évent) pour une cuisine et une salle de bain | Percer une dalle ou un plancher fini après coup, avec les assemblages industrialisés, est un chantier à part entière |
+| Ventilation dimensionnée pour un logement, pas pour une salle | Les débits et le parcours des conduits ne se corrigent pas sans rouvrir |
+| Conduit de mesure et de communication vers le local technique | Le futur logement doit pouvoir être mesuré et desservi comme les autres |
+| Porte, insonorisation et contrôle d'accès traités comme ceux d'un logement | Change la perception d'usage immédiatement, et évite des reprises |
+
+**Ce que ça implique côté logiciel :** les équipements de cette unité doivent
+être rattachés à **un emplacement physique**, pas à son usage du moment. Le jour
+où l'espace devient un logement, on change son type dans CoHabitat sans
+rebrancher ni re-déclarer un seul appareil. C'est une décision de modèle de
+données à prendre avant d'écrire le module (§7), pas après.
+
+**À valider :** l'usage exact autorisé pour cette unité dans le cadre du
+PPCMOI — en particulier si on y prévoit du couchage (chambre d'amis), qui
+touche à la classification d'usage, aux issues et à la détection incendie, et
+si l'espace peut servir à autre chose qu'aux résidents et à leurs invités.
 
 ### Rang 8 — Photovoltaïque piloté et mesurage net (variable — l'immotique conditionne le rendement)
 
@@ -357,7 +433,7 @@ d'économie.
 | 4 | Flex D + effacement piloté | 350–650 $ | 150–300 $/logement (chauffe-eau) | Tarif Flex D | ●○○ |
 | 5 | Défis Hilo | 150–205 $ | 0 $ (thermostats fournis) | Hilo | ●○○ |
 | 6 | Fuite d'eau + vanne motorisée | 50–200 $ de prime + sinistre évité | 600–1 200 $/logement | rabais assureur | ●●○ |
-| 7 | Espaces communs pilotés | 500–900 $ (gym) + chauffage évité | 1 500–3 000 $ | — | ●○○ |
+| 7 | Salle commune pilotée (une unité entière pour 5 ménages) | 500–900 $ (gym) + 600–1 400 $ de chauffage évité + m² privés non construits | 1 500–3 000 $ + attentes de conversion | — | ●○○ |
 | 8 | Solaire autoconsommé | selon dimensionnement | pilotage : ~500 $ | mesurage net + aides 2026 | ●●● |
 | 9 | Accès sans clé | 100–300 $ ponctuels | 3 000–8 000 $ (4–6 portes) | — | ●●○ |
 | 10 | Serre / élevages | 200–600 $ | déjà réalisé | — | ✔ fait |
@@ -460,6 +536,10 @@ et `sql/009_serre.sql` en fournissent le gabarit exact) :
 - **Un écran** dans l'application : état du bâtiment, prochain événement de
   pointe, consommation des communs, alertes eau — et, dans l'espace de chaque
   résident, sa propre courbe et lui seul.
+- **Un rattachement des appareils à un emplacement physique**, jamais à l'usage
+  de cet emplacement. La salle commune destinée à devenir un logement l'impose :
+  le jour de la conversion, on change le type de l'espace, pas le câblage ni la
+  déclaration des appareils.
 - **Une extension de `transactions`** pour les crédits d'effacement (voir §5.1),
   une fois le cadre juridique validé.
 
@@ -475,15 +555,16 @@ C'est ce qui distingue un immeuble d'un produit réplicable.
 
 | Phase | Quand | Contenu | Décision requise |
 |---|---|---|---|
-| **P0** | Avant le gel des plans (PPCMOI / architecte) | Pré-équipement passif, conduit vers les cases extérieures, architecture de comptage électrique, cadrage mesurage net | Architecte + électricien CMEQ + Hydro-Québec |
+| **P0** | Avant le gel des plans (PPCMOI / architecte) | Pré-équipement passif, conduit vers les cases extérieures, socle de compteur et attentes pour la conversion de la salle commune, architecture de comptage électrique, cadrage mesurage net | Architecte + électricien CMEQ + Hydro-Québec |
 | **P1** | Chantier | Bornes (sous-sol et cour avant) + gestion de charge sur les deux zones, chauffe-eau pilotés, sondes d'eau + vannes, éclairage/chauffage des communs | Dossier Roulez vert **déposé avant le 31 décembre 2026** ; engagement écrit de l'assureur |
 | **P2** | Livraison | Socle sur l'appliance, écran CoHabitat, accès, signalisation Vert/Bleu/Orange | Interne |
 | **P3** | Hiver 1 | Adhésion Flex D (communs), défis Hilo (résidents volontaires), mesure et publication des résultats réels | Sur données mesurées |
 | **P4** | Année 2 | Optimisation de l'autoconsommation solaire, crédits d'effacement (si le cadre juridique le permet), gabarit réplicable pour l'immeuble suivant | Sur résultats de P3 |
 
 Budget indicatif P1 + P2, hors solaire et hors subventions : **15 000 à
-25 000 $** pour six logements, soit 2 500 à 4 000 $ par logement, dont une
-part significative est admissible à Roulez vert pour le volet recharge.
+25 000 $** pour cinq logements et la salle commune, soit environ 3 000 à
+4 500 $ par unité, dont une part significative est admissible à Roulez vert
+pour le volet recharge.
 
 ---
 
@@ -592,7 +673,7 @@ vend aussi à un assureur, à un prêteur et à un gestionnaire de parc.
 
 | Catégorie | Exemples | Cible | Pourquoi ça ne couvre pas Modulimo |
 |---|---|---|---|
-| BMS tertiaire | Tridium/Niagara, Siemens Desigo, JCI Metasys | > 50 000 pi², immeubles de bureaux | Coût d'entrée et intégrateur obligatoire hors de proportion pour 6 logements |
+| BMS tertiaire | Tridium/Niagara, Siemens Desigo, JCI Metasys | > 50 000 pi², immeubles de bureaux | Coût d'entrée et intégrateur obligatoire hors de proportion pour 5 logements |
 | Domotique grand public | Google Home, Alexa, Hilo | le logement, un occupant | Infonuagique, mono-logement, aucune notion de bail, de solde ni d'espace commun |
 | Logiciels de gestion immobilière | Hopem, Proprio Expert, Yardi | comptabilité et baux | Aucun lien avec le bâtiment physique — ils ne savent pas qu'une vanne s'est fermée |
 
@@ -726,8 +807,11 @@ de garder chaque module désactivable, comme la caméra l'est déjà.
 | Cohérence entre « surveillance 24/7 » (page Sécurité) et « aucune image enregistrée » (CoHabitat) | Interne | Communication, §10 |
 | Formulation du bloc « sélection des résidents » au regard de la Charte | Juriste | Page Sécurité, §10 |
 | Stationnement en cour avant : recul de 6 m, taux de verdissement, conditions du PPCMOI | Architecte + arrondissement | Bornes extérieures, §3 rang 2 |
-| Affectation des 5 cases (flotte au sous-sol, visiteurs en cour avant ?) | Interne | Nombre de bornes et logique de réservation |
-| Pages du site annonçant « 4 cases au sous-sol » à mettre à jour (3 + 2) | Interne | Communication |
+| Forme juridique du forfait de recharge inclus dans le loyer de la case louée | Juriste | §3 rang 2 |
+| Règle d'attribution de la case louée (rotation, liste d'attente) | Interne | À écrire avant la livraison |
+| Usage autorisé de la salle commune, couchage éventuel, ouverture hors résidents | Architecte + arrondissement | §3 rang 7, classification d'usage |
+| Étage d'implantation de la salle commune et incidence sur la conversion | Architecte | Pré-équipement P0 |
+| Pages du site annonçant « 4 cases au sous-sol » et « 6 logements » à mettre à jour | Interne | Communication |
 | Périmètre du module BMS : aucune fonction de sécurité des personnes | Interne + ingénieur | §11.4, documentation du module |
 
 ---
