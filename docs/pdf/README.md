@@ -3,6 +3,9 @@
 Produit `docs/immotique-pointe-est.pdf` à partir de `docs/immotique-pointe-est.md`,
 avec en-tête Modulimo (logo) et pagination.
 
+Le PDF **n'est pas versionné** (`.gitignore`) : il se régénère à la demande à
+partir du Markdown, qui reste la source.
+
 ```bash
 node docs/pdf/build-pdf.mjs
 ```
