@@ -149,6 +149,71 @@
       .nav a { padding:12px 14px; border-bottom:1px solid rgba(255,255,255,.08); border-radius:0; }
       .nav a.active { border-left:3px solid var(--green-md); padding-left:11px; }
     }
+
+  /* ════════ IMMOTIQUE — sections ajoutées (préfixe mim-) ════════ */
+  .mim-intro { padding:6rem 5rem; background:var(--off); border-bottom:1px solid var(--border); }
+  .mim-wrap { max-width:var(--max); margin:0 auto; }
+  .mim-intro-grid { display:grid; grid-template-columns:1.1fr .9fr; gap:4rem; align-items:start; }
+  .mim-intro-body p { font-size:1rem; color:var(--mid); line-height:1.8; margin-bottom:1.1rem; max-width:56ch; }
+  .mim-intro-body p:last-child { margin-bottom:0; }
+  .mim-intro-body strong { color:var(--dark); font-weight:600; }
+  .mim-aside { border-left:2px solid var(--green); padding:.4rem 0 .4rem 1.6rem; }
+  .mim-aside-q { font-family:'Syne',sans-serif; font-weight:700; font-size:.95rem; color:var(--dark); margin-bottom:.5rem; line-height:1.35; }
+  .mim-aside-a { font-size:.87rem; color:var(--mid); line-height:1.7; margin-bottom:1.6rem; }
+  .mim-aside-a:last-child { margin-bottom:0; }
+
+  .mim-trip { padding:6rem 5rem; background:var(--white); border-bottom:1px solid var(--border); }
+  .mim-trip-grid { max-width:var(--max); margin:2.5rem auto 0; display:grid; grid-template-columns:repeat(3,1fr); gap:1.25rem; }
+  .mim-card { background:var(--off); border:1px solid var(--border); padding:2rem 1.75rem; display:flex; flex-direction:column; gap:.85rem; transition:border-color .2s,background .2s; }
+  .mim-card:hover { border-color:var(--green-md); background:var(--green-lt); }
+  .mim-card.mim-card-limit { background:var(--white); border-color:var(--dark); }
+  .mim-card.mim-card-limit:hover { background:var(--white); border-color:var(--dark); }
+  .mim-card-head { display:flex; align-items:center; gap:.7rem; }
+  .mim-card-dot { width:10px; height:10px; border-radius:50%; flex-shrink:0; background:var(--green-md); }
+  .mim-card-limit .mim-card-dot { background:var(--dark); }
+  .mim-card-kicker { font-size:.66rem; font-weight:700; letter-spacing:.15em; text-transform:uppercase; color:var(--muted); }
+  .mim-card-title { font-family:'Syne',sans-serif; font-size:1.05rem; font-weight:700; line-height:1.3; color:var(--dark); }
+  .mim-list { list-style:none; display:grid; gap:.55rem; margin-top:.2rem; }
+  .mim-list li { font-size:.85rem; color:var(--mid); line-height:1.55; padding-left:1.1rem; position:relative; }
+  .mim-list li::before { content:''; position:absolute; left:0; top:.6rem; width:.45rem; height:1px; background:var(--green-md); }
+  .mim-card-limit .mim-list li::before { background:var(--dark); }
+
+  .mim-benefits { padding:6rem 5rem; background:var(--off); border-bottom:1px solid var(--border); }
+  .mim-ben-grid { max-width:var(--max); margin:2.5rem auto 0; display:grid; grid-template-columns:repeat(3,1fr); gap:1px; background:var(--border); border:1px solid var(--border); }
+  .mim-ben { background:var(--off); padding:1.9rem 1.6rem; transition:background .2s; }
+  .mim-ben:hover { background:var(--green-lt); }
+  .mim-ben-icon { font-size:1.35rem; display:block; margin-bottom:.75rem; }
+  .mim-ben-name { font-family:'Syne',sans-serif; font-weight:700; font-size:.92rem; margin-bottom:.4rem; color:var(--dark); line-height:1.3; }
+  .mim-ben-desc { font-size:.83rem; color:var(--mid); line-height:1.65; }
+
+  .mim-data { padding:6rem 5rem; background:var(--white); border-bottom:1px solid var(--border); }
+  .mim-data-grid { display:grid; grid-template-columns:1fr 1fr; gap:4rem; align-items:center; }
+  .mim-flow { display:flex; align-items:stretch; gap:0; border:1px solid var(--border); background:var(--off); }
+  .mim-step { flex:1; padding:1.6rem 1.2rem; border-right:1px solid var(--border); }
+  .mim-step:last-child { border-right:none; }
+  .mim-step-n { font-size:.62rem; font-weight:700; letter-spacing:.16em; text-transform:uppercase; color:var(--green); display:block; margin-bottom:.6rem; }
+  .mim-step-t { font-family:'Syne',sans-serif; font-weight:700; font-size:.85rem; color:var(--dark); margin-bottom:.3rem; line-height:1.3; }
+  .mim-step-d { font-size:.76rem; color:var(--muted); line-height:1.55; }
+  .mim-flow-note { margin-top:1.2rem; font-size:.8rem; color:var(--muted); line-height:1.7; }
+  .mim-flow-note strong { color:var(--dark); font-weight:600; }
+
+  .mim-tie { padding:4.5rem 5rem; background:var(--green-lt); border-bottom:1px solid var(--border); }
+  .mim-tie-inner { max-width:var(--max); margin:0 auto; display:grid; grid-template-columns:auto 1fr; gap:2.5rem; align-items:center; }
+  .mim-tie-dots { display:flex; gap:.7rem; }
+  .mim-tie-dots span { width:16px; height:16px; border-radius:50%; }
+  .mim-tie-text h3 { font-family:'Syne',sans-serif; font-size:1.35rem; font-weight:800; letter-spacing:-.015em; color:var(--dark); margin-bottom:.6rem; line-height:1.25; }
+  .mim-tie-text p { font-size:.92rem; color:var(--mid); line-height:1.75; max-width:70ch; }
+
+  @media (max-width:900px) {
+    .mim-intro, .mim-trip, .mim-benefits, .mim-data { padding:4rem 2rem; }
+    .mim-tie { padding:3rem 2rem; }
+    .mim-intro-grid, .mim-data-grid { grid-template-columns:1fr; gap:2.5rem; }
+    .mim-trip-grid, .mim-ben-grid { grid-template-columns:1fr; }
+    .mim-flow { flex-direction:column; }
+    .mim-step { border-right:none; border-bottom:1px solid var(--border); }
+    .mim-step:last-child { border-bottom:none; }
+    .mim-tie-inner { grid-template-columns:1fr; gap:1.2rem; }
+  }
   </style>
   <script src="../js/analytics.js" defer></script>
   <script src="/js/lightbox.js" defer></script>
@@ -333,6 +398,164 @@
   </section>
 
   <!-- DISCLAIMER -->
+  <!-- ══ 1 · INTRODUCTION ══ -->
+  <section class="mim-intro">
+    <div class="mim-wrap">
+      <div class="msec-tag"><span data-lang="fr">Immotique &#183; pr&#233;vue d&#232;s le premier plan</span><span data-lang="en">Building automation &#183; planned from the first drawing</span><span data-lang="es">Inm&#243;tica &#183; prevista desde el primer plano</span></div>
+      <h2 class="msec-title"><span data-lang="fr">Un immeuble qui veille<br>quand personne ne regarde.</span><span data-lang="en">A building that keeps watch<br>when no one is looking.</span><span data-lang="es">Un edificio que vela<br>cuando nadie mira.</span></h2>
+      <div class="mim-intro-grid" style="margin-top:2.5rem">
+        <div class="mim-intro-body">
+          <p><span data-lang="fr">Les protocoles, les exercices et la trousse de 72 heures couvrent l'exceptionnel. <strong>L'immotique couvre l'ordinaire</strong> &#8212; la fuite sous le chauffe-eau un mardi apr&#232;s-midi, le chauffage qui l&#226;che pendant les vacances, la porte du garage rest&#233;e ouverte. Ce sont ces choses-l&#224; qui co&#251;tent cher et qui r&#233;veillent les gens &#224; trois heures du matin.</span><span data-lang="en">Protocols, drills and the 72-hour kit cover the exceptional. <strong>Building automation covers the ordinary</strong> &#8212; the leak under the water heater on a Tuesday afternoon, the heating that quits while you are away, the garage door left open. Those are the things that cost money and wake people at three in the morning.</span><span data-lang="es">Los protocolos, los simulacros y el kit de 72 horas cubren lo excepcional. <strong>La inm&#243;tica cubre lo cotidiano</strong> &#8212; la fuga bajo el calentador un martes por la tarde, la calefacci&#243;n que falla durante las vacaciones, la puerta del garaje que qued&#243; abierta. Son esas cosas las que cuestan caro y despiertan a la gente a las tres de la madrugada.</span></p>
+          <p><span data-lang="fr">L'immotique, c'est la domotique &#224; l'&#233;chelle du b&#226;timent : des capteurs, quelques automatismes, et un ordinateur dans le local technique qui met le tout ensemble. Chez Modulimo, elle n'est pas un ajout de derni&#232;re minute : <strong>elle est pr&#233;vue au projet depuis le d&#233;part</strong>, au m&#234;me titre que l'escalier pens&#233; pour bien vieillir ou le puits central pr&#234;t &#224; recevoir une plateforme &#233;l&#233;vatrice. Les conduits, les attentes et les capteurs se posent pendant la construction, parce qu'apr&#232;s, il faut rouvrir les murs.</span><span data-lang="en">Building automation is home automation at the scale of the building: sensors, a few automations, and a computer in the utility room that ties it together. At Modulimo it is not a late addition: <strong>it has been part of the project from the start</strong>, like the staircase built for aging well or the central shaft ready for a platform lift. Conduits, rough-ins and sensors go in during construction, because afterwards it means opening walls again.</span><span data-lang="es">La inm&#243;tica es la dom&#243;tica a escala del edificio: sensores, algunos automatismos y un ordenador en el cuarto t&#233;cnico que lo une todo. En Modulimo no es un a&#241;adido de &#250;ltima hora: <strong>est&#225; prevista en el proyecto desde el principio</strong>, igual que la escalera pensada para envejecer bien o el hueco central listo para recibir una plataforma elevadora. Los conductos, las esperas y los sensores se colocan durante la construcci&#243;n, porque despu&#233;s hay que volver a abrir los muros.</span></p>
+          <p><span data-lang="fr">Le r&#233;sultat, pour un r&#233;sident, tient en une phrase : <strong>le b&#226;timent prend en charge ce qu'il peut prendre en charge</strong>, et vous laisse le reste.</span><span data-lang="en">For a resident it comes down to one sentence: <strong>the building takes on what a building can take on</strong>, and leaves you the rest.</span><span data-lang="es">Para un residente se resume en una frase: <strong>el edificio se encarga de lo que puede encargarse</strong>, y le deja a usted el resto.</span></p>
+        </div>
+        <div class="mim-aside">
+          <div class="mim-aside-q"><span data-lang="fr">Est-ce que &#231;a veut dire une application de plus ?</span><span data-lang="en">Does this mean one more app?</span><span data-lang="es">&#191;Significa una aplicaci&#243;n m&#225;s?</span></div>
+          <div class="mim-aside-a"><span data-lang="fr">Non. Tout passe par CoHabitat, l'application d&#233;j&#224; utilis&#233;e pour les r&#233;servations, l'autopartage et les espaces communs. Rien &#224; installer : &#231;a s'ouvre dans un navigateur.</span><span data-lang="en">No. Everything goes through CoHabitat, the app already used for bookings, car-share and shared spaces. Nothing to install: it opens in a browser.</span><span data-lang="es">No. Todo pasa por CoHabitat, la aplicaci&#243;n que ya se usa para las reservas, el coche compartido y los espacios comunes. Nada que instalar: se abre en un navegador.</span></div>
+          <div class="mim-aside-q"><span data-lang="fr">Est-ce que je dois m'en occuper ?</span><span data-lang="en">Do I have to manage it?</span><span data-lang="es">&#191;Tengo que ocuparme de ello?</span></div>
+          <div class="mim-aside-a"><span data-lang="fr">Non plus. En fonctionnement normal, l'immotique ne se voit pas. Elle devient visible seulement quand quelque chose sort de l'ordinaire.</span><span data-lang="en">No. In normal operation it stays out of sight. It becomes visible only when something is out of the ordinary.</span><span data-lang="es">Tampoco. En funcionamiento normal no se ve. Solo se hace visible cuando algo se sale de lo habitual.</span></div>
+          <div class="mim-aside-q"><span data-lang="fr">Et dans mon logement ?</span><span data-lang="en">And inside my home?</span><span data-lang="es">&#191;Y dentro de mi vivienda?</span></div>
+          <div class="mim-aside-a"><span data-lang="fr">Votre logement reste le v&#244;tre. Le b&#226;timent s'occupe des communs et de l'infrastructure ; ce que vous ajoutez chez vous, c'est votre choix.</span><span data-lang="en">Your home stays yours. The building looks after common areas and infrastructure; whatever you add inside is your call.</span><span data-lang="es">Su vivienda sigue siendo suya. El edificio se ocupa de las zonas comunes y de la infraestructura; lo que usted a&#241;ada en casa es decisi&#243;n suya.</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+  
+  <!-- ══ 2 · OBSERVE / AGIT / NE FERA JAMAIS ══ -->
+  <section class="mim-trip">
+    <div class="mim-wrap">
+      <div class="msec-tag"><span data-lang="fr">Ce que fait le b&#226;timent</span><span data-lang="en">What the building does</span><span data-lang="es">Lo que hace el edificio</span></div>
+      <h2 class="msec-title"><span data-lang="fr">Trois listes, dont la troisi&#232;me<br>compte autant que les deux autres.</span><span data-lang="en">Three lists &#8212; and the third<br>matters as much as the other two.</span><span data-lang="es">Tres listas, y la tercera<br>cuenta tanto como las otras dos.</span></h2>
+      <div class="mim-trip-grid">
+        <div class="mim-card">
+          <div class="mim-card-head"><span class="mim-card-dot"></span><span class="mim-card-kicker"><span data-lang="fr">Il observe</span><span data-lang="en">It observes</span><span data-lang="es">Observa</span></span></div>
+          <div class="mim-card-title"><span data-lang="fr">En continu, sans image ni micro</span><span data-lang="en">Continuously, with no camera or microphone</span><span data-lang="es">De forma continua, sin imagen ni micr&#243;fono</span></div>
+          <ul class="mim-list">
+            <li><span data-lang="fr">L'eau : fuite, d&#233;bit anormal, risque de gel</span><span data-lang="en">Water: leaks, abnormal flow, freezing risk</span><span data-lang="es">El agua: fugas, caudal anormal, riesgo de congelaci&#243;n</span></li>
+            <li><span data-lang="fr">La fum&#233;e et le monoxyde de carbone</span><span data-lang="en">Smoke and carbon monoxide</span><span data-lang="es">El humo y el mon&#243;xido de carbono</span></li>
+            <li><span data-lang="fr">La temp&#233;rature et l'humidit&#233; des espaces communs</span><span data-lang="en">Temperature and humidity in common areas</span><span data-lang="es">La temperatura y la humedad de los espacios comunes</span></li>
+            <li><span data-lang="fr">Le courant : panne, retour, consommation de l'immeuble</span><span data-lang="en">Power: outage, restoration, building consumption</span><span data-lang="es">La electricidad: corte, restablecimiento, consumo del edificio</span></li>
+            <li><span data-lang="fr">Les portes et les acc&#232;s du terrain et du garage</span><span data-lang="en">Doors and access points on the grounds and in the garage</span><span data-lang="es">Las puertas y los accesos del terreno y del garaje</span></li>
+            <li><span data-lang="fr">Les &#233;quipements partag&#233;s : bornes, buanderie, serre</span><span data-lang="en">Shared equipment: chargers, laundry, greenhouse</span><span data-lang="es">Los equipos compartidos: cargadores, lavander&#237;a, invernadero</span></li>
+          </ul>
+        </div>
+        <div class="mim-card">
+          <div class="mim-card-head"><span class="mim-card-dot"></span><span class="mim-card-kicker"><span data-lang="fr">Il agit seul</span><span data-lang="en">It acts on its own</span><span data-lang="es">Act&#250;a solo</span></span></div>
+          <div class="mim-card-title"><span data-lang="fr">Sans attendre que quelqu'un d&#233;cide</span><span data-lang="en">Without waiting for someone to decide</span><span data-lang="es">Sin esperar a que alguien decida</span></div>
+          <ul class="mim-list">
+            <li><span data-lang="fr">Ferme la vanne d'eau d&#232;s les premiers millilitres</span><span data-lang="en">Shuts the water valve at the first few millilitres</span><span data-lang="es">Cierra la v&#225;lvula de agua a los primeros mililitros</span></li>
+            <li><span data-lang="fr">Maintient les communs hors gel en cas de panne</span><span data-lang="en">Keeps common areas above freezing during an outage</span><span data-lang="es">Mantiene las zonas comunes sin congelaci&#243;n durante un corte</span></li>
+            <li><span data-lang="fr">Allume la signalisation d'&#233;tage au bon niveau</span><span data-lang="en">Sets the floor indicators to the right level</span><span data-lang="es">Enciende la se&#241;alizaci&#243;n de planta en el nivel correcto</span></li>
+            <li><span data-lang="fr">Pr&#233;vient la bonne personne &#8212; pas tout l'immeuble</span><span data-lang="en">Alerts the right person &#8212; not the whole building</span><span data-lang="es">Avisa a la persona indicada &#8212; no a todo el edificio</span></li>
+            <li><span data-lang="fr">D&#233;cale la recharge et l'eau chaude aux heures creuses</span><span data-lang="en">Shifts charging and hot water to off-peak hours</span><span data-lang="es">Desplaza la recarga y el agua caliente a las horas valle</span></li>
+            <li><span data-lang="fr">Garde une trace de ce qui s'est pass&#233; et quand</span><span data-lang="en">Keeps a record of what happened, and when</span><span data-lang="es">Guarda un registro de lo ocurrido y de cu&#225;ndo</span></li>
+          </ul>
+        </div>
+        <div class="mim-card mim-card-limit">
+          <div class="mim-card-head"><span class="mim-card-dot"></span><span class="mim-card-kicker"><span data-lang="fr">Il ne le fera jamais</span><span data-lang="en">It will never do this</span><span data-lang="es">Nunca har&#225; esto</span></span></div>
+          <div class="mim-card-title"><span data-lang="fr">Les limites font partie du syst&#232;me</span><span data-lang="en">The limits are part of the system</span><span data-lang="es">Los l&#237;mites forman parte del sistema</span></div>
+          <ul class="mim-list">
+            <li><span data-lang="fr">Aucune cam&#233;ra &#224; l'int&#233;rieur des logements</span><span data-lang="en">No cameras inside homes</span><span data-lang="es">Ninguna c&#225;mara dentro de las viviendas</span></li>
+            <li><span data-lang="fr">Aucune donn&#233;e qui sort du b&#226;timent</span><span data-lang="en">No data leaving the building</span><span data-lang="es">Ning&#250;n dato que salga del edificio</span></li>
+            <li><span data-lang="fr">Aucun pilotage de votre logement par l'exploitant</span><span data-lang="en">No remote control of your home by the operator</span><span data-lang="es">Ning&#250;n control de su vivienda por parte del operador</span></li>
+            <li><span data-lang="fr">Aucune mesure de votre consommation visible par un voisin</span><span data-lang="en">No neighbour can see your consumption</span><span data-lang="es">Ning&#250;n vecino puede ver su consumo</span></li>
+            <li><span data-lang="fr">Aucune conservation ind&#233;finie : les dur&#233;es sont &#233;crites</span><span data-lang="en">No indefinite retention: the periods are written down</span><span data-lang="es">Ninguna conservaci&#243;n indefinida: los plazos est&#225;n por escrito</span></li>
+            <li><span data-lang="fr">Aucune fonction vitale confi&#233;e &#224; un logiciel : l'alarme incendie et l'&#233;l&#233;vateur restent des syst&#232;mes certifi&#233;s et ind&#233;pendants</span><span data-lang="en">No life-safety function entrusted to software: the fire alarm and the lift remain certified, independent systems</span><span data-lang="es">Ninguna funci&#243;n vital confiada al software: la alarma de incendios y el elevador siguen siendo sistemas certificados e independientes</span></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+  
+  <!-- ══ 3 · BÉNÉFICES RÉSIDENTS ══ -->
+  <section class="mim-benefits">
+    <div class="mim-wrap">
+      <div class="msec-tag"><span data-lang="fr">Au quotidien</span><span data-lang="en">Day to day</span><span data-lang="es">En el d&#237;a a d&#237;a</span></div>
+      <h2 class="msec-title"><span data-lang="fr">Ce que &#231;a change,<br>concr&#232;tement, pour vous.</span><span data-lang="en">What it changes,<br>concretely, for you.</span><span data-lang="es">Lo que cambia,<br>concretamente, para usted.</span></h2>
+      <p class="msec-body" style="margin-top:1rem"><span data-lang="fr">Aucun de ces points n'est un gadget : chacun retire une corv&#233;e, un risque ou une d&#233;pense de la vie d'un m&#233;nage.</span><span data-lang="en">None of these is a gadget: each one removes a chore, a risk or an expense from a household's life.</span><span data-lang="es">Ninguno de estos puntos es un capricho: cada uno le quita a un hogar una tarea, un riesgo o un gasto.</span></p>
+      <div class="mim-ben-grid">
+        <div class="mim-ben">
+          <span class="mim-ben-icon">&#128167;</span>
+          <div class="mim-ben-name"><span data-lang="fr">L'eau se coupe avant le d&#233;g&#226;t</span><span data-lang="en">The water stops before the damage</span><span data-lang="es">El agua se corta antes del da&#241;o</span></div>
+          <div class="mim-ben-desc"><span data-lang="fr">Le d&#233;g&#226;t d'eau est la premi&#232;re cause de r&#233;clamation en assurance habitation au Qu&#233;bec. Ici, une sonde le voit au premier litre et une vanne se ferme &#8212; que vous soyez l&#224; ou non.</span><span data-lang="en">Water damage is the leading cause of home insurance claims in Quebec. Here a sensor catches it at the first litre and a valve closes &#8212; whether you are home or not.</span><span data-lang="es">Los da&#241;os por agua son la primera causa de reclamaci&#243;n en el seguro de hogar en Quebec. Aqu&#237; un sensor lo detecta al primer litro y una v&#225;lvula se cierra &#8212; est&#233; usted en casa o no.</span></div>
+        </div>
+        <div class="mim-ben">
+          <span class="mim-ben-icon">&#128267;</span>
+          <div class="mim-ben-name"><span data-lang="fr">La voiture est charg&#233;e &#224; l'heure du d&#233;part</span><span data-lang="en">The car is charged when you leave</span><span data-lang="es">El coche est&#225; cargado a la hora de salir</span></div>
+          <div class="mim-ben-desc"><span data-lang="fr">Les bornes se partagent la puissance disponible en fonction des r&#233;servations &#224; venir, pas de l'ordre d'arriv&#233;e. Vous r&#233;servez, elle est pr&#234;te.</span><span data-lang="en">The chargers share the available power according to upcoming bookings, not order of arrival. You book it, it is ready.</span><span data-lang="es">Los cargadores se reparten la potencia disponible seg&#250;n las reservas previstas, no por orden de llegada. Usted reserva, est&#225; listo.</span></div>
+        </div>
+        <div class="mim-ben">
+          <span class="mim-ben-icon">&#10052;</span>
+          <div class="mim-ben-name"><span data-lang="fr">L'hiver travaille aux heures creuses</span><span data-lang="en">Winter runs on off-peak hours</span><span data-lang="es">El invierno trabaja en horas valle</span></div>
+          <div class="mim-ben-desc"><span data-lang="fr">Eau chaude et recharge se d&#233;calent hors des pointes de consommation, pendant que vous dormez. Vous ne changez rien &#224; vos habitudes ; l'immeuble s'en charge.</span><span data-lang="en">Hot water and charging shift away from peak hours while you sleep. You change nothing in your habits; the building handles it.</span><span data-lang="es">El agua caliente y la recarga se desplazan fuera de las horas punta mientras usted duerme. No cambia nada en sus h&#225;bitos; el edificio se encarga.</span></div>
+        </div>
+        <div class="mim-ben">
+          <span class="mim-ben-icon">&#127968;</span>
+          <div class="mim-ben-name"><span data-lang="fr">La salle commune est pr&#234;te en arrivant</span><span data-lang="en">The common room is ready when you arrive</span><span data-lang="es">La sala com&#250;n est&#225; lista al llegar</span></div>
+          <div class="mim-ben-desc"><span data-lang="fr">Chauff&#233;e et &#233;clair&#233;e un quart d'heure avant votre r&#233;servation, en veille le reste du temps. Un espace agr&#233;able sans chauffer une pi&#232;ce vide toute la semaine.</span><span data-lang="en">Heated and lit a quarter of an hour before your booking, idle the rest of the time. A pleasant space without heating an empty room all week.</span><span data-lang="es">Climatizada e iluminada un cuarto de hora antes de su reserva, en reposo el resto del tiempo. Un espacio agradable sin calentar una sala vac&#237;a toda la semana.</span></div>
+        </div>
+        <div class="mim-ben">
+          <span class="mim-ben-icon">&#128273;</span>
+          <div class="mim-ben-name"><span data-lang="fr">Faire entrer quelqu'un sans &#234;tre l&#224;</span><span data-lang="en">Let someone in without being there</span><span data-lang="es">Dejar entrar a alguien sin estar all&#237;</span></div>
+          <div class="mim-ben-desc"><span data-lang="fr">Un droit d'acc&#232;s temporaire pour le plombier, la livraison ou la gardienne, valable le temps qu'il faut et r&#233;vocable en un geste. Plus de cl&#233; cach&#233;e sous le pot de fleurs.</span><span data-lang="en">A temporary access right for the plumber, a delivery or the sitter, valid as long as needed and revocable in one move. No more key under the flowerpot.</span><span data-lang="es">Un permiso de acceso temporal para el fontanero, una entrega o la cuidadora, v&#225;lido el tiempo necesario y revocable en un gesto. Se acab&#243; la llave bajo la maceta.</span></div>
+        </div>
+        <div class="mim-ben">
+          <span class="mim-ben-icon">&#128663;</span>
+          <div class="mim-ben-name"><span data-lang="fr">La place visiteur est r&#233;serv&#233;e d'avance</span><span data-lang="en">The visitor spot is booked ahead</span><span data-lang="es">La plaza de visitante se reserva con antelaci&#243;n</span></div>
+          <div class="mim-ben-desc"><span data-lang="fr">Votre invit&#233; a une place, et elle est encore libre quand il arrive. La dur&#233;e est convenue &#224; la r&#233;servation, ce qui &#233;vite la seule chose qui g&#226;che une place visiteur.</span><span data-lang="en">Your guest has a spot, and it is still free when they arrive. The duration is agreed at booking, which prevents the one thing that ruins a visitor spot.</span><span data-lang="es">Su invitado tiene una plaza, y sigue libre cuando llega. La duraci&#243;n se acuerda al reservar, lo que evita lo &#250;nico que arruina una plaza de visitante.</span></div>
+        </div>
+        <div class="mim-ben">
+          <span class="mim-ben-icon">&#127793;</span>
+          <div class="mim-ben-name"><span data-lang="fr">La serre se surveille toute seule</span><span data-lang="en">The greenhouse watches itself</span><span data-lang="es">El invernadero se vigila solo</span></div>
+          <div class="mim-ben-desc"><span data-lang="fr">Temp&#233;rature et niveaux des r&#233;servoirs sont relev&#233;s en continu et affich&#233;s dans l'application &#8212; c'est d&#233;j&#224; en fonction, et c'est la d&#233;monstration que le reste tient debout.</span><span data-lang="en">Temperature and tank levels are read continuously and shown in the app &#8212; it is already running, and it is the proof that the rest holds up.</span><span data-lang="es">La temperatura y los niveles de los dep&#243;sitos se registran de forma continua y se muestran en la aplicaci&#243;n &#8212; ya est&#225; en funcionamiento, y demuestra que el resto se sostiene.</span></div>
+        </div>
+        <div class="mim-ben">
+          <span class="mim-ben-icon">&#128276;</span>
+          <div class="mim-ben-name"><span data-lang="fr">Une alerte, pas cent notifications</span><span data-lang="en">One alert, not a hundred notifications</span><span data-lang="es">Una alerta, no cien notificaciones</span></div>
+          <div class="mim-ben-desc"><span data-lang="fr">Chaque &#233;v&#233;nement va &#224; la personne concern&#233;e : le r&#233;sident pour son logement, la coordination pour l'immeuble. Le silence est le fonctionnement normal.</span><span data-lang="en">Each event goes to the person concerned: the resident for their home, the coordination team for the building. Silence is normal operation.</span><span data-lang="es">Cada evento llega a la persona implicada: el residente para su vivienda, la coordinaci&#243;n para el edificio. El silencio es el funcionamiento normal.</span></div>
+        </div>
+        <div class="mim-ben">
+          <span class="mim-ben-icon">&#128202;</span>
+          <div class="mim-ben-name"><span data-lang="fr">Vous voyez ce que vous consommez</span><span data-lang="en">You see what you use</span><span data-lang="es">Usted ve lo que consume</span></div>
+          <div class="mim-ben-desc"><span data-lang="fr">Votre courbe, votre comparaison &#224; la moyenne de l'immeuble, l'effet d'un geste. Pour information et pour d&#233;cider &#8212; jamais pour vous refacturer quoi que ce soit.</span><span data-lang="en">Your own curve, your comparison to the building average, the effect of a habit. For information and for deciding &#8212; never to bill you for anything.</span><span data-lang="es">Su curva, su comparaci&#243;n con la media del edificio, el efecto de un gesto. Para informarse y decidir &#8212; nunca para refacturarle nada.</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+  
+  <!-- ══ 4 · DONNÉES ══ -->
+  <section class="mim-data">
+    <div class="mim-wrap">
+      <div class="mim-data-grid">
+        <div>
+          <div class="msec-tag"><span data-lang="fr">Vos donn&#233;es</span><span data-lang="en">Your data</span><span data-lang="es">Sus datos</span></div>
+          <h2 class="msec-title"><span data-lang="fr">Tout reste<br>dans l'immeuble.</span><span data-lang="en">Everything stays<br>inside the building.</span><span data-lang="es">Todo se queda<br>dentro del edificio.</span></h2>
+          <p class="msec-body" style="margin-top:1.25rem"><span data-lang="fr">Il n'y a pas de nuage dans cette histoire. Les capteurs parlent &#224; une machine install&#233;e dans le local technique, et c'est cette machine qui affiche l'information dans votre application. En fonctionnement normal, <strong>aucun octet ne quitte le b&#226;timent</strong>.</span><span data-lang="en">There is no cloud in this story. The sensors talk to a machine installed in the utility room, and that machine is what shows the information in your app. In normal operation, <strong>not one byte leaves the building</strong>.</span><span data-lang="es">En esta historia no hay nube. Los sensores hablan con una m&#225;quina instalada en el cuarto t&#233;cnico, y es esa m&#225;quina la que muestra la informaci&#243;n en su aplicaci&#243;n. En funcionamiento normal, <strong>ni un byte sale del edificio</strong>.</span></p>
+          <p class="msec-body" style="margin-top:1rem"><span data-lang="fr">Quand vous &#234;tes &#224; l'ext&#233;rieur, vous passez par un tunnel priv&#233; vers cette m&#234;me machine &#8212; le trajet change, la destination non.</span><span data-lang="en">When you are away, you reach that same machine through a private tunnel &#8212; the route changes, the destination does not.</span><span data-lang="es">Cuando est&#225; fuera, llega a esa misma m&#225;quina por un t&#250;nel privado &#8212; cambia el trayecto, no el destino.</span></p>
+        </div>
+        <div>
+          <div class="mim-flow">
+            <div class="mim-step"><span class="mim-step-n">1</span><div class="mim-step-t"><span data-lang="fr">Les capteurs</span><span data-lang="en">The sensors</span><span data-lang="es">Los sensores</span></div><div class="mim-step-d"><span data-lang="fr">Eau, temp&#233;rature, portes, bornes, serre. Aucune image, aucun son.</span><span data-lang="en">Water, temperature, doors, chargers, greenhouse. No image, no sound.</span><span data-lang="es">Agua, temperatura, puertas, cargadores, invernadero. Sin imagen, sin sonido.</span></div></div>
+            <div class="mim-step"><span class="mim-step-n">2</span><div class="mim-step-t"><span data-lang="fr">La machine du local technique</span><span data-lang="en">The machine in the utility room</span><span data-lang="es">La m&#225;quina del cuarto t&#233;cnico</span></div><div class="mim-step-d"><span data-lang="fr">Elle enregistre, d&#233;cide, alerte. Elle est ici, pas ailleurs.</span><span data-lang="en">It records, decides, alerts. It is here, not somewhere else.</span><span data-lang="es">Registra, decide, alerta. Est&#225; aqu&#237;, no en otro sitio.</span></div></div>
+            <div class="mim-step"><span class="mim-step-n">3</span><div class="mim-step-t"><span data-lang="fr">Votre &#233;cran</span><span data-lang="en">Your screen</span><span data-lang="es">Su pantalla</span></div><div class="mim-step-d"><span data-lang="fr">Dans CoHabitat, sur le r&#233;seau de l'immeuble ou par tunnel priv&#233; &#224; l'ext&#233;rieur.</span><span data-lang="en">In CoHabitat, on the building network or through a private tunnel when away.</span><span data-lang="es">En CoHabitat, en la red del edificio o por t&#250;nel privado desde fuera.</span></div></div>
+          </div>
+          <p class="mim-flow-note"><span data-lang="fr"><strong>Ce que voit qui.</strong> Les donn&#233;es fines de votre logement ne sont visibles que par vous. L'immeuble ne travaille que sur des totaux. Les dur&#233;es de conservation sont &#233;crites et limit&#233;es, conform&#233;ment &#224; la loi qu&#233;b&#233;coise sur la protection des renseignements personnels.</span><span data-lang="en"><strong>Who sees what.</strong> The detailed data from your home is visible to you alone. The building works only with totals. Retention periods are written down and limited, in line with Quebec's personal information protection law.</span><span data-lang="es"><strong>Qui&#233;n ve qu&#233;.</strong> Los datos detallados de su vivienda solo son visibles para usted. El edificio trabaja &#250;nicamente con totales. Los plazos de conservaci&#243;n est&#225;n escritos y limitados, conforme a la ley quebequense de protecci&#243;n de la informaci&#243;n personal.</span></p>
+        </div>
+      </div>
+    </div>
+  </section>
+  
+  <!-- ══ 5 · RETOUR AUX NIVEAUX ══ -->
+  <section class="mim-tie">
+    <div class="mim-tie-inner">
+      <div class="mim-tie-dots"><span class="mdot-green"></span><span class="mdot-blue"></span><span class="mdot-orange"></span></div>
+      <div class="mim-tie-text">
+        <h3><span data-lang="fr">Les trois niveaux, en haut de cette page, sont l'&#233;cran de tout &#231;a.</span><span data-lang="en">The three levels at the top of this page are the screen for all of it.</span><span data-lang="es">Los tres niveles, arriba en esta p&#225;gina, son la pantalla de todo esto.</span></h3>
+        <p><span data-lang="fr">Vert, bleu, orange : ce ne sont pas des affiches, ce sont des &#233;tats du b&#226;timent. C'est l'immotique qui les tient &#224; jour, qui allume les voyants d'&#233;tage &#8212; clignotants pendant un exercice annonc&#233;, fixes en situation r&#233;elle &#8212; et qui affiche la consigne du moment dans l'application. Le reste du temps, elle ne se voit pas. C'est exactement ce qu'on lui demande.</span><span data-lang="en">Green, blue, orange: these are not posters, they are states of the building. Building automation keeps them current, lights the floor indicators &#8212; flashing during an announced drill, steady in a real situation &#8212; and shows the current instruction in the app. The rest of the time it stays invisible. That is exactly what is asked of it.</span><span data-lang="es">Verde, azul, naranja: no son carteles, son estados del edificio. La inm&#243;tica los mantiene al d&#237;a, enciende los pilotos de planta &#8212; parpadeantes durante un simulacro anunciado, fijos en una situaci&#243;n real &#8212; y muestra la consigna del momento en la aplicaci&#243;n. El resto del tiempo no se ve. Es exactamente lo que se le pide.</span></p>
+      </div>
+    </div>
+  </section>
+
   <div class="ms2-disclaimer">
     <div class="ms2-disclaimer-icon">ℹ️</div>
     <div class="ms2-disclaimer-text">
