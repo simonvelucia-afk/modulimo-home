@@ -155,6 +155,71 @@
       .nav a { padding:12px 14px; border-bottom:1px solid rgba(255,255,255,.08); border-radius:0; }
       .nav a.active { border-left:3px solid var(--green-md); padding-left:11px; }
     }
+
+  /* ════════ IMMOTIQUE — sections ajoutées (préfixe mim-) ════════ */
+  .mim-intro { padding:6rem 5rem; background:var(--off); border-bottom:1px solid var(--border); }
+  .mim-wrap { max-width:var(--max); margin:0 auto; }
+  .mim-intro-grid { display:grid; grid-template-columns:1.1fr .9fr; gap:4rem; align-items:start; }
+  .mim-intro-body p { font-size:1rem; color:var(--mid); line-height:1.8; margin-bottom:1.1rem; max-width:56ch; }
+  .mim-intro-body p:last-child { margin-bottom:0; }
+  .mim-intro-body strong { color:var(--dark); font-weight:600; }
+  .mim-aside { border-left:2px solid var(--green); padding:.4rem 0 .4rem 1.6rem; }
+  .mim-aside-q { font-family:'Syne',sans-serif; font-weight:700; font-size:.95rem; color:var(--dark); margin-bottom:.5rem; line-height:1.35; }
+  .mim-aside-a { font-size:.87rem; color:var(--mid); line-height:1.7; margin-bottom:1.6rem; }
+  .mim-aside-a:last-child { margin-bottom:0; }
+
+  .mim-trip { padding:6rem 5rem; background:var(--white); border-bottom:1px solid var(--border); }
+  .mim-trip-grid { max-width:var(--max); margin:2.5rem auto 0; display:grid; grid-template-columns:repeat(3,1fr); gap:1.25rem; }
+  .mim-card { background:var(--off); border:1px solid var(--border); padding:2rem 1.75rem; display:flex; flex-direction:column; gap:.85rem; transition:border-color .2s,background .2s; }
+  .mim-card:hover { border-color:var(--green-md); background:var(--green-lt); }
+  .mim-card.mim-card-limit { background:var(--white); border-color:var(--dark); }
+  .mim-card.mim-card-limit:hover { background:var(--white); border-color:var(--dark); }
+  .mim-card-head { display:flex; align-items:center; gap:.7rem; }
+  .mim-card-dot { width:10px; height:10px; border-radius:50%; flex-shrink:0; background:var(--green-md); }
+  .mim-card-limit .mim-card-dot { background:var(--dark); }
+  .mim-card-kicker { font-size:.66rem; font-weight:700; letter-spacing:.15em; text-transform:uppercase; color:var(--muted); }
+  .mim-card-title { font-family:'Syne',sans-serif; font-size:1.05rem; font-weight:700; line-height:1.3; color:var(--dark); }
+  .mim-list { list-style:none; display:grid; gap:.55rem; margin-top:.2rem; }
+  .mim-list li { font-size:.85rem; color:var(--mid); line-height:1.55; padding-left:1.1rem; position:relative; }
+  .mim-list li::before { content:''; position:absolute; left:0; top:.6rem; width:.45rem; height:1px; background:var(--green-md); }
+  .mim-card-limit .mim-list li::before { background:var(--dark); }
+
+  .mim-benefits { padding:6rem 5rem; background:var(--off); border-bottom:1px solid var(--border); }
+  .mim-ben-grid { max-width:var(--max); margin:2.5rem auto 0; display:grid; grid-template-columns:repeat(3,1fr); gap:1px; background:var(--border); border:1px solid var(--border); }
+  .mim-ben { background:var(--off); padding:1.9rem 1.6rem; transition:background .2s; }
+  .mim-ben:hover { background:var(--green-lt); }
+  .mim-ben-icon { font-size:1.35rem; display:block; margin-bottom:.75rem; }
+  .mim-ben-name { font-family:'Syne',sans-serif; font-weight:700; font-size:.92rem; margin-bottom:.4rem; color:var(--dark); line-height:1.3; }
+  .mim-ben-desc { font-size:.83rem; color:var(--mid); line-height:1.65; }
+
+  .mim-data { padding:6rem 5rem; background:var(--white); border-bottom:1px solid var(--border); }
+  .mim-data-grid { display:grid; grid-template-columns:1fr 1fr; gap:4rem; align-items:center; }
+  .mim-flow { display:flex; align-items:stretch; gap:0; border:1px solid var(--border); background:var(--off); }
+  .mim-step { flex:1; padding:1.6rem 1.2rem; border-right:1px solid var(--border); }
+  .mim-step:last-child { border-right:none; }
+  .mim-step-n { font-size:.62rem; font-weight:700; letter-spacing:.16em; text-transform:uppercase; color:var(--green); display:block; margin-bottom:.6rem; }
+  .mim-step-t { font-family:'Syne',sans-serif; font-weight:700; font-size:.85rem; color:var(--dark); margin-bottom:.3rem; line-height:1.3; }
+  .mim-step-d { font-size:.76rem; color:var(--muted); line-height:1.55; }
+  .mim-flow-note { margin-top:1.2rem; font-size:.8rem; color:var(--muted); line-height:1.7; }
+  .mim-flow-note strong { color:var(--dark); font-weight:600; }
+
+  .mim-tie { padding:4.5rem 5rem; background:var(--green-lt); border-bottom:1px solid var(--border); }
+  .mim-tie-inner { max-width:var(--max); margin:0 auto; display:grid; grid-template-columns:auto 1fr; gap:2.5rem; align-items:center; }
+  .mim-tie-dots { display:flex; gap:.7rem; }
+  .mim-tie-dots span { width:16px; height:16px; border-radius:50%; }
+  .mim-tie-text h3 { font-family:'Syne',sans-serif; font-size:1.35rem; font-weight:800; letter-spacing:-.015em; color:var(--dark); margin-bottom:.6rem; line-height:1.25; }
+  .mim-tie-text p { font-size:.92rem; color:var(--mid); line-height:1.75; max-width:70ch; }
+
+  @media (max-width:900px) {
+    .mim-intro, .mim-trip, .mim-benefits, .mim-data { padding:4rem 2rem; }
+    .mim-tie { padding:3rem 2rem; }
+    .mim-intro-grid, .mim-data-grid { grid-template-columns:1fr; gap:2.5rem; }
+    .mim-trip-grid, .mim-ben-grid { grid-template-columns:1fr; }
+    .mim-flow { flex-direction:column; }
+    .mim-step { border-right:none; border-bottom:1px solid var(--border); }
+    .mim-step:last-child { border-bottom:none; }
+    .mim-tie-inner { grid-template-columns:1fr; gap:1.2rem; }
+  }
   </style>
   <script src="/js/analytics.js" defer></script>
   <script src="/js/lightbox.js" defer></script>
@@ -339,6 +404,164 @@
   </section>
 
   <!-- DISCLAIMER -->
+  <!-- ══ 1 · INTRODUCTION ══ -->
+  <section class="mim-intro">
+    <div class="mim-wrap">
+      <div class="msec-tag"><span>Building automation &#183; planned from the first drawing</span></div>
+      <h2 class="msec-title"><span>A building that keeps watch<br>when no one is looking.</span></h2>
+      <div class="mim-intro-grid" style="margin-top:2.5rem">
+        <div class="mim-intro-body">
+          <p><span>Protocols, drills and the 72-hour kit cover the exceptional. <strong>Building automation covers the ordinary</strong> &#8212; the leak under the water heater on a Tuesday afternoon, the heating that quits while you are away, the garage door left open. Those are the things that cost money and wake people at three in the morning.</span></p>
+          <p><span>Building automation is home automation at the scale of the building: sensors, a few automations, and a computer in the utility room that ties it together. At Modulimo it is not a late addition: <strong>it has been part of the project from the start</strong>, like the staircase built for aging well or the central shaft ready for a platform lift. Conduits, rough-ins and sensors go in during construction, because afterwards it means opening walls again.</span></p>
+          <p><span>For a resident it comes down to one sentence: <strong>the building takes on what a building can take on</strong>, and leaves you the rest.</span></p>
+        </div>
+        <div class="mim-aside">
+          <div class="mim-aside-q"><span>Does this mean one more app?</span></div>
+          <div class="mim-aside-a"><span>No. Everything goes through CoHabitat, the app already used for bookings, car-share and shared spaces. Nothing to install: it opens in a browser.</span></div>
+          <div class="mim-aside-q"><span>Do I have to manage it?</span></div>
+          <div class="mim-aside-a"><span>No. In normal operation it stays out of sight. It becomes visible only when something is out of the ordinary.</span></div>
+          <div class="mim-aside-q"><span>And inside my home?</span></div>
+          <div class="mim-aside-a"><span>Your home stays yours. The building looks after common areas and infrastructure; whatever you add inside is your call.</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+  
+  <!-- ══ 2 · OBSERVE / AGIT / NE FERA JAMAIS ══ -->
+  <section class="mim-trip">
+    <div class="mim-wrap">
+      <div class="msec-tag"><span>What the building does</span></div>
+      <h2 class="msec-title"><span>Three lists &#8212; and the third<br>matters as much as the other two.</span></h2>
+      <div class="mim-trip-grid">
+        <div class="mim-card">
+          <div class="mim-card-head"><span class="mim-card-dot"></span><span class="mim-card-kicker"><span>It observes</span></span></div>
+          <div class="mim-card-title"><span>Continuously, with no camera or microphone</span></div>
+          <ul class="mim-list">
+            <li><span>Water: leaks, abnormal flow, freezing risk</span></li>
+            <li><span>Smoke and carbon monoxide</span></li>
+            <li><span>Temperature and humidity in common areas</span></li>
+            <li><span>Power: outage, restoration, building consumption</span></li>
+            <li><span>Doors and access points on the grounds and in the garage</span></li>
+            <li><span>Shared equipment: chargers, laundry, greenhouse</span></li>
+          </ul>
+        </div>
+        <div class="mim-card">
+          <div class="mim-card-head"><span class="mim-card-dot"></span><span class="mim-card-kicker"><span>It acts on its own</span></span></div>
+          <div class="mim-card-title"><span>Without waiting for someone to decide</span></div>
+          <ul class="mim-list">
+            <li><span>Shuts the water valve at the first few millilitres</span></li>
+            <li><span>Keeps common areas above freezing during an outage</span></li>
+            <li><span>Sets the floor indicators to the right level</span></li>
+            <li><span>Alerts the right person &#8212; not the whole building</span></li>
+            <li><span>Shifts charging and hot water to off-peak hours</span></li>
+            <li><span>Keeps a record of what happened, and when</span></li>
+          </ul>
+        </div>
+        <div class="mim-card mim-card-limit">
+          <div class="mim-card-head"><span class="mim-card-dot"></span><span class="mim-card-kicker"><span>It will never do this</span></span></div>
+          <div class="mim-card-title"><span>The limits are part of the system</span></div>
+          <ul class="mim-list">
+            <li><span>No cameras inside homes</span></li>
+            <li><span>No data leaving the building</span></li>
+            <li><span>No remote control of your home by the operator</span></li>
+            <li><span>No neighbour can see your consumption</span></li>
+            <li><span>No indefinite retention: the periods are written down</span></li>
+            <li><span>No life-safety function entrusted to software: the fire alarm and the lift remain certified, independent systems</span></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+  
+  <!-- ══ 3 · BÉNÉFICES RÉSIDENTS ══ -->
+  <section class="mim-benefits">
+    <div class="mim-wrap">
+      <div class="msec-tag"><span>Day to day</span></div>
+      <h2 class="msec-title"><span>What it changes,<br>concretely, for you.</span></h2>
+      <p class="msec-body" style="margin-top:1rem"><span>None of these is a gadget: each one removes a chore, a risk or an expense from a household's life.</span></p>
+      <div class="mim-ben-grid">
+        <div class="mim-ben">
+          <span class="mim-ben-icon">&#128167;</span>
+          <div class="mim-ben-name"><span>The water stops before the damage</span></div>
+          <div class="mim-ben-desc"><span>Water damage is the leading cause of home insurance claims in Quebec. Here a sensor catches it at the first litre and a valve closes &#8212; whether you are home or not.</span></div>
+        </div>
+        <div class="mim-ben">
+          <span class="mim-ben-icon">&#128267;</span>
+          <div class="mim-ben-name"><span>The car is charged when you leave</span></div>
+          <div class="mim-ben-desc"><span>The chargers share the available power according to upcoming bookings, not order of arrival. You book it, it is ready.</span></div>
+        </div>
+        <div class="mim-ben">
+          <span class="mim-ben-icon">&#10052;</span>
+          <div class="mim-ben-name"><span>Winter runs on off-peak hours</span></div>
+          <div class="mim-ben-desc"><span>Hot water and charging shift away from peak hours while you sleep. You change nothing in your habits; the building handles it.</span></div>
+        </div>
+        <div class="mim-ben">
+          <span class="mim-ben-icon">&#127968;</span>
+          <div class="mim-ben-name"><span>The common room is ready when you arrive</span></div>
+          <div class="mim-ben-desc"><span>Heated and lit a quarter of an hour before your booking, idle the rest of the time. A pleasant space without heating an empty room all week.</span></div>
+        </div>
+        <div class="mim-ben">
+          <span class="mim-ben-icon">&#128273;</span>
+          <div class="mim-ben-name"><span>Let someone in without being there</span></div>
+          <div class="mim-ben-desc"><span>A temporary access right for the plumber, a delivery or the sitter, valid as long as needed and revocable in one move. No more key under the flowerpot.</span></div>
+        </div>
+        <div class="mim-ben">
+          <span class="mim-ben-icon">&#128663;</span>
+          <div class="mim-ben-name"><span>The visitor spot is booked ahead</span></div>
+          <div class="mim-ben-desc"><span>Your guest has a spot, and it is still free when they arrive. The duration is agreed at booking, which prevents the one thing that ruins a visitor spot.</span></div>
+        </div>
+        <div class="mim-ben">
+          <span class="mim-ben-icon">&#127793;</span>
+          <div class="mim-ben-name"><span>The greenhouse watches itself</span></div>
+          <div class="mim-ben-desc"><span>Temperature and tank levels are read continuously and shown in the app &#8212; it is already running, and it is the proof that the rest holds up.</span></div>
+        </div>
+        <div class="mim-ben">
+          <span class="mim-ben-icon">&#128276;</span>
+          <div class="mim-ben-name"><span>One alert, not a hundred notifications</span></div>
+          <div class="mim-ben-desc"><span>Each event goes to the person concerned: the resident for their home, the coordination team for the building. Silence is normal operation.</span></div>
+        </div>
+        <div class="mim-ben">
+          <span class="mim-ben-icon">&#128202;</span>
+          <div class="mim-ben-name"><span>You see what you use</span></div>
+          <div class="mim-ben-desc"><span>Your own curve, your comparison to the building average, the effect of a habit. For information and for deciding &#8212; never to bill you for anything.</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+  
+  <!-- ══ 4 · DONNÉES ══ -->
+  <section class="mim-data">
+    <div class="mim-wrap">
+      <div class="mim-data-grid">
+        <div>
+          <div class="msec-tag"><span>Your data</span></div>
+          <h2 class="msec-title"><span>Everything stays<br>inside the building.</span></h2>
+          <p class="msec-body" style="margin-top:1.25rem"><span>There is no cloud in this story. The sensors talk to a machine installed in the utility room, and that machine is what shows the information in your app. In normal operation, <strong>not one byte leaves the building</strong>.</span></p>
+          <p class="msec-body" style="margin-top:1rem"><span>When you are away, you reach that same machine through a private tunnel &#8212; the route changes, the destination does not.</span></p>
+        </div>
+        <div>
+          <div class="mim-flow">
+            <div class="mim-step"><span class="mim-step-n">1</span><div class="mim-step-t"><span>The sensors</span></div><div class="mim-step-d"><span>Water, temperature, doors, chargers, greenhouse. No image, no sound.</span></div></div>
+            <div class="mim-step"><span class="mim-step-n">2</span><div class="mim-step-t"><span>The machine in the utility room</span></div><div class="mim-step-d"><span>It records, decides, alerts. It is here, not somewhere else.</span></div></div>
+            <div class="mim-step"><span class="mim-step-n">3</span><div class="mim-step-t"><span>Your screen</span></div><div class="mim-step-d"><span>In CoHabitat, on the building network or through a private tunnel when away.</span></div></div>
+          </div>
+          <p class="mim-flow-note"><span><strong>Who sees what.</strong> The detailed data from your home is visible to you alone. The building works only with totals. Retention periods are written down and limited, in line with Quebec's personal information protection law.</span></p>
+        </div>
+      </div>
+    </div>
+  </section>
+  
+  <!-- ══ 5 · RETOUR AUX NIVEAUX ══ -->
+  <section class="mim-tie">
+    <div class="mim-tie-inner">
+      <div class="mim-tie-dots"><span class="mdot-green"></span><span class="mdot-blue"></span><span class="mdot-orange"></span></div>
+      <div class="mim-tie-text">
+        <h3><span>The three levels at the top of this page are the screen for all of it.</span></h3>
+        <p><span>Green, blue, orange: these are not posters, they are states of the building. Building automation keeps them current, lights the floor indicators &#8212; flashing during an announced drill, steady in a real situation &#8212; and shows the current instruction in the app. The rest of the time it stays invisible. That is exactly what is asked of it.</span></p>
+      </div>
+    </div>
+  </section>
+
   <div class="ms2-disclaimer">
     <div class="ms2-disclaimer-icon">ℹ️</div>
     <div class="ms2-disclaimer-text">
