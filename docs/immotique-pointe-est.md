@@ -7,9 +7,10 @@ ceux qui font baisser une dépense que le ménage paie déjà, pas ceux qui
 ajoutent un gadget.
 
 **Périmètre de référence.** Pointe Est : 6 logements jumelés sur 3 étages,
-construction industrialisée, 4 cases d'autopartage électrique au sous-sol
-(aucune case privée), toit végétalisé avec panneaux photovoltaïques, forêt
-nourricière, propriétaire-occupant, CoHabitat opérationnel à la livraison.
+construction industrialisée, **5 cases de stationnement — 3 au sous-sol et 2
+en cour avant** (version de projet la plus récente), toit végétalisé avec
+panneaux photovoltaïques, forêt nourricière, propriétaire-occupant, CoHabitat
+opérationnel à la livraison.
 Concept préliminaire en cheminement PPCMOI — les caractéristiques finales
 sont à arrêter avec l'architecte mandaté.
 
@@ -70,7 +71,7 @@ bâtiment :
 |---|---|
 | Niveaux Vert / Bleu / Orange avec « voyants clignotants pendant un exercice, fixes en situation réelle » (page Sécurité) | Un bus de signalisation par étage piloté par un état central — c'est un automate de bâtiment |
 | Cartes d'accès pour l'entrée, les équipements partagés et les zones communes (page Sécurité) | Contrôle d'accès en réseau, avec droits liés aux réservations CoHabitat |
-| 4 cases d'autopartage électrique, aucune case privée (page Pointe Est) | Réservation, déverrouillage, recharge pilotée et répartition de puissance |
+| Autopartage électrique sans case privée, sur deux zones (3 au sous-sol, 2 en cour avant) | Réservation, déverrouillage, recharge pilotée et répartition de puissance entre deux tableaux |
 | Système de levage pour les déménagements ; puits central prêt pour une plateforme élévatrice (page Accueil / Pointe Est) | Commande, verrouillages de sécurité, journal d'usage |
 
 **Conclusion de section.** L'immotique n'est pas une option à ajouter au projet
@@ -137,15 +138,53 @@ d'en faire un argument de vente chiffré.
 
 ### Rang 2 — Ne pas acheter de case privée (25 000–50 000 $ de capital)
 
-Le projet annonce déjà « aucune case privée ». L'économie va aux deux côtés :
-le ménage n'achète pas la case, le promoteur ne creuse pas 6 cases mais 4.
+La dernière version du projet compte **5 cases : 3 au sous-sol et 2 en cour
+avant** — soit moins d'une par logement, ce qui suppose que le partage
+fonctionne, et ce qui satisfait tout de même le minimum de 4 cases posé par
+l'arrondissement. L'économie va aux deux côtés : le ménage n'achète pas de
+case, et le promoteur n'excave que 3 cases au lieu de 6 — c'est le poste de
+construction le plus cher au mètre carré du bâtiment.
 
 **Brique immotique :** gestion de charge dynamique sur les bornes. C'est aussi
 ce qui évite le second gros chèque, côté immeuble : **une mise à niveau de
-l'entrée électrique** (typiquement 15 000 à 40 000 $ en multilogement). Quatre
+l'entrée électrique** (typiquement 15 000 à 40 000 $ en multilogement). Cinq
 bornes 240 V non pilotées appellent une entrée surdimensionnée ; les mêmes
-quatre bornes en partage de puissance tiennent dans l'entrée existante, parce
-qu'elles ne chargent jamais toutes à pleine puissance en même temps.
+cinq bornes en partage de puissance tiennent dans l'entrée existante, parce
+qu'elles ne chargent jamais toutes à pleine puissance en même temps. Le
+répartiteur doit couvrir **les deux zones à la fois** : une puissance
+disponible unique, partagée entre le sous-sol et la cour avant, et non deux
+budgets indépendants qui s'additionnent au pire moment.
+
+**Ce que les deux cases extérieures changent.** Trois choses, et deux d'entre
+elles sont des décisions de chantier, pas d'exploitation :
+
+1. **Le conduit se pose maintenant ou jamais.** Alimenter deux bornes en cour
+   avant après coup suppose une tranchée dans un aménagement fini — plusieurs
+   milliers de dollars et un massif de plantation défait. Passer un conduit
+   surdimensionné vers l'avant pendant l'excavation coûte quelques centaines de
+   dollars, et cette dépense est explicitement admissible à Roulez vert au titre
+   de l'infrastructure électrique surdimensionnée. C'est la même logique de
+   couche 0 que le pré-équipement des logements (§6), appliquée au terrain.
+2. **Une borne extérieure n'est pas une borne de sous-sol.** Boîtier étanche,
+   socle ou bollard de protection, gestion du câble en hiver, et déneigement
+   qui doit pouvoir se faire sans arracher l'équipement. Compter un surcoût
+   par rapport à une borne intérieure, à faire chiffrer avec l'électricien.
+3. **Ce sont les cases naturellement destinées aux visiteurs et aux courtes
+   durées** — livraison, aide à domicile, invité, entrepreneur — donc les cases
+   dont l'usage se prête le mieux à la réservation et à l'accès temporaire dans
+   CoHabitat. La flotte partagée reste au sous-sol, à l'abri et sous contrôle
+   d'accès.
+
+*Hypothèse à confirmer :* la répartition ci-dessus (3 cases de flotte au
+sous-sol, 2 cases de visiteurs et de courte durée en cour avant) est celle qui
+découle le plus naturellement de la configuration, mais elle n'est pas arrêtée.
+Si les cases extérieures sont plutôt destinées à des résidents, le nombre de
+bornes et la logique de réservation changent — dis-le et j'ajuste.
+
+*Point réglementaire à valider :* le stationnement en cour avant interagit avec
+le recul avant de 6 m, avec le taux de verdissement et avec les conditions
+posées par l'arrondissement dans le cadre du PPCMOI. À faire confirmer avec
+l'architecte mandaté et l'arrondissement avant d'y prévoir des bornes.
 
 **Programme applicable :** *Roulez vert — volet multilogement* rembourse
 jusqu'à 50 % des dépenses admissibles, incluant explicitement les **appareils
@@ -313,7 +352,7 @@ d'économie.
 | # | Levier | Gain annuel typique / ménage | Coût immotique associé | Programme mobilisable | Effort |
 |---|---|---|---|---|---|
 | 1 | 2ᵉ voiture remplacée par autopartage | 6 000–9 000 $ | inclus dans la borne + CoHabitat | Roulez vert | ●●○ |
-| 2 | Case privée non achetée / entrée électrique non refaite | 25 000–50 000 $ de capital ; 15 000–40 000 $ évités côté immeuble | 4 000–9 000 $ (bornes + gestion de charge) | Roulez vert (≤ 50 %) | ●●○ |
+| 2 | Case privée non achetée / entrée électrique non refaite | 25 000–50 000 $ de capital ; 15 000–40 000 $ évités côté immeuble | 5 000–12 000 $ (bornes intérieures et extérieures + gestion de charge + conduit vers la cour avant) | Roulez vert (≤ 50 %) | ●●○ |
 | 3 | Buanderie commune | 1 500–2 500 $ de capital + 3–4 m² | 300–800 $ | — | ●○○ |
 | 4 | Flex D + effacement piloté | 350–650 $ | 150–300 $/logement (chauffe-eau) | Tarif Flex D | ●○○ |
 | 5 | Défis Hilo | 150–205 $ | 0 $ (thermostats fournis) | Hilo | ●○○ |
@@ -378,7 +417,8 @@ change de modèle d'affaires, on remplace un composant, pas le système.
 ## 6. Architecture proposée — trois couches
 
 **Couche 0 — Pré-équipement passif (à décider maintenant, avec l'architecte).**
-Conduits vides des logements vers le local technique ; neutre à chaque boîte
+Conduit surdimensionné vers les deux cases de la cour avant, posé pendant
+l'excavation ; conduits vides des logements vers le local technique ; neutre à chaque boîte
 d'interrupteur ; Cat6 vers chaque logement, la salle commune, le garage et le
 toit ; espace libre au panneau ; point d'eau instrumentable ; passage réservé
 dans le puits central. Coût en usine : quelques centaines de dollars par
@@ -435,8 +475,8 @@ C'est ce qui distingue un immeuble d'un produit réplicable.
 
 | Phase | Quand | Contenu | Décision requise |
 |---|---|---|---|
-| **P0** | Avant le gel des plans (PPCMOI / architecte) | Pré-équipement passif, architecture de comptage électrique, cadrage mesurage net | Architecte + électricien CMEQ + Hydro-Québec |
-| **P1** | Chantier | Bornes + gestion de charge, chauffe-eau pilotés, sondes d'eau + vannes, éclairage/chauffage des communs | Dossier Roulez vert **déposé avant le 31 décembre 2026** ; engagement écrit de l'assureur |
+| **P0** | Avant le gel des plans (PPCMOI / architecte) | Pré-équipement passif, conduit vers les cases extérieures, architecture de comptage électrique, cadrage mesurage net | Architecte + électricien CMEQ + Hydro-Québec |
+| **P1** | Chantier | Bornes (sous-sol et cour avant) + gestion de charge sur les deux zones, chauffe-eau pilotés, sondes d'eau + vannes, éclairage/chauffage des communs | Dossier Roulez vert **déposé avant le 31 décembre 2026** ; engagement écrit de l'assureur |
 | **P2** | Livraison | Socle sur l'appliance, écran CoHabitat, accès, signalisation Vert/Bleu/Orange | Interne |
 | **P3** | Hiver 1 | Adhésion Flex D (communs), défis Hilo (résidents volontaires), mesure et publication des résultats réels | Sur données mesurées |
 | **P4** | Année 2 | Optimisation de l'autoconsommation solaire, crédits d'effacement (si le cadre juridique le permet), gabarit réplicable pour l'immeuble suivant | Sur résultats de P3 |
@@ -685,6 +725,9 @@ de garder chaque module désactivable, comme la caméra l'est déjà.
 | Assurance et cadre contractuel de l'autopartage entre résidents | Courtier + juriste | Rang 1 |
 | Cohérence entre « surveillance 24/7 » (page Sécurité) et « aucune image enregistrée » (CoHabitat) | Interne | Communication, §10 |
 | Formulation du bloc « sélection des résidents » au regard de la Charte | Juriste | Page Sécurité, §10 |
+| Stationnement en cour avant : recul de 6 m, taux de verdissement, conditions du PPCMOI | Architecte + arrondissement | Bornes extérieures, §3 rang 2 |
+| Affectation des 5 cases (flotte au sous-sol, visiteurs en cour avant ?) | Interne | Nombre de bornes et logique de réservation |
+| Pages du site annonçant « 4 cases au sous-sol » à mettre à jour (3 + 2) | Interne | Communication |
 | Périmètre du module BMS : aucune fonction de sécurité des personnes | Interne + ingénieur | §11.4, documentation du module |
 
 ---
