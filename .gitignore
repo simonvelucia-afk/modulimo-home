@@ -1,0 +1,3 @@
+# PDF de l'étude : généré localement par `node docs/pdf/build-pdf.mjs`,
+# volontairement non versionné.
+docs/*.pdf
