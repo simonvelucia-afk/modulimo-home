@@ -1,0 +1,620 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>安全 — Modulimo</title>
+  <meta name="description" content="住户安全是 Modulimo 模式的核心 — 预防、监控与生活环境的韧性。" />
+  <link rel="canonical" href="https://www.modulimo.com/zh/securite/" />
+  <link rel="alternate" hreflang="fr-CA" href="https://www.modulimo.com/securite/" />
+  <link rel="alternate" hreflang="en" href="https://www.modulimo.com/en/securite/" />
+  <link rel="alternate" hreflang="es" href="https://www.modulimo.com/es/securite/" />
+  <link rel="alternate" hreflang="zh-Hans" href="https://www.modulimo.com/zh/securite/" />
+  <link rel="alternate" hreflang="x-default" href="https://www.modulimo.com/securite/" />
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --white:#ffffff; --off:#f7f5f0; --dark:#1a1a1a; --mid:#4a4a4a;
+      --muted:#888; --green:#2d7a4f; --green-lt:#e8f5ee; --green-md:#4aaa74;
+      --border:#e0ddd8; --red:#c0392b; --orange:#e67e22; --max:1140px;
+    }
+    *, *::before, *::after { box-sizing:border-box; margin:0; padding:0; }
+    html { scroll-behavior:smooth; }
+    body { background:var(--white); color:var(--dark); font-family:'DM Sans',sans-serif; font-weight:400; line-height:1.65; overflow-x:hidden; max-width:100vw; }
+    a { color:inherit; text-decoration:none; }
+    img { display:block; max-width:100%; }
+
+    /* ── TOPBAR ── */
+    .topbar { position:sticky; top:0; z-index:50; background:var(--off); border-bottom:1px solid var(--border); }
+    .topbar-inner { max-width:var(--max); margin:0 auto; padding:0 24px; height:76px; display:flex; align-items:center; justify-content:space-between; gap:18px; }
+    .brand { display:flex; align-items:center; flex-shrink:0; background:transparent; padding:0; border:none; border-radius:0; cursor:pointer; font:inherit; color:inherit; }
+    .lb-overlay { position:fixed; inset:0; background:rgba(10,12,14,.92); display:none; align-items:center; justify-content:center; z-index:1000; padding:24px; }
+    .lb-overlay.is-open { display:flex; }
+    .lb-image { max-width:min(100%,1100px); max-height:90vh; object-fit:contain; border-radius:6px; box-shadow:0 12px 60px rgba(0,0,0,.5); animation:lb-in .2s ease-out; }
+    .lb-close { position:absolute; top:18px; right:22px; width:44px; height:44px; border-radius:50%; background:rgba(255,255,255,.12); color:#fff; border:1px solid rgba(255,255,255,.2); font-size:1.6rem; line-height:1; cursor:pointer; display:flex; align-items:center; justify-content:center; transition:background .15s; }
+    .lb-close:hover, .lb-close:focus { background:rgba(255,255,255,.22); outline:none; }
+    @keyframes lb-in { from { opacity:0; transform:scale(.96); } to { opacity:1; transform:scale(1); } }
+    .brand img { height:56px; width:auto; display:block; }
+    .nav { display:flex; align-items:center; gap:2px; }
+    .nav a { font-size:.72rem; font-weight:600; letter-spacing:.07em; text-transform:uppercase; color:var(--muted); padding:7px 13px; border-radius:5px; transition:color .15s,background .15s; white-space:nowrap; }
+    .nav a:hover { color:var(--green); background:var(--green-lt); }
+    .nav a.active { color:var(--green); border-bottom:2px solid var(--green); border-radius:0; padding-bottom:5px; }
+    .nav-cta { color:var(--green) !important; border:1px solid var(--green); border-radius:5px; padding:6px 12px !important; margin-left:6px; transition:background .15s,color .15s; }
+    .nav-cta:hover { background:var(--green); color:#fff !important; }
+    .lang-switch { display:inline-flex; align-items:center; gap:0; margin-left:10px; padding-left:10px; border-left:1px solid var(--border); }
+    .lang-btn { font-size:.7rem; font-weight:700; letter-spacing:.06em; color:var(--muted); padding:5px 7px; background:none; border:none; cursor:pointer; font-family:inherit; transition:color .15s; }
+    /* Le drapeau et le code de langue sur une ligne, comme dans CoHabitat. */
+    .lang-btn { display:inline-flex; align-items:center; gap:5px; }
+    /* Menu deroulant des langues, bati sur <details> : pas de JavaScript.
+       La fleche du marqueur natif est retiree, le chevron est a nous. */
+    .lang-switch { position:relative; }
+    .lang-switch > summary { list-style:none; cursor:pointer; }
+    .lang-switch > summary::-webkit-details-marker { display:none; }
+    .lang-switch > summary::marker { content:''; }
+    .lang-switch[open] > summary { color:var(--green); }
+    .lang-caret { font-size:.6rem; opacity:.6; }
+    .lang-menu {
+      position:absolute; top:calc(100% + 6px); right:0; min-width:158px;
+      background:var(--bg); border:1px solid var(--line); border-radius:6px;
+      box-shadow:0 8px 24px rgba(0,0,0,.14); padding:5px; z-index:120;
+    }
+    .lang-item {
+      display:flex; align-items:center; gap:8px; padding:8px 10px;
+      border-radius:4px; text-decoration:none; color:var(--muted);
+      font-size:.72rem; font-weight:600; letter-spacing:.04em; white-space:nowrap;
+    }
+    .lang-item:hover { background:rgba(0,0,0,.05); color:var(--green); }
+    .lang-item.active { color:var(--green); }
+    /* .nav a.active souligne l'onglet de la page courante : une entree de
+       menu n'en veut pas, elle se signale par sa couleur seule. */
+    .lang-menu a.lang-item.active { border-bottom:none; border-radius:4px; padding:8px 10px; }
+    /* Les idéogrammes occupent toute la hauteur du cadratin : un interligne
+       calibré pour l'alphabet latin (ici de 0,93 à 1,10) les fait se
+       chevaucher. La règle ne vise que les pages chinoises. */
+    html[lang="zh"] h1, html[lang="zh"] h2,
+    html[lang="zh"] h3, html[lang="zh"] h4 { line-height:1.3; }
+    .lang-btn:hover, .lang-btn.active { color:var(--green); }
+    .lang-btn.active { font-weight:800; }
+    [data-lang] { display:none; }
+    html.lang-fr [data-lang="fr"], html.lang-en [data-lang="en"], html.lang-es [data-lang="es"] { display:revert; }
+    .menu-toggle { display:none; flex-direction:column; justify-content:center; gap:5px; width:40px; height:40px; background:none; border:1px solid var(--border); border-radius:6px; cursor:pointer; padding:8px; }
+    .menu-toggle span { display:block; height:2px; background:var(--green); border-radius:2px; }
+
+    /* ── HERO ── */
+    .mhero { background:var(--off); display:grid; grid-template-columns:1.15fr 1fr; overflow:hidden; position:relative; border-bottom:1px solid var(--border); }
+    .mhero-left { padding:5rem 4rem 4.5rem; display:flex; flex-direction:column; justify-content:center; position:relative; z-index:2; }
+    .mhero-tag { display:inline-flex; align-items:center; gap:.6rem; font-size:.72rem; font-weight:500; letter-spacing:.18em; text-transform:uppercase; color:var(--green); margin-bottom:1.75rem; }
+    .mhero-tag::before { content:''; width:1.5rem; height:1px; background:var(--green); }
+    .mhero-title { font-family:'Syne',sans-serif; font-size:clamp(2.2rem,4vw,3.4rem); font-weight:800; line-height:1.05; letter-spacing:-.025em; color:var(--dark); margin-bottom:1.5rem; }
+    .mhero-title .mgreen { color:var(--green); }
+    .mhero-desc { font-size:1rem; color:var(--mid); max-width:58ch; line-height:1.75; }
+    .mhero-right { position:relative; overflow:hidden; min-height:420px; }
+    .mhero-right img { width:100%; height:100%; object-fit:cover; object-position:center; filter:saturate(.95); }
+    .mhero-right::after { content:''; position:absolute; inset:0; background:linear-gradient(to right,var(--off) 0%,transparent 35%); pointer-events:none; }
+
+    /* ── ALERT LEVELS ── */
+    .malerts { display:grid; grid-template-columns:repeat(3,1fr); border-bottom:1px solid var(--border); }
+    .malert-item { padding:2rem; border-right:1px solid var(--border); display:flex; align-items:center; gap:1.25rem; }
+    .malert-item:last-child { border-right:none; }
+    .malert-dot { width:14px; height:14px; border-radius:50%; flex-shrink:0; box-shadow:0 0 10px currentColor; }
+    .mdot-green { background:var(--green); color:var(--green); }
+    .mdot-blue { background:#2980b9; color:#2980b9; }
+    .mdot-orange { background:var(--orange); color:var(--orange); }
+    .malert-text strong { display:block; font-family:'Syne',sans-serif; font-weight:700; font-size:.85rem; margin-bottom:.15rem; }
+    .malert-text span { font-size:.75rem; color:var(--muted); }
+    .malerts-note { padding:1rem 2rem; background:var(--off); border-bottom:1px solid var(--border); font-size:.78rem; color:var(--mid); text-align:center; line-height:1.6; }
+    .malerts-note strong { color:var(--dark); font-weight:600; }
+
+    /* ── SÉCURITÉ INTRINSÈQUE ── */
+    .mintrinsic { padding:6rem 5rem; background:var(--off); border-bottom:1px solid var(--border); }
+    .msec-tag { font-size:.68rem; font-weight:600; letter-spacing:.2em; text-transform:uppercase; color:var(--green); margin-bottom:1.25rem; display:flex; align-items:center; gap:.6rem; }
+    .msec-tag::after { content:''; width:2rem; height:1px; background:var(--green); }
+    .msec-title { font-family:'Syne',sans-serif; font-size:clamp(1.8rem,3vw,2.8rem); font-weight:800; line-height:1.1; letter-spacing:-.02em; margin-bottom:1.25rem; color:var(--dark); }
+    .msec-body { font-size:1rem; color:var(--mid); line-height:1.75; max-width:52ch; }
+    .mfeatures { display:grid; grid-template-columns:1fr 1fr; gap:1px; background:var(--border); margin-top:2.5rem; border:1px solid var(--border); }
+    .mfeature { background:var(--off); padding:1.5rem; transition:background .2s; }
+    .mfeature:hover { background:var(--green-lt); }
+    .mfeature-icon { font-size:1.4rem; margin-bottom:.6rem; display:block; }
+    .mfeature-name { font-family:'Syne',sans-serif; font-weight:700; font-size:.82rem; margin-bottom:.25rem; color:var(--dark); }
+    .mfeature-desc { font-size:.75rem; color:var(--muted); line-height:1.5; }
+
+    /* ── RISQUES PRIS EN CHARGE (cartes sobres) ── */
+    .mrisks { padding:6rem 5rem; background:var(--white); border-bottom:1px solid var(--border); }
+    .mrisks-header { max-width:var(--max); margin:0 auto 3rem; }
+    .mrisks-grid { max-width:var(--max); margin:0 auto; display:grid; grid-template-columns:repeat(3,1fr); gap:1.25rem; }
+    .mrisk-card { background:var(--off); border:1px solid var(--border); padding:2rem 1.75rem; display:flex; flex-direction:column; gap:.85rem; transition:border-color .2s,background .2s; }
+    .mrisk-card:hover { border-color:var(--green-md); background:var(--green-lt); }
+    .mrisk-card-head { display:flex; align-items:center; gap:.7rem; }
+    .mrisk-dot { width:10px; height:10px; border-radius:50%; flex-shrink:0; }
+    .mdot-greenmd { background:var(--green-md); }
+    .mrisk-level { font-size:.66rem; font-weight:700; letter-spacing:.15em; text-transform:uppercase; color:var(--muted); }
+    .mrisk-title { font-family:'Syne',sans-serif; font-size:1.05rem; font-weight:700; line-height:1.3; color:var(--dark); }
+    .mrisk-desc { font-size:.88rem; color:var(--mid); line-height:1.65; }
+    .mrisk-list { list-style:none; margin-top:.35rem; display:grid; gap:.4rem; }
+    .mrisk-list li { font-size:.8rem; color:var(--mid); line-height:1.5; padding-left:1.1rem; position:relative; }
+    .mrisk-list li::before { content:''; position:absolute; left:0; top:.55rem; width:.45rem; height:1px; background:var(--green-md); }
+
+    /* ── DISCLAIMER ── */
+    .ms2-disclaimer { padding:3rem 5rem; background:var(--green-lt); border-top:2px solid var(--green); display:flex; align-items:flex-start; gap:1.5rem; }
+    .ms2-disclaimer-icon { font-size:1.5rem; flex-shrink:0; margin-top:.1rem; }
+    .ms2-disclaimer-text { font-size:.85rem; color:var(--mid); line-height:1.7; }
+    .ms2-disclaimer-text strong { display:block; font-family:'Syne',sans-serif; font-weight:700; font-size:.9rem; color:var(--green); margin-bottom:.3rem; }
+
+    /* ── FOOTER ── */
+    .footer { background:var(--off); border-top:1px solid var(--border); padding:44px 5rem 32px; }
+    .footer-inner { max-width:var(--max); margin:0 auto; }
+    .footer-top { display:flex; justify-content:space-between; align-items:flex-start; flex-wrap:wrap; gap:32px; margin-bottom:32px; }
+    .footer-brand { display:flex; align-items:center; background:#fff; padding:4px 10px; border-radius:8px; align-self:flex-start; }
+    .footer-brand img { height:32px; width:auto; display:block; }
+
+    /* ── THÈME ÉVÉNEMENTIEL (piloté depuis modulimo-admin) ── */
+    body.theme-femme .topbar { background:#f8bbd0; border-bottom-color:rgba(0,0,0,.08); }
+    body.theme-terre .topbar { background:#43a047; border-bottom-color:rgba(0,0,0,.15); }
+    body.theme-femme .topbar .nav a,
+    body.theme-femme .topbar .nav a:hover,
+    body.theme-femme .topbar .nav a.active { color:#880e4f; background:transparent; border-color:#880e4f; }
+    body.theme-terre .topbar .nav a,
+    body.theme-terre .topbar .nav a:hover,
+    body.theme-terre .topbar .nav a.active,
+    body.theme-terre .menu-toggle span { color:#e53935; background:transparent; border-color:#e53935; }
+    .footer-tagline { font-size:.82rem; color:var(--muted); margin-top:8px; max-width:260px; line-height:1.6; }
+    .footer-nav h5 { font-size:.7rem; font-weight:700; letter-spacing:.1em; text-transform:uppercase; color:var(--muted); margin-bottom:12px; }
+    .footer-nav a { display:block; font-size:.84rem; color:var(--dark); margin-bottom:8px; }
+    .footer-nav a:hover { color:var(--green); }
+    .footer-bottom { border-top:1px solid var(--border); padding-top:20px; display:flex; justify-content:space-between; flex-wrap:wrap; gap:12px; }
+    .footer-bottom p { font-size:.75rem; color:var(--muted); }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width:900px) {
+      .mhero { grid-template-columns:1fr; }
+      .mhero-right { min-height:280px; order:-1; }
+      .mhero-right::after { background:linear-gradient(to bottom,transparent 60%,var(--dark) 100%); }
+      .mhero-left { padding:3.5rem 2rem; }
+      .malerts { grid-template-columns:1fr; }
+      .malert-item { border-right:none; border-bottom:1px solid var(--border); }
+      .mintrinsic { padding:4rem 2rem; }
+      .mrisks { padding:4rem 2rem; }
+      .mrisks-grid { grid-template-columns:1fr; }
+      .ms2-disclaimer { padding:2.5rem 2rem; flex-direction:column; }
+      .footer { padding:44px 2rem 32px; }
+    }
+    @media (max-width:640px) {
+      .mfeatures { grid-template-columns:1fr; }
+      .menu-toggle { display:flex; }
+      .nav { display:none; position:absolute; top:68px; left:0; right:0; background:#1a1a1a; border-bottom:1px solid rgba(255,255,255,.1); flex-direction:column; align-items:stretch; padding:8px 16px 16px; gap:2px; }
+      .nav.is-open { display:flex; }
+      .nav a { padding:12px 14px; border-bottom:1px solid rgba(255,255,255,.08); border-radius:0; }
+      .nav a.active { border-left:3px solid var(--green-md); padding-left:11px; }
+    }
+
+  /* ════════ IMMOTIQUE — sections ajoutées (préfixe mim-) ════════ */
+  .mim-intro { padding:6rem 5rem; background:var(--off); border-bottom:1px solid var(--border); }
+  .mim-wrap { max-width:var(--max); margin:0 auto; }
+  .mim-intro-grid { display:grid; grid-template-columns:1.1fr .9fr; gap:4rem; align-items:start; }
+  .mim-intro-body p { font-size:1rem; color:var(--mid); line-height:1.8; margin-bottom:1.1rem; max-width:56ch; }
+  .mim-intro-body p:last-child { margin-bottom:0; }
+  .mim-intro-body strong { color:var(--dark); font-weight:600; }
+  .mim-aside { border-left:2px solid var(--green); padding:.4rem 0 .4rem 1.6rem; }
+  .mim-aside-q { font-family:'Syne',sans-serif; font-weight:700; font-size:.95rem; color:var(--dark); margin-bottom:.5rem; line-height:1.35; }
+  .mim-aside-a { font-size:.87rem; color:var(--mid); line-height:1.7; margin-bottom:1.6rem; }
+  .mim-aside-a:last-child { margin-bottom:0; }
+
+  .mim-trip { padding:6rem 5rem; background:var(--white); border-bottom:1px solid var(--border); }
+  .mim-trip-grid { max-width:var(--max); margin:2.5rem auto 0; display:grid; grid-template-columns:repeat(3,1fr); gap:1.25rem; }
+  .mim-card { background:var(--off); border:1px solid var(--border); padding:2rem 1.75rem; display:flex; flex-direction:column; gap:.85rem; transition:border-color .2s,background .2s; }
+  .mim-card:hover { border-color:var(--green-md); background:var(--green-lt); }
+  .mim-card.mim-card-limit { background:var(--white); border-color:var(--dark); }
+  .mim-card.mim-card-limit:hover { background:var(--white); border-color:var(--dark); }
+  .mim-card-head { display:flex; align-items:center; gap:.7rem; }
+  .mim-card-dot { width:10px; height:10px; border-radius:50%; flex-shrink:0; background:var(--green-md); }
+  .mim-card-limit .mim-card-dot { background:var(--dark); }
+  .mim-card-kicker { font-size:.66rem; font-weight:700; letter-spacing:.15em; text-transform:uppercase; color:var(--muted); }
+  .mim-card-title { font-family:'Syne',sans-serif; font-size:1.05rem; font-weight:700; line-height:1.3; color:var(--dark); }
+  .mim-list { list-style:none; display:grid; gap:.55rem; margin-top:.2rem; }
+  .mim-list li { font-size:.85rem; color:var(--mid); line-height:1.55; padding-left:1.1rem; position:relative; }
+  .mim-list li::before { content:''; position:absolute; left:0; top:.6rem; width:.45rem; height:1px; background:var(--green-md); }
+  .mim-card-limit .mim-list li::before { background:var(--dark); }
+
+  .mim-benefits { padding:6rem 5rem; background:var(--off); border-bottom:1px solid var(--border); }
+  .mim-ben-grid { max-width:var(--max); margin:2.5rem auto 0; display:grid; grid-template-columns:repeat(3,1fr); gap:1px; background:var(--border); border:1px solid var(--border); }
+  .mim-ben { background:var(--off); padding:1.9rem 1.6rem; transition:background .2s; }
+  .mim-ben:hover { background:var(--green-lt); }
+  .mim-ben-icon { font-size:1.35rem; display:block; margin-bottom:.75rem; }
+  .mim-ben-name { font-family:'Syne',sans-serif; font-weight:700; font-size:.92rem; margin-bottom:.4rem; color:var(--dark); line-height:1.3; }
+  .mim-ben-desc { font-size:.83rem; color:var(--mid); line-height:1.65; }
+
+  .mim-data { padding:6rem 5rem; background:var(--white); border-bottom:1px solid var(--border); }
+  .mim-data-grid { display:grid; grid-template-columns:1fr 1fr; gap:4rem; align-items:center; }
+  .mim-flow { display:flex; align-items:stretch; gap:0; border:1px solid var(--border); background:var(--off); }
+  .mim-step { flex:1; padding:1.6rem 1.2rem; border-right:1px solid var(--border); }
+  .mim-step:last-child { border-right:none; }
+  .mim-step-n { font-size:.62rem; font-weight:700; letter-spacing:.16em; text-transform:uppercase; color:var(--green); display:block; margin-bottom:.6rem; }
+  .mim-step-t { font-family:'Syne',sans-serif; font-weight:700; font-size:.85rem; color:var(--dark); margin-bottom:.3rem; line-height:1.3; }
+  .mim-step-d { font-size:.76rem; color:var(--muted); line-height:1.55; }
+  .mim-flow-note { margin-top:1.2rem; font-size:.8rem; color:var(--muted); line-height:1.7; }
+  .mim-flow-note strong { color:var(--dark); font-weight:600; }
+
+  .mim-tie { padding:4.5rem 5rem; background:var(--green-lt); border-bottom:1px solid var(--border); }
+  .mim-tie-inner { max-width:var(--max); margin:0 auto; display:grid; grid-template-columns:auto 1fr; gap:2.5rem; align-items:center; }
+  .mim-tie-dots { display:flex; gap:.7rem; }
+  .mim-tie-dots span { width:16px; height:16px; border-radius:50%; }
+  .mim-tie-text h3 { font-family:'Syne',sans-serif; font-size:1.35rem; font-weight:800; letter-spacing:-.015em; color:var(--dark); margin-bottom:.6rem; line-height:1.25; }
+  .mim-tie-text p { font-size:.92rem; color:var(--mid); line-height:1.75; max-width:70ch; }
+
+  @media (max-width:900px) {
+    .mim-intro, .mim-trip, .mim-benefits, .mim-data { padding:4rem 2rem; }
+    .mim-tie { padding:3rem 2rem; }
+    .mim-intro-grid, .mim-data-grid { grid-template-columns:1fr; gap:2.5rem; }
+    .mim-trip-grid, .mim-ben-grid { grid-template-columns:1fr; }
+    .mim-flow { flex-direction:column; }
+    .mim-step { border-right:none; border-bottom:1px solid var(--border); }
+    .mim-step:last-child { border-bottom:none; }
+    .mim-tie-inner { grid-template-columns:1fr; gap:1.2rem; }
+  }
+  </style>
+  <script src="/js/analytics.js" defer></script>
+  <script src="/js/lightbox.js" defer></script>
+</head>
+<body>
+
+  <!-- TOPBAR -->
+  <header class="topbar">
+    <div class="topbar-inner">
+      <button type="button" class="brand" data-lightbox="/images/ModulimoLogoSobre.png" data-lightbox-alt="Modulimo" aria-label="Voir le logo en grand">
+        <img src="/images/ModulimoLogoSobre.png" alt="Modulimo" />
+      </button>
+      <button class="menu-toggle" id="menuToggle" aria-expanded="false" aria-controls="siteNav" aria-label="Menu">
+        <span></span><span></span><span></span>
+      </button>
+      <nav class="nav" id="siteNav">
+        <a href="/zh/"><span>首页</span></a>
+        <a href="/zh/mobilite/"><span>出行</span></a>
+        <a href="/zh/securite/" class="active"><span>安全</span></a>
+        <a href="/zh/projets/"><span>项目</span></a>
+        <a href="/zh/produits/"><span>产品</span></a>
+        <a href="https://cohabitat.modulimo.com" target="_blank" rel="noopener" class="nav-cta">CoHabitat ↗</a>
+        <details class="lang-switch">
+          <summary class="lang-btn" aria-label="选择语言"><svg viewBox="0 0 24 16" width="16" height="11" aria-hidden="true" style="display:block;border-radius:2px;flex-shrink:0;"><rect width="24" height="16" fill="#de2910"/><polygon points="4.00,1.60 4.54,3.26 6.28,3.26 4.87,4.28 5.41,5.94 4.00,4.92 2.59,5.94 3.13,4.28 1.72,3.26 3.46,3.26" fill="#ffde00"/><circle cx="8" cy="1.6" r="0.6" fill="#ffde00"/><circle cx="9.6" cy="3.2" r="0.6" fill="#ffde00"/><circle cx="9.6" cy="5.6" r="0.6" fill="#ffde00"/><circle cx="8" cy="7.2" r="0.6" fill="#ffde00"/></svg><span>ZH</span><span class="lang-caret">&#9662;</span></summary>
+          <div class="lang-menu">
+            <a class="lang-item" href="/securite/" lang="fr" hreflang="fr-CA" aria-label="Afficher en français"><svg viewBox="0 0 24 16" width="16" height="11" aria-hidden="true" style="display:block;border-radius:2px;flex-shrink:0;"><rect width="24" height="16" fill="#095797"/><g transform="translate(5.6,3.6)" fill="#fff"><path d="M0,-2.3 C1,-1.2 1,-0.2 0,0.6 C-1,-0.2 -1,-1.2 0,-2.3 Z"/><path d="M-2.1,-0.5 C-1.3,-1.3 -0.6,-0.9 -0.4,0.2 C-1.2,0.6 -1.9,0.3 -2.1,-0.5 Z"/><path d="M2.1,-0.5 C1.3,-1.3 0.6,-0.9 0.4,0.2 C1.2,0.6 1.9,0.3 2.1,-0.5 Z"/><rect x="-1.6" y="0.6" width="3.2" height="0.7"/><rect x="-0.5" y="1.3" width="1" height="1.4"/></g><g transform="translate(18.4,3.6)" fill="#fff"><path d="M0,-2.3 C1,-1.2 1,-0.2 0,0.6 C-1,-0.2 -1,-1.2 0,-2.3 Z"/><path d="M-2.1,-0.5 C-1.3,-1.3 -0.6,-0.9 -0.4,0.2 C-1.2,0.6 -1.9,0.3 -2.1,-0.5 Z"/><path d="M2.1,-0.5 C1.3,-1.3 0.6,-0.9 0.4,0.2 C1.2,0.6 1.9,0.3 2.1,-0.5 Z"/><rect x="-1.6" y="0.6" width="3.2" height="0.7"/><rect x="-0.5" y="1.3" width="1" height="1.4"/></g><g transform="translate(5.6,12.4)" fill="#fff"><path d="M0,-2.3 C1,-1.2 1,-0.2 0,0.6 C-1,-0.2 -1,-1.2 0,-2.3 Z"/><path d="M-2.1,-0.5 C-1.3,-1.3 -0.6,-0.9 -0.4,0.2 C-1.2,0.6 -1.9,0.3 -2.1,-0.5 Z"/><path d="M2.1,-0.5 C1.3,-1.3 0.6,-0.9 0.4,0.2 C1.2,0.6 1.9,0.3 2.1,-0.5 Z"/><rect x="-1.6" y="0.6" width="3.2" height="0.7"/><rect x="-0.5" y="1.3" width="1" height="1.4"/></g><g transform="translate(18.4,12.4)" fill="#fff"><path d="M0,-2.3 C1,-1.2 1,-0.2 0,0.6 C-1,-0.2 -1,-1.2 0,-2.3 Z"/><path d="M-2.1,-0.5 C-1.3,-1.3 -0.6,-0.9 -0.4,0.2 C-1.2,0.6 -1.9,0.3 -2.1,-0.5 Z"/><path d="M2.1,-0.5 C1.3,-1.3 0.6,-0.9 0.4,0.2 C1.2,0.6 1.9,0.3 2.1,-0.5 Z"/><rect x="-1.6" y="0.6" width="3.2" height="0.7"/><rect x="-0.5" y="1.3" width="1" height="1.4"/></g><rect x="10.4" y="0" width="3.2" height="16" fill="#fff"/><rect x="0" y="6.4" width="24" height="3.2" fill="#fff"/></svg><span>Français</span></a>
+            <a class="lang-item" href="/en/securite/" lang="en" hreflang="en" aria-label="Display in English"><svg viewBox="0 0 24 16" width="16" height="11" aria-hidden="true" style="display:block;border-radius:2px;flex-shrink:0;"><rect width="24" height="16" fill="#fff"/><rect x="0" y="0.00" width="24" height="1.2308" fill="#b22234"/><rect x="0" y="2.46" width="24" height="1.2308" fill="#b22234"/><rect x="0" y="4.92" width="24" height="1.2308" fill="#b22234"/><rect x="0" y="7.38" width="24" height="1.2308" fill="#b22234"/><rect x="0" y="9.85" width="24" height="1.2308" fill="#b22234"/><rect x="0" y="12.31" width="24" height="1.2308" fill="#b22234"/><rect x="0" y="14.77" width="24" height="1.2308" fill="#b22234"/><rect width="9.6" height="8.62" fill="#3c3b6e"/><circle cx="3.2" cy="2.2" r="0.55" fill="#fff"/><circle cx="3.2" cy="4.4" r="0.55" fill="#fff"/><circle cx="3.2" cy="6.6" r="0.55" fill="#fff"/><circle cx="6.4" cy="2.2" r="0.55" fill="#fff"/><circle cx="6.4" cy="4.4" r="0.55" fill="#fff"/><circle cx="6.4" cy="6.6" r="0.55" fill="#fff"/></svg><span>English</span></a>
+            <a class="lang-item" href="/es/securite/" lang="es" hreflang="es" aria-label="Mostrar en español"><svg viewBox="0 0 24 16" width="16" height="11" aria-hidden="true" style="display:block;border-radius:2px;flex-shrink:0;"><rect width="8" height="16" fill="#006847"/><rect x="8" width="8" height="16" fill="#fff"/><rect x="16" width="8" height="16" fill="#ce1126"/><ellipse cx="12" cy="7.4" rx="1.7" ry="2" fill="#7a5230"/><path d="M9.9,9.4 A2.7,2.7 0 0 0 14.1,9.4" fill="none" stroke="#006847" stroke-width="0.8" stroke-linecap="round"/></svg><span>Español</span></a>
+            <a class="lang-item active" href="/zh/securite/" lang="zh" hreflang="zh-Hans" aria-label="显示中文"><svg viewBox="0 0 24 16" width="16" height="11" aria-hidden="true" style="display:block;border-radius:2px;flex-shrink:0;"><rect width="24" height="16" fill="#de2910"/><polygon points="4.00,1.60 4.54,3.26 6.28,3.26 4.87,4.28 5.41,5.94 4.00,4.92 2.59,5.94 3.13,4.28 1.72,3.26 3.46,3.26" fill="#ffde00"/><circle cx="8" cy="1.6" r="0.6" fill="#ffde00"/><circle cx="9.6" cy="3.2" r="0.6" fill="#ffde00"/><circle cx="9.6" cy="5.6" r="0.6" fill="#ffde00"/><circle cx="8" cy="7.2" r="0.6" fill="#ffde00"/></svg><span>中文</span></a>
+          </div>
+        </details>
+      </nav>
+    </div>
+  </header>
+
+
+  <!-- HERO -->
+  <section class="mhero">
+    <div class="mhero-left">
+      <span class="mhero-tag"><span>应急准备 · Modulimo</span></span>
+      <h1 class="mhero-title">
+        <span>一个把风险管理<br><span class="mgreen">承担下来的环境。</span></span>
+      </h1>
+      <p class="mhero-desc">
+        <span>在 Modulimo，常见风险的应对由建筑承担，而不是由住户承担。场景事先识别，规程形成书面文件，演练每年举行 —— 依据加拿大政府的「Préparez-vous」计划。</span> <strong style="color:var(--dark);font-weight:600;"><span>一套周全而负责的做法，不留任何侥幸。</span></strong>
+      </p>
+    </div>
+    <div class="mhero-right">
+      <img src="/images/ResidentsForme.png" alt="Résidents Modulimo en salle de surveillance" loading="lazy" />
+    </div>
+  </section>
+
+  <!-- NIVEAUX D'ALERTE -->
+  <div class="malerts">
+    <div class="malert-item">
+      <div class="malert-dot mdot-green"></div>
+      <div class="malert-text">
+        <strong><span>绿色级别 — 日常</span></strong>
+        <span><span>持续的监控与维护</span></span>
+      </div>
+    </div>
+    <div class="malert-item">
+      <div class="malert-dot mdot-blue"></div>
+      <div class="malert-text">
+        <strong><span>蓝色级别 — 准备</span></strong>
+        <span><span>72 小时应急包、家庭预案与年度演练</span></span>
+      </div>
+    </div>
+    <div class="malert-item">
+      <div class="malert-dot mdot-orange"></div>
+      <div class="malert-text">
+        <strong><span>橙色级别 — 就地避险</span></strong>
+        <span><span>应急规程与官方指令</span></span>
+      </div>
+    </div>
+  </div>
+  <div class="malerts-note"><span>预告演练时指示灯<strong>闪烁</strong> · 真实情况下指示灯<strong>常亮</strong>。</span></div>
+
+  <!-- SÉCURITÉ INTRINSÈQUE -->
+  <section class="mintrinsic">
+    <div class="msec-tag"><span>内在安全</span></div>
+    <h2 class="msec-title"><span>一栋为安宁</span><br><span>而构想的建筑。</span></h2>
+    <p class="msec-body"><span>Modulimo 的安全并非附加之物 —— 它已融入建筑本身的构造。每一处出入口、每一个公共空间、每一套规程，都以住户的日常安宁为目标，而不让安全本身成为一桩心事。</span></p>
+    <div class="mfeatures">
+      <div class="mfeature">
+        <span class="mfeature-icon">📹</span>
+        <div class="mfeature-name"><span>公共出入口摄像头</span></div>
+        <div class="mfeature-desc"><span>出入口与公共空间实时监看。住宅内及私人走廊不设任何摄像头，影像保存期限有限且有明文规定。</span></div>
+      </div>
+      <div class="mfeature">
+        <span class="mfeature-icon">🪪</span>
+        <div class="mfeature-name"><span>磁卡门禁</span></div>
+        <div class="mfeature-desc"><span>进入楼栋、使用共享设备及公共区域均凭磁卡。</span></div>
+      </div>
+      <div class="mfeature">
+        <span class="mfeature-icon">🔒</span>
+        <div class="mfeature-name"><span>围合场地</span></div>
+        <div class="mfeature-desc"><span>周界安全，住户与访客均经受控通道进出。</span></div>
+      </div>
+      <div class="mfeature">
+        <span class="mfeature-icon">🎓</span>
+        <div class="mfeature-name"><span>住户培训</span></div>
+        <div class="mfeature-desc"><span>每位住户在入住之初即接受本楼应急规程的培训。</span></div>
+      </div>
+      <div class="mfeature">
+        <span class="mfeature-icon">🌿</span>
+        <div class="mfeature-name"><span>住房分配</span></div>
+        <div class="mfeature-desc"><span>标准客观且对所有人一致：支付能力、租赁推荐记录，以及遵守楼栋规章的承诺。</span></div>
+      </div>
+      <div class="mfeature">
+        <span class="mfeature-icon">🗓️</span>
+        <div class="mfeature-name"><span>年度演练</span></div>
+        <div class="mfeature-desc"><span>每年与住户共同举行模拟演练并复核规程。</span></div>
+      </div>
+      <div class="mfeature">
+        <span class="mfeature-icon">🎤</span>
+        <div class="mfeature-name"><span>专题讲座</span></div>
+        <div class="mfeature-desc"><span>关于应急准备的信息讲座，取法「Préparez-vous」计划。</span></div>
+      </div>
+      <div class="mfeature">
+        <span class="mfeature-icon">📋</span>
+        <div class="mfeature-name"><span>疏散或就地避险预案</span></div>
+        <div class="mfeature-desc"><span>视具体场景，或疏散至室外集合点，或在中央避险处就地避险。预案发放至每位住户，并在每层张贴。</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- RISQUES PRIS EN CHARGE -->
+  <section class="mrisks">
+    <div class="mrisks-header">
+      <div class="msec-tag"><span>所应对的风险</span></div>
+      <h2 class="msec-title"><span>三个层面，</span><br><span>一套共同框架。</span></h2>
+      <p class="msec-body"><span>Modulimo 依据取法法国「特定安全防护预案」（PPMS）的框架，为住户应对加拿大主管部门所设想的常见情形做好准备。整套安排建立在一个明确的协调小组、每层楼均可取用的应急防护箱，以及每年一次的演练与更新计划之上。</span></p>
+    </div>
+    <div class="mrisks-grid">
+      <article class="mrisk-card">
+        <div class="mrisk-card-head">
+          <span class="mrisk-dot mdot-blue"></span>
+          <span class="mrisk-level"><span>蓝色级别 · 准备</span></span>
+        </div>
+        <h3 class="mrisk-title"><span>72 小时应急包与家庭预案</span></h3>
+        <p class="mrisk-desc"><span>同一套规程涵盖放射性事故、自然现象（风暴、气候事件）以及场地周边的社会失序。加拿大政府的官方三步法：<strong>待</strong>在室内，<strong>收听</strong>官方媒体，<strong>遵从</strong>省级与市级指令。</span></p>
+        <ul class="mrisk-list">
+          <li><span>中央避险处（建筑核心）</span></li>
+          <li><span>封堵门、窗与通风口</span></li>
+          <li><span>远离窗户与外墙</span></li>
+          <li><span>收听官方无线电频率</span></li>
+        </ul>
+      </article>
+    </div>
+  </section>
+
+  <!-- DISCLAIMER -->
+  <!-- ══ 1 · INTRODUCTION ══ -->
+  <section class="mim-intro">
+    <div class="mim-wrap">
+      <div class="msec-tag"><span>楼宇智能 · 自首版方案起即已规划</span></div>
+      <h2 class="msec-title"><span>一栋无人注视时<br>仍在看顾的建筑。</span></h2>
+      <div class="mim-intro-grid" style="margin-top:2.5rem">
+        <div class="mim-intro-body">
+          <p><span>规程、演练与 72 小时应急包应对的是例外情况。<strong>楼宇智能应对的是日常</strong> —— 某个周二下午热水器底下的渗漏、假期里罢工的供暖、忘了关的车库门。正是这些事情代价高昂，并在凌晨三点把人吵醒。</span></p>
+          <p><span>楼宇智能，就是建筑尺度上的家居自动化：一些传感器、若干自动控制，加上设备间里一台把它们串起来的计算机。在 Modulimo，它不是临时追加的：<strong>它自项目伊始便已列入规划</strong>，与为长者友好而设的楼梯、预留升降平台的中央井道同等对待。管线、预留接口和传感器都在施工期间安装，因为事后再做就得重新拆墙。</span></p>
+          <p><span>对住户而言，结果只需一句话：<strong>建筑承担它能承担的部分</strong>，其余留给您。</span></p>
+        </div>
+        <div class="mim-aside">
+          <div class="mim-aside-q"><span>这是不是又要多装一个应用？</span></div>
+          <div class="mim-aside-a"><span>不是。一切都通过 CoHabitat 完成，也就是您已经用来预约、共享汽车和使用公共空间的那个应用。无需安装：在浏览器中打开即可。</span></div>
+          <div class="mim-aside-q"><span>我需要去操心它吗？</span></div>
+          <div class="mim-aside-a"><span>同样不需要。正常运行时，楼宇智能是看不见的。只有当情况偏离常态时，它才会现身。</span></div>
+          <div class="mim-aside-q"><span>那我的住处呢？</span></div>
+          <div class="mim-aside-a"><span>您的住处仍然是您的。建筑负责公共部分与基础设施；您在家中添置什么，由您决定。</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+  
+  <!-- ══ 2 · OBSERVE / AGIT / NE FERA JAMAIS ══ -->
+  <section class="mim-trip">
+    <div class="mim-wrap">
+      <div class="msec-tag"><span>建筑所做的事</span></div>
+      <h2 class="msec-title"><span>三份清单，其中第三份<br>与前两份同样重要。</span></h2>
+      <div class="mim-trip-grid">
+        <div class="mim-card">
+          <div class="mim-card-head"><span class="mim-card-dot"></span><span class="mim-card-kicker"><span>它在观察</span></span></div>
+          <div class="mim-card-title"><span>持续进行，不采集图像与声音</span></div>
+          <ul class="mim-list">
+            <li><span>水：渗漏、异常流量、结冰风险</span></li>
+            <li><span>烟雾与一氧化碳</span></li>
+            <li><span>公共空间的温度与湿度</span></li>
+            <li><span>电力：停电、恢复、全楼用电量</span></li>
+            <li><span>场地与车库的门禁及出入口</span></li>
+            <li><span>共享设备：充电桩、洗衣房、温室</span></li>
+          </ul>
+        </div>
+        <div class="mim-card">
+          <div class="mim-card-head"><span class="mim-card-dot"></span><span class="mim-card-kicker"><span>它自行处置</span></span></div>
+          <div class="mim-card-title"><span>无需等待任何人下达决定</span></div>
+          <ul class="mim-list">
+            <li><span>渗漏最初几毫升即关闭水阀</span></li>
+            <li><span>停电时维持公共空间不致结冰</span></li>
+            <li><span>按对应级别点亮楼层指示灯</span></li>
+            <li><span>通知该通知的人 —— 而非整栋楼</span></li>
+            <li><span>把充电与热水调至用电低谷时段</span></li>
+            <li><span>记录发生了什么、发生在何时</span></li>
+          </ul>
+        </div>
+        <div class="mim-card mim-card-limit">
+          <div class="mim-card-head"><span class="mim-card-dot"></span><span class="mim-card-kicker"><span>它绝不会做的事</span></span></div>
+          <div class="mim-card-title"><span>边界本身就是系统的一部分</span></div>
+          <ul class="mim-list">
+            <li><span>住宅内部不设任何摄像头</span></li>
+            <li><span>没有任何数据离开本建筑</span></li>
+            <li><span>运营方不得操控您的住处</span></li>
+            <li><span>邻居看不到您的任何用量数据</span></li>
+            <li><span>不做无限期保存：保存期限有明文规定</span></li>
+            <li><span>不把任何生命攸关的功能交给软件：火灾报警与电梯仍为经认证的独立系统</span></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+  
+  <!-- ══ 3 · BÉNÉFICES RÉSIDENTS ══ -->
+  <section class="mim-benefits">
+    <div class="mim-wrap">
+      <div class="msec-tag"><span>日常之中</span></div>
+      <h2 class="msec-title"><span>具体而言，<br>这为您带来什么改变。</span></h2>
+      <p class="msec-body" style="margin-top:1rem"><span>以下没有一项是噱头：每一项都为一个家庭省去一桩杂务、一份风险或一笔开销。</span></p>
+      <div class="mim-ben-grid">
+        <div class="mim-ben">
+          <span class="mim-ben-icon">&#128167;</span>
+          <div class="mim-ben-name"><span>水在成灾之前就被切断</span></div>
+          <div class="mim-ben-desc"><span>水浸是魁北克住宅保险理赔的首要原因。在这里，传感器在第一升水时就察觉，水阀随即关闭 —— 无论您在不在家。</span></div>
+        </div>
+        <div class="mim-ben">
+          <span class="mim-ben-icon">&#128267;</span>
+          <div class="mim-ben-name"><span>到出发时车已充满电</span></div>
+          <div class="mim-ben-desc"><span>各充电桩按后续预约情况分配可用功率，而不是按先到先得。您预约，它就准备好。</span></div>
+        </div>
+        <div class="mim-ben">
+          <span class="mim-ben-icon">&#10052;</span>
+          <div class="mim-ben-name"><span>冬天在用电低谷时工作</span></div>
+          <div class="mim-ben-desc"><span>热水与充电避开用电高峰，在您睡觉时进行。您无需改变任何习惯；建筑替您安排。</span></div>
+        </div>
+        <div class="mim-ben">
+          <span class="mim-ben-icon">&#127968;</span>
+          <div class="mim-ben-name"><span>到场时公共活动厅已准备就绪</span></div>
+          <div class="mim-ben-desc"><span>在您预约前一刻钟完成供暖与照明，其余时间处于待机。既有宜人的空间，又不必整周为一间空房供暖。</span></div>
+        </div>
+        <div class="mim-ben">
+          <span class="mim-ben-icon">&#128273;</span>
+          <div class="mim-ben-name"><span>人不在也能让人进门</span></div>
+          <div class="mim-ben-desc"><span>为水管工、快递或临时看护发放临时通行权限，有效期按需设定，一键即可撤销。再也不用把钥匙藏在花盆底下。</span></div>
+        </div>
+        <div class="mim-ben">
+          <span class="mim-ben-icon">&#128663;</span>
+          <div class="mim-ben-name"><span>访客车位提前预留</span></div>
+          <div class="mim-ben-desc"><span>您的客人有车位，而且他到达时车位还空着。使用时长在预约时约定，从而避免了访客车位唯一让人头疼的问题。</span></div>
+        </div>
+        <div class="mim-ben">
+          <span class="mim-ben-icon">&#127793;</span>
+          <div class="mim-ben-name"><span>温室自己看着自己</span></div>
+          <div class="mim-ben-desc"><span>温度与水箱液位持续采集并显示在应用中 —— 这部分已在运行，也正是其余功能行得通的证明。</span></div>
+        </div>
+        <div class="mim-ben">
+          <span class="mim-ben-icon">&#128276;</span>
+          <div class="mim-ben-name"><span>一条提醒，而不是一百条通知</span></div>
+          <div class="mim-ben-desc"><span>每一个事件都送达相关的人：住宅的事送给住户，楼栋的事送给协调人员。没有消息，就是一切正常。</span></div>
+        </div>
+        <div class="mim-ben">
+          <span class="mim-ben-icon">&#128202;</span>
+          <div class="mim-ben-name"><span>您能看到自己的用量</span></div>
+          <div class="mim-ben-desc"><span>您的用量曲线、与全楼平均值的对比、某个举动带来的效果。仅供了解与决策 —— 绝不用于向您另行收费。</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+  
+  <!-- ══ 4 · DONNÉES ══ -->
+  <section class="mim-data">
+    <div class="mim-wrap">
+      <div class="mim-data-grid">
+        <div>
+          <div class="msec-tag"><span>您的数据</span></div>
+          <h2 class="msec-title"><span>一切都留在<br>这栋建筑之内。</span></h2>
+          <p class="msec-body" style="margin-top:1.25rem"><span>这里没有云。传感器把数据交给安装在设备间的一台机器，再由这台机器把信息显示在您的应用中。正常运行时，<strong>没有一个字节离开本建筑</strong>。</span></p>
+          <p class="msec-body" style="margin-top:1rem"><span>您在外面时，通过一条专用隧道连回同一台机器 —— 路径变了，目的地没变。</span></p>
+        </div>
+        <div>
+          <div class="mim-flow">
+            <div class="mim-step"><span class="mim-step-n">1</span><div class="mim-step-t"><span>传感器</span></div><div class="mim-step-d"><span>水、温度、门禁、充电桩、温室。不采集图像，也不采集声音。</span></div></div>
+            <div class="mim-step"><span class="mim-step-n">2</span><div class="mim-step-t"><span>设备间里的那台机器</span></div><div class="mim-step-d"><span>它负责记录、判断、告警。它就在这里，不在别处。</span></div></div>
+            <div class="mim-step"><span class="mim-step-n">3</span><div class="mim-step-t"><span>您的屏幕</span></div><div class="mim-step-d"><span>在 CoHabitat 中，通过楼内网络访问，或在外部通过专用隧道访问。</span></div></div>
+          </div>
+          <p class="mim-flow-note"><span><strong>谁能看到什么。</strong>您住处的细项数据仅您本人可见。建筑层面只处理汇总数据。保存期限有明文规定且有限，符合魁北克个人信息保护法的要求。</span></p>
+        </div>
+      </div>
+    </div>
+  </section>
+  
+  <!-- ══ 5 · RETOUR AUX NIVEAUX ══ -->
+  <section class="mim-tie">
+    <div class="mim-tie-inner">
+      <div class="mim-tie-dots"><span class="mdot-green"></span><span class="mdot-blue"></span><span class="mdot-orange"></span></div>
+      <div class="mim-tie-text">
+        <h3><span>本页顶部的三个级别，正是这一切的显示界面。</span></h3>
+        <p><span>绿、蓝、橙：它们不是张贴的标语，而是建筑的状态。由楼宇智能实时维护，点亮楼层指示灯 —— 预告演练时闪烁，真实情况下常亮 —— 并在应用中显示当下的指令。其余时间，它并不现身。这正是我们对它的要求。</span></p>
+      </div>
+    </div>
+  </section>
+
+  <div class="ms2-disclaimer">
+    <div class="ms2-disclaimer-icon">ℹ️</div>
+    <div class="ms2-disclaimer-text">
+      <strong><span>本项准备工作对标加拿大政府广受认可的</span></strong>
+      Ces protocoles s'inspirent du programme <a href="https://www.preparez-vous.gc.ca" target="_blank" rel="noopener" style="color:var(--green);text-decoration:underline;">Préparez-vous</a> <span>计划，以及法国面向公众场所所采用的</span> <em>Plans Particuliers de Mise en Sûreté (PPMS)</em> <span>框架。在真实紧急情况下，省级与市级主管部门的官方指令始终优先。住户在入住前及每年的演练中接受全部程序的培训。</span>
+    </div>
+  </div>
+
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="footer-inner">
+      <div class="footer-top">
+        <div>
+          <div class="footer-brand">
+            <img src="/images/ModulimoLogoSobre.png" alt="Modulimo" />
+          </div>
+          <p class="footer-tagline"><span>一体化住宅生态系统 — 住宅、出行、服务与软件。</span></p>
+        </div>
+        <div class="footer-nav">
+          <h5><span>导航</span></h5>
+          <a href="https://cohabitat.modulimo.com" target="_blank" rel="noopener">CoHabitat</a>
+          <a href="/zh/mobilite/"><span>出行</span></a>
+          <a href="/zh/securite/"><span>安全</span></a>
+          <a href="/zh/projets/"><span>项目</span></a>
+          <a href="/zh/produits/"><span>产品</span></a>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p><span>© 2026 Modulimo inc. — 保留所有权利</span></p>
+        <p><a href="/zh/confidentialite/"><span>隐私政策</span></a></p>
+        <p>Pointe-aux-Trembles, Montréal</p>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    const toggle = document.getElementById('menuToggle');
+    const nav = document.getElementById('siteNav');
+    if (toggle && nav) {
+      toggle.addEventListener('click', function() {
+        const open = nav.classList.toggle('is-open');
+        toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+      });
+      document.querySelectorAll('#siteNav a').forEach(function(a) {
+        a.addEventListener('click', function() {
+          nav.classList.remove('is-open');
+          toggle.setAttribute('aria-expanded', 'false');
+        });
+      });
+    }
+  </script>
+  <script type="module" src="/js/theme.js"></script>
+
+</body>
+</html>

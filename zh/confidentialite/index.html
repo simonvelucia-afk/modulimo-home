@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>隐私政策 — Modulimo</title>
+  <meta name="description" content="Modulimo inc. 隐私政策 — 收集的个人信息、使用目的、Cookie、查阅与更正权（魁北克第 25 号法案）。" />
+  <link rel="canonical" href="https://www.modulimo.com/zh/confidentialite/" />
+  <link rel="alternate" hreflang="fr-CA" href="https://www.modulimo.com/confidentialite/" />
+  <link rel="alternate" hreflang="en" href="https://www.modulimo.com/en/confidentialite/" />
+  <link rel="alternate" hreflang="es" href="https://www.modulimo.com/es/confidentialite/" />
+  <link rel="alternate" hreflang="zh-Hans" href="https://www.modulimo.com/zh/confidentialite/" />
+  <link rel="alternate" hreflang="x-default" href="https://www.modulimo.com/confidentialite/" />
+  <link rel="icon" type="image/png" href="/images/favicon_Modulimo.png">
+  <style>
+    *, *::before, *::after { box-sizing:border-box; margin:0; padding:0; }
+    :root { --green:#2d5a4a; --green-lt:#3a7a62; --green-dk:#1e3d32; --bg:#f4f3f0; --line:#d0cec8; --text:#1a1a18; --muted:#5c5c56; --max:880px; }
+    html { scroll-behavior:smooth; }
+    body { font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif; background:#fff; color:var(--text); line-height:1.6; }
+    a { color:inherit; text-decoration:none; }
+    img { display:block; max-width:100%; }
+    .wrap { max-width:var(--max); margin:0 auto; padding:0 24px; }
+    .topbar { position:sticky; top:0; z-index:50; background:var(--bg); border-bottom:1px solid var(--line); }
+    .topbar-inner { max-width:1140px; margin:0 auto; padding:0 24px; height:76px; display:flex; align-items:center; justify-content:space-between; gap:18px; }
+    .brand { display:flex; align-items:center; flex-shrink:0; }
+    .brand img { height:56px; width:auto; display:block; }
+    .nav { display:flex; align-items:center; gap:2px; }
+    .nav a { font-size:.72rem; font-weight:600; letter-spacing:.07em; text-transform:uppercase; color:var(--muted); padding:7px 13px; border-radius:5px; transition:color .15s,background .15s; white-space:nowrap; }
+    .nav a:hover { color:var(--green); background:rgba(45,90,74,.07); }
+    .nav-cta { color:var(--green) !important; border:1px solid var(--green); border-radius:5px; padding:6px 12px !important; margin-left:6px; transition:background .15s,color .15s; }
+    .nav-cta:hover { background:var(--green); color:#fff !important; }
+    .lang-switch { display:inline-flex; align-items:center; gap:0; margin-left:10px; padding-left:10px; border-left:1px solid var(--line); }
+    .lang-btn { font-size:.7rem; font-weight:700; letter-spacing:.06em; color:var(--muted); padding:5px 7px; background:none; border:none; cursor:pointer; font-family:inherit; transition:color .15s; }
+    /* Le drapeau et le code de langue sur une ligne, comme dans CoHabitat. */
+    .lang-btn { display:inline-flex; align-items:center; gap:5px; }
+    /* Menu deroulant des langues, bati sur <details> : pas de JavaScript.
+       La fleche du marqueur natif est retiree, le chevron est a nous. */
+    .lang-switch { position:relative; }
+    .lang-switch > summary { list-style:none; cursor:pointer; }
+    .lang-switch > summary::-webkit-details-marker { display:none; }
+    .lang-switch > summary::marker { content:''; }
+    .lang-switch[open] > summary { color:var(--green); }
+    .lang-caret { font-size:.6rem; opacity:.6; }
+    .lang-menu {
+      position:absolute; top:calc(100% + 6px); right:0; min-width:158px;
+      background:var(--bg); border:1px solid var(--line); border-radius:6px;
+      box-shadow:0 8px 24px rgba(0,0,0,.14); padding:5px; z-index:120;
+    }
+    .lang-item {
+      display:flex; align-items:center; gap:8px; padding:8px 10px;
+      border-radius:4px; text-decoration:none; color:var(--muted);
+      font-size:.72rem; font-weight:600; letter-spacing:.04em; white-space:nowrap;
+    }
+    .lang-item:hover { background:rgba(0,0,0,.05); color:var(--green); }
+    .lang-item.active { color:var(--green); }
+    /* .nav a.active souligne l'onglet de la page courante : une entree de
+       menu n'en veut pas, elle se signale par sa couleur seule. */
+    .lang-menu a.lang-item.active { border-bottom:none; border-radius:4px; padding:8px 10px; }
+    /* Les idéogrammes occupent toute la hauteur du cadratin : un interligne
+       calibré pour l'alphabet latin (ici de 0,93 à 1,10) les fait se
+       chevaucher. La règle ne vise que les pages chinoises. */
+    html[lang="zh"] h1, html[lang="zh"] h2,
+    html[lang="zh"] h3, html[lang="zh"] h4 { line-height:1.3; }
+    .lang-btn:hover, .lang-btn.active { color:var(--green); }
+    .lang-btn.active { font-weight:800; }
+    [data-lang] { display:none; }
+    html.lang-fr [data-lang="fr"], html.lang-en [data-lang="en"], html.lang-es [data-lang="es"] { display:revert; }
+    .menu-toggle { display:none; flex-direction:column; justify-content:center; gap:5px; width:40px; height:40px; background:none; border:1px solid var(--line); border-radius:6px; cursor:pointer; padding:8px; }
+    .menu-toggle span { display:block; height:2px; background:var(--green); border-radius:2px; }
+    .page-hero { background:var(--bg); padding:56px 24px 44px; border-bottom:1px solid var(--line); }
+    .page-hero-inner { max-width:var(--max); margin:0 auto; }
+    .page-eyebrow { font-size:.72rem; font-weight:700; letter-spacing:.14em; text-transform:uppercase; color:var(--green); margin-bottom:12px; }
+    .page-hero h1 { font-size:clamp(1.8rem,4vw,2.6rem); font-weight:800; letter-spacing:-.04em; color:var(--text); margin-bottom:12px; line-height:1.1; }
+    .page-hero p { font-size:.95rem; color:var(--muted); max-width:640px; line-height:1.7; }
+    .policy { padding:56px 0 72px; }
+    .policy section { margin-bottom:36px; }
+    .policy h2 { font-size:1.15rem; font-weight:800; letter-spacing:-.02em; color:var(--text); margin-bottom:10px; }
+    .policy p, .policy li { font-size:.92rem; color:var(--muted); line-height:1.75; margin-bottom:8px; }
+    .policy ul { padding-left:22px; margin-bottom:8px; }
+    .policy strong { color:var(--text); }
+    .policy a { color:var(--green); text-decoration:underline; }
+    .policy .updated { font-size:.8rem; color:var(--muted); font-style:italic; border-top:1px solid var(--line); padding-top:18px; margin-top:8px; }
+    .footer { background:var(--bg); border-top:1px solid var(--line); padding:36px 24px 28px; }
+    .footer-inner { max-width:1140px; margin:0 auto; display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:12px; }
+    .footer-inner p { font-size:.75rem; color:var(--muted); }
+    .footer-inner a:hover { color:var(--green); }
+    @media (max-width:640px) {
+      .menu-toggle { display:flex; }
+      .nav { display:none; position:absolute; top:68px; left:0; right:0; background:var(--bg); border-bottom:1px solid var(--line); flex-direction:column; align-items:stretch; padding:8px 16px 16px; gap:2px; }
+      .nav.is-open { display:flex; }
+      .nav a { padding:12px 14px; border-bottom:1px solid var(--line); border-radius:0; }
+    }
+  </style>
+  <script src="/js/analytics.js" defer></script>
+</head>
+<body>
+
+  <header class="topbar">
+    <div class="topbar-inner">
+      <a class="brand" href="/zh/"><img src="/images/ModulimoLogoSobre.png" alt="Modulimo" /></a>
+      <button class="menu-toggle" id="menuToggle" aria-expanded="false" aria-controls="siteNav" aria-label="Menu"><span></span><span></span><span></span></button>
+      <nav class="nav" id="siteNav">
+        <a href="/zh/"><span>首页</span></a>
+        <a href="/zh/mobilite/"><span>出行</span></a>
+        <a href="/zh/securite/"><span>安全</span></a>
+        <a href="/zh/projets/"><span>项目</span></a>
+        <a href="/zh/produits/"><span>产品</span></a>
+        <a href="https://cohabitat.modulimo.com" target="_blank" rel="noopener" class="nav-cta">CoHabitat ↗</a>
+        <details class="lang-switch">
+          <summary class="lang-btn" aria-label="选择语言"><svg viewBox="0 0 24 16" width="16" height="11" aria-hidden="true" style="display:block;border-radius:2px;flex-shrink:0;"><rect width="24" height="16" fill="#de2910"/><polygon points="4.00,1.60 4.54,3.26 6.28,3.26 4.87,4.28 5.41,5.94 4.00,4.92 2.59,5.94 3.13,4.28 1.72,3.26 3.46,3.26" fill="#ffde00"/><circle cx="8" cy="1.6" r="0.6" fill="#ffde00"/><circle cx="9.6" cy="3.2" r="0.6" fill="#ffde00"/><circle cx="9.6" cy="5.6" r="0.6" fill="#ffde00"/><circle cx="8" cy="7.2" r="0.6" fill="#ffde00"/></svg><span>ZH</span><span class="lang-caret">&#9662;</span></summary>
+          <div class="lang-menu">
+            <a class="lang-item" href="/confidentialite/" lang="fr" hreflang="fr-CA" aria-label="Afficher en français"><svg viewBox="0 0 24 16" width="16" height="11" aria-hidden="true" style="display:block;border-radius:2px;flex-shrink:0;"><rect width="24" height="16" fill="#095797"/><g transform="translate(5.6,3.6)" fill="#fff"><path d="M0,-2.3 C1,-1.2 1,-0.2 0,0.6 C-1,-0.2 -1,-1.2 0,-2.3 Z"/><path d="M-2.1,-0.5 C-1.3,-1.3 -0.6,-0.9 -0.4,0.2 C-1.2,0.6 -1.9,0.3 -2.1,-0.5 Z"/><path d="M2.1,-0.5 C1.3,-1.3 0.6,-0.9 0.4,0.2 C1.2,0.6 1.9,0.3 2.1,-0.5 Z"/><rect x="-1.6" y="0.6" width="3.2" height="0.7"/><rect x="-0.5" y="1.3" width="1" height="1.4"/></g><g transform="translate(18.4,3.6)" fill="#fff"><path d="M0,-2.3 C1,-1.2 1,-0.2 0,0.6 C-1,-0.2 -1,-1.2 0,-2.3 Z"/><path d="M-2.1,-0.5 C-1.3,-1.3 -0.6,-0.9 -0.4,0.2 C-1.2,0.6 -1.9,0.3 -2.1,-0.5 Z"/><path d="M2.1,-0.5 C1.3,-1.3 0.6,-0.9 0.4,0.2 C1.2,0.6 1.9,0.3 2.1,-0.5 Z"/><rect x="-1.6" y="0.6" width="3.2" height="0.7"/><rect x="-0.5" y="1.3" width="1" height="1.4"/></g><g transform="translate(5.6,12.4)" fill="#fff"><path d="M0,-2.3 C1,-1.2 1,-0.2 0,0.6 C-1,-0.2 -1,-1.2 0,-2.3 Z"/><path d="M-2.1,-0.5 C-1.3,-1.3 -0.6,-0.9 -0.4,0.2 C-1.2,0.6 -1.9,0.3 -2.1,-0.5 Z"/><path d="M2.1,-0.5 C1.3,-1.3 0.6,-0.9 0.4,0.2 C1.2,0.6 1.9,0.3 2.1,-0.5 Z"/><rect x="-1.6" y="0.6" width="3.2" height="0.7"/><rect x="-0.5" y="1.3" width="1" height="1.4"/></g><g transform="translate(18.4,12.4)" fill="#fff"><path d="M0,-2.3 C1,-1.2 1,-0.2 0,0.6 C-1,-0.2 -1,-1.2 0,-2.3 Z"/><path d="M-2.1,-0.5 C-1.3,-1.3 -0.6,-0.9 -0.4,0.2 C-1.2,0.6 -1.9,0.3 -2.1,-0.5 Z"/><path d="M2.1,-0.5 C1.3,-1.3 0.6,-0.9 0.4,0.2 C1.2,0.6 1.9,0.3 2.1,-0.5 Z"/><rect x="-1.6" y="0.6" width="3.2" height="0.7"/><rect x="-0.5" y="1.3" width="1" height="1.4"/></g><rect x="10.4" y="0" width="3.2" height="16" fill="#fff"/><rect x="0" y="6.4" width="24" height="3.2" fill="#fff"/></svg><span>Français</span></a>
+            <a class="lang-item" href="/en/confidentialite/" lang="en" hreflang="en" aria-label="Display in English"><svg viewBox="0 0 24 16" width="16" height="11" aria-hidden="true" style="display:block;border-radius:2px;flex-shrink:0;"><rect width="24" height="16" fill="#fff"/><rect x="0" y="0.00" width="24" height="1.2308" fill="#b22234"/><rect x="0" y="2.46" width="24" height="1.2308" fill="#b22234"/><rect x="0" y="4.92" width="24" height="1.2308" fill="#b22234"/><rect x="0" y="7.38" width="24" height="1.2308" fill="#b22234"/><rect x="0" y="9.85" width="24" height="1.2308" fill="#b22234"/><rect x="0" y="12.31" width="24" height="1.2308" fill="#b22234"/><rect x="0" y="14.77" width="24" height="1.2308" fill="#b22234"/><rect width="9.6" height="8.62" fill="#3c3b6e"/><circle cx="3.2" cy="2.2" r="0.55" fill="#fff"/><circle cx="3.2" cy="4.4" r="0.55" fill="#fff"/><circle cx="3.2" cy="6.6" r="0.55" fill="#fff"/><circle cx="6.4" cy="2.2" r="0.55" fill="#fff"/><circle cx="6.4" cy="4.4" r="0.55" fill="#fff"/><circle cx="6.4" cy="6.6" r="0.55" fill="#fff"/></svg><span>English</span></a>
+            <a class="lang-item" href="/es/confidentialite/" lang="es" hreflang="es" aria-label="Mostrar en español"><svg viewBox="0 0 24 16" width="16" height="11" aria-hidden="true" style="display:block;border-radius:2px;flex-shrink:0;"><rect width="8" height="16" fill="#006847"/><rect x="8" width="8" height="16" fill="#fff"/><rect x="16" width="8" height="16" fill="#ce1126"/><ellipse cx="12" cy="7.4" rx="1.7" ry="2" fill="#7a5230"/><path d="M9.9,9.4 A2.7,2.7 0 0 0 14.1,9.4" fill="none" stroke="#006847" stroke-width="0.8" stroke-linecap="round"/></svg><span>Español</span></a>
+            <a class="lang-item active" href="/zh/confidentialite/" lang="zh" hreflang="zh-Hans" aria-label="显示中文"><svg viewBox="0 0 24 16" width="16" height="11" aria-hidden="true" style="display:block;border-radius:2px;flex-shrink:0;"><rect width="24" height="16" fill="#de2910"/><polygon points="4.00,1.60 4.54,3.26 6.28,3.26 4.87,4.28 5.41,5.94 4.00,4.92 2.59,5.94 3.13,4.28 1.72,3.26 3.46,3.26" fill="#ffde00"/><circle cx="8" cy="1.6" r="0.6" fill="#ffde00"/><circle cx="9.6" cy="3.2" r="0.6" fill="#ffde00"/><circle cx="9.6" cy="5.6" r="0.6" fill="#ffde00"/><circle cx="8" cy="7.2" r="0.6" fill="#ffde00"/></svg><span>中文</span></a>
+          </div>
+        </details>
+      </nav>
+    </div>
+  </header>
+
+  <div class="page-hero">
+    <div class="page-hero-inner">
+      <p class="page-eyebrow"><span>Modulimo inc.</span></p>
+      <h1><span>隐私政策</span></h1>
+      <p><span>本政策说明 Modulimo inc. 如何依据魁北克第 25 号法案（《关于个人信息保护的现代化立法》）收集、使用、保存和保护您的个人信息。</span></p>
+    </div>
+  </div>
+
+  <main class="policy">
+    <div class="wrap">
+
+      <section>
+        <h2><span>1. 个人信息保护负责人</span></h2>
+        <p><span>如有任何问题，或需查阅、更正个人信息或撤回同意，可联系 Modulimo inc. 的个人信息保护负责人：<a href="mailto:contribution@modulimo.com">contribution@modulimo.com</a>。</span></p>
+      </section>
+
+      <section>
+        <h2><span>2. 所收集的信息</span></h2>
+        <ul>
+          <li><span><strong>「请通知我」表单</strong>：名字、姓氏、电子邮箱及选填留言，均经您明确同意后收集。</span></li>
+          <li><span><strong>申请表单</strong>（/postuler）：您为租赁申请评估而自愿提供的信息。</span></li>
+          <li><span><strong>访问统计</strong>（Google Analytics 4，仅在您同意时启用）：浏览的页面、设备类型、经匿名化处理的 IP 地址。</span></li>
+          <li><span><strong>安全元数据</strong>：提交表单时，系统会保存 IP 地址的不可逆数字指纹（哈希值）以防止滥用 — 绝不保存 IP 地址本身。</span></li>
+        </ul>
+      </section>
+
+      <section>
+        <h2><span>3. 收集目的</span></h2>
+        <p><span>您的信息仅用于：回应您的咨询、向您通报 Pointe Est 项目的进展、评估租赁申请、统计网站访问量以及防止滥用。Modulimo inc. 不出售您的个人信息。申请评分仅作为辅助决策工具：最终决定始终由人作出。</span></p>
+      </section>
+
+      <section>
+        <h2><span>4. 同意与撤回</span></h2>
+        <p><span>信息收集以您的明确同意为依据（表单勾选框、Cookie 提示条）。您可随时致信 <a href="mailto:contribution@modulimo.com">contribution@modulimo.com</a> 撤回同意；届时您的信息将被安全销毁，法律规定须保存的除外。</span></p>
+      </section>
+
+      <section>
+        <h2><span>5. Cookie 与 Google Analytics</span></h2>
+        <p><span>访问统计默认关闭。Google Analytics 4 仅在您通过同意提示条接受后才会加载；若您拒绝，则不会写入任何统计类 Cookie。IP 地址经匿名化处理。您的选择保存在您的浏览器本地，可通过清除本站的浏览数据予以取消。</span></p>
+      </section>
+
+      <section>
+        <h2><span>6. 保存与销毁</span></h2>
+        <p><span>信息的保存期限仅限于实现上述目的所必需的时间。被拒绝、撤回或已过期的申请，其个人信息最迟于决定作出后 12 个月内销毁。经您要求，您的信息将被安全且不可逆地销毁。</span></p>
+      </section>
+
+      <section>
+        <h2><span>7. 向第三方披露</span></h2>
+        <p><span>您的信息仅提供给维持本网站及表单运行所必需的技术服务商：Supabase（数据安全托管）、Resend（邮件发送）、GitHub Pages（网站托管）及 Google（访问统计，仅在您同意时）。这些服务商可能在魁北克境外保存数据；相应的合同保护措施同时适用。我们不会为商业目的向第三方披露您的信息。</span></p>
+      </section>
+
+      <section>
+        <h2><span>8. 您的权利</span></h2>
+        <p><span>您有权查阅我们持有的关于您的个人信息，在信息不准确或不完整时要求更正，并撤回您的同意。请将您的请求发送至 <a href="mailto:contribution@modulimo.com">contribution@modulimo.com</a>；我们将在最长 30 天内答复。</span></p>
+        <p><span>若您对请求的处理结果不满意，可向<a href="https://www.cai.gouv.qc.ca/" target="_blank" rel="noopener">魁北克信息查阅委员会（Commission d'accès à l'information du Québec）</a>提出投诉。</span></p>
+      </section>
+
+      <section>
+        <h2><span>9. 本政策的更新</span></h2>
+        <p><span>本政策的任何修改都将公布于本页面。</span></p>
+        <p class="updated"><span>最后更新：2026 年 6 月 10 日</span></p>
+      </section>
+
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+      <p><span>© 2026 Modulimo inc. — 保留所有权利</span></p>
+      <p><a href="/zh/confidentialite/"><span>隐私政策</span></a></p>
+      <p>Pointe-aux-Trembles, Montréal</p>
+    </div>
+  </footer>
+
+  <script>
+    const toggle = document.getElementById('menuToggle');
+    const nav = document.getElementById('siteNav');
+    if (toggle && nav) {
+      toggle.addEventListener('click', function() {
+        const open = nav.classList.toggle('is-open');
+        toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+      });
+    }
+  </script>
+  <script type="module" src="/js/theme.js"></script>
+
+</body>
+</html>
