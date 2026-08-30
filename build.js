@@ -3,7 +3,7 @@
 // MODULIMO — build.js : génération des pages FR / EN / ES
 // ============================================================
 // Les pages sources (src/**/index.html) contiennent les trois
-// langues via <span data-lang="fr|en|es"> (et quelques <div>).
+// langues via <span data-lang="fr|en|es|zh"> (et quelques <div>).
 // Ce script génère, sans dépendance externe :
 //   /            → français (langue principale)
 //   /en/…        → anglais
@@ -20,8 +20,13 @@ const fs = require('fs');
 const path = require('path');
 
 const SITE = 'https://www.modulimo.com';
-const LANGS = ['fr', 'en', 'es'];
-const HREFLANG = { fr: 'fr-CA', en: 'en', es: 'es' };
+const LANGS = ['fr', 'en', 'es', 'zh'];
+const HREFLANG = { fr: 'fr-CA', en: 'en', es: 'es', zh: 'zh-Hans' };
+// Alternance pour les expressions regulieres ci-dessous : construite a
+// partir de LANGS, pour qu'une langue ajoutee n'oblige pas a retrouver
+// trois motifs eparpilles dans le fichier.
+const ALT = LANGS.join('|');
+const ALT_TRAD = LANGS.filter((l) => l !== 'fr').join('|');
 
 // Pages générées. `route` est le chemin public FR (préfixé /en/ ou /es/
 // pour les autres langues). title/desc remplacent <title> et la meta
@@ -33,11 +38,13 @@ const PAGES = [
       fr: 'MODULIMO — Habitat et mobilité écologique',
       en: 'MODULIMO — Housing and ecological mobility',
       es: 'MODULIMO — Hábitat y movilidad ecológica',
+      zh: 'MODULIMO — 生态住宅与出行',
     },
     desc: {
       fr: "MODULIMO structure un écosystème résidentiel intégré combinant logement familial, mobilité, services et logiciel. Projet Pointe Est à Montréal.",
       en: "MODULIMO builds an integrated residential ecosystem combining family housing, mobility, services and software. Pointe Est project in Montreal.",
       es: "MODULIMO estructura un ecosistema residencial integrado que combina vivienda familiar, movilidad, servicios y software. Proyecto Pointe Est en Montreal.",
+      zh: "MODULIMO 构建一体化住宅生态系统，融合家庭住宅、出行、服务与软件。蒙特利尔 Pointe Est 项目。",
     },
   },
   {
@@ -46,11 +53,13 @@ const PAGES = [
       fr: 'Mobilité inter-modale — Modulimo',
       en: 'Inter-modal mobility — Modulimo',
       es: 'Movilidad intermodal — Modulimo',
+      zh: '多式联运出行 — Modulimo',
     },
     desc: {
       fr: "Covoiturage intégré, vélomobile et accès direct au transport en commun — la mobilité fait partie du milieu de vie Modulimo.",
       en: "Built-in ride-share, velomobile and direct access to public transit — mobility is part of the Modulimo living environment.",
       es: "Carpooling integrado, velomóvil y acceso directo al transporte público — la movilidad forma parte del entorno de vida Modulimo.",
+      zh: "内置拼车、协力车与公共交通直达 — 出行是 Modulimo 生活环境的组成部分。",
     },
   },
   {
@@ -59,11 +68,13 @@ const PAGES = [
       fr: 'Sécurité — Modulimo',
       en: 'Security — Modulimo',
       es: 'Seguridad — Modulimo',
+      zh: '安全 — Modulimo',
     },
     desc: {
       fr: "La sécurité des résidents au cœur du modèle Modulimo — prévention, surveillance et résilience du milieu de vie.",
       en: "Resident safety at the core of the Modulimo model — prevention, monitoring and resilience of the living environment.",
       es: "La seguridad de los residentes en el centro del modelo Modulimo — prevención, vigilancia y resiliencia del entorno de vida.",
+      zh: "住户安全是 Modulimo 模式的核心 — 预防、监控与生活环境的韧性。",
     },
   },
   {
@@ -72,11 +83,13 @@ const PAGES = [
       fr: 'Projets — MODULIMO',
       en: 'Projects — MODULIMO',
       es: 'Proyectos — MODULIMO',
+      zh: '项目 — MODULIMO',
     },
     desc: {
       fr: "Les projets immobiliers Modulimo — Pointe Est et futurs déploiements du modèle résidentiel intégré.",
       en: "Modulimo real estate projects — Pointe Est and future deployments of the integrated residential model.",
       es: "Los proyectos inmobiliarios Modulimo — Pointe Est y futuros despliegues del modelo residencial integrado.",
+      zh: "Modulimo 的房地产项目 — Pointe Est 及一体化住宅模式的后续部署。",
     },
   },
   {
@@ -85,11 +98,13 @@ const PAGES = [
       fr: 'Pointe Est — Projets MODULIMO',
       en: 'Pointe Est — MODULIMO Projects',
       es: 'Pointe Est — Proyectos MODULIMO',
+      zh: 'Pointe Est — MODULIMO 项目',
     },
     desc: {
       fr: "Pointe Est — premier projet immobilier Modulimo à Pointe-aux-Trembles, Montréal. 6 logements multigénérationnels, construction industrialisée performante, démarche PPCMOI en cours.",
       en: "Pointe Est — first Modulimo real estate project in Pointe-aux-Trembles, Montreal. 6 multigenerational homes, high-performance industrialized construction, PPCMOI process underway.",
       es: "Pointe Est — primer proyecto inmobiliario Modulimo en Pointe-aux-Trembles, Montreal. 6 viviendas multigeneracionales, construcción industrializada de alto rendimiento, trámite PPCMOI en curso.",
+      zh: "Pointe Est — Modulimo 在蒙特利尔 Pointe-aux-Trembles 的首个房地产项目。6 套多代同堂住宅，高性能工业化建造，PPCMOI 审批程序进行中。",
     },
   },
   {
@@ -98,11 +113,13 @@ const PAGES = [
       fr: 'Politique de confidentialité — Modulimo',
       en: 'Privacy Policy — Modulimo',
       es: 'Política de privacidad — Modulimo',
+      zh: '隐私政策 — Modulimo',
     },
     desc: {
       fr: "Politique de confidentialité de Modulimo inc. — renseignements personnels recueillis, finalités, témoins, droits d'accès et de rectification (Loi 25).",
       en: "Modulimo inc. privacy policy — personal information collected, purposes, cookies, access and rectification rights (Quebec Law 25).",
       es: "Política de privacidad de Modulimo inc. — información personal recopilada, finalidades, cookies, derechos de acceso y rectificación (Ley 25 de Quebec).",
+      zh: "Modulimo inc. 隐私政策 — 收集的个人信息、使用目的、Cookie、查阅与更正权（魁北克第 25 号法案）。",
     },
   },
   {
@@ -111,11 +128,13 @@ const PAGES = [
       fr: 'MODULIMO | Produits',
       en: 'MODULIMO | Products',
       es: 'MODULIMO | Productos',
+      zh: 'MODULIMO | 产品',
     },
     desc: {
       fr: "MODULIMO structure un écosystème intégré combinant habitation familiale, mobilité, services, infrastructure logicielle, construction industrialisée et innovation avancée.",
       en: "MODULIMO builds an integrated ecosystem combining family housing, mobility, services, software infrastructure, industrialized construction and advanced innovation.",
       es: "MODULIMO estructura un ecosistema integrado que combina vivienda familiar, movilidad, servicios, infraestructura de software, construcción industrializada e innovación avanzada.",
+      zh: "MODULIMO 构建一体化生态系统，融合家庭住宅、出行、服务、软件基础设施、工业化建造与前沿创新。",
     },
   },
 ];
@@ -132,7 +151,7 @@ const ROUTE_SLUGS = ['mobilite', 'securite', 'projets/pointe-est', 'projets', 'p
 // couverture EN/ES). L'attribut data-lang est retiré, le
 // contenu est traité récursivement (grappes imbriquées).
 // ------------------------------------------------------------
-const LANG_OPEN_RE = /^<(span|div)((?:[^>"]|"[^"]*")*?)\sdata-lang="(fr|en|es)"((?:[^>"]|"[^"]*")*?)>/;
+const LANG_OPEN_RE = new RegExp('^<(span|div)((?:[^>"]|"[^"]*")*?)\\sdata-lang="(' + ALT + ')"((?:[^>"]|"[^"]*")*?)>');
 
 // Localise l'élément data-lang à partir de `from` (qui doit pointer sur
 // son '<'), retourne { tag, attrs, lang, inner, end } ou null.
@@ -170,7 +189,7 @@ function extractLang(html, lang) {
   let out = '';
   let pos = 0;
   for (;;) {
-    const idx = html.slice(pos).search(/<(?:span|div)(?:[^>"]|"[^"]*")*?\sdata-lang="(?:fr|en|es)"/);
+    const idx = html.slice(pos).search(new RegExp('<(?:span|div)(?:[^>"]|"[^"]*")*?\\sdata-lang="(?:' + ALT + ')"'));
     if (idx === -1) { out += html.slice(pos); break; }
     const start = pos + idx;
     out += html.slice(pos, start);
@@ -195,19 +214,18 @@ function extractLang(html, lang) {
   return out;
 }
 
-// alt trilingues : data-alt-en / data-alt-es remplacent alt selon la
-// langue cible, puis les attributs data-alt-* sont retirés partout.
+// alt multilingues : data-alt-en / data-alt-es / data-alt-zh remplacent alt
+// selon la langue cible, puis les attributs data-alt-* sont retirés partout.
 function applyAlts(html, lang) {
   if (lang !== 'fr') {
-    html = html.replace(/alt="([^"]*)"((?:[^>"]|"[^"]*")*?)\sdata-alt-(en|es)="([^"]*)"/g,
+    html = html.replace(
+      new RegExp('alt="([^"]*)"((?:[^>"]|"[^"]*")*?)\\sdata-alt-(' + ALT_TRAD + ')="([^"]*)"', 'g'),
       (full, frAlt, between, l, txt) => {
         if (l === lang) return `alt="${txt}"${between} data-alt-${l}="${txt}"`;
         return full;
       });
-    // 2e passe : l'autre attribut (ordre en puis es dans les sources)
-    html = html.replace(/alt="[^"]*"/g, (a) => a); // no-op, lisibilité
   }
-  return html.replace(/\sdata-alt-(?:en|es)="[^"]*"/g, '');
+  return html.replace(new RegExp('\\sdata-alt-(?:' + ALT_TRAD + ')="[^"]*"', 'g'), '');
 }
 
 // Liens internes : préfixe /en/ ou /es/ + barre oblique finale.
@@ -288,16 +306,52 @@ const DRAPEAU_MEXIQUE = '<svg viewBox="0 0 24 16" width="16" height="11"'
   + ' stroke-width="0.8" stroke-linecap="round"/>'
   + '</svg>';
 
-const DRAPEAUX = { fr: DRAPEAU_QUEBEC, en: DRAPEAU_USA, es: DRAPEAU_MEXIQUE };
+// La grande étoile est dessinée, les quatre petites sont des points : à
+// 16 px de large, une étoile à cinq branches de moins d'un pixel de rayon
+// n'est plus qu'une tache, alors que leur arc reste reconnaissable.
+const DRAPEAU_CHINE = (() => {
+  const etoile = (cx, cy, r) => {
+    const pts = [];
+    for (let i = 0; i < 10; i++) {
+      const rayon = (i % 2) ? r * 0.382 : r;
+      const a = -Math.PI / 2 + i * Math.PI / 5;
+      pts.push((cx + rayon * Math.cos(a)).toFixed(2) + ',' + (cy + rayon * Math.sin(a)).toFixed(2));
+    }
+    return `<polygon points="${pts.join(' ')}" fill="#ffde00"/>`;
+  };
+  const petites = [[8, 1.6], [9.6, 3.2], [9.6, 5.6], [8, 7.2]]
+    .map(([x, y]) => `<circle cx="${x}" cy="${y}" r="0.6" fill="#ffde00"/>`).join('');
+  return '<svg viewBox="0 0 24 16" width="16" height="11" aria-hidden="true"'
+    + ' style="display:block;border-radius:2px;flex-shrink:0;">'
+    + '<rect width="24" height="16" fill="#de2910"/>'
+    + etoile(4, 4, 2.4) + petites
+    + '</svg>';
+})();
+
+const DRAPEAUX = { fr: DRAPEAU_QUEBEC, en: DRAPEAU_USA, es: DRAPEAU_MEXIQUE, zh: DRAPEAU_CHINE };
 
 // Le nom de chaque langue dans sa propre langue : un hispanophone reconnaît
 // « Español » sans savoir que le site appelle sa langue « ES ».
-const NOMS = { fr: 'Français', en: 'English', es: 'Español' };
+const NOMS = { fr: 'Français', en: 'English', es: 'Español', zh: '中文' };
 
 const ARIA = {
-  ouvrir: { fr: 'Choisir la langue', en: 'Choose language', es: 'Elegir idioma' },
-  aller:  { fr: 'Afficher en français', en: 'Display in English', es: 'Mostrar en español' },
+  ouvrir: { fr: 'Choisir la langue', en: 'Choose language', es: 'Elegir idioma', zh: '选择语言' },
+  aller:  { fr: 'Afficher en français', en: 'Display in English', es: 'Mostrar en español', zh: '显示中文' },
 };
+
+// Avis de traduction, ajouté au pied des versions traduites seulement : la
+// version française fait foi, les autres sont fournies à titre informatif.
+// Rien à ajouter sur la version française, qui est l'originale.
+const AVIS = {
+  en: 'This page is a translation provided for information only. It carries no promise, commitment or guarantee, and may be updated without notice. Should any discrepancy arise, the French version prevails in all respects.',
+  es: 'Esta página es una traducción facilitada únicamente a título informativo. No constituye promesa, compromiso ni garantía alguna, y puede modificarse sin previo aviso. En caso de discrepancia, la versión francesa prevalece en todos sus términos.',
+  zh: '本页面为仅供参考的译文，不构成任何承诺、约定或保证，并可能随时更新，恕不另行通知。如与法文版本有任何出入，一概以法文版本为准。',
+};
+
+function avisTraduction(lang) {
+  if (!AVIS[lang]) return '';
+  return `<p class="avis-traduction" lang="${lang}">${AVIS[lang]}</p>`;
+}
 
 // Sélecteur de langue : un menu déroulant, liens vers l'URL équivalente.
 //
@@ -346,7 +400,20 @@ function buildPage(page, lang) {
   html = rewriteLinks(html, lang);
 
   // <html lang="…">
-  html = html.replace(/<html lang="[a-z-]*">/i, `<html lang="${lang}">`);
+  //
+  // La balise porte parfois d'autres attributs — src/produits/index.html a
+  // gardé un class="lang-fr" de son site d'origine. L'ancien motif exigeait le
+  // « > » juste après lang, si bien que cette page se déclarait en français
+  // dans toutes ses versions traduites. La classe suit la langue elle aussi,
+  // pour ne pas laisser deux indications contradictoires sur la même balise.
+  html = html.replace(/<html([^>]*?)\slang="[a-zA-Z-]*"([^>]*)>/i,
+    (m, avant, apres) => `<html${avant} lang="${lang}"${apres}>`);
+  html = html.replace(/(<html[^>]*\sclass="[^"]*?)lang-[a-z-]+/i, `$1lang-${lang}`);
+
+  // Avis de traduction, avant la fermeture du pied de page. Les trois pieds
+  // de page du site n'ont pas la même forme, mais tous ferment sur </footer>.
+  const avis = avisTraduction(lang);
+  if (avis) html = html.replace('</footer>', avis + '\n  </footer>');
 
   // titre + meta description localisés
   html = html.replace(/<title>[^<]*<\/title>/i, `<title>${esc(page.title[lang]).replace(/&quot;/g, '"')}</title>`);

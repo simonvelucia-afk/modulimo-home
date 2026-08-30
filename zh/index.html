@@ -1,0 +1,476 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>MODULIMO — 生态住宅与出行</title>
+  <meta name="description" content="MODULIMO 构建一体化住宅生态系统，融合家庭住宅、出行、服务与软件。蒙特利尔 Pointe Est 项目。" />
+  <link rel="canonical" href="https://www.modulimo.com/zh/" />
+  <link rel="alternate" hreflang="fr-CA" href="https://www.modulimo.com/" />
+  <link rel="alternate" hreflang="en" href="https://www.modulimo.com/en/" />
+  <link rel="alternate" hreflang="es" href="https://www.modulimo.com/es/" />
+  <link rel="alternate" hreflang="zh-Hans" href="https://www.modulimo.com/zh/" />
+  <link rel="alternate" hreflang="x-default" href="https://www.modulimo.com/" />
+  <link rel="icon" type="image/png" href="/images/favicon_Modulimo.png">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --green:#2d5a4a; --green-lt:#3a7a62; --green-dk:#1e3d32;
+      --bg:#f4f3f0; --line:#d0cec8;
+      --text:#1a1a18; --muted:#5c5c56; --max:1140px;
+    }
+    html { scroll-behavior:smooth; scroll-padding-top:72px; }
+    body { font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif; background:#fff; color:var(--text); line-height:1.6; }
+    a { color:inherit; text-decoration:none; }
+    img { display:block; max-width:100%; }
+    .wrap { max-width:var(--max); margin:0 auto; padding:0 24px; }
+
+    .topbar { position:sticky; top:0; z-index:50; background:var(--bg); border-bottom:1px solid var(--line); }
+    .topbar-inner { max-width:var(--max); margin:0 auto; padding:0 24px; height:76px; display:flex; align-items:center; justify-content:space-between; gap:18px; }
+    .brand { display:flex; align-items:center; flex-shrink:0; background:transparent; padding:0; border:none; border-radius:0; cursor:pointer; font:inherit; color:inherit; }
+    .brand img { height:56px; width:auto; display:block; }
+    .nav { display:flex; align-items:center; gap:2px; }
+    .nav a { font-size:.72rem; font-weight:600; letter-spacing:.07em; text-transform:uppercase; color:var(--muted); padding:7px 13px; border-radius:5px; transition:color .15s,background .15s; white-space:nowrap; }
+    .nav a:hover { color:var(--green); background:rgba(45,90,74,.07); }
+    .nav a.active { color:var(--green); border-bottom:2px solid var(--green); border-radius:0; padding-bottom:5px; }
+    .nav-cta { color:var(--green) !important; border:1px solid var(--green); border-radius:5px; padding:6px 12px !important; margin-left:6px; transition:background .15s,color .15s; }
+    .nav-cta:hover { background:var(--green); color:#fff !important; }
+    .lang-switch { display:inline-flex; align-items:center; gap:0; margin-left:10px; padding-left:10px; border-left:1px solid var(--line); }
+    .lang-btn { font-size:.7rem; font-weight:700; letter-spacing:.06em; color:var(--muted); padding:5px 7px; background:none; border:none; cursor:pointer; font-family:inherit; transition:color .15s; }
+    /* Le drapeau et le code de langue sur une ligne, comme dans CoHabitat. */
+    .lang-btn { display:inline-flex; align-items:center; gap:5px; }
+    /* Menu deroulant des langues, bati sur <details> : pas de JavaScript.
+       La fleche du marqueur natif est retiree, le chevron est a nous. */
+    .lang-switch { position:relative; }
+    .lang-switch > summary { list-style:none; cursor:pointer; }
+    .lang-switch > summary::-webkit-details-marker { display:none; }
+    .lang-switch > summary::marker { content:''; }
+    .lang-switch[open] > summary { color:var(--green); }
+    .lang-caret { font-size:.6rem; opacity:.6; }
+    .lang-menu {
+      position:absolute; top:calc(100% + 6px); right:0; min-width:158px;
+      background:var(--bg); border:1px solid var(--line); border-radius:6px;
+      box-shadow:0 8px 24px rgba(0,0,0,.14); padding:5px; z-index:120;
+    }
+    .lang-item {
+      display:flex; align-items:center; gap:8px; padding:8px 10px;
+      border-radius:4px; text-decoration:none; color:var(--muted);
+      font-size:.72rem; font-weight:600; letter-spacing:.04em; white-space:nowrap;
+    }
+    .lang-item:hover { background:rgba(0,0,0,.05); color:var(--green); }
+    .lang-item.active { color:var(--green); }
+    /* .nav a.active souligne l'onglet de la page courante : une entree de
+       menu n'en veut pas, elle se signale par sa couleur seule. */
+    .lang-menu a.lang-item.active { border-bottom:none; border-radius:4px; padding:8px 10px; }
+    /* Les idéogrammes occupent toute la hauteur du cadratin : un interligne
+       calibré pour l'alphabet latin (ici de 0,93 à 1,10) les fait se
+       chevaucher. La règle ne vise que les pages chinoises. */
+    html[lang="zh"] h1, html[lang="zh"] h2,
+    html[lang="zh"] h3, html[lang="zh"] h4 { line-height:1.3; }
+    /* Avis de traduction : pleine largeur, pour passer a la ligne dans le
+       pied de page de la page Produits, qui est un conteneur flex. */
+    .avis-traduction {
+      width:100%; margin:14px 0 0; padding-top:12px;
+      border-top:1px solid var(--line);
+      font-size:.68rem; line-height:1.55; color:var(--muted); opacity:.85;
+    }
+    .lang-btn:hover, .lang-btn.active { color:var(--green); }
+    .lang-btn.active { font-weight:800; }
+    [data-lang] { display:none; }
+    html.lang-fr [data-lang="fr"], html.lang-en [data-lang="en"], html.lang-es [data-lang="es"] { display:revert; }
+    .menu-toggle { display:none; flex-direction:column; justify-content:center; gap:5px; width:40px; height:40px; background:none; border:1px solid var(--line); border-radius:6px; cursor:pointer; padding:8px; }
+    .menu-toggle span { display:block; height:2px; background:var(--green); border-radius:2px; }
+
+    .hero { position:relative; height:88vh; min-height:560px; max-height:840px; overflow:hidden; }
+    .hero img.hero-img { width:100%; height:100%; object-fit:cover; object-position:center 35%; }
+    .hero-overlay { position:absolute; inset:0; background:linear-gradient(to right,rgba(18,32,24,.78) 0%,rgba(18,32,24,.45) 52%,rgba(18,32,24,.08) 100%); }
+    .hero-content { position:absolute; top:50%; left:0; right:0; transform:translateY(-50%); max-width:var(--max); margin:0 auto; padding:0 24px; }
+    .hero-eyebrow { display:inline-block; font-size:.72rem; font-weight:600; letter-spacing:.14em; text-transform:uppercase; color:rgba(255,255,255,.75); border:1px solid rgba(255,255,255,.28); padding:5px 12px; border-radius:3px; margin-bottom:20px; }
+    .hero h1 { font-size:clamp(2rem,5vw,3.4rem); font-weight:800; line-height:1.1; letter-spacing:-.04em; color:#fff; max-width:580px; margin-bottom:18px; }
+    .hero p { font-size:1.05rem; line-height:1.7; color:rgba(255,255,255,.80); max-width:460px; margin-bottom:32px; }
+    .hero-actions { display:flex; gap:12px; flex-wrap:wrap; }
+    .btn-primary { display:inline-flex; align-items:center; background:var(--green); color:#fff; padding:12px 24px; border-radius:6px; font-size:.88rem; font-weight:600; border:none; cursor:pointer; transition:background .15s; }
+    .btn-primary:hover { background:var(--green-lt); }
+    .btn-ghost { display:inline-flex; align-items:center; background:rgba(255,255,255,.12); color:#fff; border:1px solid rgba(255,255,255,.32); padding:12px 24px; border-radius:6px; font-size:.88rem; font-weight:600; cursor:pointer; transition:background .15s; }
+    .btn-ghost:hover { background:rgba(255,255,255,.22); }
+
+    .stats-bar { background:var(--green-dk); }
+    .stats-inner { max-width:var(--max); margin:0 auto; padding:0 24px; display:flex; }
+    .stat { flex:1; padding:22px 24px; border-right:1px solid rgba(255,255,255,.12); }
+    .stat:first-child { padding-left:0; }
+    .stat:last-child { border-right:none; }
+    .stat-val { font-size:1.5rem; font-weight:800; letter-spacing:-.03em; color:#fff; margin-bottom:3px; }
+    .stat-label { font-size:.72rem; color:rgba(255,255,255,.55); letter-spacing:.07em; text-transform:uppercase; }
+
+    .section { padding:80px 0; }
+    .section-alt { background:var(--bg); }
+    .section-label { font-size:.7rem; font-weight:700; letter-spacing:.14em; text-transform:uppercase; color:var(--green); margin-bottom:10px; }
+    .section-title { font-size:clamp(1.6rem,3vw,2.2rem); font-weight:800; letter-spacing:-.04em; color:var(--text); margin-bottom:14px; line-height:1.15; }
+    .section-lead { font-size:1rem; color:var(--muted); line-height:1.75; max-width:560px; margin-bottom:40px; }
+
+    .pillars { display:flex; flex-direction:column; gap:16px; }
+    .pillar { background:#fff; border:1px solid var(--line); border-radius:12px; padding:28px 24px; transition:box-shadow .2s,transform .2s; }
+    .pillar:hover { box-shadow:0 6px 24px rgba(0,0,0,.07); transform:translateY(-2px); }
+    .pillar-num { font-size:.68rem; font-weight:700; letter-spacing:.12em; text-transform:uppercase; color:var(--green); margin-bottom:16px; }
+    .pillar-icon { width:40px; height:40px; border-radius:8px; background:rgba(45,90,74,.09); display:flex; align-items:center; justify-content:center; margin-bottom:14px; }
+    .pillar-icon svg { width:20px; height:20px; stroke:var(--green); fill:none; stroke-width:1.8; stroke-linecap:round; stroke-linejoin:round; }
+    .pillar h3 { font-size:1rem; font-weight:700; color:var(--text); margin-bottom:8px; }
+    .pillar p { font-size:.87rem; color:var(--muted); line-height:1.65; }
+    .pillars-row { display:grid; grid-template-columns:1fr 1fr; gap:16px; align-items:start; }
+    .pillar-img { width:100%; aspect-ratio:16/9; object-fit:cover; border-radius:8px; margin-top:16px; }
+
+    .projet-grid { display:grid; grid-template-columns:1fr 1fr; gap:40px; align-items:start; }
+    .projet-img-wrap { border-radius:12px; overflow:hidden; position:relative; box-shadow:0 8px 32px rgba(0,0,0,.1); }
+    .projet-img-wrap img { width:100%; aspect-ratio:4/3; object-fit:cover; }
+    .projet-badge { position:absolute; top:16px; left:16px; background:var(--green); color:#fff; font-size:.66rem; font-weight:700; letter-spacing:.1em; text-transform:uppercase; padding:5px 12px; border-radius:4px; }
+    .projet-info { display:flex; flex-direction:column; gap:0; }
+    .info-row { display:flex; gap:14px; align-items:flex-start; padding:18px 0; border-bottom:1px solid var(--line); }
+    .info-row:first-child { padding-top:0; }
+    .info-row:last-of-type { border-bottom:none; }
+    .info-dot { width:7px; height:7px; border-radius:50%; background:var(--green); flex-shrink:0; margin-top:7px; }
+    .info-row h4 { font-size:.9rem; font-weight:700; color:var(--text); margin-bottom:4px; }
+    .info-row p { font-size:.84rem; color:var(--muted); line-height:1.6; }
+
+    .tech-grid { display:grid; grid-template-columns:1.2fr 0.8fr; gap:48px; align-items:center; }
+    .tech-img { border-radius:12px; overflow:hidden; box-shadow:0 8px 32px rgba(0,0,0,.1); }
+    .tech-img img { width:100%; }
+    .tech-features { display:flex; flex-direction:column; gap:14px; }
+    .tech-feat { display:flex; gap:16px; align-items:flex-start; padding:18px; background:#fff; border:1px solid var(--line); border-radius:10px; }
+    .tech-num { font-size:.68rem; font-weight:800; color:var(--green); background:rgba(45,90,74,.09); width:32px; height:32px; border-radius:6px; display:flex; align-items:center; justify-content:center; flex-shrink:0; letter-spacing:.08em; }
+    .tech-feat h4 { font-size:.9rem; font-weight:700; color:var(--text); margin-bottom:4px; }
+    .tech-feat p { font-size:.82rem; color:var(--muted); line-height:1.55; }
+
+    .cta { background:var(--green-dk); padding:88px 24px; text-align:center; }
+    .cta h2 { font-size:clamp(1.7rem,3vw,2.4rem); font-weight:800; letter-spacing:-.04em; color:#fff; margin-bottom:14px; }
+    .cta p { font-size:1rem; color:rgba(255,255,255,.68); margin-bottom:36px; max-width:480px; margin-left:auto; margin-right:auto; }
+    .cta-btns { display:flex; gap:12px; justify-content:center; flex-wrap:wrap; }
+    .btn-white { background:#fff; color:var(--green-dk); padding:13px 28px; border-radius:6px; font-size:.9rem; font-weight:700; border:none; cursor:pointer; transition:opacity .15s; }
+    .btn-white:hover { opacity:.9; }
+    .btn-outline-w { background:transparent; color:#fff; border:1px solid rgba(255,255,255,.38); padding:13px 28px; border-radius:6px; font-size:.9rem; font-weight:600; cursor:pointer; transition:background .15s; }
+    .btn-outline-w:hover { background:rgba(255,255,255,.1); }
+
+    .lead-form { background:#fff; border-radius:12px; padding:28px 26px; max-width:560px; margin:40px auto 0; text-align:left; box-shadow:0 10px 36px rgba(0,0,0,.22); position:relative; }
+    .lf-grid { display:grid; grid-template-columns:1fr 1fr; gap:0 14px; }
+    .lf-field { margin-bottom:14px; }
+    .lf-field > label:not(.lf-consent) { display:block; font-size:.76rem; font-weight:700; letter-spacing:.04em; text-transform:uppercase; color:var(--muted); margin-bottom:5px; }
+    .lf-field input[type="text"], .lf-field input[type="email"], .lf-field textarea { width:100%; padding:10px 12px; border:1px solid var(--line); border-radius:6px; font:inherit; font-size:.9rem; color:var(--text); background:#fff; }
+    .lf-field input:focus, .lf-field textarea:focus { outline:none; border-color:var(--green); box-shadow:0 0 0 3px rgba(45,90,74,.15); }
+    .lf-field.lf-invalid input, .lf-field.lf-invalid textarea { border-color:#c0392b; box-shadow:0 0 0 3px rgba(192,57,43,.12); }
+    .lf-consent { display:flex; gap:10px; align-items:flex-start; font-size:.78rem; color:var(--muted); line-height:1.55; cursor:pointer; }
+    .lf-consent input { margin-top:2px; width:16px; height:16px; flex-shrink:0; accent-color:var(--green); }
+    .lf-field.lf-invalid .lf-consent span { color:#c0392b; }
+    .lf-hp { position:absolute !important; left:-9999px !important; width:1px; height:1px; overflow:hidden; }
+    .lf-submit { display:inline-flex; align-items:center; background:var(--green); color:#fff; padding:12px 24px; border-radius:6px; font-size:.88rem; font-weight:600; border:none; cursor:pointer; transition:background .15s; font-family:inherit; width:100%; justify-content:center; margin-top:4px; }
+    .lf-submit:hover { background:var(--green-lt); }
+    .lead-form.lf-sending .lf-submit { opacity:.7; pointer-events:none; }
+    .lf-submit .lf-label-sending { display:none; }
+    .lead-form.lf-sending .lf-submit .lf-label-idle { display:none; }
+    .lead-form.lf-sending .lf-submit .lf-label-sending { display:inline; }
+    .lf-status { display:none; margin-top:12px; font-size:.84rem; padding:10px 14px; border-radius:6px; background:#fdecea; color:#86281c; border:1px solid #f3c0ba; }
+    .lf-status.is-visible { display:block; }
+    .lf-success { display:none; text-align:center; padding:18px 6px; }
+    .lead-form.is-done .lf-fields { display:none; }
+    .lead-form.is-done .lf-success { display:block; }
+    .lf-check { width:48px; height:48px; border-radius:50%; background:rgba(45,90,74,.12); color:var(--green); font-size:1.5rem; font-weight:800; display:flex; align-items:center; justify-content:center; margin:0 auto 12px; }
+    .lf-success h3 { font-size:1.05rem; font-weight:800; color:var(--text); margin-bottom:6px; }
+    .lf-success p { font-size:.88rem; color:var(--muted) !important; margin:0 !important; }
+    .lf-more { margin-top:16px; padding-top:14px; border-top:1px solid var(--line); font-size:.82rem; color:var(--muted); text-align:center; }
+    .lf-more a { color:var(--green); font-weight:700; text-decoration:underline; }
+    .lf-more a:hover { color:var(--green-lt); }
+    @media (max-width:520px) { .lf-grid { grid-template-columns:1fr; } }
+
+    .footer { background:var(--bg); border-top:1px solid var(--line); padding:44px 24px 32px; }
+    .footer-inner { max-width:var(--max); margin:0 auto; }
+    .footer-top { display:flex; justify-content:space-between; align-items:flex-start; flex-wrap:wrap; gap:32px; margin-bottom:32px; }
+    .footer-brand { display:flex; align-items:center; background:#fff; padding:4px 10px; border-radius:8px; align-self:flex-start; }
+    .footer-brand img { height:32px; width:auto; display:block; }
+
+    body.theme-femme .topbar { background:#f8bbd0; border-bottom-color:rgba(0,0,0,.08); }
+    body.theme-terre .topbar { background:#43a047; border-bottom-color:rgba(0,0,0,.15); }
+    body.theme-terre .topbar .nav a,
+    body.theme-terre .topbar .nav a:hover,
+    body.theme-terre .topbar .nav a.active,
+    body.theme-terre .menu-toggle span { color:#e53935; background:transparent; border-color:#e53935; }
+    .footer-tagline { font-size:.82rem; color:var(--muted); margin-top:8px; max-width:260px; line-height:1.6; }
+    .footer-nav h5 { font-size:.7rem; font-weight:700; letter-spacing:.1em; text-transform:uppercase; color:var(--muted); margin-bottom:12px; }
+    .footer-nav a { display:block; font-size:.84rem; color:var(--text); margin-bottom:8px; }
+    .footer-nav a:hover { color:var(--green); }
+    .footer-bottom { border-top:1px solid var(--line); padding-top:20px; display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:12px; }
+    .footer-bottom p { font-size:.75rem; color:var(--muted); }
+
+    @media (max-width:900px) {
+      .pillars { flex-direction:column; }
+      .pillars-row { grid-template-columns:1fr; }
+      .projet-grid,.tech-grid { grid-template-columns:1fr; }
+    }
+    @media (max-width:640px) {
+      .pillars { grid-template-columns:1fr; }
+      .stats-inner { flex-direction:column; }
+      .stat { border-right:none; border-bottom:1px solid rgba(255,255,255,.12); }
+      .stat:last-child { border-bottom:none; }
+      .menu-toggle { display:flex; }
+      .nav { display:none; position:absolute; top:68px; left:0; right:0; background:var(--bg); border-bottom:1px solid var(--line); flex-direction:column; align-items:stretch; padding:8px 16px 16px; gap:2px; }
+      .nav.is-open { display:flex; }
+      .nav a { padding:12px 14px; border-bottom:1px solid var(--line); border-radius:0; }
+      .nav a.active { border-left:3px solid var(--green); padding-left:11px; }
+      .footer-top { flex-direction:column; }
+    }
+
+    .reglement { margin-top:48px; border:1px solid var(--line); border-radius:10px; overflow:hidden; background:#fff; }
+    .regl-trigger { width:100%; display:flex; align-items:center; justify-content:space-between; gap:16px; padding:18px 24px; background:none; border:none; font:inherit; font-size:.92rem; font-weight:700; color:var(--green-dk); cursor:pointer; text-align:left; transition:background .15s; }
+    .regl-trigger:hover { background:rgba(45,90,74,.04); }
+    .regl-icon { font-size:1rem; color:var(--green); transition:transform .25s ease; flex-shrink:0; }
+    .reglement.is-open .regl-icon { transform:rotate(180deg); }
+    .regl-body { max-height:0; overflow:hidden; transition:max-height .35s ease; }
+    .reglement.is-open .regl-body { max-height:2000px; }
+    .regl-note { padding:0 24px 20px; font-size:.84rem; color:var(--muted); font-style:italic; border-bottom:1px solid var(--line); }
+    .regl-grid { display:grid; grid-template-columns:repeat(2,1fr); gap:0; padding:8px 0; }
+    .regl-article { padding:16px 24px; border-bottom:1px solid var(--line); }
+    .regl-article:nth-last-child(-n+2):not(:nth-child(odd):last-child) { border-bottom:none; }
+    .regl-article h4 { font-size:.84rem; font-weight:700; color:var(--text); margin-bottom:6px; }
+    .regl-article p { font-size:.8rem; color:var(--muted); line-height:1.6; }
+    @media (max-width:640px) { .regl-grid { grid-template-columns:1fr; } .regl-article:last-child { border-bottom:none; } }
+
+    .amenities { display:grid; grid-template-columns:repeat(5,1fr); gap:8px; margin-top:16px; }
+    .amenity { border-radius:8px; overflow:hidden; }
+    .amenity img { width:100%; aspect-ratio:1/1; object-fit:cover; display:block; transition:transform .25s; }
+    .amenity:hover img { transform:scale(1.05); }
+    .amenity-label { font-size:.72rem; color:var(--muted); text-align:center; padding:6px 4px 2px; line-height:1.4; }
+    @media (max-width:640px) { .amenities { grid-template-columns:repeat(3,1fr); } }
+
+    .lb-overlay { position:fixed; inset:0; background:rgba(10,12,14,.92); display:none; align-items:center; justify-content:center; z-index:1000; padding:24px; }
+    .lb-overlay.is-open { display:flex; }
+    .lb-image { max-width:min(100%,1100px); max-height:90vh; object-fit:contain; border-radius:6px; box-shadow:0 12px 60px rgba(0,0,0,.5); animation:lb-in .2s ease-out; }
+    .lb-close { position:absolute; top:18px; right:22px; width:44px; height:44px; border-radius:50%; background:rgba(255,255,255,.12); color:#fff; border:1px solid rgba(255,255,255,.2); font-size:1.6rem; line-height:1; cursor:pointer; display:flex; align-items:center; justify-content:center; transition:background .15s; }
+    .lb-close:hover, .lb-close:focus { background:rgba(255,255,255,.22); outline:none; }
+    @keyframes lb-in { from { opacity:0; transform:scale(.96); } to { opacity:1; transform:scale(1); } }
+  </style>
+  <script src="/js/analytics.js" defer></script>
+</head>
+<body>
+
+  <header class="topbar">
+    <div class="topbar-inner">
+      <button type="button" class="brand" data-lightbox="/images/ModulimoLogoSobre.png" data-lightbox-alt="Modulimo" aria-label="Voir le logo en grand">
+        <img src="/images/ModulimoLogoSobre.png" alt="Modulimo" />
+      </button>
+      <button class="menu-toggle" id="menuToggle" aria-expanded="false" aria-controls="siteNav" aria-label="Menu">
+        <span></span><span></span><span></span>
+      </button>
+      <nav class="nav" id="siteNav">
+        <a href="/zh/" class="active"><span>首页</span></a>
+        <a href="/zh/mobilite/"><span>出行</span></a>
+        <a href="/zh/securite/"><span>安全</span></a>
+        <a href="/zh/projets/"><span>项目</span></a>
+        <a href="/zh/produits/"><span>产品</span></a>
+        <a href="https://cohabitat.modulimo.com" target="_blank" rel="noopener" class="nav-cta">CoHabitat ↗</a>
+        <details class="lang-switch">
+          <summary class="lang-btn" aria-label="选择语言"><svg viewBox="0 0 24 16" width="16" height="11" aria-hidden="true" style="display:block;border-radius:2px;flex-shrink:0;"><rect width="24" height="16" fill="#de2910"/><polygon points="4.00,1.60 4.54,3.26 6.28,3.26 4.87,4.28 5.41,5.94 4.00,4.92 2.59,5.94 3.13,4.28 1.72,3.26 3.46,3.26" fill="#ffde00"/><circle cx="8" cy="1.6" r="0.6" fill="#ffde00"/><circle cx="9.6" cy="3.2" r="0.6" fill="#ffde00"/><circle cx="9.6" cy="5.6" r="0.6" fill="#ffde00"/><circle cx="8" cy="7.2" r="0.6" fill="#ffde00"/></svg><span>ZH</span><span class="lang-caret">&#9662;</span></summary>
+          <div class="lang-menu">
+            <a class="lang-item" href="/" lang="fr" hreflang="fr-CA" aria-label="Afficher en français"><svg viewBox="0 0 24 16" width="16" height="11" aria-hidden="true" style="display:block;border-radius:2px;flex-shrink:0;"><rect width="24" height="16" fill="#095797"/><g transform="translate(5.6,3.6)" fill="#fff"><path d="M0,-2.3 C1,-1.2 1,-0.2 0,0.6 C-1,-0.2 -1,-1.2 0,-2.3 Z"/><path d="M-2.1,-0.5 C-1.3,-1.3 -0.6,-0.9 -0.4,0.2 C-1.2,0.6 -1.9,0.3 -2.1,-0.5 Z"/><path d="M2.1,-0.5 C1.3,-1.3 0.6,-0.9 0.4,0.2 C1.2,0.6 1.9,0.3 2.1,-0.5 Z"/><rect x="-1.6" y="0.6" width="3.2" height="0.7"/><rect x="-0.5" y="1.3" width="1" height="1.4"/></g><g transform="translate(18.4,3.6)" fill="#fff"><path d="M0,-2.3 C1,-1.2 1,-0.2 0,0.6 C-1,-0.2 -1,-1.2 0,-2.3 Z"/><path d="M-2.1,-0.5 C-1.3,-1.3 -0.6,-0.9 -0.4,0.2 C-1.2,0.6 -1.9,0.3 -2.1,-0.5 Z"/><path d="M2.1,-0.5 C1.3,-1.3 0.6,-0.9 0.4,0.2 C1.2,0.6 1.9,0.3 2.1,-0.5 Z"/><rect x="-1.6" y="0.6" width="3.2" height="0.7"/><rect x="-0.5" y="1.3" width="1" height="1.4"/></g><g transform="translate(5.6,12.4)" fill="#fff"><path d="M0,-2.3 C1,-1.2 1,-0.2 0,0.6 C-1,-0.2 -1,-1.2 0,-2.3 Z"/><path d="M-2.1,-0.5 C-1.3,-1.3 -0.6,-0.9 -0.4,0.2 C-1.2,0.6 -1.9,0.3 -2.1,-0.5 Z"/><path d="M2.1,-0.5 C1.3,-1.3 0.6,-0.9 0.4,0.2 C1.2,0.6 1.9,0.3 2.1,-0.5 Z"/><rect x="-1.6" y="0.6" width="3.2" height="0.7"/><rect x="-0.5" y="1.3" width="1" height="1.4"/></g><g transform="translate(18.4,12.4)" fill="#fff"><path d="M0,-2.3 C1,-1.2 1,-0.2 0,0.6 C-1,-0.2 -1,-1.2 0,-2.3 Z"/><path d="M-2.1,-0.5 C-1.3,-1.3 -0.6,-0.9 -0.4,0.2 C-1.2,0.6 -1.9,0.3 -2.1,-0.5 Z"/><path d="M2.1,-0.5 C1.3,-1.3 0.6,-0.9 0.4,0.2 C1.2,0.6 1.9,0.3 2.1,-0.5 Z"/><rect x="-1.6" y="0.6" width="3.2" height="0.7"/><rect x="-0.5" y="1.3" width="1" height="1.4"/></g><rect x="10.4" y="0" width="3.2" height="16" fill="#fff"/><rect x="0" y="6.4" width="24" height="3.2" fill="#fff"/></svg><span>Français</span></a>
+            <a class="lang-item" href="/en/" lang="en" hreflang="en" aria-label="Display in English"><svg viewBox="0 0 24 16" width="16" height="11" aria-hidden="true" style="display:block;border-radius:2px;flex-shrink:0;"><rect width="24" height="16" fill="#fff"/><rect x="0" y="0.00" width="24" height="1.2308" fill="#b22234"/><rect x="0" y="2.46" width="24" height="1.2308" fill="#b22234"/><rect x="0" y="4.92" width="24" height="1.2308" fill="#b22234"/><rect x="0" y="7.38" width="24" height="1.2308" fill="#b22234"/><rect x="0" y="9.85" width="24" height="1.2308" fill="#b22234"/><rect x="0" y="12.31" width="24" height="1.2308" fill="#b22234"/><rect x="0" y="14.77" width="24" height="1.2308" fill="#b22234"/><rect width="9.6" height="8.62" fill="#3c3b6e"/><circle cx="3.2" cy="2.2" r="0.55" fill="#fff"/><circle cx="3.2" cy="4.4" r="0.55" fill="#fff"/><circle cx="3.2" cy="6.6" r="0.55" fill="#fff"/><circle cx="6.4" cy="2.2" r="0.55" fill="#fff"/><circle cx="6.4" cy="4.4" r="0.55" fill="#fff"/><circle cx="6.4" cy="6.6" r="0.55" fill="#fff"/></svg><span>English</span></a>
+            <a class="lang-item" href="/es/" lang="es" hreflang="es" aria-label="Mostrar en español"><svg viewBox="0 0 24 16" width="16" height="11" aria-hidden="true" style="display:block;border-radius:2px;flex-shrink:0;"><rect width="8" height="16" fill="#006847"/><rect x="8" width="8" height="16" fill="#fff"/><rect x="16" width="8" height="16" fill="#ce1126"/><ellipse cx="12" cy="7.4" rx="1.7" ry="2" fill="#7a5230"/><path d="M9.9,9.4 A2.7,2.7 0 0 0 14.1,9.4" fill="none" stroke="#006847" stroke-width="0.8" stroke-linecap="round"/></svg><span>Español</span></a>
+            <a class="lang-item active" href="/zh/" lang="zh" hreflang="zh-Hans" aria-label="显示中文"><svg viewBox="0 0 24 16" width="16" height="11" aria-hidden="true" style="display:block;border-radius:2px;flex-shrink:0;"><rect width="24" height="16" fill="#de2910"/><polygon points="4.00,1.60 4.54,3.26 6.28,3.26 4.87,4.28 5.41,5.94 4.00,4.92 2.59,5.94 3.13,4.28 1.72,3.26 3.46,3.26" fill="#ffde00"/><circle cx="8" cy="1.6" r="0.6" fill="#ffde00"/><circle cx="9.6" cy="3.2" r="0.6" fill="#ffde00"/><circle cx="9.6" cy="5.6" r="0.6" fill="#ffde00"/><circle cx="8" cy="7.2" r="0.6" fill="#ffde00"/></svg><span>中文</span></a>
+          </div>
+        </details>
+      </nav>
+    </div>
+  </header>
+
+  <section class="hero">
+    <img class="hero-img" src="/images/hero_home.webp" alt="Projet Pointe Est — Modulimo, Montréal" loading="lazy"/>
+    <div class="hero-overlay"></div>
+    <div class="hero-content">
+      <span class="hero-eyebrow">Pointe-aux-Trembles · Montréal</span>
+      <h1><span>家庭住宅，以系统重新构想。</span></h1>
+      <p><span>MODULIMO 构建一体化住宅生态系统 — 住宅、出行、服务与软件 — 专为规模化部署而设计。</span></p>
+      <div class="hero-actions">
+        <a href="/zh/projets/" class="btn-primary"><span>查看 Pointe Est</span></a>
+        <a href="https://cohabitat.modulimo.com" target="_blank" rel="noopener" class="btn-ghost"><span>探索 CoHabitat</span></a>
+      </div>
+    </div>
+  </section>
+
+  <div class="stats-bar">
+    <div class="stats-inner">
+      <div class="stat"><div class="stat-val"><span>首个项目</span></div><div class="stat-label"><span>Pointe Est 进行中</span></div></div>
+      <div class="stat"><div class="stat-val">CoHabitat</div><div class="stat-label"><span>软件已投入运行</span></div></div>
+      <div class="stat"><div class="stat-val"><span>预制化</span></div><div class="stat-label"><span>工业化建造</span></div></div>
+      <div class="stat"><div class="stat-val"><span>3 分钟</span></div><div class="stat-label"><span>距东岸海滩</span></div></div>
+    </div>
+  </div>
+
+  <section class="section">
+    <div class="wrap">
+      <p class="section-label"><span>模式</span></p>
+      <h2 class="section-title"><span>三大支柱，一个连贯的系统。</span></h2>
+      <p class="section-lead"><span>MODULIMO 并非出售单栋建筑 — 而是建立一个可复制的模式，每一次新的部署都创造价值。</span></p>
+      <div class="pillars">
+        <div class="pillar">
+          <p class="pillar-num"><span>支柱 01</span></p>
+          <div style="display:flex;gap:24px;align-items:flex-start;flex-wrap:wrap;">
+            <div style="flex:1;min-width:220px;">
+              <div class="pillar-icon"><svg viewBox="0 0 24 24"><path d="M3 10 L12 3 L21 10 L21 20 L3 20 Z"/><rect x="9" y="14" width="6" height="6"/></svg></div>
+              <h3><span>一体化家庭住宅</span></h3>
+              <p><span>围绕家庭生活设计的住宅单元 — 宽敞的空间、共享的服务，生活品质自建筑设计之初便已纳入考量。</span></p>
+            </div>
+            <div style="flex:2;min-width:300px;">
+              <div class="amenities">
+                <div class="amenity"><img src="/images/EspacesCommun.webp" alt="Espaces communs" loading="lazy"/><p class="amenity-label"><span>公共活动厅与影院</span></p></div>
+                <div class="amenity"><img src="/images/EspaceEntrainement.webp" alt="Espace entraînement" loading="lazy"/><p class="amenity-label"><span>共享健身房</span></p></div>
+                <div class="amenity"><img src="/images/systeme-levage-thumb.webp" alt="Système de levage" loading="lazy" data-lightbox="/images/systeme-levage.webp" data-lightbox-alt="Système de levage résidentiel — dans la cage d'escalier, du garage au toit"/><p class="amenity-label"><span>起吊系统 — 搬家轻松</span></p></div>
+                <div class="amenity"><img src="/images/Verdure.webp" alt="Arbres fruitiers" loading="lazy"/><p class="amenity-label"><span>果树</span></p></div>
+                <div class="amenity"><img src="/images/chien.webp" alt="Animaux permis" loading="lazy"/><p class="amenity-label"><span>允许携带宠物</span></p></div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="pillars-row">
+          <div class="pillar">
+            <p class="pillar-num"><span>支柱 02</span></p>
+            <div class="pillar-icon"><svg viewBox="0 0 24 24"><rect x="1" y="11" width="14" height="8" rx="2"/><path d="M15 15 L19 15 L21 12 L19 9 L15 9"/><circle cx="5" cy="19" r="2"/><circle cx="17" cy="19" r="2"/></svg></div>
+            <h3><span>多式联运出行</span></h3>
+            <p><span>内置拼车、卧式篷车、公共交通直达 — 出行是生活环境的组成部分，而非附加项。</span></p>
+            <div class="amenities" style="grid-template-columns:1fr 1fr;margin-top:16px;">
+              <div class="amenity"><img src="/images/Velomobile.webp" alt="Vélomobile" loading="lazy"/><p class="amenity-label"><span>卧式篷车</span></p></div>
+              <div class="amenity"><img src="/images/minivan.webp" alt="Minivan partagé" loading="lazy"/><p class="amenity-label"><span>共享小型客车</span></p></div>
+            </div>
+          </div>
+          <div class="pillar">
+            <p class="pillar-num"><span>支柱 03</span></p>
+            <div class="pillar-icon"><svg viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21 L16 21 M12 17 L12 21"/><path d="M7 10 L10 13 L17 7"/></svg></div>
+            <h3><span>软件平台</span></h3>
+            <p><span>CoHabitat 管理每栋建筑的资源、出行与共享服务。现已部署，可即时演示。</span></p>
+            <img src="/images/CoHabitat.png" alt="CoHabitat — plateforme Modulimo" class="pillar-img" style="width:100%;object-fit:contain;background:#0a0f14;border-radius:8px;margin-top:16px;" loading="lazy"/>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section-alt" id="pointe-est">
+    <div class="wrap">
+      <p class="section-label"><span>在建项目</span></p>
+      <h2 class="section-title"><span>Pointe Est — 蒙特利尔</span></h2>
+      <p class="section-lead"><span>Modulimo 模式的首个落地项目。一栋扎根于自然与城市环境、为长久而建的家庭住宅楼。</span></p>
+      <div class="projet-grid">
+        <div class="projet-img-wrap">
+          <img src="/images/axono-pointe-est.webp" alt="Axonométrie conceptuelle du projet Pointe Est — Modulimo" loading="lazy"/>
+          <span class="projet-badge">Projet #1</span>
+        </div>
+        <div class="projet-info">
+          <div class="info-row"><div class="info-dot"></div><div><h4><span>高性能工业化建造</span></h4><p><span>高性能且安全的材料，助力建筑工业化 — 品质可控、施工迅速、碳足迹低。目标是在降低建造成本的同时提升生活品质。具体技术方案将在设计阶段最终确定。</span></p></div></div>
+          <div class="info-row"><div class="info-dot"></div><div><h4><span>绿化屋顶露台 + 太阳能</span></h4><p><span>光伏板、公共绿地，以及圣劳伦斯河与草原河的景观。</span></p></div></div>
+          <div class="info-row"><div class="info-dot"></div><div><h4><span>多代同堂住宅</span></h4><p><span>3 层共 6 套住宅：3 居室家庭住宅（5½）与 1 或 2 居室住宅相邻配对 — 让祖辈或已成年子女紧邻家人居住。配备洗衣干衣机、中岛及家电。允许携带宠物，享有河景。提供预售期租约。设计面向未来 — 楼梯为长者友好而设，中央井道预留升降平台位置：这栋建筑准备好与您一同老去。</span></p></div></div>
+          <div class="info-row"><div class="info-dot"></div><div><h4><span>公共配套</span></h4><p><span>公共活动厅、健身器材、泳池水疗、室内车库、储藏空间、果树，温室建设中。</span></p></div></div>
+          <a href="/zh/projets/" class="btn-primary" style="margin-top:12px;align-self:flex-start;"><span>了解更多关于 Pointe Est →</span></a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="cta">
+    <h2><span>对 Pointe Est 感兴趣？</span></h2>
+    <p><span>筹备工作正在推进 — 请及时了解，以免错过机会。提供预售期租约。</span></p>
+    <div class="cta-btns">
+      <a href="/zh/projets/" class="btn-white"><span>查看项目</span></a>
+      <a href="https://cohabitat.modulimo.com" target="_blank" rel="noopener" class="btn-outline-w">Explorer CoHabitat</a>
+    </div>
+    <form class="lead-form" id="leadForm" method="post" action="#">
+      <div class="lf-fields">
+        <div class="lf-grid">
+          <div class="lf-field">
+            <label for="lf-first"><span>名字</span></label>
+            <input type="text" id="lf-first" name="first_name" autocomplete="given-name" required />
+          </div>
+          <div class="lf-field">
+            <label for="lf-last"><span>姓氏</span></label>
+            <input type="text" id="lf-last" name="last_name" autocomplete="family-name" required />
+          </div>
+        </div>
+        <div class="lf-field">
+          <label for="lf-email"><span>电子邮箱</span></label>
+          <input type="email" id="lf-email" name="email" autocomplete="email" required />
+        </div>
+        <div class="lf-field">
+          <label for="lf-message"><span>留言（选填）</span></label>
+          <textarea id="lf-message" name="message" rows="3"></textarea>
+        </div>
+        <p class="lf-hp" aria-hidden="true"><label>Ne pas remplir / Do not fill<input type="text" name="website" tabindex="-1" autocomplete="off" /></label></p>
+        <div class="lf-field">
+          <label class="lf-consent"><input type="checkbox" name="consent" required /><span><span>我同意 Modulimo inc. 收集并使用我提供的信息（姓名、电子邮箱、留言），以便就 Pointe Est 项目与我联系。我可随时致信 contribution@modulimo.com 撤回同意。</span></span></label>
+        </div>
+        <button type="submit" class="lf-submit">
+          <span class="lf-label-idle"><span>请通知我</span></span>
+          <span class="lf-label-sending"><span>正在发送…</span></span>
+        </button>
+        <div class="lf-status" data-status="invalid" role="alert"><span>请填写必填项（名字、姓氏、有效的电子邮箱）并勾选同意框。</span></div>
+        <div class="lf-status" data-status="fail" role="alert"><span>发送时发生错误。请重试，或写信至 contribution@modulimo.com。</span></div>
+      </div>
+      <div class="lf-success" role="status">
+        <div class="lf-check" aria-hidden="true">✓</div>
+        <h3><span>谢谢！</span></h3>
+        <p><span>您的请求已收到 — 我们将及时向您通报 Pointe Est 项目的进展。</span></p>
+      </div>
+      <p class="lf-more"><span>准备好更进一步了吗？<a href="/postuler/?building=a41b3b31-1681-4cb1-b54c-69486d27e132">提交您的申请 →</a></span></p>
+    </form>
+  </section>
+
+  <footer class="footer">
+    <div class="footer-inner">
+      <div class="footer-top">
+        <div>
+          <div class="footer-brand"><img src="/images/ModulimoLogoSobre.png" alt="Modulimo" /></div>
+          <p class="footer-tagline"><span>一体化住宅生态系统 — 住宅、出行、服务与软件。</span></p>
+        </div>
+        <div class="footer-nav">
+          <h5><span>导航</span></h5>
+          <a href="/zh/mobilite/"><span>出行</span></a>
+          <a href="/zh/securite/"><span>安全</span></a>
+          <a href="https://cohabitat.modulimo.com" target="_blank" rel="noopener">CoHabitat</a>
+          <a href="/zh/projets/"><span>项目</span></a>
+        </div>
+        <div class="footer-nav">
+          <h5><span>项目</span></h5>
+          <a href="/zh/projets/#pointe-est">Pointe Est</a>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p><span>© 2026 Modulimo inc. — 保留所有权利</span></p>
+        <p><a href="/zh/confidentialite/"><span>隐私政策</span></a></p>
+        <p>Pointe-aux-Trembles, Montréal</p>
+      </div>
+    </div>
+  <p class="avis-traduction" lang="zh">本页面为仅供参考的译文，不构成任何承诺、约定或保证，并可能随时更新，恕不另行通知。如与法文版本有任何出入，一概以法文版本为准。</p>
+  </footer>
+
+  <script>
+    const toggle = document.getElementById('menuToggle');
+    const nav = document.getElementById('siteNav');
+    if (toggle && nav) {
+      toggle.addEventListener('click', function() {
+        const open = nav.classList.toggle('is-open');
+        toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+      });
+      document.querySelectorAll('#siteNav a').forEach(function(a) {
+        a.addEventListener('click', function() {
+          nav.classList.remove('is-open');
+          toggle.setAttribute('aria-expanded', 'false');
+        });
+      });
+    }
+    const reglTrigger = document.getElementById('reglTrigger');
+    const reglEl = document.getElementById('reglement');
+    if (reglTrigger && reglEl) {
+      reglTrigger.addEventListener('click', function() {
+        const open = reglEl.classList.toggle('is-open');
+        reglTrigger.setAttribute('aria-expanded', open ? 'true' : 'false');
+      });
+    }
+  </script>
+  <script defer src="/js/lightbox.js"></script>
+  <script defer src="/js/lead-form.js"></script>
+  <script type="module" src="/js/theme.js"></script>
+
+</body>
+</html>

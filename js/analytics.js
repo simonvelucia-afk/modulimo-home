@@ -48,10 +48,43 @@
     if (window._gaConsent === 'granted' || window._gaConsent === 'denied') return;
     if (document.getElementById('ga-consent-banner')) return;
 
+    // La banniere suit la langue de la page. Elle recueille un consentement
+    // au sens de la Loi 25 : la presenter en francais a un lecteur anglophone
+    // ou sinophone affaiblit ce consentement, en plus de detonner.
+    // <html lang> est pose par le build, il fait donc autorite ici.
+    var LANG = (document.documentElement.lang || 'fr').slice(0, 2).toLowerCase();
+    var T = {
+      fr: {
+        aria: 'Consentement aux témoins',
+        texte: 'Nous utilisons Google Analytics (IP anonymisée) pour mesurer la fréquentation du site. Acceptez-vous ces témoins&nbsp;?',
+        politique: 'Politique de confidentialité',
+        accepter: 'Accepter', refuser: 'Refuser', prefixe: ''
+      },
+      en: {
+        aria: 'Cookie consent',
+        texte: 'We use Google Analytics (anonymised IP) to measure site traffic. Do you accept these cookies?',
+        politique: 'Privacy Policy',
+        accepter: 'Accept', refuser: 'Decline', prefixe: '/en'
+      },
+      es: {
+        aria: 'Consentimiento de cookies',
+        texte: 'Utilizamos Google Analytics (IP anonimizada) para medir las visitas al sitio. ¿Acepta estas cookies?',
+        politique: 'Política de privacidad',
+        accepter: 'Aceptar', refuser: 'Rechazar', prefixe: '/es'
+      },
+      zh: {
+        aria: 'Cookie 同意',
+        texte: '我们使用 Google Analytics（IP 已匿名化）统计网站访问量。您是否接受这些 Cookie？',
+        politique: '隐私政策',
+        accepter: '接受', refuser: '拒绝', prefixe: '/zh'
+      }
+    };
+    var t = T[LANG] || T.fr;
+
     var banner = document.createElement('div');
     banner.id = 'ga-consent-banner';
     banner.setAttribute('role', 'dialog');
-    banner.setAttribute('aria-label', 'Consentement aux témoins');
+    banner.setAttribute('aria-label', t.aria);
     banner.style.cssText = [
       'position:fixed', 'bottom:16px', 'left:16px', 'right:16px',
       'max-width:520px', 'margin:0 auto',
@@ -62,10 +95,11 @@
       'font-size:.92rem', 'line-height:1.5', 'z-index:10000'
     ].join(';');
     banner.innerHTML =
-      '<p style="margin:0 0 12px;">Nous utilisons Google Analytics (IP anonymisée) pour mesurer la fréquentation du site. Acceptez-vous ces témoins&nbsp;? <a href="/confidentialite/" style="color:#fff;text-decoration:underline;">Politique de confidentialité</a></p>' +
+      '<p style="margin:0 0 12px;">' + t.texte +
+      ' <a href="' + t.prefixe + '/confidentialite/" style="color:#fff;text-decoration:underline;">' + t.politique + '</a></p>' +
       '<div style="display:flex;gap:8px;flex-wrap:wrap;">' +
-      '<button type="button" id="ga-accept" style="background:#3a7a62;color:#fff;border:0;padding:9px 18px;border-radius:6px;font-size:.9rem;cursor:pointer;font-weight:600;">Accepter</button>' +
-      '<button type="button" id="ga-reject" style="background:transparent;color:#fff;border:1px solid rgba(255,255,255,.4);padding:9px 18px;border-radius:6px;font-size:.9rem;cursor:pointer;">Refuser</button>' +
+      '<button type="button" id="ga-accept" style="background:#3a7a62;color:#fff;border:0;padding:9px 18px;border-radius:6px;font-size:.9rem;cursor:pointer;font-weight:600;">' + t.accepter + '</button>' +
+      '<button type="button" id="ga-reject" style="background:transparent;color:#fff;border:1px solid rgba(255,255,255,.4);padding:9px 18px;border-radius:6px;font-size:.9rem;cursor:pointer;">' + t.refuser + '</button>' +
       '</div>';
     document.body.appendChild(banner);
 

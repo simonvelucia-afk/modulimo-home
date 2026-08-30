@@ -62,6 +62,18 @@
     /* .nav a.active souligne l'onglet de la page courante : une entree de
        menu n'en veut pas, elle se signale par sa couleur seule. */
     .lang-menu a.lang-item.active { border-bottom:none; border-radius:4px; padding:8px 10px; }
+    /* Les idéogrammes occupent toute la hauteur du cadratin : un interligne
+       calibré pour l'alphabet latin (ici de 0,93 à 1,10) les fait se
+       chevaucher. La règle ne vise que les pages chinoises. */
+    html[lang="zh"] h1, html[lang="zh"] h2,
+    html[lang="zh"] h3, html[lang="zh"] h4 { line-height:1.3; }
+    /* Avis de traduction : pleine largeur, pour passer a la ligne dans le
+       pied de page de la page Produits, qui est un conteneur flex. */
+    .avis-traduction {
+      width:100%; margin:14px 0 0; padding-top:12px;
+      border-top:1px solid var(--line);
+      font-size:.68rem; line-height:1.55; color:var(--muted); opacity:.85;
+    }
     .lang-btn:hover, .lang-btn.active { color:var(--green); }
     .lang-btn.active { font-weight:800; }
     [data-lang] { display:none; }
@@ -244,11 +256,11 @@
         <span></span><span></span><span></span>
       </button>
       <nav class="nav" id="siteNav">
-        <a href="/"><span data-lang="fr">Accueil</span><span data-lang="en">Home</span><span data-lang="es">Inicio</span></a>
-        <a href="/mobilite" class="active"><span data-lang="fr">Mobilité</span><span data-lang="en">Mobility</span><span data-lang="es">Movilidad</span></a>
-        <a href="/securite"><span data-lang="fr">Sécurité</span><span data-lang="en">Security</span><span data-lang="es">Seguridad</span></a>
-        <a href="/projets"><span data-lang="fr">Projets</span><span data-lang="en">Projects</span><span data-lang="es">Proyectos</span></a>
-        <a href="/produits"><span data-lang="fr">Produits</span><span data-lang="en">Products</span><span data-lang="es">Productos</span></a>
+        <a href="/"><span data-lang="fr">Accueil</span><span data-lang="en">Home</span><span data-lang="es">Inicio</span><span data-lang="zh">首页</span></a>
+        <a href="/mobilite" class="active"><span data-lang="fr">Mobilité</span><span data-lang="en">Mobility</span><span data-lang="es">Movilidad</span><span data-lang="zh">出行</span></a>
+        <a href="/securite"><span data-lang="fr">Sécurité</span><span data-lang="en">Security</span><span data-lang="es">Seguridad</span><span data-lang="zh">安全</span></a>
+        <a href="/projets"><span data-lang="fr">Projets</span><span data-lang="en">Projects</span><span data-lang="es">Proyectos</span><span data-lang="zh">项目</span></a>
+        <a href="/produits"><span data-lang="fr">Produits</span><span data-lang="en">Products</span><span data-lang="es">Productos</span><span data-lang="zh">产品</span></a>
         <a href="https://cohabitat.modulimo.com" target="_blank" rel="noopener" class="nav-cta">CoHabitat ↗</a>
         <div class="lang-switch">
           <button class="lang-btn" data-set-lang="fr" aria-label="Afficher en français">FR</button>
@@ -262,9 +274,9 @@
   <!-- HERO -->
   <section class="hero">
     <div>
-      <span class="hero-tag"><span data-lang="fr">Mobilité · Modulimo</span><span data-lang="en">Mobility · Modulimo</span><span data-lang="es">Movilidad · Modulimo</span></span>
-      <h1 class="hero-title"><span data-lang="fr">Votre ville,</span><span data-lang="en">Your city,</span><span data-lang="es">Tu ciudad,</span><br><span class="green"><span data-lang="fr">sans voiture.</span><span data-lang="en">car-free.</span><span data-lang="es">sin coche.</span></span></h1>
-      <p class="hero-desc"><span data-lang="fr">Modulimo intègre une chaîne complète de mobilité inter-modale directement dans votre milieu de vie — du vélomobile au train, du fleuve au REM.</span><span data-lang="en">Modulimo embeds a complete inter-modal mobility chain right into your living environment — from velomobile to train, river to REM.</span><span data-lang="es">Modulimo integra una cadena completa de movilidad intermodal directamente en tu entorno de vida — del velomóvil al tren, del río al REM.</span></p>
+      <span class="hero-tag"><span data-lang="fr">Mobilité · Modulimo</span><span data-lang="en">Mobility · Modulimo</span><span data-lang="es">Movilidad · Modulimo</span><span data-lang="zh">出行 · Modulimo</span></span>
+      <h1 class="hero-title"><span data-lang="fr">Votre ville,</span><span data-lang="en">Your city,</span><span data-lang="es">Tu ciudad,</span><span data-lang="zh">您的城市，</span><br><span class="green"><span data-lang="fr">sans voiture.</span><span data-lang="en">car-free.</span><span data-lang="es">sin coche.</span><span data-lang="zh">无需汽车。</span></span></h1>
+      <p class="hero-desc"><span data-lang="fr">Modulimo intègre une chaîne complète de mobilité inter-modale directement dans votre milieu de vie — du vélomobile au train, du fleuve au REM.</span><span data-lang="en">Modulimo embeds a complete inter-modal mobility chain right into your living environment — from velomobile to train, river to REM.</span><span data-lang="es">Modulimo integra una cadena completa de movilidad intermodal directamente en tu entorno de vida — del velomóvil al tren, del río al REM.</span><span data-lang="zh">Modulimo 将完整的多式联运链直接融入您的生活环境 — 从卧式篷车到列车，从水路到 REM 轻轨。</span></p>
     </div>
     <div class="hero-visual">
       <div class="transit">
@@ -278,9 +290,9 @@
         <div class="t-spoke" style="width:160px;transform:translateY(-50%) rotate(240deg);"></div>
         <div class="t-spoke" style="width:160px;transform:translateY(-50%) rotate(300deg);"></div>
         <div class="t-center">Modu<br>limo</div>
-        <div class="t-node" style="top:50%;left:91%"><div class="t-dot"></div><div class="t-label"><span data-lang="fr">Autobus STM</span><span data-lang="en">STM bus</span><span data-lang="es">Autobús STM</span></div></div>
-        <div class="t-node" style="top:10%;left:75%"><div class="t-dot"></div><div class="t-label"><span data-lang="fr">Train Est</span><span data-lang="en">East train</span><span data-lang="es">Tren Este</span></div></div>
-        <div class="t-node" style="top:10%;left:25%"><div class="t-dot"></div><div class="t-label"><span data-lang="fr">Navette fluviale</span><span data-lang="en">River shuttle</span><span data-lang="es">Lanzadera fluvial</span></div></div>
+        <div class="t-node" style="top:50%;left:91%"><div class="t-dot"></div><div class="t-label"><span data-lang="fr">Autobus STM</span><span data-lang="en">STM bus</span><span data-lang="es">Autobús STM</span><span data-lang="zh">STM 公交</span></div></div>
+        <div class="t-node" style="top:10%;left:75%"><div class="t-dot"></div><div class="t-label"><span data-lang="fr">Train Est</span><span data-lang="en">East train</span><span data-lang="es">Tren Este</span><span data-lang="zh">东线列车</span></div></div>
+        <div class="t-node" style="top:10%;left:25%"><div class="t-dot"></div><div class="t-label"><span data-lang="fr">Navette fluviale</span><span data-lang="en">River shuttle</span><span data-lang="es">Lanzadera fluvial</span><span data-lang="zh">水上巴士</span></div></div>
         <div class="t-node" style="top:50%;left:9%"><div class="t-dot"></div><div class="t-label">Métro</div></div>
         <div class="t-node" style="top:90%;left:25%"><div class="t-dot"></div><div class="t-label">REM</div></div>
         <div class="t-node" style="top:90%;left:75%"><div class="t-dot"></div><div class="t-label">YUL ✈️</div></div>
@@ -290,34 +302,34 @@
 
   <!-- STATS -->
   <div class="stats">
-    <div class="stat"><div class="stat-n">6+</div><div class="stat-l"><span data-lang="fr">Modes de transport connectés</span><span data-lang="en">Connected transport modes</span><span data-lang="es">Modos de transporte conectados</span></div></div>
-    <div class="stat"><div class="stat-n">30'</div><div class="stat-l"><span data-lang="fr">Centre-ville en navette fluviale</span><span data-lang="en">Downtown by river shuttle</span><span data-lang="es">Centro en lanzadera fluvial</span></div></div>
-    <div class="stat"><div class="stat-n">0</div><div class="stat-l"><span data-lang="fr">Voiture nécessaire au quotidien</span><span data-lang="en">Cars needed daily</span><span data-lang="es">Coches necesarios cada día</span></div></div>
-    <div class="stat"><div class="stat-n">1er</div><div class="stat-l"><span data-lang="fr">Terminus STM à votre porte</span><span data-lang="en">STM terminus at your door</span><span data-lang="es">Terminal STM en tu puerta</span></div></div>
+    <div class="stat"><div class="stat-n">6+</div><div class="stat-l"><span data-lang="fr">Modes de transport connectés</span><span data-lang="en">Connected transport modes</span><span data-lang="es">Modos de transporte conectados</span><span data-lang="zh">互联的交通方式</span></div></div>
+    <div class="stat"><div class="stat-n">30'</div><div class="stat-l"><span data-lang="fr">Centre-ville en navette fluviale</span><span data-lang="en">Downtown by river shuttle</span><span data-lang="es">Centro en lanzadera fluvial</span><span data-lang="zh">乘水上巴士抵达市中心</span></div></div>
+    <div class="stat"><div class="stat-n">0</div><div class="stat-l"><span data-lang="fr">Voiture nécessaire au quotidien</span><span data-lang="en">Cars needed daily</span><span data-lang="es">Coches necesarios cada día</span><span data-lang="zh">日常出行须自备汽车</span></div></div>
+    <div class="stat"><div class="stat-n">1er</div><div class="stat-l"><span data-lang="fr">Terminus STM à votre porte</span><span data-lang="en">STM terminus at your door</span><span data-lang="es">Terminal STM en tu puerta</span><span data-lang="zh">STM 总站就在门口</span></div></div>
   </div>
 
   <!-- PILLIERS MOBILITÉ -->
   <section class="pilliers">
-    <div class="sec-tag"><span data-lang="fr">Inter-modalité intégrée au milieu</span><span data-lang="en">Inter-modality embedded in the environment</span><span data-lang="es">Intermodalidad integrada en el entorno</span></div>
-    <h2 class="sec-title"><span data-lang="fr">Trois modes,</span><span data-lang="en">Three modes,</span><span data-lang="es">Tres modos,</span><br><span data-lang="fr">un seul milieu de vie.</span><span data-lang="en">a single living environment.</span><span data-lang="es">un solo entorno de vida.</span></h2>
+    <div class="sec-tag"><span data-lang="fr">Inter-modalité intégrée au milieu</span><span data-lang="en">Inter-modality embedded in the environment</span><span data-lang="es">Intermodalidad integrada en el entorno</span><span data-lang="zh">融入生活环境的多式联运</span></div>
+    <h2 class="sec-title"><span data-lang="fr">Trois modes,</span><span data-lang="en">Three modes,</span><span data-lang="es">Tres modos,</span><span data-lang="zh">三种方式，</span><br><span data-lang="fr">un seul milieu de vie.</span><span data-lang="en">a single living environment.</span><span data-lang="es">un solo entorno de vida.</span><span data-lang="zh">同一个生活环境。</span></h2>
     <div class="pilliers-grid">
       <div class="pillier-card">
-        <div class="pillier-num"><span data-lang="fr">Pilier 01</span><span data-lang="en">Pillar 01</span><span data-lang="es">Pilar 01</span></div>
+        <div class="pillier-num"><span data-lang="fr">Pilier 01</span><span data-lang="en">Pillar 01</span><span data-lang="es">Pilar 01</span><span data-lang="zh">支柱 01</span></div>
         <img src="../images/minivan.webp" alt="Auto partage et covoiturage" class="pillier-img"  loading="lazy"/>
         <div class="pillier-name">Auto partage et covoiturage</div>
-        <p class="pillier-desc"><span data-lang="fr">1 à 2 minivans électriques inclus. Réservation en ligne pour résidents. Innovations pour véhicules autonomes à venir — plus besoin de chauffeur pour venir vous chercher.</span><span data-lang="en">1 to 2 electric minivans included. Online booking for residents. Innovations for autonomous vehicles coming — no driver needed to pick you up.</span><span data-lang="es">1 a 2 minivans eléctricas incluidas. Reserva en línea para los residentes. Innovaciones para vehículos autónomos en camino — ya no hace falta un conductor para recogerte.</span></p>
+        <p class="pillier-desc"><span data-lang="fr">1 à 2 minivans électriques inclus. Réservation en ligne pour résidents. Innovations pour véhicules autonomes à venir — plus besoin de chauffeur pour venir vous chercher.</span><span data-lang="en">1 to 2 electric minivans included. Online booking for residents. Innovations for autonomous vehicles coming — no driver needed to pick you up.</span><span data-lang="es">1 a 2 minivans eléctricas incluidas. Reserva en línea para los residentes. Innovaciones para vehículos autónomos en camino — ya no hace falta un conductor para recogerte.</span><span data-lang="zh">含 1 至 2 辆电动小型客车。住户可在线预约。面向自动驾驶车辆的创新即将到来 — 无需司机即可来接您。</span></p>
       </div>
       <div class="pillier-card">
-        <div class="pillier-num"><span data-lang="fr">Pilier 02</span><span data-lang="en">Pillar 02</span><span data-lang="es">Pilar 02</span></div>
+        <div class="pillier-num"><span data-lang="fr">Pilier 02</span><span data-lang="en">Pillar 02</span><span data-lang="es">Pilar 02</span><span data-lang="zh">支柱 02</span></div>
         <img src="../images/Terminus.webp" alt="Transport en commun" class="pillier-img"  loading="lazy"/>
         <div class="pillier-name">Transport en commun</div>
-        <p class="pillier-desc"><span data-lang="fr">L'arrêt d'autobus Bureau / 100e Avenue (PAT) est le voisin immédiat. <span data-lang="fr">Lignes 86, 410, 487 — terminus adjacent</span><span data-lang="en">Lines 86, 410, 487 — adjacent terminus</span><span data-lang="es">Líneas 86, 410, 487 — terminal adyacente</span> au projet.</span><span data-lang="en">The Bureau / 100th Avenue (PAT) bus stop is right next door. Lines 86, 410, 487 — terminus adjacent to the project.</span><span data-lang="es">La parada de autobús Bureau / 100ª Avenida (PAT) está justo al lado. Líneas 86, 410, 487 — terminal adyacente al proyecto.</span></p>
+        <p class="pillier-desc"><span data-lang="fr">L'arrêt d'autobus Bureau / 100e Avenue (PAT) est le voisin immédiat. <span data-lang="fr">Lignes 86, 410, 487 — terminus adjacent</span><span data-lang="en">Lines 86, 410, 487 — adjacent terminus</span><span data-lang="es">Líneas 86, 410, 487 — terminal adyacente</span> au projet.</span><span data-lang="en">The Bureau / 100th Avenue (PAT) bus stop is right next door. Lines 86, 410, 487 — terminus adjacent to the project.</span><span data-lang="es">La parada de autobús Bureau / 100ª Avenida (PAT) está justo al lado. Líneas 86, 410, 487 — terminal adyacente al proyecto.</span><span data-lang="zh">Bureau / 100e Avenue（PAT）公交站就在紧邻处。86、410、487 路 — 总站与项目相邻。</span></p>
       </div>
       <div class="pillier-card">
-        <div class="pillier-num"><span data-lang="fr">Pilier 03</span><span data-lang="en">Pillar 03</span><span data-lang="es">Pilar 03</span></div>
+        <div class="pillier-num"><span data-lang="fr">Pilier 03</span><span data-lang="en">Pillar 03</span><span data-lang="es">Pilar 03</span><span data-lang="zh">支柱 03</span></div>
         <img src="../images/Velomobile.webp" alt="Micro mobilité" class="pillier-img"  loading="lazy"/>
         <div class="pillier-name">Micro mobilité</div>
-        <p class="pillier-desc"><span data-lang="fr">Stationnement vélo et 2 vélomobiles empruntables — une innovation futuriste au cœur du projet Modulimo.</span><span data-lang="en">Bike parking and 2 borrowable velomobiles — a futuristic innovation at the heart of the Modulimo project.</span><span data-lang="es">Aparcamiento para bicicletas y 2 velomóviles prestados — una innovación futurista en el corazón del proyecto Modulimo.</span></p>
+        <p class="pillier-desc"><span data-lang="fr">Stationnement vélo et 2 vélomobiles empruntables — une innovation futuriste au cœur du projet Modulimo.</span><span data-lang="en">Bike parking and 2 borrowable velomobiles — a futuristic innovation at the heart of the Modulimo project.</span><span data-lang="es">Aparcamiento para bicicletas y 2 velomóviles prestados — una innovación futurista en el corazón del proyecto Modulimo.</span><span data-lang="zh">自行车停放位及 2 辆可借用的卧式篷车 — Modulimo 项目核心的一项前瞻性创新。</span></p>
       </div>
     </div>
   </section>
@@ -326,22 +338,22 @@
   <!-- CONCEPT CHAÎNE -->
   <section class="concept">
     <div>
-      <div class="sec-tag"><span data-lang="fr">Le concept</span><span data-lang="en">The concept</span><span data-lang="es">El concepto</span></div>
-      <h2 class="sec-title"><span data-lang="fr">Une chaîne,</span><span data-lang="en">A chain,</span><span data-lang="es">Una cadena,</span><br><span data-lang="fr">pas une liste</span><span data-lang="en">not a list</span><span data-lang="es">no una lista</span><br><span data-lang="fr">de stops.</span><span data-lang="en">of stops.</span><span data-lang="es">de paradas.</span></h2>
-      <p class="sec-body"><span data-lang="fr">L'inter-modalité, ce n'est pas d'être "proche du métro". C'est de concevoir chaque déplacement comme une séquence fluide — où chaque mode passe le relais au suivant, sans friction, sans voiture personnelle.</span><span data-lang="en">Inter-modality is not about being "close to the metro". It is designing every trip as a fluid sequence — where each mode hands off to the next, without friction, without a personal car.</span><span data-lang="es">La intermodalidad no consiste en estar «cerca del metro». Es diseñar cada desplazamiento como una secuencia fluida — donde cada modo cede el relevo al siguiente, sin fricción, sin coche propio.</span></p>
+      <div class="sec-tag"><span data-lang="fr">Le concept</span><span data-lang="en">The concept</span><span data-lang="es">El concepto</span><span data-lang="zh">理念</span></div>
+      <h2 class="sec-title"><span data-lang="fr">Une chaîne,</span><span data-lang="en">A chain,</span><span data-lang="es">Una cadena,</span><span data-lang="zh">是一条链条，</span><br><span data-lang="fr">pas une liste</span><span data-lang="en">not a list</span><span data-lang="es">no una lista</span><span data-lang="zh">而不是一串</span><br><span data-lang="fr">de stops.</span><span data-lang="en">of stops.</span><span data-lang="es">de paradas.</span><span data-lang="zh">站点清单。</span></h2>
+      <p class="sec-body"><span data-lang="fr">L'inter-modalité, ce n'est pas d'être "proche du métro". C'est de concevoir chaque déplacement comme une séquence fluide — où chaque mode passe le relais au suivant, sans friction, sans voiture personnelle.</span><span data-lang="en">Inter-modality is not about being "close to the metro". It is designing every trip as a fluid sequence — where each mode hands off to the next, without friction, without a personal car.</span><span data-lang="es">La intermodalidad no consiste en estar «cerca del metro». Es diseñar cada desplazamiento como una secuencia fluida — donde cada modo cede el relevo al siguiente, sin fricción, sin coche propio.</span><span data-lang="zh">多式联运不等于「靠近地铁」。它意味着把每一次出行设计成流畅的接续 — 每一种方式无缝交给下一种，无需私家车。</span></p>
       <br>
-      <p class="sec-body"><span data-lang="fr">Chez Modulimo, cette chaîne commence dans l'immeuble même avec les vélomobiles et s'étend jusqu'à l'aéroport international via le REM.</span><span data-lang="en">At Modulimo, that chain starts inside the building with the velomobiles and reaches the international airport via the REM.</span><span data-lang="es">En Modulimo, esa cadena comienza en el propio edificio con los velomóviles y se extiende hasta el aeropuerto internacional vía el REM.</span></p>
+      <p class="sec-body"><span data-lang="fr">Chez Modulimo, cette chaîne commence dans l'immeuble même avec les vélomobiles et s'étend jusqu'à l'aéroport international via le REM.</span><span data-lang="en">At Modulimo, that chain starts inside the building with the velomobiles and reaches the international airport via the REM.</span><span data-lang="es">En Modulimo, esa cadena comienza en el propio edificio con los velomóviles y se extiende hasta el aeropuerto internacional vía el REM.</span><span data-lang="zh">在 Modulimo，这条链条自建筑内部的卧式篷车开始，经由 REM 轻轨一直延伸至国际机场。</span></p>
     </div>
     <div class="chain">
       <div class="chain-step">
         <div class="chain-left"><div class="chain-icon">🚐</div><div class="chain-line"></div></div>
-        <div class="chain-body"><div class="chain-mode"><span data-lang="fr">Minivan électrique — <span data-lang="fr">Autopartage & covoiturage</span><span data-lang="en">Car-share & ride-share</span><span data-lang="es">Coche compartido y carpooling</span></span><span data-lang="en">Electric minivan — Car-share & ride-share</span><span data-lang="es">Minivan eléctrica — Coche compartido y carpooling</span></div><div class="chain-detail"><span data-lang="fr">Confort et capacité — réservation en ligne via CoHabitat</span><span data-lang="en">Comfort and capacity — online booking via CoHabitat</span><span data-lang="es">Comodidad y capacidad — reserva en línea vía CoHabitat</span></div></div>
-        <div class="chain-badge"><span data-lang="fr">Sur site</span><span data-lang="en">On site</span><span data-lang="es">En el sitio</span></div>
+        <div class="chain-body"><div class="chain-mode"><span data-lang="fr">Minivan électrique — <span data-lang="fr">Autopartage & covoiturage</span><span data-lang="en">Car-share & ride-share</span><span data-lang="es">Coche compartido y carpooling</span></span><span data-lang="en">Electric minivan — Car-share & ride-share</span><span data-lang="es">Minivan eléctrica — Coche compartido y carpooling</span><span data-lang="zh">电动小型客车 — 汽车共享与拼车</span></div><div class="chain-detail"><span data-lang="fr">Confort et capacité — réservation en ligne via CoHabitat</span><span data-lang="en">Comfort and capacity — online booking via CoHabitat</span><span data-lang="es">Comodidad y capacidad — reserva en línea vía CoHabitat</span><span data-lang="zh">舒适且容量充足 — 通过 CoHabitat 在线预约</span></div></div>
+        <div class="chain-badge"><span data-lang="fr">Sur site</span><span data-lang="en">On site</span><span data-lang="es">En el sitio</span><span data-lang="zh">就在现场</span></div>
       </div>
       <div class="chain-step">
         <div class="chain-left"><div class="chain-icon">🚲</div><div class="chain-line"></div></div>
-        <div class="chain-body"><div class="chain-mode"><span data-lang="fr">Vélomobile — Micro-mobilité futuriste</span><span data-lang="en">Velomobile — Futuristic micro-mobility</span><span data-lang="es">Velomóvil — Micromovilidad futurista</span></div><div class="chain-detail"><span data-lang="fr">Innovation au cœur du projet — 2 unités disponibles pour les résidents</span><span data-lang="en">Innovation at the heart of the project — 2 units available for residents</span><span data-lang="es">Innovación en el corazón del proyecto — 2 unidades disponibles para los residentes</span></div></div>
-        <div class="chain-badge"><span data-lang="fr">Innovant</span><span data-lang="en">Innovative</span><span data-lang="es">Innovador</span></div>
+        <div class="chain-body"><div class="chain-mode"><span data-lang="fr">Vélomobile — Micro-mobilité futuriste</span><span data-lang="en">Velomobile — Futuristic micro-mobility</span><span data-lang="es">Velomóvil — Micromovilidad futurista</span><span data-lang="zh">卧式篷车 — 前瞻性微出行</span></div><div class="chain-detail"><span data-lang="fr">Innovation au cœur du projet — 2 unités disponibles pour les résidents</span><span data-lang="en">Innovation at the heart of the project — 2 units available for residents</span><span data-lang="es">Innovación en el corazón del proyecto — 2 unidades disponibles para los residentes</span><span data-lang="zh">项目核心的创新 — 2 辆可供住户使用</span></div></div>
+        <div class="chain-badge"><span data-lang="fr">Innovant</span><span data-lang="en">Innovative</span><span data-lang="es">Innovador</span><span data-lang="zh">创新</span></div>
       </div>
       <div class="chain-step">
         <div class="chain-left"><div class="chain-icon">🚌</div><div class="chain-line"></div></div>
@@ -350,22 +362,22 @@
       </div>
       <div class="chain-step">
         <div class="chain-left"><div class="chain-icon">⛴️</div><div class="chain-line"></div></div>
-        <div class="chain-body"><div class="chain-mode">Navette fluviale</div><div class="chain-detail"><span data-lang="fr">PAT → Vieux-Port, vélos acceptés</span><span data-lang="en">PAT → Old Port, bikes welcome</span><span data-lang="es">PAT → Old Port, bicicletas permitidas</span></div></div>
+        <div class="chain-body"><div class="chain-mode">Navette fluviale</div><div class="chain-detail"><span data-lang="fr">PAT → Vieux-Port, vélos acceptés</span><span data-lang="en">PAT → Old Port, bikes welcome</span><span data-lang="es">PAT → Old Port, bicicletas permitidas</span><span data-lang="zh">PAT → 老港，可携带自行车</span></div></div>
         <div class="chain-badge">30 min</div>
       </div>
       <div class="chain-step">
         <div class="chain-left"><div class="chain-icon">🚆</div><div class="chain-line"></div></div>
-        <div class="chain-body"><div class="chain-mode"><span data-lang="fr">Train de l'Est</span><span data-lang="en">East Train</span><span data-lang="es">Tren del Este</span></div><div class="chain-detail"><span data-lang="fr">Ligne Mascouche → Gare Centrale</span><span data-lang="en">Mascouche line → Central Station</span><span data-lang="es">Línea Mascouche → Estación Central</span></div></div>
+        <div class="chain-body"><div class="chain-mode"><span data-lang="fr">Train de l'Est</span><span data-lang="en">East Train</span><span data-lang="es">Tren del Este</span><span data-lang="zh">东线列车</span></div><div class="chain-detail"><span data-lang="fr">Ligne Mascouche → Gare Centrale</span><span data-lang="en">Mascouche line → Central Station</span><span data-lang="es">Línea Mascouche → Estación Central</span><span data-lang="zh">Mascouche 线 → 中央车站</span></div></div>
         <div class="chain-badge">Proche</div>
       </div>
       <div class="chain-step">
         <div class="chain-left"><div class="chain-icon">🚇</div><div class="chain-line"></div></div>
-        <div class="chain-body"><div class="chain-mode"><span data-lang="fr">Métro ligne verte</span><span data-lang="en">Green metro line</span><span data-lang="es">Metro línea verde</span></div><div class="chain-detail"><span data-lang="fr">Station Honoré-Beaugrand</span><span data-lang="en">Honoré-Beaugrand station</span><span data-lang="es">Estación Honoré-Beaugrand</span></div></div>
+        <div class="chain-body"><div class="chain-mode"><span data-lang="fr">Métro ligne verte</span><span data-lang="en">Green metro line</span><span data-lang="es">Metro línea verde</span><span data-lang="zh">地铁绿线</span></div><div class="chain-detail"><span data-lang="fr">Station Honoré-Beaugrand</span><span data-lang="en">Honoré-Beaugrand station</span><span data-lang="es">Estación Honoré-Beaugrand</span><span data-lang="zh">Honoré-Beaugrand 站</span></div></div>
         <div class="chain-badge">Réseau</div>
       </div>
       <div class="chain-step">
         <div class="chain-left"><div class="chain-icon">✈️</div></div>
-        <div class="chain-body"><div class="chain-mode"><span data-lang="fr">REM + TGV + Aéroport YUL</span><span data-lang="en">REM + High-speed rail + YUL airport</span><span data-lang="es">REM + Tren de alta velocidad + Aeropuerto YUL</span></div><div class="chain-detail"><span data-lang="fr">Connexion prévue 2026–2027 · TGV Québec-Toronto en développement</span><span data-lang="en">Connection planned 2026–2027 · Quebec-Toronto high-speed rail in development</span><span data-lang="es">Conexión prevista 2026–2027 · Tren de alta velocidad Quebec-Toronto en desarrollo</span></div></div>
+        <div class="chain-body"><div class="chain-mode"><span data-lang="fr">REM + TGV + Aéroport YUL</span><span data-lang="en">REM + High-speed rail + YUL airport</span><span data-lang="es">REM + Tren de alta velocidad + Aeropuerto YUL</span><span data-lang="zh">REM 轻轨 + 高铁 + YUL 机场</span></div><div class="chain-detail"><span data-lang="fr">Connexion prévue 2026–2027 · TGV Québec-Toronto en développement</span><span data-lang="en">Connection planned 2026–2027 · Quebec-Toronto high-speed rail in development</span><span data-lang="es">Conexión prevista 2026–2027 · Tren de alta velocidad Quebec-Toronto en desarrollo</span><span data-lang="zh">预计 2026–2027 年接通 · 魁北克–多伦多高铁建设中</span></div></div>
         <div class="chain-badge">2027</div>
       </div>
     </div>
@@ -375,18 +387,18 @@
   <section class="modes" id="modes">
     <div class="modes-header">
       <div>
-        <div class="sec-tag"><span data-lang="fr">Les modes</span><span data-lang="en">The modes</span><span data-lang="es">Los modos</span></div>
-        <h2 class="sec-title"><span data-lang="fr">Tout ce dont</span><span data-lang="en">Everything you</span><span data-lang="es">Todo lo que</span><br><span data-lang="fr">vous avez besoin,</span><span data-lang="en">need,</span><span data-lang="es">necesitas,</span><br><span data-lang="fr">intégré.</span><span data-lang="en">integrated.</span><span data-lang="es">integrado.</span></h2>
+        <div class="sec-tag"><span data-lang="fr">Les modes</span><span data-lang="en">The modes</span><span data-lang="es">Los modos</span><span data-lang="zh">交通方式</span></div>
+        <h2 class="sec-title"><span data-lang="fr">Tout ce dont</span><span data-lang="en">Everything you</span><span data-lang="es">Todo lo que</span><span data-lang="zh">您所需要的一切，</span><br><span data-lang="fr">vous avez besoin,</span><span data-lang="en">need,</span><span data-lang="es">necesitas,</span><span data-lang="zh"></span><br><span data-lang="fr">intégré.</span><span data-lang="en">integrated.</span><span data-lang="es">integrado.</span><span data-lang="zh">皆已整合。</span></h2>
       </div>
-      <p class="sec-body"><span data-lang="fr">Chaque mode répond à un besoin précis. Ensemble, ils couvrent l'intégralité de vos déplacements — du quotidien à l'international.</span><span data-lang="en">Each mode answers a specific need. Together they cover all your trips — from daily to international.</span><span data-lang="es">Cada modo responde a una necesidad específica. Juntos cubren la totalidad de tus desplazamientos — del día a día a lo internacional.</span></p>
+      <p class="sec-body"><span data-lang="fr">Chaque mode répond à un besoin précis. Ensemble, ils couvrent l'intégralité de vos déplacements — du quotidien à l'international.</span><span data-lang="en">Each mode answers a specific need. Together they cover all your trips — from daily to international.</span><span data-lang="es">Cada modo responde a una necesidad específica. Juntos cubren la totalidad de tus desplazamientos — del día a día a lo internacional.</span><span data-lang="zh">每一种方式各司其职。合在一起，它们覆盖您的全部出行 — 从日常通勤到跨国旅行。</span></p>
     </div>
     <div class="modes-grid">
-      <div class="mode-card"><span class="mode-num">01</span><span class="mode-emoji">🚲</span><div class="mode-name"><span data-lang="fr">Vélomobile ✦ Innovation</span><span data-lang="en">Velomobile ✦ Innovation</span><span data-lang="es">Velomóvil ✦ Innovación</span></div><div class="mode-desc"><span data-lang="fr">Un véhicule à propulsion humaine réinventé. En développement — disponible en prêt pour les résidents.</span><span data-lang="en">A reinvented human-powered vehicle. In development — available for resident loans.</span><span data-lang="es">Un vehículo de propulsión humana reinventado. En desarrollo — disponible en préstamo para los residentes.</span></div></div>
-      <div class="mode-card"><span class="mode-num">02</span><span class="mode-emoji">🚌</span><div class="mode-name">Autobus STM</div><div class="mode-desc"><span data-lang="fr">Terminus de 3 lignes à votre porte. Départs régulés, fréquence optimale.</span><span data-lang="en">Terminus for 3 lines at your door. Regulated departures, optimal frequency.</span><span data-lang="es">Terminal de 3 líneas en tu puerta. Salidas reguladas, frecuencia óptima.</span></div></div>
-      <div class="mode-card"><span class="mode-num">03</span><span class="mode-emoji">⛴️</span><div class="mode-name">Navette fluviale</div><div class="mode-desc"><span data-lang="fr">30 minutes jusqu'au Vieux-Port. Une alternative panoramique — avec votre vélo à bord.</span><span data-lang="en">30 minutes to the Old Port. A scenic alternative — bring your bike on board.</span><span data-lang="es">30 minutos hasta el Old Port. Una alternativa panorámica — con tu bicicleta a bordo.</span></div></div>
-      <div class="mode-card"><span class="mode-num">04</span><span class="mode-emoji">🚆</span><div class="mode-name">Train de l'Est</div><div class="mode-desc"><span data-lang="fr">La gare de Pointe-aux-Trembles relie directement la Gare Centrale. Accessible PMR.</span><span data-lang="en">Pointe-aux-Trembles station connects directly to Central Station. Wheelchair accessible.</span><span data-lang="es">La estación de Pointe-aux-Trembles conecta directamente con la Estación Central. Accesible para PMR.</span></div></div>
-      <div class="mode-card"><span class="mode-num">05</span><span class="mode-emoji">🚇</span><div class="mode-name"><span data-lang="fr">Métro + REM</span><span data-lang="en">Metro + REM</span><span data-lang="es">Metro + REM</span></div><div class="mode-desc"><span data-lang="fr">La ligne verte et le futur REM ouvrent l'ensemble du Grand Montréal depuis un seul nœud.</span><span data-lang="en">The green line and the future REM open up all of Greater Montreal from a single hub.</span><span data-lang="es">La línea verde y el futuro REM abren todo el Gran Montreal desde un solo nodo.</span></div></div>
-      <div class="mode-card"><span class="mode-num">06</span><span class="mode-emoji">🚐</span><div class="mode-name">Autopartage & covoiturage</div><div class="mode-desc"><span data-lang="fr">Minivan électrique partagée, réservable via CoHabitat. Idéal pour les trajets en groupe.</span><span data-lang="en">Shared electric minivan, bookable via CoHabitat. Ideal for group trips.</span><span data-lang="es">Minivan eléctrica compartida, reservable vía CoHabitat. Ideal para los trayectos en grupo.</span></div></div>
+      <div class="mode-card"><span class="mode-num">01</span><span class="mode-emoji">🚲</span><div class="mode-name"><span data-lang="fr">Vélomobile ✦ Innovation</span><span data-lang="en">Velomobile ✦ Innovation</span><span data-lang="es">Velomóvil ✦ Innovación</span><span data-lang="zh">卧式篷车 ✦ 创新</span></div><div class="mode-desc"><span data-lang="fr">Un véhicule à propulsion humaine réinventé. En développement — disponible en prêt pour les résidents.</span><span data-lang="en">A reinvented human-powered vehicle. In development — available for resident loans.</span><span data-lang="es">Un vehículo de propulsión humana reinventado. En desarrollo — disponible en préstamo para los residentes.</span><span data-lang="zh">一种被重新构想的人力驱动车辆。开发中 — 将供住户借用。</span></div></div>
+      <div class="mode-card"><span class="mode-num">02</span><span class="mode-emoji">🚌</span><div class="mode-name">Autobus STM</div><div class="mode-desc"><span data-lang="fr">Terminus de 3 lignes à votre porte. Départs régulés, fréquence optimale.</span><span data-lang="en">Terminus for 3 lines at your door. Regulated departures, optimal frequency.</span><span data-lang="es">Terminal de 3 líneas en tu puerta. Salidas reguladas, frecuencia óptima.</span><span data-lang="zh">三条线路的总站就在门口。发车规律，班次密集。</span></div></div>
+      <div class="mode-card"><span class="mode-num">03</span><span class="mode-emoji">⛴️</span><div class="mode-name">Navette fluviale</div><div class="mode-desc"><span data-lang="fr">30 minutes jusqu'au Vieux-Port. Une alternative panoramique — avec votre vélo à bord.</span><span data-lang="en">30 minutes to the Old Port. A scenic alternative — bring your bike on board.</span><span data-lang="es">30 minutos hasta el Old Port. Una alternativa panorámica — con tu bicicleta a bordo.</span><span data-lang="zh">30 分钟直达老港。一条兼具景观的替代路线 — 还可带上您的自行车。</span></div></div>
+      <div class="mode-card"><span class="mode-num">04</span><span class="mode-emoji">🚆</span><div class="mode-name">Train de l'Est</div><div class="mode-desc"><span data-lang="fr">La gare de Pointe-aux-Trembles relie directement la Gare Centrale. Accessible PMR.</span><span data-lang="en">Pointe-aux-Trembles station connects directly to Central Station. Wheelchair accessible.</span><span data-lang="es">La estación de Pointe-aux-Trembles conecta directamente con la Estación Central. Accesible para PMR.</span><span data-lang="zh">Pointe-aux-Trembles 车站直通中央车站。无障碍设施完备。</span></div></div>
+      <div class="mode-card"><span class="mode-num">05</span><span class="mode-emoji">🚇</span><div class="mode-name"><span data-lang="fr">Métro + REM</span><span data-lang="en">Metro + REM</span><span data-lang="es">Metro + REM</span><span data-lang="zh">地铁 + REM 轻轨</span></div><div class="mode-desc"><span data-lang="fr">La ligne verte et le futur REM ouvrent l'ensemble du Grand Montréal depuis un seul nœud.</span><span data-lang="en">The green line and the future REM open up all of Greater Montreal from a single hub.</span><span data-lang="es">La línea verde y el futuro REM abren todo el Gran Montreal desde un solo nodo.</span><span data-lang="zh">绿线与未来的 REM 轻轨，让整个大蒙特利尔从同一个枢纽向您敞开。</span></div></div>
+      <div class="mode-card"><span class="mode-num">06</span><span class="mode-emoji">🚐</span><div class="mode-name">Autopartage & covoiturage</div><div class="mode-desc"><span data-lang="fr">Minivan électrique partagée, réservable via CoHabitat. Idéal pour les trajets en groupe.</span><span data-lang="en">Shared electric minivan, bookable via CoHabitat. Ideal for group trips.</span><span data-lang="es">Minivan eléctrica compartida, reservable vía CoHabitat. Ideal para los trayectos en grupo.</span><span data-lang="zh">共享电动小型客车，可通过 CoHabitat 预约。适合多人同行。</span></div></div>
     </div>
   </section>
 
@@ -396,20 +408,20 @@
       <img src="../images/Train.webp" alt="TGV Québec-Toronto — Modulimo" class="train-img" onerror="this.style.display='none'"  loading="lazy"/>
       <div class="train-overlay"></div>
       <div class="train-content">
-        <div class="train-tag"><span data-lang="fr">L'horizon interurbain</span><span data-lang="en">The intercity horizon</span><span data-lang="es">El horizonte interurbano</span></div>
-        <h2 class="train-title"><span data-lang="fr">Le maillon</span><span data-lang="en">The link</span><span data-lang="es">El eslabón</span><br>qui <span class="green"><span data-lang="fr">s'en vient.</span><span data-lang="en">on the way.</span><span data-lang="es">que viene.</span></span></h2>
-        <p class="train-desc"><span data-lang="fr">La chaîne inter-modale de Modulimo sera connectée au futur train rapide Québec-Toronto. Comme Hydro-Québec a établi de nouveaux standards en élevant la tension de transport à 750 kV, le TGV/TGF représente une occasion de redéfinir la mobilité interurbaine au Québec — et Modulimo sera sur ce réseau.</span><span data-lang="en">Modulimo's inter-modal chain will be connected to the future Quebec-Toronto high-speed train. Just as Hydro-Québec set new standards by raising transmission voltage to 750 kV, the high-speed/high-frequency rail represents an opportunity to redefine intercity mobility in Quebec — and Modulimo will be on that network.</span><span data-lang="es">La cadena intermodal de Modulimo se conectará al futuro tren rápido Quebec-Toronto. Así como Hydro-Québec estableció nuevos estándares elevando la tensión de transporte a 750 kV, el TGV/TGF representa una oportunidad para redefinir la movilidad interurbana en Quebec — y Modulimo estará en esa red.</span></p>
+        <div class="train-tag"><span data-lang="fr">L'horizon interurbain</span><span data-lang="en">The intercity horizon</span><span data-lang="es">El horizonte interurbano</span><span data-lang="zh">城际前景</span></div>
+        <h2 class="train-title"><span data-lang="fr">Le maillon<br>qui <span class="green">s'en vient.</span></span><span data-lang="en">The link<br>that <span class="green">is coming.</span></span><span data-lang="es">El eslabón<br>que <span class="green">está por llegar.</span></span><span data-lang="zh">这一环<br><span class="green">即将接上。</span></span></h2>
+        <p class="train-desc"><span data-lang="fr">La chaîne inter-modale de Modulimo sera connectée au futur train rapide Québec-Toronto. Comme Hydro-Québec a établi de nouveaux standards en élevant la tension de transport à 750 kV, le TGV/TGF représente une occasion de redéfinir la mobilité interurbaine au Québec — et Modulimo sera sur ce réseau.</span><span data-lang="en">Modulimo's inter-modal chain will be connected to the future Quebec-Toronto high-speed train. Just as Hydro-Québec set new standards by raising transmission voltage to 750 kV, the high-speed/high-frequency rail represents an opportunity to redefine intercity mobility in Quebec — and Modulimo will be on that network.</span><span data-lang="es">La cadena intermodal de Modulimo se conectará al futuro tren rápido Quebec-Toronto. Así como Hydro-Québec estableció nuevos estándares elevando la tensión de transporte a 750 kV, el TGV/TGF representa una oportunidad para redefinir la movilidad interurbana en Quebec — y Modulimo estará en esa red.</span><span data-lang="zh">Modulimo 的多式联运链将接入未来的魁北克–多伦多快速铁路。正如 Hydro-Québec 当年将输电电压提升至 750 kV 从而确立了新标准，高铁对魁北克的城际出行同样是一次重新定义的机会 — 而 Modulimo 将身处这一网络之上。</span></p>
         <div class="train-cities">
           <div class="train-city">
             <span class="train-city-name">Montréal</span>
             <span class="train-city-time">0 h</span>
-            <span class="train-city-label"><span data-lang="fr">Point de départ</span><span data-lang="en">Departure point</span><span data-lang="es">Punto de partida</span></span>
+            <span class="train-city-label"><span data-lang="fr">Point de départ</span><span data-lang="en">Departure point</span><span data-lang="es">Punto de partida</span><span data-lang="zh">起点</span></span>
           </div>
           <div class="train-divider"></div>
           <div class="train-city">
-            <span class="train-city-name"><span data-lang="fr">Québec City</span><span data-lang="en">Quebec City</span><span data-lang="es">Ciudad de Quebec</span></span>
+            <span class="train-city-name"><span data-lang="fr">Québec City</span><span data-lang="en">Quebec City</span><span data-lang="es">Ciudad de Quebec</span><span data-lang="zh">魁北克市</span></span>
             <span class="train-city-time">~1 h</span>
-            <span class="train-city-label"><span data-lang="fr">TGV prévu</span><span data-lang="en">High-speed rail planned</span><span data-lang="es">Tren de alta velocidad previsto</span></span>
+            <span class="train-city-label"><span data-lang="fr">TGV prévu</span><span data-lang="en">High-speed rail planned</span><span data-lang="es">Tren de alta velocidad previsto</span><span data-lang="zh">高铁规划中</span></span>
           </div>
           <div class="train-divider"></div>
           <div class="train-city">
@@ -424,19 +436,19 @@
 
   <!-- PHILOSOPHIE -->
   <section class="philosophy">
-    <div class="pull-quote"><span data-lang="fr">L'immeuble n'est pas</span><span data-lang="en">The building is not</span><span data-lang="es">El edificio no está</span> <em>près</em> <span data-lang="fr">des transports.</span><span data-lang="en">transit.</span><span data-lang="es">los transportes.</span><br>Il <em><span data-lang="fr">fait partie</span><span data-lang="en">is part</span><span data-lang="es">forma parte</span></em> <span data-lang="fr">du réseau.</span><span data-lang="en">of the network.</span><span data-lang="es">de la red.</span></div>
+    <div class="pull-quote"><span data-lang="fr">L'immeuble n'est pas <em>près</em> des transports.</span><span data-lang="en">The building is not <em>near</em> transit.</span><span data-lang="es">El edificio no está <em>cerca</em> de los transportes.</span><span data-lang="zh">这栋建筑不是<em>靠近</em>交通。</span><br><span data-lang="fr">Il <em>fait partie</em> du réseau.</span><span data-lang="en">It <em>is part</em> of the network.</span><span data-lang="es">Forma <em>parte</em> de la red.</span><span data-lang="zh">它<em>本身就是</em>网络的一部分。</span></div>
     <div class="phil-points">
       <div class="phil-point">
         <div class="phil-num">01</div>
-        <div class="phil-text"><strong><span data-lang="fr">Zéro voiture contrainte</span><span data-lang="en">Zero forced car ownership</span><span data-lang="es">Cero coche obligado</span></strong><p><span data-lang="fr">Vivre sans voiture ne signifie pas vivre sans liberté. La chaîne inter-modale de Modulimo offre une portée équivalente ou supérieure à celle d'un ménage motorisé.</span><span data-lang="en">Living without a car does not mean living without freedom. Modulimo's inter-modal chain offers reach equal to or greater than a motorized household's.</span><span data-lang="es">Vivir sin coche no significa vivir sin libertad. La cadena intermodal de Modulimo ofrece un alcance igual o superior al de un hogar motorizado.</span></p></div>
+        <div class="phil-text"><strong><span data-lang="fr">Zéro voiture contrainte</span><span data-lang="en">Zero forced car ownership</span><span data-lang="es">Cero coche obligado</span><span data-lang="zh">不必被迫拥有汽车</span></strong><p><span data-lang="fr">Vivre sans voiture ne signifie pas vivre sans liberté. La chaîne inter-modale de Modulimo offre une portée équivalente ou supérieure à celle d'un ménage motorisé.</span><span data-lang="en">Living without a car does not mean living without freedom. Modulimo's inter-modal chain offers reach equal to or greater than a motorized household's.</span><span data-lang="es">Vivir sin coche no significa vivir sin libertad. La cadena intermodal de Modulimo ofrece un alcance igual o superior al de un hogar motorizado.</span><span data-lang="zh">没有汽车并不意味着没有自由。Modulimo 的多式联运链所能抵达的范围，不亚于甚至超过一个有车家庭。</span></p></div>
       </div>
       <div class="phil-point">
         <div class="phil-num">02</div>
-        <div class="phil-text"><strong><span data-lang="fr">Économies réelles</span><span data-lang="en">Real savings</span><span data-lang="es">Ahorros reales</span></strong><p><span data-lang="fr">Un ménage sans voiture économise en moyenne 10 000 $ à 15 000 $ par année au Québec. L'inter-modalité de Modulimo transforme cette économie en qualité de vie.</span><span data-lang="en">A car-free household saves on average CAD 10,000 to 15,000 per year in Quebec. Modulimo's inter-modality turns those savings into quality of life.</span><span data-lang="es">Un hogar sin coche ahorra en promedio entre 10 000 y 15 000 CAD al año en Quebec. La intermodalidad de Modulimo transforma ese ahorro en calidad de vida.</span></p></div>
+        <div class="phil-text"><strong><span data-lang="fr">Économies réelles</span><span data-lang="en">Real savings</span><span data-lang="es">Ahorros reales</span><span data-lang="zh">实实在在的节省</span></strong><p><span data-lang="fr">Un ménage sans voiture économise en moyenne 10 000 $ à 15 000 $ par année au Québec. L'inter-modalité de Modulimo transforme cette économie en qualité de vie.</span><span data-lang="en">A car-free household saves on average CAD 10,000 to 15,000 per year in Quebec. Modulimo's inter-modality turns those savings into quality of life.</span><span data-lang="es">Un hogar sin coche ahorra en promedio entre 10 000 y 15 000 CAD al año en Quebec. La intermodalidad de Modulimo transforma ese ahorro en calidad de vida.</span><span data-lang="zh">在魁北克，一个无车家庭平均每年可节省 1 万至 1.5 万加元。Modulimo 的多式联运把这笔节省转化为生活品质。</span></p></div>
       </div>
       <div class="phil-point">
         <div class="phil-num">03</div>
-        <div class="phil-text"><strong><span data-lang="fr">Résilient dans le temps</span><span data-lang="en">Resilient over time</span><span data-lang="es">Resiliente en el tiempo</span></strong><p><span data-lang="fr">Le réseau de transport collectif ne fait que croître — Train de l'Est, REM, navette fluviale. Chaque amélioration bénéficie automatiquement aux résidents Modulimo.</span><span data-lang="en">Public transit only keeps growing — East Train, REM, river shuttle. Every improvement automatically benefits Modulimo residents.</span><span data-lang="es">La red de transporte público no deja de crecer — Tren del Este, REM, lanzadera fluvial. Cada mejora beneficia automáticamente a los residentes Modulimo.</span></p></div>
+        <div class="phil-text"><strong><span data-lang="fr">Résilient dans le temps</span><span data-lang="en">Resilient over time</span><span data-lang="es">Resiliente en el tiempo</span><span data-lang="zh">经得起时间考验</span></strong><p><span data-lang="fr">Le réseau de transport collectif ne fait que croître — Train de l'Est, REM, navette fluviale. Chaque amélioration bénéficie automatiquement aux résidents Modulimo.</span><span data-lang="en">Public transit only keeps growing — East Train, REM, river shuttle. Every improvement automatically benefits Modulimo residents.</span><span data-lang="es">La red de transporte público no deja de crecer — Tren del Este, REM, lanzadera fluvial. Cada mejora beneficia automáticamente a los residentes Modulimo.</span><span data-lang="zh">公共交通网络只会不断扩展 — 东线列车、REM 轻轨、水上巴士。每一次改善都自动惠及 Modulimo 的住户。</span></p></div>
       </div>
     </div>
   </section>
@@ -449,20 +461,20 @@
           <div class="footer-brand">
             <img src="/images/ModulimoLogoSobre.png" alt="Modulimo" />
           </div>
-          <p class="footer-tagline"><span data-lang="fr">Écosystème résidentiel intégré — logement, mobilité, services et logiciel.</span><span data-lang="en">Integrated residential ecosystem — housing, mobility, services, and software.</span><span data-lang="es">Ecosistema residencial integrado — vivienda, movilidad, servicios y software.</span></p>
+          <p class="footer-tagline"><span data-lang="fr">Écosystème résidentiel intégré — logement, mobilité, services et logiciel.</span><span data-lang="en">Integrated residential ecosystem — housing, mobility, services, and software.</span><span data-lang="es">Ecosistema residencial integrado — vivienda, movilidad, servicios y software.</span><span data-lang="zh">一体化住宅生态系统 — 住宅、出行、服务与软件。</span></p>
         </div>
         <div class="footer-nav">
-          <h5><span data-lang="fr">Navigation</span><span data-lang="en">Navigation</span><span data-lang="es">Navegación</span></h5>
+          <h5><span data-lang="fr">Navigation</span><span data-lang="en">Navigation</span><span data-lang="es">Navegación</span><span data-lang="zh">导航</span></h5>
           <a href="https://cohabitat.modulimo.com" target="_blank" rel="noopener">CoHabitat</a>
-          <a href="/mobilite"><span data-lang="fr">Mobilité</span><span data-lang="en">Mobility</span><span data-lang="es">Movilidad</span></a>
-          <a href="/securite"><span data-lang="fr">Sécurité</span><span data-lang="en">Security</span><span data-lang="es">Seguridad</span></a>
-          <a href="/projets"><span data-lang="fr">Projets</span><span data-lang="en">Projects</span><span data-lang="es">Proyectos</span></a>
-          <a href="/produits"><span data-lang="fr">Produits</span><span data-lang="en">Products</span><span data-lang="es">Productos</span></a>
+          <a href="/mobilite"><span data-lang="fr">Mobilité</span><span data-lang="en">Mobility</span><span data-lang="es">Movilidad</span><span data-lang="zh">出行</span></a>
+          <a href="/securite"><span data-lang="fr">Sécurité</span><span data-lang="en">Security</span><span data-lang="es">Seguridad</span><span data-lang="zh">安全</span></a>
+          <a href="/projets"><span data-lang="fr">Projets</span><span data-lang="en">Projects</span><span data-lang="es">Proyectos</span><span data-lang="zh">项目</span></a>
+          <a href="/produits"><span data-lang="fr">Produits</span><span data-lang="en">Products</span><span data-lang="es">Productos</span><span data-lang="zh">产品</span></a>
         </div>
       </div>
       <div class="footer-bottom">
-        <p><span data-lang="fr">© 2026 Modulimo inc. — Tous droits réservés</span><span data-lang="en">© 2026 Modulimo inc. — All rights reserved</span><span data-lang="es">© 2026 Modulimo inc. — Todos los derechos reservados</span></p>
-        <p><a href="/confidentialite"><span data-lang="fr">Politique de confidentialité</span><span data-lang="en">Privacy Policy</span><span data-lang="es">Política de privacidad</span></a></p>
+        <p><span data-lang="fr">© 2026 Modulimo inc. — Tous droits réservés</span><span data-lang="en">© 2026 Modulimo inc. — All rights reserved</span><span data-lang="es">© 2026 Modulimo inc. — Todos los derechos reservados</span><span data-lang="zh">© 2026 Modulimo inc. — 保留所有权利</span></p>
+        <p><a href="/confidentialite"><span data-lang="fr">Politique de confidentialité</span><span data-lang="en">Privacy Policy</span><span data-lang="es">Política de privacidad</span><span data-lang="zh">隐私政策</span></a></p>
         <p>Pointe-aux-Trembles, Montréal</p>
       </div>
     </div>
