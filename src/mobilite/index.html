@@ -37,6 +37,8 @@
     .nav-cta:hover { background:var(--green); color:#fff !important; }
     .lang-switch { display:inline-flex; align-items:center; gap:0; margin-left:10px; padding-left:10px; border-left:1px solid var(--border); }
     .lang-btn { font-size:.7rem; font-weight:700; letter-spacing:.06em; color:var(--muted); padding:5px 7px; background:none; border:none; cursor:pointer; font-family:inherit; transition:color .15s; }
+    /* Le drapeau et le code de langue sur une ligne, comme dans CoHabitat. */
+    .lang-btn { display:inline-flex; align-items:center; gap:5px; }
     .lang-btn:hover, .lang-btn.active { color:var(--green); }
     .lang-btn.active { font-weight:800; }
     [data-lang] { display:none; }
