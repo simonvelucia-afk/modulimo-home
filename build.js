@@ -50,16 +50,16 @@ const PAGES = [
   {
     src: 'src/mobilite/index.html', route: 'mobilite/',
     title: {
-      fr: 'Mobilité inter-modale — Modulimo',
-      en: 'Inter-modal mobility — Modulimo',
-      es: 'Movilidad intermodal — Modulimo',
-      zh: '多式联运出行 — Modulimo',
+      fr: 'Mobilité inter-modale et MaaS — Modulimo',
+      en: 'Inter-modal mobility and MaaS — Modulimo',
+      es: 'Movilidad intermodal y MaaS — Modulimo',
+      zh: '多式联运出行与 MaaS — Modulimo',
     },
     desc: {
-      fr: "Covoiturage intégré, vélomobile et accès direct au transport en commun — la mobilité fait partie du milieu de vie Modulimo.",
-      en: "Built-in ride-share, velomobile and direct access to public transit — mobility is part of the Modulimo living environment.",
-      es: "Carpooling integrado, velomóvil y acceso directo al transporte público — la movilidad forma parte del entorno de vida Modulimo.",
-      zh: "内置拼车、协力车与公共交通直达 — 出行是 Modulimo 生活环境的组成部分。",
+      fr: "Mobilité partagée, vélomobile et accès direct au transport en commun, réunis dans une seule offre (MaaS) via CoHabitat — la mobilité fait partie du milieu de vie Modulimo.",
+      en: "Shared mobility, velomobile and direct access to public transit, brought together in a single offer (MaaS) through CoHabitat — mobility is part of the Modulimo living environment.",
+      es: "Movilidad compartida, velomóvil y acceso directo al transporte público, reunidos en una sola oferta (MaaS) mediante CoHabitat — la movilidad forma parte del entorno de vida Modulimo.",
+      zh: "共享出行、卧式篷车与公共交通直达，通过 CoHabitat 汇合为同一项服务（MaaS）— 出行是 Modulimo 生活环境的组成部分。",
     },
   },
   {
