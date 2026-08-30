@@ -479,6 +479,25 @@
       background:var(--bg);
     }
 
+    .progression-concept{
+      display:grid; gap:14px; margin-top:22px;
+      grid-template-columns:repeat(auto-fit, minmax(320px, 1fr));
+    }
+    /* Les deux rendus n'ont pas le meme rapport : sans cadrage commun, les
+       legendes se decalent et un vide gris s'ouvre sous la plus courte. */
+    .progression-concept .premium-image-card{
+      margin-top:0; display:flex; flex-direction:column;
+    }
+    .progression-concept img{
+      width:100%; aspect-ratio:16/10; object-fit:cover; display:block;
+    }
+    .progression-concept figcaption{ margin-top:auto; }
+    .progression-concept figcaption{
+      position:relative; z-index:1;
+      padding:10px 14px 12px;
+      font-size:.78rem; line-height:1.45; color:var(--muted);
+      background:var(--bg); border-top:1px solid var(--line);
+    }
     .premium-image-card{
       position:relative;
       margin-top:22px;
@@ -1140,7 +1159,7 @@
       <!-- 3 cards en dessous -->
       <div class="grid-3" style="margin-bottom:18px;">
         <article class="panel">
-          <div class="media"><img src="/images/concept_velomobile.webp" alt="Concept de vélomobile"  loading="lazy"/></div>
+          <div class="media"><img src="/images/velom_chassis.webp" alt="Chasis tubular del velomóvil, ruedas estabilizadoras desplegadas" loading="lazy"/></div>
           <div class="card-pad">
             <h3><span>Dirección de diseño</span></h3>
             <p class="section-text"><span>MODULIMO desarrolla una reflexión sobre la movilidad ligera cerrada, pensada para conectar mejor el edificio, la vida cotidiana y ciertos usos climáticos exigentes.</span></p>
@@ -1164,9 +1183,15 @@
       <div class="band">
         <div class="smallcaps"><span>Rol estratégico</span></div>
         <p class="section-text soft"><span>La movilidad no se presenta como un elemento aislado. Constituye una extensión natural del edificio, del software y de los servicios, en una lógica de integración vertical poco habitual en el mercado.</span></p>
-        <div class="premium-image-card">
-          <img src="/images/iso_concept_ultime.webp" alt="Vélomobile MODULIMO"  loading="lazy"/>
-
+        <div class="progression-concept">
+          <figure class="premium-image-card">
+            <img src="/images/iso_concept_ultime.webp" alt="Velomóvil MODULIMO, estudio inicial" loading="lazy"/>
+            <figcaption><span>Estudio inicial — carenado angular, ruedas anchas</span></figcaption>
+          </figure>
+          <figure class="premium-image-card">
+            <img src="/images/velom_carene.webp" alt="Velomóvil MODULIMO, iteración actual" loading="lazy"/>
+            <figcaption><span>Iteración actual — volumen suavizado, ruedas de bicicleta de montaña</span></figcaption>
+          </figure>
         </div>
       </div>
     </section>

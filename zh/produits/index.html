@@ -479,6 +479,25 @@
       background:var(--bg);
     }
 
+    .progression-concept{
+      display:grid; gap:14px; margin-top:22px;
+      grid-template-columns:repeat(auto-fit, minmax(320px, 1fr));
+    }
+    /* Les deux rendus n'ont pas le meme rapport : sans cadrage commun, les
+       legendes se decalent et un vide gris s'ouvre sous la plus courte. */
+    .progression-concept .premium-image-card{
+      margin-top:0; display:flex; flex-direction:column;
+    }
+    .progression-concept img{
+      width:100%; aspect-ratio:16/10; object-fit:cover; display:block;
+    }
+    .progression-concept figcaption{ margin-top:auto; }
+    .progression-concept figcaption{
+      position:relative; z-index:1;
+      padding:10px 14px 12px;
+      font-size:.78rem; line-height:1.45; color:var(--muted);
+      background:var(--bg); border-top:1px solid var(--line);
+    }
     .premium-image-card{
       position:relative;
       margin-top:22px;
@@ -1140,7 +1159,7 @@
       <!-- 3 cards en dessous -->
       <div class="grid-3" style="margin-bottom:18px;">
         <article class="panel">
-          <div class="media"><img src="/images/concept_velomobile.webp" alt="Concept de vélomobile"  loading="lazy"/></div>
+          <div class="media"><img src="/images/velom_chassis.webp" alt="脚踏车的管状车架，稳定轮已展开" loading="lazy"/></div>
           <div class="card-pad">
             <h3><span>设计方向</span></h3>
             <p class="section-text"><span>MODULIMO 正在思考封闭式轻型出行工具，使其更好地连接建筑、日常生活以及某些气候条件严苛的使用场景。</span></p>
@@ -1164,9 +1183,15 @@
       <div class="band">
         <div class="smallcaps"><span>战略角色</span></div>
         <p class="section-text soft"><span>出行并非孤立的一环。它是建筑、软件与服务的自然延伸，构成市场上少见的垂直整合逻辑。</span></p>
-        <div class="premium-image-card">
-          <img src="/images/iso_concept_ultime.webp" alt="Vélomobile MODULIMO"  loading="lazy"/>
-
+        <div class="progression-concept">
+          <figure class="premium-image-card">
+            <img src="/images/iso_concept_ultime.webp" alt="MODULIMO 脚踏车，初期研究" loading="lazy"/>
+            <figcaption><span>初期研究 — 棱角整流罩、宽胎</span></figcaption>
+          </figure>
+          <figure class="premium-image-card">
+            <img src="/images/velom_carene.webp" alt="MODULIMO 脚踏车，当前迭代" loading="lazy"/>
+            <figcaption><span>当前迭代 — 体量更柔和、山地车轮组</span></figcaption>
+          </figure>
         </div>
       </div>
     </section>
