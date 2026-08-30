@@ -9,6 +9,7 @@
   <link rel="alternate" hreflang="fr-CA" href="https://www.modulimo.com/securite/" />
   <link rel="alternate" hreflang="en" href="https://www.modulimo.com/en/securite/" />
   <link rel="alternate" hreflang="es" href="https://www.modulimo.com/es/securite/" />
+  <link rel="alternate" hreflang="zh-Hans" href="https://www.modulimo.com/zh/securite/" />
   <link rel="alternate" hreflang="x-default" href="https://www.modulimo.com/securite/" />
   <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
   <style>
@@ -67,6 +68,18 @@
     /* .nav a.active souligne l'onglet de la page courante : une entree de
        menu n'en veut pas, elle se signale par sa couleur seule. */
     .lang-menu a.lang-item.active { border-bottom:none; border-radius:4px; padding:8px 10px; }
+    /* Les idéogrammes occupent toute la hauteur du cadratin : un interligne
+       calibré pour l'alphabet latin (ici de 0,93 à 1,10) les fait se
+       chevaucher. La règle ne vise que les pages chinoises. */
+    html[lang="zh"] h1, html[lang="zh"] h2,
+    html[lang="zh"] h3, html[lang="zh"] h4 { line-height:1.3; }
+    /* Avis de traduction : pleine largeur, pour passer a la ligne dans le
+       pied de page de la page Produits, qui est un conteneur flex. */
+    .avis-traduction {
+      width:100%; margin:14px 0 0; padding-top:12px;
+      border-top:1px solid var(--line);
+      font-size:.68rem; line-height:1.55; color:var(--muted); opacity:.85;
+    }
     .lang-btn:hover, .lang-btn.active { color:var(--green); }
     .lang-btn.active { font-weight:800; }
     [data-lang] { display:none; }
@@ -273,6 +286,7 @@
             <a class="lang-item" href="/securite/" lang="fr" hreflang="fr-CA" aria-label="Afficher en français"><svg viewBox="0 0 24 16" width="16" height="11" aria-hidden="true" style="display:block;border-radius:2px;flex-shrink:0;"><rect width="24" height="16" fill="#095797"/><g transform="translate(5.6,3.6)" fill="#fff"><path d="M0,-2.3 C1,-1.2 1,-0.2 0,0.6 C-1,-0.2 -1,-1.2 0,-2.3 Z"/><path d="M-2.1,-0.5 C-1.3,-1.3 -0.6,-0.9 -0.4,0.2 C-1.2,0.6 -1.9,0.3 -2.1,-0.5 Z"/><path d="M2.1,-0.5 C1.3,-1.3 0.6,-0.9 0.4,0.2 C1.2,0.6 1.9,0.3 2.1,-0.5 Z"/><rect x="-1.6" y="0.6" width="3.2" height="0.7"/><rect x="-0.5" y="1.3" width="1" height="1.4"/></g><g transform="translate(18.4,3.6)" fill="#fff"><path d="M0,-2.3 C1,-1.2 1,-0.2 0,0.6 C-1,-0.2 -1,-1.2 0,-2.3 Z"/><path d="M-2.1,-0.5 C-1.3,-1.3 -0.6,-0.9 -0.4,0.2 C-1.2,0.6 -1.9,0.3 -2.1,-0.5 Z"/><path d="M2.1,-0.5 C1.3,-1.3 0.6,-0.9 0.4,0.2 C1.2,0.6 1.9,0.3 2.1,-0.5 Z"/><rect x="-1.6" y="0.6" width="3.2" height="0.7"/><rect x="-0.5" y="1.3" width="1" height="1.4"/></g><g transform="translate(5.6,12.4)" fill="#fff"><path d="M0,-2.3 C1,-1.2 1,-0.2 0,0.6 C-1,-0.2 -1,-1.2 0,-2.3 Z"/><path d="M-2.1,-0.5 C-1.3,-1.3 -0.6,-0.9 -0.4,0.2 C-1.2,0.6 -1.9,0.3 -2.1,-0.5 Z"/><path d="M2.1,-0.5 C1.3,-1.3 0.6,-0.9 0.4,0.2 C1.2,0.6 1.9,0.3 2.1,-0.5 Z"/><rect x="-1.6" y="0.6" width="3.2" height="0.7"/><rect x="-0.5" y="1.3" width="1" height="1.4"/></g><g transform="translate(18.4,12.4)" fill="#fff"><path d="M0,-2.3 C1,-1.2 1,-0.2 0,0.6 C-1,-0.2 -1,-1.2 0,-2.3 Z"/><path d="M-2.1,-0.5 C-1.3,-1.3 -0.6,-0.9 -0.4,0.2 C-1.2,0.6 -1.9,0.3 -2.1,-0.5 Z"/><path d="M2.1,-0.5 C1.3,-1.3 0.6,-0.9 0.4,0.2 C1.2,0.6 1.9,0.3 2.1,-0.5 Z"/><rect x="-1.6" y="0.6" width="3.2" height="0.7"/><rect x="-0.5" y="1.3" width="1" height="1.4"/></g><rect x="10.4" y="0" width="3.2" height="16" fill="#fff"/><rect x="0" y="6.4" width="24" height="3.2" fill="#fff"/></svg><span>Français</span></a>
             <a class="lang-item" href="/en/securite/" lang="en" hreflang="en" aria-label="Display in English"><svg viewBox="0 0 24 16" width="16" height="11" aria-hidden="true" style="display:block;border-radius:2px;flex-shrink:0;"><rect width="24" height="16" fill="#fff"/><rect x="0" y="0.00" width="24" height="1.2308" fill="#b22234"/><rect x="0" y="2.46" width="24" height="1.2308" fill="#b22234"/><rect x="0" y="4.92" width="24" height="1.2308" fill="#b22234"/><rect x="0" y="7.38" width="24" height="1.2308" fill="#b22234"/><rect x="0" y="9.85" width="24" height="1.2308" fill="#b22234"/><rect x="0" y="12.31" width="24" height="1.2308" fill="#b22234"/><rect x="0" y="14.77" width="24" height="1.2308" fill="#b22234"/><rect width="9.6" height="8.62" fill="#3c3b6e"/><circle cx="3.2" cy="2.2" r="0.55" fill="#fff"/><circle cx="3.2" cy="4.4" r="0.55" fill="#fff"/><circle cx="3.2" cy="6.6" r="0.55" fill="#fff"/><circle cx="6.4" cy="2.2" r="0.55" fill="#fff"/><circle cx="6.4" cy="4.4" r="0.55" fill="#fff"/><circle cx="6.4" cy="6.6" r="0.55" fill="#fff"/></svg><span>English</span></a>
             <a class="lang-item active" href="/es/securite/" lang="es" hreflang="es" aria-label="Mostrar en español"><svg viewBox="0 0 24 16" width="16" height="11" aria-hidden="true" style="display:block;border-radius:2px;flex-shrink:0;"><rect width="8" height="16" fill="#006847"/><rect x="8" width="8" height="16" fill="#fff"/><rect x="16" width="8" height="16" fill="#ce1126"/><ellipse cx="12" cy="7.4" rx="1.7" ry="2" fill="#7a5230"/><path d="M9.9,9.4 A2.7,2.7 0 0 0 14.1,9.4" fill="none" stroke="#006847" stroke-width="0.8" stroke-linecap="round"/></svg><span>Español</span></a>
+            <a class="lang-item" href="/zh/securite/" lang="zh" hreflang="zh-Hans" aria-label="显示中文"><svg viewBox="0 0 24 16" width="16" height="11" aria-hidden="true" style="display:block;border-radius:2px;flex-shrink:0;"><rect width="24" height="16" fill="#de2910"/><polygon points="4.00,1.60 4.54,3.26 6.28,3.26 4.87,4.28 5.41,5.94 4.00,4.92 2.59,5.94 3.13,4.28 1.72,3.26 3.46,3.26" fill="#ffde00"/><circle cx="8" cy="1.6" r="0.6" fill="#ffde00"/><circle cx="9.6" cy="3.2" r="0.6" fill="#ffde00"/><circle cx="9.6" cy="5.6" r="0.6" fill="#ffde00"/><circle cx="8" cy="7.2" r="0.6" fill="#ffde00"/></svg><span>中文</span></a>
           </div>
         </details>
       </nav>
@@ -285,8 +299,7 @@
     <div class="mhero-left">
       <span class="mhero-tag"><span>Preparación · Modulimo</span></span>
       <h1 class="mhero-title">
-        Un milieu qui prend en charge<br>
-        <span class="mgreen"><span>la gestión de riesgos.</span></span>
+        <span>Un entorno que asume<br><span class="mgreen">la gestión de riesgos.</span></span>
       </h1>
       <p class="mhero-desc">
         <span>En Modulimo, la preparación ante los riesgos cotidianos la asume el edificio, no los residentes. Los escenarios se identifican con antelación, los protocolos se redactan y los simulacros se realizan cada año — siguiendo el programa «Get Prepared» del gobierno de Canadá.</span> <strong style="color:var(--dark);font-weight:600;"><span>Un enfoque atento y responsable, donde nada se deja al azar.</span></strong>
@@ -321,17 +334,13 @@
       </div>
     </div>
   </div>
-  <div class="malerts-note">
-    Voyants <strong>clignotants</strong> pendant un exercice annoncé · voyants <strong>fixes</strong> en situation réelle.
-  </div>
+  <div class="malerts-note"><span>Indicadores <strong>intermitentes</strong> durante un simulacro anunciado · indicadores <strong>fijos</strong> en situación real.</span></div>
 
   <!-- SÉCURITÉ INTRINSÈQUE -->
   <section class="mintrinsic">
     <div class="msec-tag"><span>Seguridad intrínseca</span></div>
     <h2 class="msec-title"><span>Un edificio diseñado</span><br><span>para la tranquilidad.</span></h2>
-    <p class="msec-body">
-      La sécurité de Modulimo n'est pas un ajout — elle est intégrée à l'architecture du bâtiment. Chaque accès, chaque espace commun et chaque protocole vise la tranquillité des résidents au quotidien, sans en faire un sujet d'inquiétude.
-    </p>
+    <p class="msec-body"><span>La seguridad en Modulimo no es un añadido: está integrada en la arquitectura del edificio. Cada acceso, cada espacio común y cada protocolo busca la tranquilidad cotidiana de los residentes, sin convertirla en motivo de inquietud.</span></p>
     <div class="mfeatures">
       <div class="mfeature">
         <span class="mfeature-icon">📹</span>
@@ -381,9 +390,7 @@
     <div class="mrisks-header">
       <div class="msec-tag"><span>Riesgos cubiertos</span></div>
       <h2 class="msec-title"><span>Tres vertientes,</span><br><span>un marco común.</span></h2>
-      <p class="msec-body">
-        Modulimo prépare ses résidents aux situations courantes envisagées par les autorités canadiennes, selon une trame inspirée des Plans Particuliers de Mise en Sûreté (PPMS). L'ensemble repose sur une cellule de coordination identifiée, une mallette de mise en sûreté accessible à chaque palier et un programme annuel d'exercices et d'actualisation.
-      </p>
+      <p class="msec-body"><span>Modulimo prepara a sus residentes para las situaciones corrientes previstas por las autoridades canadienses, siguiendo un marco inspirado en los Plans Particuliers de Mise en Sûreté (PPMS) franceses. Todo se apoya en una célula de coordinación identificada, un maletín de puesta a salvo accesible en cada planta y un programa anual de simulacros y actualización.</span></p>
     </div>
     <div class="mrisks-grid">
       <article class="mrisk-card">
@@ -392,35 +399,7 @@
           <span class="mrisk-level"><span>Nivel azul · Preparación</span></span>
         </div>
         <h3 class="mrisk-title"><span>Kit de 72 h y plan familiar</span></h3>
-        <p class="mrisk-desc"><span>Cada vivienda recibe la información y el material recomendados por el programa Get Prepared, así como un plan familiar escrito que se revisa en el simulacro anual.</span></p>
-        <ul class="mrisk-list">
-          <li><span>Agua, comida, linterna, manta de emergencia</span></li>
-          <li><span>Radio a pilas + radio dinamo, pilas de repuesto</span></li>
-          <li>Feuilles plastique &amp; ruban adhésif pour calfeutrer</li>
-          <li><span>Plan familiar escrito y números de emergencia</span></li>
-        </ul>
-      </article>
-      <article class="mrisk-card">
-        <div class="mrisk-card-head">
-          <span class="mrisk-dot mdot-orange"></span>
-          <span class="mrisk-level"><span>Nivel intermedio · Continuidad</span></span>
-        </div>
-        <h3 class="mrisk-title"><span>Continuidad ante una perturbación</span></h3>
-        <p class="mrisk-desc"><span>Corte eléctrico, evento meteorológico o interrupción de servicios: el edificio mantiene sus funciones esenciales hasta que los servicios normales se reanuden.</span></p>
-        <ul class="mrisk-list">
-          <li><span>Suministro eléctrico de emergencia</span></li>
-          <li><span>Reservas comunes de agua y material para 72 h</span></li>
-          <li><span>Comunicación interna por planta</span></li>
-          <li><span>Coordinación a través de responsables designados</span></li>
-        </ul>
-      </article>
-      <article class="mrisk-card">
-        <div class="mrisk-card-head">
-          <span class="mrisk-dot mdot-orange"></span>
-          <span class="mrisk-level"><span>Nivel naranja · Refugio</span></span>
-        </div>
-        <h3 class="mrisk-title">Mise à l'abri</h3>
-        <p class="mrisk-desc"><span>Un mismo protocolo cubre la emergencia radiológica, el fenómeno natural (tormenta, evento climático) y el desorden social en los alrededores. Tríptico oficial del gobierno de Canadá:</span> <strong>RESTEZ</strong> <span>dentro,</span> <strong>ÉCOUTEZ</strong> <span>los medios oficiales,</span> <strong>SUIVEZ</strong> <span>las directrices provinciales y municipales.</span></p>
+        <p class="mrisk-desc"><span>Un mismo protocolo cubre la emergencia radiológica, el fenómeno natural (tormenta, evento climático) y el desorden social en los alrededores. Tríptico oficial del gobierno de Canadá: <strong>QUÉDESE</strong> dentro, <strong>ESCUCHE</strong> los medios oficiales, <strong>SIGA</strong> las directrices provinciales y municipales.</span></p>
         <ul class="mrisk-list">
           <li><span>Refugio central (núcleo del edificio)</span></li>
           <li><span>Sellado de puertas, ventanas y rejillas de ventilación</span></li>
@@ -624,6 +603,7 @@
         <p>Pointe-aux-Trembles, Montréal</p>
       </div>
     </div>
+  <p class="avis-traduction" lang="es">Esta página es una traducción facilitada únicamente a título informativo. No constituye promesa, compromiso ni garantía alguna, y puede modificarse sin previo aviso. En caso de discrepancia, la versión francesa prevalece en todos sus términos.</p>
   </footer>
 
   <script>

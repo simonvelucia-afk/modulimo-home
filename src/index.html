@@ -56,6 +56,18 @@
     /* .nav a.active souligne l'onglet de la page courante : une entree de
        menu n'en veut pas, elle se signale par sa couleur seule. */
     .lang-menu a.lang-item.active { border-bottom:none; border-radius:4px; padding:8px 10px; }
+    /* Les idéogrammes occupent toute la hauteur du cadratin : un interligne
+       calibré pour l'alphabet latin (ici de 0,93 à 1,10) les fait se
+       chevaucher. La règle ne vise que les pages chinoises. */
+    html[lang="zh"] h1, html[lang="zh"] h2,
+    html[lang="zh"] h3, html[lang="zh"] h4 { line-height:1.3; }
+    /* Avis de traduction : pleine largeur, pour passer a la ligne dans le
+       pied de page de la page Produits, qui est un conteneur flex. */
+    .avis-traduction {
+      width:100%; margin:14px 0 0; padding-top:12px;
+      border-top:1px solid var(--line);
+      font-size:.68rem; line-height:1.55; color:var(--muted); opacity:.85;
+    }
     .lang-btn:hover, .lang-btn.active { color:var(--green); }
     .lang-btn.active { font-weight:800; }
     [data-lang] { display:none; }
@@ -240,11 +252,11 @@
         <span></span><span></span><span></span>
       </button>
       <nav class="nav" id="siteNav">
-        <a href="/" class="active"><span data-lang="fr">Accueil</span><span data-lang="en">Home</span><span data-lang="es">Inicio</span></a>
-        <a href="/mobilite"><span data-lang="fr">Mobilité</span><span data-lang="en">Mobility</span><span data-lang="es">Movilidad</span></a>
-        <a href="/securite"><span data-lang="fr">Sécurité</span><span data-lang="en">Security</span><span data-lang="es">Seguridad</span></a>
-        <a href="/projets"><span data-lang="fr">Projets</span><span data-lang="en">Projects</span><span data-lang="es">Proyectos</span></a>
-        <a href="/produits"><span data-lang="fr">Produits</span><span data-lang="en">Products</span><span data-lang="es">Productos</span></a>
+        <a href="/" class="active"><span data-lang="fr">Accueil</span><span data-lang="en">Home</span><span data-lang="es">Inicio</span><span data-lang="zh">首页</span></a>
+        <a href="/mobilite"><span data-lang="fr">Mobilité</span><span data-lang="en">Mobility</span><span data-lang="es">Movilidad</span><span data-lang="zh">出行</span></a>
+        <a href="/securite"><span data-lang="fr">Sécurité</span><span data-lang="en">Security</span><span data-lang="es">Seguridad</span><span data-lang="zh">安全</span></a>
+        <a href="/projets"><span data-lang="fr">Projets</span><span data-lang="en">Projects</span><span data-lang="es">Proyectos</span><span data-lang="zh">项目</span></a>
+        <a href="/produits"><span data-lang="fr">Produits</span><span data-lang="en">Products</span><span data-lang="es">Productos</span><span data-lang="zh">产品</span></a>
         <a href="https://cohabitat.modulimo.com" target="_blank" rel="noopener" class="nav-cta">CoHabitat ↗</a>
         <div class="lang-switch">
           <button class="lang-btn" data-set-lang="fr" aria-label="Afficher en français">FR</button>
@@ -260,65 +272,65 @@
     <div class="hero-overlay"></div>
     <div class="hero-content">
       <span class="hero-eyebrow">Pointe-aux-Trembles · Montréal</span>
-      <h1><span data-lang="fr">L'habitat familial, repensé comme un système.</span><span data-lang="en">Family housing, reimagined as a system.</span><span data-lang="es">El hábitat familiar, reinventado como un sistema.</span></h1>
-      <p><span data-lang="fr">MODULIMO structure un écosystème résidentiel intégré — logement, mobilité, services et logiciel — conçu pour être déployé à grande échelle.</span><span data-lang="en">MODULIMO builds an integrated residential ecosystem — housing, mobility, services, and software — designed to be deployed at scale.</span><span data-lang="es">MODULIMO estructura un ecosistema residencial integrado — vivienda, movilidad, servicios y software — diseñado para desplegarse a gran escala.</span></p>
+      <h1><span data-lang="fr">L'habitat familial, repensé comme un système.</span><span data-lang="en">Family housing, reimagined as a system.</span><span data-lang="es">El hábitat familiar, reinventado como un sistema.</span><span data-lang="zh">家庭住宅，以系统重新构想。</span></h1>
+      <p><span data-lang="fr">MODULIMO structure un écosystème résidentiel intégré — logement, mobilité, services et logiciel — conçu pour être déployé à grande échelle.</span><span data-lang="en">MODULIMO builds an integrated residential ecosystem — housing, mobility, services, and software — designed to be deployed at scale.</span><span data-lang="es">MODULIMO estructura un ecosistema residencial integrado — vivienda, movilidad, servicios y software — diseñado para desplegarse a gran escala.</span><span data-lang="zh">MODULIMO 构建一体化住宅生态系统 — 住宅、出行、服务与软件 — 专为规模化部署而设计。</span></p>
       <div class="hero-actions">
-        <a href="/projets" class="btn-primary"><span data-lang="fr">Voir Pointe Est</span><span data-lang="en">See Pointe Est</span><span data-lang="es">Ver Pointe Est</span></a>
-        <a href="https://cohabitat.modulimo.com" target="_blank" rel="noopener" class="btn-ghost"><span data-lang="fr">Explorer CoHabitat</span><span data-lang="en">Explore CoHabitat</span><span data-lang="es">Explorar CoHabitat</span></a>
+        <a href="/projets" class="btn-primary"><span data-lang="fr">Voir Pointe Est</span><span data-lang="en">See Pointe Est</span><span data-lang="es">Ver Pointe Est</span><span data-lang="zh">查看 Pointe Est</span></a>
+        <a href="https://cohabitat.modulimo.com" target="_blank" rel="noopener" class="btn-ghost"><span data-lang="fr">Explorer CoHabitat</span><span data-lang="en">Explore CoHabitat</span><span data-lang="es">Explorar CoHabitat</span><span data-lang="zh">探索 CoHabitat</span></a>
       </div>
     </div>
   </section>
 
   <div class="stats-bar">
     <div class="stats-inner">
-      <div class="stat"><div class="stat-val"><span data-lang="fr">Projet #1</span><span data-lang="en">Project #1</span><span data-lang="es">Proyecto #1</span></div><div class="stat-label"><span data-lang="fr">Pointe Est en cours</span><span data-lang="en">Pointe Est in progress</span><span data-lang="es">Pointe Est en curso</span></div></div>
-      <div class="stat"><div class="stat-val">CoHabitat</div><div class="stat-label"><span data-lang="fr">Logiciel opérationnel</span><span data-lang="en">Operational software</span><span data-lang="es">Software operativo</span></div></div>
-      <div class="stat"><div class="stat-val"><span data-lang="fr">Préfabrication</span><span data-lang="en">Prefabrication</span><span data-lang="es">Prefabricación</span></div><div class="stat-label"><span data-lang="fr">Construction industrialisée</span><span data-lang="en">Industrialized construction</span><span data-lang="es">Construcción industrializada</span></div></div>
-      <div class="stat"><div class="stat-val"><span data-lang="fr">3 min</span><span data-lang="en">3 min</span><span data-lang="es">3 min</span></div><div class="stat-label"><span data-lang="fr">De la plage de l'Est</span><span data-lang="en">From the East beach</span><span data-lang="es">De la playa del Este</span></div></div>
+      <div class="stat"><div class="stat-val"><span data-lang="fr">Projet #1</span><span data-lang="en">Project #1</span><span data-lang="es">Proyecto #1</span><span data-lang="zh">首个项目</span></div><div class="stat-label"><span data-lang="fr">Pointe Est en cours</span><span data-lang="en">Pointe Est in progress</span><span data-lang="es">Pointe Est en curso</span><span data-lang="zh">Pointe Est 进行中</span></div></div>
+      <div class="stat"><div class="stat-val">CoHabitat</div><div class="stat-label"><span data-lang="fr">Logiciel opérationnel</span><span data-lang="en">Operational software</span><span data-lang="es">Software operativo</span><span data-lang="zh">软件已投入运行</span></div></div>
+      <div class="stat"><div class="stat-val"><span data-lang="fr">Préfabrication</span><span data-lang="en">Prefabrication</span><span data-lang="es">Prefabricación</span><span data-lang="zh">预制化</span></div><div class="stat-label"><span data-lang="fr">Construction industrialisée</span><span data-lang="en">Industrialized construction</span><span data-lang="es">Construcción industrializada</span><span data-lang="zh">工业化建造</span></div></div>
+      <div class="stat"><div class="stat-val"><span data-lang="fr">3 min</span><span data-lang="en">3 min</span><span data-lang="es">3 min</span><span data-lang="zh">3 分钟</span></div><div class="stat-label"><span data-lang="fr">De la plage de l'Est</span><span data-lang="en">From the East beach</span><span data-lang="es">De la playa del Este</span><span data-lang="zh">距东岸海滩</span></div></div>
     </div>
   </div>
 
   <section class="section">
     <div class="wrap">
-      <p class="section-label"><span data-lang="fr">Le modèle</span><span data-lang="en">The model</span><span data-lang="es">El modelo</span></p>
-      <h2 class="section-title"><span data-lang="fr">Trois piliers, un système cohérent.</span><span data-lang="en">Three pillars, one coherent system.</span><span data-lang="es">Tres pilares, un sistema coherente.</span></h2>
-      <p class="section-lead"><span data-lang="fr">MODULIMO ne vend pas un seul bâtiment — il construit un modèle reproductible qui crée de la valeur à chaque nouveau déploiement.</span><span data-lang="en">MODULIMO doesn't sell a single building — it builds a reproducible model that creates value at every new deployment.</span><span data-lang="es">MODULIMO no vende un solo edificio — construye un modelo reproducible que crea valor con cada nuevo despliegue.</span></p>
+      <p class="section-label"><span data-lang="fr">Le modèle</span><span data-lang="en">The model</span><span data-lang="es">El modelo</span><span data-lang="zh">模式</span></p>
+      <h2 class="section-title"><span data-lang="fr">Trois piliers, un système cohérent.</span><span data-lang="en">Three pillars, one coherent system.</span><span data-lang="es">Tres pilares, un sistema coherente.</span><span data-lang="zh">三大支柱，一个连贯的系统。</span></h2>
+      <p class="section-lead"><span data-lang="fr">MODULIMO ne vend pas un seul bâtiment — il construit un modèle reproductible qui crée de la valeur à chaque nouveau déploiement.</span><span data-lang="en">MODULIMO doesn't sell a single building — it builds a reproducible model that creates value at every new deployment.</span><span data-lang="es">MODULIMO no vende un solo edificio — construye un modelo reproducible que crea valor con cada nuevo despliegue.</span><span data-lang="zh">MODULIMO 并非出售单栋建筑 — 而是建立一个可复制的模式，每一次新的部署都创造价值。</span></p>
       <div class="pillars">
         <div class="pillar">
-          <p class="pillar-num"><span data-lang="fr">Pilier 01</span><span data-lang="en">Pillar 01</span><span data-lang="es">Pilar 01</span></p>
+          <p class="pillar-num"><span data-lang="fr">Pilier 01</span><span data-lang="en">Pillar 01</span><span data-lang="es">Pilar 01</span><span data-lang="zh">支柱 01</span></p>
           <div style="display:flex;gap:24px;align-items:flex-start;flex-wrap:wrap;">
             <div style="flex:1;min-width:220px;">
               <div class="pillar-icon"><svg viewBox="0 0 24 24"><path d="M3 10 L12 3 L21 10 L21 20 L3 20 Z"/><rect x="9" y="14" width="6" height="6"/></svg></div>
-              <h3><span data-lang="fr">Logement familial intégré</span><span data-lang="en">Integrated family housing</span><span data-lang="es">Vivienda familiar integrada</span></h3>
-              <p><span data-lang="fr">Unités conçues autour de la vie familiale — espaces généreux, services partagés, qualité de vie pensée dès la conception de l'immeuble.</span><span data-lang="en">Units designed around family life — generous spaces, shared services, quality of life built in from the building's design.</span><span data-lang="es">Viviendas diseñadas en torno a la vida familiar — espacios generosos, servicios compartidos, calidad de vida pensada desde el diseño del edificio.</span></p>
+              <h3><span data-lang="fr">Logement familial intégré</span><span data-lang="en">Integrated family housing</span><span data-lang="es">Vivienda familiar integrada</span><span data-lang="zh">一体化家庭住宅</span></h3>
+              <p><span data-lang="fr">Unités conçues autour de la vie familiale — espaces généreux, services partagés, qualité de vie pensée dès la conception de l'immeuble.</span><span data-lang="en">Units designed around family life — generous spaces, shared services, quality of life built in from the building's design.</span><span data-lang="es">Viviendas diseñadas en torno a la vida familiar — espacios generosos, servicios compartidos, calidad de vida pensada desde el diseño del edificio.</span><span data-lang="zh">围绕家庭生活设计的住宅单元 — 宽敞的空间、共享的服务，生活品质自建筑设计之初便已纳入考量。</span></p>
             </div>
             <div style="flex:2;min-width:300px;">
               <div class="amenities">
-                <div class="amenity"><img src="images/EspacesCommun.webp" alt="Espaces communs" data-alt-en="Common areas" data-alt-es="Espacios comunes" loading="lazy"/><p class="amenity-label"><span data-lang="fr">Salle commune & cinéma</span><span data-lang="en">Common room & cinema</span><span data-lang="es">Sala común y cine</span></p></div>
-                <div class="amenity"><img src="images/EspaceEntrainement.webp" alt="Espace entraînement" data-alt-en="Fitness area" data-alt-es="Espacio de entrenamiento" loading="lazy"/><p class="amenity-label"><span data-lang="fr">Fitness partagé</span><span data-lang="en">Shared fitness</span><span data-lang="es">Fitness compartido</span></p></div>
-                <div class="amenity"><img src="images/systeme-levage-thumb.webp" alt="Système de levage" data-alt-en="Hoisting system" data-alt-es="Sistema de elevación" loading="lazy" data-lightbox="images/systeme-levage.webp" data-lightbox-alt="Système de levage résidentiel — dans la cage d'escalier, du garage au toit"/><p class="amenity-label"><span data-lang="fr">Système de levage — déménagements faciles</span><span data-lang="en">Hoisting system — easy moves</span><span data-lang="es">Sistema de elevación — mudanzas fáciles</span></p></div>
-                <div class="amenity"><img src="images/Verdure.webp" alt="Arbres fruitiers" data-alt-en="Fruit trees" data-alt-es="Árboles frutales" loading="lazy"/><p class="amenity-label"><span data-lang="fr">Arbres fruitiers</span><span data-lang="en">Fruit trees</span><span data-lang="es">Árboles frutales</span></p></div>
-                <div class="amenity"><img src="images/chien.webp" alt="Animaux permis" data-alt-en="Pets allowed" data-alt-es="Mascotas permitidas" loading="lazy"/><p class="amenity-label"><span data-lang="fr">Animaux permis</span><span data-lang="en">Pets allowed</span><span data-lang="es">Mascotas permitidas</span></p></div>
+                <div class="amenity"><img src="images/EspacesCommun.webp" alt="Espaces communs" data-alt-en="Common areas" data-alt-es="Espacios comunes" loading="lazy"/><p class="amenity-label"><span data-lang="fr">Salle commune & cinéma</span><span data-lang="en">Common room & cinema</span><span data-lang="es">Sala común y cine</span><span data-lang="zh">公共活动厅与影院</span></p></div>
+                <div class="amenity"><img src="images/EspaceEntrainement.webp" alt="Espace entraînement" data-alt-en="Fitness area" data-alt-es="Espacio de entrenamiento" loading="lazy"/><p class="amenity-label"><span data-lang="fr">Fitness partagé</span><span data-lang="en">Shared fitness</span><span data-lang="es">Fitness compartido</span><span data-lang="zh">共享健身房</span></p></div>
+                <div class="amenity"><img src="images/systeme-levage-thumb.webp" alt="Système de levage" data-alt-en="Hoisting system" data-alt-es="Sistema de elevación" loading="lazy" data-lightbox="images/systeme-levage.webp" data-lightbox-alt="Système de levage résidentiel — dans la cage d'escalier, du garage au toit"/><p class="amenity-label"><span data-lang="fr">Système de levage — déménagements faciles</span><span data-lang="en">Hoisting system — easy moves</span><span data-lang="es">Sistema de elevación — mudanzas fáciles</span><span data-lang="zh">起吊系统 — 搬家轻松</span></p></div>
+                <div class="amenity"><img src="images/Verdure.webp" alt="Arbres fruitiers" data-alt-en="Fruit trees" data-alt-es="Árboles frutales" loading="lazy"/><p class="amenity-label"><span data-lang="fr">Arbres fruitiers</span><span data-lang="en">Fruit trees</span><span data-lang="es">Árboles frutales</span><span data-lang="zh">果树</span></p></div>
+                <div class="amenity"><img src="images/chien.webp" alt="Animaux permis" data-alt-en="Pets allowed" data-alt-es="Mascotas permitidas" loading="lazy"/><p class="amenity-label"><span data-lang="fr">Animaux permis</span><span data-lang="en">Pets allowed</span><span data-lang="es">Mascotas permitidas</span><span data-lang="zh">允许携带宠物</span></p></div>
               </div>
             </div>
           </div>
         </div>
         <div class="pillars-row">
           <div class="pillar">
-            <p class="pillar-num"><span data-lang="fr">Pilier 02</span><span data-lang="en">Pillar 02</span><span data-lang="es">Pilar 02</span></p>
+            <p class="pillar-num"><span data-lang="fr">Pilier 02</span><span data-lang="en">Pillar 02</span><span data-lang="es">Pilar 02</span><span data-lang="zh">支柱 02</span></p>
             <div class="pillar-icon"><svg viewBox="0 0 24 24"><rect x="1" y="11" width="14" height="8" rx="2"/><path d="M15 15 L19 15 L21 12 L19 9 L15 9"/><circle cx="5" cy="19" r="2"/><circle cx="17" cy="19" r="2"/></svg></div>
-            <h3><span data-lang="fr">Mobilité inter-modale</span><span data-lang="en">Inter-modal mobility</span><span data-lang="es">Movilidad intermodal</span></h3>
-            <p><span data-lang="fr">Covoiturage intégré, vélomobile, accès direct aux transports en commun — la mobilité fait partie du milieu de vie, pas un ajout.</span><span data-lang="en">Built-in ride-share, velomobile, direct access to public transit — mobility is part of the living environment, not an add-on.</span><span data-lang="es">Carpooling integrado, velomóvil, acceso directo al transporte público — la movilidad forma parte del entorno de vida, no es un añadido.</span></p>
+            <h3><span data-lang="fr">Mobilité inter-modale</span><span data-lang="en">Inter-modal mobility</span><span data-lang="es">Movilidad intermodal</span><span data-lang="zh">多式联运出行</span></h3>
+            <p><span data-lang="fr">Covoiturage intégré, vélomobile, accès direct aux transports en commun — la mobilité fait partie du milieu de vie, pas un ajout.</span><span data-lang="en">Built-in ride-share, velomobile, direct access to public transit — mobility is part of the living environment, not an add-on.</span><span data-lang="es">Carpooling integrado, velomóvil, acceso directo al transporte público — la movilidad forma parte del entorno de vida, no es un añadido.</span><span data-lang="zh">内置拼车、卧式篷车、公共交通直达 — 出行是生活环境的组成部分，而非附加项。</span></p>
             <div class="amenities" style="grid-template-columns:1fr 1fr;margin-top:16px;">
-              <div class="amenity"><img src="images/Velomobile.webp" alt="Vélomobile" data-alt-en="Velomobile" data-alt-es="Velomóvil" loading="lazy"/><p class="amenity-label"><span data-lang="fr">Vélomobile</span><span data-lang="en">Velomobile</span><span data-lang="es">Velomóvil</span></p></div>
-              <div class="amenity"><img src="images/minivan.webp" alt="Minivan partagé" data-alt-en="Shared minivan" data-alt-es="Minivan compartida" loading="lazy"/><p class="amenity-label"><span data-lang="fr">Minivan partagé</span><span data-lang="en">Shared minivan</span><span data-lang="es">Minivan compartida</span></p></div>
+              <div class="amenity"><img src="images/Velomobile.webp" alt="Vélomobile" data-alt-en="Velomobile" data-alt-es="Velomóvil" loading="lazy"/><p class="amenity-label"><span data-lang="fr">Vélomobile</span><span data-lang="en">Velomobile</span><span data-lang="es">Velomóvil</span><span data-lang="zh">卧式篷车</span></p></div>
+              <div class="amenity"><img src="images/minivan.webp" alt="Minivan partagé" data-alt-en="Shared minivan" data-alt-es="Minivan compartida" loading="lazy"/><p class="amenity-label"><span data-lang="fr">Minivan partagé</span><span data-lang="en">Shared minivan</span><span data-lang="es">Minivan compartida</span><span data-lang="zh">共享小型客车</span></p></div>
             </div>
           </div>
           <div class="pillar">
-            <p class="pillar-num"><span data-lang="fr">Pilier 03</span><span data-lang="en">Pillar 03</span><span data-lang="es">Pilar 03</span></p>
+            <p class="pillar-num"><span data-lang="fr">Pilier 03</span><span data-lang="en">Pillar 03</span><span data-lang="es">Pilar 03</span><span data-lang="zh">支柱 03</span></p>
             <div class="pillar-icon"><svg viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21 L16 21 M12 17 L12 21"/><path d="M7 10 L10 13 L17 7"/></svg></div>
-            <h3><span data-lang="fr">Plateforme logicielle</span><span data-lang="en">Software platform</span><span data-lang="es">Plataforma de software</span></h3>
-            <p><span data-lang="fr">CoHabitat gère les ressources, la mobilité et les services partagés de chaque immeuble. Déjà déployé et démontrable maintenant.</span><span data-lang="en">CoHabitat manages each building's resources, mobility, and shared services. Already deployed and demonstrable today.</span><span data-lang="es">CoHabitat gestiona los recursos, la movilidad y los servicios compartidos de cada edificio. Ya está desplegado y se puede demostrar hoy.</span></p>
+            <h3><span data-lang="fr">Plateforme logicielle</span><span data-lang="en">Software platform</span><span data-lang="es">Plataforma de software</span><span data-lang="zh">软件平台</span></h3>
+            <p><span data-lang="fr">CoHabitat gère les ressources, la mobilité et les services partagés de chaque immeuble. Déjà déployé et démontrable maintenant.</span><span data-lang="en">CoHabitat manages each building's resources, mobility, and shared services. Already deployed and demonstrable today.</span><span data-lang="es">CoHabitat gestiona los recursos, la movilidad y los servicios compartidos de cada edificio. Ya está desplegado y se puede demostrar hoy.</span><span data-lang="zh">CoHabitat 管理每栋建筑的资源、出行与共享服务。现已部署，可即时演示。</span></p>
             <img src="images/CoHabitat.png" alt="CoHabitat — plateforme Modulimo" data-alt-en="CoHabitat — Modulimo platform" data-alt-es="CoHabitat — plataforma Modulimo" class="pillar-img" style="width:100%;object-fit:contain;background:#0a0f14;border-radius:8px;margin-top:16px;" loading="lazy"/>
           </div>
         </div>
@@ -328,69 +340,69 @@
 
   <section class="section section-alt" id="pointe-est">
     <div class="wrap">
-      <p class="section-label"><span data-lang="fr">Projet en cours</span><span data-lang="en">Current project</span><span data-lang="es">Proyecto en curso</span></p>
-      <h2 class="section-title"><span data-lang="fr">Pointe Est — Montréal</span><span data-lang="en">Pointe Est — Montreal</span><span data-lang="es">Pointe Est — Montreal</span></h2>
-      <p class="section-lead"><span data-lang="fr">Premier déploiement du modèle Modulimo. Un immeuble résidentiel familial ancré dans son milieu naturel et urbain, conçu pour durer.</span><span data-lang="en">First deployment of the Modulimo model. A family residential building rooted in its natural and urban environment, designed to last.</span><span data-lang="es">Primer despliegue del modelo Modulimo. Un edificio residencial familiar anclado en su entorno natural y urbano, diseñado para durar.</span></p>
+      <p class="section-label"><span data-lang="fr">Projet en cours</span><span data-lang="en">Current project</span><span data-lang="es">Proyecto en curso</span><span data-lang="zh">在建项目</span></p>
+      <h2 class="section-title"><span data-lang="fr">Pointe Est — Montréal</span><span data-lang="en">Pointe Est — Montreal</span><span data-lang="es">Pointe Est — Montreal</span><span data-lang="zh">Pointe Est — 蒙特利尔</span></h2>
+      <p class="section-lead"><span data-lang="fr">Premier déploiement du modèle Modulimo. Un immeuble résidentiel familial ancré dans son milieu naturel et urbain, conçu pour durer.</span><span data-lang="en">First deployment of the Modulimo model. A family residential building rooted in its natural and urban environment, designed to last.</span><span data-lang="es">Primer despliegue del modelo Modulimo. Un edificio residencial familiar anclado en su entorno natural y urbano, diseñado para durar.</span><span data-lang="zh">Modulimo 模式的首个落地项目。一栋扎根于自然与城市环境、为长久而建的家庭住宅楼。</span></p>
       <div class="projet-grid">
         <div class="projet-img-wrap">
           <img src="images/axono-pointe-est.webp" alt="Axonométrie conceptuelle du projet Pointe Est — Modulimo" data-alt-en="Conceptual axonometric view of the Pointe Est project — Modulimo" data-alt-es="Axonometría conceptual del proyecto Pointe Est — Modulimo" loading="lazy"/>
           <span class="projet-badge">Projet #1</span>
         </div>
         <div class="projet-info">
-          <div class="info-row"><div class="info-dot"></div><div><h4><span data-lang="fr">Construction industrialisée performante</span><span data-lang="en">High-performance industrialized construction</span><span data-lang="es">Construcción industrializada de alto rendimiento</span></h4><p><span data-lang="fr">Matériaux performants et sécuritaires favorisant l'industrialisation de la construction — qualité contrôlée, rapidité d'exécution, faible empreinte carbone. Objectif : améliorer la qualité de vie tout en réduisant les coûts de construction. Les choix technologiques seront finalisés en conception.</span><span data-lang="en">High-performing, safe materials that support industrialized construction — controlled quality, fast execution, low carbon footprint. Goal: improve quality of life while reducing construction costs. Technology choices will be finalized during design.</span><span data-lang="es">Materiales de alto rendimiento y seguros que favorecen la industrialización de la construcción — calidad controlada, rapidez de ejecución, baja huella de carbono. Objetivo: mejorar la calidad de vida y reducir los costos de construcción. Las decisiones tecnológicas se finalizarán durante el diseño.</span></p></div></div>
-          <div class="info-row"><div class="info-dot"></div><div><h4><span data-lang="fr">Toit-terrasse végétalisé + solaire</span><span data-lang="en">Green rooftop + solar</span><span data-lang="es">Azotea verde + solar</span></h4><p><span data-lang="fr">Panneaux photovoltaïques, espaces verts collectifs et vue sur le fleuve Saint-Laurent et la rivière des Prairies.</span><span data-lang="en">Photovoltaic panels, collective green spaces, and a view of the St. Lawrence River and Rivière des Prairies.</span><span data-lang="es">Paneles fotovoltaicos, espacios verdes colectivos y vista al río San Lorenzo y al Rivière des Prairies.</span></p></div></div>
-          <div class="info-row"><div class="info-dot"></div><div><h4><span data-lang="fr">Logements multigénérationnels</span><span data-lang="en">Multigenerational homes</span><span data-lang="es">Viviendas multigeneracionales</span></h4><p><span data-lang="fr">6 logements répartis sur 3 étages : des logements familiaux de 3 chambres (5½) jumelés à des logements de 1 ou 2 chambres — pour garder grands-parents ou jeune adulte à proximité immédiate de la famille. Laveuse-sécheuse, îlot et appareils inclus. Animaux permis, vue sur le fleuve. Baux pré-construction disponibles. Conception évolutive — escalier pensé pour bien vieillir, puits central prêt à recevoir une plateforme élévatrice : le bâtiment est prêt à vieillir avec vous.</span><span data-lang="en">6 homes across 3 floors: family 3-bedroom homes (5½) paired with 1- or 2-bedroom homes — keeping grandparents or a young adult right next to the family. Washer-dryer, island and appliances included. Pets allowed, river view. Pre-construction leases available. Future-ready design — a staircase built for aging well and a central shaft ready for a platform lift: the building is ready to grow old with you.</span><span data-lang="es">6 viviendas en 3 plantas: viviendas familiares de 3 habitaciones (5½) combinadas con viviendas de 1 o 2 habitaciones — para tener a los abuelos o a un joven adulto junto a la familia. Lavadora-secadora, isla y electrodomésticos incluidos. Mascotas permitidas, vista al río. Contratos de arrendamiento previos a la construcción disponibles. Diseño evolutivo — una escalera pensada para envejecer bien y un hueco central listo para recibir una plataforma elevadora: el edificio está listo para envejecer contigo.</span></p></div></div>
-          <div class="info-row"><div class="info-dot"></div><div><h4><span data-lang="fr">Commodités collectives</span><span data-lang="en">Collective amenities</span><span data-lang="es">Comodidades colectivas</span></h4><p><span data-lang="fr">Salle commune, équipements d'entraînement, spa de nage, garage intérieur, rangement, arbres fruitiers, serre en développement.</span><span data-lang="en">Common room, fitness equipment, swim spa, indoor garage, storage, fruit trees, greenhouse in development.</span><span data-lang="es">Sala común, equipamiento de fitness, spa de natación, garaje interior, almacenamiento, árboles frutales, invernadero en desarrollo.</span></p></div></div>
-          <a href="/projets" class="btn-primary" style="margin-top:12px;align-self:flex-start;"><span data-lang="fr">En savoir plus sur Pointe Est →</span><span data-lang="en">Learn more about Pointe Est →</span><span data-lang="es">Más información sobre Pointe Est →</span></a>
+          <div class="info-row"><div class="info-dot"></div><div><h4><span data-lang="fr">Construction industrialisée performante</span><span data-lang="en">High-performance industrialized construction</span><span data-lang="es">Construcción industrializada de alto rendimiento</span><span data-lang="zh">高性能工业化建造</span></h4><p><span data-lang="fr">Matériaux performants et sécuritaires favorisant l'industrialisation de la construction — qualité contrôlée, rapidité d'exécution, faible empreinte carbone. Objectif : améliorer la qualité de vie tout en réduisant les coûts de construction. Les choix technologiques seront finalisés en conception.</span><span data-lang="en">High-performing, safe materials that support industrialized construction — controlled quality, fast execution, low carbon footprint. Goal: improve quality of life while reducing construction costs. Technology choices will be finalized during design.</span><span data-lang="es">Materiales de alto rendimiento y seguros que favorecen la industrialización de la construcción — calidad controlada, rapidez de ejecución, baja huella de carbono. Objetivo: mejorar la calidad de vida y reducir los costos de construcción. Las decisiones tecnológicas se finalizarán durante el diseño.</span><span data-lang="zh">高性能且安全的材料，助力建筑工业化 — 品质可控、施工迅速、碳足迹低。目标是在降低建造成本的同时提升生活品质。具体技术方案将在设计阶段最终确定。</span></p></div></div>
+          <div class="info-row"><div class="info-dot"></div><div><h4><span data-lang="fr">Toit-terrasse végétalisé + solaire</span><span data-lang="en">Green rooftop + solar</span><span data-lang="es">Azotea verde + solar</span><span data-lang="zh">绿化屋顶露台 + 太阳能</span></h4><p><span data-lang="fr">Panneaux photovoltaïques, espaces verts collectifs et vue sur le fleuve Saint-Laurent et la rivière des Prairies.</span><span data-lang="en">Photovoltaic panels, collective green spaces, and a view of the St. Lawrence River and Rivière des Prairies.</span><span data-lang="es">Paneles fotovoltaicos, espacios verdes colectivos y vista al río San Lorenzo y al Rivière des Prairies.</span><span data-lang="zh">光伏板、公共绿地，以及圣劳伦斯河与草原河的景观。</span></p></div></div>
+          <div class="info-row"><div class="info-dot"></div><div><h4><span data-lang="fr">Logements multigénérationnels</span><span data-lang="en">Multigenerational homes</span><span data-lang="es">Viviendas multigeneracionales</span><span data-lang="zh">多代同堂住宅</span></h4><p><span data-lang="fr">6 logements répartis sur 3 étages : des logements familiaux de 3 chambres (5½) jumelés à des logements de 1 ou 2 chambres — pour garder grands-parents ou jeune adulte à proximité immédiate de la famille. Laveuse-sécheuse, îlot et appareils inclus. Animaux permis, vue sur le fleuve. Baux pré-construction disponibles. Conception évolutive — escalier pensé pour bien vieillir, puits central prêt à recevoir une plateforme élévatrice : le bâtiment est prêt à vieillir avec vous.</span><span data-lang="en">6 homes across 3 floors: family 3-bedroom homes (5½) paired with 1- or 2-bedroom homes — keeping grandparents or a young adult right next to the family. Washer-dryer, island and appliances included. Pets allowed, river view. Pre-construction leases available. Future-ready design — a staircase built for aging well and a central shaft ready for a platform lift: the building is ready to grow old with you.</span><span data-lang="es">6 viviendas en 3 plantas: viviendas familiares de 3 habitaciones (5½) combinadas con viviendas de 1 o 2 habitaciones — para tener a los abuelos o a un joven adulto junto a la familia. Lavadora-secadora, isla y electrodomésticos incluidos. Mascotas permitidas, vista al río. Contratos de arrendamiento previos a la construcción disponibles. Diseño evolutivo — una escalera pensada para envejecer bien y un hueco central listo para recibir una plataforma elevadora: el edificio está listo para envejecer contigo.</span><span data-lang="zh">3 层共 6 套住宅：3 居室家庭住宅（5½）与 1 或 2 居室住宅相邻配对 — 让祖辈或已成年子女紧邻家人居住。配备洗衣干衣机、中岛及家电。允许携带宠物，享有河景。提供预售期租约。设计面向未来 — 楼梯为长者友好而设，中央井道预留升降平台位置：这栋建筑准备好与您一同老去。</span></p></div></div>
+          <div class="info-row"><div class="info-dot"></div><div><h4><span data-lang="fr">Commodités collectives</span><span data-lang="en">Collective amenities</span><span data-lang="es">Comodidades colectivas</span><span data-lang="zh">公共配套</span></h4><p><span data-lang="fr">Salle commune, équipements d'entraînement, spa de nage, garage intérieur, rangement, arbres fruitiers, serre en développement.</span><span data-lang="en">Common room, fitness equipment, swim spa, indoor garage, storage, fruit trees, greenhouse in development.</span><span data-lang="es">Sala común, equipamiento de fitness, spa de natación, garaje interior, almacenamiento, árboles frutales, invernadero en desarrollo.</span><span data-lang="zh">公共活动厅、健身器材、泳池水疗、室内车库、储藏空间、果树，温室建设中。</span></p></div></div>
+          <a href="/projets" class="btn-primary" style="margin-top:12px;align-self:flex-start;"><span data-lang="fr">En savoir plus sur Pointe Est →</span><span data-lang="en">Learn more about Pointe Est →</span><span data-lang="es">Más información sobre Pointe Est →</span><span data-lang="zh">了解更多关于 Pointe Est →</span></a>
         </div>
       </div>
     </div>
   </section>
 
   <section class="cta">
-    <h2><span data-lang="fr">Intéressé par Pointe Est ?</span><span data-lang="en">Interested in Pointe Est?</span><span data-lang="es">¿Interesado en Pointe Est?</span></h2>
-    <p><span data-lang="fr">Les préparatifs avancent — informez-vous pour ne pas manquer votre chance. Baux pré-construction disponibles.</span><span data-lang="en">Preparations are advancing — get informed so you don't miss your chance. Pre-construction leases available.</span><span data-lang="es">Los preparativos avanzan — infórmate para no perder la oportunidad. Contratos de arrendamiento previos a la construcción disponibles.</span></p>
+    <h2><span data-lang="fr">Intéressé par Pointe Est ?</span><span data-lang="en">Interested in Pointe Est?</span><span data-lang="es">¿Interesado en Pointe Est?</span><span data-lang="zh">对 Pointe Est 感兴趣？</span></h2>
+    <p><span data-lang="fr">Les préparatifs avancent — informez-vous pour ne pas manquer votre chance. Baux pré-construction disponibles.</span><span data-lang="en">Preparations are advancing — get informed so you don't miss your chance. Pre-construction leases available.</span><span data-lang="es">Los preparativos avanzan — infórmate para no perder la oportunidad. Contratos de arrendamiento previos a la construcción disponibles.</span><span data-lang="zh">筹备工作正在推进 — 请及时了解，以免错过机会。提供预售期租约。</span></p>
     <div class="cta-btns">
-      <a href="/projets" class="btn-white"><span data-lang="fr">Voir le projet</span><span data-lang="en">View the project</span><span data-lang="es">Ver el proyecto</span></a>
+      <a href="/projets" class="btn-white"><span data-lang="fr">Voir le projet</span><span data-lang="en">View the project</span><span data-lang="es">Ver el proyecto</span><span data-lang="zh">查看项目</span></a>
       <a href="https://cohabitat.modulimo.com" target="_blank" rel="noopener" class="btn-outline-w">Explorer CoHabitat</a>
     </div>
     <form class="lead-form" id="leadForm" method="post" action="#">
       <div class="lf-fields">
         <div class="lf-grid">
           <div class="lf-field">
-            <label for="lf-first"><span data-lang="fr">Prénom</span><span data-lang="en">First name</span><span data-lang="es">Nombre</span></label>
+            <label for="lf-first"><span data-lang="fr">Prénom</span><span data-lang="en">First name</span><span data-lang="es">Nombre</span><span data-lang="zh">名字</span></label>
             <input type="text" id="lf-first" name="first_name" autocomplete="given-name" required />
           </div>
           <div class="lf-field">
-            <label for="lf-last"><span data-lang="fr">Nom</span><span data-lang="en">Last name</span><span data-lang="es">Apellido</span></label>
+            <label for="lf-last"><span data-lang="fr">Nom</span><span data-lang="en">Last name</span><span data-lang="es">Apellido</span><span data-lang="zh">姓氏</span></label>
             <input type="text" id="lf-last" name="last_name" autocomplete="family-name" required />
           </div>
         </div>
         <div class="lf-field">
-          <label for="lf-email"><span data-lang="fr">Courriel</span><span data-lang="en">Email</span><span data-lang="es">Correo electrónico</span></label>
+          <label for="lf-email"><span data-lang="fr">Courriel</span><span data-lang="en">Email</span><span data-lang="es">Correo electrónico</span><span data-lang="zh">电子邮箱</span></label>
           <input type="email" id="lf-email" name="email" autocomplete="email" required />
         </div>
         <div class="lf-field">
-          <label for="lf-message"><span data-lang="fr">Message (facultatif)</span><span data-lang="en">Message (optional)</span><span data-lang="es">Mensaje (opcional)</span></label>
+          <label for="lf-message"><span data-lang="fr">Message (facultatif)</span><span data-lang="en">Message (optional)</span><span data-lang="es">Mensaje (opcional)</span><span data-lang="zh">留言（选填）</span></label>
           <textarea id="lf-message" name="message" rows="3"></textarea>
         </div>
         <p class="lf-hp" aria-hidden="true"><label>Ne pas remplir / Do not fill<input type="text" name="website" tabindex="-1" autocomplete="off" /></label></p>
         <div class="lf-field">
-          <label class="lf-consent"><input type="checkbox" name="consent" required /><span><span data-lang="fr">Je consens à ce que Modulimo inc. recueille et utilise les renseignements fournis (nom, courriel, message) afin de me contacter au sujet du projet Pointe Est. Je peux retirer mon consentement en tout temps en écrivant à contribution@modulimo.com.</span><span data-lang="en">I consent to Modulimo inc. collecting and using the information provided (name, email, message) to contact me about the Pointe Est project. I may withdraw my consent at any time by writing to contribution@modulimo.com.</span><span data-lang="es">Doy mi consentimiento para que Modulimo inc. recopile y utilice la información proporcionada (nombre, correo, mensaje) para contactarme sobre el proyecto Pointe Est. Puedo retirar mi consentimiento en cualquier momento escribiendo a contribution@modulimo.com.</span></span></label>
+          <label class="lf-consent"><input type="checkbox" name="consent" required /><span><span data-lang="fr">Je consens à ce que Modulimo inc. recueille et utilise les renseignements fournis (nom, courriel, message) afin de me contacter au sujet du projet Pointe Est. Je peux retirer mon consentement en tout temps en écrivant à contribution@modulimo.com.</span><span data-lang="en">I consent to Modulimo inc. collecting and using the information provided (name, email, message) to contact me about the Pointe Est project. I may withdraw my consent at any time by writing to contribution@modulimo.com.</span><span data-lang="es">Doy mi consentimiento para que Modulimo inc. recopile y utilice la información proporcionada (nombre, correo, mensaje) para contactarme sobre el proyecto Pointe Est. Puedo retirar mi consentimiento en cualquier momento escribiendo a contribution@modulimo.com.</span><span data-lang="zh">我同意 Modulimo inc. 收集并使用我提供的信息（姓名、电子邮箱、留言），以便就 Pointe Est 项目与我联系。我可随时致信 contribution@modulimo.com 撤回同意。</span></span></label>
         </div>
         <button type="submit" class="lf-submit">
-          <span class="lf-label-idle"><span data-lang="fr">Informez-moi</span><span data-lang="en">Keep me informed</span><span data-lang="es">Manténganme informado</span></span>
-          <span class="lf-label-sending"><span data-lang="fr">Envoi en cours…</span><span data-lang="en">Sending…</span><span data-lang="es">Enviando…</span></span>
+          <span class="lf-label-idle"><span data-lang="fr">Informez-moi</span><span data-lang="en">Keep me informed</span><span data-lang="es">Manténganme informado</span><span data-lang="zh">请通知我</span></span>
+          <span class="lf-label-sending"><span data-lang="fr">Envoi en cours…</span><span data-lang="en">Sending…</span><span data-lang="es">Enviando…</span><span data-lang="zh">正在发送…</span></span>
         </button>
-        <div class="lf-status" data-status="invalid" role="alert"><span data-lang="fr">Veuillez remplir les champs requis (prénom, nom, courriel valide) et cocher la case de consentement.</span><span data-lang="en">Please fill in the required fields (first name, last name, valid email) and check the consent box.</span><span data-lang="es">Complete los campos obligatorios (nombre, apellido, correo válido) y marque la casilla de consentimiento.</span></div>
-        <div class="lf-status" data-status="fail" role="alert"><span data-lang="fr">Une erreur est survenue lors de l'envoi. Veuillez réessayer, ou écrivez-nous à contribution@modulimo.com.</span><span data-lang="en">Something went wrong while sending. Please try again, or write to us at contribution@modulimo.com.</span><span data-lang="es">Ocurrió un error durante el envío. Inténtelo de nuevo o escríbanos a contribution@modulimo.com.</span></div>
+        <div class="lf-status" data-status="invalid" role="alert"><span data-lang="fr">Veuillez remplir les champs requis (prénom, nom, courriel valide) et cocher la case de consentement.</span><span data-lang="en">Please fill in the required fields (first name, last name, valid email) and check the consent box.</span><span data-lang="es">Complete los campos obligatorios (nombre, apellido, correo válido) y marque la casilla de consentimiento.</span><span data-lang="zh">请填写必填项（名字、姓氏、有效的电子邮箱）并勾选同意框。</span></div>
+        <div class="lf-status" data-status="fail" role="alert"><span data-lang="fr">Une erreur est survenue lors de l'envoi. Veuillez réessayer, ou écrivez-nous à contribution@modulimo.com.</span><span data-lang="en">Something went wrong while sending. Please try again, or write to us at contribution@modulimo.com.</span><span data-lang="es">Ocurrió un error durante el envío. Inténtelo de nuevo o escríbanos a contribution@modulimo.com.</span><span data-lang="zh">发送时发生错误。请重试，或写信至 contribution@modulimo.com。</span></div>
       </div>
       <div class="lf-success" role="status">
         <div class="lf-check" aria-hidden="true">✓</div>
-        <h3><span data-lang="fr">Merci !</span><span data-lang="en">Thank you!</span><span data-lang="es">¡Gracias!</span></h3>
-        <p><span data-lang="fr">Votre demande a bien été reçue — nous vous tiendrons informé de l'évolution du projet Pointe Est.</span><span data-lang="en">Your request has been received — we will keep you informed as the Pointe Est project moves forward.</span><span data-lang="es">Su solicitud ha sido recibida — le mantendremos informado de la evolución del proyecto Pointe Est.</span></p>
+        <h3><span data-lang="fr">Merci !</span><span data-lang="en">Thank you!</span><span data-lang="es">¡Gracias!</span><span data-lang="zh">谢谢！</span></h3>
+        <p><span data-lang="fr">Votre demande a bien été reçue — nous vous tiendrons informé de l'évolution du projet Pointe Est.</span><span data-lang="en">Your request has been received — we will keep you informed as the Pointe Est project moves forward.</span><span data-lang="es">Su solicitud ha sido recibida — le mantendremos informado de la evolución del proyecto Pointe Est.</span><span data-lang="zh">您的请求已收到 — 我们将及时向您通报 Pointe Est 项目的进展。</span></p>
       </div>
-      <p class="lf-more"><span data-lang="fr">Prêt à aller plus loin ? <a href="/postuler/?building=a41b3b31-1681-4cb1-b54c-69486d27e132">Déposez votre candidature →</a></span><span data-lang="en">Ready to go further? <a href="/postuler/?building=a41b3b31-1681-4cb1-b54c-69486d27e132">Submit your application →</a></span><span data-lang="es">¿Listo para ir más lejos? <a href="/postuler/?building=a41b3b31-1681-4cb1-b54c-69486d27e132">Presente su candidatura →</a></span></p>
+      <p class="lf-more"><span data-lang="fr">Prêt à aller plus loin ? <a href="/postuler/?building=a41b3b31-1681-4cb1-b54c-69486d27e132">Déposez votre candidature →</a></span><span data-lang="en">Ready to go further? <a href="/postuler/?building=a41b3b31-1681-4cb1-b54c-69486d27e132">Submit your application →</a></span><span data-lang="es">¿Listo para ir más lejos? <a href="/postuler/?building=a41b3b31-1681-4cb1-b54c-69486d27e132">Presente su candidatura →</a></span><span data-lang="zh">准备好更进一步了吗？<a href="/postuler/?building=a41b3b31-1681-4cb1-b54c-69486d27e132">提交您的申请 →</a></span></p>
     </form>
   </section>
 
@@ -399,23 +411,23 @@
       <div class="footer-top">
         <div>
           <div class="footer-brand"><img src="/images/ModulimoLogoSobre.png" alt="Modulimo" /></div>
-          <p class="footer-tagline"><span data-lang="fr">Écosystème résidentiel intégré — logement, mobilité, services et logiciel.</span><span data-lang="en">Integrated residential ecosystem — housing, mobility, services, and software.</span><span data-lang="es">Ecosistema residencial integrado — vivienda, movilidad, servicios y software.</span></p>
+          <p class="footer-tagline"><span data-lang="fr">Écosystème résidentiel intégré — logement, mobilité, services et logiciel.</span><span data-lang="en">Integrated residential ecosystem — housing, mobility, services, and software.</span><span data-lang="es">Ecosistema residencial integrado — vivienda, movilidad, servicios y software.</span><span data-lang="zh">一体化住宅生态系统 — 住宅、出行、服务与软件。</span></p>
         </div>
         <div class="footer-nav">
-          <h5><span data-lang="fr">Navigation</span><span data-lang="en">Navigation</span><span data-lang="es">Navegación</span></h5>
-          <a href="/mobilite"><span data-lang="fr">Mobilité</span><span data-lang="en">Mobility</span><span data-lang="es">Movilidad</span></a>
-          <a href="/securite"><span data-lang="fr">Sécurité</span><span data-lang="en">Security</span><span data-lang="es">Seguridad</span></a>
+          <h5><span data-lang="fr">Navigation</span><span data-lang="en">Navigation</span><span data-lang="es">Navegación</span><span data-lang="zh">导航</span></h5>
+          <a href="/mobilite"><span data-lang="fr">Mobilité</span><span data-lang="en">Mobility</span><span data-lang="es">Movilidad</span><span data-lang="zh">出行</span></a>
+          <a href="/securite"><span data-lang="fr">Sécurité</span><span data-lang="en">Security</span><span data-lang="es">Seguridad</span><span data-lang="zh">安全</span></a>
           <a href="https://cohabitat.modulimo.com" target="_blank" rel="noopener">CoHabitat</a>
-          <a href="/projets"><span data-lang="fr">Projets</span><span data-lang="en">Projects</span><span data-lang="es">Proyectos</span></a>
+          <a href="/projets"><span data-lang="fr">Projets</span><span data-lang="en">Projects</span><span data-lang="es">Proyectos</span><span data-lang="zh">项目</span></a>
         </div>
         <div class="footer-nav">
-          <h5><span data-lang="fr">Projets</span><span data-lang="en">Projects</span><span data-lang="es">Proyectos</span></h5>
+          <h5><span data-lang="fr">Projets</span><span data-lang="en">Projects</span><span data-lang="es">Proyectos</span><span data-lang="zh">项目</span></h5>
           <a href="/projets#pointe-est">Pointe Est</a>
         </div>
       </div>
       <div class="footer-bottom">
-        <p><span data-lang="fr">© 2026 Modulimo inc. — Tous droits réservés</span><span data-lang="en">© 2026 Modulimo inc. — All rights reserved</span><span data-lang="es">© 2026 Modulimo inc. — Todos los derechos reservados</span></p>
-        <p><a href="/confidentialite"><span data-lang="fr">Politique de confidentialité</span><span data-lang="en">Privacy Policy</span><span data-lang="es">Política de privacidad</span></a></p>
+        <p><span data-lang="fr">© 2026 Modulimo inc. — Tous droits réservés</span><span data-lang="en">© 2026 Modulimo inc. — All rights reserved</span><span data-lang="es">© 2026 Modulimo inc. — Todos los derechos reservados</span><span data-lang="zh">© 2026 Modulimo inc. — 保留所有权利</span></p>
+        <p><a href="/confidentialite"><span data-lang="fr">Politique de confidentialité</span><span data-lang="en">Privacy Policy</span><span data-lang="es">Política de privacidad</span><span data-lang="zh">隐私政策</span></a></p>
         <p>Pointe-aux-Trembles, Montréal</p>
       </div>
     </div>
