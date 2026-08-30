@@ -473,6 +473,25 @@
       background:var(--bg);
     }
 
+    .progression-concept{
+      display:grid; gap:14px; margin-top:22px;
+      grid-template-columns:repeat(auto-fit, minmax(320px, 1fr));
+    }
+    /* Les deux rendus n'ont pas le meme rapport : sans cadrage commun, les
+       legendes se decalent et un vide gris s'ouvre sous la plus courte. */
+    .progression-concept .premium-image-card{
+      margin-top:0; display:flex; flex-direction:column;
+    }
+    .progression-concept img{
+      width:100%; aspect-ratio:16/10; object-fit:cover; display:block;
+    }
+    .progression-concept figcaption{ margin-top:auto; }
+    .progression-concept figcaption{
+      position:relative; z-index:1;
+      padding:10px 14px 12px;
+      font-size:.78rem; line-height:1.45; color:var(--muted);
+      background:var(--bg); border-top:1px solid var(--line);
+    }
     .premium-image-card{
       position:relative;
       margin-top:22px;
@@ -1151,7 +1170,7 @@
       <!-- 3 cards en dessous -->
       <div class="grid-3" style="margin-bottom:18px;">
         <article class="panel">
-          <div class="media"><img src="../images/concept_velomobile.webp" alt="Concept de vélomobile"  loading="lazy"/></div>
+          <div class="media"><img src="../images/velom_chassis.webp" alt="Châssis tubulaire du vélomobile, roues stabilisatrices déployées" data-alt-en="Tubular frame of the velomobile, stabiliser wheels deployed" data-alt-es="Chasis tubular del velomóvil, ruedas estabilizadoras desplegadas" data-alt-zh="脚踏车的管状车架，稳定轮已展开" loading="lazy"/></div>
           <div class="card-pad">
             <h3><span data-lang="fr">Direction de design</span><span data-lang="en">Design direction</span><span data-lang="es">Dirección de diseño</span><span data-lang="zh">设计方向</span></h3>
             <p class="section-text"><span data-lang="fr">MODULIMO développe une réflexion sur la mobilité légère fermée, pensée pour mieux relier le bâtiment, le quotidien et certains usages climatiques exigeants.</span><span data-lang="en">MODULIMO is developing a line of thinking around enclosed light mobility, designed to better connect the building, daily life, and certain demanding climate conditions.</span><span data-lang="es">MODULIMO desarrolla una reflexión sobre la movilidad ligera cerrada, pensada para conectar mejor el edificio, la vida cotidiana y ciertos usos climáticos exigentes.</span><span data-lang="zh">MODULIMO 正在思考封闭式轻型出行工具，使其更好地连接建筑、日常生活以及某些气候条件严苛的使用场景。</span></p>
@@ -1175,9 +1194,15 @@
       <div class="band">
         <div class="smallcaps"><span data-lang="fr">Rôle stratégique</span><span data-lang="en">Strategic role</span><span data-lang="es">Rol estratégico</span><span data-lang="zh">战略角色</span></div>
         <p class="section-text soft"><span data-lang="fr">La mobilité n’est pas présentée comme un élément isolé. Elle constitue une extension naturelle du bâtiment, du logiciel et des services, dans une logique d’intégration verticale rare sur le marché.</span><span data-lang="en">Mobility is not presented as an isolated element. It is a natural extension of the building, software, and services, within a vertically integrated logic that is rare in the market.</span><span data-lang="es">La movilidad no se presenta como un elemento aislado. Constituye una extensión natural del edificio, del software y de los servicios, en una lógica de integración vertical poco habitual en el mercado.</span><span data-lang="zh">出行并非孤立的一环。它是建筑、软件与服务的自然延伸，构成市场上少见的垂直整合逻辑。</span></p>
-        <div class="premium-image-card">
-          <img src="../images/iso_concept_ultime.webp" alt="Vélomobile MODULIMO"  loading="lazy"/>
-
+        <div class="progression-concept">
+          <figure class="premium-image-card">
+            <img src="../images/iso_concept_ultime.webp" alt="Vélomobile MODULIMO, étude initiale" data-alt-en="MODULIMO velomobile, initial study" data-alt-es="Velomóvil MODULIMO, estudio inicial" data-alt-zh="MODULIMO 脚踏车，初期研究" loading="lazy"/>
+            <figcaption><span data-lang="fr">Étude initiale — carénage anguleux, roues larges</span><span data-lang="en">Initial study — angular fairing, wide tyres</span><span data-lang="es">Estudio inicial — carenado angular, ruedas anchas</span><span data-lang="zh">初期研究 — 棱角整流罩、宽胎</span></figcaption>
+          </figure>
+          <figure class="premium-image-card">
+            <img src="../images/velom_carene.webp" alt="Vélomobile MODULIMO, itération actuelle" data-alt-en="MODULIMO velomobile, current iteration" data-alt-es="Velomóvil MODULIMO, iteración actual" data-alt-zh="MODULIMO 脚踏车，当前迭代" loading="lazy"/>
+            <figcaption><span data-lang="fr">Itération actuelle — volume adouci, roues de vélo de montagne</span><span data-lang="en">Current iteration — softened volume, mountain-bike wheels</span><span data-lang="es">Iteración actual — volumen suavizado, ruedas de bicicleta de montaña</span><span data-lang="zh">当前迭代 — 体量更柔和、山地车轮组</span></figcaption>
+          </figure>
         </div>
       </div>
     </section>
