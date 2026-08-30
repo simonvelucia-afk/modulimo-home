@@ -216,14 +216,18 @@ function extractLang(html, lang) {
 
 // alt multilingues : data-alt-en / data-alt-es / data-alt-zh remplacent alt
 // selon la langue cible, puis les attributs data-alt-* sont retirés partout.
+//
+// Le traitement se fait balise par balise. L'ancien motif partait de alt="…"
+// et s'arrêtait au premier data-alt-* rencontré : les sources listant en, es
+// puis zh, seul l'anglais était jamais appliqué, et les pages espagnoles
+// servaient donc l'alternative française.
 function applyAlts(html, lang) {
   if (lang !== 'fr') {
-    html = html.replace(
-      new RegExp('alt="([^"]*)"((?:[^>"]|"[^"]*")*?)\\sdata-alt-(' + ALT_TRAD + ')="([^"]*)"', 'g'),
-      (full, frAlt, between, l, txt) => {
-        if (l === lang) return `alt="${txt}"${between} data-alt-${l}="${txt}"`;
-        return full;
-      });
+    html = html.replace(/<img\s(?:[^<>"]|"[^"]*")*?>/g, (balise) => {
+      const m = new RegExp('\\sdata-alt-' + lang + '="([^"]*)"').exec(balise);
+      if (!m) return balise;
+      return balise.replace(/\salt="[^"]*"/, ' alt="' + m[1] + '"');
+    });
   }
   return html.replace(new RegExp('\\sdata-alt-(?:' + ALT_TRAD + ')="[^"]*"', 'g'), '');
 }
