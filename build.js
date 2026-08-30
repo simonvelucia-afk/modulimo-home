@@ -339,6 +339,20 @@ const ARIA = {
   aller:  { fr: 'Afficher en français', en: 'Display in English', es: 'Mostrar en español', zh: '显示中文' },
 };
 
+// Avis de traduction, ajouté au pied des versions traduites seulement : la
+// version française fait foi, les autres sont fournies à titre informatif.
+// Rien à ajouter sur la version française, qui est l'originale.
+const AVIS = {
+  en: 'This page is a translation provided for information only. It carries no promise, commitment or guarantee, and may be updated without notice. Should any discrepancy arise, the French version prevails in all respects.',
+  es: 'Esta página es una traducción facilitada únicamente a título informativo. No constituye promesa, compromiso ni garantía alguna, y puede modificarse sin previo aviso. En caso de discrepancia, la versión francesa prevalece en todos sus términos.',
+  zh: '本页面为仅供参考的译文，不构成任何承诺、约定或保证，并可能随时更新，恕不另行通知。如与法文版本有任何出入，一概以法文版本为准。',
+};
+
+function avisTraduction(lang) {
+  if (!AVIS[lang]) return '';
+  return `<p class="avis-traduction" lang="${lang}">${AVIS[lang]}</p>`;
+}
+
 // Sélecteur de langue : un menu déroulant, liens vers l'URL équivalente.
 //
 // Bâti sur <details> plutôt que sur du JavaScript. Le site est statique et
@@ -395,6 +409,11 @@ function buildPage(page, lang) {
   html = html.replace(/<html([^>]*?)\slang="[a-zA-Z-]*"([^>]*)>/i,
     (m, avant, apres) => `<html${avant} lang="${lang}"${apres}>`);
   html = html.replace(/(<html[^>]*\sclass="[^"]*?)lang-[a-z-]+/i, `$1lang-${lang}`);
+
+  // Avis de traduction, avant la fermeture du pied de page. Les trois pieds
+  // de page du site n'ont pas la même forme, mais tous ferment sur </footer>.
+  const avis = avisTraduction(lang);
+  if (avis) html = html.replace('</footer>', avis + '\n  </footer>');
 
   // titre + meta description localisés
   html = html.replace(/<title>[^<]*<\/title>/i, `<title>${esc(page.title[lang]).replace(/&quot;/g, '"')}</title>`);
