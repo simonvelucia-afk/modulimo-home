@@ -290,15 +290,38 @@ const DRAPEAU_MEXIQUE = '<svg viewBox="0 0 24 16" width="16" height="11"'
 
 const DRAPEAUX = { fr: DRAPEAU_QUEBEC, en: DRAPEAU_USA, es: DRAPEAU_MEXIQUE };
 
-// Sélecteur de langue : liens vers l'URL équivalente.
+// Le nom de chaque langue dans sa propre langue : un hispanophone reconnaît
+// « Español » sans savoir que le site appelle sa langue « ES ».
+const NOMS = { fr: 'Français', en: 'English', es: 'Español' };
+
+const ARIA = {
+  ouvrir: { fr: 'Choisir la langue', en: 'Choose language', es: 'Elegir idioma' },
+  aller:  { fr: 'Afficher en français', en: 'Display in English', es: 'Mostrar en español' },
+};
+
+// Sélecteur de langue : un menu déroulant, liens vers l'URL équivalente.
+//
+// Bâti sur <details> plutôt que sur du JavaScript. Le site est statique et
+// n'a pas de script commun à toutes les pages ; <details> ouvre et ferme
+// tout seul, se pilote au clavier sans qu'on écrive quoi que ce soit, et
+// survit à un JavaScript désactivé. Le menu ne se referme pas au clic
+// ailleurs — mais chacune de ses entrées est un lien qui change de page, et
+// la question ne se pose donc jamais.
+//
+// Ajouter une langue, c'est l'ajouter à LANGS, HREFLANG, NOMS, DRAPEAUX et
+// aux deux libellés d'ARIA. Le menu suit tout seul.
 function langSwitcher(route, lang) {
-  const links = LANGS.map((l) => {
+  const items = LANGS.map((l) => {
     const url = (l === 'fr' ? '' : '/' + l) + '/' + route;
     const active = l === lang ? ' active' : '';
-    const labels = { fr: 'Afficher en français', en: 'Display in English', es: 'Mostrar en español' };
-    return `<a class="lang-btn${active}" href="${url}" lang="${l}" hreflang="${HREFLANG[l]}" aria-label="${labels[l]}">${DRAPEAUX[l]}<span>${l.toUpperCase()}</span></a>`;
-  }).join('\n          ');
-  return `<div class="lang-switch">\n          ${links}\n        </div>`;
+    return `<a class="lang-item${active}" href="${url}" lang="${l}" hreflang="${HREFLANG[l]}" aria-label="${ARIA.aller[l]}">${DRAPEAUX[l]}<span>${NOMS[l]}</span></a>`;
+  }).join('\n            ');
+  return `<details class="lang-switch">
+          <summary class="lang-btn" aria-label="${ARIA.ouvrir[lang]}">${DRAPEAUX[lang]}<span>${lang.toUpperCase()}</span><span class="lang-caret">&#9662;</span></summary>
+          <div class="lang-menu">
+            ${items}
+          </div>
+        </details>`;
 }
 
 function headLinks(route, lang) {
