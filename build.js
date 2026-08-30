@@ -228,13 +228,75 @@ function absolutizeAssets(html) {
   return html.replace(/(src|href|data-lightbox)="(?:\.\.\/)*((?:images|js)\/[^"]+)"/g, '$1="/$2"');
 }
 
+// Drapeaux du sélecteur de langue, identiques à ceux de CoHabitat et du
+// kiosque Machine Lunch.
+//
+// Ils sont dessinés plutôt qu'écrits en emoji, pour deux raisons. Le
+// Québec n'a pas d'emoji : Unicode ne code que les pays (ISO 3166-1), les
+// seules subdivisions codées étant l'Écosse, le pays de Galles et
+// l'Angleterre. Et les emojis drapeaux ne sont pas rendus partout —
+// Chrome sous Windows n'embarque aucune police qui les dessine et retombe
+// sur les deux lettres de l'indicateur régional, si bien que « 🇺🇸 EN » se
+// lit « US EN ». Dessinés, les trois s'affichent partout.
+const DRAPEAU_QUEBEC = (() => {
+  const lis = (x, y) => `<g transform="translate(${x},${y})" fill="#fff">`
+    + '<path d="M0,-2.3 C1,-1.2 1,-0.2 0,0.6 C-1,-0.2 -1,-1.2 0,-2.3 Z"/>'
+    + '<path d="M-2.1,-0.5 C-1.3,-1.3 -0.6,-0.9 -0.4,0.2 C-1.2,0.6 -1.9,0.3 -2.1,-0.5 Z"/>'
+    + '<path d="M2.1,-0.5 C1.3,-1.3 0.6,-0.9 0.4,0.2 C1.2,0.6 1.9,0.3 2.1,-0.5 Z"/>'
+    + '<rect x="-1.6" y="0.6" width="3.2" height="0.7"/>'
+    + '<rect x="-0.5" y="1.3" width="1" height="1.4"/></g>';
+  return '<svg viewBox="0 0 24 16" width="16" height="11" aria-hidden="true"'
+    + ' style="display:block;border-radius:2px;flex-shrink:0;">'
+    + '<rect width="24" height="16" fill="#095797"/>'
+    + lis(5.6, 3.6) + lis(18.4, 3.6) + lis(5.6, 12.4) + lis(18.4, 12.4)
+    + '<rect x="10.4" y="0" width="3.2" height="16" fill="#fff"/>'
+    + '<rect x="0" y="6.4" width="24" height="3.2" fill="#fff"/>'
+    + '</svg>';
+})();
+
+// Les 50 étoiles ne tiennent pas à 16 px de large : six points suffisent à
+// signer le canton.
+const DRAPEAU_USA = (() => {
+  let bandes = '';
+  for (let i = 0; i < 7; i++) {
+    bandes += `<rect x="0" y="${(i * 2.4615).toFixed(2)}" width="24" height="1.2308" fill="#b22234"/>`;
+  }
+  let etoiles = '';
+  for (const x of [3.2, 6.4]) {
+    for (const y of [2.2, 4.4, 6.6]) {
+      etoiles += `<circle cx="${x}" cy="${y}" r="0.55" fill="#fff"/>`;
+    }
+  }
+  return '<svg viewBox="0 0 24 16" width="16" height="11" aria-hidden="true"'
+    + ' style="display:block;border-radius:2px;flex-shrink:0;">'
+    + '<rect width="24" height="16" fill="#fff"/>' + bandes
+    + '<rect width="9.6" height="8.62" fill="#3c3b6e"/>' + etoiles
+    + '</svg>';
+})();
+
+// Sans son emblème central, le drapeau mexicain est celui de l'Italie :
+// mêmes trois bandes verte, blanche et rouge. La tache sombre au centre
+// n'est pas lisible comme un aigle à cette taille, mais elle suffit à
+// lever la confusion.
+const DRAPEAU_MEXIQUE = '<svg viewBox="0 0 24 16" width="16" height="11"'
+  + ' aria-hidden="true" style="display:block;border-radius:2px;flex-shrink:0;">'
+  + '<rect width="8" height="16" fill="#006847"/>'
+  + '<rect x="8" width="8" height="16" fill="#fff"/>'
+  + '<rect x="16" width="8" height="16" fill="#ce1126"/>'
+  + '<ellipse cx="12" cy="7.4" rx="1.7" ry="2" fill="#7a5230"/>'
+  + '<path d="M9.9,9.4 A2.7,2.7 0 0 0 14.1,9.4" fill="none" stroke="#006847"'
+  + ' stroke-width="0.8" stroke-linecap="round"/>'
+  + '</svg>';
+
+const DRAPEAUX = { fr: DRAPEAU_QUEBEC, en: DRAPEAU_USA, es: DRAPEAU_MEXIQUE };
+
 // Sélecteur de langue : liens vers l'URL équivalente.
 function langSwitcher(route, lang) {
   const links = LANGS.map((l) => {
     const url = (l === 'fr' ? '' : '/' + l) + '/' + route;
     const active = l === lang ? ' active' : '';
     const labels = { fr: 'Afficher en français', en: 'Display in English', es: 'Mostrar en español' };
-    return `<a class="lang-btn${active}" href="${url}" lang="${l}" hreflang="${HREFLANG[l]}" aria-label="${labels[l]}">${l.toUpperCase()}</a>`;
+    return `<a class="lang-btn${active}" href="${url}" lang="${l}" hreflang="${HREFLANG[l]}" aria-label="${labels[l]}">${DRAPEAUX[l]}<span>${l.toUpperCase()}</span></a>`;
   }).join('\n          ');
   return `<div class="lang-switch">\n          ${links}\n        </div>`;
 }
