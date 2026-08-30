@@ -7,6 +7,7 @@
     <xhtml:link rel="alternate" hreflang="fr-CA" href="https://www.modulimo.com/"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://www.modulimo.com/en/"/>
     <xhtml:link rel="alternate" hreflang="es" href="https://www.modulimo.com/es/"/>
+    <xhtml:link rel="alternate" hreflang="zh-Hans" href="https://www.modulimo.com/zh/"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://www.modulimo.com/"/>
   </url>
   <url>
@@ -15,6 +16,7 @@
     <xhtml:link rel="alternate" hreflang="fr-CA" href="https://www.modulimo.com/"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://www.modulimo.com/en/"/>
     <xhtml:link rel="alternate" hreflang="es" href="https://www.modulimo.com/es/"/>
+    <xhtml:link rel="alternate" hreflang="zh-Hans" href="https://www.modulimo.com/zh/"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://www.modulimo.com/"/>
   </url>
   <url>
@@ -23,6 +25,16 @@
     <xhtml:link rel="alternate" hreflang="fr-CA" href="https://www.modulimo.com/"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://www.modulimo.com/en/"/>
     <xhtml:link rel="alternate" hreflang="es" href="https://www.modulimo.com/es/"/>
+    <xhtml:link rel="alternate" hreflang="zh-Hans" href="https://www.modulimo.com/zh/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.modulimo.com/"/>
+  </url>
+  <url>
+    <loc>https://www.modulimo.com/zh/</loc>
+    <lastmod>2026-08-30</lastmod>
+    <xhtml:link rel="alternate" hreflang="fr-CA" href="https://www.modulimo.com/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.modulimo.com/en/"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://www.modulimo.com/es/"/>
+    <xhtml:link rel="alternate" hreflang="zh-Hans" href="https://www.modulimo.com/zh/"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://www.modulimo.com/"/>
   </url>
   <url>
@@ -31,6 +43,7 @@
     <xhtml:link rel="alternate" hreflang="fr-CA" href="https://www.modulimo.com/mobilite/"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://www.modulimo.com/en/mobilite/"/>
     <xhtml:link rel="alternate" hreflang="es" href="https://www.modulimo.com/es/mobilite/"/>
+    <xhtml:link rel="alternate" hreflang="zh-Hans" href="https://www.modulimo.com/zh/mobilite/"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://www.modulimo.com/mobilite/"/>
   </url>
   <url>
@@ -39,6 +52,7 @@
     <xhtml:link rel="alternate" hreflang="fr-CA" href="https://www.modulimo.com/mobilite/"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://www.modulimo.com/en/mobilite/"/>
     <xhtml:link rel="alternate" hreflang="es" href="https://www.modulimo.com/es/mobilite/"/>
+    <xhtml:link rel="alternate" hreflang="zh-Hans" href="https://www.modulimo.com/zh/mobilite/"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://www.modulimo.com/mobilite/"/>
   </url>
   <url>
@@ -47,6 +61,16 @@
     <xhtml:link rel="alternate" hreflang="fr-CA" href="https://www.modulimo.com/mobilite/"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://www.modulimo.com/en/mobilite/"/>
     <xhtml:link rel="alternate" hreflang="es" href="https://www.modulimo.com/es/mobilite/"/>
+    <xhtml:link rel="alternate" hreflang="zh-Hans" href="https://www.modulimo.com/zh/mobilite/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.modulimo.com/mobilite/"/>
+  </url>
+  <url>
+    <loc>https://www.modulimo.com/zh/mobilite/</loc>
+    <lastmod>2026-08-30</lastmod>
+    <xhtml:link rel="alternate" hreflang="fr-CA" href="https://www.modulimo.com/mobilite/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.modulimo.com/en/mobilite/"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://www.modulimo.com/es/mobilite/"/>
+    <xhtml:link rel="alternate" hreflang="zh-Hans" href="https://www.modulimo.com/zh/mobilite/"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://www.modulimo.com/mobilite/"/>
   </url>
   <url>
@@ -55,6 +79,7 @@
     <xhtml:link rel="alternate" hreflang="fr-CA" href="https://www.modulimo.com/securite/"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://www.modulimo.com/en/securite/"/>
     <xhtml:link rel="alternate" hreflang="es" href="https://www.modulimo.com/es/securite/"/>
+    <xhtml:link rel="alternate" hreflang="zh-Hans" href="https://www.modulimo.com/zh/securite/"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://www.modulimo.com/securite/"/>
   </url>
   <url>
@@ -63,6 +88,7 @@
     <xhtml:link rel="alternate" hreflang="fr-CA" href="https://www.modulimo.com/securite/"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://www.modulimo.com/en/securite/"/>
     <xhtml:link rel="alternate" hreflang="es" href="https://www.modulimo.com/es/securite/"/>
+    <xhtml:link rel="alternate" hreflang="zh-Hans" href="https://www.modulimo.com/zh/securite/"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://www.modulimo.com/securite/"/>
   </url>
   <url>
@@ -71,6 +97,16 @@
     <xhtml:link rel="alternate" hreflang="fr-CA" href="https://www.modulimo.com/securite/"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://www.modulimo.com/en/securite/"/>
     <xhtml:link rel="alternate" hreflang="es" href="https://www.modulimo.com/es/securite/"/>
+    <xhtml:link rel="alternate" hreflang="zh-Hans" href="https://www.modulimo.com/zh/securite/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.modulimo.com/securite/"/>
+  </url>
+  <url>
+    <loc>https://www.modulimo.com/zh/securite/</loc>
+    <lastmod>2026-08-30</lastmod>
+    <xhtml:link rel="alternate" hreflang="fr-CA" href="https://www.modulimo.com/securite/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.modulimo.com/en/securite/"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://www.modulimo.com/es/securite/"/>
+    <xhtml:link rel="alternate" hreflang="zh-Hans" href="https://www.modulimo.com/zh/securite/"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://www.modulimo.com/securite/"/>
   </url>
   <url>
@@ -79,6 +115,7 @@
     <xhtml:link rel="alternate" hreflang="fr-CA" href="https://www.modulimo.com/projets/"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://www.modulimo.com/en/projets/"/>
     <xhtml:link rel="alternate" hreflang="es" href="https://www.modulimo.com/es/projets/"/>
+    <xhtml:link rel="alternate" hreflang="zh-Hans" href="https://www.modulimo.com/zh/projets/"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://www.modulimo.com/projets/"/>
   </url>
   <url>
@@ -87,6 +124,7 @@
     <xhtml:link rel="alternate" hreflang="fr-CA" href="https://www.modulimo.com/projets/"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://www.modulimo.com/en/projets/"/>
     <xhtml:link rel="alternate" hreflang="es" href="https://www.modulimo.com/es/projets/"/>
+    <xhtml:link rel="alternate" hreflang="zh-Hans" href="https://www.modulimo.com/zh/projets/"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://www.modulimo.com/projets/"/>
   </url>
   <url>
@@ -95,6 +133,16 @@
     <xhtml:link rel="alternate" hreflang="fr-CA" href="https://www.modulimo.com/projets/"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://www.modulimo.com/en/projets/"/>
     <xhtml:link rel="alternate" hreflang="es" href="https://www.modulimo.com/es/projets/"/>
+    <xhtml:link rel="alternate" hreflang="zh-Hans" href="https://www.modulimo.com/zh/projets/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.modulimo.com/projets/"/>
+  </url>
+  <url>
+    <loc>https://www.modulimo.com/zh/projets/</loc>
+    <lastmod>2026-08-30</lastmod>
+    <xhtml:link rel="alternate" hreflang="fr-CA" href="https://www.modulimo.com/projets/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.modulimo.com/en/projets/"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://www.modulimo.com/es/projets/"/>
+    <xhtml:link rel="alternate" hreflang="zh-Hans" href="https://www.modulimo.com/zh/projets/"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://www.modulimo.com/projets/"/>
   </url>
   <url>
@@ -103,6 +151,7 @@
     <xhtml:link rel="alternate" hreflang="fr-CA" href="https://www.modulimo.com/projets/pointe-est/"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://www.modulimo.com/en/projets/pointe-est/"/>
     <xhtml:link rel="alternate" hreflang="es" href="https://www.modulimo.com/es/projets/pointe-est/"/>
+    <xhtml:link rel="alternate" hreflang="zh-Hans" href="https://www.modulimo.com/zh/projets/pointe-est/"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://www.modulimo.com/projets/pointe-est/"/>
   </url>
   <url>
@@ -111,6 +160,7 @@
     <xhtml:link rel="alternate" hreflang="fr-CA" href="https://www.modulimo.com/projets/pointe-est/"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://www.modulimo.com/en/projets/pointe-est/"/>
     <xhtml:link rel="alternate" hreflang="es" href="https://www.modulimo.com/es/projets/pointe-est/"/>
+    <xhtml:link rel="alternate" hreflang="zh-Hans" href="https://www.modulimo.com/zh/projets/pointe-est/"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://www.modulimo.com/projets/pointe-est/"/>
   </url>
   <url>
@@ -119,6 +169,16 @@
     <xhtml:link rel="alternate" hreflang="fr-CA" href="https://www.modulimo.com/projets/pointe-est/"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://www.modulimo.com/en/projets/pointe-est/"/>
     <xhtml:link rel="alternate" hreflang="es" href="https://www.modulimo.com/es/projets/pointe-est/"/>
+    <xhtml:link rel="alternate" hreflang="zh-Hans" href="https://www.modulimo.com/zh/projets/pointe-est/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.modulimo.com/projets/pointe-est/"/>
+  </url>
+  <url>
+    <loc>https://www.modulimo.com/zh/projets/pointe-est/</loc>
+    <lastmod>2026-08-30</lastmod>
+    <xhtml:link rel="alternate" hreflang="fr-CA" href="https://www.modulimo.com/projets/pointe-est/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.modulimo.com/en/projets/pointe-est/"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://www.modulimo.com/es/projets/pointe-est/"/>
+    <xhtml:link rel="alternate" hreflang="zh-Hans" href="https://www.modulimo.com/zh/projets/pointe-est/"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://www.modulimo.com/projets/pointe-est/"/>
   </url>
   <url>
@@ -127,6 +187,7 @@
     <xhtml:link rel="alternate" hreflang="fr-CA" href="https://www.modulimo.com/confidentialite/"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://www.modulimo.com/en/confidentialite/"/>
     <xhtml:link rel="alternate" hreflang="es" href="https://www.modulimo.com/es/confidentialite/"/>
+    <xhtml:link rel="alternate" hreflang="zh-Hans" href="https://www.modulimo.com/zh/confidentialite/"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://www.modulimo.com/confidentialite/"/>
   </url>
   <url>
@@ -135,6 +196,7 @@
     <xhtml:link rel="alternate" hreflang="fr-CA" href="https://www.modulimo.com/confidentialite/"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://www.modulimo.com/en/confidentialite/"/>
     <xhtml:link rel="alternate" hreflang="es" href="https://www.modulimo.com/es/confidentialite/"/>
+    <xhtml:link rel="alternate" hreflang="zh-Hans" href="https://www.modulimo.com/zh/confidentialite/"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://www.modulimo.com/confidentialite/"/>
   </url>
   <url>
@@ -143,6 +205,16 @@
     <xhtml:link rel="alternate" hreflang="fr-CA" href="https://www.modulimo.com/confidentialite/"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://www.modulimo.com/en/confidentialite/"/>
     <xhtml:link rel="alternate" hreflang="es" href="https://www.modulimo.com/es/confidentialite/"/>
+    <xhtml:link rel="alternate" hreflang="zh-Hans" href="https://www.modulimo.com/zh/confidentialite/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.modulimo.com/confidentialite/"/>
+  </url>
+  <url>
+    <loc>https://www.modulimo.com/zh/confidentialite/</loc>
+    <lastmod>2026-08-30</lastmod>
+    <xhtml:link rel="alternate" hreflang="fr-CA" href="https://www.modulimo.com/confidentialite/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.modulimo.com/en/confidentialite/"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://www.modulimo.com/es/confidentialite/"/>
+    <xhtml:link rel="alternate" hreflang="zh-Hans" href="https://www.modulimo.com/zh/confidentialite/"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://www.modulimo.com/confidentialite/"/>
   </url>
   <url>
@@ -151,6 +223,7 @@
     <xhtml:link rel="alternate" hreflang="fr-CA" href="https://www.modulimo.com/produits/"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://www.modulimo.com/en/produits/"/>
     <xhtml:link rel="alternate" hreflang="es" href="https://www.modulimo.com/es/produits/"/>
+    <xhtml:link rel="alternate" hreflang="zh-Hans" href="https://www.modulimo.com/zh/produits/"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://www.modulimo.com/produits/"/>
   </url>
   <url>
@@ -159,6 +232,7 @@
     <xhtml:link rel="alternate" hreflang="fr-CA" href="https://www.modulimo.com/produits/"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://www.modulimo.com/en/produits/"/>
     <xhtml:link rel="alternate" hreflang="es" href="https://www.modulimo.com/es/produits/"/>
+    <xhtml:link rel="alternate" hreflang="zh-Hans" href="https://www.modulimo.com/zh/produits/"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://www.modulimo.com/produits/"/>
   </url>
   <url>
@@ -167,6 +241,16 @@
     <xhtml:link rel="alternate" hreflang="fr-CA" href="https://www.modulimo.com/produits/"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://www.modulimo.com/en/produits/"/>
     <xhtml:link rel="alternate" hreflang="es" href="https://www.modulimo.com/es/produits/"/>
+    <xhtml:link rel="alternate" hreflang="zh-Hans" href="https://www.modulimo.com/zh/produits/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.modulimo.com/produits/"/>
+  </url>
+  <url>
+    <loc>https://www.modulimo.com/zh/produits/</loc>
+    <lastmod>2026-08-30</lastmod>
+    <xhtml:link rel="alternate" hreflang="fr-CA" href="https://www.modulimo.com/produits/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.modulimo.com/en/produits/"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://www.modulimo.com/es/produits/"/>
+    <xhtml:link rel="alternate" hreflang="zh-Hans" href="https://www.modulimo.com/zh/produits/"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://www.modulimo.com/produits/"/>
   </url>
   <url>
