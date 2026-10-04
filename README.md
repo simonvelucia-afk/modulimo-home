@@ -39,7 +39,7 @@ Sans dépendance (Node ≥ 16). Génère :
 Titres et meta descriptions par langue : voir le tableau `PAGES` en tête
 de `build.js`.
 
-### Pages protégées par NIP (`/projets/`, `/projets/pointe-est/`)
+### Pages protégées par NIP (`/produits/`)
 
 Ces pages (toutes langues) sont chiffrées au build (AES-256-GCM, clé dérivée
 du NIP à 10 chiffres par PBKDF2) et remplacées par un écran « Accès réservé ».
@@ -54,7 +54,7 @@ chiffrées existantes intactes (jamais de publication en clair). Pour changer
 le NIP, relancez simplement le build avec le nouveau. Elles sont exclues du
 `sitemap.xml` et marquées `noindex`.
 
-⚠️ Le dépôt est public : les sources `src/projets/**` restent lisibles sur
+⚠️ Le dépôt est public : les sources `src/produits/` restent lisibles sur
 GitHub. Le NIP protège le site, pas le dépôt.
 
 ## Structure
