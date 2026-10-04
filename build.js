@@ -396,7 +396,7 @@ function esc(s) {
   return s.replace(/&/g, '&amp;').replace(/"/g, '&quot;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
 }
 
-function buildPage(page, lang) {
+function buildPage(page, lang, verrou) {
   let html = fs.readFileSync(page.src, 'utf-8');
 
   html = extractLang(html, lang);
@@ -434,6 +434,9 @@ function buildPage(page, lang) {
 
   // sélecteur de langue par URL
   html = html.replace(/<div class="lang-switch">[\s\S]*?<\/div>/, langSwitcher(page.route, lang));
+
+  // cadenas de l'onglet Produits (voir js/cadenas.js)
+  if (verrou) html = html.replace('</head>', teteCadenas(verrou) + '</head>');
 
   return html;
 }
@@ -474,6 +477,45 @@ const PORTE = {
   format: { fr: 'Le NIP compte exactement 10 chiffres.', en: 'The PIN is exactly 10 digits.', es: 'El PIN tiene exactamente 10 dígitos.', zh: 'PIN 码必须为 10 位数字。' },
   retour: { fr: '← Retour à l\'accueil', en: '← Back to home', es: '← Volver al inicio', zh: '← 返回首页' },
 };
+
+// Fichier committé qui fixe le sel et contient un témoin chiffré : le
+// cadenas vérifie le NIP en déchiffrant ce témoin, et le sel reste le même
+// d'un build à l'autre — un build sans NIP garde ainsi les pages et le
+// cadenas d'accord entre eux. Rien de secret dedans.
+const VERROU_FICHIER = 'verrou.json';
+const TEMOIN = 'modulimo';
+
+function verrouPour(nip) {
+  let v = null;
+  try { v = JSON.parse(fs.readFileSync(VERROU_FICHIER, 'utf-8')); } catch (e) { v = null; }
+  if (!nip) return v ? { verrou: v, cle: null } : { verrou: null, cle: null };
+  if (v && v.iter === PBKDF2_ITER) {
+    const cle = crypto.pbkdf2Sync(nip, Buffer.from(v.sel, 'base64'), v.iter, 32, 'sha256');
+    try {
+      const corps = Buffer.from(v.data, 'base64');
+      const d = crypto.createDecipheriv('aes-256-gcm', cle, Buffer.from(v.iv, 'base64'));
+      d.setAuthTag(corps.subarray(corps.length - 16));
+      if (Buffer.concat([d.update(corps.subarray(0, corps.length - 16)), d.final()]).toString() === TEMOIN) {
+        return { verrou: v, cle };
+      }
+    } catch (e) { /* NIP changé : nouveau sel ci-dessous */ }
+  }
+  const sel = crypto.randomBytes(16);
+  const cle = crypto.pbkdf2Sync(nip, sel, PBKDF2_ITER, 32, 'sha256');
+  v = chiffrer(TEMOIN, cle, sel);
+  fs.writeFileSync(VERROU_FICHIER, JSON.stringify(v, null, 2) + '\n');
+  return { verrou: v, cle };
+}
+
+// Injecté dans le <head> de chaque page : cache les liens vers Produits
+// tant que le cadenas est fermé (sans clignotement : la classe est posée
+// avant le rendu), puis charge le script du cadenas.
+function teteCadenas(verrou) {
+  return `  <style>html:not(.produits-ouverts) a[href$="/produits/"]{display:none!important}</style>
+  <script>window.MODULIMO_VERROU=${JSON.stringify(verrou)};try{var mv=JSON.parse(localStorage.getItem('modulimo-produits')||'null');if(mv&&mv.sel===window.MODULIMO_VERROU.sel)document.documentElement.classList.add('produits-ouverts')}catch(e){}</script>
+  <script src="/js/cadenas.js" defer></script>
+`;
+}
 
 function pagePorte(page, lang, paquet) {
   const t = (k) => PORTE[k][lang];
@@ -521,7 +563,7 @@ function pagePorte(page, lang, paquet) {
   <script>
   (function () {
     var P = ${JSON.stringify(paquet)};
-    var CLE_SESSION = 'modulimo-nip-' + P.sel;
+    var CLE = 'modulimo-produits';
     var b64 = function (s) { return Uint8Array.from(atob(s), function (c) { return c.charCodeAt(0); }); };
     var hex = function (u) { return Array.prototype.map.call(u, function (x) { return ('0' + x.toString(16)).slice(-2); }).join(''); };
     var dehex = function (h) { return new Uint8Array(h.match(/../g).map(function (x) { return parseInt(x, 16); })); };
@@ -535,22 +577,26 @@ function pagePorte(page, lang, paquet) {
       return crypto.subtle.importKey('raw', brute, 'AES-GCM', false, ['decrypt'])
         .then(function (k) { return crypto.subtle.decrypt({ name: 'AES-GCM', iv: b64(P.iv) }, k, b64(P.data)); })
         .then(function (buf) {
-          try { sessionStorage.setItem(CLE_SESSION, hex(brute)); } catch (e) {}
+          try { localStorage.setItem(CLE, JSON.stringify({ sel: P.sel, cle: hex(brute) })); } catch (e) {}
           var html = new TextDecoder().decode(buf);
           document.open(); document.write(html); document.close();
         });
     }
 
-    // Déjà déverrouillé dans cet onglet (même build) : pas de nouvelle saisie.
+    // Cadenas déjà ouvert (même NIP) : pas de nouvelle saisie. L'accès dure
+    // jusqu'à ce que le visiteur referme le cadenas (js/cadenas.js).
     // On attend la fin du chargement : un document.open() lancé pendant que
     // la page se charge encore est ignoré par le navigateur.
     var memo = null;
-    try { memo = sessionStorage.getItem(CLE_SESSION); } catch (e) {}
+    try {
+      var v = JSON.parse(localStorage.getItem(CLE) || 'null');
+      if (v && v.sel === P.sel) memo = v.cle;
+    } catch (e) {}
     if (memo) {
       document.documentElement.style.visibility = 'hidden';
       var auto = function () {
         ouvrir(dehex(memo)).catch(function () {
-          try { sessionStorage.removeItem(CLE_SESSION); } catch (e) {}
+          try { localStorage.removeItem(CLE); } catch (e) {}
           document.documentElement.style.visibility = '';
         });
       };
@@ -609,19 +655,19 @@ function main() {
   if (nip !== undefined && !/^[0-9]{10}$/.test(nip)) {
     throw new Error('MODULIMO_PIN doit compter exactement 10 chiffres.');
   }
-  // Un seul sel par build : la clé dérivée sert à toutes les pages
-  // protégées, on ne ressaisit pas le NIP en passant de l'une à l'autre.
-  const sel = crypto.randomBytes(16);
-  const cle = nip ? crypto.pbkdf2Sync(nip, sel, PBKDF2_ITER, 32, 'sha256') : null;
+  // Un seul sel (celui de verrou.json) : la clé dérivée sert au cadenas et
+  // à toutes les pages protégées, on ne ressaisit pas le NIP de l'une à l'autre.
+  const { verrou, cle } = verrouPour(nip);
+  const sel = verrou ? Buffer.from(verrou.sel, 'base64') : null;
   const sautees = [];
   for (const page of PAGES) {
     for (const lang of LANGS) {
       if (page.protege) {
         if (!cle) { sautees.push(page.route); break; }
-        const html = buildPage(page, lang);
+        const html = buildPage(page, lang, verrou);
         written.push(writeOut(page.route, lang, pagePorte(page, lang, chiffrer(html, cle, sel))));
       } else {
-        written.push(writeOut(page.route, lang, buildPage(page, lang)));
+        written.push(writeOut(page.route, lang, buildPage(page, lang, verrou)));
       }
     }
   }
