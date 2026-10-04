@@ -79,7 +79,7 @@ const PAGES = [
     },
   },
   {
-    src: 'src/projets/index.html', route: 'projets/', protege: true,
+    src: 'src/projets/index.html', route: 'projets/',
     title: {
       fr: 'Projets — MODULIMO',
       en: 'Projects — MODULIMO',
@@ -94,7 +94,7 @@ const PAGES = [
     },
   },
   {
-    src: 'src/projets/pointe-est/index.html', route: 'projets/pointe-est/', protege: true,
+    src: 'src/projets/pointe-est/index.html', route: 'projets/pointe-est/',
     title: {
       fr: 'Pointe Est — Projets MODULIMO',
       en: 'Pointe Est — MODULIMO Projects',
@@ -124,7 +124,7 @@ const PAGES = [
     },
   },
   {
-    src: 'src/produits/index.html', route: 'produits/',
+    src: 'src/produits/index.html', route: 'produits/', protege: true,
     title: {
       fr: 'MODULIMO | Produits',
       en: 'MODULIMO | Products',
@@ -453,7 +453,7 @@ function buildPage(page, lang) {
 // pages protégées ne sont pas régénérées (les versions chiffrées déjà
 // committées restent en place) — jamais publiées en clair.
 //
-// Limite à connaître : les sources src/projets/** restent lisibles sur
+// Limite à connaître : les sources src/produits/ restent lisibles sur
 // GitHub. Ce chiffrement protège le site, pas le dépôt.
 const PBKDF2_ITER = 600000;
 
