@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Movilidad intermodal y MaaS — Modulimo</title>
+  <title>Movilidad intermodal, TOD y MaaS — Modulimo</title>
   <meta name="description" content="Movilidad compartida, velomóvil y acceso directo al transporte público, reunidos en una sola oferta (MaaS) mediante CoHabitat — la movilidad forma parte del entorno de vida Modulimo." />
   <link rel="canonical" href="https://www.modulimo.com/es/mobilite/" />
   <link rel="alternate" hreflang="fr-CA" href="https://www.modulimo.com/mobilite/" />
@@ -175,6 +175,9 @@
 
     /* ── MODES GRID ── */
     .modes { background:var(--white); }
+    .tod { border-bottom:1px solid var(--border); }
+    .tod .green { color:var(--green); }
+    .tod .modes-header { align-items:start; }
     .modes-header { display:grid; grid-template-columns:1fr 1fr; gap:4rem; align-items:end; margin-bottom:4rem; }
     .modes-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:1px; background:var(--border); border:1px solid var(--border); }
     .mode-card { background:var(--white); padding:2.25rem 1.75rem; position:relative; overflow:hidden; transition:background .25s; cursor:default; }
@@ -391,6 +394,35 @@
         <div class="chain-body"><div class="chain-mode"><span>REM + Tren de alta velocidad + Aeropuerto YUL</span></div><div class="chain-detail"><span>Conexión prevista 2026–2027 · Tren de alta velocidad Quebec-Toronto en desarrollo</span></div></div>
         <div class="chain-badge">2027</div>
       </div>
+    </div>
+  </section>
+
+
+  <!-- TOD — TRANSIT-ORIENTED DEVELOPMENT -->
+  <!-- La chaine ci-dessus montre les modes ; cette section dit pourquoi
+       l'immeuble est la ou il est et fait comme il est fait. Le TOD se
+       joue d'habitude a l'echelle d'un quartier autour d'une gare : on
+       l'assume, Pointe Est en est une version a l'echelle d'un lot. Les
+       chiffres viennent de la page Pointe Est (plan r2, cadre PPCMOI). -->
+  <section class="modes tod" id="tod">
+    <div class="modes-header">
+      <div>
+        <div class="sec-tag"><span>TOD — Transit-Oriented Development</span></div>
+        <h2 class="sec-title"><span>Primero la red,</span><br><span class="green"><span>el edificio alrededor.</span></span></h2>
+      </div>
+      <div>
+        <p class="sec-body"><span>El TOD — <em>Transit-Oriented Development</em>, el desarrollo orientado al transporte público — consiste en concentrar la vivienda a distancia caminable de un acceso a la red, dejando menos espacio al coche y más a la marcha. El Plan metropolitano de ordenamiento y desarrollo (PMAD) de la Comunidad metropolitana de Montreal lo convierte en una orientación central.</span></p>
+        <br>
+        <p class="sec-body"><span>El TOD suele pensarse a escala de un barrio alrededor de una estación. Modulimo lo aplica a escala de un edificio: en Pointe Est, el sitio, la densidad, el estacionamiento y los servicios parten de la terminal de autobuses vecina — y el modelo está pensado para replicarse cerca de otros accesos a la red.</span></p>
+      </div>
+    </div>
+    <div class="modes-grid">
+      <div class="mode-card"><span class="mode-num">01</span><span class="mode-emoji">🚏</span><div class="mode-name"><span>Proximidad</span></div><div class="mode-desc"><span>La terminal STM (líneas 86, 410, 487) es el vecino inmediato. Escuela adyacente, parques y la Plage de l'Est a distancia caminable.</span></div></div>
+      <div class="mode-card"><span class="mode-num">02</span><span class="mode-emoji">🏘️</span><div class="mode-name"><span>Densidad suave</span></div><div class="mode-desc"><span>6 viviendas en 3 pisos, a escala del barrio: densificar cerca de la red, sin torre, en el marco de un PPCMOI.</span></div></div>
+      <div class="mode-card"><span class="mode-num">03</span><span class="mode-emoji">🅿️</span><div class="mode-name"><span>Estacionamiento repensado</span></div><div class="mode-desc"><span>4 plazas en el sótano, todas de autocompartido CoHabitat — ninguna plaza privada. El espacio ganado va a la vegetación.</span></div></div>
+      <div class="mode-card"><span class="mode-num">04</span><span class="mode-emoji">👪</span><div class="mode-name"><span>Diversidad de hogares</span></div><div class="mode-desc"><span>Viviendas familiares de 3 dormitorios emparejadas con unidades de 1 o 2: abuelos, familias y jóvenes adultos bajo un mismo techo.</span></div></div>
+      <div class="mode-card"><span class="mode-num">05</span><span class="mode-emoji">🌳</span><div class="mode-name"><span>Escala humana</span></div><div class="mode-desc"><span>Bosque comestible, techo verde, estacionamiento de bicicletas y velomóviles: un entorno pensado para caminar y pedalear, no para el coche.</span></div></div>
+      <div class="mode-card"><span class="mode-num">06</span><span class="mode-emoji">🔗</span><div class="mode-name"><span>El último kilómetro</span></div><div class="mode-desc"><span>Donde caminar no basta, la movilidad compartida toma el relevo hasta la estación, el muelle de la lanzadera o el REM — es el MaaS, más abajo.</span></div></div>
     </div>
   </section>
 

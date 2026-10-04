@@ -50,10 +50,10 @@ const PAGES = [
   {
     src: 'src/mobilite/index.html', route: 'mobilite/',
     title: {
-      fr: 'Mobilité inter-modale et MaaS — Modulimo',
-      en: 'Inter-modal mobility and MaaS — Modulimo',
-      es: 'Movilidad intermodal y MaaS — Modulimo',
-      zh: '多式联运出行与 MaaS — Modulimo',
+      fr: 'Mobilité inter-modale, TOD et MaaS — Modulimo',
+      en: 'Inter-modal mobility, TOD and MaaS — Modulimo',
+      es: 'Movilidad intermodal, TOD y MaaS — Modulimo',
+      zh: '多式联运出行、TOD 与 MaaS — Modulimo',
     },
     desc: {
       fr: "Mobilité partagée, vélomobile et accès direct au transport en commun, réunis dans une seule offre (MaaS) via CoHabitat — la mobilité fait partie du milieu de vie Modulimo.",
