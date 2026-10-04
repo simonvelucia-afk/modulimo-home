@@ -18,6 +18,7 @@
 
 const fs = require('fs');
 const path = require('path');
+const crypto = require('crypto');
 
 const SITE = 'https://www.modulimo.com';
 const LANGS = ['fr', 'en', 'es', 'zh'];
@@ -123,7 +124,7 @@ const PAGES = [
     },
   },
   {
-    src: 'src/produits/index.html', route: 'produits/',
+    src: 'src/produits/index.html', route: 'produits/', protege: true,
     title: {
       fr: 'MODULIMO | Produits',
       en: 'MODULIMO | Products',
@@ -395,7 +396,7 @@ function esc(s) {
   return s.replace(/&/g, '&amp;').replace(/"/g, '&quot;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
 }
 
-function buildPage(page, lang) {
+function buildPage(page, lang, verrou) {
   let html = fs.readFileSync(page.src, 'utf-8');
 
   html = extractLang(html, lang);
@@ -434,7 +435,192 @@ function buildPage(page, lang) {
   // sélecteur de langue par URL
   html = html.replace(/<div class="lang-switch">[\s\S]*?<\/div>/, langSwitcher(page.route, lang));
 
+  // cadenas de l'onglet Produits (voir js/cadenas.js)
+  if (verrou) html = html.replace('</head>', teteCadenas(verrou) + '</head>');
+
   return html;
+}
+
+// ------------------------------------------------------------
+// Pages protégées par NIP (protege: true dans PAGES)
+// ------------------------------------------------------------
+// GitHub Pages ne sert que des fichiers fixes : aucun serveur ne peut
+// vérifier un mot de passe. La page générée est donc chiffrée en entier
+// (AES-256-GCM, clé dérivée du NIP par PBKDF2-SHA256) et remplacée par un
+// écran qui demande le NIP, déchiffre dans le navigateur et réécrit le
+// document — les scripts de la page (formulaire, lightbox…) s'exécutent
+// alors normalement.
+//
+// Le NIP n'est jamais écrit dans le dépôt, qui est public : il est fourni
+// au build par la variable d'environnement MODULIMO_PIN. Sans elle, les
+// pages protégées ne sont pas régénérées (les versions chiffrées déjà
+// committées restent en place) — jamais publiées en clair.
+//
+// Limite à connaître : les sources src/produits/ restent lisibles sur
+// GitHub. Ce chiffrement protège le site, pas le dépôt.
+const PBKDF2_ITER = 600000;
+
+function chiffrer(html, cle, sel) {
+  const iv = crypto.randomBytes(12);
+  const c = crypto.createCipheriv('aes-256-gcm', cle, iv);
+  const corps = Buffer.concat([c.update(html, 'utf-8'), c.final(), c.getAuthTag()]);
+  return { sel: sel.toString('base64'), iv: iv.toString('base64'), data: corps.toString('base64'), iter: PBKDF2_ITER };
+}
+
+const PORTE = {
+  titre:  { fr: 'Accès réservé', en: 'Restricted access', es: 'Acceso reservado', zh: '限制访问' },
+  texte:  { fr: 'Cette section est réservée. Entrez le NIP à 10 chiffres qui vous a été remis.', en: 'This section is restricted. Enter the 10-digit PIN you were given.', es: 'Esta sección es reservada. Introduzca el PIN de 10 dígitos que se le entregó.', zh: '此栏目仅限授权访问。请输入您获得的 10 位数字 PIN 码。' },
+  champ:  { fr: 'NIP (10 chiffres)', en: 'PIN (10 digits)', es: 'PIN (10 dígitos)', zh: 'PIN 码（10 位数字）' },
+  bouton: { fr: 'Entrer', en: 'Enter', es: 'Entrar', zh: '进入' },
+  attente:{ fr: 'Vérification…', en: 'Checking…', es: 'Verificando…', zh: '验证中…' },
+  erreur: { fr: 'NIP incorrect.', en: 'Incorrect PIN.', es: 'PIN incorrecto.', zh: 'PIN 码错误。' },
+  format: { fr: 'Le NIP compte exactement 10 chiffres.', en: 'The PIN is exactly 10 digits.', es: 'El PIN tiene exactamente 10 dígitos.', zh: 'PIN 码必须为 10 位数字。' },
+  retour: { fr: '← Retour à l\'accueil', en: '← Back to home', es: '← Volver al inicio', zh: '← 返回首页' },
+};
+
+// Fichier committé qui fixe le sel et contient un témoin chiffré : le
+// cadenas vérifie le NIP en déchiffrant ce témoin, et le sel reste le même
+// d'un build à l'autre — un build sans NIP garde ainsi les pages et le
+// cadenas d'accord entre eux. Rien de secret dedans.
+const VERROU_FICHIER = 'verrou.json';
+const TEMOIN = 'modulimo';
+
+function verrouPour(nip) {
+  let v = null;
+  try { v = JSON.parse(fs.readFileSync(VERROU_FICHIER, 'utf-8')); } catch (e) { v = null; }
+  if (!nip) return v ? { verrou: v, cle: null } : { verrou: null, cle: null };
+  if (v && v.iter === PBKDF2_ITER) {
+    const cle = crypto.pbkdf2Sync(nip, Buffer.from(v.sel, 'base64'), v.iter, 32, 'sha256');
+    try {
+      const corps = Buffer.from(v.data, 'base64');
+      const d = crypto.createDecipheriv('aes-256-gcm', cle, Buffer.from(v.iv, 'base64'));
+      d.setAuthTag(corps.subarray(corps.length - 16));
+      if (Buffer.concat([d.update(corps.subarray(0, corps.length - 16)), d.final()]).toString() === TEMOIN) {
+        return { verrou: v, cle };
+      }
+    } catch (e) { /* NIP changé : nouveau sel ci-dessous */ }
+  }
+  const sel = crypto.randomBytes(16);
+  const cle = crypto.pbkdf2Sync(nip, sel, PBKDF2_ITER, 32, 'sha256');
+  v = chiffrer(TEMOIN, cle, sel);
+  fs.writeFileSync(VERROU_FICHIER, JSON.stringify(v, null, 2) + '\n');
+  return { verrou: v, cle };
+}
+
+// Injecté dans le <head> de chaque page : cache les liens vers Produits
+// tant que le cadenas est fermé (sans clignotement : la classe est posée
+// avant le rendu), puis charge le script du cadenas.
+function teteCadenas(verrou) {
+  return `  <style>html:not(.produits-ouverts) a[href$="/produits/"]{display:none!important}</style>
+  <script>window.MODULIMO_VERROU=${JSON.stringify(verrou)};try{var mv=JSON.parse(localStorage.getItem('modulimo-produits')||'null');if(mv&&mv.sel===window.MODULIMO_VERROU.sel)document.documentElement.classList.add('produits-ouverts')}catch(e){}</script>
+  <script src="/js/cadenas.js" defer></script>
+`;
+}
+
+function pagePorte(page, lang, paquet) {
+  const t = (k) => PORTE[k][lang];
+  const accueil = lang === 'fr' ? '/' : '/' + lang + '/';
+  return `<!DOCTYPE html>
+<html lang="${lang}">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="robots" content="noindex, nofollow" />
+  <title>${esc(t('titre'))} — Modulimo</title>
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=DM+Sans:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+    :root { --off:#f7f5f0; --dark:#1a1a1a; --mid:#4a4a4a; --green:#2d7a4f; --border:#e0ddd8; --err:#b3261e; }
+    *, *::before, *::after { box-sizing:border-box; margin:0; padding:0; }
+    body { min-height:100vh; background:var(--off); color:var(--dark); font-family:'DM Sans',sans-serif; display:flex; align-items:center; justify-content:center; padding:24px 16px; }
+    .porte { width:100%; max-width:420px; background:#fff; border:1px solid var(--border); padding:2.5rem 2rem; }
+    .porte img { height:34px; width:auto; margin-bottom:2rem; display:block; }
+    .tag { font-size:.68rem; font-weight:600; letter-spacing:.2em; text-transform:uppercase; color:var(--green); margin-bottom:.75rem; }
+    h1 { font-family:'Syne',sans-serif; font-weight:800; font-size:1.7rem; line-height:1.15; margin-bottom:.75rem; }
+    p { color:var(--mid); font-size:.95rem; line-height:1.6; margin-bottom:1.5rem; }
+    label { display:block; font-size:.75rem; font-weight:500; letter-spacing:.04em; text-transform:uppercase; color:var(--mid); margin-bottom:.4rem; }
+    input { width:100%; font:inherit; font-size:1.35rem; letter-spacing:.25em; padding:.7rem .8rem; border:1.5px solid var(--border); background:#fff; color:var(--dark); outline:none; }
+    input:focus { border-color:var(--green); }
+    button { margin-top:1rem; width:100%; font:inherit; font-weight:600; font-size:.95rem; padding:.85rem; border:none; background:var(--green); color:#fff; cursor:pointer; }
+    button:disabled { opacity:.6; cursor:wait; }
+    .msg { min-height:1.4em; margin-top:.75rem; font-size:.85rem; color:var(--err); }
+    .retour { display:inline-block; margin-top:1.5rem; font-size:.85rem; color:var(--green); text-decoration:none; }
+  </style>
+</head>
+<body>
+  <main class="porte">
+    <a href="${accueil}"><img src="/images/ModulimoLogoSobre.png" alt="Modulimo" /></a>
+    <div class="tag">${esc(page.title[lang].split(' — ')[0])}</div>
+    <h1>${esc(t('titre'))}</h1>
+    <p>${esc(t('texte'))}</p>
+    <form id="porte" autocomplete="off" novalidate>
+      <label for="nip">${esc(t('champ'))}</label>
+      <input id="nip" type="password" inputmode="numeric" pattern="[0-9]{10}" maxlength="10" autocomplete="off" required autofocus />
+      <button type="submit" id="go">${esc(t('bouton'))}</button>
+      <div class="msg" id="msg" role="alert" aria-live="polite"></div>
+    </form>
+    <a class="retour" href="${accueil}">${esc(t('retour'))}</a>
+  </main>
+  <script>
+  (function () {
+    var P = ${JSON.stringify(paquet)};
+    var CLE = 'modulimo-produits';
+    var b64 = function (s) { return Uint8Array.from(atob(s), function (c) { return c.charCodeAt(0); }); };
+    var hex = function (u) { return Array.prototype.map.call(u, function (x) { return ('0' + x.toString(16)).slice(-2); }).join(''); };
+    var dehex = function (h) { return new Uint8Array(h.match(/../g).map(function (x) { return parseInt(x, 16); })); };
+
+    function deriver(nip) {
+      return crypto.subtle.importKey('raw', new TextEncoder().encode(nip), 'PBKDF2', false, ['deriveBits'])
+        .then(function (k) { return crypto.subtle.deriveBits({ name: 'PBKDF2', hash: 'SHA-256', salt: b64(P.sel), iterations: P.iter }, k, 256); })
+        .then(function (bits) { return new Uint8Array(bits); });
+    }
+    function ouvrir(brute) {
+      return crypto.subtle.importKey('raw', brute, 'AES-GCM', false, ['decrypt'])
+        .then(function (k) { return crypto.subtle.decrypt({ name: 'AES-GCM', iv: b64(P.iv) }, k, b64(P.data)); })
+        .then(function (buf) {
+          try { localStorage.setItem(CLE, JSON.stringify({ sel: P.sel, cle: hex(brute) })); } catch (e) {}
+          var html = new TextDecoder().decode(buf);
+          document.open(); document.write(html); document.close();
+        });
+    }
+
+    // Cadenas déjà ouvert (même NIP) : pas de nouvelle saisie. L'accès dure
+    // jusqu'à ce que le visiteur referme le cadenas (js/cadenas.js).
+    // On attend la fin du chargement : un document.open() lancé pendant que
+    // la page se charge encore est ignoré par le navigateur.
+    var memo = null;
+    try {
+      var v = JSON.parse(localStorage.getItem(CLE) || 'null');
+      if (v && v.sel === P.sel) memo = v.cle;
+    } catch (e) {}
+    if (memo) {
+      document.documentElement.style.visibility = 'hidden';
+      var auto = function () {
+        ouvrir(dehex(memo)).catch(function () {
+          try { localStorage.removeItem(CLE); } catch (e) {}
+          document.documentElement.style.visibility = '';
+        });
+      };
+      if (document.readyState === 'complete') auto(); else window.addEventListener('load', auto);
+    }
+
+    var f = document.getElementById('porte'), champ = document.getElementById('nip'),
+        go = document.getElementById('go'), msg = document.getElementById('msg');
+    champ.addEventListener('input', function () { champ.value = champ.value.replace(/\\D/g, '').slice(0, 10); msg.textContent = ''; });
+    f.addEventListener('submit', function (e) {
+      e.preventDefault();
+      var nip = champ.value;
+      if (!/^[0-9]{10}$/.test(nip)) { msg.textContent = ${JSON.stringify(t('format'))}; return; }
+      go.disabled = true; go.textContent = ${JSON.stringify(t('attente'))};
+      deriver(nip).then(ouvrir).catch(function () {
+        go.disabled = false; go.textContent = ${JSON.stringify(t('bouton'))};
+        msg.textContent = ${JSON.stringify(t('erreur'))}; champ.select();
+      });
+    });
+  })();
+  </script>
+</body>
+</html>
+`;
 }
 
 function writeOut(route, lang, html) {
@@ -448,6 +634,7 @@ function buildSitemap() {
   const today = new Date().toISOString().slice(0, 10);
   const urls = [];
   for (const page of PAGES) {
+    if (page.protege) continue; // derrière un NIP : rien à indexer
     for (const lang of LANGS) {
       const loc = SITE + (lang === 'fr' ? '' : '/' + lang) + '/' + page.route;
       const alts = LANGS.map((l) =>
@@ -464,10 +651,29 @@ function buildSitemap() {
 function main() {
   process.chdir(__dirname);
   const written = [];
+  const nip = process.env.MODULIMO_PIN;
+  if (nip !== undefined && !/^[0-9]{10}$/.test(nip)) {
+    throw new Error('MODULIMO_PIN doit compter exactement 10 chiffres.');
+  }
+  // Un seul sel (celui de verrou.json) : la clé dérivée sert au cadenas et
+  // à toutes les pages protégées, on ne ressaisit pas le NIP de l'une à l'autre.
+  const { verrou, cle } = verrouPour(nip);
+  const sel = verrou ? Buffer.from(verrou.sel, 'base64') : null;
+  const sautees = [];
   for (const page of PAGES) {
     for (const lang of LANGS) {
-      written.push(writeOut(page.route, lang, buildPage(page, lang)));
+      if (page.protege) {
+        if (!cle) { sautees.push(page.route); break; }
+        const html = buildPage(page, lang, verrou);
+        written.push(writeOut(page.route, lang, pagePorte(page, lang, chiffrer(html, cle, sel))));
+      } else {
+        written.push(writeOut(page.route, lang, buildPage(page, lang, verrou)));
+      }
     }
+  }
+  if (sautees.length) {
+    console.warn('⚠️  MODULIMO_PIN absent : pages protégées NON régénérées (' + sautees.join(', ')
+      + ').\n   Relancez avec  MODULIMO_PIN=xxxxxxxxxx node build.js  si elles ont changé.');
   }
   fs.writeFileSync('sitemap.xml', buildSitemap());
   fs.writeFileSync('robots.txt', `User-agent: *\nAllow: /\n\nSitemap: ${SITE}/sitemap.xml\n`);
