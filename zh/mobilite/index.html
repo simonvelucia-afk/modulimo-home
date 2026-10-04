@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>多式联运出行与 MaaS — Modulimo</title>
+  <title>多式联运出行、TOD 与 MaaS — Modulimo</title>
   <meta name="description" content="共享出行、卧式篷车与公共交通直达，通过 CoHabitat 汇合为同一项服务（MaaS）— 出行是 Modulimo 生活环境的组成部分。" />
   <link rel="canonical" href="https://www.modulimo.com/zh/mobilite/" />
   <link rel="alternate" hreflang="fr-CA" href="https://www.modulimo.com/mobilite/" />
@@ -175,6 +175,9 @@
 
     /* ── MODES GRID ── */
     .modes { background:var(--white); }
+    .tod { border-bottom:1px solid var(--border); }
+    .tod .green { color:var(--green); }
+    .tod .modes-header { align-items:start; }
     .modes-header { display:grid; grid-template-columns:1fr 1fr; gap:4rem; align-items:end; margin-bottom:4rem; }
     .modes-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:1px; background:var(--border); border:1px solid var(--border); }
     .mode-card { background:var(--white); padding:2.25rem 1.75rem; position:relative; overflow:hidden; transition:background .25s; cursor:default; }
@@ -391,6 +394,35 @@
         <div class="chain-body"><div class="chain-mode"><span>REM 轻轨 + 高铁 + YUL 机场</span></div><div class="chain-detail"><span>预计 2026–2027 年接通 · 魁北克–多伦多高铁建设中</span></div></div>
         <div class="chain-badge">2027</div>
       </div>
+    </div>
+  </section>
+
+
+  <!-- TOD — TRANSIT-ORIENTED DEVELOPMENT -->
+  <!-- La chaine ci-dessus montre les modes ; cette section dit pourquoi
+       l'immeuble est la ou il est et fait comme il est fait. Le TOD se
+       joue d'habitude a l'echelle d'un quartier autour d'une gare : on
+       l'assume, Pointe Est en est une version a l'echelle d'un lot. Les
+       chiffres viennent de la page Pointe Est (plan r2, cadre PPCMOI). -->
+  <section class="modes tod" id="tod">
+    <div class="modes-header">
+      <div>
+        <div class="sec-tag"><span>TOD — 公共交通导向开发</span></div>
+        <h2 class="sec-title"><span>先有交通网络，</span><br><span class="green"><span>再围绕它建房。</span></span></h2>
+      </div>
+      <div>
+        <p class="sec-body"><span>TOD —— <em>Transit-Oriented Development</em>，公共交通导向开发 —— 指把住宅集中在步行可达公共交通站点的范围内，少给汽车留空间，多给步行留空间。蒙特利尔大都会社区的《大都会规划与发展方案》（PMAD）将其列为核心方向。</span></p>
+        <br>
+        <p class="sec-body"><span>TOD 通常以车站周边街区为尺度来规划。Modulimo 把它落实到一栋建筑的尺度：在 Pointe Est，选址、密度、停车与服务都从相邻的公交总站出发 —— 这一模式也被设计为可在其他交通站点附近复制。</span></p>
+      </div>
+    </div>
+    <div class="modes-grid">
+      <div class="mode-card"><span class="mode-num">01</span><span class="mode-emoji">🚏</span><div class="mode-name"><span>邻近</span></div><div class="mode-desc"><span>STM 公交总站（86、410、487 路）就在隔壁。学校相邻，公园与东滩（Plage de l'Est）步行可达。</span></div></div>
+      <div class="mode-card"><span class="mode-num">02</span><span class="mode-emoji">🏘️</span><div class="mode-name"><span>温和加密</span></div><div class="mode-desc"><span>3 层 6 套住宅，与街区尺度相称：在交通网络旁加密，不建高楼，通过 PPCMOI 程序推进。</span></div></div>
+      <div class="mode-card"><span class="mode-num">03</span><span class="mode-emoji">🅿️</span><div class="mode-name"><span>重新设计的停车</span></div><div class="mode-desc"><span>地下 4 个车位，全部用于 CoHabitat 共享汽车 —— 没有私人车位。省下的空间用于绿化。</span></div></div>
+      <div class="mode-card"><span class="mode-num">04</span><span class="mode-emoji">👪</span><div class="mode-name"><span>多元家庭</span></div><div class="mode-desc"><span>三居室家庭住宅与一至两居室配对：祖父母、家庭与年轻成人同住一个屋檐下。</span></div></div>
+      <div class="mode-card"><span class="mode-num">05</span><span class="mode-emoji">🌳</span><div class="mode-name"><span>人性尺度</span></div><div class="mode-desc"><span>食物森林、绿色屋顶、自行车停车与卧式篷车：为步行和骑行而设计的环境，而非为汽车。</span></div></div>
+      <div class="mode-card"><span class="mode-num">06</span><span class="mode-emoji">🔗</span><div class="mode-name"><span>最后一公里</span></div><div class="mode-desc"><span>步行不够时，共享出行接力送您到火车站、渡轮码头或 REM —— 这就是下文的 MaaS。</span></div></div>
     </div>
   </section>
 
