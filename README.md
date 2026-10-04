@@ -39,6 +39,32 @@ Sans dépendance (Node ≥ 16). Génère :
 Titres et meta descriptions par langue : voir le tableau `PAGES` en tête
 de `build.js`.
 
+### Pages protégées par NIP (`/produits/`)
+
+Ces pages (toutes langues) sont chiffrées au build (AES-256-GCM, clé dérivée
+du NIP à 10 chiffres par PBKDF2) et remplacées par un écran « Accès réservé ».
+Le NIP n'est **jamais** dans le dépôt : il se passe au build.
+
+```bash
+MODULIMO_PIN=xxxxxxxxxx node build.js
+```
+
+**Cadenas** (`js/cadenas.js`) : l'onglet Produits — et tout lien vers
+`/produits/` — est caché par défaut sur tout le site. Un cadenas en haut à
+droite de l'en-tête demande le NIP ; ouvert, l'onglet réapparaît et la page
+Produits s'ouvre sans nouvelle saisie. Le refermer retire l'accès (retour à
+l'accueil si l'on est sur Produits). L'état est gardé dans le navigateur
+jusqu'à ce qu'on referme le cadenas. `verrou.json` (committé, rien de
+secret) fixe le sel et contient un témoin chiffré qui sert à vérifier le NIP.
+
+Sans `MODULIMO_PIN`, le build régénère les autres pages et laisse les versions
+chiffrées existantes intactes (jamais de publication en clair). Pour changer
+le NIP, relancez simplement le build avec le nouveau. Elles sont exclues du
+`sitemap.xml` et marquées `noindex`.
+
+⚠️ Le dépôt est public : les sources `src/produits/` restent lisibles sur
+GitHub. Le NIP protège le site, pas le dépôt.
+
 ## Structure
 
 ```
