@@ -171,6 +171,9 @@
     .contact .sec-tag::after { background:var(--green-md); }
     .contact .sec-title { color:#fff; }
     .contact .sec-body { color:rgba(255,255,255,.78); margin:0 auto; }
+    .contact-book { margin-top:2rem; }
+    .contact-or { margin-top:1.2rem; font-size:.9rem; color:rgba(255,255,255,.7); }
+    .contact .lead-form { margin-top:1rem; }
     .contact-alt { margin-top:1.4rem; font-size:.88rem; color:rgba(255,255,255,.7); }
     .contact-alt a { color:#fff; text-decoration:underline; }
     .lead-form { background:#fff; color:var(--text); border-radius:12px; padding:28px 26px; max-width:600px; margin:2.4rem auto 0; text-align:left; box-shadow:0 10px 36px rgba(0,0,0,.22); position:relative; }
@@ -294,7 +297,7 @@
       <p class="hero-desc"><span>Shared spaces, car sharing, greenhouse, bulletin board and service tickets: CoHabitat brings together everything residents share, in one simple, secure app compliant with Quebec's Law 25.</span></p>
       <div class="hero-ctas">
         <a class="btn btn-main" href="https://cohabitat.modulimo.com/#essai" data-track="demo_click" data-track-place="hero"><span>Try the demo</span> →</a>
-        <a class="btn btn-line" href="#contact" data-track="contact_click" data-track-place="hero"><span>Book a walkthrough</span></a>
+        <a class="btn btn-line" href="https://calendar.app.google/yqELaEthBMPkEhbk7" target="_blank" rel="noopener" data-track="booking_click" data-track-place="hero"><span>Book a walkthrough</span></a>
       </div>
       <p class="hero-note"><span>Full demo, no sign-up. Sample data, nothing is charged.</span></p>
     </div>
@@ -544,8 +547,12 @@
   <section class="contact" id="contact">
     <div class="sec-tag"><span>Contact</span></div>
     <h2 class="sec-title"><span>Let's talk about your building.</span></h2>
-    <p class="sec-body"><span>A free, no-commitment 30-minute walkthrough of the modules that matter to you. We reply within one business day.</span></p>
+    <p class="sec-body"><span>A free, no-commitment 15-minute video walkthrough of the modules that matter to you. Pick your slot: the Google Meet link comes with the confirmation.</span></p>
 
+    <div class="contact-book">
+      <a class="btn btn-light" href="https://calendar.app.google/yqELaEthBMPkEhbk7" target="_blank" rel="noopener" data-track="booking_click" data-track-place="contact">📅 <span>Pick a time slot</span></a>
+      <p class="contact-or"><span>or write to us and we will suggest a time:</span></p>
+    </div>
     <form class="lead-form" id="leadForm" method="post" action="#" data-consent-version="2026-10-cohabitat-v1" data-subject="CoHabitat">
       <div class="lf-fields">
         <div class="lf-grid">
@@ -601,7 +608,7 @@
       <div class="lf-success" role="status">
         <div class="lf-check" aria-hidden="true">✓</div>
         <h3><span>Thank you, we got it.</span></h3>
-        <p><span>We will write to you within one business day to set up the walkthrough.</span></p>
+        <p><span>We will write to you to set up the walkthrough.</span> <a href="https://calendar.app.google/yqELaEthBMPkEhbk7" target="_blank" rel="noopener" data-track="booking_click" data-track-place="succes" style="color:var(--green);font-weight:600;"><span>Or book a slot right away →</span></a></p>
       </div>
     </form>
     <p class="contact-alt"><span>Prefer email?</span> <a href="mailto:info@modulimo.com?subject=CoHabitat" data-track="email_click" data-track-place="contact">info@modulimo.com</a></p>
@@ -621,6 +628,7 @@
           <h5>CoHabitat</h5>
           <a href="https://cohabitat.modulimo.com/#essai" data-track="demo_click" data-track-place="footer"><span>Try the demo</span></a>
           <a href="https://cohabitat.modulimo.com"><span>Resident login</span></a>
+          <a href="https://calendar.app.google/yqELaEthBMPkEhbk7" target="_blank" rel="noopener" data-track="booking_click" data-track-place="footer"><span>Book a walkthrough</span></a>
           <a href="#contact"><span>Contact us</span></a>
         </div>
         <div class="footer-nav">

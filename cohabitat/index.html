@@ -171,6 +171,9 @@
     .contact .sec-tag::after { background:var(--green-md); }
     .contact .sec-title { color:#fff; }
     .contact .sec-body { color:rgba(255,255,255,.78); margin:0 auto; }
+    .contact-book { margin-top:2rem; }
+    .contact-or { margin-top:1.2rem; font-size:.9rem; color:rgba(255,255,255,.7); }
+    .contact .lead-form { margin-top:1rem; }
     .contact-alt { margin-top:1.4rem; font-size:.88rem; color:rgba(255,255,255,.7); }
     .contact-alt a { color:#fff; text-decoration:underline; }
     .lead-form { background:#fff; color:var(--text); border-radius:12px; padding:28px 26px; max-width:600px; margin:2.4rem auto 0; text-align:left; box-shadow:0 10px 36px rgba(0,0,0,.22); position:relative; }
@@ -294,7 +297,7 @@
       <p class="hero-desc"><span>Espaces communs, auto-partage, serre, babillard et billets de service : CoHabitat réunit tout ce que les résidants partagent, dans une seule application simple, sécurisée et conforme à la Loi 25.</span></p>
       <div class="hero-ctas">
         <a class="btn btn-main" href="https://cohabitat.modulimo.com/#essai" data-track="demo_click" data-track-place="hero"><span>Essayer la démo</span> →</a>
-        <a class="btn btn-line" href="#contact" data-track="contact_click" data-track-place="hero"><span>Réserver une présentation</span></a>
+        <a class="btn btn-line" href="https://calendar.app.google/yqELaEthBMPkEhbk7" target="_blank" rel="noopener" data-track="booking_click" data-track-place="hero"><span>Réserver une présentation</span></a>
       </div>
       <p class="hero-note"><span>Démo complète, sans inscription. Données fictives, rien n'est facturé.</span></p>
     </div>
@@ -544,8 +547,12 @@
   <section class="contact" id="contact">
     <div class="sec-tag"><span>Contact</span></div>
     <h2 class="sec-title"><span>Parlons de votre immeuble.</span></h2>
-    <p class="sec-body"><span>Une présentation de 30 minutes, gratuite et sans engagement, avec les modules qui vous concernent. Nous répondons sous un jour ouvrable.</span></p>
+    <p class="sec-body"><span>Une présentation de 15 minutes en visioconférence, gratuite et sans engagement, avec les modules qui vous concernent. Choisissez votre créneau : le lien Google Meet arrive avec la confirmation.</span></p>
 
+    <div class="contact-book">
+      <a class="btn btn-light" href="https://calendar.app.google/yqELaEthBMPkEhbk7" target="_blank" rel="noopener" data-track="booking_click" data-track-place="contact">📅 <span>Choisir un créneau</span></a>
+      <p class="contact-or"><span>ou écrivez-nous, nous vous proposerons un moment :</span></p>
+    </div>
     <form class="lead-form" id="leadForm" method="post" action="#" data-consent-version="2026-10-cohabitat-v1" data-subject="CoHabitat">
       <div class="lf-fields">
         <div class="lf-grid">
@@ -601,7 +608,7 @@
       <div class="lf-success" role="status">
         <div class="lf-check" aria-hidden="true">✓</div>
         <h3><span>Merci, c'est bien reçu.</span></h3>
-        <p><span>Nous vous écrivons sous un jour ouvrable pour fixer la présentation.</span></p>
+        <p><span>Nous vous écrirons pour fixer la présentation.</span> <a href="https://calendar.app.google/yqELaEthBMPkEhbk7" target="_blank" rel="noopener" data-track="booking_click" data-track-place="succes" style="color:var(--green);font-weight:600;"><span>Ou réservez tout de suite un créneau →</span></a></p>
       </div>
     </form>
     <p class="contact-alt"><span>Vous préférez le courriel ?</span> <a href="mailto:info@modulimo.com?subject=CoHabitat" data-track="email_click" data-track-place="contact">info@modulimo.com</a></p>
@@ -621,6 +628,7 @@
           <h5>CoHabitat</h5>
           <a href="https://cohabitat.modulimo.com/#essai" data-track="demo_click" data-track-place="footer"><span>Essayer la démo</span></a>
           <a href="https://cohabitat.modulimo.com"><span>Connexion des résidants</span></a>
+          <a href="https://calendar.app.google/yqELaEthBMPkEhbk7" target="_blank" rel="noopener" data-track="booking_click" data-track-place="footer"><span>Réserver une présentation</span></a>
           <a href="#contact"><span>Nous joindre</span></a>
         </div>
         <div class="footer-nav">

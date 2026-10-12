@@ -155,6 +155,9 @@
     .contact .sec-tag::after { background:var(--green-md); }
     .contact .sec-title { color:#fff; }
     .contact .sec-body { color:rgba(255,255,255,.78); margin:0 auto; }
+    .contact-book { margin-top:2rem; }
+    .contact-or { margin-top:1.2rem; font-size:.9rem; color:rgba(255,255,255,.7); }
+    .contact .lead-form { margin-top:1rem; }
     .contact-alt { margin-top:1.4rem; font-size:.88rem; color:rgba(255,255,255,.7); }
     .contact-alt a { color:#fff; text-decoration:underline; }
     .lead-form { background:#fff; color:var(--text); border-radius:12px; padding:28px 26px; max-width:600px; margin:2.4rem auto 0; text-align:left; box-shadow:0 10px 36px rgba(0,0,0,.22); position:relative; }
@@ -271,7 +274,7 @@
       <p class="hero-desc"><span data-lang="fr">Espaces communs, auto-partage, serre, babillard et billets de service : CoHabitat réunit tout ce que les résidants partagent, dans une seule application simple, sécurisée et conforme à la Loi 25.</span><span data-lang="en">Shared spaces, car sharing, greenhouse, bulletin board and service tickets: CoHabitat brings together everything residents share, in one simple, secure app compliant with Quebec's Law 25.</span><span data-lang="es">Espacios comunes, vehículos compartidos, invernadero, tablón de anuncios y solicitudes de servicio: CoHabitat reúne todo lo que los residentes comparten en una sola aplicación sencilla, segura y conforme a la Ley 25 de Quebec.</span><span data-lang="zh">公共空间、共享汽车、温室、公告栏与服务工单：CoHabitat 将住户共享的一切汇集到一个简单、安全、符合魁北克第 25 号法案的应用中。</span></p>
       <div class="hero-ctas">
         <a class="btn btn-main" href="https://cohabitat.modulimo.com/#essai" data-track="demo_click" data-track-place="hero"><span data-lang="fr">Essayer la démo</span><span data-lang="en">Try the demo</span><span data-lang="es">Probar la demo</span><span data-lang="zh">试用演示版</span> →</a>
-        <a class="btn btn-line" href="#contact" data-track="contact_click" data-track-place="hero"><span data-lang="fr">Réserver une présentation</span><span data-lang="en">Book a walkthrough</span><span data-lang="es">Reservar una presentación</span><span data-lang="zh">预约讲解</span></a>
+        <a class="btn btn-line" href="https://calendar.app.google/yqELaEthBMPkEhbk7" target="_blank" rel="noopener" data-track="booking_click" data-track-place="hero"><span data-lang="fr">Réserver une présentation</span><span data-lang="en">Book a walkthrough</span><span data-lang="es">Reservar una presentación</span><span data-lang="zh">预约讲解</span></a>
       </div>
       <p class="hero-note"><span data-lang="fr">Démo complète, sans inscription. Données fictives, rien n'est facturé.</span><span data-lang="en">Full demo, no sign-up. Sample data, nothing is charged.</span><span data-lang="es">Demo completa, sin registro. Datos ficticios, no se cobra nada.</span><span data-lang="zh">完整演示，无需注册。示例数据，不产生任何费用。</span></p>
     </div>
@@ -521,8 +524,12 @@
   <section class="contact" id="contact">
     <div class="sec-tag"><span data-lang="fr">Contact</span><span data-lang="en">Contact</span><span data-lang="es">Contacto</span><span data-lang="zh">联系</span></div>
     <h2 class="sec-title"><span data-lang="fr">Parlons de votre immeuble.</span><span data-lang="en">Let's talk about your building.</span><span data-lang="es">Hablemos de su edificio.</span><span data-lang="zh">聊聊您的楼宇。</span></h2>
-    <p class="sec-body"><span data-lang="fr">Une présentation de 30 minutes, gratuite et sans engagement, avec les modules qui vous concernent. Nous répondons sous un jour ouvrable.</span><span data-lang="en">A free, no-commitment 30-minute walkthrough of the modules that matter to you. We reply within one business day.</span><span data-lang="es">Una presentación de 30 minutos, gratuita y sin compromiso, con los módulos que le interesan. Respondemos en un día hábil.</span><span data-lang="zh">免费且无任何义务的 30 分钟讲解，聚焦您关心的模块。我们会在一个工作日内回复。</span></p>
+    <p class="sec-body"><span data-lang="fr">Une présentation de 15 minutes en visioconférence, gratuite et sans engagement, avec les modules qui vous concernent. Choisissez votre créneau : le lien Google Meet arrive avec la confirmation.</span><span data-lang="en">A free, no-commitment 15-minute video walkthrough of the modules that matter to you. Pick your slot: the Google Meet link comes with the confirmation.</span><span data-lang="es">Una presentación de 15 minutos por videoconferencia, gratuita y sin compromiso, con los módulos que le interesan. Elija su horario: el enlace de Google Meet llega con la confirmación.</span><span data-lang="zh">免费且无任何义务的 15 分钟视频讲解，聚焦您关心的模块。请选择时间：确认邮件中会附上 Google Meet 链接。</span></p>
 
+    <div class="contact-book">
+      <a class="btn btn-light" href="https://calendar.app.google/yqELaEthBMPkEhbk7" target="_blank" rel="noopener" data-track="booking_click" data-track-place="contact">📅 <span data-lang="fr">Choisir un créneau</span><span data-lang="en">Pick a time slot</span><span data-lang="es">Elegir un horario</span><span data-lang="zh">选择时间</span></a>
+      <p class="contact-or"><span data-lang="fr">ou écrivez-nous, nous vous proposerons un moment :</span><span data-lang="en">or write to us and we will suggest a time:</span><span data-lang="es">o escríbanos y le propondremos un momento:</span><span data-lang="zh">或给我们留言，我们会为您安排时间：</span></p>
+    </div>
     <form class="lead-form" id="leadForm" method="post" action="#" data-consent-version="2026-10-cohabitat-v1" data-subject="CoHabitat">
       <div class="lf-fields">
         <div class="lf-grid">
@@ -578,7 +585,7 @@
       <div class="lf-success" role="status">
         <div class="lf-check" aria-hidden="true">✓</div>
         <h3><span data-lang="fr">Merci, c'est bien reçu.</span><span data-lang="en">Thank you, we got it.</span><span data-lang="es">Gracias, lo hemos recibido.</span><span data-lang="zh">谢谢，已收到。</span></h3>
-        <p><span data-lang="fr">Nous vous écrivons sous un jour ouvrable pour fixer la présentation.</span><span data-lang="en">We will write to you within one business day to set up the walkthrough.</span><span data-lang="es">Le escribiremos en un día hábil para fijar la presentación.</span><span data-lang="zh">我们将在一个工作日内与您联系，安排讲解时间。</span></p>
+        <p><span data-lang="fr">Nous vous écrirons pour fixer la présentation.</span><span data-lang="en">We will write to you to set up the walkthrough.</span><span data-lang="es">Le escribiremos para fijar la presentación.</span><span data-lang="zh">我们将与您联系，安排讲解时间。</span> <a href="https://calendar.app.google/yqELaEthBMPkEhbk7" target="_blank" rel="noopener" data-track="booking_click" data-track-place="succes" style="color:var(--green);font-weight:600;"><span data-lang="fr">Ou réservez tout de suite un créneau →</span><span data-lang="en">Or book a slot right away →</span><span data-lang="es">O reserve un horario ahora mismo →</span><span data-lang="zh">或立即预约时间 →</span></a></p>
       </div>
     </form>
     <p class="contact-alt"><span data-lang="fr">Vous préférez le courriel ?</span><span data-lang="en">Prefer email?</span><span data-lang="es">¿Prefiere el correo?</span><span data-lang="zh">更喜欢邮件？</span> <a href="mailto:info@modulimo.com?subject=CoHabitat" data-track="email_click" data-track-place="contact">info@modulimo.com</a></p>
@@ -598,6 +605,7 @@
           <h5>CoHabitat</h5>
           <a href="https://cohabitat.modulimo.com/#essai" data-track="demo_click" data-track-place="footer"><span data-lang="fr">Essayer la démo</span><span data-lang="en">Try the demo</span><span data-lang="es">Probar la demo</span><span data-lang="zh">试用演示版</span></a>
           <a href="https://cohabitat.modulimo.com"><span data-lang="fr">Connexion des résidants</span><span data-lang="en">Resident login</span><span data-lang="es">Acceso de residentes</span><span data-lang="zh">住户登录</span></a>
+          <a href="https://calendar.app.google/yqELaEthBMPkEhbk7" target="_blank" rel="noopener" data-track="booking_click" data-track-place="footer"><span data-lang="fr">Réserver une présentation</span><span data-lang="en">Book a walkthrough</span><span data-lang="es">Reservar una presentación</span><span data-lang="zh">预约讲解</span></a>
           <a href="#contact"><span data-lang="fr">Nous joindre</span><span data-lang="en">Contact us</span><span data-lang="es">Contáctenos</span><span data-lang="zh">联系我们</span></a>
         </div>
         <div class="footer-nav">

@@ -171,6 +171,9 @@
     .contact .sec-tag::after { background:var(--green-md); }
     .contact .sec-title { color:#fff; }
     .contact .sec-body { color:rgba(255,255,255,.78); margin:0 auto; }
+    .contact-book { margin-top:2rem; }
+    .contact-or { margin-top:1.2rem; font-size:.9rem; color:rgba(255,255,255,.7); }
+    .contact .lead-form { margin-top:1rem; }
     .contact-alt { margin-top:1.4rem; font-size:.88rem; color:rgba(255,255,255,.7); }
     .contact-alt a { color:#fff; text-decoration:underline; }
     .lead-form { background:#fff; color:var(--text); border-radius:12px; padding:28px 26px; max-width:600px; margin:2.4rem auto 0; text-align:left; box-shadow:0 10px 36px rgba(0,0,0,.22); position:relative; }
@@ -294,7 +297,7 @@
       <p class="hero-desc"><span>公共空间、共享汽车、温室、公告栏与服务工单：CoHabitat 将住户共享的一切汇集到一个简单、安全、符合魁北克第 25 号法案的应用中。</span></p>
       <div class="hero-ctas">
         <a class="btn btn-main" href="https://cohabitat.modulimo.com/#essai" data-track="demo_click" data-track-place="hero"><span>试用演示版</span> →</a>
-        <a class="btn btn-line" href="#contact" data-track="contact_click" data-track-place="hero"><span>预约讲解</span></a>
+        <a class="btn btn-line" href="https://calendar.app.google/yqELaEthBMPkEhbk7" target="_blank" rel="noopener" data-track="booking_click" data-track-place="hero"><span>预约讲解</span></a>
       </div>
       <p class="hero-note"><span>完整演示，无需注册。示例数据，不产生任何费用。</span></p>
     </div>
@@ -544,8 +547,12 @@
   <section class="contact" id="contact">
     <div class="sec-tag"><span>联系</span></div>
     <h2 class="sec-title"><span>聊聊您的楼宇。</span></h2>
-    <p class="sec-body"><span>免费且无任何义务的 30 分钟讲解，聚焦您关心的模块。我们会在一个工作日内回复。</span></p>
+    <p class="sec-body"><span>免费且无任何义务的 15 分钟视频讲解，聚焦您关心的模块。请选择时间：确认邮件中会附上 Google Meet 链接。</span></p>
 
+    <div class="contact-book">
+      <a class="btn btn-light" href="https://calendar.app.google/yqELaEthBMPkEhbk7" target="_blank" rel="noopener" data-track="booking_click" data-track-place="contact">📅 <span>选择时间</span></a>
+      <p class="contact-or"><span>或给我们留言，我们会为您安排时间：</span></p>
+    </div>
     <form class="lead-form" id="leadForm" method="post" action="#" data-consent-version="2026-10-cohabitat-v1" data-subject="CoHabitat">
       <div class="lf-fields">
         <div class="lf-grid">
@@ -601,7 +608,7 @@
       <div class="lf-success" role="status">
         <div class="lf-check" aria-hidden="true">✓</div>
         <h3><span>谢谢，已收到。</span></h3>
-        <p><span>我们将在一个工作日内与您联系，安排讲解时间。</span></p>
+        <p><span>我们将与您联系，安排讲解时间。</span> <a href="https://calendar.app.google/yqELaEthBMPkEhbk7" target="_blank" rel="noopener" data-track="booking_click" data-track-place="succes" style="color:var(--green);font-weight:600;"><span>或立即预约时间 →</span></a></p>
       </div>
     </form>
     <p class="contact-alt"><span>更喜欢邮件？</span> <a href="mailto:info@modulimo.com?subject=CoHabitat" data-track="email_click" data-track-place="contact">info@modulimo.com</a></p>
@@ -621,6 +628,7 @@
           <h5>CoHabitat</h5>
           <a href="https://cohabitat.modulimo.com/#essai" data-track="demo_click" data-track-place="footer"><span>试用演示版</span></a>
           <a href="https://cohabitat.modulimo.com"><span>住户登录</span></a>
+          <a href="https://calendar.app.google/yqELaEthBMPkEhbk7" target="_blank" rel="noopener" data-track="booking_click" data-track-place="footer"><span>预约讲解</span></a>
           <a href="#contact"><span>联系我们</span></a>
         </div>
         <div class="footer-nav">
