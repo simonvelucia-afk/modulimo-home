@@ -299,7 +299,7 @@
         <a class="btn btn-main" href="https://cohabitat.modulimo.com/#essai" data-track="demo_click" data-track-place="hero"><span>试用演示版</span> →</a>
         <a class="btn btn-line" href="https://calendar.app.google/yqELaEthBMPkEhbk7" target="_blank" rel="noopener" data-track="booking_click" data-track-place="hero"><span>预约讲解</span></a>
       </div>
-      <p class="hero-note"><span>完整演示，无需注册。示例数据，不产生任何费用。</span></p>
+      <p class="hero-note"><span>完整演示，无需注册。示例数据，不产生任何费用。</span><br><span>已是住户？</span> <a href="https://cohabitat.modulimo.com/#connexion" style="color:var(--green);font-weight:600;text-decoration:underline;"><span>登录</span></a></p>
     </div>
     <div class="hero-visual">
       <img class="hero-desktop" src="/images/cohabitat/tableau.webp" alt="CoHabitat 仪表板" width="1600" height="1000" />
@@ -627,7 +627,7 @@
         <div class="footer-nav">
           <h5>CoHabitat</h5>
           <a href="https://cohabitat.modulimo.com/#essai" data-track="demo_click" data-track-place="footer"><span>试用演示版</span></a>
-          <a href="https://cohabitat.modulimo.com"><span>住户登录</span></a>
+          <a href="https://cohabitat.modulimo.com/#connexion"><span>住户登录</span></a>
           <a href="https://calendar.app.google/yqELaEthBMPkEhbk7" target="_blank" rel="noopener" data-track="booking_click" data-track-place="footer"><span>预约讲解</span></a>
           <a href="#contact"><span>联系我们</span></a>
         </div>
@@ -678,10 +678,10 @@
       var KEY = 'sb_publishable_2V-eHOvw1v_Xwr1bpHfHLg_cbHW9ctD';
       var LANG = (document.documentElement.lang || 'fr').slice(0, 2);
       var TXT = {
-        fr: { mois: '/ mois', devis: 'Sur devis', jusqua: function (n) { return "Jusqu'à " + n + ' logements'; }, illim: 'Logements illimités · réseau multi-immeubles', pop: 'Le plus populaire', cta: 'Nous contacter' },
-        en: { mois: '/ month', devis: 'On quote', jusqua: function (n) { return 'Up to ' + n + ' units'; }, illim: 'Unlimited units · multi-building network', pop: 'Most popular', cta: 'Contact us' },
-        es: { mois: '/ mes', devis: 'Bajo presupuesto', jusqua: function (n) { return 'Hasta ' + n + ' viviendas'; }, illim: 'Viviendas ilimitadas · red multiedificio', pop: 'El más popular', cta: 'Contáctenos' },
-        zh: { mois: '/ 月', devis: '按报价', jusqua: function (n) { return '最多 ' + n + ' 户'; }, illim: '户数不限 · 多楼宇网络', pop: '最受欢迎', cta: '联系我们' }
+        fr: { mois: '/ mois', devis: 'Sur devis', jusqua: function (n) { return "Jusqu'à " + n + ' logements'; }, pop: 'Le plus populaire', cta: 'Nous contacter' },
+        en: { mois: '/ month', devis: 'On quote', jusqua: function (n) { return 'Up to ' + n + ' units'; }, pop: 'Most popular', cta: 'Contact us' },
+        es: { mois: '/ mes', devis: 'Bajo presupuesto', jusqua: function (n) { return 'Hasta ' + n + ' viviendas'; }, pop: 'El más popular', cta: 'Contáctenos' },
+        zh: { mois: '/ 月', devis: '按报价', jusqua: function (n) { return '最多 ' + n + ' 户'; }, pop: '最受欢迎', cta: '联系我们' }
       };
       var t = TXT[LANG] || TXT.fr;
       function esc(s) { return String(s == null ? '' : s).replace(/[&<>"']/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]; }); }
@@ -696,7 +696,7 @@
               + (p.featured ? '<div class="plan-badge">' + t.pop + '</div>' : '')
               + '<div class="plan-name">' + esc(p.name) + '</div>'
               + '<div class="plan-price">' + prix + '</div>'
-              + '<div class="plan-units">' + (p.max_units ? t.jusqua(esc(p.max_units)) : t.illim) + '</div>'
+              + (p.max_units ? '<div class="plan-units">' + t.jusqua(esc(p.max_units)) + '</div>' : '')
               + '<ul class="plan-feats">' + feats.map(function (f) { return '<li' + (f.included ? '' : ' class="off"') + '>' + esc(f.label) + '</li>'; }).join('') + '</ul>'
               + '<a class="btn ' + (p.featured ? 'btn-main' : 'btn-line') + '" href="#contact" data-track="contact_click" data-track-place="forfait_' + esc(p.code) + '">' + t.cta + '</a>'
               + '</div>';

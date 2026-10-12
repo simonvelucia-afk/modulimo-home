@@ -276,7 +276,7 @@
         <a class="btn btn-main" href="https://cohabitat.modulimo.com/#essai" data-track="demo_click" data-track-place="hero"><span data-lang="fr">Essayer la démo</span><span data-lang="en">Try the demo</span><span data-lang="es">Probar la demo</span><span data-lang="zh">试用演示版</span> →</a>
         <a class="btn btn-line" href="https://calendar.app.google/yqELaEthBMPkEhbk7" target="_blank" rel="noopener" data-track="booking_click" data-track-place="hero"><span data-lang="fr">Réserver une présentation</span><span data-lang="en">Book a walkthrough</span><span data-lang="es">Reservar una presentación</span><span data-lang="zh">预约讲解</span></a>
       </div>
-      <p class="hero-note"><span data-lang="fr">Démo complète, sans inscription. Données fictives, rien n'est facturé.</span><span data-lang="en">Full demo, no sign-up. Sample data, nothing is charged.</span><span data-lang="es">Demo completa, sin registro. Datos ficticios, no se cobra nada.</span><span data-lang="zh">完整演示，无需注册。示例数据，不产生任何费用。</span></p>
+      <p class="hero-note"><span data-lang="fr">Démo complète, sans inscription. Données fictives, rien n'est facturé.</span><span data-lang="en">Full demo, no sign-up. Sample data, nothing is charged.</span><span data-lang="es">Demo completa, sin registro. Datos ficticios, no se cobra nada.</span><span data-lang="zh">完整演示，无需注册。示例数据，不产生任何费用。</span><br><span data-lang="fr">Déjà résidant ?</span><span data-lang="en">Already a resident?</span><span data-lang="es">¿Ya es residente?</span><span data-lang="zh">已是住户？</span> <a href="https://cohabitat.modulimo.com/#connexion" style="color:var(--green);font-weight:600;text-decoration:underline;"><span data-lang="fr">Se connecter</span><span data-lang="en">Log in</span><span data-lang="es">Iniciar sesión</span><span data-lang="zh">登录</span></a></p>
     </div>
     <div class="hero-visual">
       <img class="hero-desktop" src="../images/cohabitat/tableau.webp" alt="Tableau de bord CoHabitat" data-alt-en="CoHabitat dashboard" data-alt-es="Panel de CoHabitat" data-alt-zh="CoHabitat 仪表板" width="1600" height="1000" />
@@ -604,7 +604,7 @@
         <div class="footer-nav">
           <h5>CoHabitat</h5>
           <a href="https://cohabitat.modulimo.com/#essai" data-track="demo_click" data-track-place="footer"><span data-lang="fr">Essayer la démo</span><span data-lang="en">Try the demo</span><span data-lang="es">Probar la demo</span><span data-lang="zh">试用演示版</span></a>
-          <a href="https://cohabitat.modulimo.com"><span data-lang="fr">Connexion des résidants</span><span data-lang="en">Resident login</span><span data-lang="es">Acceso de residentes</span><span data-lang="zh">住户登录</span></a>
+          <a href="https://cohabitat.modulimo.com/#connexion"><span data-lang="fr">Connexion des résidants</span><span data-lang="en">Resident login</span><span data-lang="es">Acceso de residentes</span><span data-lang="zh">住户登录</span></a>
           <a href="https://calendar.app.google/yqELaEthBMPkEhbk7" target="_blank" rel="noopener" data-track="booking_click" data-track-place="footer"><span data-lang="fr">Réserver une présentation</span><span data-lang="en">Book a walkthrough</span><span data-lang="es">Reservar una presentación</span><span data-lang="zh">预约讲解</span></a>
           <a href="#contact"><span data-lang="fr">Nous joindre</span><span data-lang="en">Contact us</span><span data-lang="es">Contáctenos</span><span data-lang="zh">联系我们</span></a>
         </div>
@@ -654,10 +654,10 @@
       var KEY = 'sb_publishable_2V-eHOvw1v_Xwr1bpHfHLg_cbHW9ctD';
       var LANG = (document.documentElement.lang || 'fr').slice(0, 2);
       var TXT = {
-        fr: { mois: '/ mois', devis: 'Sur devis', jusqua: function (n) { return "Jusqu'à " + n + ' logements'; }, illim: 'Logements illimités · réseau multi-immeubles', pop: 'Le plus populaire', cta: 'Nous contacter' },
-        en: { mois: '/ month', devis: 'On quote', jusqua: function (n) { return 'Up to ' + n + ' units'; }, illim: 'Unlimited units · multi-building network', pop: 'Most popular', cta: 'Contact us' },
-        es: { mois: '/ mes', devis: 'Bajo presupuesto', jusqua: function (n) { return 'Hasta ' + n + ' viviendas'; }, illim: 'Viviendas ilimitadas · red multiedificio', pop: 'El más popular', cta: 'Contáctenos' },
-        zh: { mois: '/ 月', devis: '按报价', jusqua: function (n) { return '最多 ' + n + ' 户'; }, illim: '户数不限 · 多楼宇网络', pop: '最受欢迎', cta: '联系我们' }
+        fr: { mois: '/ mois', devis: 'Sur devis', jusqua: function (n) { return "Jusqu'à " + n + ' logements'; }, pop: 'Le plus populaire', cta: 'Nous contacter' },
+        en: { mois: '/ month', devis: 'On quote', jusqua: function (n) { return 'Up to ' + n + ' units'; }, pop: 'Most popular', cta: 'Contact us' },
+        es: { mois: '/ mes', devis: 'Bajo presupuesto', jusqua: function (n) { return 'Hasta ' + n + ' viviendas'; }, pop: 'El más popular', cta: 'Contáctenos' },
+        zh: { mois: '/ 月', devis: '按报价', jusqua: function (n) { return '最多 ' + n + ' 户'; }, pop: '最受欢迎', cta: '联系我们' }
       };
       var t = TXT[LANG] || TXT.fr;
       function esc(s) { return String(s == null ? '' : s).replace(/[&<>"']/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]; }); }
@@ -672,7 +672,7 @@
               + (p.featured ? '<div class="plan-badge">' + t.pop + '</div>' : '')
               + '<div class="plan-name">' + esc(p.name) + '</div>'
               + '<div class="plan-price">' + prix + '</div>'
-              + '<div class="plan-units">' + (p.max_units ? t.jusqua(esc(p.max_units)) : t.illim) + '</div>'
+              + (p.max_units ? '<div class="plan-units">' + t.jusqua(esc(p.max_units)) + '</div>' : '')
               + '<ul class="plan-feats">' + feats.map(function (f) { return '<li' + (f.included ? '' : ' class="off"') + '>' + esc(f.label) + '</li>'; }).join('') + '</ul>'
               + '<a class="btn ' + (p.featured ? 'btn-main' : 'btn-line') + '" href="#contact" data-track="contact_click" data-track-place="forfait_' + esc(p.code) + '">' + t.cta + '</a>'
               + '</div>';
