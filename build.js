@@ -109,6 +109,22 @@ const PAGES = [
     },
   },
   {
+    src: 'src/cohabitat/index.html', route: 'cohabitat/',
+    image: '/images/cohabitat/apercu-partage.jpg',
+    title: {
+      fr: "CoHabitat — L'application de votre immeuble | Modulimo",
+      en: 'CoHabitat — The app for your building | Modulimo',
+      es: 'CoHabitat — La aplicación de su edificio | Modulimo',
+      zh: 'CoHabitat — 您的楼宇专属应用 | Modulimo',
+    },
+    desc: {
+      fr: "Réservation d'espaces communs, auto-partage, serre, babillard et billets de service : CoHabitat réunit les ressources partagées de l'immeuble. Conforme à la Loi 25. Démo gratuite.",
+      en: 'Shared space booking, car sharing, greenhouse, bulletin board and service tickets: CoHabitat brings a building\'s shared resources together. Quebec Law 25 compliant. Free demo.',
+      es: 'Reserva de espacios comunes, vehículos compartidos, invernadero, tablón de anuncios y solicitudes de servicio: CoHabitat reúne los recursos compartidos del edificio. Conforme a la Ley 25 de Quebec. Demo gratuita.',
+      zh: '公共空间预订、共享汽车、温室、公告栏与服务工单：CoHabitat 汇集楼宇的共享资源。符合魁北克第 25 号法案。免费演示。',
+    },
+  },
+  {
     src: 'src/confidentialite/index.html', route: 'confidentialite/',
     title: {
       fr: 'Politique de confidentialité — Modulimo',
@@ -142,7 +158,7 @@ const PAGES = [
 
 // Slugs internes réécrits avec préfixe de langue (le reste — /postuler,
 // /images, /js, ancres, externes — ne change pas).
-const ROUTE_SLUGS = ['mobilite', 'securite', 'projets/pointe-est', 'projets', 'produits', 'confidentialite'];
+const ROUTE_SLUGS = ['mobilite', 'securite', 'projets/pointe-est', 'projets', 'produits', 'confidentialite', 'cohabitat'];
 
 // ------------------------------------------------------------
 // Extraction d'une langue. Les éléments data-lang consécutifs
@@ -392,6 +408,27 @@ function headLinks(route, lang) {
   ].map((l) => '  ' + l).join('\n');
 }
 
+// Balises Open Graph et Twitter : l'aperçu affiché quand un lien est partagé
+// (Facebook, LinkedIn, Messenger, texto). Sans elles, un lien partagé
+// s'affiche comme une page vide. L'image est celle de la page si elle en
+// déclare une (`image` dans PAGES), sinon le logo.
+const OG_LOCALE = { fr: 'fr_CA', en: 'en_CA', es: 'es_MX', zh: 'zh_CN' };
+const OG_IMAGE_DEFAUT = '/images/ModulimoLogoSobre.png';
+
+function ogTags(page, lang) {
+  const url = SITE + (lang === 'fr' ? '' : '/' + lang) + '/' + page.route;
+  const image = SITE + (page.image || OG_IMAGE_DEFAUT);
+  return [
+    `<meta property="og:title" content="${esc(page.title[lang])}" />`,
+    `<meta property="og:description" content="${esc(page.desc[lang])}" />`,
+    `<meta property="og:url" content="${url}" />`,
+    `<meta property="og:image" content="${image}" />`,
+    `<meta property="og:locale" content="${OG_LOCALE[lang]}" />`,
+    ...LANGS.filter((l) => l !== lang).map((l) => `<meta property="og:locale:alternate" content="${OG_LOCALE[l]}" />`),
+    `<meta name="twitter:card" content="${page.image ? 'summary_large_image' : 'summary'}" />`,
+  ].map((l) => '  ' + l).join('\n');
+}
+
 function esc(s) {
   return s.replace(/&/g, '&amp;').replace(/"/g, '&quot;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
 }
@@ -430,7 +467,11 @@ function buildPage(page, lang, verrou) {
   }
 
   // canonical + hreflang juste après la meta description
-  html = html.replace(desc, desc + '\n' + headLinks(page.route, lang));
+  html = html.replace(desc, desc + '\n' + headLinks(page.route, lang) + '\n' + ogTags(page, lang));
+  // og:title / og:description éventuellement écrits dans la source : les
+  // nôtres, localisés, font foi.
+  html = html.replace(/\n\s*<meta property="og:(?:type|site_name)"[^>]*>/g, '');
+  html = html.replace('</title>', '</title>\n  <meta property="og:type" content="website" />\n  <meta property="og:site_name" content="Modulimo" />');
 
   // sélecteur de langue par URL
   html = html.replace(/<div class="lang-switch">[\s\S]*?<\/div>/, langSwitcher(page.route, lang));
