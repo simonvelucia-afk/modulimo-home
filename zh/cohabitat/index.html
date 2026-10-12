@@ -6,7 +6,7 @@
   <title>CoHabitat — 您的楼宇专属应用 | Modulimo</title>
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="Modulimo" />
-  <meta name="description" content="公共空间预订、共享汽车、温室、公告栏与服务工单：CoHabitat 汇集楼宇的共享资源。符合魁北克第 25 号法案。免费演示。" />
+  <meta name="description" content="CoHabitat，您的楼宇专属应用：为租户提供公共空间、共享汽车、温室与公告栏，租户无需订阅。符合魁北克第 25 号法案。免费演示。" />
   <link rel="canonical" href="https://www.modulimo.com/zh/cohabitat/" />
   <link rel="alternate" hreflang="fr-CA" href="https://www.modulimo.com/cohabitat/" />
   <link rel="alternate" hreflang="en" href="https://www.modulimo.com/en/cohabitat/" />
@@ -14,7 +14,7 @@
   <link rel="alternate" hreflang="zh-Hans" href="https://www.modulimo.com/zh/cohabitat/" />
   <link rel="alternate" hreflang="x-default" href="https://www.modulimo.com/cohabitat/" />
   <meta property="og:title" content="CoHabitat — 您的楼宇专属应用 | Modulimo" />
-  <meta property="og:description" content="公共空间预订、共享汽车、温室、公告栏与服务工单：CoHabitat 汇集楼宇的共享资源。符合魁北克第 25 号法案。免费演示。" />
+  <meta property="og:description" content="CoHabitat，您的楼宇专属应用：为租户提供公共空间、共享汽车、温室与公告栏，租户无需订阅。符合魁北克第 25 号法案。免费演示。" />
   <meta property="og:url" content="https://www.modulimo.com/zh/cohabitat/" />
   <meta property="og:image" content="https://www.modulimo.com/images/cohabitat/apercu-partage.jpg" />
   <meta property="og:locale" content="zh_CN" />
@@ -171,6 +171,9 @@
     .contact .sec-tag::after { background:var(--green-md); }
     .contact .sec-title { color:#fff; }
     .contact .sec-body { color:rgba(255,255,255,.78); margin:0 auto; }
+    .contact-book { margin-top:2rem; }
+    .contact-or { margin-top:1.2rem; font-size:.9rem; color:rgba(255,255,255,.7); }
+    .contact .lead-form { margin-top:1rem; }
     .contact-alt { margin-top:1.4rem; font-size:.88rem; color:rgba(255,255,255,.7); }
     .contact-alt a { color:#fff; text-decoration:underline; }
     .lead-form { background:#fff; color:var(--text); border-radius:12px; padding:28px 26px; max-width:600px; margin:2.4rem auto 0; text-align:left; box-shadow:0 10px 36px rgba(0,0,0,.22); position:relative; }
@@ -289,14 +292,14 @@
   <!-- HERO -->
   <section class="hero">
     <div>
-      <span class="hero-tag"><span>CoHabitat · 住宅软件</span></span>
+      <span class="hero-tag"><span>CoHabitat · 面向业主与物业管理者</span></span>
       <h1 class="hero-title"><span>您的楼宇</span><br><span class="green"><span>专属应用。</span></span></h1>
-      <p class="hero-desc"><span>公共空间、共享汽车、温室、公告栏与服务工单：CoHabitat 将住户共享的一切汇集到一个简单、安全、符合魁北克第 25 号法案的应用中。</span></p>
+      <p class="hero-desc"><span>为租户提供公共空间、共享汽车、温室与公告栏，尽在一个应用中。您的楼宇脱颖而出，租户愿意长住，共享资源自行运转，并能覆盖自身成本。</span></p>
       <div class="hero-ctas">
         <a class="btn btn-main" href="https://cohabitat.modulimo.com/#essai" data-track="demo_click" data-track-place="hero"><span>试用演示版</span> →</a>
-        <a class="btn btn-line" href="#contact" data-track="contact_click" data-track-place="hero"><span>预约讲解</span></a>
+        <a class="btn btn-line" href="https://calendar.app.google/yqELaEthBMPkEhbk7" target="_blank" rel="noopener" data-track="booking_click" data-track-place="hero"><span>预约讲解</span></a>
       </div>
-      <p class="hero-note"><span>完整演示，无需注册。示例数据，不产生任何费用。</span></p>
+      <p class="hero-note"><span>完整演示，无需注册。示例数据，不产生任何费用。</span><br><span>已是住户？</span> <a href="https://cohabitat.modulimo.com/#connexion" style="color:var(--green);font-weight:600;text-decoration:underline;"><span>登录</span></a></p>
     </div>
     <div class="hero-visual">
       <img class="hero-desktop" src="/images/cohabitat/tableau.webp" alt="CoHabitat 仪表板" width="1600" height="1000" />
@@ -308,7 +311,7 @@
   <div class="proofs">
     <div class="proof"><div class="proof-n">10</div><div class="proof-l"><span>可按需启用的模块</span></div></div>
     <div class="proof"><div class="proof-n">4</div><div class="proof-l"><span>种语言：FR · EN · ES · 中文</span></div></div>
-    <div class="proof"><div class="proof-n">15 min</div><div class="proof-l"><span>空间预订最小单位</span></div></div>
+    <div class="proof"><div class="proof-n">0 $</div><div class="proof-l"><span>租户无需订阅费</span></div></div>
     <div class="proof"><div class="proof-n">Loi 25</div><div class="proof-l"><span>从一开始即内置合规</span></div></div>
   </div>
 
@@ -316,24 +319,24 @@
   <section>
     <div class="sec-head">
       <div class="sec-tag"><span>为何选择 CoHabitat</span></div>
-      <h2 class="sec-title"><span>更少的邮件、表格与纠纷。</span></h2>
-      <p class="sec-body"><span>共享资源是楼宇价值所在 —— 前提是预订简单、付费公平、管委会易于管理。</span></p>
+      <h2 class="sec-title"><span>更具吸引力、更易管理的楼宇。</span></h2>
+      <p class="sec-body"><span>共享空间与服务是楼宇价值所在。CoHabitat 让租户一目了然、轻松预订，而您无需操心。</span></p>
     </div>
     <div class="ben-grid">
         <div class="ben-card">
           <div class="ben-num">01</div>
-          <h3 class="ben-title"><span>告别预订冲突</span></h3>
-          <p class="ben-desc"><span>会议室、屋顶露台、工作坊：每位住户都能实时查看空闲情况，以 15 分钟为单位预订，费用自动计算并扣除。</span></p>
+          <h3 class="ben-title"><span>吸引并留住租户</span></h3>
+          <p class="ben-desc"><span>会议室、屋顶露台、车辆、温室：实实在在的服务，让您的楼宇在租赁市场中脱颖而出，也让租户愿意长住。</span></p>
         </div>
         <div class="ben-card">
           <div class="ben-num">02</div>
-          <h3 class="ben-title"><span>共享出行，告别电子表格</span></h3>
-          <p class="ben-desc"><span>车辆与卧式篷车按小时预订，邻里拼车，还车时按里程计费：楼内车队自行运转。</span></p>
+          <h3 class="ben-title"><span>自负盈亏的空间</span></h3>
+          <p class="ben-desc"><span>租户无需订阅，只为所预订的内容付费 —— 按 15 分钟时段或按公里计，价格由您设定。使用费用可覆盖共享资源的成本。</span></p>
         </div>
         <div class="ben-card">
           <div class="ben-num">03</div>
-          <h3 class="ben-title"><span>您的数据留在您手中</span></h3>
-          <p class="ben-desc"><span>每栋建筑拥有独立且相互隔离的数据库。符合魁北克第 25 号法案，可应要求删除数据 —— 还有无需云端即可运行的独立模式。</span></p>
+          <h3 class="ben-title"><span>更少管理，零风险</span></h3>
+          <p class="ben-desc"><span>预订、付款、报修与公告均在应用内完成。数据按楼宇隔离，符合魁北克第 25 号法案。</span></p>
         </div>
     </div>
   </section>
@@ -441,25 +444,25 @@
   <section class="audience">
     <div class="sec-head">
       <div class="sec-tag"><span>适用对象</span></div>
-      <h2 class="sec-title"><span>为集体居住而设计。</span></h2>
+      <h2 class="sec-title"><span>为楼宇提供者而设计。</span></h2>
       <p class="sec-body"><span>CoHabitat 与蒙特利尔 Pointe Est 项目同步设计，交付即集成，适用于任何共享资源的楼宇。</span></p>
     </div>
     <div class="aud-grid">
         <div class="aud-card">
-          <h3><span>共管公寓</span></h3>
-          <p><span>为管委会与业主提供简单工具：预订、工单、公告。</span></p>
-        </div>
-        <div class="aud-card">
-          <h3><span>住房合作社与非营利住房机构</span></h3>
-          <p><span>免去繁琐手续共享资源，并让成员参与其中。</span></p>
+          <h3><span>出租楼宇业主</span></h3>
+          <p><span>出租卖点，以及真正被利用、能覆盖自身成本的公共空间。</span></p>
         </div>
         <div class="aud-card">
           <h3><span>开发商</span></h3>
           <p><span>交房即交付配套就绪的数字化服务。</span></p>
         </div>
         <div class="aud-card">
-          <h3><span>合居社区</span></h3>
-          <p><span>温室、出行、餐食、互助：让社区充满活力的一切。</span></p>
+          <h3><span>物业管理者与共管公寓</span></h3>
+          <p><span>预订、工单与公告集中一处，无需表格或邮件。</span></p>
+        </div>
+        <div class="aud-card">
+          <h3><span>合作社与合居社区</span></h3>
+          <p><span>没有业主？也可按成员计费。</span></p>
         </div>
     </div>
   </section>
@@ -506,12 +509,13 @@
         <ul class="plan-feats">
           <li><span>全部模块，可逐一启用</span></li>
           <li><span>托管或独立部署</span></li>
+          <li><span>租户无限制使用</span></li>
           <li><span>启动阶段全程协助</span></li>
         </ul>
         <a class="btn btn-main" href="#contact" data-track="contact_click" data-track-place="forfaits"><span>索取报价</span></a>
       </div>
     </div>
-    <p class="plans-note"><span>价格以加元计，不含税。</span></p>
+    <p class="plans-note"><span>由业主支付。租户无需订阅，只为所预订的内容付费。价格以加元计，不含税。</span></p>
   </section>
 
   <!-- FAQ -->
@@ -521,6 +525,10 @@
       <h2 class="sec-title"><span>大家常问的问题。</span></h2>
     </div>
     <div class="faq-list">
+        <details class="faq-item">
+          <summary><span>租户需要付费吗？</span></summary>
+          <p><span>无需订阅。方案费用由业主支付。租户只为所预订的内容付费（空间、车辆、温室种植区），价格由您设定，以覆盖共享资源的成本。</span></p>
+        </details>
         <details class="faq-item">
           <summary><span>需要安装什么吗？</span></summary>
           <p><span>不需要。CoHabitat 在浏览器中即可打开，一键即可添加到手机主屏幕，另有 Android 应用。</span></p>
@@ -544,8 +552,12 @@
   <section class="contact" id="contact">
     <div class="sec-tag"><span>联系</span></div>
     <h2 class="sec-title"><span>聊聊您的楼宇。</span></h2>
-    <p class="sec-body"><span>免费且无任何义务的 30 分钟讲解，聚焦您关心的模块。我们会在一个工作日内回复。</span></p>
+    <p class="sec-body"><span>免费且无任何义务的 15 分钟视频讲解，聚焦您关心的模块。请选择时间：确认邮件中会附上 Google Meet 链接。</span></p>
 
+    <div class="contact-book">
+      <a class="btn btn-light" href="https://calendar.app.google/yqELaEthBMPkEhbk7" target="_blank" rel="noopener" data-track="booking_click" data-track-place="contact">📅 <span>选择时间</span></a>
+      <p class="contact-or"><span>或给我们留言，我们会为您安排时间：</span></p>
+    </div>
     <form class="lead-form" id="leadForm" method="post" action="#" data-consent-version="2026-10-cohabitat-v1" data-subject="CoHabitat">
       <div class="lf-fields">
         <div class="lf-grid">
@@ -601,7 +613,7 @@
       <div class="lf-success" role="status">
         <div class="lf-check" aria-hidden="true">✓</div>
         <h3><span>谢谢，已收到。</span></h3>
-        <p><span>我们将在一个工作日内与您联系，安排讲解时间。</span></p>
+        <p><span>我们将与您联系，安排讲解时间。</span> <a href="https://calendar.app.google/yqELaEthBMPkEhbk7" target="_blank" rel="noopener" data-track="booking_click" data-track-place="succes" style="color:var(--green);font-weight:600;"><span>或立即预约时间 →</span></a></p>
       </div>
     </form>
     <p class="contact-alt"><span>更喜欢邮件？</span> <a href="mailto:info@modulimo.com?subject=CoHabitat" data-track="email_click" data-track-place="contact">info@modulimo.com</a></p>
@@ -620,7 +632,8 @@
         <div class="footer-nav">
           <h5>CoHabitat</h5>
           <a href="https://cohabitat.modulimo.com/#essai" data-track="demo_click" data-track-place="footer"><span>试用演示版</span></a>
-          <a href="https://cohabitat.modulimo.com"><span>住户登录</span></a>
+          <a href="https://cohabitat.modulimo.com/#connexion"><span>住户登录</span></a>
+          <a href="https://calendar.app.google/yqELaEthBMPkEhbk7" target="_blank" rel="noopener" data-track="booking_click" data-track-place="footer"><span>预约讲解</span></a>
           <a href="#contact"><span>联系我们</span></a>
         </div>
         <div class="footer-nav">
@@ -670,10 +683,10 @@
       var KEY = 'sb_publishable_2V-eHOvw1v_Xwr1bpHfHLg_cbHW9ctD';
       var LANG = (document.documentElement.lang || 'fr').slice(0, 2);
       var TXT = {
-        fr: { mois: '/ mois', devis: 'Sur devis', jusqua: function (n) { return "Jusqu'à " + n + ' logements'; }, illim: 'Logements illimités · réseau multi-immeubles', pop: 'Le plus populaire', cta: 'Nous contacter' },
-        en: { mois: '/ month', devis: 'On quote', jusqua: function (n) { return 'Up to ' + n + ' units'; }, illim: 'Unlimited units · multi-building network', pop: 'Most popular', cta: 'Contact us' },
-        es: { mois: '/ mes', devis: 'Bajo presupuesto', jusqua: function (n) { return 'Hasta ' + n + ' viviendas'; }, illim: 'Viviendas ilimitadas · red multiedificio', pop: 'El más popular', cta: 'Contáctenos' },
-        zh: { mois: '/ 月', devis: '按报价', jusqua: function (n) { return '最多 ' + n + ' 户'; }, illim: '户数不限 · 多楼宇网络', pop: '最受欢迎', cta: '联系我们' }
+        fr: { mois: '/ mois', devis: 'Sur devis', jusqua: function (n) { return "Jusqu'à " + n + ' logements'; }, pop: 'Le plus populaire', cta: 'Nous contacter' },
+        en: { mois: '/ month', devis: 'On quote', jusqua: function (n) { return 'Up to ' + n + ' units'; }, pop: 'Most popular', cta: 'Contact us' },
+        es: { mois: '/ mes', devis: 'Bajo presupuesto', jusqua: function (n) { return 'Hasta ' + n + ' viviendas'; }, pop: 'El más popular', cta: 'Contáctenos' },
+        zh: { mois: '/ 月', devis: '按报价', jusqua: function (n) { return '最多 ' + n + ' 户'; }, pop: '最受欢迎', cta: '联系我们' }
       };
       var t = TXT[LANG] || TXT.fr;
       function esc(s) { return String(s == null ? '' : s).replace(/[&<>"']/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]; }); }
@@ -688,7 +701,7 @@
               + (p.featured ? '<div class="plan-badge">' + t.pop + '</div>' : '')
               + '<div class="plan-name">' + esc(p.name) + '</div>'
               + '<div class="plan-price">' + prix + '</div>'
-              + '<div class="plan-units">' + (p.max_units ? t.jusqua(esc(p.max_units)) : t.illim) + '</div>'
+              + (p.max_units ? '<div class="plan-units">' + t.jusqua(esc(p.max_units)) + '</div>' : '')
               + '<ul class="plan-feats">' + feats.map(function (f) { return '<li' + (f.included ? '' : ' class="off"') + '>' + esc(f.label) + '</li>'; }).join('') + '</ul>'
               + '<a class="btn ' + (p.featured ? 'btn-main' : 'btn-line') + '" href="#contact" data-track="contact_click" data-track-place="forfait_' + esc(p.code) + '">' + t.cta + '</a>'
               + '</div>';

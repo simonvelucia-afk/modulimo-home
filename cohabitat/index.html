@@ -6,7 +6,7 @@
   <title>CoHabitat — L'application de votre immeuble | Modulimo</title>
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="Modulimo" />
-  <meta name="description" content="Réservation d'espaces communs, auto-partage, serre, babillard et billets de service : CoHabitat réunit les ressources partagées de l'immeuble. Conforme à la Loi 25. Démo gratuite." />
+  <meta name="description" content="CoHabitat, l'application de votre immeuble : espaces communs, auto-partage, serre et babillard pour vos locataires, sans abonnement pour eux. Conforme à la Loi 25. Démo gratuite." />
   <link rel="canonical" href="https://www.modulimo.com/cohabitat/" />
   <link rel="alternate" hreflang="fr-CA" href="https://www.modulimo.com/cohabitat/" />
   <link rel="alternate" hreflang="en" href="https://www.modulimo.com/en/cohabitat/" />
@@ -14,7 +14,7 @@
   <link rel="alternate" hreflang="zh-Hans" href="https://www.modulimo.com/zh/cohabitat/" />
   <link rel="alternate" hreflang="x-default" href="https://www.modulimo.com/cohabitat/" />
   <meta property="og:title" content="CoHabitat — L'application de votre immeuble | Modulimo" />
-  <meta property="og:description" content="Réservation d'espaces communs, auto-partage, serre, babillard et billets de service : CoHabitat réunit les ressources partagées de l'immeuble. Conforme à la Loi 25. Démo gratuite." />
+  <meta property="og:description" content="CoHabitat, l'application de votre immeuble : espaces communs, auto-partage, serre et babillard pour vos locataires, sans abonnement pour eux. Conforme à la Loi 25. Démo gratuite." />
   <meta property="og:url" content="https://www.modulimo.com/cohabitat/" />
   <meta property="og:image" content="https://www.modulimo.com/images/cohabitat/apercu-partage.jpg" />
   <meta property="og:locale" content="fr_CA" />
@@ -171,6 +171,9 @@
     .contact .sec-tag::after { background:var(--green-md); }
     .contact .sec-title { color:#fff; }
     .contact .sec-body { color:rgba(255,255,255,.78); margin:0 auto; }
+    .contact-book { margin-top:2rem; }
+    .contact-or { margin-top:1.2rem; font-size:.9rem; color:rgba(255,255,255,.7); }
+    .contact .lead-form { margin-top:1rem; }
     .contact-alt { margin-top:1.4rem; font-size:.88rem; color:rgba(255,255,255,.7); }
     .contact-alt a { color:#fff; text-decoration:underline; }
     .lead-form { background:#fff; color:var(--text); border-radius:12px; padding:28px 26px; max-width:600px; margin:2.4rem auto 0; text-align:left; box-shadow:0 10px 36px rgba(0,0,0,.22); position:relative; }
@@ -289,14 +292,14 @@
   <!-- HERO -->
   <section class="hero">
     <div>
-      <span class="hero-tag"><span>CoHabitat · Logiciel résidentiel</span></span>
+      <span class="hero-tag"><span>CoHabitat · Pour propriétaires et gestionnaires</span></span>
       <h1 class="hero-title"><span>L'application</span><br><span class="green"><span>de votre immeuble.</span></span></h1>
-      <p class="hero-desc"><span>Espaces communs, auto-partage, serre, babillard et billets de service : CoHabitat réunit tout ce que les résidants partagent, dans une seule application simple, sécurisée et conforme à la Loi 25.</span></p>
+      <p class="hero-desc"><span>Offrez à vos locataires des espaces communs, de l'auto-partage, une serre et un babillard réunis dans une seule application. Votre immeuble se démarque, vos locataires restent, et les ressources partagées se gèrent toutes seules et couvrent leurs frais.</span></p>
       <div class="hero-ctas">
         <a class="btn btn-main" href="https://cohabitat.modulimo.com/#essai" data-track="demo_click" data-track-place="hero"><span>Essayer la démo</span> →</a>
-        <a class="btn btn-line" href="#contact" data-track="contact_click" data-track-place="hero"><span>Réserver une présentation</span></a>
+        <a class="btn btn-line" href="https://calendar.app.google/yqELaEthBMPkEhbk7" target="_blank" rel="noopener" data-track="booking_click" data-track-place="hero"><span>Réserver une présentation</span></a>
       </div>
-      <p class="hero-note"><span>Démo complète, sans inscription. Données fictives, rien n'est facturé.</span></p>
+      <p class="hero-note"><span>Démo complète, sans inscription. Données fictives, rien n'est facturé.</span><br><span>Déjà résidant ?</span> <a href="https://cohabitat.modulimo.com/#connexion" style="color:var(--green);font-weight:600;text-decoration:underline;"><span>Se connecter</span></a></p>
     </div>
     <div class="hero-visual">
       <img class="hero-desktop" src="/images/cohabitat/tableau.webp" alt="Tableau de bord CoHabitat" width="1600" height="1000" />
@@ -308,7 +311,7 @@
   <div class="proofs">
     <div class="proof"><div class="proof-n">10</div><div class="proof-l"><span>Modules à activer au choix</span></div></div>
     <div class="proof"><div class="proof-n">4</div><div class="proof-l"><span>Langues : FR · EN · ES · 中文</span></div></div>
-    <div class="proof"><div class="proof-n">15 min</div><div class="proof-l"><span>Tranche de réservation des espaces</span></div></div>
+    <div class="proof"><div class="proof-n">0 $</div><div class="proof-l"><span>D'abonnement pour vos locataires</span></div></div>
     <div class="proof"><div class="proof-n">Loi 25</div><div class="proof-l"><span>Conformité intégrée dès le départ</span></div></div>
   </div>
 
@@ -316,24 +319,24 @@
   <section>
     <div class="sec-head">
       <div class="sec-tag"><span>Pourquoi CoHabitat</span></div>
-      <h2 class="sec-title"><span>Moins de courriels, de tableurs et de conflits.</span></h2>
-      <p class="sec-body"><span>Les ressources partagées font la valeur d'un immeuble. Encore faut-il qu'elles soient simples à réserver, justes à payer et faciles à gérer pour le conseil.</span></p>
+      <h2 class="sec-title"><span>Un immeuble plus attrayant, plus simple à gérer.</span></h2>
+      <p class="sec-body"><span>Les espaces et services partagés font la valeur d'un immeuble. CoHabitat les rend visibles pour vos locataires, simples à réserver, et sans travail pour vous.</span></p>
     </div>
     <div class="ben-grid">
         <div class="ben-card">
           <div class="ben-num">01</div>
-          <h3 class="ben-title"><span>Fini les conflits de réservation</span></h3>
-          <p class="ben-desc"><span>Salles, terrasse, atelier : chaque résidant voit les disponibilités en direct et réserve par tranches de 15 minutes. Le coût est calculé et débité automatiquement.</span></p>
+          <h3 class="ben-title"><span>Attirez et gardez vos locataires</span></h3>
+          <p class="ben-desc"><span>Salles, terrasse, véhicules, serre : des services concrets qui distinguent votre immeuble à la location et donnent envie de rester.</span></p>
         </div>
         <div class="ben-card">
           <div class="ben-num">02</div>
-          <h3 class="ben-title"><span>La mobilité partagée, sans tableur</span></h3>
-          <p class="ben-desc"><span>Véhicules et vélomobiles réservables à l'heure, covoiturage entre voisins, kilomètres facturés au retour : la flotte de l'immeuble se gère toute seule.</span></p>
+          <h3 class="ben-title"><span>Des espaces qui se rentabilisent</span></h3>
+          <p class="ben-desc"><span>Vos locataires ne paient pas d'abonnement : seulement ce qu'ils réservent, au créneau de 15 minutes ou au kilomètre, selon les tarifs que vous fixez. L'usage couvre les frais des ressources partagées.</span></p>
         </div>
         <div class="ben-card">
           <div class="ben-num">03</div>
-          <h3 class="ben-title"><span>Vos données restent chez vous</span></h3>
-          <p class="ben-desc"><span>Chaque immeuble a sa propre base, isolée des autres. Conformité à la Loi 25, suppression sur demande — et un mode autonome qui fonctionne sans nuage.</span></p>
+          <h3 class="ben-title"><span>Moins de gestion, aucun risque</span></h3>
+          <p class="ben-desc"><span>Réservations, paiements, bris et annonces se règlent dans l'application. Données isolées par immeuble et conformes à la Loi 25.</span></p>
         </div>
     </div>
   </section>
@@ -441,25 +444,25 @@
   <section class="audience">
     <div class="sec-head">
       <div class="sec-tag"><span>Pour qui</span></div>
-      <h2 class="sec-title"><span>Pensé pour l'habitation collective.</span></h2>
+      <h2 class="sec-title"><span>Pensé pour ceux qui offrent l'immeuble.</span></h2>
       <p class="sec-body"><span>Conçu avec le projet Pointe Est à Montréal, où il est intégré dès la livraison, CoHabitat s'adapte à tout immeuble qui partage des ressources.</span></p>
     </div>
     <div class="aud-grid">
         <div class="aud-card">
-          <h3><span>Copropriétés</span></h3>
-          <p><span>Un outil simple pour le conseil et les copropriétaires : réservations, billets, annonces.</span></p>
-        </div>
-        <div class="aud-card">
-          <h3><span>Coopératives et OSBL d'habitation</span></h3>
-          <p><span>Partager les ressources sans paperasse, et faire participer les membres.</span></p>
+          <h3><span>Propriétaires d'immeubles locatifs</span></h3>
+          <p><span>Un argument de location et des espaces communs enfin utilisés, qui couvrent leurs frais.</span></p>
         </div>
         <div class="aud-card">
           <h3><span>Promoteurs</span></h3>
           <p><span>Livrer un immeuble avec ses services numériques prêts dès la remise des clés.</span></p>
         </div>
         <div class="aud-card">
-          <h3><span>Cohabitats</span></h3>
-          <p><span>Serre, mobilité, repas, entraide : tout ce qui fait vivre une communauté.</span></p>
+          <h3><span>Gestionnaires et copropriétés</span></h3>
+          <p><span>Réservations, billets et annonces au même endroit, sans tableur ni courriels.</span></p>
+        </div>
+        <div class="aud-card">
+          <h3><span>Coopératives et cohabitats</span></h3>
+          <p><span>Sans propriétaire ? Un forfait par membre est aussi possible.</span></p>
         </div>
     </div>
   </section>
@@ -506,12 +509,13 @@
         <ul class="plan-feats">
           <li><span>Tous les modules, activables un à un</span></li>
           <li><span>Hébergé ou autonome</span></li>
+          <li><span>Accès illimité pour les locataires</span></li>
           <li><span>Accompagnement au démarrage</span></li>
         </ul>
         <a class="btn btn-main" href="#contact" data-track="contact_click" data-track-place="forfaits"><span>Demander une soumission</span></a>
       </div>
     </div>
-    <p class="plans-note"><span>Prix en dollars canadiens, taxes en sus.</span></p>
+    <p class="plans-note"><span>Payé par le propriétaire. Aucun abonnement pour les locataires : ils ne paient que ce qu'ils réservent. Prix en dollars canadiens, taxes en sus.</span></p>
   </section>
 
   <!-- FAQ -->
@@ -521,6 +525,10 @@
       <h2 class="sec-title"><span>Ce qu'on nous demande souvent.</span></h2>
     </div>
     <div class="faq-list">
+        <details class="faq-item">
+          <summary><span>Mes locataires doivent-ils payer ?</span></summary>
+          <p><span>Non, aucun abonnement. Le forfait est payé par le propriétaire. Les locataires paient seulement ce qu'ils réservent (un espace, un véhicule, une parcelle de serre), selon les tarifs que vous fixez, ce qui couvre les frais des ressources partagées.</span></p>
+        </details>
         <details class="faq-item">
           <summary><span>Faut-il installer quelque chose ?</span></summary>
           <p><span>Non. CoHabitat s'ouvre dans le navigateur et s'installe sur l'écran d'accueil du téléphone en un geste. Une application Android existe aussi.</span></p>
@@ -544,8 +552,12 @@
   <section class="contact" id="contact">
     <div class="sec-tag"><span>Contact</span></div>
     <h2 class="sec-title"><span>Parlons de votre immeuble.</span></h2>
-    <p class="sec-body"><span>Une présentation de 30 minutes, gratuite et sans engagement, avec les modules qui vous concernent. Nous répondons sous un jour ouvrable.</span></p>
+    <p class="sec-body"><span>Une présentation de 15 minutes en visioconférence, gratuite et sans engagement, avec les modules qui vous concernent. Choisissez votre créneau : le lien Google Meet arrive avec la confirmation.</span></p>
 
+    <div class="contact-book">
+      <a class="btn btn-light" href="https://calendar.app.google/yqELaEthBMPkEhbk7" target="_blank" rel="noopener" data-track="booking_click" data-track-place="contact">📅 <span>Choisir un créneau</span></a>
+      <p class="contact-or"><span>ou écrivez-nous, nous vous proposerons un moment :</span></p>
+    </div>
     <form class="lead-form" id="leadForm" method="post" action="#" data-consent-version="2026-10-cohabitat-v1" data-subject="CoHabitat">
       <div class="lf-fields">
         <div class="lf-grid">
@@ -601,7 +613,7 @@
       <div class="lf-success" role="status">
         <div class="lf-check" aria-hidden="true">✓</div>
         <h3><span>Merci, c'est bien reçu.</span></h3>
-        <p><span>Nous vous écrivons sous un jour ouvrable pour fixer la présentation.</span></p>
+        <p><span>Nous vous écrirons pour fixer la présentation.</span> <a href="https://calendar.app.google/yqELaEthBMPkEhbk7" target="_blank" rel="noopener" data-track="booking_click" data-track-place="succes" style="color:var(--green);font-weight:600;"><span>Ou réservez tout de suite un créneau →</span></a></p>
       </div>
     </form>
     <p class="contact-alt"><span>Vous préférez le courriel ?</span> <a href="mailto:info@modulimo.com?subject=CoHabitat" data-track="email_click" data-track-place="contact">info@modulimo.com</a></p>
@@ -620,7 +632,8 @@
         <div class="footer-nav">
           <h5>CoHabitat</h5>
           <a href="https://cohabitat.modulimo.com/#essai" data-track="demo_click" data-track-place="footer"><span>Essayer la démo</span></a>
-          <a href="https://cohabitat.modulimo.com"><span>Connexion des résidants</span></a>
+          <a href="https://cohabitat.modulimo.com/#connexion"><span>Connexion des résidants</span></a>
+          <a href="https://calendar.app.google/yqELaEthBMPkEhbk7" target="_blank" rel="noopener" data-track="booking_click" data-track-place="footer"><span>Réserver une présentation</span></a>
           <a href="#contact"><span>Nous joindre</span></a>
         </div>
         <div class="footer-nav">
@@ -669,10 +682,10 @@
       var KEY = 'sb_publishable_2V-eHOvw1v_Xwr1bpHfHLg_cbHW9ctD';
       var LANG = (document.documentElement.lang || 'fr').slice(0, 2);
       var TXT = {
-        fr: { mois: '/ mois', devis: 'Sur devis', jusqua: function (n) { return "Jusqu'à " + n + ' logements'; }, illim: 'Logements illimités · réseau multi-immeubles', pop: 'Le plus populaire', cta: 'Nous contacter' },
-        en: { mois: '/ month', devis: 'On quote', jusqua: function (n) { return 'Up to ' + n + ' units'; }, illim: 'Unlimited units · multi-building network', pop: 'Most popular', cta: 'Contact us' },
-        es: { mois: '/ mes', devis: 'Bajo presupuesto', jusqua: function (n) { return 'Hasta ' + n + ' viviendas'; }, illim: 'Viviendas ilimitadas · red multiedificio', pop: 'El más popular', cta: 'Contáctenos' },
-        zh: { mois: '/ 月', devis: '按报价', jusqua: function (n) { return '最多 ' + n + ' 户'; }, illim: '户数不限 · 多楼宇网络', pop: '最受欢迎', cta: '联系我们' }
+        fr: { mois: '/ mois', devis: 'Sur devis', jusqua: function (n) { return "Jusqu'à " + n + ' logements'; }, pop: 'Le plus populaire', cta: 'Nous contacter' },
+        en: { mois: '/ month', devis: 'On quote', jusqua: function (n) { return 'Up to ' + n + ' units'; }, pop: 'Most popular', cta: 'Contact us' },
+        es: { mois: '/ mes', devis: 'Bajo presupuesto', jusqua: function (n) { return 'Hasta ' + n + ' viviendas'; }, pop: 'El más popular', cta: 'Contáctenos' },
+        zh: { mois: '/ 月', devis: '按报价', jusqua: function (n) { return '最多 ' + n + ' 户'; }, pop: '最受欢迎', cta: '联系我们' }
       };
       var t = TXT[LANG] || TXT.fr;
       function esc(s) { return String(s == null ? '' : s).replace(/[&<>"']/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]; }); }
@@ -687,7 +700,7 @@
               + (p.featured ? '<div class="plan-badge">' + t.pop + '</div>' : '')
               + '<div class="plan-name">' + esc(p.name) + '</div>'
               + '<div class="plan-price">' + prix + '</div>'
-              + '<div class="plan-units">' + (p.max_units ? t.jusqua(esc(p.max_units)) : t.illim) + '</div>'
+              + (p.max_units ? '<div class="plan-units">' + t.jusqua(esc(p.max_units)) + '</div>' : '')
               + '<ul class="plan-feats">' + feats.map(function (f) { return '<li' + (f.included ? '' : ' class="off"') + '>' + esc(f.label) + '</li>'; }).join('') + '</ul>'
               + '<a class="btn ' + (p.featured ? 'btn-main' : 'btn-line') + '" href="#contact" data-track="contact_click" data-track-place="forfait_' + esc(p.code) + '">' + t.cta + '</a>'
               + '</div>';
