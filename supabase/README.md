@@ -1,6 +1,8 @@
-# Supabase — formulaire de contact Pointe Est
+# Supabase — formulaires de contact (Pointe Est, CoHabitat)
 
-Backend du formulaire « Informez-vous » (accueil et `/projets/pointe-est`).
+Backend du formulaire « Informez-vous » (accueil et `/projets/pointe-est`) et du
+formulaire « Demander une présentation » de la vitrine `/cohabitat/`. Les deux
+écrivent dans la même table ; `source_page` et l'objet du courriel les distinguent.
 Projet Supabase **Central** : `bpxscgrbxjscicpnheep`.
 
 ## Composants
@@ -31,7 +33,7 @@ Projet Supabase **Central** : `bpxscgrbxjscicpnheep`.
    supabase secrets set LEADS_NOTIFY_TO='vous@exemple.com' --project-ref bpxscgrbxjscicpnheep
    ```
 
-   Par défaut, les notifications vont à `contribution@modulimo.com`.
+   Par défaut, les notifications vont à `info@modulimo.com`.
 
 ## Frontend
 
@@ -43,6 +45,7 @@ change de nom ou de projet. Le formulaire envoie :
 {
   "first_name": "…", "last_name": "…", "email": "…", "message": "…",
   "consent": true, "consent_text_version": "2026-06-v1",
+  "subject": "CoHabitat",   // « Pointe Est » (défaut) ou « CoHabitat »
   "website": "",            // honeypot — doit rester vide
   "locale": "fr", "source_page": "/", "user_agent": "…"
 }

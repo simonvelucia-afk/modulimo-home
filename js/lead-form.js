@@ -1,4 +1,4 @@
-// MODULIMO — Formulaire de capture de leads Pointe Est
+// MODULIMO — Formulaire de capture de leads (Pointe Est, CoHabitat)
 // Validation basique, honeypot anti-spam, soumission sans rechargement.
 // Les textes (étiquettes, messages) vivent dans le HTML via [data-lang].
 (function () {
@@ -59,13 +59,28 @@
       setStatus(form, '');
 
       var lang = document.documentElement.getAttribute('lang') || 'fr';
+
+      // Champs propres au formulaire CoHabitat (immeuble, logements,
+      // profil). La fonction serveur ne connait que le message : ils y
+      // sont ajoutes en tete, lisibles tels quels dans la notification.
+      var extras = [];
+      [['building', 'Immeuble'], ['units', 'Logements'], ['role', 'Profil']].forEach(function (c) {
+        var el = form.elements[c[0]];
+        if (el && el.value.trim()) extras.push(c[1] + ' : ' + el.value.trim());
+      });
+      var corps = message ? message.value.trim() : '';
+      if (extras.length) corps = extras.join('\n') + (corps ? '\n\n' + corps : '');
+
       var payload = {
         first_name: firstName.value.trim(),
         last_name: lastName.value.trim(),
         email: email.value.trim(),
-        message: message ? message.value.trim() : '',
+        message: corps,
         consent: true,
-        consent_text_version: CONSENT_TEXT_VERSION,
+        // Chaque formulaire porte la version du texte de consentement qu'il
+        // affiche : celui de CoHabitat n'est pas celui de Pointe Est.
+        consent_text_version: form.getAttribute('data-consent-version') || CONSENT_TEXT_VERSION,
+        subject: form.getAttribute('data-subject') || 'Pointe Est',
         website: honeypot ? honeypot.value : '',
         locale: lang,
         source_page: window.location.pathname,
@@ -90,7 +105,7 @@
         form.classList.remove('lf-sending');
         form.classList.add('is-done');
         if (typeof window.trackFeature === 'function') {
-          window.trackFeature('leads', 'lead_submitted', { form_page: window.location.pathname });
+          window.trackFeature('leads', 'lead_submitted', { form_page: window.location.pathname, subject: payload.subject });
         }
       }).catch(function (err) {
         console.error('[lead-form]', err);
