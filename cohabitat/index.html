@@ -1,0 +1,703 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>CoHabitat — L'application de votre immeuble | Modulimo</title>
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="Modulimo" />
+  <meta name="description" content="Réservation d'espaces communs, auto-partage, serre, babillard et billets de service : CoHabitat réunit les ressources partagées de l'immeuble. Conforme à la Loi 25. Démo gratuite." />
+  <link rel="canonical" href="https://www.modulimo.com/cohabitat/" />
+  <link rel="alternate" hreflang="fr-CA" href="https://www.modulimo.com/cohabitat/" />
+  <link rel="alternate" hreflang="en" href="https://www.modulimo.com/en/cohabitat/" />
+  <link rel="alternate" hreflang="es" href="https://www.modulimo.com/es/cohabitat/" />
+  <link rel="alternate" hreflang="zh-Hans" href="https://www.modulimo.com/zh/cohabitat/" />
+  <link rel="alternate" hreflang="x-default" href="https://www.modulimo.com/cohabitat/" />
+  <meta property="og:title" content="CoHabitat — L'application de votre immeuble | Modulimo" />
+  <meta property="og:description" content="Réservation d'espaces communs, auto-partage, serre, babillard et billets de service : CoHabitat réunit les ressources partagées de l'immeuble. Conforme à la Loi 25. Démo gratuite." />
+  <meta property="og:url" content="https://www.modulimo.com/cohabitat/" />
+  <meta property="og:image" content="https://www.modulimo.com/images/cohabitat/apercu-partage.jpg" />
+  <meta property="og:locale" content="fr_CA" />
+  <meta property="og:locale:alternate" content="en_CA" />
+  <meta property="og:locale:alternate" content="es_MX" />
+  <meta property="og:locale:alternate" content="zh_CN" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png" />
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --white:#ffffff; --off:#f7f5f0; --light:#eeecea; --dark:#1a1a1a;
+      --mid:#4a4a4a; --muted:#888; --green:#2d7a4f; --green-lt:#e8f5ee;
+      --green-md:#4aaa74; --border:#e0ddd8; --bg:#f7f5f0; --line:#e0ddd8;
+      --gdk:#1e3d32; --max:1140px; --text:#1a1a1a;
+    }
+    *, *::before, *::after { box-sizing:border-box; margin:0; padding:0; }
+    html { scroll-behavior:smooth; }
+    body { background:var(--white); color:var(--dark); font-family:'DM Sans',sans-serif; font-weight:400; line-height:1.65; overflow-x:hidden; }
+    a { color:inherit; text-decoration:none; }
+    img { display:block; max-width:100%; height:auto; }
+
+    /* ── TOPBAR (identique aux autres pages) ── */
+    .topbar { position:sticky; top:0; z-index:50; background:var(--off); border-bottom:1px solid var(--border); }
+    .topbar-inner { max-width:var(--max); margin:0 auto; padding:0 24px; height:76px; display:flex; align-items:center; justify-content:space-between; gap:18px; }
+    .brand { display:flex; align-items:center; flex-shrink:0; }
+    .brand img { height:56px; width:auto; display:block; }
+    .nav { display:flex; align-items:center; gap:2px; }
+    .nav a { font-size:.72rem; font-weight:600; letter-spacing:.07em; text-transform:uppercase; color:var(--muted); padding:7px 13px; border-radius:5px; transition:color .15s,background .15s; white-space:nowrap; }
+    .nav a:hover { color:var(--green); background:var(--green-lt); }
+    .nav-cta { color:var(--green) !important; border:1px solid var(--green); border-radius:5px; padding:6px 12px !important; margin-left:6px; transition:background .15s,color .15s; }
+    .nav-cta:hover, .nav-cta.active { background:var(--green); color:#fff !important; }
+    .lang-switch { display:inline-flex; align-items:center; gap:0; margin-left:10px; padding-left:10px; border-left:1px solid var(--border); position:relative; }
+    .lang-btn { font-size:.7rem; font-weight:700; letter-spacing:.06em; color:var(--muted); padding:5px 7px; background:none; border:none; cursor:pointer; font-family:inherit; display:inline-flex; align-items:center; gap:5px; }
+    .lang-switch > summary { list-style:none; cursor:pointer; }
+    .lang-switch > summary::-webkit-details-marker { display:none; }
+    .lang-switch > summary::marker { content:''; }
+    .lang-switch[open] > summary { color:var(--green); }
+    .lang-caret { font-size:.6rem; opacity:.6; }
+    .lang-menu { position:absolute; top:calc(100% + 6px); right:0; min-width:158px; background:var(--bg); border:1px solid var(--line); border-radius:6px; box-shadow:0 8px 24px rgba(0,0,0,.14); padding:5px; z-index:120; }
+    .lang-item { display:flex; align-items:center; gap:8px; padding:8px 10px; border-radius:4px; color:var(--muted); font-size:.72rem; font-weight:600; letter-spacing:.04em; white-space:nowrap; }
+    .lang-item:hover { background:rgba(0,0,0,.05); color:var(--green); }
+    .lang-item.active { color:var(--green); }
+    html[lang="zh"] h1, html[lang="zh"] h2, html[lang="zh"] h3 { line-height:1.3; }
+    .avis-traduction { width:100%; margin:14px 0 0; padding-top:12px; border-top:1px solid var(--line); font-size:.68rem; line-height:1.55; color:var(--muted); opacity:.85; }
+    [data-lang] { display:none; }
+    html.lang-fr [data-lang="fr"], html.lang-en [data-lang="en"], html.lang-es [data-lang="es"] { display:revert; }
+    .menu-toggle { display:none; flex-direction:column; justify-content:center; gap:5px; width:40px; height:40px; background:none; border:1px solid var(--border); border-radius:6px; cursor:pointer; padding:8px; }
+    .menu-toggle span { display:block; height:2px; background:var(--green); border-radius:2px; }
+
+    /* ── BOUTONS ── */
+    .btn { display:inline-flex; align-items:center; justify-content:center; gap:.5rem; padding:14px 26px; border-radius:6px; font-size:.92rem; font-weight:600; cursor:pointer; transition:background .15s,color .15s,border-color .15s; border:1px solid transparent; font-family:inherit; }
+    .btn-main { background:var(--green); color:#fff; }
+    .btn-main:hover { background:var(--gdk); }
+    .btn-line { background:transparent; color:var(--green); border-color:var(--green); }
+    .btn-line:hover { background:var(--green-lt); }
+    .btn-light { background:#fff; color:var(--gdk); }
+    .btn-light:hover { background:var(--green-lt); }
+    .btn-ghost { background:transparent; color:#fff; border-color:rgba(255,255,255,.4); }
+    .btn-ghost:hover { background:rgba(255,255,255,.1); }
+
+    /* ── HERO ── */
+    .hero { background:var(--off); border-bottom:1px solid var(--border); padding:4.5rem 5rem 5rem; display:grid; grid-template-columns:1.05fr 1fr; gap:4rem; align-items:center; overflow:hidden; }
+    .hero-tag { display:inline-flex; align-items:center; gap:.6rem; font-size:.72rem; font-weight:500; letter-spacing:.18em; text-transform:uppercase; color:var(--green); margin-bottom:1.5rem; }
+    .hero-tag::before { content:''; width:1.5rem; height:1px; background:var(--green); }
+    .hero-title { font-family:'Syne',sans-serif; font-size:clamp(2.5rem,4.6vw,4.2rem); font-weight:800; line-height:1.02; letter-spacing:-.025em; margin-bottom:1.4rem; }
+    .hero-title .green { color:var(--green); }
+    .hero-desc { font-size:1.08rem; color:var(--mid); max-width:46ch; margin-bottom:2rem; line-height:1.75; }
+    .hero-ctas { display:flex; flex-wrap:wrap; gap:12px; margin-bottom:1.6rem; }
+    .hero-note { font-size:.8rem; color:var(--muted); }
+    .hero-visual { position:relative; }
+    .hero-desktop { border-radius:10px; box-shadow:0 24px 60px rgba(0,0,0,.22); border:1px solid #2a2a2a; }
+    .hero-phone { position:absolute; width:27%; right:-3%; bottom:-14%; border-radius:18px; border:5px solid #111; box-shadow:0 18px 40px rgba(0,0,0,.3); }
+
+    /* ── BANDE DE PREUVES ── */
+    .proofs { display:grid; grid-template-columns:repeat(4,1fr); border-bottom:1px solid var(--border); }
+    .proof { padding:2rem 2rem; border-right:1px solid var(--border); }
+    .proof:last-child { border-right:none; }
+    .proof-n { font-family:'Syne',sans-serif; font-size:2.1rem; font-weight:800; color:var(--green); line-height:1; margin-bottom:.35rem; }
+    .proof-l { font-size:.76rem; color:var(--muted); letter-spacing:.04em; text-transform:uppercase; }
+
+    /* ── SECTIONS ── */
+    section { padding:5.5rem 5rem; }
+    .sec-tag { font-size:.68rem; font-weight:600; letter-spacing:.2em; text-transform:uppercase; color:var(--green); margin-bottom:1.1rem; display:flex; align-items:center; gap:.6rem; }
+    .sec-tag::after { content:''; width:2rem; height:1px; background:var(--green); }
+    .sec-title { font-family:'Syne',sans-serif; font-size:clamp(1.8rem,3vw,2.6rem); font-weight:800; line-height:1.1; letter-spacing:-.02em; margin-bottom:1.1rem; }
+    .sec-body { font-size:1rem; color:var(--mid); max-width:60ch; line-height:1.75; }
+    .sec-head { margin-bottom:3rem; }
+
+    .ben-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:1px; background:var(--border); border:1px solid var(--border); }
+    .ben-card { background:var(--white); padding:2.4rem 2rem; }
+    .ben-num { font-family:'Syne',sans-serif; font-size:.68rem; font-weight:800; color:var(--green); letter-spacing:.12em; margin-bottom:1rem; }
+    .ben-title { font-family:'Syne',sans-serif; font-size:1.15rem; font-weight:700; margin-bottom:.6rem; line-height:1.25; }
+    .ben-desc { font-size:.9rem; color:var(--mid); line-height:1.7; }
+
+    .modules { background:var(--off); border-top:1px solid var(--border); border-bottom:1px solid var(--border); }
+    .mod-grid { display:grid; grid-template-columns:repeat(5,1fr); gap:14px; }
+    .mod-card { background:var(--white); border:1px solid var(--border); border-radius:8px; padding:1.4rem 1.2rem; }
+    .mod-ico { font-size:1.5rem; display:block; margin-bottom:.7rem; }
+    .mod-name { font-family:'Syne',sans-serif; font-weight:700; font-size:.9rem; margin-bottom:.35rem; }
+    .mod-desc { font-size:.8rem; color:var(--muted); line-height:1.55; }
+
+    .shots-grid { display:grid; grid-template-columns:1fr 1fr; gap:24px; }
+    .shot { margin:0; }
+    .shot-btn { display:block; width:100%; padding:0; border:1px solid #2a2a2a; border-radius:8px; overflow:hidden; cursor:zoom-in; background:#0f0f0f; }
+    .shot-btn img { width:100%; aspect-ratio:16/10; object-fit:cover; object-position:top; transition:transform .3s; }
+    .shot-btn:hover img { transform:scale(1.02); }
+    .shot figcaption { font-size:.82rem; color:var(--muted); margin-top:.6rem; }
+    .shots-cta { margin-top:2.4rem; text-align:center; }
+
+    .audience { background:var(--green-lt); border-top:1px solid rgba(45,122,79,.15); border-bottom:1px solid rgba(45,122,79,.15); }
+    .aud-grid { display:grid; grid-template-columns:repeat(4,1fr); gap:18px; }
+    .aud-card { background:var(--white); border-radius:8px; padding:1.6rem 1.4rem; border:1px solid rgba(45,122,79,.15); }
+    .aud-card h3 { font-family:'Syne',sans-serif; font-size:1rem; font-weight:700; margin-bottom:.5rem; color:var(--gdk); }
+    .aud-card p { font-size:.85rem; color:var(--mid); line-height:1.65; }
+
+    .deploy-grid { display:grid; grid-template-columns:1fr 1fr; gap:24px; }
+    .deploy-card { border:1px solid var(--border); border-radius:10px; padding:2rem; }
+    .deploy-card.dark { background:var(--gdk); color:#fff; border-color:var(--gdk); }
+    .deploy-card h3 { font-family:'Syne',sans-serif; font-size:1.2rem; font-weight:800; margin-bottom:.6rem; }
+    .deploy-card p { font-size:.92rem; line-height:1.7; color:var(--mid); }
+    .deploy-card.dark p { color:rgba(255,255,255,.78); }
+    .deploy-card ul { list-style:none; margin-top:1rem; }
+    .deploy-card li { font-size:.86rem; padding:.35rem 0 .35rem 1.4rem; position:relative; }
+    .deploy-card li::before { content:'✓'; position:absolute; left:0; color:var(--green-md); font-weight:700; }
+
+    .plans { background:var(--off); border-top:1px solid var(--border); border-bottom:1px solid var(--border); }
+    .plans-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(250px,340px)); justify-content:center; gap:20px; }
+    .plan-card { background:var(--white); border:1px solid var(--border); border-radius:10px; padding:2rem 1.6rem; position:relative; display:flex; flex-direction:column; }
+    .plan-card.featured { border:2px solid var(--green); }
+    .plan-badge { position:absolute; top:-12px; left:50%; transform:translateX(-50%); background:var(--green); color:#fff; font-size:.68rem; font-weight:700; padding:3px 12px; border-radius:99px; letter-spacing:.05em; white-space:nowrap; }
+    .plan-name { font-family:'Syne',sans-serif; font-size:1rem; font-weight:800; letter-spacing:.06em; text-transform:uppercase; margin-bottom:.5rem; }
+    .plan-price { font-family:'Syne',sans-serif; font-size:2rem; font-weight:800; color:var(--green); line-height:1.1; }
+    .plan-price small { font-family:'DM Sans',sans-serif; font-size:.85rem; font-weight:400; color:var(--muted); }
+    .plan-units { font-size:.8rem; color:var(--muted); margin:.3rem 0 1.2rem; }
+    .plan-feats { list-style:none; margin-bottom:1.6rem; flex:1; }
+    .plan-feats li { font-size:.86rem; color:var(--mid); padding:.35rem 0 .35rem 1.3rem; border-bottom:1px solid var(--light); position:relative; }
+    .plan-feats li::before { content:'✓'; position:absolute; left:0; color:var(--green); font-weight:700; }
+    .plan-feats li.off { color:var(--muted); }
+    .plan-feats li.off::before { content:'–'; color:var(--muted); }
+    .plans-note { font-size:.82rem; color:var(--muted); margin-top:1.6rem; text-align:center; }
+
+    .faq-list { max-width:780px; }
+    .faq-item { border-bottom:1px solid var(--border); padding:1.1rem 0; }
+    .faq-item summary { font-family:'Syne',sans-serif; font-weight:700; font-size:1rem; cursor:pointer; list-style:none; display:flex; justify-content:space-between; gap:1rem; }
+    .faq-item summary::-webkit-details-marker { display:none; }
+    .faq-item summary::after { content:'+'; color:var(--green); font-size:1.3rem; line-height:1; }
+    .faq-item[open] summary::after { content:'–'; }
+    .faq-item p { font-size:.92rem; color:var(--mid); line-height:1.7; margin-top:.7rem; max-width:65ch; }
+
+    /* ── CONTACT ── */
+    .contact { background:var(--gdk); color:#fff; text-align:center; }
+    .contact .sec-tag { color:var(--green-md); justify-content:center; }
+    .contact .sec-tag::after { background:var(--green-md); }
+    .contact .sec-title { color:#fff; }
+    .contact .sec-body { color:rgba(255,255,255,.78); margin:0 auto; }
+    .contact-alt { margin-top:1.4rem; font-size:.88rem; color:rgba(255,255,255,.7); }
+    .contact-alt a { color:#fff; text-decoration:underline; }
+    .lead-form { background:#fff; color:var(--text); border-radius:12px; padding:28px 26px; max-width:600px; margin:2.4rem auto 0; text-align:left; box-shadow:0 10px 36px rgba(0,0,0,.22); position:relative; }
+    .lf-grid { display:grid; grid-template-columns:1fr 1fr; gap:0 14px; }
+    .lf-field { margin-bottom:14px; }
+    .lf-field > label:not(.lf-consent) { display:block; font-size:.74rem; font-weight:700; letter-spacing:.04em; text-transform:uppercase; color:var(--mid); margin-bottom:5px; }
+    .lf-field input[type="text"], .lf-field input[type="email"], .lf-field input[type="number"], .lf-field select, .lf-field textarea { width:100%; padding:10px 12px; border:1px solid #d0cec8; border-radius:6px; font:inherit; font-size:.9rem; color:var(--text); background:#fff; }
+    .lf-field input:focus, .lf-field select:focus, .lf-field textarea:focus { outline:none; border-color:var(--green); box-shadow:0 0 0 3px rgba(45,122,79,.15); }
+    .lf-field.lf-invalid input, .lf-field.lf-invalid textarea { border-color:#c0392b; box-shadow:0 0 0 3px rgba(192,57,43,.12); }
+    .lf-consent { display:flex; gap:10px; align-items:flex-start; font-size:.78rem; color:var(--mid); line-height:1.55; cursor:pointer; }
+    .lf-consent input { margin-top:2px; width:16px; height:16px; flex-shrink:0; accent-color:var(--green); }
+    .lf-field.lf-invalid .lf-consent span { color:#c0392b; }
+    .lf-hp { position:absolute !important; left:-9999px !important; width:1px; height:1px; overflow:hidden; }
+    .lf-submit { display:inline-flex; align-items:center; justify-content:center; width:100%; background:var(--green); color:#fff; padding:13px 24px; border-radius:6px; font-size:.92rem; font-weight:600; border:none; cursor:pointer; font-family:inherit; margin-top:4px; }
+    .lf-submit:hover { background:var(--gdk); }
+    .lead-form.lf-sending .lf-submit { opacity:.7; pointer-events:none; }
+    .lf-submit .lf-label-sending { display:none; }
+    .lead-form.lf-sending .lf-submit .lf-label-idle { display:none; }
+    .lead-form.lf-sending .lf-submit .lf-label-sending { display:inline; }
+    .lf-status { display:none; margin-top:12px; font-size:.84rem; padding:10px 14px; border-radius:6px; background:#fdecea; color:#86281c; border:1px solid #f3c0ba; }
+    .lf-status.is-visible { display:block; }
+    .lf-success { display:none; text-align:center; padding:18px 6px; }
+    .lead-form.is-done .lf-fields { display:none; }
+    .lead-form.is-done .lf-success { display:block; }
+    .lf-check { width:48px; height:48px; border-radius:50%; background:rgba(45,122,79,.12); color:var(--green); font-size:1.5rem; font-weight:800; display:flex; align-items:center; justify-content:center; margin:0 auto 12px; }
+    .lf-success h3 { font-size:1.05rem; font-weight:800; margin-bottom:6px; }
+    .lf-success p { font-size:.88rem; color:var(--mid); }
+
+    /* ── LIGHTBOX ── */
+    .lb-overlay { position:fixed; inset:0; background:rgba(10,12,14,.92); display:none; align-items:center; justify-content:center; z-index:1000; padding:24px; }
+    .lb-overlay.is-open { display:flex; }
+    .lb-image { max-width:min(100%,1400px); max-height:90vh; object-fit:contain; border-radius:6px; }
+    .lb-close { position:absolute; top:18px; right:22px; width:44px; height:44px; border-radius:50%; background:rgba(255,255,255,.12); color:#fff; border:1px solid rgba(255,255,255,.2); font-size:1.6rem; line-height:1; cursor:pointer; }
+
+    /* ── FOOTER ── */
+    .footer { background:var(--off); border-top:1px solid var(--border); padding:44px 5rem 32px; }
+    .footer-inner { max-width:var(--max); margin:0 auto; }
+    .footer-top { display:flex; justify-content:space-between; align-items:flex-start; flex-wrap:wrap; gap:32px; margin-bottom:32px; }
+    .footer-brand { display:flex; align-items:center; background:#fff; padding:4px 10px; border-radius:8px; align-self:flex-start; }
+    .footer-brand img { height:32px; width:auto; display:block; }
+    .footer-tagline { font-size:.82rem; color:var(--muted); margin-top:8px; max-width:260px; line-height:1.6; }
+    .footer-nav h5 { font-size:.7rem; font-weight:700; letter-spacing:.1em; text-transform:uppercase; color:var(--muted); margin-bottom:12px; }
+    .footer-nav a { display:block; font-size:.84rem; color:var(--dark); margin-bottom:8px; }
+    .footer-nav a:hover { color:var(--green); }
+    .footer-bottom { border-top:1px solid var(--border); padding-top:20px; display:flex; justify-content:space-between; flex-wrap:wrap; gap:12px; }
+    .footer-bottom p { font-size:.75rem; color:var(--muted); }
+
+    /* ── THÈME ÉVÉNEMENTIEL (piloté depuis modulimo-admin) ── */
+    body.theme-femme .topbar { background:#f8bbd0; border-bottom-color:rgba(0,0,0,.08); }
+    body.theme-terre .topbar { background:#43a047; border-bottom-color:rgba(0,0,0,.15); }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width:1100px) {
+      .mod-grid { grid-template-columns:repeat(3,1fr); }
+      .aud-grid { grid-template-columns:1fr 1fr; }
+    }
+    @media (max-width:900px) {
+      .hero { grid-template-columns:1fr; padding:3.5rem 2rem 4.5rem; gap:3rem; }
+      section { padding:4rem 2rem; }
+      .proofs { grid-template-columns:1fr 1fr; }
+      .proof { border-bottom:1px solid var(--border); }
+      .ben-grid, .deploy-grid { grid-template-columns:1fr; }
+      .mod-grid { grid-template-columns:1fr 1fr; }
+      .footer { padding:44px 2rem 32px; }
+    }
+    @media (max-width:640px) {
+      .hero { padding:2.5rem 16px 4rem; }
+      section { padding:3.5rem 16px; }
+      .proof { padding:1.4rem 16px; }
+      .shots-grid, .aud-grid, .lf-grid { grid-template-columns:1fr; }
+      .hero-ctas .btn { width:100%; }
+      .lead-form { padding:22px 16px; }
+      .footer { padding:36px 16px 28px; }
+      .menu-toggle { display:flex; }
+      .nav { display:none; position:absolute; top:68px; left:0; right:0; background:var(--off); border-bottom:1px solid var(--border); flex-direction:column; align-items:stretch; padding:8px 16px 16px; gap:2px; }
+      .nav.is-open { display:flex; }
+      .nav a { padding:12px 14px; border-bottom:1px solid var(--border); border-radius:0; }
+      .nav-cta { margin-left:0; }
+    }
+  </style>
+  <script src="/js/analytics.js" defer></script>
+  <script src="/js/lightbox.js" defer></script>
+  <style>html:not(.produits-ouverts) a[href$="/produits/"]{display:none!important}</style>
+  <script>window.MODULIMO_VERROU={"sel":"rmjrOmLNvaHvdRjRiZUrBA==","iv":"JdysenF0eNQekSdp","data":"Inb2KkwsqcI1FRTxAjwCipZYeeLaQ9NA","iter":600000};try{var mv=JSON.parse(localStorage.getItem('modulimo-produits')||'null');if(mv&&mv.sel===window.MODULIMO_VERROU.sel)document.documentElement.classList.add('produits-ouverts')}catch(e){}</script>
+  <script src="/js/cadenas.js" defer></script>
+</head>
+<body>
+
+  <!-- TOPBAR -->
+  <header class="topbar">
+    <div class="topbar-inner">
+      <a href="/" class="brand" aria-label="Modulimo"><img src="/images/ModulimoLogoSobre.png" alt="Modulimo" /></a>
+      <button class="menu-toggle" id="menuToggle" aria-expanded="false" aria-controls="siteNav" aria-label="Menu">
+        <span></span><span></span><span></span>
+      </button>
+      <nav class="nav" id="siteNav">
+        <a href="/"><span>Accueil</span></a>
+        <a href="/mobilite/"><span>Mobilité</span></a>
+        <a href="/securite/"><span>Sécurité</span></a>
+        <a href="/projets/"><span>Projets</span></a>
+        <a href="/produits/"><span>Produits</span></a>
+        <a href="/cohabitat/" class="nav-cta active">CoHabitat</a>
+        <details class="lang-switch">
+          <summary class="lang-btn" aria-label="Choisir la langue"><svg viewBox="0 0 24 16" width="16" height="11" aria-hidden="true" style="display:block;border-radius:2px;flex-shrink:0;"><rect width="24" height="16" fill="#095797"/><g transform="translate(5.6,3.6)" fill="#fff"><path d="M0,-2.3 C1,-1.2 1,-0.2 0,0.6 C-1,-0.2 -1,-1.2 0,-2.3 Z"/><path d="M-2.1,-0.5 C-1.3,-1.3 -0.6,-0.9 -0.4,0.2 C-1.2,0.6 -1.9,0.3 -2.1,-0.5 Z"/><path d="M2.1,-0.5 C1.3,-1.3 0.6,-0.9 0.4,0.2 C1.2,0.6 1.9,0.3 2.1,-0.5 Z"/><rect x="-1.6" y="0.6" width="3.2" height="0.7"/><rect x="-0.5" y="1.3" width="1" height="1.4"/></g><g transform="translate(18.4,3.6)" fill="#fff"><path d="M0,-2.3 C1,-1.2 1,-0.2 0,0.6 C-1,-0.2 -1,-1.2 0,-2.3 Z"/><path d="M-2.1,-0.5 C-1.3,-1.3 -0.6,-0.9 -0.4,0.2 C-1.2,0.6 -1.9,0.3 -2.1,-0.5 Z"/><path d="M2.1,-0.5 C1.3,-1.3 0.6,-0.9 0.4,0.2 C1.2,0.6 1.9,0.3 2.1,-0.5 Z"/><rect x="-1.6" y="0.6" width="3.2" height="0.7"/><rect x="-0.5" y="1.3" width="1" height="1.4"/></g><g transform="translate(5.6,12.4)" fill="#fff"><path d="M0,-2.3 C1,-1.2 1,-0.2 0,0.6 C-1,-0.2 -1,-1.2 0,-2.3 Z"/><path d="M-2.1,-0.5 C-1.3,-1.3 -0.6,-0.9 -0.4,0.2 C-1.2,0.6 -1.9,0.3 -2.1,-0.5 Z"/><path d="M2.1,-0.5 C1.3,-1.3 0.6,-0.9 0.4,0.2 C1.2,0.6 1.9,0.3 2.1,-0.5 Z"/><rect x="-1.6" y="0.6" width="3.2" height="0.7"/><rect x="-0.5" y="1.3" width="1" height="1.4"/></g><g transform="translate(18.4,12.4)" fill="#fff"><path d="M0,-2.3 C1,-1.2 1,-0.2 0,0.6 C-1,-0.2 -1,-1.2 0,-2.3 Z"/><path d="M-2.1,-0.5 C-1.3,-1.3 -0.6,-0.9 -0.4,0.2 C-1.2,0.6 -1.9,0.3 -2.1,-0.5 Z"/><path d="M2.1,-0.5 C1.3,-1.3 0.6,-0.9 0.4,0.2 C1.2,0.6 1.9,0.3 2.1,-0.5 Z"/><rect x="-1.6" y="0.6" width="3.2" height="0.7"/><rect x="-0.5" y="1.3" width="1" height="1.4"/></g><rect x="10.4" y="0" width="3.2" height="16" fill="#fff"/><rect x="0" y="6.4" width="24" height="3.2" fill="#fff"/></svg><span>FR</span><span class="lang-caret">&#9662;</span></summary>
+          <div class="lang-menu">
+            <a class="lang-item active" href="/cohabitat/" lang="fr" hreflang="fr-CA" aria-label="Afficher en français"><svg viewBox="0 0 24 16" width="16" height="11" aria-hidden="true" style="display:block;border-radius:2px;flex-shrink:0;"><rect width="24" height="16" fill="#095797"/><g transform="translate(5.6,3.6)" fill="#fff"><path d="M0,-2.3 C1,-1.2 1,-0.2 0,0.6 C-1,-0.2 -1,-1.2 0,-2.3 Z"/><path d="M-2.1,-0.5 C-1.3,-1.3 -0.6,-0.9 -0.4,0.2 C-1.2,0.6 -1.9,0.3 -2.1,-0.5 Z"/><path d="M2.1,-0.5 C1.3,-1.3 0.6,-0.9 0.4,0.2 C1.2,0.6 1.9,0.3 2.1,-0.5 Z"/><rect x="-1.6" y="0.6" width="3.2" height="0.7"/><rect x="-0.5" y="1.3" width="1" height="1.4"/></g><g transform="translate(18.4,3.6)" fill="#fff"><path d="M0,-2.3 C1,-1.2 1,-0.2 0,0.6 C-1,-0.2 -1,-1.2 0,-2.3 Z"/><path d="M-2.1,-0.5 C-1.3,-1.3 -0.6,-0.9 -0.4,0.2 C-1.2,0.6 -1.9,0.3 -2.1,-0.5 Z"/><path d="M2.1,-0.5 C1.3,-1.3 0.6,-0.9 0.4,0.2 C1.2,0.6 1.9,0.3 2.1,-0.5 Z"/><rect x="-1.6" y="0.6" width="3.2" height="0.7"/><rect x="-0.5" y="1.3" width="1" height="1.4"/></g><g transform="translate(5.6,12.4)" fill="#fff"><path d="M0,-2.3 C1,-1.2 1,-0.2 0,0.6 C-1,-0.2 -1,-1.2 0,-2.3 Z"/><path d="M-2.1,-0.5 C-1.3,-1.3 -0.6,-0.9 -0.4,0.2 C-1.2,0.6 -1.9,0.3 -2.1,-0.5 Z"/><path d="M2.1,-0.5 C1.3,-1.3 0.6,-0.9 0.4,0.2 C1.2,0.6 1.9,0.3 2.1,-0.5 Z"/><rect x="-1.6" y="0.6" width="3.2" height="0.7"/><rect x="-0.5" y="1.3" width="1" height="1.4"/></g><g transform="translate(18.4,12.4)" fill="#fff"><path d="M0,-2.3 C1,-1.2 1,-0.2 0,0.6 C-1,-0.2 -1,-1.2 0,-2.3 Z"/><path d="M-2.1,-0.5 C-1.3,-1.3 -0.6,-0.9 -0.4,0.2 C-1.2,0.6 -1.9,0.3 -2.1,-0.5 Z"/><path d="M2.1,-0.5 C1.3,-1.3 0.6,-0.9 0.4,0.2 C1.2,0.6 1.9,0.3 2.1,-0.5 Z"/><rect x="-1.6" y="0.6" width="3.2" height="0.7"/><rect x="-0.5" y="1.3" width="1" height="1.4"/></g><rect x="10.4" y="0" width="3.2" height="16" fill="#fff"/><rect x="0" y="6.4" width="24" height="3.2" fill="#fff"/></svg><span>Français</span></a>
+            <a class="lang-item" href="/en/cohabitat/" lang="en" hreflang="en" aria-label="Display in English"><svg viewBox="0 0 24 16" width="16" height="11" aria-hidden="true" style="display:block;border-radius:2px;flex-shrink:0;"><rect width="24" height="16" fill="#fff"/><rect x="0" y="0.00" width="24" height="1.2308" fill="#b22234"/><rect x="0" y="2.46" width="24" height="1.2308" fill="#b22234"/><rect x="0" y="4.92" width="24" height="1.2308" fill="#b22234"/><rect x="0" y="7.38" width="24" height="1.2308" fill="#b22234"/><rect x="0" y="9.85" width="24" height="1.2308" fill="#b22234"/><rect x="0" y="12.31" width="24" height="1.2308" fill="#b22234"/><rect x="0" y="14.77" width="24" height="1.2308" fill="#b22234"/><rect width="9.6" height="8.62" fill="#3c3b6e"/><circle cx="3.2" cy="2.2" r="0.55" fill="#fff"/><circle cx="3.2" cy="4.4" r="0.55" fill="#fff"/><circle cx="3.2" cy="6.6" r="0.55" fill="#fff"/><circle cx="6.4" cy="2.2" r="0.55" fill="#fff"/><circle cx="6.4" cy="4.4" r="0.55" fill="#fff"/><circle cx="6.4" cy="6.6" r="0.55" fill="#fff"/></svg><span>English</span></a>
+            <a class="lang-item" href="/es/cohabitat/" lang="es" hreflang="es" aria-label="Mostrar en español"><svg viewBox="0 0 24 16" width="16" height="11" aria-hidden="true" style="display:block;border-radius:2px;flex-shrink:0;"><rect width="8" height="16" fill="#006847"/><rect x="8" width="8" height="16" fill="#fff"/><rect x="16" width="8" height="16" fill="#ce1126"/><ellipse cx="12" cy="7.4" rx="1.7" ry="2" fill="#7a5230"/><path d="M9.9,9.4 A2.7,2.7 0 0 0 14.1,9.4" fill="none" stroke="#006847" stroke-width="0.8" stroke-linecap="round"/></svg><span>Español</span></a>
+            <a class="lang-item" href="/zh/cohabitat/" lang="zh" hreflang="zh-Hans" aria-label="显示中文"><svg viewBox="0 0 24 16" width="16" height="11" aria-hidden="true" style="display:block;border-radius:2px;flex-shrink:0;"><rect width="24" height="16" fill="#de2910"/><polygon points="4.00,1.60 4.54,3.26 6.28,3.26 4.87,4.28 5.41,5.94 4.00,4.92 2.59,5.94 3.13,4.28 1.72,3.26 3.46,3.26" fill="#ffde00"/><circle cx="8" cy="1.6" r="0.6" fill="#ffde00"/><circle cx="9.6" cy="3.2" r="0.6" fill="#ffde00"/><circle cx="9.6" cy="5.6" r="0.6" fill="#ffde00"/><circle cx="8" cy="7.2" r="0.6" fill="#ffde00"/></svg><span>中文</span></a>
+          </div>
+        </details>
+      </nav>
+    </div>
+  </header>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div>
+      <span class="hero-tag"><span>CoHabitat · Logiciel résidentiel</span></span>
+      <h1 class="hero-title"><span>L'application</span><br><span class="green"><span>de votre immeuble.</span></span></h1>
+      <p class="hero-desc"><span>Espaces communs, auto-partage, serre, babillard et billets de service : CoHabitat réunit tout ce que les résidants partagent, dans une seule application simple, sécurisée et conforme à la Loi 25.</span></p>
+      <div class="hero-ctas">
+        <a class="btn btn-main" href="https://cohabitat.modulimo.com/#essai" data-track="demo_click" data-track-place="hero"><span>Essayer la démo</span> →</a>
+        <a class="btn btn-line" href="#contact" data-track="contact_click" data-track-place="hero"><span>Réserver une présentation</span></a>
+      </div>
+      <p class="hero-note"><span>Démo complète, sans inscription. Données fictives, rien n'est facturé.</span></p>
+    </div>
+    <div class="hero-visual">
+      <img class="hero-desktop" src="/images/cohabitat/tableau.webp" alt="Tableau de bord CoHabitat" width="1600" height="1000" />
+      <img class="hero-phone" src="/images/cohabitat/mobile.webp" alt="CoHabitat sur téléphone" width="780" height="1688" loading="lazy" />
+    </div>
+  </section>
+
+  <!-- PREUVES -->
+  <div class="proofs">
+    <div class="proof"><div class="proof-n">10</div><div class="proof-l"><span>Modules à activer au choix</span></div></div>
+    <div class="proof"><div class="proof-n">4</div><div class="proof-l"><span>Langues : FR · EN · ES · 中文</span></div></div>
+    <div class="proof"><div class="proof-n">15 min</div><div class="proof-l"><span>Tranche de réservation des espaces</span></div></div>
+    <div class="proof"><div class="proof-n">Loi 25</div><div class="proof-l"><span>Conformité intégrée dès le départ</span></div></div>
+  </div>
+
+  <!-- BENEFICES -->
+  <section>
+    <div class="sec-head">
+      <div class="sec-tag"><span>Pourquoi CoHabitat</span></div>
+      <h2 class="sec-title"><span>Moins de courriels, de tableurs et de conflits.</span></h2>
+      <p class="sec-body"><span>Les ressources partagées font la valeur d'un immeuble. Encore faut-il qu'elles soient simples à réserver, justes à payer et faciles à gérer pour le conseil.</span></p>
+    </div>
+    <div class="ben-grid">
+        <div class="ben-card">
+          <div class="ben-num">01</div>
+          <h3 class="ben-title"><span>Fini les conflits de réservation</span></h3>
+          <p class="ben-desc"><span>Salles, terrasse, atelier : chaque résidant voit les disponibilités en direct et réserve par tranches de 15 minutes. Le coût est calculé et débité automatiquement.</span></p>
+        </div>
+        <div class="ben-card">
+          <div class="ben-num">02</div>
+          <h3 class="ben-title"><span>La mobilité partagée, sans tableur</span></h3>
+          <p class="ben-desc"><span>Véhicules et vélomobiles réservables à l'heure, covoiturage entre voisins, kilomètres facturés au retour : la flotte de l'immeuble se gère toute seule.</span></p>
+        </div>
+        <div class="ben-card">
+          <div class="ben-num">03</div>
+          <h3 class="ben-title"><span>Vos données restent chez vous</span></h3>
+          <p class="ben-desc"><span>Chaque immeuble a sa propre base, isolée des autres. Conformité à la Loi 25, suppression sur demande — et un mode autonome qui fonctionne sans nuage.</span></p>
+        </div>
+    </div>
+  </section>
+
+  <!-- MODULES -->
+  <section class="modules" id="modules">
+    <div class="sec-head">
+      <div class="sec-tag"><span>Modules</span></div>
+      <h2 class="sec-title"><span>Tout ce que l'immeuble partage.</span></h2>
+      <p class="sec-body"><span>Activez seulement ce qui existe chez vous : l'application s'adapte à l'immeuble, pas l'inverse.</span></p>
+    </div>
+    <div class="mod-grid">
+        <div class="mod-card">
+          <span class="mod-ico" aria-hidden="true">🏠</span>
+          <div class="mod-name"><span>Espaces communs</span></div>
+          <div class="mod-desc"><span>Réservation en ligne, tarif au créneau de 15 minutes, historique complet.</span></div>
+        </div>
+        <div class="mod-card">
+          <span class="mod-ico" aria-hidden="true">🚗</span>
+          <div class="mod-name"><span>Mobilité partagée</span></div>
+          <div class="mod-desc"><span>Véhicules, vélomobiles et covoiturage réunis dans une seule offre.</span></div>
+        </div>
+        <div class="mod-card">
+          <span class="mod-ico" aria-hidden="true">🌱</span>
+          <div class="mod-name"><span>Serre et poulailler</span></div>
+          <div class="mod-desc"><span>Location de parcelles, suivi des récoltes et partage des surplus entre voisins.</span></div>
+        </div>
+        <div class="mod-card">
+          <span class="mod-ico" aria-hidden="true">📌</span>
+          <div class="mod-name"><span>Babillard</span></div>
+          <div class="mod-desc"><span>Annonces, entraide et nouvelles de l'immeuble, au même endroit.</span></div>
+        </div>
+        <div class="mod-card">
+          <span class="mod-ico" aria-hidden="true">🛠️</span>
+          <div class="mod-name"><span>Billets de service</span></div>
+          <div class="mod-desc"><span>Signaler un bris, suivre la réponse, garder une trace pour le conseil.</span></div>
+        </div>
+        <div class="mod-card">
+          <span class="mod-ico" aria-hidden="true">💡</span>
+          <div class="mod-name"><span>Lab d'idées</span></div>
+          <div class="mod-desc"><span>Les résidants proposent, votent et commentent les améliorations.</span></div>
+        </div>
+        <div class="mod-card">
+          <span class="mod-ico" aria-hidden="true">🍱</span>
+          <div class="mod-name"><span>Machine Lunch</span></div>
+          <div class="mod-desc"><span>Kiosque tactile de commande de repas et cases réfrigérées.</span></div>
+        </div>
+        <div class="mod-card">
+          <span class="mod-ico" aria-hidden="true">👨‍👩‍👧</span>
+          <div class="mod-name"><span>Foyers et dépendants</span></div>
+          <div class="mod-desc"><span>Un accès individualisé par ressource pour chaque membre du foyer.</span></div>
+        </div>
+        <div class="mod-card">
+          <span class="mod-ico" aria-hidden="true">🔗</span>
+          <div class="mod-name"><span>Réseau d'immeubles</span></div>
+          <div class="mod-desc"><span>Réserver les espaces d'un immeuble voisin, avec le même compte.</span></div>
+        </div>
+        <div class="mod-card">
+          <span class="mod-ico" aria-hidden="true">📊</span>
+          <div class="mod-name"><span>Statistiques</span></div>
+          <div class="mod-desc"><span>Rapports d'utilisation et export CSV pour les administrateurs.</span></div>
+        </div>
+    </div>
+  </section>
+
+  <!-- CAPTURES -->
+  <section id="apercu">
+    <div class="sec-head">
+      <div class="sec-tag"><span>Aperçu</span></div>
+      <h2 class="sec-title"><span>Voyez-le en action.</span></h2>
+      <p class="sec-body"><span>Captures prises dans la démo publique. Cliquez pour agrandir.</span></p>
+    </div>
+    <div class="shots-grid">
+        <figure class="shot">
+          <button type="button" class="shot-btn" data-lightbox="/images/cohabitat/espaces.webp" data-lightbox-alt="Espaces communs">
+            <img src="/images/cohabitat/espaces.webp" alt="Espaces communs" loading="lazy" width="1600" height="1000" />
+          </button>
+          <figcaption><span>Espaces communs</span></figcaption>
+        </figure>
+        <figure class="shot">
+          <button type="button" class="shot-btn" data-lightbox="/images/cohabitat/mobilite.webp" data-lightbox-alt="Mobilité partagée">
+            <img src="/images/cohabitat/mobilite.webp" alt="Mobilité partagée" loading="lazy" width="1600" height="1000" />
+          </button>
+          <figcaption><span>Mobilité partagée</span></figcaption>
+        </figure>
+        <figure class="shot">
+          <button type="button" class="shot-btn" data-lightbox="/images/cohabitat/serre.webp" data-lightbox-alt="Serre communautaire">
+            <img src="/images/cohabitat/serre.webp" alt="Serre communautaire" loading="lazy" width="1600" height="1000" />
+          </button>
+          <figcaption><span>Serre communautaire</span></figcaption>
+        </figure>
+        <figure class="shot">
+          <button type="button" class="shot-btn" data-lightbox="/images/cohabitat/babillard.webp" data-lightbox-alt="Babillard">
+            <img src="/images/cohabitat/babillard.webp" alt="Babillard" loading="lazy" width="1600" height="1000" />
+          </button>
+          <figcaption><span>Babillard</span></figcaption>
+        </figure>
+    </div>
+    <div class="shots-cta">
+      <a class="btn btn-main" href="https://cohabitat.modulimo.com/#essai" data-track="demo_click" data-track-place="apercu"><span>Ouvrir la démo</span> →</a>
+    </div>
+  </section>
+
+  <!-- POUR QUI -->
+  <section class="audience">
+    <div class="sec-head">
+      <div class="sec-tag"><span>Pour qui</span></div>
+      <h2 class="sec-title"><span>Pensé pour l'habitation collective.</span></h2>
+      <p class="sec-body"><span>Conçu avec le projet Pointe Est à Montréal, où il est intégré dès la livraison, CoHabitat s'adapte à tout immeuble qui partage des ressources.</span></p>
+    </div>
+    <div class="aud-grid">
+        <div class="aud-card">
+          <h3><span>Copropriétés</span></h3>
+          <p><span>Un outil simple pour le conseil et les copropriétaires : réservations, billets, annonces.</span></p>
+        </div>
+        <div class="aud-card">
+          <h3><span>Coopératives et OSBL d'habitation</span></h3>
+          <p><span>Partager les ressources sans paperasse, et faire participer les membres.</span></p>
+        </div>
+        <div class="aud-card">
+          <h3><span>Promoteurs</span></h3>
+          <p><span>Livrer un immeuble avec ses services numériques prêts dès la remise des clés.</span></p>
+        </div>
+        <div class="aud-card">
+          <h3><span>Cohabitats</span></h3>
+          <p><span>Serre, mobilité, repas, entraide : tout ce qui fait vivre une communauté.</span></p>
+        </div>
+    </div>
+  </section>
+
+  <!-- DEPLOIEMENT -->
+  <section>
+    <div class="sec-head">
+      <div class="sec-tag"><span>Déploiement</span></div>
+      <h2 class="sec-title"><span>Dans le nuage, ou dans l'immeuble.</span></h2>
+    </div>
+    <div class="deploy-grid">
+      <div class="deploy-card">
+        <h3><span>Hébergé</span></h3>
+        <p><span>Nous hébergeons tout. L'immeuble obtient sa propre adresse et sa propre base de données, isolée des autres.</span></p>
+        <ul>
+          <li><span>Mises à jour incluses</span></li>
+          <li><span>Rien à installer dans l'immeuble</span></li>
+          <li><span>Accessible partout, sur tout appareil</span></li>
+        </ul>
+      </div>
+      <div class="deploy-card dark">
+        <h3><span>Autonome</span></h3>
+        <p><span>Tout tourne sur une machine de l'immeuble, en réseau fermé. Aucune dépendance à un service en ligne.</span></p>
+        <ul>
+          <li><span>Fonctionne même sans Internet</span></li>
+          <li><span>Les données ne quittent jamais l'immeuble</span></li>
+          <li><span>Jumelage facultatif entre immeubles par VPN</span></li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- FORFAITS -->
+  <section class="plans" id="forfaits">
+    <div class="sec-head">
+      <div class="sec-tag"><span>Forfaits</span></div>
+      <h2 class="sec-title"><span>Un forfait selon la taille de l'immeuble.</span></h2>
+    </div>
+    <div class="plans-grid" id="plansGrid">
+      <div class="plan-card featured">
+        <div class="plan-name"><span>Sur mesure</span></div>
+        <div class="plan-price"><span>Sur devis</span></div>
+        <div class="plan-units"><span>Selon le nombre de logements et les modules choisis</span></div>
+        <ul class="plan-feats">
+          <li><span>Tous les modules, activables un à un</span></li>
+          <li><span>Hébergé ou autonome</span></li>
+          <li><span>Accompagnement au démarrage</span></li>
+        </ul>
+        <a class="btn btn-main" href="#contact" data-track="contact_click" data-track-place="forfaits"><span>Demander une soumission</span></a>
+      </div>
+    </div>
+    <p class="plans-note"><span>Prix en dollars canadiens, taxes en sus.</span></p>
+  </section>
+
+  <!-- FAQ -->
+  <section>
+    <div class="sec-head">
+      <div class="sec-tag"><span>Questions fréquentes</span></div>
+      <h2 class="sec-title"><span>Ce qu'on nous demande souvent.</span></h2>
+    </div>
+    <div class="faq-list">
+        <details class="faq-item">
+          <summary><span>Faut-il installer quelque chose ?</span></summary>
+          <p><span>Non. CoHabitat s'ouvre dans le navigateur et s'installe sur l'écran d'accueil du téléphone en un geste. Une application Android existe aussi.</span></p>
+        </details>
+        <details class="faq-item">
+          <summary><span>Où sont stockées nos données ?</span></summary>
+          <p><span>Chaque immeuble a sa propre base de données, séparée des autres. Vous pouvez aussi tout héberger dans l'immeuble, sur une machine dédiée, en réseau fermé.</span></p>
+        </details>
+        <details class="faq-item">
+          <summary><span>Est-ce conforme à la Loi 25 ?</span></summary>
+          <p><span>Oui : consentement explicite pour la mesure d'audience, données isolées par immeuble, export et suppression des données personnelles sur demande.</span></p>
+        </details>
+        <details class="faq-item">
+          <summary><span>Peut-on n'activer que certains modules ?</span></summary>
+          <p><span>Oui. Pas de serre ou pas de véhicules ? Les modules se désactivent un à un, et l'application s'adapte.</span></p>
+        </details>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section class="contact" id="contact">
+    <div class="sec-tag"><span>Contact</span></div>
+    <h2 class="sec-title"><span>Parlons de votre immeuble.</span></h2>
+    <p class="sec-body"><span>Une présentation de 30 minutes, gratuite et sans engagement, avec les modules qui vous concernent. Nous répondons sous un jour ouvrable.</span></p>
+
+    <form class="lead-form" id="leadForm" method="post" action="#" data-consent-version="2026-10-cohabitat-v1" data-subject="CoHabitat">
+      <div class="lf-fields">
+        <div class="lf-grid">
+          <div class="lf-field">
+            <label for="lf-first"><span>Prénom</span></label>
+            <input type="text" id="lf-first" name="first_name" autocomplete="given-name" required />
+          </div>
+          <div class="lf-field">
+            <label for="lf-last"><span>Nom</span></label>
+            <input type="text" id="lf-last" name="last_name" autocomplete="family-name" required />
+          </div>
+        </div>
+        <div class="lf-field">
+          <label for="lf-email"><span>Courriel</span></label>
+          <input type="email" id="lf-email" name="email" autocomplete="email" required />
+        </div>
+        <div class="lf-grid">
+          <div class="lf-field">
+            <label for="lf-building"><span>Immeuble ou organisme</span></label>
+            <input type="text" id="lf-building" name="building" autocomplete="organization" />
+          </div>
+          <div class="lf-field">
+            <label for="lf-units"><span>Nombre de logements</span></label>
+            <input type="number" id="lf-units" name="units" min="1" max="100000" inputmode="numeric" />
+          </div>
+        </div>
+        <div class="lf-field">
+          <label for="lf-role"><span>Vous êtes</span></label>
+          <select id="lf-role" name="role">
+            <option value="">—</option>
+            <option value="copropriete"><span>Copropriété (conseil ou gestionnaire)</span></option>
+            <option value="cooperative"><span>Coopérative ou OSBL d'habitation</span></option>
+            <option value="promoteur"><span>Promoteur</span></option>
+            <option value="cohabitat"><span>Cohabitat</span></option>
+            <option value="autre"><span>Autre</span></option>
+          </select>
+        </div>
+        <div class="lf-field">
+          <label for="lf-message"><span>Message (facultatif)</span></label>
+          <textarea id="lf-message" name="message" rows="3"></textarea>
+        </div>
+        <p class="lf-hp" aria-hidden="true"><label>Ne pas remplir / Do not fill<input type="text" name="website" tabindex="-1" autocomplete="off" /></label></p>
+        <div class="lf-field">
+          <label class="lf-consent"><input type="checkbox" name="consent" required /><span><span>Je consens à ce que Modulimo inc. recueille et utilise les renseignements fournis afin de me contacter au sujet de CoHabitat. Je peux retirer mon consentement en tout temps en écrivant à info@modulimo.com.</span></span></label>
+        </div>
+        <button type="submit" class="lf-submit">
+          <span class="lf-label-idle"><span>Demander une présentation</span></span>
+          <span class="lf-label-sending"><span>Envoi en cours…</span></span>
+        </button>
+        <div class="lf-status" data-status="invalid" role="alert"><span>Veuillez remplir les champs requis (prénom, nom, courriel valide) et cocher la case de consentement.</span></div>
+        <div class="lf-status" data-status="fail" role="alert"><span>Une erreur est survenue lors de l'envoi. Veuillez réessayer, ou écrivez-nous à info@modulimo.com.</span></div>
+      </div>
+      <div class="lf-success" role="status">
+        <div class="lf-check" aria-hidden="true">✓</div>
+        <h3><span>Merci, c'est bien reçu.</span></h3>
+        <p><span>Nous vous écrivons sous un jour ouvrable pour fixer la présentation.</span></p>
+      </div>
+    </form>
+    <p class="contact-alt"><span>Vous préférez le courriel ?</span> <a href="mailto:info@modulimo.com?subject=CoHabitat" data-track="email_click" data-track-place="contact">info@modulimo.com</a></p>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="footer-inner">
+      <div class="footer-top">
+        <div>
+          <div class="footer-brand">
+            <img src="/images/ModulimoLogoSobre.png" alt="Modulimo" />
+          </div>
+          <p class="footer-tagline"><span>Écosystème résidentiel intégré — logement, mobilité, services et logiciel.</span></p>
+        </div>
+        <div class="footer-nav">
+          <h5>CoHabitat</h5>
+          <a href="https://cohabitat.modulimo.com/#essai" data-track="demo_click" data-track-place="footer"><span>Essayer la démo</span></a>
+          <a href="https://cohabitat.modulimo.com"><span>Connexion des résidants</span></a>
+          <a href="#contact"><span>Nous joindre</span></a>
+        </div>
+        <div class="footer-nav">
+          <h5><span>Navigation</span></h5>
+          <a href="/mobilite/"><span>Mobilité</span></a>
+          <a href="/securite/"><span>Sécurité</span></a>
+          <a href="/projets/"><span>Projets</span></a>
+          <a href="/produits/"><span>Produits</span></a>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p><span>© 2026 Modulimo inc. — Tous droits réservés</span></p>
+        <p><a href="/confidentialite/"><span>Politique de confidentialité</span></a></p>
+        <p>Pointe-aux-Trembles, Montréal</p>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    (function () {
+      var toggle = document.getElementById('menuToggle');
+      var nav = document.getElementById('siteNav');
+      if (toggle && nav) {
+        toggle.addEventListener('click', function () {
+          var open = nav.classList.toggle('is-open');
+          toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+        });
+      }
+
+      // Mesure de l'entonnoir : vue de la vitrine, clics vers la démo, vers
+      // le formulaire et vers le courriel. trackFeature (js/analytics.js) ne
+      // fait rien tant que le visiteur n'a pas consenti.
+      function suivre(action, details) {
+        if (typeof window.trackFeature === 'function') window.trackFeature('cohabitat_vitrine', action, details || {});
+      }
+      window.addEventListener('load', function () { suivre('landing_view'); });
+      document.addEventListener('click', function (e) {
+        var a = e.target.closest('[data-track]');
+        if (a) suivre(a.getAttribute('data-track'), { place: a.getAttribute('data-track-place') || '' });
+      });
+
+      // Forfaits : lus dans la centrale, comme la page de vente de
+      // l'application. En cas d'echec, la carte « Sur mesure » ecrite dans
+      // la page reste affichee — jamais de prix invente.
+      var CENTRAL = 'https://bpxscgrbxjscicpnheep.supabase.co';
+      var KEY = 'sb_publishable_2V-eHOvw1v_Xwr1bpHfHLg_cbHW9ctD';
+      var LANG = (document.documentElement.lang || 'fr').slice(0, 2);
+      var TXT = {
+        fr: { mois: '/ mois', devis: 'Sur devis', jusqua: function (n) { return "Jusqu'à " + n + ' logements'; }, illim: 'Logements illimités · réseau multi-immeubles', pop: 'Le plus populaire', cta: 'Nous contacter' },
+        en: { mois: '/ month', devis: 'On quote', jusqua: function (n) { return 'Up to ' + n + ' units'; }, illim: 'Unlimited units · multi-building network', pop: 'Most popular', cta: 'Contact us' },
+        es: { mois: '/ mes', devis: 'Bajo presupuesto', jusqua: function (n) { return 'Hasta ' + n + ' viviendas'; }, illim: 'Viviendas ilimitadas · red multiedificio', pop: 'El más popular', cta: 'Contáctenos' },
+        zh: { mois: '/ 月', devis: '按报价', jusqua: function (n) { return '最多 ' + n + ' 户'; }, illim: '户数不限 · 多楼宇网络', pop: '最受欢迎', cta: '联系我们' }
+      };
+      var t = TXT[LANG] || TXT.fr;
+      function esc(s) { return String(s == null ? '' : s).replace(/[&<>"']/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]; }); }
+      fetch(CENTRAL + '/rest/v1/plans?active=eq.true&select=code,name,price_monthly,max_units,featured,plan_features(label,included,sort_order)&order=sort_order', { headers: { apikey: KEY } })
+        .then(function (r) { if (!r.ok) throw new Error('http_' + r.status); return r.json(); })
+        .then(function (plans) {
+          if (!plans || !plans.length) return;
+          document.getElementById('plansGrid').innerHTML = plans.map(function (p) {
+            var feats = (p.plan_features || []).sort(function (a, b) { return a.sort_order - b.sort_order; });
+            var prix = p.price_monthly ? esc(p.price_monthly) + ' $ <small>' + t.mois + '</small>' : esc(t.devis);
+            return '<div class="plan-card' + (p.featured ? ' featured' : '') + '">'
+              + (p.featured ? '<div class="plan-badge">' + t.pop + '</div>' : '')
+              + '<div class="plan-name">' + esc(p.name) + '</div>'
+              + '<div class="plan-price">' + prix + '</div>'
+              + '<div class="plan-units">' + (p.max_units ? t.jusqua(esc(p.max_units)) : t.illim) + '</div>'
+              + '<ul class="plan-feats">' + feats.map(function (f) { return '<li' + (f.included ? '' : ' class="off"') + '>' + esc(f.label) + '</li>'; }).join('') + '</ul>'
+              + '<a class="btn ' + (p.featured ? 'btn-main' : 'btn-line') + '" href="#contact" data-track="contact_click" data-track-place="forfait_' + esc(p.code) + '">' + t.cta + '</a>'
+              + '</div>';
+          }).join('');
+        })
+        .catch(function (e) { console.warn('[forfaits]', e); });
+    })();
+  </script>
+  <script defer src="/js/lead-form.js"></script>
+  <script type="module" src="/js/theme.js"></script>
+
+</body>
+</html>

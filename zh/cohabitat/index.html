@@ -1,0 +1,704 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>CoHabitat — 您的楼宇专属应用 | Modulimo</title>
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="Modulimo" />
+  <meta name="description" content="公共空间预订、共享汽车、温室、公告栏与服务工单：CoHabitat 汇集楼宇的共享资源。符合魁北克第 25 号法案。免费演示。" />
+  <link rel="canonical" href="https://www.modulimo.com/zh/cohabitat/" />
+  <link rel="alternate" hreflang="fr-CA" href="https://www.modulimo.com/cohabitat/" />
+  <link rel="alternate" hreflang="en" href="https://www.modulimo.com/en/cohabitat/" />
+  <link rel="alternate" hreflang="es" href="https://www.modulimo.com/es/cohabitat/" />
+  <link rel="alternate" hreflang="zh-Hans" href="https://www.modulimo.com/zh/cohabitat/" />
+  <link rel="alternate" hreflang="x-default" href="https://www.modulimo.com/cohabitat/" />
+  <meta property="og:title" content="CoHabitat — 您的楼宇专属应用 | Modulimo" />
+  <meta property="og:description" content="公共空间预订、共享汽车、温室、公告栏与服务工单：CoHabitat 汇集楼宇的共享资源。符合魁北克第 25 号法案。免费演示。" />
+  <meta property="og:url" content="https://www.modulimo.com/zh/cohabitat/" />
+  <meta property="og:image" content="https://www.modulimo.com/images/cohabitat/apercu-partage.jpg" />
+  <meta property="og:locale" content="zh_CN" />
+  <meta property="og:locale:alternate" content="fr_CA" />
+  <meta property="og:locale:alternate" content="en_CA" />
+  <meta property="og:locale:alternate" content="es_MX" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png" />
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --white:#ffffff; --off:#f7f5f0; --light:#eeecea; --dark:#1a1a1a;
+      --mid:#4a4a4a; --muted:#888; --green:#2d7a4f; --green-lt:#e8f5ee;
+      --green-md:#4aaa74; --border:#e0ddd8; --bg:#f7f5f0; --line:#e0ddd8;
+      --gdk:#1e3d32; --max:1140px; --text:#1a1a1a;
+    }
+    *, *::before, *::after { box-sizing:border-box; margin:0; padding:0; }
+    html { scroll-behavior:smooth; }
+    body { background:var(--white); color:var(--dark); font-family:'DM Sans',sans-serif; font-weight:400; line-height:1.65; overflow-x:hidden; }
+    a { color:inherit; text-decoration:none; }
+    img { display:block; max-width:100%; height:auto; }
+
+    /* ── TOPBAR (identique aux autres pages) ── */
+    .topbar { position:sticky; top:0; z-index:50; background:var(--off); border-bottom:1px solid var(--border); }
+    .topbar-inner { max-width:var(--max); margin:0 auto; padding:0 24px; height:76px; display:flex; align-items:center; justify-content:space-between; gap:18px; }
+    .brand { display:flex; align-items:center; flex-shrink:0; }
+    .brand img { height:56px; width:auto; display:block; }
+    .nav { display:flex; align-items:center; gap:2px; }
+    .nav a { font-size:.72rem; font-weight:600; letter-spacing:.07em; text-transform:uppercase; color:var(--muted); padding:7px 13px; border-radius:5px; transition:color .15s,background .15s; white-space:nowrap; }
+    .nav a:hover { color:var(--green); background:var(--green-lt); }
+    .nav-cta { color:var(--green) !important; border:1px solid var(--green); border-radius:5px; padding:6px 12px !important; margin-left:6px; transition:background .15s,color .15s; }
+    .nav-cta:hover, .nav-cta.active { background:var(--green); color:#fff !important; }
+    .lang-switch { display:inline-flex; align-items:center; gap:0; margin-left:10px; padding-left:10px; border-left:1px solid var(--border); position:relative; }
+    .lang-btn { font-size:.7rem; font-weight:700; letter-spacing:.06em; color:var(--muted); padding:5px 7px; background:none; border:none; cursor:pointer; font-family:inherit; display:inline-flex; align-items:center; gap:5px; }
+    .lang-switch > summary { list-style:none; cursor:pointer; }
+    .lang-switch > summary::-webkit-details-marker { display:none; }
+    .lang-switch > summary::marker { content:''; }
+    .lang-switch[open] > summary { color:var(--green); }
+    .lang-caret { font-size:.6rem; opacity:.6; }
+    .lang-menu { position:absolute; top:calc(100% + 6px); right:0; min-width:158px; background:var(--bg); border:1px solid var(--line); border-radius:6px; box-shadow:0 8px 24px rgba(0,0,0,.14); padding:5px; z-index:120; }
+    .lang-item { display:flex; align-items:center; gap:8px; padding:8px 10px; border-radius:4px; color:var(--muted); font-size:.72rem; font-weight:600; letter-spacing:.04em; white-space:nowrap; }
+    .lang-item:hover { background:rgba(0,0,0,.05); color:var(--green); }
+    .lang-item.active { color:var(--green); }
+    html[lang="zh"] h1, html[lang="zh"] h2, html[lang="zh"] h3 { line-height:1.3; }
+    .avis-traduction { width:100%; margin:14px 0 0; padding-top:12px; border-top:1px solid var(--line); font-size:.68rem; line-height:1.55; color:var(--muted); opacity:.85; }
+    [data-lang] { display:none; }
+    html.lang-fr [data-lang="fr"], html.lang-en [data-lang="en"], html.lang-es [data-lang="es"] { display:revert; }
+    .menu-toggle { display:none; flex-direction:column; justify-content:center; gap:5px; width:40px; height:40px; background:none; border:1px solid var(--border); border-radius:6px; cursor:pointer; padding:8px; }
+    .menu-toggle span { display:block; height:2px; background:var(--green); border-radius:2px; }
+
+    /* ── BOUTONS ── */
+    .btn { display:inline-flex; align-items:center; justify-content:center; gap:.5rem; padding:14px 26px; border-radius:6px; font-size:.92rem; font-weight:600; cursor:pointer; transition:background .15s,color .15s,border-color .15s; border:1px solid transparent; font-family:inherit; }
+    .btn-main { background:var(--green); color:#fff; }
+    .btn-main:hover { background:var(--gdk); }
+    .btn-line { background:transparent; color:var(--green); border-color:var(--green); }
+    .btn-line:hover { background:var(--green-lt); }
+    .btn-light { background:#fff; color:var(--gdk); }
+    .btn-light:hover { background:var(--green-lt); }
+    .btn-ghost { background:transparent; color:#fff; border-color:rgba(255,255,255,.4); }
+    .btn-ghost:hover { background:rgba(255,255,255,.1); }
+
+    /* ── HERO ── */
+    .hero { background:var(--off); border-bottom:1px solid var(--border); padding:4.5rem 5rem 5rem; display:grid; grid-template-columns:1.05fr 1fr; gap:4rem; align-items:center; overflow:hidden; }
+    .hero-tag { display:inline-flex; align-items:center; gap:.6rem; font-size:.72rem; font-weight:500; letter-spacing:.18em; text-transform:uppercase; color:var(--green); margin-bottom:1.5rem; }
+    .hero-tag::before { content:''; width:1.5rem; height:1px; background:var(--green); }
+    .hero-title { font-family:'Syne',sans-serif; font-size:clamp(2.5rem,4.6vw,4.2rem); font-weight:800; line-height:1.02; letter-spacing:-.025em; margin-bottom:1.4rem; }
+    .hero-title .green { color:var(--green); }
+    .hero-desc { font-size:1.08rem; color:var(--mid); max-width:46ch; margin-bottom:2rem; line-height:1.75; }
+    .hero-ctas { display:flex; flex-wrap:wrap; gap:12px; margin-bottom:1.6rem; }
+    .hero-note { font-size:.8rem; color:var(--muted); }
+    .hero-visual { position:relative; }
+    .hero-desktop { border-radius:10px; box-shadow:0 24px 60px rgba(0,0,0,.22); border:1px solid #2a2a2a; }
+    .hero-phone { position:absolute; width:27%; right:-3%; bottom:-14%; border-radius:18px; border:5px solid #111; box-shadow:0 18px 40px rgba(0,0,0,.3); }
+
+    /* ── BANDE DE PREUVES ── */
+    .proofs { display:grid; grid-template-columns:repeat(4,1fr); border-bottom:1px solid var(--border); }
+    .proof { padding:2rem 2rem; border-right:1px solid var(--border); }
+    .proof:last-child { border-right:none; }
+    .proof-n { font-family:'Syne',sans-serif; font-size:2.1rem; font-weight:800; color:var(--green); line-height:1; margin-bottom:.35rem; }
+    .proof-l { font-size:.76rem; color:var(--muted); letter-spacing:.04em; text-transform:uppercase; }
+
+    /* ── SECTIONS ── */
+    section { padding:5.5rem 5rem; }
+    .sec-tag { font-size:.68rem; font-weight:600; letter-spacing:.2em; text-transform:uppercase; color:var(--green); margin-bottom:1.1rem; display:flex; align-items:center; gap:.6rem; }
+    .sec-tag::after { content:''; width:2rem; height:1px; background:var(--green); }
+    .sec-title { font-family:'Syne',sans-serif; font-size:clamp(1.8rem,3vw,2.6rem); font-weight:800; line-height:1.1; letter-spacing:-.02em; margin-bottom:1.1rem; }
+    .sec-body { font-size:1rem; color:var(--mid); max-width:60ch; line-height:1.75; }
+    .sec-head { margin-bottom:3rem; }
+
+    .ben-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:1px; background:var(--border); border:1px solid var(--border); }
+    .ben-card { background:var(--white); padding:2.4rem 2rem; }
+    .ben-num { font-family:'Syne',sans-serif; font-size:.68rem; font-weight:800; color:var(--green); letter-spacing:.12em; margin-bottom:1rem; }
+    .ben-title { font-family:'Syne',sans-serif; font-size:1.15rem; font-weight:700; margin-bottom:.6rem; line-height:1.25; }
+    .ben-desc { font-size:.9rem; color:var(--mid); line-height:1.7; }
+
+    .modules { background:var(--off); border-top:1px solid var(--border); border-bottom:1px solid var(--border); }
+    .mod-grid { display:grid; grid-template-columns:repeat(5,1fr); gap:14px; }
+    .mod-card { background:var(--white); border:1px solid var(--border); border-radius:8px; padding:1.4rem 1.2rem; }
+    .mod-ico { font-size:1.5rem; display:block; margin-bottom:.7rem; }
+    .mod-name { font-family:'Syne',sans-serif; font-weight:700; font-size:.9rem; margin-bottom:.35rem; }
+    .mod-desc { font-size:.8rem; color:var(--muted); line-height:1.55; }
+
+    .shots-grid { display:grid; grid-template-columns:1fr 1fr; gap:24px; }
+    .shot { margin:0; }
+    .shot-btn { display:block; width:100%; padding:0; border:1px solid #2a2a2a; border-radius:8px; overflow:hidden; cursor:zoom-in; background:#0f0f0f; }
+    .shot-btn img { width:100%; aspect-ratio:16/10; object-fit:cover; object-position:top; transition:transform .3s; }
+    .shot-btn:hover img { transform:scale(1.02); }
+    .shot figcaption { font-size:.82rem; color:var(--muted); margin-top:.6rem; }
+    .shots-cta { margin-top:2.4rem; text-align:center; }
+
+    .audience { background:var(--green-lt); border-top:1px solid rgba(45,122,79,.15); border-bottom:1px solid rgba(45,122,79,.15); }
+    .aud-grid { display:grid; grid-template-columns:repeat(4,1fr); gap:18px; }
+    .aud-card { background:var(--white); border-radius:8px; padding:1.6rem 1.4rem; border:1px solid rgba(45,122,79,.15); }
+    .aud-card h3 { font-family:'Syne',sans-serif; font-size:1rem; font-weight:700; margin-bottom:.5rem; color:var(--gdk); }
+    .aud-card p { font-size:.85rem; color:var(--mid); line-height:1.65; }
+
+    .deploy-grid { display:grid; grid-template-columns:1fr 1fr; gap:24px; }
+    .deploy-card { border:1px solid var(--border); border-radius:10px; padding:2rem; }
+    .deploy-card.dark { background:var(--gdk); color:#fff; border-color:var(--gdk); }
+    .deploy-card h3 { font-family:'Syne',sans-serif; font-size:1.2rem; font-weight:800; margin-bottom:.6rem; }
+    .deploy-card p { font-size:.92rem; line-height:1.7; color:var(--mid); }
+    .deploy-card.dark p { color:rgba(255,255,255,.78); }
+    .deploy-card ul { list-style:none; margin-top:1rem; }
+    .deploy-card li { font-size:.86rem; padding:.35rem 0 .35rem 1.4rem; position:relative; }
+    .deploy-card li::before { content:'✓'; position:absolute; left:0; color:var(--green-md); font-weight:700; }
+
+    .plans { background:var(--off); border-top:1px solid var(--border); border-bottom:1px solid var(--border); }
+    .plans-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(250px,340px)); justify-content:center; gap:20px; }
+    .plan-card { background:var(--white); border:1px solid var(--border); border-radius:10px; padding:2rem 1.6rem; position:relative; display:flex; flex-direction:column; }
+    .plan-card.featured { border:2px solid var(--green); }
+    .plan-badge { position:absolute; top:-12px; left:50%; transform:translateX(-50%); background:var(--green); color:#fff; font-size:.68rem; font-weight:700; padding:3px 12px; border-radius:99px; letter-spacing:.05em; white-space:nowrap; }
+    .plan-name { font-family:'Syne',sans-serif; font-size:1rem; font-weight:800; letter-spacing:.06em; text-transform:uppercase; margin-bottom:.5rem; }
+    .plan-price { font-family:'Syne',sans-serif; font-size:2rem; font-weight:800; color:var(--green); line-height:1.1; }
+    .plan-price small { font-family:'DM Sans',sans-serif; font-size:.85rem; font-weight:400; color:var(--muted); }
+    .plan-units { font-size:.8rem; color:var(--muted); margin:.3rem 0 1.2rem; }
+    .plan-feats { list-style:none; margin-bottom:1.6rem; flex:1; }
+    .plan-feats li { font-size:.86rem; color:var(--mid); padding:.35rem 0 .35rem 1.3rem; border-bottom:1px solid var(--light); position:relative; }
+    .plan-feats li::before { content:'✓'; position:absolute; left:0; color:var(--green); font-weight:700; }
+    .plan-feats li.off { color:var(--muted); }
+    .plan-feats li.off::before { content:'–'; color:var(--muted); }
+    .plans-note { font-size:.82rem; color:var(--muted); margin-top:1.6rem; text-align:center; }
+
+    .faq-list { max-width:780px; }
+    .faq-item { border-bottom:1px solid var(--border); padding:1.1rem 0; }
+    .faq-item summary { font-family:'Syne',sans-serif; font-weight:700; font-size:1rem; cursor:pointer; list-style:none; display:flex; justify-content:space-between; gap:1rem; }
+    .faq-item summary::-webkit-details-marker { display:none; }
+    .faq-item summary::after { content:'+'; color:var(--green); font-size:1.3rem; line-height:1; }
+    .faq-item[open] summary::after { content:'–'; }
+    .faq-item p { font-size:.92rem; color:var(--mid); line-height:1.7; margin-top:.7rem; max-width:65ch; }
+
+    /* ── CONTACT ── */
+    .contact { background:var(--gdk); color:#fff; text-align:center; }
+    .contact .sec-tag { color:var(--green-md); justify-content:center; }
+    .contact .sec-tag::after { background:var(--green-md); }
+    .contact .sec-title { color:#fff; }
+    .contact .sec-body { color:rgba(255,255,255,.78); margin:0 auto; }
+    .contact-alt { margin-top:1.4rem; font-size:.88rem; color:rgba(255,255,255,.7); }
+    .contact-alt a { color:#fff; text-decoration:underline; }
+    .lead-form { background:#fff; color:var(--text); border-radius:12px; padding:28px 26px; max-width:600px; margin:2.4rem auto 0; text-align:left; box-shadow:0 10px 36px rgba(0,0,0,.22); position:relative; }
+    .lf-grid { display:grid; grid-template-columns:1fr 1fr; gap:0 14px; }
+    .lf-field { margin-bottom:14px; }
+    .lf-field > label:not(.lf-consent) { display:block; font-size:.74rem; font-weight:700; letter-spacing:.04em; text-transform:uppercase; color:var(--mid); margin-bottom:5px; }
+    .lf-field input[type="text"], .lf-field input[type="email"], .lf-field input[type="number"], .lf-field select, .lf-field textarea { width:100%; padding:10px 12px; border:1px solid #d0cec8; border-radius:6px; font:inherit; font-size:.9rem; color:var(--text); background:#fff; }
+    .lf-field input:focus, .lf-field select:focus, .lf-field textarea:focus { outline:none; border-color:var(--green); box-shadow:0 0 0 3px rgba(45,122,79,.15); }
+    .lf-field.lf-invalid input, .lf-field.lf-invalid textarea { border-color:#c0392b; box-shadow:0 0 0 3px rgba(192,57,43,.12); }
+    .lf-consent { display:flex; gap:10px; align-items:flex-start; font-size:.78rem; color:var(--mid); line-height:1.55; cursor:pointer; }
+    .lf-consent input { margin-top:2px; width:16px; height:16px; flex-shrink:0; accent-color:var(--green); }
+    .lf-field.lf-invalid .lf-consent span { color:#c0392b; }
+    .lf-hp { position:absolute !important; left:-9999px !important; width:1px; height:1px; overflow:hidden; }
+    .lf-submit { display:inline-flex; align-items:center; justify-content:center; width:100%; background:var(--green); color:#fff; padding:13px 24px; border-radius:6px; font-size:.92rem; font-weight:600; border:none; cursor:pointer; font-family:inherit; margin-top:4px; }
+    .lf-submit:hover { background:var(--gdk); }
+    .lead-form.lf-sending .lf-submit { opacity:.7; pointer-events:none; }
+    .lf-submit .lf-label-sending { display:none; }
+    .lead-form.lf-sending .lf-submit .lf-label-idle { display:none; }
+    .lead-form.lf-sending .lf-submit .lf-label-sending { display:inline; }
+    .lf-status { display:none; margin-top:12px; font-size:.84rem; padding:10px 14px; border-radius:6px; background:#fdecea; color:#86281c; border:1px solid #f3c0ba; }
+    .lf-status.is-visible { display:block; }
+    .lf-success { display:none; text-align:center; padding:18px 6px; }
+    .lead-form.is-done .lf-fields { display:none; }
+    .lead-form.is-done .lf-success { display:block; }
+    .lf-check { width:48px; height:48px; border-radius:50%; background:rgba(45,122,79,.12); color:var(--green); font-size:1.5rem; font-weight:800; display:flex; align-items:center; justify-content:center; margin:0 auto 12px; }
+    .lf-success h3 { font-size:1.05rem; font-weight:800; margin-bottom:6px; }
+    .lf-success p { font-size:.88rem; color:var(--mid); }
+
+    /* ── LIGHTBOX ── */
+    .lb-overlay { position:fixed; inset:0; background:rgba(10,12,14,.92); display:none; align-items:center; justify-content:center; z-index:1000; padding:24px; }
+    .lb-overlay.is-open { display:flex; }
+    .lb-image { max-width:min(100%,1400px); max-height:90vh; object-fit:contain; border-radius:6px; }
+    .lb-close { position:absolute; top:18px; right:22px; width:44px; height:44px; border-radius:50%; background:rgba(255,255,255,.12); color:#fff; border:1px solid rgba(255,255,255,.2); font-size:1.6rem; line-height:1; cursor:pointer; }
+
+    /* ── FOOTER ── */
+    .footer { background:var(--off); border-top:1px solid var(--border); padding:44px 5rem 32px; }
+    .footer-inner { max-width:var(--max); margin:0 auto; }
+    .footer-top { display:flex; justify-content:space-between; align-items:flex-start; flex-wrap:wrap; gap:32px; margin-bottom:32px; }
+    .footer-brand { display:flex; align-items:center; background:#fff; padding:4px 10px; border-radius:8px; align-self:flex-start; }
+    .footer-brand img { height:32px; width:auto; display:block; }
+    .footer-tagline { font-size:.82rem; color:var(--muted); margin-top:8px; max-width:260px; line-height:1.6; }
+    .footer-nav h5 { font-size:.7rem; font-weight:700; letter-spacing:.1em; text-transform:uppercase; color:var(--muted); margin-bottom:12px; }
+    .footer-nav a { display:block; font-size:.84rem; color:var(--dark); margin-bottom:8px; }
+    .footer-nav a:hover { color:var(--green); }
+    .footer-bottom { border-top:1px solid var(--border); padding-top:20px; display:flex; justify-content:space-between; flex-wrap:wrap; gap:12px; }
+    .footer-bottom p { font-size:.75rem; color:var(--muted); }
+
+    /* ── THÈME ÉVÉNEMENTIEL (piloté depuis modulimo-admin) ── */
+    body.theme-femme .topbar { background:#f8bbd0; border-bottom-color:rgba(0,0,0,.08); }
+    body.theme-terre .topbar { background:#43a047; border-bottom-color:rgba(0,0,0,.15); }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width:1100px) {
+      .mod-grid { grid-template-columns:repeat(3,1fr); }
+      .aud-grid { grid-template-columns:1fr 1fr; }
+    }
+    @media (max-width:900px) {
+      .hero { grid-template-columns:1fr; padding:3.5rem 2rem 4.5rem; gap:3rem; }
+      section { padding:4rem 2rem; }
+      .proofs { grid-template-columns:1fr 1fr; }
+      .proof { border-bottom:1px solid var(--border); }
+      .ben-grid, .deploy-grid { grid-template-columns:1fr; }
+      .mod-grid { grid-template-columns:1fr 1fr; }
+      .footer { padding:44px 2rem 32px; }
+    }
+    @media (max-width:640px) {
+      .hero { padding:2.5rem 16px 4rem; }
+      section { padding:3.5rem 16px; }
+      .proof { padding:1.4rem 16px; }
+      .shots-grid, .aud-grid, .lf-grid { grid-template-columns:1fr; }
+      .hero-ctas .btn { width:100%; }
+      .lead-form { padding:22px 16px; }
+      .footer { padding:36px 16px 28px; }
+      .menu-toggle { display:flex; }
+      .nav { display:none; position:absolute; top:68px; left:0; right:0; background:var(--off); border-bottom:1px solid var(--border); flex-direction:column; align-items:stretch; padding:8px 16px 16px; gap:2px; }
+      .nav.is-open { display:flex; }
+      .nav a { padding:12px 14px; border-bottom:1px solid var(--border); border-radius:0; }
+      .nav-cta { margin-left:0; }
+    }
+  </style>
+  <script src="/js/analytics.js" defer></script>
+  <script src="/js/lightbox.js" defer></script>
+  <style>html:not(.produits-ouverts) a[href$="/produits/"]{display:none!important}</style>
+  <script>window.MODULIMO_VERROU={"sel":"rmjrOmLNvaHvdRjRiZUrBA==","iv":"JdysenF0eNQekSdp","data":"Inb2KkwsqcI1FRTxAjwCipZYeeLaQ9NA","iter":600000};try{var mv=JSON.parse(localStorage.getItem('modulimo-produits')||'null');if(mv&&mv.sel===window.MODULIMO_VERROU.sel)document.documentElement.classList.add('produits-ouverts')}catch(e){}</script>
+  <script src="/js/cadenas.js" defer></script>
+</head>
+<body>
+
+  <!-- TOPBAR -->
+  <header class="topbar">
+    <div class="topbar-inner">
+      <a href="/zh/" class="brand" aria-label="Modulimo"><img src="/images/ModulimoLogoSobre.png" alt="Modulimo" /></a>
+      <button class="menu-toggle" id="menuToggle" aria-expanded="false" aria-controls="siteNav" aria-label="Menu">
+        <span></span><span></span><span></span>
+      </button>
+      <nav class="nav" id="siteNav">
+        <a href="/zh/"><span>首页</span></a>
+        <a href="/zh/mobilite/"><span>出行</span></a>
+        <a href="/zh/securite/"><span>安全</span></a>
+        <a href="/zh/projets/"><span>项目</span></a>
+        <a href="/zh/produits/"><span>产品</span></a>
+        <a href="/zh/cohabitat/" class="nav-cta active">CoHabitat</a>
+        <details class="lang-switch">
+          <summary class="lang-btn" aria-label="选择语言"><svg viewBox="0 0 24 16" width="16" height="11" aria-hidden="true" style="display:block;border-radius:2px;flex-shrink:0;"><rect width="24" height="16" fill="#de2910"/><polygon points="4.00,1.60 4.54,3.26 6.28,3.26 4.87,4.28 5.41,5.94 4.00,4.92 2.59,5.94 3.13,4.28 1.72,3.26 3.46,3.26" fill="#ffde00"/><circle cx="8" cy="1.6" r="0.6" fill="#ffde00"/><circle cx="9.6" cy="3.2" r="0.6" fill="#ffde00"/><circle cx="9.6" cy="5.6" r="0.6" fill="#ffde00"/><circle cx="8" cy="7.2" r="0.6" fill="#ffde00"/></svg><span>ZH</span><span class="lang-caret">&#9662;</span></summary>
+          <div class="lang-menu">
+            <a class="lang-item" href="/cohabitat/" lang="fr" hreflang="fr-CA" aria-label="Afficher en français"><svg viewBox="0 0 24 16" width="16" height="11" aria-hidden="true" style="display:block;border-radius:2px;flex-shrink:0;"><rect width="24" height="16" fill="#095797"/><g transform="translate(5.6,3.6)" fill="#fff"><path d="M0,-2.3 C1,-1.2 1,-0.2 0,0.6 C-1,-0.2 -1,-1.2 0,-2.3 Z"/><path d="M-2.1,-0.5 C-1.3,-1.3 -0.6,-0.9 -0.4,0.2 C-1.2,0.6 -1.9,0.3 -2.1,-0.5 Z"/><path d="M2.1,-0.5 C1.3,-1.3 0.6,-0.9 0.4,0.2 C1.2,0.6 1.9,0.3 2.1,-0.5 Z"/><rect x="-1.6" y="0.6" width="3.2" height="0.7"/><rect x="-0.5" y="1.3" width="1" height="1.4"/></g><g transform="translate(18.4,3.6)" fill="#fff"><path d="M0,-2.3 C1,-1.2 1,-0.2 0,0.6 C-1,-0.2 -1,-1.2 0,-2.3 Z"/><path d="M-2.1,-0.5 C-1.3,-1.3 -0.6,-0.9 -0.4,0.2 C-1.2,0.6 -1.9,0.3 -2.1,-0.5 Z"/><path d="M2.1,-0.5 C1.3,-1.3 0.6,-0.9 0.4,0.2 C1.2,0.6 1.9,0.3 2.1,-0.5 Z"/><rect x="-1.6" y="0.6" width="3.2" height="0.7"/><rect x="-0.5" y="1.3" width="1" height="1.4"/></g><g transform="translate(5.6,12.4)" fill="#fff"><path d="M0,-2.3 C1,-1.2 1,-0.2 0,0.6 C-1,-0.2 -1,-1.2 0,-2.3 Z"/><path d="M-2.1,-0.5 C-1.3,-1.3 -0.6,-0.9 -0.4,0.2 C-1.2,0.6 -1.9,0.3 -2.1,-0.5 Z"/><path d="M2.1,-0.5 C1.3,-1.3 0.6,-0.9 0.4,0.2 C1.2,0.6 1.9,0.3 2.1,-0.5 Z"/><rect x="-1.6" y="0.6" width="3.2" height="0.7"/><rect x="-0.5" y="1.3" width="1" height="1.4"/></g><g transform="translate(18.4,12.4)" fill="#fff"><path d="M0,-2.3 C1,-1.2 1,-0.2 0,0.6 C-1,-0.2 -1,-1.2 0,-2.3 Z"/><path d="M-2.1,-0.5 C-1.3,-1.3 -0.6,-0.9 -0.4,0.2 C-1.2,0.6 -1.9,0.3 -2.1,-0.5 Z"/><path d="M2.1,-0.5 C1.3,-1.3 0.6,-0.9 0.4,0.2 C1.2,0.6 1.9,0.3 2.1,-0.5 Z"/><rect x="-1.6" y="0.6" width="3.2" height="0.7"/><rect x="-0.5" y="1.3" width="1" height="1.4"/></g><rect x="10.4" y="0" width="3.2" height="16" fill="#fff"/><rect x="0" y="6.4" width="24" height="3.2" fill="#fff"/></svg><span>Français</span></a>
+            <a class="lang-item" href="/en/cohabitat/" lang="en" hreflang="en" aria-label="Display in English"><svg viewBox="0 0 24 16" width="16" height="11" aria-hidden="true" style="display:block;border-radius:2px;flex-shrink:0;"><rect width="24" height="16" fill="#fff"/><rect x="0" y="0.00" width="24" height="1.2308" fill="#b22234"/><rect x="0" y="2.46" width="24" height="1.2308" fill="#b22234"/><rect x="0" y="4.92" width="24" height="1.2308" fill="#b22234"/><rect x="0" y="7.38" width="24" height="1.2308" fill="#b22234"/><rect x="0" y="9.85" width="24" height="1.2308" fill="#b22234"/><rect x="0" y="12.31" width="24" height="1.2308" fill="#b22234"/><rect x="0" y="14.77" width="24" height="1.2308" fill="#b22234"/><rect width="9.6" height="8.62" fill="#3c3b6e"/><circle cx="3.2" cy="2.2" r="0.55" fill="#fff"/><circle cx="3.2" cy="4.4" r="0.55" fill="#fff"/><circle cx="3.2" cy="6.6" r="0.55" fill="#fff"/><circle cx="6.4" cy="2.2" r="0.55" fill="#fff"/><circle cx="6.4" cy="4.4" r="0.55" fill="#fff"/><circle cx="6.4" cy="6.6" r="0.55" fill="#fff"/></svg><span>English</span></a>
+            <a class="lang-item" href="/es/cohabitat/" lang="es" hreflang="es" aria-label="Mostrar en español"><svg viewBox="0 0 24 16" width="16" height="11" aria-hidden="true" style="display:block;border-radius:2px;flex-shrink:0;"><rect width="8" height="16" fill="#006847"/><rect x="8" width="8" height="16" fill="#fff"/><rect x="16" width="8" height="16" fill="#ce1126"/><ellipse cx="12" cy="7.4" rx="1.7" ry="2" fill="#7a5230"/><path d="M9.9,9.4 A2.7,2.7 0 0 0 14.1,9.4" fill="none" stroke="#006847" stroke-width="0.8" stroke-linecap="round"/></svg><span>Español</span></a>
+            <a class="lang-item active" href="/zh/cohabitat/" lang="zh" hreflang="zh-Hans" aria-label="显示中文"><svg viewBox="0 0 24 16" width="16" height="11" aria-hidden="true" style="display:block;border-radius:2px;flex-shrink:0;"><rect width="24" height="16" fill="#de2910"/><polygon points="4.00,1.60 4.54,3.26 6.28,3.26 4.87,4.28 5.41,5.94 4.00,4.92 2.59,5.94 3.13,4.28 1.72,3.26 3.46,3.26" fill="#ffde00"/><circle cx="8" cy="1.6" r="0.6" fill="#ffde00"/><circle cx="9.6" cy="3.2" r="0.6" fill="#ffde00"/><circle cx="9.6" cy="5.6" r="0.6" fill="#ffde00"/><circle cx="8" cy="7.2" r="0.6" fill="#ffde00"/></svg><span>中文</span></a>
+          </div>
+        </details>
+      </nav>
+    </div>
+  </header>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div>
+      <span class="hero-tag"><span>CoHabitat · 住宅软件</span></span>
+      <h1 class="hero-title"><span>您的楼宇</span><br><span class="green"><span>专属应用。</span></span></h1>
+      <p class="hero-desc"><span>公共空间、共享汽车、温室、公告栏与服务工单：CoHabitat 将住户共享的一切汇集到一个简单、安全、符合魁北克第 25 号法案的应用中。</span></p>
+      <div class="hero-ctas">
+        <a class="btn btn-main" href="https://cohabitat.modulimo.com/#essai" data-track="demo_click" data-track-place="hero"><span>试用演示版</span> →</a>
+        <a class="btn btn-line" href="#contact" data-track="contact_click" data-track-place="hero"><span>预约讲解</span></a>
+      </div>
+      <p class="hero-note"><span>完整演示，无需注册。示例数据，不产生任何费用。</span></p>
+    </div>
+    <div class="hero-visual">
+      <img class="hero-desktop" src="/images/cohabitat/tableau.webp" alt="CoHabitat 仪表板" width="1600" height="1000" />
+      <img class="hero-phone" src="/images/cohabitat/mobile.webp" alt="手机上的 CoHabitat" width="780" height="1688" loading="lazy" />
+    </div>
+  </section>
+
+  <!-- PREUVES -->
+  <div class="proofs">
+    <div class="proof"><div class="proof-n">10</div><div class="proof-l"><span>可按需启用的模块</span></div></div>
+    <div class="proof"><div class="proof-n">4</div><div class="proof-l"><span>种语言：FR · EN · ES · 中文</span></div></div>
+    <div class="proof"><div class="proof-n">15 min</div><div class="proof-l"><span>空间预订最小单位</span></div></div>
+    <div class="proof"><div class="proof-n">Loi 25</div><div class="proof-l"><span>从一开始即内置合规</span></div></div>
+  </div>
+
+  <!-- BENEFICES -->
+  <section>
+    <div class="sec-head">
+      <div class="sec-tag"><span>为何选择 CoHabitat</span></div>
+      <h2 class="sec-title"><span>更少的邮件、表格与纠纷。</span></h2>
+      <p class="sec-body"><span>共享资源是楼宇价值所在 —— 前提是预订简单、付费公平、管委会易于管理。</span></p>
+    </div>
+    <div class="ben-grid">
+        <div class="ben-card">
+          <div class="ben-num">01</div>
+          <h3 class="ben-title"><span>告别预订冲突</span></h3>
+          <p class="ben-desc"><span>会议室、屋顶露台、工作坊：每位住户都能实时查看空闲情况，以 15 分钟为单位预订，费用自动计算并扣除。</span></p>
+        </div>
+        <div class="ben-card">
+          <div class="ben-num">02</div>
+          <h3 class="ben-title"><span>共享出行，告别电子表格</span></h3>
+          <p class="ben-desc"><span>车辆与卧式篷车按小时预订，邻里拼车，还车时按里程计费：楼内车队自行运转。</span></p>
+        </div>
+        <div class="ben-card">
+          <div class="ben-num">03</div>
+          <h3 class="ben-title"><span>您的数据留在您手中</span></h3>
+          <p class="ben-desc"><span>每栋建筑拥有独立且相互隔离的数据库。符合魁北克第 25 号法案，可应要求删除数据 —— 还有无需云端即可运行的独立模式。</span></p>
+        </div>
+    </div>
+  </section>
+
+  <!-- MODULES -->
+  <section class="modules" id="modules">
+    <div class="sec-head">
+      <div class="sec-tag"><span>模块</span></div>
+      <h2 class="sec-title"><span>楼宇共享的一切。</span></h2>
+      <p class="sec-body"><span>只启用您楼内已有的功能：应用适应楼宇，而非楼宇迁就应用。</span></p>
+    </div>
+    <div class="mod-grid">
+        <div class="mod-card">
+          <span class="mod-ico" aria-hidden="true">🏠</span>
+          <div class="mod-name"><span>公共空间</span></div>
+          <div class="mod-desc"><span>在线预订，按 15 分钟时段计价，完整记录。</span></div>
+        </div>
+        <div class="mod-card">
+          <span class="mod-ico" aria-hidden="true">🚗</span>
+          <div class="mod-name"><span>共享出行</span></div>
+          <div class="mod-desc"><span>车辆、卧式篷车与拼车，汇于同一项服务。</span></div>
+        </div>
+        <div class="mod-card">
+          <span class="mod-ico" aria-hidden="true">🌱</span>
+          <div class="mod-name"><span>温室与鸡舍</span></div>
+          <div class="mod-desc"><span>租用种植区，记录收成，邻里分享余量。</span></div>
+        </div>
+        <div class="mod-card">
+          <span class="mod-ico" aria-hidden="true">📌</span>
+          <div class="mod-name"><span>公告栏</span></div>
+          <div class="mod-desc"><span>公告、互助与楼内动态，集中一处。</span></div>
+        </div>
+        <div class="mod-card">
+          <span class="mod-ico" aria-hidden="true">🛠️</span>
+          <div class="mod-name"><span>服务工单</span></div>
+          <div class="mod-desc"><span>报修、跟进处理，并为管委会留存记录。</span></div>
+        </div>
+        <div class="mod-card">
+          <span class="mod-ico" aria-hidden="true">💡</span>
+          <div class="mod-name"><span>创意实验室</span></div>
+          <div class="mod-desc"><span>住户提出改进建议、投票并讨论。</span></div>
+        </div>
+        <div class="mod-card">
+          <span class="mod-ico" aria-hidden="true">🍱</span>
+          <div class="mod-name"><span>午餐机</span></div>
+          <div class="mod-desc"><span>触屏订餐终端与冷藏取餐柜。</span></div>
+        </div>
+        <div class="mod-card">
+          <span class="mod-ico" aria-hidden="true">👨‍👩‍👧</span>
+          <div class="mod-name"><span>家庭与受抚养人</span></div>
+          <div class="mod-desc"><span>为每位家庭成员单独设置各项资源的使用权限。</span></div>
+        </div>
+        <div class="mod-card">
+          <span class="mod-ico" aria-hidden="true">🔗</span>
+          <div class="mod-name"><span>楼宇网络</span></div>
+          <div class="mod-desc"><span>用同一账户预订相邻楼宇的空间。</span></div>
+        </div>
+        <div class="mod-card">
+          <span class="mod-ico" aria-hidden="true">📊</span>
+          <div class="mod-name"><span>统计</span></div>
+          <div class="mod-desc"><span>为管理员提供使用报告与 CSV 导出。</span></div>
+        </div>
+    </div>
+  </section>
+
+  <!-- CAPTURES -->
+  <section id="apercu">
+    <div class="sec-head">
+      <div class="sec-tag"><span>预览</span></div>
+      <h2 class="sec-title"><span>亲眼看看。</span></h2>
+      <p class="sec-body"><span>截图来自公开演示版，点击可放大。</span></p>
+    </div>
+    <div class="shots-grid">
+        <figure class="shot">
+          <button type="button" class="shot-btn" data-lightbox="/images/cohabitat/espaces.webp" data-lightbox-alt="Espaces communs">
+            <img src="/images/cohabitat/espaces.webp" alt="公共空间" loading="lazy" width="1600" height="1000" />
+          </button>
+          <figcaption><span>公共空间</span></figcaption>
+        </figure>
+        <figure class="shot">
+          <button type="button" class="shot-btn" data-lightbox="/images/cohabitat/mobilite.webp" data-lightbox-alt="Mobilité partagée">
+            <img src="/images/cohabitat/mobilite.webp" alt="共享出行" loading="lazy" width="1600" height="1000" />
+          </button>
+          <figcaption><span>共享出行</span></figcaption>
+        </figure>
+        <figure class="shot">
+          <button type="button" class="shot-btn" data-lightbox="/images/cohabitat/serre.webp" data-lightbox-alt="Serre communautaire">
+            <img src="/images/cohabitat/serre.webp" alt="社区温室" loading="lazy" width="1600" height="1000" />
+          </button>
+          <figcaption><span>社区温室</span></figcaption>
+        </figure>
+        <figure class="shot">
+          <button type="button" class="shot-btn" data-lightbox="/images/cohabitat/babillard.webp" data-lightbox-alt="Babillard">
+            <img src="/images/cohabitat/babillard.webp" alt="公告栏" loading="lazy" width="1600" height="1000" />
+          </button>
+          <figcaption><span>公告栏</span></figcaption>
+        </figure>
+    </div>
+    <div class="shots-cta">
+      <a class="btn btn-main" href="https://cohabitat.modulimo.com/#essai" data-track="demo_click" data-track-place="apercu"><span>打开演示版</span> →</a>
+    </div>
+  </section>
+
+  <!-- POUR QUI -->
+  <section class="audience">
+    <div class="sec-head">
+      <div class="sec-tag"><span>适用对象</span></div>
+      <h2 class="sec-title"><span>为集体居住而设计。</span></h2>
+      <p class="sec-body"><span>CoHabitat 与蒙特利尔 Pointe Est 项目同步设计，交付即集成，适用于任何共享资源的楼宇。</span></p>
+    </div>
+    <div class="aud-grid">
+        <div class="aud-card">
+          <h3><span>共管公寓</span></h3>
+          <p><span>为管委会与业主提供简单工具：预订、工单、公告。</span></p>
+        </div>
+        <div class="aud-card">
+          <h3><span>住房合作社与非营利住房机构</span></h3>
+          <p><span>免去繁琐手续共享资源，并让成员参与其中。</span></p>
+        </div>
+        <div class="aud-card">
+          <h3><span>开发商</span></h3>
+          <p><span>交房即交付配套就绪的数字化服务。</span></p>
+        </div>
+        <div class="aud-card">
+          <h3><span>合居社区</span></h3>
+          <p><span>温室、出行、餐食、互助：让社区充满活力的一切。</span></p>
+        </div>
+    </div>
+  </section>
+
+  <!-- DEPLOIEMENT -->
+  <section>
+    <div class="sec-head">
+      <div class="sec-tag"><span>部署</span></div>
+      <h2 class="sec-title"><span>部署在云端，或楼内。</span></h2>
+    </div>
+    <div class="deploy-grid">
+      <div class="deploy-card">
+        <h3><span>托管</span></h3>
+        <p><span>由我们全权托管。每栋楼拥有独立网址和独立数据库，与其他楼宇隔离。</span></p>
+        <ul>
+          <li><span>包含更新</span></li>
+          <li><span>楼内无需安装任何设备</span></li>
+          <li><span>随时随地，任何设备均可访问</span></li>
+        </ul>
+      </div>
+      <div class="deploy-card dark">
+        <h3><span>独立部署</span></h3>
+        <p><span>全部运行在楼内的一台设备上，处于封闭网络，不依赖任何在线服务。</span></p>
+        <ul>
+          <li><span>断网亦可运行</span></li>
+          <li><span>数据从不离开楼宇</span></li>
+          <li><span>可选：通过 VPN 连接多栋楼宇</span></li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- FORFAITS -->
+  <section class="plans" id="forfaits">
+    <div class="sec-head">
+      <div class="sec-tag"><span>方案</span></div>
+      <h2 class="sec-title"><span>按楼宇规模选择方案。</span></h2>
+    </div>
+    <div class="plans-grid" id="plansGrid">
+      <div class="plan-card featured">
+        <div class="plan-name"><span>定制</span></div>
+        <div class="plan-price"><span>按报价</span></div>
+        <div class="plan-units"><span>根据住户数量与所选模块而定</span></div>
+        <ul class="plan-feats">
+          <li><span>全部模块，可逐一启用</span></li>
+          <li><span>托管或独立部署</span></li>
+          <li><span>启动阶段全程协助</span></li>
+        </ul>
+        <a class="btn btn-main" href="#contact" data-track="contact_click" data-track-place="forfaits"><span>索取报价</span></a>
+      </div>
+    </div>
+    <p class="plans-note"><span>价格以加元计，不含税。</span></p>
+  </section>
+
+  <!-- FAQ -->
+  <section>
+    <div class="sec-head">
+      <div class="sec-tag"><span>常见问题</span></div>
+      <h2 class="sec-title"><span>大家常问的问题。</span></h2>
+    </div>
+    <div class="faq-list">
+        <details class="faq-item">
+          <summary><span>需要安装什么吗？</span></summary>
+          <p><span>不需要。CoHabitat 在浏览器中即可打开，一键即可添加到手机主屏幕，另有 Android 应用。</span></p>
+        </details>
+        <details class="faq-item">
+          <summary><span>我们的数据存储在哪里？</span></summary>
+          <p><span>每栋建筑拥有独立的数据库。您也可以将全部系统部署在楼内的专用设备上，在封闭网络中运行。</span></p>
+        </details>
+        <details class="faq-item">
+          <summary><span>是否符合魁北克第 25 号法案？</span></summary>
+          <p><span>符合：访问统计需明确同意，数据按建筑隔离，可应要求导出和删除个人数据。</span></p>
+        </details>
+        <details class="faq-item">
+          <summary><span>可以只启用部分模块吗？</span></summary>
+          <p><span>可以。没有温室或车辆？模块可逐一关闭，应用随之调整。</span></p>
+        </details>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section class="contact" id="contact">
+    <div class="sec-tag"><span>联系</span></div>
+    <h2 class="sec-title"><span>聊聊您的楼宇。</span></h2>
+    <p class="sec-body"><span>免费且无任何义务的 30 分钟讲解，聚焦您关心的模块。我们会在一个工作日内回复。</span></p>
+
+    <form class="lead-form" id="leadForm" method="post" action="#" data-consent-version="2026-10-cohabitat-v1" data-subject="CoHabitat">
+      <div class="lf-fields">
+        <div class="lf-grid">
+          <div class="lf-field">
+            <label for="lf-first"><span>名字</span></label>
+            <input type="text" id="lf-first" name="first_name" autocomplete="given-name" required />
+          </div>
+          <div class="lf-field">
+            <label for="lf-last"><span>姓氏</span></label>
+            <input type="text" id="lf-last" name="last_name" autocomplete="family-name" required />
+          </div>
+        </div>
+        <div class="lf-field">
+          <label for="lf-email"><span>电子邮箱</span></label>
+          <input type="email" id="lf-email" name="email" autocomplete="email" required />
+        </div>
+        <div class="lf-grid">
+          <div class="lf-field">
+            <label for="lf-building"><span>楼宇或机构</span></label>
+            <input type="text" id="lf-building" name="building" autocomplete="organization" />
+          </div>
+          <div class="lf-field">
+            <label for="lf-units"><span>住户数量</span></label>
+            <input type="number" id="lf-units" name="units" min="1" max="100000" inputmode="numeric" />
+          </div>
+        </div>
+        <div class="lf-field">
+          <label for="lf-role"><span>您的身份</span></label>
+          <select id="lf-role" name="role">
+            <option value="">—</option>
+            <option value="copropriete"><span>共管公寓（管委会或物业）</span></option>
+            <option value="cooperative"><span>住房合作社或非营利机构</span></option>
+            <option value="promoteur"><span>开发商</span></option>
+            <option value="cohabitat"><span>合居社区</span></option>
+            <option value="autre"><span>其他</span></option>
+          </select>
+        </div>
+        <div class="lf-field">
+          <label for="lf-message"><span>留言（选填）</span></label>
+          <textarea id="lf-message" name="message" rows="3"></textarea>
+        </div>
+        <p class="lf-hp" aria-hidden="true"><label>Ne pas remplir / Do not fill<input type="text" name="website" tabindex="-1" autocomplete="off" /></label></p>
+        <div class="lf-field">
+          <label class="lf-consent"><input type="checkbox" name="consent" required /><span><span>我同意 Modulimo inc. 收集并使用我提供的信息，以便就 CoHabitat 与我联系。我可随时致信 info@modulimo.com 撤回同意。</span></span></label>
+        </div>
+        <button type="submit" class="lf-submit">
+          <span class="lf-label-idle"><span>申请讲解</span></span>
+          <span class="lf-label-sending"><span>正在发送…</span></span>
+        </button>
+        <div class="lf-status" data-status="invalid" role="alert"><span>请填写必填项（名字、姓氏、有效的电子邮箱）并勾选同意框。</span></div>
+        <div class="lf-status" data-status="fail" role="alert"><span>发送时发生错误。请重试，或写信至 info@modulimo.com。</span></div>
+      </div>
+      <div class="lf-success" role="status">
+        <div class="lf-check" aria-hidden="true">✓</div>
+        <h3><span>谢谢，已收到。</span></h3>
+        <p><span>我们将在一个工作日内与您联系，安排讲解时间。</span></p>
+      </div>
+    </form>
+    <p class="contact-alt"><span>更喜欢邮件？</span> <a href="mailto:info@modulimo.com?subject=CoHabitat" data-track="email_click" data-track-place="contact">info@modulimo.com</a></p>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="footer-inner">
+      <div class="footer-top">
+        <div>
+          <div class="footer-brand">
+            <img src="/images/ModulimoLogoSobre.png" alt="Modulimo" />
+          </div>
+          <p class="footer-tagline"><span>一体化住宅生态系统 — 住宅、出行、服务与软件。</span></p>
+        </div>
+        <div class="footer-nav">
+          <h5>CoHabitat</h5>
+          <a href="https://cohabitat.modulimo.com/#essai" data-track="demo_click" data-track-place="footer"><span>试用演示版</span></a>
+          <a href="https://cohabitat.modulimo.com"><span>住户登录</span></a>
+          <a href="#contact"><span>联系我们</span></a>
+        </div>
+        <div class="footer-nav">
+          <h5><span>导航</span></h5>
+          <a href="/zh/mobilite/"><span>出行</span></a>
+          <a href="/zh/securite/"><span>安全</span></a>
+          <a href="/zh/projets/"><span>项目</span></a>
+          <a href="/zh/produits/"><span>产品</span></a>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p><span>© 2026 Modulimo inc. — 保留所有权利</span></p>
+        <p><a href="/zh/confidentialite/"><span>隐私政策</span></a></p>
+        <p>Pointe-aux-Trembles, Montréal</p>
+      </div>
+    </div>
+  <p class="avis-traduction" lang="zh">本页面为仅供参考的译文，不构成任何承诺、约定或保证，并可能随时更新，恕不另行通知。如与法文版本有任何出入，一概以法文版本为准。</p>
+  </footer>
+
+  <script>
+    (function () {
+      var toggle = document.getElementById('menuToggle');
+      var nav = document.getElementById('siteNav');
+      if (toggle && nav) {
+        toggle.addEventListener('click', function () {
+          var open = nav.classList.toggle('is-open');
+          toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+        });
+      }
+
+      // Mesure de l'entonnoir : vue de la vitrine, clics vers la démo, vers
+      // le formulaire et vers le courriel. trackFeature (js/analytics.js) ne
+      // fait rien tant que le visiteur n'a pas consenti.
+      function suivre(action, details) {
+        if (typeof window.trackFeature === 'function') window.trackFeature('cohabitat_vitrine', action, details || {});
+      }
+      window.addEventListener('load', function () { suivre('landing_view'); });
+      document.addEventListener('click', function (e) {
+        var a = e.target.closest('[data-track]');
+        if (a) suivre(a.getAttribute('data-track'), { place: a.getAttribute('data-track-place') || '' });
+      });
+
+      // Forfaits : lus dans la centrale, comme la page de vente de
+      // l'application. En cas d'echec, la carte « Sur mesure » ecrite dans
+      // la page reste affichee — jamais de prix invente.
+      var CENTRAL = 'https://bpxscgrbxjscicpnheep.supabase.co';
+      var KEY = 'sb_publishable_2V-eHOvw1v_Xwr1bpHfHLg_cbHW9ctD';
+      var LANG = (document.documentElement.lang || 'fr').slice(0, 2);
+      var TXT = {
+        fr: { mois: '/ mois', devis: 'Sur devis', jusqua: function (n) { return "Jusqu'à " + n + ' logements'; }, illim: 'Logements illimités · réseau multi-immeubles', pop: 'Le plus populaire', cta: 'Nous contacter' },
+        en: { mois: '/ month', devis: 'On quote', jusqua: function (n) { return 'Up to ' + n + ' units'; }, illim: 'Unlimited units · multi-building network', pop: 'Most popular', cta: 'Contact us' },
+        es: { mois: '/ mes', devis: 'Bajo presupuesto', jusqua: function (n) { return 'Hasta ' + n + ' viviendas'; }, illim: 'Viviendas ilimitadas · red multiedificio', pop: 'El más popular', cta: 'Contáctenos' },
+        zh: { mois: '/ 月', devis: '按报价', jusqua: function (n) { return '最多 ' + n + ' 户'; }, illim: '户数不限 · 多楼宇网络', pop: '最受欢迎', cta: '联系我们' }
+      };
+      var t = TXT[LANG] || TXT.fr;
+      function esc(s) { return String(s == null ? '' : s).replace(/[&<>"']/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]; }); }
+      fetch(CENTRAL + '/rest/v1/plans?active=eq.true&select=code,name,price_monthly,max_units,featured,plan_features(label,included,sort_order)&order=sort_order', { headers: { apikey: KEY } })
+        .then(function (r) { if (!r.ok) throw new Error('http_' + r.status); return r.json(); })
+        .then(function (plans) {
+          if (!plans || !plans.length) return;
+          document.getElementById('plansGrid').innerHTML = plans.map(function (p) {
+            var feats = (p.plan_features || []).sort(function (a, b) { return a.sort_order - b.sort_order; });
+            var prix = p.price_monthly ? esc(p.price_monthly) + ' $ <small>' + t.mois + '</small>' : esc(t.devis);
+            return '<div class="plan-card' + (p.featured ? ' featured' : '') + '">'
+              + (p.featured ? '<div class="plan-badge">' + t.pop + '</div>' : '')
+              + '<div class="plan-name">' + esc(p.name) + '</div>'
+              + '<div class="plan-price">' + prix + '</div>'
+              + '<div class="plan-units">' + (p.max_units ? t.jusqua(esc(p.max_units)) : t.illim) + '</div>'
+              + '<ul class="plan-feats">' + feats.map(function (f) { return '<li' + (f.included ? '' : ' class="off"') + '>' + esc(f.label) + '</li>'; }).join('') + '</ul>'
+              + '<a class="btn ' + (p.featured ? 'btn-main' : 'btn-line') + '" href="#contact" data-track="contact_click" data-track-place="forfait_' + esc(p.code) + '">' + t.cta + '</a>'
+              + '</div>';
+          }).join('');
+        })
+        .catch(function (e) { console.warn('[forfaits]', e); });
+    })();
+  </script>
+  <script defer src="/js/lead-form.js"></script>
+  <script type="module" src="/js/theme.js"></script>
+
+</body>
+</html>
