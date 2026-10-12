@@ -118,10 +118,10 @@ const PAGES = [
       zh: 'CoHabitat — 您的楼宇专属应用 | Modulimo',
     },
     desc: {
-      fr: "Réservation d'espaces communs, auto-partage, serre, babillard et billets de service : CoHabitat réunit les ressources partagées de l'immeuble. Conforme à la Loi 25. Démo gratuite.",
-      en: 'Shared space booking, car sharing, greenhouse, bulletin board and service tickets: CoHabitat brings a building\'s shared resources together. Quebec Law 25 compliant. Free demo.',
-      es: 'Reserva de espacios comunes, vehículos compartidos, invernadero, tablón de anuncios y solicitudes de servicio: CoHabitat reúne los recursos compartidos del edificio. Conforme a la Ley 25 de Quebec. Demo gratuita.',
-      zh: '公共空间预订、共享汽车、温室、公告栏与服务工单：CoHabitat 汇集楼宇的共享资源。符合魁北克第 25 号法案。免费演示。',
+      fr: "CoHabitat, l'application de votre immeuble : espaces communs, auto-partage, serre et babillard pour vos locataires, sans abonnement pour eux. Conforme à la Loi 25. Démo gratuite.",
+      en: 'CoHabitat, the app for your building: shared spaces, car sharing, greenhouse and bulletin board for your tenants, with no subscription for them. Quebec Law 25 compliant. Free demo.',
+      es: 'CoHabitat, la aplicación de su edificio: espacios comunes, vehículos compartidos, invernadero y tablón de anuncios para sus inquilinos, sin suscripción para ellos. Conforme a la Ley 25 de Quebec. Demo gratuita.',
+      zh: 'CoHabitat，您的楼宇专属应用：为租户提供公共空间、共享汽车、温室与公告栏，租户无需订阅。符合魁北克第 25 号法案。免费演示。',
     },
   },
   {
