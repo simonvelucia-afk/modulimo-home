@@ -111,6 +111,19 @@
     .invite-cta { display:inline-flex; align-items:center; gap:6px; font-size:.84rem; font-weight:700; color:var(--green); border-bottom:1px solid currentColor; padding-bottom:2px; transition:color .15s; margin-top:auto; }
     .invite-cta:hover { color:var(--green-lt); }
 
+    .ideal-title { margin-bottom:14px; }
+    .ideal-intro { font-size:.92rem; color:var(--muted); line-height:1.7; max-width:680px; margin-bottom:32px; }
+    .ideal-grid { display:grid; grid-template-columns:repeat(4,1fr); gap:18px; }
+    .ideal-card { background:#fff; border:1px solid var(--line); border-radius:12px; padding:20px 20px 18px; display:flex; flex-direction:column; }
+    .ideal-num { font-size:.7rem; font-weight:800; letter-spacing:.12em; color:var(--green); margin-bottom:8px; }
+    .ideal-card h3 { font-size:.98rem; font-weight:700; color:var(--text); margin-bottom:8px; line-height:1.3; }
+    .ideal-card p { font-size:.83rem; color:var(--muted); line-height:1.6; }
+    .ideal-card .ideal-ref { margin-top:auto; padding-top:12px; font-size:.74rem; font-weight:700; color:var(--green); }
+    .ideal-foot { margin-top:28px; display:flex; flex-direction:column; align-items:flex-start; gap:12px; }
+    .ideal-excl, .ideal-ref-project { font-size:.84rem; color:var(--muted); line-height:1.65; max-width:820px; }
+    .ideal-excl strong { color:var(--text); }
+    @media (max-width:960px) { .ideal-grid { grid-template-columns:repeat(2,1fr); } }
+    @media (max-width:520px) { .ideal-grid { grid-template-columns:1fr; } }
     .csa-note { background:var(--bg); border-top:1px solid var(--line); padding:40px 0; }
     .csa-note-inner { max-width:var(--max); margin:0 auto; padding:0 24px; }
     .csa-label { font-size:.68rem; font-weight:700; letter-spacing:.14em; text-transform:uppercase; color:var(--green); margin-bottom:8px; }
@@ -272,6 +285,7 @@
               <span data-lang="en">The model is designed to scale. If you'd like to sell land that fits the concept, or invest in an upcoming deployment, get in touch.</span>
               <span data-lang="es">El modelo está diseñado para escalar. Si desea vender un terreno compatible con el concepto, o invertir en un próximo despliegue, escríbanos.</span><span data-lang="zh">该模式专为规模化部署而设计。若您希望出售与本理念相适配的土地，或投资于下一个落地项目，欢迎与我们联系。</span>
             </p>
+            <p><a href="#terrain-ideal" class="project-link"><span data-lang="fr">Voir les critères du terrain idéal ↓</span><span data-lang="en">See the ideal-site criteria ↓</span><span data-lang="es">Ver los criterios del terreno ideal ↓</span><span data-lang="zh">查看理想用地标准 ↓</span></a></p>
             <a href="mailto:info@modulimo.com?subject=Terrain%20ou%20investissement%20Modulimo" class="invite-cta">
               <span data-lang="fr">info@modulimo.com →</span>
               <span data-lang="en">info@modulimo.com →</span>
@@ -279,6 +293,75 @@
             </a>
           </div>
         </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section-alt" id="terrain-ideal">
+    <div class="wrap">
+      <p class="section-label">
+        <span data-lang="fr">Prochains déploiements</span><span data-lang="en">Upcoming deployments</span><span data-lang="es">Próximos despliegues</span><span data-lang="zh">后续落地项目</span>
+      </p>
+      <h2 class="section-title ideal-title">
+        <span data-lang="fr">Le terrain idéal pour un projet Modulimo</span><span data-lang="en">The ideal site for a Modulimo project</span><span data-lang="es">El terreno ideal para un proyecto Modulimo</span><span data-lang="zh">Modulimo 项目的理想用地</span>
+      </h2>
+      <p class="ideal-intro">
+        <span data-lang="fr">Huit critères tirés de Pointe Est et de l'avis de la Ville sur ce premier projet. Les repères chiffrés sont indicatifs : chaque terrain est évalué avec l'architecte et selon la réglementation locale.</span><span data-lang="en">Eight criteria drawn from Pointe Est and the City's opinion on this first project. The figures are indicative: each site is assessed with the architect and under local regulations.</span><span data-lang="es">Ocho criterios extraídos de Pointe Est y del dictamen de la Ciudad sobre este primer proyecto. Las cifras son indicativas: cada terreno se evalúa con el arquitecto y según la normativa local.</span><span data-lang="zh">八项标准源自 Pointe Est 项目以及市政府对这一首个项目的审查意见。所列数值仅供参考：每块土地都将与建筑师一同、依据当地法规进行评估。</span>
+      </p>
+      <div class="ideal-grid">
+        <div class="ideal-card">
+          <p class="ideal-num">01</p>
+          <h3><span data-lang="fr">Zonage et densité</span><span data-lang="en">Zoning and density</span><span data-lang="es">Zonificación y densidad</span><span data-lang="zh">分区与密度</span></h3>
+          <p><span data-lang="fr">Usage résidentiel multifamilial permis, ou secteur où la municipalité accepte d'étudier un projet particulier (PPCMOI). Le gabarit visé — 3 étages, 4 à 8 logements — doit s'intégrer au cadre bâti du quartier.</span><span data-lang="en">Multi-family residential use permitted, or an area where the municipality will consider a site-specific project (PPCMOI). The target envelope — 3 storeys, 4 to 8 units — must fit the neighbourhood's streetscape.</span><span data-lang="es">Uso residencial multifamiliar permitido, o un sector donde el municipio acepte estudiar un proyecto particular (PPCMOI). El volumen previsto — 3 plantas, 4 a 8 viviendas — debe integrarse al entorno construido del barrio.</span><span data-lang="zh">允许多户住宅用途，或市政当局愿意审议特定项目（PPCMOI）的区域。目标体量 — 3 层、4 至 8 套住宅 — 须与街区既有建筑风貌相融。</span></p>
+          <p class="ideal-ref"><span data-lang="fr">3 étages · 4–8 logements</span><span data-lang="en">3 storeys · 4–8 units</span><span data-lang="es">3 plantas · 4–8 viviendas</span><span data-lang="zh">3 层 · 4–8 套</span></p>
+        </div>
+        <div class="ideal-card">
+          <p class="ideal-num">02</p>
+          <h3><span data-lang="fr">Superficie et forme du lot</span><span data-lang="en">Lot size and shape</span><span data-lang="es">Superficie y forma del lote</span><span data-lang="zh">地块面积与形状</span></h3>
+          <p><span data-lang="fr">Un lot assez large pour un bâtiment d'au moins 30 pieds (9,1 m) une fois les marges latérales de 1,5 m retirées, et assez profond pour un recul avant d'environ 6 m et une vraie cour arrière, avec une implantation sous 30–40 %.</span><span data-lang="en">A lot wide enough for a building at least 30 feet (9.1 m) wide once 1.5 m side margins are taken out, and deep enough for a front setback of about 6 m and a real backyard, with building coverage under 30–40%.</span><span data-lang="es">Un lote lo bastante ancho para un edificio de al menos 30 pies (9,1 m) una vez descontados los márgenes laterales de 1,5 m, y lo bastante profundo para un retiro frontal de unos 6 m y un verdadero patio trasero, con una ocupación por debajo del 30–40 %.</span><span data-lang="zh">地块宽度在扣除两侧各 1.5 米间距后，仍可容纳宽度不小于 30 英尺（9.1 米）的建筑；进深足以设置约 6 米的前退距和真正的后院，建筑覆盖率控制在 30–40% 以下。</span></p>
+          <p class="ideal-ref"><span data-lang="fr">Bâtiment ≥ 30 pi de large · façade ≥ 12,2 m (40 pi) · profondeur ≥ 30 m</span><span data-lang="en">Building ≥ 30 ft wide · frontage ≥ 12.2 m (40 ft) · depth ≥ 30 m</span><span data-lang="es">Edificio ≥ 30 pies de ancho · fachada ≥ 12,2 m (40 pies) · profundidad ≥ 30 m</span><span data-lang="zh">建筑宽 ≥ 30 英尺 · 临街面 ≥ 12.2 m（40 英尺）· 进深 ≥ 30 m</span></p>
+        </div>
+        <div class="ideal-card">
+          <p class="ideal-num">03</p>
+          <h3><span data-lang="fr">Accès pour la construction modulaire</span><span data-lang="en">Access for modular construction</span><span data-lang="es">Acceso para la construcción modular</span><span data-lang="zh">模块化建造的通行条件</span></h3>
+          <p><span data-lang="fr">Une rue où un fardier peut se garer et une grue s'installer, sans fils électriques au-dessus de l'aire de levage. Les modules arrivent finis d'usine : le chantier dure des jours, pas des mois.</span><span data-lang="en">A street where a flatbed can park and a crane can set up, with no power lines over the lifting area. Modules arrive factory-finished: on-site work takes days, not months.</span><span data-lang="es">Una calle donde pueda estacionarse un camión plataforma e instalarse una grúa, sin cables eléctricos sobre el área de izaje. Los módulos llegan terminados de fábrica: la obra dura días, no meses.</span><span data-lang="zh">街道可供平板拖车停靠并架设起重机，吊装区上方无架空电线。模块出厂即完工：现场施工只需数日，而非数月。</span></p>
+          <p class="ideal-ref"><span data-lang="fr">Fardier + grue · aucun fil aérien</span><span data-lang="en">Flatbed + crane · no overhead lines</span><span data-lang="es">Camión plataforma + grúa · sin cables aéreos</span><span data-lang="zh">平板拖车 + 起重机 · 无架空电线</span></p>
+        </div>
+        <div class="ideal-card">
+          <p class="ideal-num">04</p>
+          <h3><span data-lang="fr">Transport collectif à la porte</span><span data-lang="en">Transit at the door</span><span data-lang="es">Transporte público a la puerta</span><span data-lang="zh">公共交通近在门口</span></h3>
+          <p><span data-lang="fr">Un arrêt d'autobus fréquent à quelques minutes de marche, idéalement un métro, un train ou le REM à distance de vélo. C'est ce qui permet l'autopartage collectif plutôt que des cases privées.</span><span data-lang="en">A frequent bus stop a few minutes' walk away, ideally a metro, train or REM station within cycling distance. This is what makes shared car-sharing work instead of private parking spaces.</span><span data-lang="es">Una parada de autobús frecuente a pocos minutos a pie, idealmente metro, tren o REM a distancia en bicicleta. Es lo que permite el coche compartido colectivo en lugar de plazas privadas.</span><span data-lang="zh">步行几分钟即有高频公交站，最好在骑行距离内有地铁、火车或 REM 站点。正因如此，才能以集体共享汽车取代私人车位。</span></p>
+          <p class="ideal-ref"><span data-lang="fr">Autobus ≤ 400 m · rail ≤ 2 km</span><span data-lang="en">Bus ≤ 400 m · rail ≤ 2 km</span><span data-lang="es">Autobús ≤ 400 m · tren ≤ 2 km</span><span data-lang="zh">公交 ≤ 400 m · 轨道交通 ≤ 2 km</span></p>
+        </div>
+        <div class="ideal-card">
+          <p class="ideal-num">05</p>
+          <h3><span data-lang="fr">Cours d'eau navigable à proximité</span><span data-lang="en">Navigable waterway nearby</span><span data-lang="es">Curso de agua navegable cercano</span><span data-lang="zh">邻近可通航水道</span></h3>
+          <p><span data-lang="fr">Un fleuve, une rivière ou un lac navigable à distance de marche — accès à l'eau pour la baignade, le kayak ou le bateau, et une vue qui fait partie du cadre de vie.</span><span data-lang="en">A navigable river or lake within walking distance — access to the water for swimming, kayaking or boating, and a view that is part of daily life.</span><span data-lang="es">Un río o lago navegable a distancia a pie — acceso al agua para nadar, ir en kayak o en barco, y una vista que forma parte del entorno de vida.</span><span data-lang="zh">步行可达的可通航河流或湖泊 — 可游泳、划皮划艇或乘船亲水，水景亦是生活环境的一部分。</span></p>
+          <p class="ideal-ref"><span data-lang="fr">Accès à l'eau ≤ 1 km</span><span data-lang="en">Water access ≤ 1 km</span><span data-lang="es">Acceso al agua ≤ 1 km</span><span data-lang="zh">亲水通道 ≤ 1 km</span></p>
+        </div>
+        <div class="ideal-card">
+          <p class="ideal-num">06</p>
+          <h3><span data-lang="fr">Espaces verts et essentiel à pied</span><span data-lang="en">Green spaces and daily needs on foot</span><span data-lang="es">Espacios verdes y lo esencial a pie</span><span data-lang="zh">绿地与日常所需步行可达</span></h3>
+          <p><span data-lang="fr">Un parc ou un boisé tout près, et une école primaire et une épicerie à moins de 15 minutes de marche — la vie de famille sur trois générations ne doit pas dépendre de l'auto.</span><span data-lang="en">A park or woodland close by, plus a primary school and a grocery store within a 15-minute walk — three-generation family life shouldn't depend on the car.</span><span data-lang="es">Un parque o bosque muy cerca, y una escuela primaria y una tienda de comestibles a menos de 15 minutos a pie — la vida familiar de tres generaciones no debe depender del coche.</span><span data-lang="zh">附近有公园或林地，小学和食品杂货店均在步行 15 分钟范围内 — 三代同堂的家庭生活不应依赖汽车。</span></p>
+          <p class="ideal-ref"><span data-lang="fr">Parc ≤ 400 m · école et épicerie ≤ 800 m</span><span data-lang="en">Park ≤ 400 m · school and grocery ≤ 800 m</span><span data-lang="es">Parque ≤ 400 m · escuela y comestibles ≤ 800 m</span><span data-lang="zh">公园 ≤ 400 m · 学校与杂货店 ≤ 800 m</span></p>
+        </div>
+        <div class="ideal-card">
+          <p class="ideal-num">07</p>
+          <h3><span data-lang="fr">Soleil et végétation existante</span><span data-lang="en">Sun and existing vegetation</span><span data-lang="es">Sol y vegetación existente</span><span data-lang="zh">日照与现有植被</span></h3>
+          <p><span data-lang="fr">Une cour arrière ensoleillée pour la forêt nourricière, un toit dégagé pour les panneaux solaires, et des arbres ou des haies matures à conserver plutôt qu'à replanter.</span><span data-lang="en">A sunny backyard for the food forest, an unshaded roof for solar panels, and mature trees or hedges to keep rather than replant.</span><span data-lang="es">Un patio trasero soleado para el bosque comestible, un techo despejado para los paneles solares, y árboles o setos maduros que conservar en lugar de replantar.</span><span data-lang="zh">阳光充足的后院用于食物森林，无遮挡的屋顶用于安装太阳能板，并保留成熟的树木或树篱，而非重新种植。</span></p>
+          <p class="ideal-ref"><span data-lang="fr">Cour orientée sud · toit sans ombre</span><span data-lang="en">South-facing yard · unshaded roof</span><span data-lang="es">Patio orientado al sur · techo sin sombra</span><span data-lang="zh">后院朝南 · 屋顶无遮挡</span></p>
+        </div>
+        <div class="ideal-card">
+          <p class="ideal-num">08</p>
+          <h3><span data-lang="fr">Sol et services</span><span data-lang="en">Soil and services</span><span data-lang="es">Suelo y servicios</span><span data-lang="zh">土壤与市政配套</span></h3>
+          <p><span data-lang="fr">Terrain desservi par l'aqueduc et l'égout, hors zone inondable, sans contamination importante, avec un sol qui permet un sous-sol pour l'autopartage et les rangements.</span><span data-lang="en">Site served by municipal water and sewer, outside flood zones, without significant contamination, with soil that allows a basement for car-sharing and storage.</span><span data-lang="es">Terreno con acueducto y alcantarillado, fuera de zona inundable, sin contaminación importante, con un suelo que permita un sótano para el coche compartido y los trasteros.</span><span data-lang="zh">地块接通市政供水和排污，不在洪泛区内，无严重污染，土壤条件允许建造地下室，用于共享汽车和储物。</span></p>
+          <p class="ideal-ref"><span data-lang="fr">Hors zone inondable · ÉSE phase I propre</span><span data-lang="en">Outside flood zone · clean Phase I ESA</span><span data-lang="es">Fuera de zona inundable · EAS fase I limpia</span><span data-lang="zh">非洪泛区 · 第一阶段环境评估无问题</span></p>
+        </div>
+      </div>
+      <div class="ideal-foot">
+        <p class="ideal-excl"><strong><span data-lang="fr">Ce qui écarte un terrain :</span><span data-lang="en">What rules a site out:</span><span data-lang="es">Lo que descarta un terreno:</span><span data-lang="zh">以下情况不予考虑：</span></strong> <span data-lang="fr">lot trop étroit pour un bâtiment de 30 pi</span><span data-lang="en">lot too narrow for a 30 ft building</span><span data-lang="es">lote demasiado estrecho para un edificio de 30 pies</span><span data-lang="zh">宽度不足以建造 30 英尺建筑的地块</span> · <span data-lang="fr">zone inondable</span><span data-lang="en">flood zone</span><span data-lang="es">zona inundable</span><span data-lang="zh">洪泛区</span> · <span data-lang="fr">contamination lourde</span><span data-lang="en">heavy contamination</span><span data-lang="es">contaminación grave</span><span data-lang="zh">严重污染</span> · <span data-lang="fr">aucun accès possible pour la grue</span><span data-lang="en">no possible crane access</span><span data-lang="es">sin acceso posible para la grúa</span><span data-lang="zh">起重机无法进场</span> · <span data-lang="fr">zonage unifamilial sans ouverture de la municipalité</span><span data-lang="en">single-family zoning with no openness from the municipality</span><span data-lang="es">zonificación unifamiliar sin apertura del municipio</span><span data-lang="zh">仅限独户住宅且市政当局无意松动的分区</span> · <span data-lang="fr">secteur sans transport collectif</span><span data-lang="en">area without public transit</span><span data-lang="es">sector sin transporte público</span><span data-lang="zh">无公共交通的区域</span>.</p>
+        <p class="ideal-ref-project"><span data-lang="fr">Référence — Pointe Est : 3 étages, 6 logements, implantation de 38 % du lot, marges latérales de 1,5 m, 4 cases d'autopartage au sous-sol.</span><span data-lang="en">Reference — Pointe Est: 3 storeys, 6 units, 38% lot coverage, 1.5 m side margins, 4 car-sharing spaces in the basement.</span><span data-lang="es">Referencia — Pointe Est: 3 plantas, 6 viviendas, ocupación del 38 % del lote, márgenes laterales de 1,5 m, 4 plazas de coche compartido en el sótano.</span><span data-lang="zh">参考 — Pointe Est：3 层，6 套住宅，地块覆盖率 38%，侧向间距 1.5 米，地下室设 4 个共享汽车车位。</span></p>
+        <a href="mailto:info@modulimo.com?subject=Terrain%20Modulimo" class="invite-cta"><span data-lang="fr">Proposer un terrain → info@modulimo.com</span><span data-lang="en">Propose a site → info@modulimo.com</span><span data-lang="es">Proponer un terreno → info@modulimo.com</span><span data-lang="zh">推荐土地 → info@modulimo.com</span></a>
       </div>
     </div>
   </section>
