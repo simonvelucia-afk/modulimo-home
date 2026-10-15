@@ -102,10 +102,10 @@ const PAGES = [
       zh: 'Pointe Est — MODULIMO 项目',
     },
     desc: {
-      fr: "Pointe Est — premier projet immobilier Modulimo à Pointe-aux-Trembles, Montréal. 6 logements multigénérationnels, construction industrialisée performante, démarche PPCMOI en cours.",
-      en: "Pointe Est — first Modulimo real estate project in Pointe-aux-Trembles, Montreal. 6 multigenerational homes, high-performance industrialized construction, PPCMOI process underway.",
-      es: "Pointe Est — primer proyecto inmobiliario Modulimo en Pointe-aux-Trembles, Montreal. 6 viviendas multigeneracionales, construcción industrializada de alto rendimiento, trámite PPCMOI en curso.",
-      zh: "Pointe Est — Modulimo 在蒙特利尔 Pointe-aux-Trembles 的首个房地产项目。6 套多代同堂住宅，高性能工业化建造，PPCMOI 审批程序进行中。",
+      fr: "Pointe Est — premier projet immobilier Modulimo à Pointe-aux-Trembles, Montréal. 5 logements multigénérationnels, construction industrialisée performante, démarche PPCMOI en cours.",
+      en: "Pointe Est — first Modulimo real estate project in Pointe-aux-Trembles, Montreal. 5 multigenerational homes, high-performance industrialized construction, PPCMOI process underway.",
+      es: "Pointe Est — primer proyecto inmobiliario Modulimo en Pointe-aux-Trembles, Montreal. 5 viviendas multigeneracionales, construcción industrializada de alto rendimiento, trámite PPCMOI en curso.",
+      zh: "Pointe Est — Modulimo 在蒙特利尔 Pointe-aux-Trembles 的首个房地产项目。5 套多代同堂住宅，高性能工业化建造，PPCMOI 审批程序进行中。",
     },
   },
   {
