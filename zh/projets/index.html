@@ -128,6 +128,19 @@
     .invite-cta { display:inline-flex; align-items:center; gap:6px; font-size:.84rem; font-weight:700; color:var(--green); border-bottom:1px solid currentColor; padding-bottom:2px; transition:color .15s; margin-top:auto; }
     .invite-cta:hover { color:var(--green-lt); }
 
+    .ideal-title { margin-bottom:14px; }
+    .ideal-intro { font-size:.92rem; color:var(--muted); line-height:1.7; max-width:680px; margin-bottom:32px; }
+    .ideal-grid { display:grid; grid-template-columns:repeat(4,1fr); gap:18px; }
+    .ideal-card { background:#fff; border:1px solid var(--line); border-radius:12px; padding:20px 20px 18px; display:flex; flex-direction:column; }
+    .ideal-num { font-size:.7rem; font-weight:800; letter-spacing:.12em; color:var(--green); margin-bottom:8px; }
+    .ideal-card h3 { font-size:.98rem; font-weight:700; color:var(--text); margin-bottom:8px; line-height:1.3; }
+    .ideal-card p { font-size:.83rem; color:var(--muted); line-height:1.6; }
+    .ideal-card .ideal-ref { margin-top:auto; padding-top:12px; font-size:.74rem; font-weight:700; color:var(--green); }
+    .ideal-foot { margin-top:28px; display:flex; flex-direction:column; align-items:flex-start; gap:12px; }
+    .ideal-excl, .ideal-ref-project { font-size:.84rem; color:var(--muted); line-height:1.65; max-width:820px; }
+    .ideal-excl strong { color:var(--text); }
+    @media (max-width:960px) { .ideal-grid { grid-template-columns:repeat(2,1fr); } }
+    @media (max-width:520px) { .ideal-grid { grid-template-columns:1fr; } }
     .csa-note { background:var(--bg); border-top:1px solid var(--line); padding:40px 0; }
     .csa-note-inner { max-width:var(--max); margin:0 auto; padding:0 24px; }
     .csa-label { font-size:.68rem; font-weight:700; letter-spacing:.14em; text-transform:uppercase; color:var(--green); margin-bottom:8px; }
@@ -276,11 +289,81 @@
             <p>
               <span>该模式专为规模化部署而设计。若您希望出售与本理念相适配的土地，或投资于下一个落地项目，欢迎与我们联系。</span>
             </p>
+            <p><a href="#terrain-ideal" class="project-link"><span>查看理想用地标准 ↓</span></a></p>
             <a href="mailto:info@modulimo.com?subject=Terrain%20ou%20investissement%20Modulimo" class="invite-cta">
               <span>info@modulimo.com →</span>
             </a>
           </div>
         </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section-alt" id="terrain-ideal">
+    <div class="wrap">
+      <p class="section-label">
+        <span>后续落地项目</span>
+      </p>
+      <h2 class="section-title ideal-title">
+        <span>Modulimo 项目的理想用地</span>
+      </h2>
+      <p class="ideal-intro">
+        <span>八项标准源自 Pointe Est 项目以及市政府对这一首个项目的审查意见。所列数值仅供参考：每块土地都将与建筑师一同、依据当地法规进行评估。</span>
+      </p>
+      <div class="ideal-grid">
+        <div class="ideal-card">
+          <p class="ideal-num">01</p>
+          <h3><span>分区与密度</span></h3>
+          <p><span>允许多户住宅用途，或市政当局愿意审议特定项目（PPCMOI）的区域。目标体量 — 3 层、4 至 8 套住宅 — 须与街区既有建筑风貌相融。</span></p>
+          <p class="ideal-ref"><span>3 层 · 4–8 套</span></p>
+        </div>
+        <div class="ideal-card">
+          <p class="ideal-num">02</p>
+          <h3><span>地块面积与形状</span></h3>
+          <p><span>地块宽度在扣除两侧各 1.5 米间距后，仍可容纳宽度不小于 30 英尺（9.1 米）的建筑；进深足以设置约 6 米的前退距和真正的后院，建筑覆盖率控制在 30–40% 以下。</span></p>
+          <p class="ideal-ref"><span>建筑宽 ≥ 30 英尺 · 临街面 ≥ 12.2 m（40 英尺）· 进深 ≥ 30 m</span></p>
+        </div>
+        <div class="ideal-card">
+          <p class="ideal-num">03</p>
+          <h3><span>模块化建造的通行条件</span></h3>
+          <p><span>街道可供平板拖车停靠并架设起重机，吊装区上方无架空电线。模块出厂即完工：现场施工只需数日，而非数月。</span></p>
+          <p class="ideal-ref"><span>平板拖车 + 起重机 · 无架空电线</span></p>
+        </div>
+        <div class="ideal-card">
+          <p class="ideal-num">04</p>
+          <h3><span>公共交通近在门口</span></h3>
+          <p><span>步行几分钟即有高频公交站，最好在骑行距离内有地铁、火车或 REM 站点。正因如此，才能以集体共享汽车取代私人车位。</span></p>
+          <p class="ideal-ref"><span>公交 ≤ 400 m · 轨道交通 ≤ 2 km</span></p>
+        </div>
+        <div class="ideal-card">
+          <p class="ideal-num">05</p>
+          <h3><span>邻近可通航水道</span></h3>
+          <p><span>步行可达的可通航河流或湖泊 — 可游泳、划皮划艇或乘船亲水，水景亦是生活环境的一部分。</span></p>
+          <p class="ideal-ref"><span>亲水通道 ≤ 200 m</span></p>
+        </div>
+        <div class="ideal-card">
+          <p class="ideal-num">06</p>
+          <h3><span>绿地与日常所需步行可达</span></h3>
+          <p><span>附近有公园或林地，小学和食品杂货店均在步行 15 分钟范围内 — 三代同堂的家庭生活不应依赖汽车。</span></p>
+          <p class="ideal-ref"><span>公园 ≤ 400 m · 学校与杂货店 ≤ 800 m</span></p>
+        </div>
+        <div class="ideal-card">
+          <p class="ideal-num">07</p>
+          <h3><span>日照与现有植被</span></h3>
+          <p><span>阳光充足的后院用于食物森林，无遮挡的屋顶用于安装太阳能板，并保留成熟的树木或树篱，而非重新种植。</span></p>
+          <p class="ideal-ref"><span>后院朝南 · 屋顶无遮挡</span></p>
+        </div>
+        <div class="ideal-card">
+          <p class="ideal-num">08</p>
+          <h3><span>土壤与市政配套</span></h3>
+          <p><span>地块接通市政供水和排污，不在洪泛区内，无严重污染，土壤条件允许建造地下室，用于共享汽车和储物。</span></p>
+          <p class="ideal-ref"><span>非洪泛区 · 第一阶段环境评估无问题</span></p>
+        </div>
+      </div>
+      <div class="ideal-foot">
+        <p class="ideal-excl"><strong><span>以下情况不予考虑：</span></strong> <span>宽度不足以建造 30 英尺建筑的地块</span> · <span>洪泛区</span> · <span>严重污染</span> · <span>起重机无法进场</span> · <span>仅限独户住宅且市政当局无意松动的分区</span> · <span>无公共交通的区域</span>.</p>
+        <p class="ideal-ref-project"><span>参考 — Pointe Est：3 层，6 套住宅，地块覆盖率 38%，侧向间距 1.5 米，地下室设 4 个共享汽车车位。</span></p>
+        <a href="mailto:info@modulimo.com?subject=Terrain%20Modulimo" class="invite-cta"><span>推荐土地 → info@modulimo.com</span></a>
       </div>
     </div>
   </section>
