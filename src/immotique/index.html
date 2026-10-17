@@ -251,6 +251,33 @@
     .mim-step:last-child { border-bottom:none; }
     .mim-tie-inner { grid-template-columns:1fr; gap:1.2rem; }
   }
+  /* ════════ IMMOTIQUE — schéma et sections de contenu ════════ */
+  .mim-schema { padding:5rem 5rem 4rem; background:var(--white); border-bottom:1px solid var(--border); }
+  .mim-schema #mdl-immotique { margin:0; }
+  .mim-schema .msec-title { font-size:clamp(1.6rem,2.6vw,2.3rem); }
+  .mim-sec { padding:6rem 5rem; background:var(--white); border-bottom:1px solid var(--border); }
+  .mim-sec-alt { background:var(--off); }
+  .mim-sec-grid { display:grid; grid-template-columns:.9fr 1.1fr; gap:4rem; align-items:start; }
+  .mim-points { list-style:none; display:grid; gap:1.1rem; }
+  .mim-points li { font-size:.95rem; color:var(--mid); line-height:1.7; padding-left:1.4rem; position:relative; }
+  .mim-points li::before { content:''; position:absolute; left:0; top:.8rem; width:.6rem; height:1px; background:var(--green-md); }
+  .mim-points strong { color:var(--dark); font-weight:600; }
+  .mim-ind { margin-top:1.25rem; font-size:.78rem; color:var(--mid); }
+  .mim-prep { padding:6rem 5rem 4rem; background:var(--off); border-bottom:1px solid var(--border); }
+  .mim-prep .mgreen { color:var(--green); }
+  .mim-prep-desc { max-width:70ch; }
+  .mim-cta { background:var(--green); padding:4.5rem 2rem; text-align:center; color:#fff; }
+  .mim-cta h2 { font-family:'Syne',sans-serif; font-size:clamp(1.5rem,3vw,2rem); font-weight:800; letter-spacing:-.02em; margin-bottom:.75rem; }
+  .mim-cta p { color:#fff; max-width:52ch; margin:0 auto 1.75rem; }
+  .mim-cta-btn { display:inline-block; background:#fff; color:var(--green); font-weight:600; padding:.85rem 1.75rem; border-radius:5px; transition:opacity .15s; }
+  .mim-cta-btn:hover, .mim-cta-btn:focus-visible { opacity:.9; }
+  @media (max-width:900px) {
+    .mim-schema { padding:3.5rem 1rem 3rem; }
+    .mim-sec, .mim-prep { padding:4rem 2rem; }
+    .mim-sec-grid { grid-template-columns:1fr; gap:2rem; }
+    /* Un mot long (« concretamente, ») en Syne dépasse 375 px : on le coupe. */
+    .msec-title { hyphens:auto; overflow-wrap:break-word; }
+  }
   </style>
   <script src="../js/analytics.js" defer></script>
   <script src="/js/lightbox.js" defer></script>
@@ -269,7 +296,7 @@
       <nav class="nav" id="siteNav">
         <a href="/"><span data-lang="fr">Accueil</span><span data-lang="en">Home</span><span data-lang="es">Inicio</span><span data-lang="zh">首页</span></a>
         <a href="/mobilite"><span data-lang="fr">Mobilité</span><span data-lang="en">Mobility</span><span data-lang="es">Movilidad</span><span data-lang="zh">出行</span></a>
-        <a href="/securite" class="active"><span data-lang="fr">Sécurité</span><span data-lang="en">Security</span><span data-lang="es">Seguridad</span><span data-lang="zh">安全</span></a>
+        <a href="/immotique" class="active"><span data-lang="fr">Immotique</span><span data-lang="en">Building automation</span><span data-lang="es">Inmótica</span><span data-lang="zh">楼宇自动化</span></a>
         <a href="/projets"><span data-lang="fr">Projets</span><span data-lang="en">Projects</span><span data-lang="es">Proyectos</span><span data-lang="zh">项目</span></a>
         <a href="/produits"><span data-lang="fr">Produits</span><span data-lang="en">Products</span><span data-lang="es">Productos</span><span data-lang="zh">产品</span></a>
         <a href="/cohabitat" class="nav-cta">CoHabitat</a>
@@ -286,16 +313,516 @@
   <!-- HERO -->
   <section class="mhero">
     <div class="mhero-left">
-      <span class="mhero-tag"><span data-lang="fr">Préparation · Modulimo</span><span data-lang="en">Preparedness · Modulimo</span><span data-lang="es">Preparación · Modulimo</span><span data-lang="zh">应急准备 · Modulimo</span></span>
+      <span class="mhero-tag"><span data-lang="fr">Immotique · Modulimo</span><span data-lang="en">Building automation · Modulimo</span><span data-lang="es">Inmótica · Modulimo</span><span data-lang="zh">楼宇自动化 · Modulimo</span></span>
       <h1 class="mhero-title">
-        <span data-lang="fr">Un milieu qui prend en charge<br><span class="mgreen">la gestion des risques.</span></span><span data-lang="en">An environment that takes on<br><span class="mgreen">risk management.</span></span><span data-lang="es">Un entorno que asume<br><span class="mgreen">la gestión de riesgos.</span></span><span data-lang="zh">一个把风险管理<br><span class="mgreen">承担下来的环境。</span></span>
+        <span data-lang="fr">Un immeuble qui se gère<br><span class="mgreen">lui-même.</span></span><span data-lang="en">A building that runs<br><span class="mgreen">itself.</span></span><span data-lang="es">Un edificio que se gestiona<br><span class="mgreen">solo.</span></span><span data-lang="zh">一栋能够<br><span class="mgreen">自我管理的建筑。</span></span>
       </h1>
       <p class="mhero-desc">
-        <span data-lang="fr">Chez Modulimo, la préparation aux risques courants est portée par le bâtiment, pas par les résidents. Les scénarios sont identifiés à l'avance, les protocoles écrits, les exercices tenus chaque année — selon le programme « Préparez-vous » du gouvernement du Canada.</span><span data-lang="en">At Modulimo, preparedness for everyday risks is carried by the building, not by residents. Scenarios are identified in advance, protocols written down, drills held every year — following the Canadian government's “Get Prepared” program.</span><span data-lang="es">En Modulimo, la preparación ante los riesgos cotidianos la asume el edificio, no los residentes. Los escenarios se identifican con antelación, los protocolos se redactan y los simulacros se realizan cada año — siguiendo el programa «Get Prepared» del gobierno de Canadá.</span><span data-lang="zh">在 Modulimo，常见风险的应对由建筑承担，而不是由住户承担。场景事先识别，规程形成书面文件，演练每年举行 —— 依据加拿大政府的「Préparez-vous」计划。</span> <strong style="color:var(--dark);font-weight:600;"><span data-lang="fr">Une démarche bienveillante et responsable, où rien n'est laissé au hasard.</span><span data-lang="en">A caring and responsible approach, where nothing is left to chance.</span><span data-lang="es">Un enfoque atento y responsable, donde nada se deja al azar.</span><span data-lang="zh">一套周全而负责的做法，不留任何侥幸。</span></strong>
+        <span data-lang="fr">Chaque immeuble Modulimo gère lui-même son énergie, sa chaleur, son réseau et ses services. Il reste fonctionnel même sans internet ni électricité du réseau, et se relie aux autres immeubles par des liens chiffrés.</span><span data-lang="en">Every Modulimo building manages its own energy, heat, network and services. It keeps working even without internet or grid power, and connects to the other buildings through encrypted links.</span><span data-lang="es">Cada edificio Modulimo gestiona por sí mismo su energía, su calor, su red y sus servicios. Sigue funcionando incluso sin internet ni electricidad de la red, y se conecta con los demás edificios mediante enlaces cifrados.</span><span data-lang="zh">每栋 Modulimo 楼宇都自行管理其能源、热量、网络与服务。即使没有互联网或电网供电，它也能继续运行，并通过加密链路与其他楼宇相连。</span>
       </p>
     </div>
     <div class="mhero-right">
-      <img src="../images/ResidentsForme.png" alt="Résidents Modulimo en salle de surveillance" loading="lazy" />
+      <img src="../images/ResidentsForme.png" alt="Résidents Modulimo en salle de surveillance" data-alt-en="Modulimo residents in the monitoring room" data-alt-es="Residentes de Modulimo en la sala de vigilancia" data-alt-zh="Modulimo 住户在监控室" loading="lazy" />
+    </div>
+  </section>
+
+  <!-- ══ SCHÉMA INTERACTIF ══ -->
+  <div class="mim-schema">
+    <div class="mim-wrap">
+      <div class="msec-tag"><span data-lang="fr">Schéma interactif</span><span data-lang="en">Interactive diagram</span><span data-lang="es">Esquema interactivo</span><span data-lang="zh">交互式示意图</span></div>
+      <!-- ================================================================
+           MODULIMO — Schéma interactif immotique
+           Composant autonome : HTML + CSS + JS, aucune dépendance externe,
+           aucune requête réseau. Tous les sélecteurs sont préfixés #mdl-immotique.
+           Valeurs indicatives (immeuble type 3 × 6½ + 2 × 2½).
+           ================================================================ -->
+      <section id="mdl-immotique" aria-labelledby="mdl-im-title">
+        <style>
+          #mdl-immotique{
+            --mdl-text:#2C2C2A;--mdl-muted:#5F5E5A;--mdl-border:#D3D1C7;--mdl-panel:#F7F6F2;--mdl-accent:#2d7a4f;
+            --e-fill:#FAEEDA;--e-stroke:#BA7517;--e-title:#633806;--e-sub:#854F0B;
+            --w-fill:#E1F5EE;--w-stroke:#1D9E75;--w-title:#085041;--w-sub:#0F6E56;
+            --m-fill:#EEEDFE;--m-stroke:#7F77DD;--m-title:#3C3489;--m-sub:#534AB7;
+            --n-fill:#E6F1FB;--n-stroke:#378ADD;--n-title:#0C447C;--n-sub:#185FA5;
+            --g-fill:#F1EFE8;--g-stroke:#888780;--g-title:#444441;--g-sub:#5F5E5A;
+            --a-fill:#FCEBEB;--a-stroke:#E24B4A;--a-title:#791F1F;--a-sub:#A32D2D;
+            color:var(--mdl-text);font-family:inherit;margin:2rem 0}
+          /* Thème sombre : le site n'en a pas (il reste clair). Le composant ne suit
+             donc pas prefers-color-scheme, seulement html[data-theme="dark"] si le
+             site en ajoute un un jour. */
+          html[data-theme="dark"] #mdl-immotique{
+            --mdl-text:#F1EFE8;--mdl-muted:#B4B2A9;--mdl-border:#5F5E5A;--mdl-panel:#2C2C2A;--mdl-accent:#AFA9EC;
+            --e-fill:#633806;--e-stroke:#EF9F27;--e-title:#FAEEDA;--e-sub:#FAC775;
+            --w-fill:#085041;--w-stroke:#5DCAA5;--w-title:#E1F5EE;--w-sub:#9FE1CB;
+            --m-fill:#3C3489;--m-stroke:#AFA9EC;--m-title:#EEEDFE;--m-sub:#CECBF6;
+            --n-fill:#0C447C;--n-stroke:#85B7EB;--n-title:#E6F1FB;--n-sub:#B5D4F4;
+            --g-fill:#444441;--g-stroke:#B4B2A9;--g-title:#F1EFE8;--g-sub:#D3D1C7;
+            --a-fill:#791F1F;--a-stroke:#F09595;--a-title:#FCEBEB;--a-sub:#F7C1C1}
+          #mdl-immotique *{box-sizing:border-box}
+          #mdl-immotique .mdl-intro{color:var(--mdl-muted);max-width:60ch;line-height:1.6}
+          #mdl-immotique .mdl-scen{display:flex;flex-wrap:wrap;gap:.5rem;margin:1rem 0}
+          #mdl-immotique .mdl-scen button{font:inherit;font-size:.95rem;padding:.5rem 1rem;border-radius:999px;border:1px solid var(--mdl-border);background:transparent;color:var(--mdl-text);cursor:pointer}
+          #mdl-immotique .mdl-scen button[aria-selected="true"]{background:var(--mdl-accent);border-color:var(--mdl-accent);color:#fff}
+          #mdl-immotique .mdl-scen button:focus-visible{outline:2px solid var(--mdl-accent);outline-offset:2px}
+          #mdl-immotique .mdl-canvas{overflow-x:auto;-webkit-overflow-scrolling:touch;border:1px solid var(--mdl-border);border-radius:16px;padding:.5rem}
+          #mdl-immotique svg{display:block;width:100%;min-width:720px;height:auto}
+          #mdl-immotique .mdl-hint{font-size:.85rem;color:var(--mdl-muted);margin:.5rem 0 0}
+          #mdl-immotique .mdl-info{display:grid;gap:1rem;margin-top:1rem}
+          @media (min-width:760px){#mdl-immotique .mdl-info{grid-template-columns:1fr 1fr}}
+          #mdl-immotique .mdl-card{background:var(--mdl-panel);border-radius:12px;padding:1rem 1.25rem}
+          #mdl-immotique .mdl-card h3{margin:0 0 .5rem;font-size:1.05rem}
+          #mdl-immotique .mdl-card p{margin:0;line-height:1.6}
+          #mdl-immotique .mdl-kpis{display:grid;grid-template-columns:1fr 1fr;gap:.75rem;margin-top:.75rem}
+          #mdl-immotique .mdl-kpi span{display:block;font-size:.8rem;color:var(--mdl-muted)}
+          #mdl-immotique .mdl-kpi strong{font-size:1.05rem;font-weight:600}
+          #mdl-immotique .mdl-legend{display:flex;flex-wrap:wrap;gap:1rem;list-style:none;padding:0;margin:1rem 0 0;font-size:.85rem;color:var(--mdl-muted)}
+          #mdl-immotique .mdl-legend li{display:flex;align-items:center;gap:.4rem}
+          #mdl-immotique .mdl-legend i{display:inline-block;width:28px;border-top:2px dashed}
+          #mdl-immotique .mdl-note{font-size:.8rem;color:var(--mdl-muted);margin-top:.75rem}
+          #mdl-immotique .mdl-box{cursor:pointer;outline:none}
+          #mdl-immotique .mdl-box rect{stroke-width:1;transition:opacity .3s}
+          #mdl-immotique .mdl-box .t{font-size:14px;font-weight:600}
+          #mdl-immotique .mdl-box .s{font-size:12px}
+          #mdl-immotique .c-e rect{fill:var(--e-fill);stroke:var(--e-stroke)}#mdl-immotique .c-e .t{fill:var(--e-title)}#mdl-immotique .c-e .s{fill:var(--e-sub)}
+          #mdl-immotique .c-w rect{fill:var(--w-fill);stroke:var(--w-stroke)}#mdl-immotique .c-w .t{fill:var(--w-title)}#mdl-immotique .c-w .s{fill:var(--w-sub)}
+          #mdl-immotique .c-m rect{fill:var(--m-fill);stroke:var(--m-stroke)}#mdl-immotique .c-m .t{fill:var(--m-title)}#mdl-immotique .c-m .s{fill:var(--m-sub)}
+          #mdl-immotique .c-n rect{fill:var(--n-fill);stroke:var(--n-stroke)}#mdl-immotique .c-n .t{fill:var(--n-title)}#mdl-immotique .c-n .s{fill:var(--n-sub)}
+          #mdl-immotique .c-g rect{fill:var(--g-fill);stroke:var(--g-stroke)}#mdl-immotique .c-g .t{fill:var(--g-title)}#mdl-immotique .c-g .s{fill:var(--g-sub)}
+          #mdl-immotique .mdl-box.is-alert rect{fill:var(--a-fill);stroke:var(--a-stroke)}
+          #mdl-immotique .mdl-box.is-alert .t{fill:var(--a-title)}#mdl-immotique .mdl-box.is-alert .s{fill:var(--a-sub)}
+          #mdl-immotique .mdl-box.is-off{opacity:.4}
+          #mdl-immotique .mdl-box:hover rect{stroke-width:2}
+          #mdl-immotique .mdl-box.is-sel rect,#mdl-immotique .mdl-box:focus-visible rect{stroke-width:3}
+          #mdl-immotique .mdl-bldg{fill:none;stroke:var(--mdl-border);stroke-dasharray:6 5}
+          #mdl-immotique .mdl-lbl{fill:var(--mdl-muted);font-size:12px}
+          #mdl-immotique .mdl-flow{fill:none;stroke-width:2;stroke-dasharray:6 6;transition:opacity .3s}
+          #mdl-immotique .f-elec{stroke:#BA7517}#mdl-immotique .f-water{stroke:#1D9E75}#mdl-immotique .f-drain{stroke:#888780}
+          #mdl-immotique .f-ctrl{stroke:#7F77DD;stroke-width:1.5;stroke-dasharray:2 4}#mdl-immotique .f-net{stroke:#378ADD}
+          #mdl-immotique .mdl-flow.is-on{animation:mdl-dash 1.2s linear infinite}
+          #mdl-immotique .mdl-flow.is-rev{animation-direction:reverse}
+          #mdl-immotique .mdl-flow.is-weak{stroke-width:1}
+          #mdl-immotique .mdl-flow.is-off{opacity:.15;animation:none}
+          #mdl-immotique .mdl-flow.is-alert{stroke:#E24B4A;stroke-dasharray:3 6;animation:none}
+          @keyframes mdl-dash{to{stroke-dashoffset:-24}}
+          @media (prefers-reduced-motion:reduce){#mdl-immotique .mdl-flow.is-on{animation:none}}
+        </style>
+
+        <!-- Titre : l'intro du composant est remplacée par l'en-tête de la page -->
+        <h2 id="mdl-im-title" class="msec-title" data-i18n="title"></h2>
+
+        <div class="mdl-scen" role="tablist" aria-label=""></div>
+        <div class="mdl-canvas"><svg viewBox="0 0 960 770" role="img" aria-labelledby="mdl-svg-t mdl-svg-d"><title id="mdl-svg-t"></title><desc id="mdl-svg-d"></desc></svg></div>
+        <p class="mdl-hint" data-i18n="hint"></p>
+
+        <div class="mdl-info">
+          <div class="mdl-card" aria-live="polite"><h3 class="mdl-scen-title"></h3><p class="mdl-scen-text"></p><div class="mdl-kpis"></div></div>
+          <div class="mdl-card" aria-live="polite"><h3 class="mdl-det-title"></h3><p class="mdl-det-text"></p></div>
+        </div>
+        <ul class="mdl-legend"></ul>
+        <p class="mdl-note" data-i18n="note"></p>
+
+        <script>
+        (function(){
+          var root=document.getElementById("mdl-immotique");
+          if(!root)return;
+
+          /* ---------- Textes (fr, en, es, zh : mêmes clés) ---------- */
+          var I18N={fr:{
+            title:"L'immotique Modulimo",
+            intro:"Chaque immeuble gère son énergie, sa chaleur et ses services de façon autonome, et se relie aux autres immeubles du réseau par des liens chiffrés.",
+            hint:"Choisissez un scénario, puis cliquez sur un élément pour en voir le détail.",
+            note:"Valeurs indicatives pour un immeuble type de 5 logements (3 × 6½ + 2 × 2½).",
+            svgTitle:"Gestion de l'énergie d'un immeuble Modulimo",
+            svgDesc:"Schéma de la chaîne électrique, de la chaîne thermique et du serveur local d'un immeuble, relié à Modulimo Central et aux autres immeubles par un réseau chiffré.",
+            scenLabel:"Scénarios",
+            bldg:"Immeuble type · 3 × 6½ + 2 × 2½ · enveloppe en coffrage isolant",
+            colE:"Électricité",colW:"Eau chaude et chaleur",
+            legend:[["#BA7517","Électricité"],["#1D9E75","Eau et chaleur"],["#888780","Eaux usées (récupération)"],["#7F77DD","Commande du serveur"],["#378ADD","Réseau chiffré"],["#E24B4A","Coupure"]],
+            scen:{
+              ete:{n:"Été ensoleillé",t:"Le soleil couvre les charges critiques et recharge la batterie ; le surplus chauffe l'eau. Les ventilo-convecteurs climatisent les séjours, les planchers rafraîchissent les chambres en silence, et la chaleur retirée des logements préchauffe l'eau chaude.",
+                k:[["Production solaire","≈ 30 kWh/j"],["Eau chaude couverte","≈ 95 %"],["Climatisation","Chaleur récupérée"],["Réseau Hydro-Québec","Appoint minimal"]]},
+              hiver:{n:"Hiver",t:"La production solaire est faible : le récupérateur des douches devient la principale source gratuite. La thermopompe alimente les planchers radiants à basse température et les ventilo-convecteurs prennent les pointes de froid.",
+                k:[["Production solaire","≈ 9 kWh/j"],["Récupération douches","≈ 9 kWh/j"],["Eau chaude couverte","≈ 35 %"],["Réseau Hydro-Québec","Appoint actif"]]},
+              hydro:{n:"Panne Hydro-Québec",t:"La batterie prend le relais des fonctions essentielles et le serveur déleste le reste. L'enveloppe en coffrage isolant et la masse des dalles de béton gardent les logements tempérés longtemps, et le réservoir conserve une réserve d'eau chaude.",
+                k:[["Autonomie critique","≈ 2 jours"],["IA locale","Arrêtée (délestage)"],["Chauffage et clim","Sur génératrice"],["Accès et caméras","Maintenus"]]},
+              net:{n:"Panne internet",t:"L'immeuble continue de fonctionner à 100 % : énergie, chauffage, climatisation et eau chaude sont pilotés localement. L'IA bascule sur le modèle local, et les échanges avec les autres immeubles attendent le retour du lien.",
+                k:[["Fonctions locales","100 %"],["IA","Modèle local"],["Échanges inter-immeubles","En file d'attente"],["Synchronisation","Au retour du lien"]]}
+            },
+            box:{
+              central:{t:"Modulimo Central",s:["Licences, mises à jour"],d:"Coordonne le réseau : licences, mises à jour, certificats et compensation des transactions entre immeubles. Si Central est injoignable, chaque immeuble continue de fonctionner."},
+              immB:{t:"Immeuble B",s:["Nœud autonome"],d:"Chaque immeuble Modulimo est un nœud autonome identique, avec son serveur, son énergie et ses données. Les immeubles s'échangent des services par des tunnels chiffrés."},
+              immC:{t:"Immeuble C",s:["Nœud autonome"],d:"Chaque immeuble Modulimo est un nœud autonome identique, avec son serveur, son énergie et ses données. Les immeubles s'échangent des services par des tunnels chiffrés."},
+              pv:{t:"Panneaux solaires",s:["≈ 6 kWc, inclinés 45-60°"],d:"Installés sur le toit et inclinés pour favoriser la production d'hiver et le glissement de la neige. Production estimée : ≈ 30 kWh/jour l'été, ≈ 9 kWh/jour en décembre."},
+              ond:{t:"Onduleur hybride",s:["Cascade de priorités"],d:"Répartit l'énergie selon une cascade de priorités : charges critiques d'abord, puis batterie, puis surplus vers l'eau chaude."},
+              bat:{t:"Batterie critique",s:["LiFePO4 ≈ 10 kWh"],d:"Réservée aux fonctions essentielles. Elle couvre environ deux jours de panne pour l'informatique, la surveillance et le contrôle d'accès."},
+              hydro:{t:"Réseau Hydro-Québec",s:["Appoint et recharge"],d:"Le réseau d'Hydro-Québec sert d'appoint, surtout l'hiver, et recharge la batterie au besoin."},
+              crit:{t:"Charges critiques",s:["TI, caméras, accès"],d:"Informatique, réseau, caméras, contrôle d'accès et interphones. Ces fonctions restent alimentées pendant une panne."},
+              fw:{t:"Pare-feu + mesh",s:["WireGuard chiffré"],d:"Segmente le réseau de l'immeuble en zones isolées (résidents, caméras, capteurs, kiosques) et ouvre un tunnel chiffré vers les autres immeubles."},
+              srv:{t:"Serveur local",s:["Gestion d'énergie","Routeur PV · délestage","IA locale · CoHabitat"],d:"Le cerveau de l'immeuble : gestion de l'énergie en temps réel, routage du surplus solaire, délestage automatique en panne, IA locale et application CoHabitat servie sur place."},
+              chauf:{t:"Chauffage + climatisation",s:["Radiant · ventilo-convecteurs"],d:"Planchers radiants dans les chambres et les salles de bain, pour le silence et le confort du sommeil ; ventilo-convecteurs dans les séjours, qui réagissent vite et déshumidifient. Chaque chambre a sa sonde de température et d'humidité. En climatisation, la chaleur retirée des logements préchauffe l'eau chaude au lieu d'être rejetée dehors."},
+              vre:{t:"Ventilation VRE",s:["Air neuf déshumidifié"],d:"Le ventilateur récupérateur d'énergie renouvelle l'air de ce bâtiment très étanche en récupérant la chaleur et une partie de l'humidité. L'air neuf arrive directement dans les chambres, ce qui permet aux planchers de rafraîchir sans condensation."},
+              froide:{t:"Eau froide",s:["Aqueduc ≈ 8 °C l'hiver"],d:"L'eau de l'aqueduc arrive vers 8 °C l'hiver et 15 °C l'été. Chaque étape suivante la réchauffe un peu plus."},
+              recup:{t:"Récupérateur douches",s:["Passif, +8 à 15 °C"],d:"Un échangeur passif sur la colonne de drains de douche récupère environ 40 à 50 % de leur chaleur. Sans pompe ni entretien, il fournit ≈ 8 à 9 kWh/jour, été comme hiver."},
+              reserv:{t:"Réservoir solaire 450 L",s:["Préchauffage par surplus"],d:"Chauffé par le surplus solaire grâce au routeur piloté par le serveur. Une batterie thermique bien moins chère qu'une batterie électrique."},
+              tp:{t:"Thermopompe réversible",s:["Eau ≥ 60 °C · chaud/froid"],d:"Complète la chauffe et maintient l'eau à 60 °C ou plus pour la sécurité sanitaire. Elle chauffe les logements l'hiver et les climatise l'été, en récupérant cette chaleur pour l'eau chaude."},
+              mitig:{t:"Mitigeur + recirculation",s:["Boucle ≥ 55 °C"],d:"Le mitigeur thermostatique limite la température livrée aux logements ; la boucle de recirculation garde l'eau chaude disponible instantanément."},
+              loge:{t:"5 logements",s:["Compteurs individuels"],d:"Trois 6½ et deux 2½. Des compteurs mesurent l'eau chaude de chaque logement, et les eaux de douche retournent vers le récupérateur."}
+            }
+          }
+          ,en:{
+            title:"Modulimo building automation",
+            intro:"Each building manages its energy, heat and services on its own, and connects to the other buildings in the network through encrypted links.",
+            hint:"Pick a scenario, then click an element to see its details.",
+            note:"Indicative values for a typical 5-unit building (3 × 6½ + 2 × 2½).",
+            svgTitle:"Energy management in a Modulimo building",
+            svgDesc:"Diagram of a building's electrical chain, thermal chain and local server, connected to Modulimo Central and to the other buildings through an encrypted network.",
+            scenLabel:"Scenarios",
+            bldg:"Typical building · 3 × 6½ + 2 × 2½ · insulated concrete form envelope",
+            colE:"Electricity",colW:"Hot water and heat",
+            legend:[["#BA7517","Electricity"],["#1D9E75","Water and heat"],["#888780","Wastewater (recovery)"],["#7F77DD","Server control"],["#378ADD","Encrypted network"],["#E24B4A","Outage"]],
+            scen:{
+              ete:{n:"Sunny summer",t:"The sun covers the critical loads and charges the battery; the surplus heats water. Fan coils cool the living rooms, the floors quietly cool the bedrooms, and the heat removed from the units preheats the hot water.",
+                k:[["Solar output","≈ 30 kWh/day"],["Hot water covered","≈ 95 %"],["Air conditioning","Heat recovered"],["Hydro-Québec grid","Minimal backup"]]},
+              hiver:{n:"Winter",t:"Solar output is low: the shower heat recovery unit becomes the main free source. The heat pump feeds the radiant floors at low temperature and the fan coils handle cold snaps.",
+                k:[["Solar output","≈ 9 kWh/day"],["Shower recovery","≈ 9 kWh/day"],["Hot water covered","≈ 35 %"],["Hydro-Québec grid","Backup active"]]},
+              hydro:{n:"Hydro-Québec outage",t:"The battery takes over the essential functions and the server sheds the rest. The insulated concrete form envelope and the mass of the concrete slabs keep the units temperate for a long time, and the tank keeps a reserve of hot water.",
+                k:[["Critical autonomy","≈ 2 days"],["Local AI","Stopped (load shedding)"],["Heating and cooling","On generator"],["Access and cameras","Maintained"]]},
+              net:{n:"Internet outage",t:"The building keeps running at 100 %: energy, heating, cooling and hot water are controlled locally. The AI switches to the local model, and exchanges with the other buildings wait for the link to return.",
+                k:[["Local functions","100 %"],["AI","Local model"],["Inter-building exchanges","Queued"],["Synchronization","When the link returns"]]}
+            },
+            box:{
+              central:{t:"Modulimo Central",s:["Licences, updates"],d:"Coordinates the network: licences, updates, certificates and settlement of transactions between buildings. If Central cannot be reached, every building keeps running."},
+              immB:{t:"Building B",s:["Autonomous node"],d:"Every Modulimo building is an identical autonomous node, with its own server, energy and data. Buildings exchange services through encrypted tunnels."},
+              immC:{t:"Building C",s:["Autonomous node"],d:"Every Modulimo building is an identical autonomous node, with its own server, energy and data. Buildings exchange services through encrypted tunnels."},
+              pv:{t:"Solar panels",s:["≈ 6 kWp, tilted 45-60°"],d:"Installed on the roof and tilted to favour winter production and let snow slide off. Estimated output: ≈ 30 kWh/day in summer, ≈ 9 kWh/day in December."},
+              ond:{t:"Hybrid inverter",s:["Priority cascade"],d:"Distributes energy through a priority cascade: critical loads first, then the battery, then the surplus to hot water."},
+              bat:{t:"Critical battery",s:["LiFePO4 ≈ 10 kWh"],d:"Reserved for essential functions. It covers about two days of outage for IT, surveillance and access control."},
+              hydro:{t:"Hydro-Québec grid",s:["Backup and recharge"],d:"The Hydro-Québec grid provides backup, mostly in winter, and recharges the battery when needed."},
+              crit:{t:"Critical loads",s:["IT, cameras, access"],d:"IT, network, cameras, access control and intercoms. These functions stay powered during an outage."},
+              fw:{t:"Firewall + mesh",s:["Encrypted WireGuard"],d:"Splits the building network into isolated zones (residents, cameras, sensors, kiosks) and opens an encrypted tunnel to the other buildings."},
+              srv:{t:"Local server",s:["Energy management","PV router · load shedding","Local AI · CoHabitat"],d:"The brain of the building: real-time energy management, solar surplus routing, automatic load shedding during outages, local AI and the CoHabitat app served on site."},
+              chauf:{t:"Heating + cooling",s:["Radiant · fan coils"],d:"Radiant floors in bedrooms and bathrooms, for silence and sleeping comfort; fan coils in living rooms, which react quickly and dehumidify. Each bedroom has its own temperature and humidity sensor. When cooling, the heat removed from the units preheats the hot water instead of being released outside."},
+              vre:{t:"ERV ventilation",s:["Dehumidified fresh air"],d:"The energy recovery ventilator renews the air of this very airtight building while recovering heat and part of the humidity. Fresh air goes straight to the bedrooms, which lets the floors cool without condensation."},
+              froide:{t:"Cold water",s:["City water ≈ 8 °C in winter"],d:"City water arrives at about 8 °C in winter and 15 °C in summer. Each following step warms it a little more."},
+              recup:{t:"Shower heat recovery",s:["Passive, +8 to 15 °C"],d:"A passive exchanger on the shower drain stack recovers about 40 to 50 % of their heat. With no pump and no maintenance, it provides ≈ 8 to 9 kWh/day, summer and winter."},
+              reserv:{t:"450 L solar tank",s:["Preheated by surplus"],d:"Heated by the solar surplus through the router driven by the server. A thermal battery far cheaper than an electric one."},
+              tp:{t:"Reversible heat pump",s:["Water ≥ 60 °C · heat/cool"],d:"Finishes heating and keeps water at 60 °C or more for health safety. It heats the units in winter and cools them in summer, recovering that heat for hot water."},
+              mitig:{t:"Mixing valve + recirc.",s:["Loop ≥ 55 °C"],d:"The thermostatic mixing valve limits the temperature delivered to the units; the recirculation loop keeps hot water available instantly."},
+              loge:{t:"5 units",s:["Individual meters"],d:"Three 6½ and two 2½. Meters measure each unit's hot water, and shower water returns to the heat recovery unit."}
+            }
+          }
+          ,es:{
+            title:"La inmótica Modulimo",
+            intro:"Cada edificio gestiona su energía, su calor y sus servicios de forma autónoma, y se conecta con los demás edificios de la red mediante enlaces cifrados.",
+            hint:"Elija un escenario y luego haga clic en un elemento para ver su detalle.",
+            note:"Valores indicativos para un edificio tipo de 5 viviendas (3 × 6½ + 2 × 2½).",
+            svgTitle:"Gestión de la energía de un edificio Modulimo",
+            svgDesc:"Esquema de la cadena eléctrica, la cadena térmica y el servidor local de un edificio, conectado a Modulimo Central y a los demás edificios mediante una red cifrada.",
+            scenLabel:"Escenarios",
+            bldg:"Edificio tipo · 3 × 6½ + 2 × 2½ · envolvente de encofrado aislante",
+            colE:"Electricidad",colW:"Agua caliente y calor",
+            legend:[["#BA7517","Electricidad"],["#1D9E75","Agua y calor"],["#888780","Aguas residuales (recuperación)"],["#7F77DD","Control del servidor"],["#378ADD","Red cifrada"],["#E24B4A","Corte"]],
+            scen:{
+              ete:{n:"Verano soleado",t:"El sol cubre las cargas críticas y recarga la batería; el excedente calienta el agua. Los fancoils climatizan las salas, los suelos refrescan los dormitorios en silencio y el calor retirado de las viviendas precalienta el agua caliente.",
+                k:[["Producción solar","≈ 30 kWh/día"],["Agua caliente cubierta","≈ 95 %"],["Climatización","Calor recuperado"],["Red Hydro-Québec","Apoyo mínimo"]]},
+              hiver:{n:"Invierno",t:"La producción solar es baja: el recuperador de las duchas pasa a ser la principal fuente gratuita. La bomba de calor alimenta los suelos radiantes a baja temperatura y los fancoils cubren los picos de frío.",
+                k:[["Producción solar","≈ 9 kWh/día"],["Recuperación duchas","≈ 9 kWh/día"],["Agua caliente cubierta","≈ 35 %"],["Red Hydro-Québec","Apoyo activo"]]},
+              hydro:{n:"Corte de Hydro-Québec",t:"La batería toma el relevo de las funciones esenciales y el servidor desconecta el resto. La envolvente de encofrado aislante y la masa de las losas de hormigón mantienen las viviendas templadas mucho tiempo, y el depósito conserva una reserva de agua caliente.",
+                k:[["Autonomía crítica","≈ 2 días"],["IA local","Detenida (deslastre)"],["Calefacción y clima","Con generador"],["Accesos y cámaras","Mantenidos"]]},
+              net:{n:"Corte de internet",t:"El edificio sigue funcionando al 100 %: energía, calefacción, climatización y agua caliente se controlan localmente. La IA pasa al modelo local y los intercambios con los demás edificios esperan el regreso del enlace.",
+                k:[["Funciones locales","100 %"],["IA","Modelo local"],["Intercambios entre edificios","En cola"],["Sincronización","Al volver el enlace"]]}
+            },
+            box:{
+              central:{t:"Modulimo Central",s:["Licencias, actualizaciones"],d:"Coordina la red: licencias, actualizaciones, certificados y compensación de las transacciones entre edificios. Si Central no responde, cada edificio sigue funcionando."},
+              immB:{t:"Edificio B",s:["Nodo autónomo"],d:"Cada edificio Modulimo es un nodo autónomo idéntico, con su servidor, su energía y sus datos. Los edificios intercambian servicios mediante túneles cifrados."},
+              immC:{t:"Edificio C",s:["Nodo autónomo"],d:"Cada edificio Modulimo es un nodo autónomo idéntico, con su servidor, su energía y sus datos. Los edificios intercambian servicios mediante túneles cifrados."},
+              pv:{t:"Paneles solares",s:["≈ 6 kWp, inclinados 45-60°"],d:"Instalados en el techo e inclinados para favorecer la producción de invierno y el deslizamiento de la nieve. Producción estimada: ≈ 30 kWh/día en verano, ≈ 9 kWh/día en diciembre."},
+              ond:{t:"Inversor híbrido",s:["Cascada de prioridades"],d:"Reparte la energía según una cascada de prioridades: primero las cargas críticas, luego la batería y después el excedente hacia el agua caliente."},
+              bat:{t:"Batería crítica",s:["LiFePO4 ≈ 10 kWh"],d:"Reservada a las funciones esenciales. Cubre unos dos días de corte para la informática, la vigilancia y el control de acceso."},
+              hydro:{t:"Red Hydro-Québec",s:["Apoyo y recarga"],d:"La red de Hydro-Québec sirve de apoyo, sobre todo en invierno, y recarga la batería cuando hace falta."},
+              crit:{t:"Cargas críticas",s:["TI, cámaras, accesos"],d:"Informática, red, cámaras, control de acceso e interfonos. Estas funciones siguen alimentadas durante un corte."},
+              fw:{t:"Cortafuegos + malla",s:["WireGuard cifrado"],d:"Segmenta la red del edificio en zonas aisladas (residentes, cámaras, sensores, quioscos) y abre un túnel cifrado hacia los demás edificios."},
+              srv:{t:"Servidor local",s:["Gestión de energía","Router FV · deslastre","IA local · CoHabitat"],d:"El cerebro del edificio: gestión de la energía en tiempo real, enrutamiento del excedente solar, deslastre automático en caso de corte, IA local y la aplicación CoHabitat servida en el lugar."},
+              chauf:{t:"Calefacción + clima",s:["Radiante · fancoils"],d:"Suelos radiantes en los dormitorios y los baños, para el silencio y el confort del sueño; fancoils en las salas, que reaccionan rápido y deshumidifican. Cada dormitorio tiene su sonda de temperatura y humedad. En modo climatización, el calor retirado de las viviendas precalienta el agua caliente en lugar de expulsarse al exterior."},
+              vre:{t:"Ventilación ERV",s:["Aire nuevo deshumidificado"],d:"El ventilador recuperador de energía renueva el aire de este edificio muy hermético recuperando el calor y parte de la humedad. El aire nuevo llega directamente a los dormitorios, lo que permite a los suelos refrescar sin condensación."},
+              froide:{t:"Agua fría",s:["Red ≈ 8 °C en invierno"],d:"El agua de la red llega a unos 8 °C en invierno y 15 °C en verano. Cada etapa siguiente la calienta un poco más."},
+              recup:{t:"Recuperador duchas",s:["Pasivo, +8 a 15 °C"],d:"Un intercambiador pasivo en la columna de desagües de las duchas recupera entre el 40 y el 50 % de su calor. Sin bomba ni mantenimiento, aporta ≈ 8 a 9 kWh/día, en verano y en invierno."},
+              reserv:{t:"Depósito solar 450 L",s:["Precalentado por excedente"],d:"Calentado por el excedente solar gracias al router controlado por el servidor. Una batería térmica mucho más barata que una batería eléctrica."},
+              tp:{t:"Bomba de calor reversible",s:["Agua ≥ 60 °C · frío/calor"],d:"Completa el calentamiento y mantiene el agua a 60 °C o más por seguridad sanitaria. Calienta las viviendas en invierno y las climatiza en verano, recuperando ese calor para el agua caliente."},
+              mitig:{t:"Mezclador + recirculación",s:["Bucle ≥ 55 °C"],d:"El mezclador termostático limita la temperatura entregada a las viviendas; el bucle de recirculación mantiene el agua caliente disponible al instante."},
+              loge:{t:"5 viviendas",s:["Contadores individuales"],d:"Tres 6½ y dos 2½. Unos contadores miden el agua caliente de cada vivienda, y el agua de las duchas vuelve al recuperador."}
+            }
+          }
+          ,zh:{
+            title:"Modulimo 楼宇自动化",
+            intro:"每栋楼宇自主管理其能源、热量与服务，并通过加密链路与网络中的其他楼宇相连。",
+            hint:"选择一个场景，然后点击某个元素查看详情。",
+            note:"以下为一栋 5 户典型楼宇（3 × 6½ + 2 × 2½）的参考数值。",
+            svgTitle:"Modulimo 楼宇的能源管理",
+            svgDesc:"一栋楼宇的电力链、热力链与本地服务器示意图，并通过加密网络连接 Modulimo Central 及其他楼宇。",
+            scenLabel:"场景",
+            bldg:"典型楼宇 · 3 × 6½ + 2 × 2½ · 保温模板围护结构",
+            colE:"电力",colW:"热水与热量",
+            legend:[["#BA7517","电力"],["#1D9E75","水与热量"],["#888780","废水（热回收）"],["#7F77DD","服务器控制"],["#378ADD","加密网络"],["#E24B4A","中断"]],
+            scen:{
+              ete:{n:"晴朗夏季",t:"太阳能满足关键负载并为电池充电；多余电力用于加热水。风机盘管为起居室制冷，地板静音为卧室降温，从住户中带走的热量则用于预热热水。",
+                k:[["太阳能发电","≈ 30 kWh/天"],["热水覆盖率","≈ 95 %"],["空调","热量回收"],["Hydro-Québec 电网","少量补充"]]},
+              hiver:{n:"冬季",t:"太阳能发电量低：淋浴废水热回收器成为主要的免费热源。热泵以低温为辐射地板供热，风机盘管应对寒流高峰。",
+                k:[["太阳能发电","≈ 9 kWh/天"],["淋浴热回收","≈ 9 kWh/天"],["热水覆盖率","≈ 35 %"],["Hydro-Québec 电网","补充供电中"]]},
+              hydro:{n:"Hydro-Québec 停电",t:"电池接管基本功能，服务器切除其余负载。保温模板围护结构与混凝土楼板的蓄热质量让住户长时间保持适宜温度，储水箱也保留一份热水储备。",
+                k:[["关键负载续航","≈ 2 天"],["本地 AI","已停止（负荷切除）"],["供暖与空调","由发电机供电"],["门禁与摄像头","持续运行"]]},
+              net:{n:"互联网中断",t:"楼宇继续 100 % 运行：能源、供暖、空调与热水均在本地控制。AI 切换到本地模型，与其他楼宇的交换等待链路恢复。",
+                k:[["本地功能","100 %"],["AI","本地模型"],["楼宇间交换","排队等待"],["同步","链路恢复后进行"]]}
+            },
+            box:{
+              central:{t:"Modulimo Central",s:["许可与更新"],d:"协调整个网络：许可、更新、证书以及楼宇间交易的结算。即使无法连接 Central，每栋楼宇仍继续运行。"},
+              immB:{t:"楼宇 B",s:["自主节点"],d:"每栋 Modulimo 楼宇都是一个相同的自主节点，拥有自己的服务器、能源与数据。楼宇之间通过加密隧道交换服务。"},
+              immC:{t:"楼宇 C",s:["自主节点"],d:"每栋 Modulimo 楼宇都是一个相同的自主节点，拥有自己的服务器、能源与数据。楼宇之间通过加密隧道交换服务。"},
+              pv:{t:"太阳能板",s:["≈ 6 kWp，倾角 45-60°"],d:"安装在屋顶，倾斜角度有利于冬季发电和积雪滑落。预计发电量：夏季 ≈ 30 kWh/天，12 月 ≈ 9 kWh/天。"},
+              ond:{t:"混合逆变器",s:["优先级级联"],d:"按优先级级联分配能源：先供关键负载，再为电池充电，最后将多余电力用于热水。"},
+              bat:{t:"关键负载电池",s:["LiFePO4 ≈ 10 kWh"],d:"专供基本功能使用。可在停电时为信息系统、监控与门禁提供约两天的电力。"},
+              hydro:{t:"Hydro-Québec 电网",s:["补充与充电"],d:"Hydro-Québec 电网作为补充，主要在冬季使用，并在需要时为电池充电。"},
+              crit:{t:"关键负载",s:["IT、摄像头、门禁"],d:"信息系统、网络、摄像头、门禁与对讲。停电期间这些功能保持供电。"},
+              fw:{t:"防火墙 + 网状网络",s:["WireGuard 加密"],d:"将楼宇网络划分为相互隔离的区域（住户、摄像头、传感器、自助终端），并建立通往其他楼宇的加密隧道。"},
+              srv:{t:"本地服务器",s:["能源管理","光伏路由 · 负荷切除","本地 AI · CoHabitat"],d:"楼宇的大脑：实时能源管理、太阳能余电调配、停电时自动切除负载、本地 AI，以及在本地提供的 CoHabitat 应用。"},
+              chauf:{t:"供暖 + 空调",s:["辐射地板 · 风机盘管"],d:"卧室和浴室采用辐射地板，安静舒适，利于睡眠；起居室采用风机盘管，响应迅速并能除湿。每间卧室都有温湿度传感器。制冷时，从住户带走的热量用于预热热水，而不是排到室外。"},
+              vre:{t:"ERV 新风系统",s:["除湿新鲜空气"],d:"能量回收通风机为这栋高度气密的建筑更新空气，同时回收热量和部分湿气。新风直接送入卧室，使地板可以降温而不结露。"},
+              froide:{t:"冷水",s:["市政供水 冬季 ≈ 8 °C"],d:"市政供水冬季约 8 °C，夏季约 15 °C。后续每个环节都让水温再升高一些。"},
+              recup:{t:"淋浴热回收器",s:["被动式，+8 至 15 °C"],d:"安装在淋浴排水立管上的被动式换热器可回收约 40 % 至 50 % 的热量。无需水泵、无需维护，冬夏均可提供 ≈ 8 至 9 kWh/天。"},
+              reserv:{t:"450 L 太阳能水箱",s:["以余电预热"],d:"由服务器控制的路由器利用太阳能余电加热。这是一块比电池便宜得多的「热电池」。"},
+              tp:{t:"可逆式热泵",s:["水温 ≥ 60 °C · 冷暖两用"],d:"完成最终加热并将水温保持在 60 °C 以上，确保卫生安全。冬季为住户供暖，夏季制冷，并把这部分热量回收用于热水。"},
+              mitig:{t:"混水阀 + 循环",s:["循环回路 ≥ 55 °C"],d:"恒温混水阀限制送往住户的水温；循环回路让热水随时即开即用。"},
+              loge:{t:"5 套住宅",s:["独立计量表"],d:"三套 6½ 和两套 2½。计量表记录每户的热水用量，淋浴用水回流至热回收器。"}
+            }
+          }
+          };
+          var lang=(document.documentElement.lang||"fr").slice(0,2).toLowerCase();
+          var L=I18N[lang]||I18N.fr;
+
+          /* ---------- Géométrie ---------- */
+          var BOXES=[
+            ["central","n",380,30,200,56],["immB","n",60,36,180,50],["immC","n",720,36,180,50],
+            ["pv","e",50,205,240,56],["ond","e",50,296,240,56],["bat","e",50,390,200,56],["hydro","e",50,480,200,56],["crit","e",50,570,200,56],
+            ["fw","n",360,205,240,56],["srv","m",360,296,240,124],["chauf","g",360,452,240,56],["vre","g",360,540,240,56],
+            ["froide","w",670,205,240,56],["recup","w",670,285,240,56],["reserv","w",670,365,240,56],["tp","w",670,452,240,56],["mitig","w",670,532,240,56],["loge","g",670,612,240,56]
+          ];
+          var FLOWS=[
+            ["pv-ond","elec",0,"M170 261 L170 294"],
+            ["ond-bat","elec",1,"M150 352 L150 388"],
+            ["ond-hydro","elec",1,"M270 352 L270 508 L252 508"],
+            ["ond-crit","elec",0,"M50 324 L35 324 L35 598 L48 598"],
+            ["ond-res","elec",0,"M292 338 L315 338 L315 700 L640 700 L640 488 M640 472 L640 405 L666 405"],
+            ["srv-ond","ctrl",0,"M358 312 L294 312"],
+            ["srv-res","ctrl",0,"M602 380 L666 380"],
+            ["srv-fw","net",1,"M480 294 L480 263"],
+            ["fw-central","net",1,"M480 203 L480 88"],
+            ["fw-b","net",1,"M420 203 L420 120 L150 120 L150 88"],
+            ["fw-c","net",1,"M540 203 L540 120 L810 120 L810 88"],
+            ["w1","water",0,"M790 261 L790 283"],["w2","water",0,"M790 341 L790 363"],["w3","water",0,"M790 421 L790 450"],
+            ["w4","water",0,"M790 508 L790 530"],["w5","water",0,"M790 588 L790 610"],
+            ["tp-chauf","water",1,"M668 480 L602 480"],
+            ["drain","drain",0,"M912 640 L928 640 L928 313 L912 313"]
+          ];
+          var COLORS={elec:"#BA7517",water:"#1D9E75",drain:"#888780",ctrl:"#7F77DD",net:"#378ADD",alert:"#E24B4A"};
+
+          /* ---------- Scénarios : états des flux et des blocs (défaut : "on") ---------- */
+          var SCEN={
+            ete:{f:{"ond-hydro":"off","tp-chauf":"on rev"},b:{}},
+            hiver:{f:{"ond-res":"off","ond-hydro":"on rev","pv-ond":"on weak"},b:{}},
+            hydro:{f:{"ond-hydro":"alert","ond-bat":"on rev","ond-res":"off","tp-chauf":"off"},b:{hydro:"alert",tp:"off",chauf:"off"}},
+            net:{f:{"fw-central":"alert","fw-b":"alert","fw-c":"alert"},b:{central:"off",immB:"off",immC:"off"}}
+          };
+
+          /* ---------- Construction du SVG ---------- */
+          var NS="http://www.w3.org/2000/svg",svg=root.querySelector("svg");
+          function el(tag,attrs,parent){var e=document.createElementNS(NS,tag);for(var k in attrs)e.setAttribute(k,attrs[k]);if(parent)parent.appendChild(e);return e;}
+          root.querySelector("#mdl-svg-t").textContent=L.svgTitle;
+          root.querySelector("#mdl-svg-d").textContent=L.svgDesc;
+
+          var defs=el("defs",{},svg);
+          Object.keys(COLORS).forEach(function(c){
+            var m=el("marker",{id:"mdl-m-"+c,viewBox:"0 0 10 10",refX:"8",refY:"5",markerWidth:"10",markerHeight:"10",markerUnits:"userSpaceOnUse",orient:"auto-start-reverse"},defs);
+            el("path",{d:"M2 1L8 5L2 9",fill:"none",stroke:COLORS[c],"stroke-width":"1.6","stroke-linecap":"round","stroke-linejoin":"round"},m);
+          });
+
+          el("rect",{class:"mdl-bldg",x:20,y:160,width:920,height:590,rx:20},svg);
+          el("text",{class:"mdl-lbl",x:40,y:735},svg).textContent=L.bldg;
+          el("text",{class:"mdl-lbl",x:170,y:186,"text-anchor":"middle"},svg).textContent=L.colE;
+          el("text",{class:"mdl-lbl",x:790,y:186,"text-anchor":"middle"},svg).textContent=L.colW;
+
+          var flowEls={};
+          FLOWS.forEach(function(f){
+            var p=el("path",{class:"mdl-flow f-"+f[1],d:f[3]},svg);
+            p._type=f[1];p._bi=f[2];flowEls[f[0]]=p;
+          });
+
+          var boxEls={},selected=null;
+          BOXES.forEach(function(b){
+            var id=b[0],x=b[2],y=b[3],w=b[4],h=b[5],txt=L.box[id];
+            var g=el("g",{class:"mdl-box c-"+b[1],tabindex:"0",role:"button"},svg);
+            el("rect",{x:x,y:y,width:w,height:h,rx:10},g);
+            var cx=x+w/2,n=txt.s.length,top=y+h/2-((n)*20)/2;
+            el("text",{class:"t",x:cx,y:top,"text-anchor":"middle","dominant-baseline":"central"},g).textContent=txt.t;
+            txt.s.forEach(function(s,i){el("text",{class:"s",x:cx,y:top+20+i*20,"text-anchor":"middle","dominant-baseline":"central"},g).textContent=s;});
+            function pick(){
+              if(selected)selected.classList.remove("is-sel");
+              selected=g;g.classList.add("is-sel");
+              root.querySelector(".mdl-det-title").textContent=txt.t;
+              root.querySelector(".mdl-det-text").textContent=txt.d;
+            }
+            g.addEventListener("click",pick);
+            g.addEventListener("keydown",function(e){if(e.key==="Enter"||e.key===" "){e.preventDefault();pick();}});
+            boxEls[id]=g;
+          });
+
+          /* ---------- Interface ---------- */
+          root.querySelectorAll("[data-i18n]").forEach(function(n){n.textContent=L[n.getAttribute("data-i18n")]||"";});
+          var tabs=root.querySelector(".mdl-scen");tabs.setAttribute("aria-label",L.scenLabel);
+          var leg=root.querySelector(".mdl-legend");
+          L.legend.forEach(function(it){var li=document.createElement("li");var i=document.createElement("i");i.style.borderColor=it[0];li.appendChild(i);li.appendChild(document.createTextNode(it[1]));leg.appendChild(li);});
+
+          function apply(key){
+            var s=SCEN[key],txt=L.scen[key];
+            Object.keys(flowEls).forEach(function(id){
+              var p=flowEls[id],st=(s.f[id]||"on").split(" ");
+              p.setAttribute("class","mdl-flow f-"+p._type+" "+st.map(function(c){return "is-"+c;}).join(" "));
+              var m="url(#mdl-m-"+(st.indexOf("alert")>-1?"alert":p._type)+")";
+              if(st.indexOf("alert")>-1&&p._type==="net"){p.removeAttribute("marker-end");p.removeAttribute("marker-start");return;}
+              p.setAttribute("marker-end",m);
+              if(p._bi)p.setAttribute("marker-start",m);else p.removeAttribute("marker-start");
+            });
+            Object.keys(boxEls).forEach(function(id){
+              var g=boxEls[id];g.classList.remove("is-off","is-alert");
+              if(s.b[id])g.classList.add("is-"+s.b[id]);
+            });
+            root.querySelector(".mdl-scen-title").textContent=txt.n;
+            root.querySelector(".mdl-scen-text").textContent=txt.t;
+            var k=root.querySelector(".mdl-kpis");k.innerHTML="";
+            txt.k.forEach(function(kv){var d=document.createElement("div");d.className="mdl-kpi";var a=document.createElement("span");a.textContent=kv[0];var b=document.createElement("strong");b.textContent=kv[1];d.appendChild(a);d.appendChild(b);k.appendChild(d);});
+            tabs.querySelectorAll("button").forEach(function(btn){btn.setAttribute("aria-selected",btn.dataset.k===key?"true":"false");btn.tabIndex=btn.dataset.k===key?0:-1;});
+          }
+
+          var keys=Object.keys(SCEN);
+          keys.forEach(function(key){
+            var b=document.createElement("button");b.type="button";b.role="tab";b.setAttribute("role","tab");b.dataset.k=key;b.textContent=L.scen[key].n;
+            b.addEventListener("click",function(){apply(key);});
+            b.addEventListener("keydown",function(e){
+              var i=keys.indexOf(key);
+              if(e.key==="ArrowRight"||e.key==="ArrowLeft"){e.preventDefault();var n=keys[(i+(e.key==="ArrowRight"?1:keys.length-1))%keys.length];apply(n);tabs.querySelector('[data-k="'+n+'"]').focus();}
+            });
+            tabs.appendChild(b);
+          });
+
+          apply("ete");
+          boxEls.srv.dispatchEvent(new Event("click"));
+        })();
+        </script>
+      </section>
+    </div>
+  </div>
+
+  <!-- ══ AUTONOMIE ══ -->
+  <section class="mim-sec mim-sec-alt" id="autonomie">
+    <div class="mim-wrap mim-sec-grid">
+      <div>
+        <div class="msec-tag"><span data-lang="fr">Autonomie</span><span data-lang="en">Autonomy</span><span data-lang="es">Autonomía</span><span data-lang="zh">自主运行</span></div>
+        <h2 class="msec-title"><span data-lang="fr">Il continue,<br>même coupé du monde.</span><span data-lang="en">It keeps going,<br>even cut off from the world.</span><span data-lang="es">Sigue funcionando,<br>incluso aislado del mundo.</span><span data-lang="zh">即使与外界断开，<br>它也照常运转。</span></h2>
+        <p class="msec-body"><span data-lang="fr">Tout ce qui fait vivre l'immeuble se décide dans l'immeuble. Le réseau Modulimo s'ajoute par-dessus ; il ne remplace rien.</span><span data-lang="en">Everything that keeps the building running is decided inside the building. The Modulimo network is added on top; it replaces nothing.</span><span data-lang="es">Todo lo que hace funcionar el edificio se decide dentro del edificio. La red Modulimo se suma por encima; no sustituye nada.</span><span data-lang="zh">让楼宇运转的一切都在楼宇内部决定。Modulimo 网络只是叠加其上，不取代任何东西。</span></p>
+      </div>
+      <ul class="mim-points">
+        <li><strong><span data-lang="fr">Un serveur dans chaque immeuble.</span><span data-lang="en">A server in every building.</span><span data-lang="es">Un servidor en cada edificio.</span><span data-lang="zh">每栋楼宇一台服务器。</span></strong> <span data-lang="fr">Il gère l'énergie en temps réel, sert l'application CoHabitat sur place et fait tourner une IA locale.</span><span data-lang="en">It manages energy in real time, serves the CoHabitat app on site and runs a local AI.</span><span data-lang="es">Gestiona la energía en tiempo real, sirve la aplicación CoHabitat en el lugar y ejecuta una IA local.</span><span data-lang="zh">它实时管理能源，在本地提供 CoHabitat 应用，并运行本地 AI。</span></li>
+        <li><strong><span data-lang="fr">Panne d'internet :</span><span data-lang="en">Internet outage:</span><span data-lang="es">Corte de internet:</span><span data-lang="zh">互联网中断：</span></strong> <span data-lang="fr">l'immeuble fonctionne à 100 % — chauffage, climatisation, eau chaude, accès et application. Les échanges entre immeubles reprennent au retour du lien.</span><span data-lang="en">the building runs at 100 % — heating, cooling, hot water, access and the app. Exchanges between buildings resume when the link returns.</span><span data-lang="es">el edificio funciona al 100 % — calefacción, climatización, agua caliente, accesos y aplicación. Los intercambios entre edificios se reanudan al volver el enlace.</span><span data-lang="zh">楼宇 100 % 正常运行 —— 供暖、空调、热水、门禁与应用均不受影响。楼宇间的交换在链路恢复后继续。</span></li>
+        <li><strong><span data-lang="fr">Panne d'électricité :</span><span data-lang="en">Power outage:</span><span data-lang="es">Corte de electricidad:</span><span data-lang="zh">停电：</span></strong> <span data-lang="fr">une batterie maintient l'informatique, les caméras et le contrôle d'accès pendant environ deux jours. Le reste est délesté automatiquement.</span><span data-lang="en">a battery keeps IT, cameras and access control running for about two days. Everything else is shed automatically.</span><span data-lang="es">una batería mantiene la informática, las cámaras y el control de acceso durante unos dos días. El resto se desconecta automáticamente.</span><span data-lang="zh">电池可维持信息系统、摄像头与门禁约两天运行。其余负载自动切除。</span></li>
+        <li><strong><span data-lang="fr">Modulimo Central coordonne,</span><span data-lang="en">Modulimo Central coordinates,</span><span data-lang="es">Modulimo Central coordina,</span><span data-lang="zh">Modulimo Central 负责协调，</span></strong> <span data-lang="fr">licences et mises à jour, mais aucun immeuble n'en dépend pour fonctionner.</span><span data-lang="en">licences and updates, but no building depends on it to operate.</span><span data-lang="es">licencias y actualizaciones, pero ningún edificio depende de él para funcionar.</span><span data-lang="zh">处理许可与更新，但没有任何楼宇依赖它才能运行。</span></li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- ══ ÉNERGIE ══ -->
+  <section class="mim-sec" id="energie">
+    <div class="mim-wrap mim-sec-grid">
+      <div>
+        <div class="msec-tag"><span data-lang="fr">Énergie</span><span data-lang="en">Energy</span><span data-lang="es">Energía</span><span data-lang="zh">能源</span></div>
+        <h2 class="msec-title"><span data-lang="fr">Le soleil d'abord,<br>le réseau en appoint.</span><span data-lang="en">The sun first,<br>the grid as backup.</span><span data-lang="es">Primero el sol,<br>la red como apoyo.</span><span data-lang="zh">太阳能优先，<br>电网补充。</span></h2>
+        <p class="msec-body"><span data-lang="fr">Chaque kilowattheure produit sur le toit a une place, dans un ordre fixé à l'avance.</span><span data-lang="en">Every kilowatt-hour produced on the roof has a place, in an order set in advance.</span><span data-lang="es">Cada kilovatio hora producido en el techo tiene su lugar, en un orden fijado de antemano.</span><span data-lang="zh">屋顶产生的每一度电都有去处，并按预先设定的顺序分配。</span></p>
+      </div>
+      <div>
+        <ul class="mim-points">
+          <li><strong><span data-lang="fr">Panneaux solaires sur le toit</span><span data-lang="en">Rooftop solar panels</span><span data-lang="es">Paneles solares en el techo</span><span data-lang="zh">屋顶太阳能板</span></strong> <span data-lang="fr">— environ 6 kWc pour un immeuble type, inclinés pour produire l'hiver et laisser glisser la neige.</span><span data-lang="en">— about 6 kWp for a typical building, tilted to produce in winter and let snow slide off.</span><span data-lang="es">— unos 6 kWp para un edificio tipo, inclinados para producir en invierno y dejar deslizar la nieve.</span><span data-lang="zh">—— 典型楼宇约 6 kWp，倾斜安装，以利于冬季发电和积雪滑落。</span></li>
+          <li><strong><span data-lang="fr">Une cascade de priorités :</span><span data-lang="en">A priority cascade:</span><span data-lang="es">Una cascada de prioridades:</span><span data-lang="zh">优先级级联：</span></strong> <span data-lang="fr">les fonctions essentielles d'abord, puis la batterie, puis le surplus chauffe l'eau.</span><span data-lang="en">essential functions first, then the battery, then the surplus heats water.</span><span data-lang="es">primero las funciones esenciales, luego la batería y después el excedente calienta el agua.</span><span data-lang="zh">先保障基本功能，再为电池充电，余电用于加热水。</span></li>
+          <li><strong><span data-lang="fr">Une « batterie thermique ».</span><span data-lang="en">A “thermal battery”.</span><span data-lang="es">Una «batería térmica».</span><span data-lang="zh">一块「热电池」。</span></strong> <span data-lang="fr">Le surplus est stocké sous forme d'eau chaude, bien moins cher qu'une batterie électrique.</span><span data-lang="en">The surplus is stored as hot water, far cheaper than an electric battery.</span><span data-lang="es">El excedente se almacena en forma de agua caliente, mucho más barato que una batería eléctrica.</span><span data-lang="zh">余电以热水形式储存，比电池便宜得多。</span></li>
+        </ul>
+        <p class="mim-ind"><span data-lang="fr">Valeurs indicatives pour un immeuble type.</span><span data-lang="en">Indicative values for a typical building.</span><span data-lang="es">Valores indicativos para un edificio tipo.</span><span data-lang="zh">数值仅供参考，以典型楼宇为准。</span></p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ EAU CHAUDE ══ -->
+  <section class="mim-sec mim-sec-alt" id="eau-chaude">
+    <div class="mim-wrap mim-sec-grid">
+      <div>
+        <div class="msec-tag"><span data-lang="fr">Eau chaude et récupération</span><span data-lang="en">Hot water and recovery</span><span data-lang="es">Agua caliente y recuperación</span><span data-lang="zh">热水与热回收</span></div>
+        <h2 class="msec-title"><span data-lang="fr">La chaleur de la douche<br>ne part plus à l'égout.</span><span data-lang="en">Shower heat no longer<br>goes down the drain.</span><span data-lang="es">El calor de la ducha<br>ya no se va por el desagüe.</span><span data-lang="zh">淋浴的热量<br>不再白白流走。</span></h2>
+        <p class="msec-body"><span data-lang="fr">Un seul système d'eau chaude pour l'immeuble, et chaque étape réchauffe un peu plus l'eau froide qui entre.</span><span data-lang="en">A single hot-water system for the building, and each step warms the incoming cold water a little more.</span><span data-lang="es">Un único sistema de agua caliente para el edificio, y cada etapa calienta un poco más el agua fría que entra.</span><span data-lang="zh">整栋楼宇共用一套热水系统，每个环节都让进水再升温一些。</span></p>
+      </div>
+      <div>
+        <ul class="mim-points">
+          <li><strong><span data-lang="fr">Un système central,</span><span data-lang="en">A central system,</span><span data-lang="es">Un sistema central,</span><span data-lang="zh">集中式系统，</span></strong> <span data-lang="fr">avec un compteur d'eau chaude pour chaque logement.</span><span data-lang="en">with a hot-water meter for each unit.</span><span data-lang="es">con un contador de agua caliente para cada vivienda.</span><span data-lang="zh">每户配有独立的热水计量表。</span></li>
+          <li><strong><span data-lang="fr">La chaleur des douches est récupérée :</span><span data-lang="en">Shower heat is recovered:</span><span data-lang="es">Se recupera el calor de las duchas:</span><span data-lang="zh">回收淋浴热量：</span></strong> <span data-lang="fr">l'eau froide entrante est préchauffée, été comme hiver.</span><span data-lang="en">incoming cold water is preheated, summer and winter.</span><span data-lang="es">el agua fría que entra se precalienta, en verano y en invierno.</span><span data-lang="zh">进入的冷水得到预热，冬夏皆然。</span></li>
+          <li><strong><span data-lang="fr">≈ 95 % l'été, ≈ 35 % l'hiver :</span><span data-lang="en">≈ 95 % in summer, ≈ 35 % in winter:</span><span data-lang="es">≈ 95 % en verano, ≈ 35 % en invierno:</span><span data-lang="zh">夏季 ≈ 95 %，冬季 ≈ 35 %：</span></strong> <span data-lang="fr">la part de l'eau chaude couverte par le solaire et la récupération.</span><span data-lang="en">the share of hot water covered by solar and recovery.</span><span data-lang="es">la parte del agua caliente cubierta por el sol y la recuperación.</span><span data-lang="zh">这是由太阳能和热回收所覆盖的热水比例。</span></li>
+          <li><strong><span data-lang="fr">Sécurité sanitaire :</span><span data-lang="en">Health safety:</span><span data-lang="es">Seguridad sanitaria:</span><span data-lang="zh">卫生安全：</span></strong> <span data-lang="fr">l'eau est maintenue à 60 °C ou plus, et un mitigeur thermostatique limite la température avant la distribution.</span><span data-lang="en">water is kept at 60 °C or more, and a thermostatic mixing valve limits the temperature before distribution.</span><span data-lang="es">el agua se mantiene a 60 °C o más, y un mezclador termostático limita la temperatura antes de la distribución.</span><span data-lang="zh">水温保持在 60 °C 以上，恒温混水阀在配水前限制出水温度。</span></li>
+        </ul>
+        <p class="mim-ind"><span data-lang="fr">Valeurs indicatives pour un immeuble type.</span><span data-lang="en">Indicative values for a typical building.</span><span data-lang="es">Valores indicativos para un edificio tipo.</span><span data-lang="zh">数值仅供参考，以典型楼宇为准。</span></p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ CONFORT ══ -->
+  <section class="mim-sec" id="confort">
+    <div class="mim-wrap mim-sec-grid">
+      <div>
+        <div class="msec-tag"><span data-lang="fr">Confort</span><span data-lang="en">Comfort</span><span data-lang="es">Confort</span><span data-lang="zh">舒适</span></div>
+        <h2 class="msec-title"><span data-lang="fr">Chaud l'hiver, frais l'été,<br>et silencieux la nuit.</span><span data-lang="en">Warm in winter, cool in summer,<br>and quiet at night.</span><span data-lang="es">Cálido en invierno, fresco en verano,<br>y silencioso de noche.</span><span data-lang="zh">冬暖夏凉，<br>夜晚安静。</span></h2>
+        <p class="msec-body"><span data-lang="fr">Chaque pièce reçoit le mode de chauffage et de climatisation qui lui convient.</span><span data-lang="en">Each room gets the heating and cooling method that suits it.</span><span data-lang="es">Cada estancia recibe el modo de calefacción y climatización que le conviene.</span><span data-lang="zh">每个房间都采用最适合它的供暖与制冷方式。</span></p>
+      </div>
+      <ul class="mim-points">
+        <li><strong><span data-lang="fr">Une thermopompe centrale réversible :</span><span data-lang="en">A central reversible heat pump:</span><span data-lang="es">Una bomba de calor central reversible:</span><span data-lang="zh">集中式可逆热泵：</span></strong> <span data-lang="fr">chauffage l'hiver, climatisation l'été.</span><span data-lang="en">heating in winter, cooling in summer.</span><span data-lang="es">calefacción en invierno, climatización en verano.</span><span data-lang="zh">冬季供暖，夏季制冷。</span></li>
+        <li><strong><span data-lang="fr">Planchers radiants dans les chambres et les salles de bain :</span><span data-lang="en">Radiant floors in bedrooms and bathrooms:</span><span data-lang="es">Suelos radiantes en dormitorios y baños:</span><span data-lang="zh">卧室和浴室采用辐射地板：</span></strong> <span data-lang="fr">silence complet et confort pour le sommeil.</span><span data-lang="en">complete silence and comfort for sleep.</span><span data-lang="es">silencio total y confort para el sueño.</span><span data-lang="zh">完全静音，睡眠更舒适。</span></li>
+        <li><strong><span data-lang="fr">Ventilo-convecteurs dans les séjours :</span><span data-lang="en">Fan coils in living rooms:</span><span data-lang="es">Fancoils en las salas:</span><span data-lang="zh">起居室采用风机盘管：</span></strong> <span data-lang="fr">ils réagissent vite et déshumidifient.</span><span data-lang="en">they react quickly and dehumidify.</span><span data-lang="es">reaccionan rápido y deshumidifican.</span><span data-lang="zh">响应迅速，并能除湿。</span></li>
+        <li><strong><span data-lang="fr">Rien ne se perd :</span><span data-lang="en">Nothing is wasted:</span><span data-lang="es">Nada se pierde:</span><span data-lang="zh">不浪费热量：</span></strong> <span data-lang="fr">en climatisation, la chaleur retirée des logements préchauffe l'eau chaude au lieu d'être rejetée dehors.</span><span data-lang="en">when cooling, the heat removed from the units preheats the hot water instead of being released outside.</span><span data-lang="es">en modo climatización, el calor retirado de las viviendas precalienta el agua caliente en lugar de expulsarse al exterior.</span><span data-lang="zh">制冷时，从住户带走的热量用于预热热水，而不是排到室外。</span></li>
+        <li><strong><span data-lang="fr">Ventilation à récupération d'énergie (VRE) :</span><span data-lang="en">Energy recovery ventilation (ERV):</span><span data-lang="es">Ventilación con recuperación de energía (ERV):</span><span data-lang="zh">能量回收通风（ERV）：</span></strong> <span data-lang="fr">de l'air neuf filtré et déshumidifié, distribué dans les chambres.</span><span data-lang="en">filtered, dehumidified fresh air delivered to the bedrooms.</span><span data-lang="es">aire nuevo filtrado y deshumidificado, distribuido en los dormitorios.</span><span data-lang="zh">经过滤和除湿的新风送入各卧室。</span></li>
+        <li><strong><span data-lang="fr">Une enveloppe en coffrage isolant et des dalles de béton :</span><span data-lang="en">An insulated concrete form envelope and concrete slabs:</span><span data-lang="es">Una envolvente de encofrado aislante y losas de hormigón:</span><span data-lang="zh">保温模板围护结构与混凝土楼板：</span></strong> <span data-lang="fr">très bonne isolation, étanchéité, inertie thermique et isolation acoustique.</span><span data-lang="en">excellent insulation, airtightness, thermal mass and sound insulation.</span><span data-lang="es">muy buen aislamiento, hermeticidad, inercia térmica y aislamiento acústico.</span><span data-lang="zh">出色的保温、气密、蓄热与隔音性能。</span></li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- ══ RÉSEAU ET SÉCURITÉ ══ -->
+  <section class="mim-sec mim-sec-alt" id="reseau-securite">
+    <div class="mim-wrap mim-sec-grid">
+      <div>
+        <div class="msec-tag"><span data-lang="fr">Réseau et sécurité</span><span data-lang="en">Network and security</span><span data-lang="es">Red y seguridad</span><span data-lang="zh">网络与安全</span></div>
+        <h2 class="msec-title"><span data-lang="fr">Chaque chose<br>dans sa zone.</span><span data-lang="en">Everything<br>in its own zone.</span><span data-lang="es">Cada cosa<br>en su zona.</span><span data-lang="zh">各归其位，<br>互不干扰。</span></h2>
+        <p class="msec-body"><span data-lang="fr">Le réseau de l'immeuble est conçu pour qu'un problème reste là où il apparaît.</span><span data-lang="en">The building network is designed so that a problem stays where it appears.</span><span data-lang="es">La red del edificio está diseñada para que un problema se quede donde aparece.</span><span data-lang="zh">楼宇网络的设计目标，是让问题停留在它出现的地方。</span></p>
+      </div>
+      <ul class="mim-points">
+        <li><strong><span data-lang="fr">Des zones isolées :</span><span data-lang="en">Isolated zones:</span><span data-lang="es">Zonas aisladas:</span><span data-lang="zh">相互隔离的区域：</span></strong> <span data-lang="fr">résidents, caméras, capteurs, bornes communes. Un appareil compromis ne peut pas atteindre les autres zones.</span><span data-lang="en">residents, cameras, sensors, shared kiosks. A compromised device cannot reach the other zones.</span><span data-lang="es">residentes, cámaras, sensores, terminales comunes. Un aparato comprometido no puede alcanzar las demás zonas.</span><span data-lang="zh">住户、摄像头、传感器、公共终端。一台被入侵的设备无法触及其他区域。</span></li>
+        <li><strong><span data-lang="fr">Chaque logement est isolé des autres</span><span data-lang="en">Each unit is isolated from the others</span><span data-lang="es">Cada vivienda está aislada de las demás</span><span data-lang="zh">各户之间相互隔离，</span></strong> <span data-lang="fr">sur le Wi-Fi.</span><span data-lang="en">on the Wi-Fi.</span><span data-lang="es">en el Wi-Fi.</span><span data-lang="zh">在 Wi-Fi 上互不可见。</span></li>
+        <li><strong><span data-lang="fr">Les caméras n'ont aucun accès à internet ;</span><span data-lang="en">Cameras have no internet access;</span><span data-lang="es">Las cámaras no tienen acceso a internet;</span><span data-lang="zh">摄像头无法访问互联网；</span></strong> <span data-lang="fr">les images restent dans l'immeuble.</span><span data-lang="en">footage stays inside the building.</span><span data-lang="es">las imágenes se quedan en el edificio.</span><span data-lang="zh">影像留在楼宇内部。</span></li>
+        <li><strong><span data-lang="fr">Des tunnels chiffrés (WireGuard)</span><span data-lang="en">Encrypted tunnels (WireGuard)</span><span data-lang="es">Túneles cifrados (WireGuard)</span><span data-lang="zh">加密隧道（WireGuard）</span></strong> <span data-lang="fr">relient les immeubles entre eux.</span><span data-lang="en">connect the buildings to one another.</span><span data-lang="es">conectan los edificios entre sí.</span><span data-lang="zh">将各楼宇相互连接。</span></li>
+        <li><strong><span data-lang="fr">L'IA conseille, elle ne pilote pas les sécurités.</span><span data-lang="en">The AI advises; it does not control safety systems.</span><span data-lang="es">La IA aconseja; no controla los sistemas de seguridad.</span><span data-lang="zh">AI 只提供建议，不操控安全系统。</span></strong> <span data-lang="fr">Les fonctions de sécurité du bâtiment restent sous le contrôle d'automates dédiés.</span><span data-lang="en">The building's safety functions remain under the control of dedicated controllers.</span><span data-lang="es">Las funciones de seguridad del edificio siguen bajo el control de autómatas dedicados.</span><span data-lang="zh">楼宇的安全功能始终由专用控制器掌控。</span></li>
+        <li><strong><span data-lang="fr">Loi 25 :</span><span data-lang="en">Quebec Law 25:</span><span data-lang="es">Ley 25 de Quebec:</span><span data-lang="zh">魁北克第 25 号法案：</span></strong> <span data-lang="fr">les données des résidents restent dans l'immeuble.</span><span data-lang="en">residents' data stays inside the building.</span><span data-lang="es">los datos de los residentes se quedan en el edificio.</span><span data-lang="zh">住户数据留在楼宇内部。</span></li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- ══ PRÉPARATION AUX URGENCES (contenu de l'ancienne page Sécurité) ══ -->
+  <section class="mim-prep">
+    <div class="mim-wrap">
+      <div class="msec-tag"><span data-lang="fr">Préparation · Modulimo</span><span data-lang="en">Preparedness · Modulimo</span><span data-lang="es">Preparación · Modulimo</span><span data-lang="zh">应急准备 · Modulimo</span></div>
+      <h2 class="msec-title"><span data-lang="fr">Un milieu qui prend en charge<br><span class="mgreen">la gestion des risques.</span></span><span data-lang="en">An environment that takes on<br><span class="mgreen">risk management.</span></span><span data-lang="es">Un entorno que asume<br><span class="mgreen">la gestión de riesgos.</span></span><span data-lang="zh">一个把风险管理<br><span class="mgreen">承担下来的环境。</span></span></h2>
+      <p class="msec-body mim-prep-desc">
+        <span data-lang="fr">Chez Modulimo, la préparation aux risques courants est portée par le bâtiment, pas par les résidents. Les scénarios sont identifiés à l'avance, les protocoles écrits, les exercices tenus chaque année — selon le programme « Préparez-vous » du gouvernement du Canada.</span><span data-lang="en">At Modulimo, preparedness for everyday risks is carried by the building, not by residents. Scenarios are identified in advance, protocols written down, drills held every year — following the Canadian government's “Get Prepared” program.</span><span data-lang="es">En Modulimo, la preparación ante los riesgos cotidianos la asume el edificio, no los residentes. Los escenarios se identifican con antelación, los protocolos se redactan y los simulacros se realizan cada año — siguiendo el programa «Get Prepared» del gobierno de Canadá.</span><span data-lang="zh">在 Modulimo，常见风险的应对由建筑承担，而不是由住户承担。场景事先识别，规程形成书面文件，演练每年举行 —— 依据加拿大政府的「Préparez-vous」计划。</span> <strong style="color:var(--dark);font-weight:600;"><span data-lang="fr">Une démarche bienveillante et responsable, où rien n'est laissé au hasard.</span><span data-lang="en">A caring and responsible approach, where nothing is left to chance.</span><span data-lang="es">Un enfoque atento y responsable, donde nada se deja al azar.</span><span data-lang="zh">一套周全而负责的做法，不留任何侥幸。</span></strong>
+      </p>
     </div>
   </section>
 
@@ -458,7 +985,7 @@
           <div class="mim-card-title"><span data-lang="fr">Les limites font partie du syst&#232;me</span><span data-lang="en">The limits are part of the system</span><span data-lang="es">Los l&#237;mites forman parte del sistema</span><span data-lang="zh">边界本身就是系统的一部分</span></div>
           <ul class="mim-list">
             <li><span data-lang="fr">Aucune cam&#233;ra &#224; l'int&#233;rieur des logements</span><span data-lang="en">No cameras inside homes</span><span data-lang="es">Ninguna c&#225;mara dentro de las viviendas</span><span data-lang="zh">住宅内部不设任何摄像头</span></li>
-            <li><span data-lang="fr">Aucune donn&#233;e qui sort du b&#226;timent</span><span data-lang="en">No data leaving the building</span><span data-lang="es">Ning&#250;n dato que salga del edificio</span><span data-lang="zh">没有任何数据离开本建筑</span></li>
+            <li><span data-lang="fr">Aucune donn&#233;e de r&#233;sident qui sort du b&#226;timent</span><span data-lang="en">No resident data leaving the building</span><span data-lang="es">Ning&#250;n dato de residentes que salga del edificio</span><span data-lang="zh">没有任何住户数据离开本建筑</span></li>
             <li><span data-lang="fr">Aucun pilotage de votre logement par l'exploitant</span><span data-lang="en">No remote control of your home by the operator</span><span data-lang="es">Ning&#250;n control de su vivienda por parte del operador</span><span data-lang="zh">运营方不得操控您的住处</span></li>
             <li><span data-lang="fr">Aucune mesure de votre consommation visible par un voisin</span><span data-lang="en">No neighbour can see your consumption</span><span data-lang="es">Ning&#250;n vecino puede ver su consumo</span><span data-lang="zh">邻居看不到您的任何用量数据</span></li>
             <li><span data-lang="fr">Aucune conservation ind&#233;finie : les dur&#233;es sont &#233;crites</span><span data-lang="en">No indefinite retention: the periods are written down</span><span data-lang="es">Ninguna conservaci&#243;n indefinida: los plazos est&#225;n por escrito</span><span data-lang="zh">不做无限期保存：保存期限有明文规定</span></li>
@@ -532,7 +1059,7 @@
         <div>
           <div class="msec-tag"><span data-lang="fr">Vos donn&#233;es</span><span data-lang="en">Your data</span><span data-lang="es">Sus datos</span><span data-lang="zh">您的数据</span></div>
           <h2 class="msec-title"><span data-lang="fr">Tout reste<br>dans l'immeuble.</span><span data-lang="en">Everything stays<br>inside the building.</span><span data-lang="es">Todo se queda<br>dentro del edificio.</span><span data-lang="zh">一切都留在<br>这栋建筑之内。</span></h2>
-          <p class="msec-body" style="margin-top:1.25rem"><span data-lang="fr">Il n'y a pas de nuage dans cette histoire. Les capteurs parlent &#224; une machine install&#233;e dans le local technique, et c'est cette machine qui affiche l'information dans votre application. En fonctionnement normal, <strong>aucun octet ne quitte le b&#226;timent</strong>.</span><span data-lang="en">There is no cloud in this story. The sensors talk to a machine installed in the utility room, and that machine is what shows the information in your app. In normal operation, <strong>not one byte leaves the building</strong>.</span><span data-lang="es">En esta historia no hay nube. Los sensores hablan con una m&#225;quina instalada en el cuarto t&#233;cnico, y es esa m&#225;quina la que muestra la informaci&#243;n en su aplicaci&#243;n. En funcionamiento normal, <strong>ni un byte sale del edificio</strong>.</span><span data-lang="zh">这里没有云。传感器把数据交给安装在设备间的一台机器，再由这台机器把信息显示在您的应用中。正常运行时，<strong>没有一个字节离开本建筑</strong>。</span></p>
+          <p class="msec-body" style="margin-top:1.25rem"><span data-lang="fr">Il n'y a pas de nuage dans cette histoire. Les capteurs parlent &#224; une machine install&#233;e dans le local technique, et c'est cette machine qui affiche l'information dans votre application. Vos donn&#233;es ne quittent jamais le b&#226;timent : <strong>seuls les mises &#224; jour, les licences et les &#233;changes de services entre immeubles transitent, chiffr&#233;s</strong>.</span><span data-lang="en">There is no cloud in this story. The sensors talk to a machine installed in the utility room, and that machine is what shows the information in your app. Your data never leaves the building: <strong>only updates, licences and service exchanges between buildings travel, encrypted</strong>.</span><span data-lang="es">En esta historia no hay nube. Los sensores hablan con una m&#225;quina instalada en el cuarto t&#233;cnico, y es esa m&#225;quina la que muestra la informaci&#243;n en su aplicaci&#243;n. Sus datos nunca salen del edificio: <strong>solo circulan, cifrados, las actualizaciones, las licencias y los intercambios de servicios entre edificios</strong>.</span><span data-lang="zh">这里没有云。传感器把数据交给安装在设备间的一台机器，再由这台机器把信息显示在您的应用中。您的数据从不离开本建筑：<strong>只有更新、许可以及楼宇间的服务交换会以加密方式传输</strong>。</span></p>
           <p class="msec-body" style="margin-top:1rem"><span data-lang="fr">Quand vous &#234;tes &#224; l'ext&#233;rieur, vous passez par un tunnel priv&#233; vers cette m&#234;me machine &#8212; le trajet change, la destination non.</span><span data-lang="en">When you are away, you reach that same machine through a private tunnel &#8212; the route changes, the destination does not.</span><span data-lang="es">Cuando est&#225; fuera, llega a esa misma m&#225;quina por un t&#250;nel privado &#8212; cambia el trayecto, no el destino.</span><span data-lang="zh">您在外面时，通过一条专用隧道连回同一台机器 —— 路径变了，目的地没变。</span></p>
         </div>
         <div>
@@ -552,7 +1079,7 @@
     <div class="mim-tie-inner">
       <div class="mim-tie-dots"><span class="mdot-green"></span><span class="mdot-blue"></span><span class="mdot-orange"></span></div>
       <div class="mim-tie-text">
-        <h3><span data-lang="fr">Les trois niveaux, en haut de cette page, sont l'&#233;cran de tout &#231;a.</span><span data-lang="en">The three levels at the top of this page are the screen for all of it.</span><span data-lang="es">Los tres niveles, arriba en esta p&#225;gina, son la pantalla de todo esto.</span><span data-lang="zh">本页顶部的三个级别，正是这一切的显示界面。</span></h3>
+        <h3><span data-lang="fr">Les trois niveaux, plus haut sur cette page, sont l'&#233;cran de tout &#231;a.</span><span data-lang="en">The three levels shown higher up on this page are the screen for all of it.</span><span data-lang="es">Los tres niveles, m&#225;s arriba en esta p&#225;gina, son la pantalla de todo esto.</span><span data-lang="zh">本页上方的三个级别，正是这一切的显示界面。</span></h3>
         <p><span data-lang="fr">Vert, bleu, orange : ce ne sont pas des affiches, ce sont des &#233;tats du b&#226;timent. C'est l'immotique qui les tient &#224; jour, qui allume les voyants d'&#233;tage &#8212; clignotants pendant un exercice annonc&#233;, fixes en situation r&#233;elle &#8212; et qui affiche la consigne du moment dans l'application. Le reste du temps, elle ne se voit pas. C'est exactement ce qu'on lui demande.</span><span data-lang="en">Green, blue, orange: these are not posters, they are states of the building. Building automation keeps them current, lights the floor indicators &#8212; flashing during an announced drill, steady in a real situation &#8212; and shows the current instruction in the app. The rest of the time it stays invisible. That is exactly what is asked of it.</span><span data-lang="es">Verde, azul, naranja: no son carteles, son estados del edificio. La inm&#243;tica los mantiene al d&#237;a, enciende los pilotos de planta &#8212; parpadeantes durante un simulacro anunciado, fijos en una situaci&#243;n real &#8212; y muestra la consigna del momento en la aplicaci&#243;n. El resto del tiempo no se ve. Es exactamente lo que se le pide.</span><span data-lang="zh">绿、蓝、橙：它们不是张贴的标语，而是建筑的状态。由楼宇智能实时维护，点亮楼层指示灯 —— 预告演练时闪烁，真实情况下常亮 —— 并在应用中显示当下的指令。其余时间，它并不现身。这正是我们对它的要求。</span></p>
       </div>
     </div>
@@ -566,6 +1093,13 @@
     </div>
   </div>
 
+
+  <!-- ══ APPEL À L'ACTION ══ -->
+  <section class="mim-cta">
+    <h2><span data-lang="fr">Envie de vivre dans un immeuble Modulimo ?</span><span data-lang="en">Want to live in a Modulimo building?</span><span data-lang="es">¿Le gustaría vivir en un edificio Modulimo?</span><span data-lang="zh">想住进一栋 Modulimo 楼宇吗？</span></h2>
+    <p><span data-lang="fr">Laissez vos coordonnées pour être informé des projets en préparation.</span><span data-lang="en">Leave your details to hear about the projects in preparation.</span><span data-lang="es">Deje sus datos para recibir información sobre los proyectos en preparación.</span><span data-lang="zh">留下您的联系方式，了解正在筹备中的项目。</span></p>
+    <a class="mim-cta-btn" href="/projets#contact"><span data-lang="fr">Être informé</span><span data-lang="en">Keep me informed</span><span data-lang="es">Quiero información</span><span data-lang="zh">获取消息</span></a>
+  </section>
 
   <!-- FOOTER -->
   <footer class="footer">
@@ -581,7 +1115,7 @@
           <h5><span data-lang="fr">Navigation</span><span data-lang="en">Navigation</span><span data-lang="es">Navegación</span><span data-lang="zh">导航</span></h5>
           <a href="/cohabitat">CoHabitat</a>
           <a href="/mobilite"><span data-lang="fr">Mobilité</span><span data-lang="en">Mobility</span><span data-lang="es">Movilidad</span><span data-lang="zh">出行</span></a>
-          <a href="/securite"><span data-lang="fr">Sécurité</span><span data-lang="en">Security</span><span data-lang="es">Seguridad</span><span data-lang="zh">安全</span></a>
+          <a href="/immotique"><span data-lang="fr">Immotique</span><span data-lang="en">Building automation</span><span data-lang="es">Inmótica</span><span data-lang="zh">楼宇自动化</span></a>
           <a href="/projets"><span data-lang="fr">Projets</span><span data-lang="en">Projects</span><span data-lang="es">Proyectos</span><span data-lang="zh">项目</span></a>
           <a href="/produits"><span data-lang="fr">Produits</span><span data-lang="en">Products</span><span data-lang="es">Productos</span><span data-lang="zh">产品</span></a>
         </div>

@@ -1,0 +1,1176 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Inmótica — Energía, confort y seguridad | Modulimo</title>
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="Modulimo" />
+  <meta name="description" content="Cada edificio Modulimo gestiona por sí mismo su energía, su calor, su red y sus servicios, y sigue funcionando sin internet ni electricidad de la red. Esquema interactivo." />
+  <link rel="canonical" href="https://www.modulimo.com/es/inmotica/" />
+  <link rel="alternate" hreflang="fr-CA" href="https://www.modulimo.com/immotique/" />
+  <link rel="alternate" hreflang="en" href="https://www.modulimo.com/en/building-automation/" />
+  <link rel="alternate" hreflang="es" href="https://www.modulimo.com/es/inmotica/" />
+  <link rel="alternate" hreflang="zh-Hans" href="https://www.modulimo.com/zh/immotique/" />
+  <link rel="alternate" hreflang="x-default" href="https://www.modulimo.com/immotique/" />
+  <meta property="og:title" content="Inmótica — Energía, confort y seguridad | Modulimo" />
+  <meta property="og:description" content="Cada edificio Modulimo gestiona por sí mismo su energía, su calor, su red y sus servicios, y sigue funcionando sin internet ni electricidad de la red. Esquema interactivo." />
+  <meta property="og:url" content="https://www.modulimo.com/es/inmotica/" />
+  <meta property="og:image" content="https://www.modulimo.com/images/ModulimoLogoSobre.png" />
+  <meta property="og:locale" content="es_MX" />
+  <meta property="og:locale:alternate" content="fr_CA" />
+  <meta property="og:locale:alternate" content="en_CA" />
+  <meta property="og:locale:alternate" content="zh_CN" />
+  <meta name="twitter:card" content="summary" />
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --white:#ffffff; --off:#f7f5f0; --dark:#1a1a1a; --mid:#4a4a4a;
+      --muted:#888; --green:#2d7a4f; --green-lt:#e8f5ee; --green-md:#4aaa74;
+      --border:#e0ddd8; --red:#c0392b; --orange:#e67e22; --max:1140px;
+    }
+    *, *::before, *::after { box-sizing:border-box; margin:0; padding:0; }
+    html { scroll-behavior:smooth; }
+    body { background:var(--white); color:var(--dark); font-family:'DM Sans',sans-serif; font-weight:400; line-height:1.65; overflow-x:hidden; max-width:100vw; }
+    a { color:inherit; text-decoration:none; }
+    img { display:block; max-width:100%; }
+
+    /* ── TOPBAR ── */
+    .topbar { position:sticky; top:0; z-index:50; background:var(--off); border-bottom:1px solid var(--border); }
+    .topbar-inner { max-width:var(--max); margin:0 auto; padding:0 24px; height:76px; display:flex; align-items:center; justify-content:space-between; gap:18px; }
+    .brand { display:flex; align-items:center; flex-shrink:0; background:transparent; padding:0; border:none; border-radius:0; cursor:pointer; font:inherit; color:inherit; }
+    .lb-overlay { position:fixed; inset:0; background:rgba(10,12,14,.92); display:none; align-items:center; justify-content:center; z-index:1000; padding:24px; }
+    .lb-overlay.is-open { display:flex; }
+    .lb-image { max-width:min(100%,1100px); max-height:90vh; object-fit:contain; border-radius:6px; box-shadow:0 12px 60px rgba(0,0,0,.5); animation:lb-in .2s ease-out; }
+    .lb-close { position:absolute; top:18px; right:22px; width:44px; height:44px; border-radius:50%; background:rgba(255,255,255,.12); color:#fff; border:1px solid rgba(255,255,255,.2); font-size:1.6rem; line-height:1; cursor:pointer; display:flex; align-items:center; justify-content:center; transition:background .15s; }
+    .lb-close:hover, .lb-close:focus { background:rgba(255,255,255,.22); outline:none; }
+    @keyframes lb-in { from { opacity:0; transform:scale(.96); } to { opacity:1; transform:scale(1); } }
+    .brand img { height:56px; width:auto; display:block; }
+    .nav { display:flex; align-items:center; gap:2px; }
+    .nav a { font-size:.72rem; font-weight:600; letter-spacing:.07em; text-transform:uppercase; color:var(--muted); padding:7px 13px; border-radius:5px; transition:color .15s,background .15s; white-space:nowrap; }
+    .nav a:hover { color:var(--green); background:var(--green-lt); }
+    .nav a.active { color:var(--green); border-bottom:2px solid var(--green); border-radius:0; padding-bottom:5px; }
+    .nav-cta { color:var(--green) !important; border:1px solid var(--green); border-radius:5px; padding:6px 12px !important; margin-left:6px; transition:background .15s,color .15s; }
+    .nav-cta:hover { background:var(--green); color:#fff !important; }
+    .lang-switch { display:inline-flex; align-items:center; gap:0; margin-left:10px; padding-left:10px; border-left:1px solid var(--border); }
+    .lang-btn { font-size:.7rem; font-weight:700; letter-spacing:.06em; color:var(--muted); padding:5px 7px; background:none; border:none; cursor:pointer; font-family:inherit; transition:color .15s; }
+    /* Le drapeau et le code de langue sur une ligne, comme dans CoHabitat. */
+    .lang-btn { display:inline-flex; align-items:center; gap:5px; }
+    /* Menu deroulant des langues, bati sur <details> : pas de JavaScript.
+       La fleche du marqueur natif est retiree, le chevron est a nous. */
+    .lang-switch { position:relative; }
+    .lang-switch > summary { list-style:none; cursor:pointer; }
+    .lang-switch > summary::-webkit-details-marker { display:none; }
+    .lang-switch > summary::marker { content:''; }
+    .lang-switch[open] > summary { color:var(--green); }
+    .lang-caret { font-size:.6rem; opacity:.6; }
+    .lang-menu {
+      position:absolute; top:calc(100% + 6px); right:0; min-width:158px;
+      background:var(--bg); border:1px solid var(--line); border-radius:6px;
+      box-shadow:0 8px 24px rgba(0,0,0,.14); padding:5px; z-index:120;
+    }
+    .lang-item {
+      display:flex; align-items:center; gap:8px; padding:8px 10px;
+      border-radius:4px; text-decoration:none; color:var(--muted);
+      font-size:.72rem; font-weight:600; letter-spacing:.04em; white-space:nowrap;
+    }
+    .lang-item:hover { background:rgba(0,0,0,.05); color:var(--green); }
+    .lang-item.active { color:var(--green); }
+    /* .nav a.active souligne l'onglet de la page courante : une entree de
+       menu n'en veut pas, elle se signale par sa couleur seule. */
+    .lang-menu a.lang-item.active { border-bottom:none; border-radius:4px; padding:8px 10px; }
+    /* Les idéogrammes occupent toute la hauteur du cadratin : un interligne
+       calibré pour l'alphabet latin (ici de 0,93 à 1,10) les fait se
+       chevaucher. La règle ne vise que les pages chinoises. */
+    html[lang="zh"] h1, html[lang="zh"] h2,
+    html[lang="zh"] h3, html[lang="zh"] h4 { line-height:1.3; }
+    /* Avis de traduction : pleine largeur, pour passer a la ligne dans le
+       pied de page de la page Produits, qui est un conteneur flex. */
+    .avis-traduction {
+      width:100%; margin:14px 0 0; padding-top:12px;
+      border-top:1px solid var(--line);
+      font-size:.68rem; line-height:1.55; color:var(--muted); opacity:.85;
+    }
+    .lang-btn:hover, .lang-btn.active { color:var(--green); }
+    .lang-btn.active { font-weight:800; }
+    [data-lang] { display:none; }
+    html.lang-fr [data-lang="fr"], html.lang-en [data-lang="en"], html.lang-es [data-lang="es"] { display:revert; }
+    .menu-toggle { display:none; flex-direction:column; justify-content:center; gap:5px; width:40px; height:40px; background:none; border:1px solid var(--border); border-radius:6px; cursor:pointer; padding:8px; }
+    .menu-toggle span { display:block; height:2px; background:var(--green); border-radius:2px; }
+
+    /* ── HERO ── */
+    .mhero { background:var(--off); display:grid; grid-template-columns:1.15fr 1fr; overflow:hidden; position:relative; border-bottom:1px solid var(--border); }
+    .mhero-left { padding:5rem 4rem 4.5rem; display:flex; flex-direction:column; justify-content:center; position:relative; z-index:2; }
+    .mhero-tag { display:inline-flex; align-items:center; gap:.6rem; font-size:.72rem; font-weight:500; letter-spacing:.18em; text-transform:uppercase; color:var(--green); margin-bottom:1.75rem; }
+    .mhero-tag::before { content:''; width:1.5rem; height:1px; background:var(--green); }
+    .mhero-title { font-family:'Syne',sans-serif; font-size:clamp(2.2rem,4vw,3.4rem); font-weight:800; line-height:1.05; letter-spacing:-.025em; color:var(--dark); margin-bottom:1.5rem; }
+    .mhero-title .mgreen { color:var(--green); }
+    .mhero-desc { font-size:1rem; color:var(--mid); max-width:58ch; line-height:1.75; }
+    .mhero-right { position:relative; overflow:hidden; min-height:420px; }
+    .mhero-right img { width:100%; height:100%; object-fit:cover; object-position:center; filter:saturate(.95); }
+    .mhero-right::after { content:''; position:absolute; inset:0; background:linear-gradient(to right,var(--off) 0%,transparent 35%); pointer-events:none; }
+
+    /* ── ALERT LEVELS ── */
+    .malerts { display:grid; grid-template-columns:repeat(3,1fr); border-bottom:1px solid var(--border); }
+    .malert-item { padding:2rem; border-right:1px solid var(--border); display:flex; align-items:center; gap:1.25rem; }
+    .malert-item:last-child { border-right:none; }
+    .malert-dot { width:14px; height:14px; border-radius:50%; flex-shrink:0; box-shadow:0 0 10px currentColor; }
+    .mdot-green { background:var(--green); color:var(--green); }
+    .mdot-blue { background:#2980b9; color:#2980b9; }
+    .mdot-orange { background:var(--orange); color:var(--orange); }
+    .malert-text strong { display:block; font-family:'Syne',sans-serif; font-weight:700; font-size:.85rem; margin-bottom:.15rem; }
+    .malert-text span { font-size:.75rem; color:var(--muted); }
+    .malerts-note { padding:1rem 2rem; background:var(--off); border-bottom:1px solid var(--border); font-size:.78rem; color:var(--mid); text-align:center; line-height:1.6; }
+    .malerts-note strong { color:var(--dark); font-weight:600; }
+
+    /* ── SÉCURITÉ INTRINSÈQUE ── */
+    .mintrinsic { padding:6rem 5rem; background:var(--off); border-bottom:1px solid var(--border); }
+    .msec-tag { font-size:.68rem; font-weight:600; letter-spacing:.2em; text-transform:uppercase; color:var(--green); margin-bottom:1.25rem; display:flex; align-items:center; gap:.6rem; }
+    .msec-tag::after { content:''; width:2rem; height:1px; background:var(--green); }
+    .msec-title { font-family:'Syne',sans-serif; font-size:clamp(1.8rem,3vw,2.8rem); font-weight:800; line-height:1.1; letter-spacing:-.02em; margin-bottom:1.25rem; color:var(--dark); }
+    .msec-body { font-size:1rem; color:var(--mid); line-height:1.75; max-width:52ch; }
+    .mfeatures { display:grid; grid-template-columns:1fr 1fr; gap:1px; background:var(--border); margin-top:2.5rem; border:1px solid var(--border); }
+    .mfeature { background:var(--off); padding:1.5rem; transition:background .2s; }
+    .mfeature:hover { background:var(--green-lt); }
+    .mfeature-icon { font-size:1.4rem; margin-bottom:.6rem; display:block; }
+    .mfeature-name { font-family:'Syne',sans-serif; font-weight:700; font-size:.82rem; margin-bottom:.25rem; color:var(--dark); }
+    .mfeature-desc { font-size:.75rem; color:var(--muted); line-height:1.5; }
+
+    /* ── RISQUES PRIS EN CHARGE (cartes sobres) ── */
+    .mrisks { padding:6rem 5rem; background:var(--white); border-bottom:1px solid var(--border); }
+    .mrisks-header { max-width:var(--max); margin:0 auto 3rem; }
+    .mrisks-grid { max-width:var(--max); margin:0 auto; display:grid; grid-template-columns:repeat(3,1fr); gap:1.25rem; }
+    .mrisk-card { background:var(--off); border:1px solid var(--border); padding:2rem 1.75rem; display:flex; flex-direction:column; gap:.85rem; transition:border-color .2s,background .2s; }
+    .mrisk-card:hover { border-color:var(--green-md); background:var(--green-lt); }
+    .mrisk-card-head { display:flex; align-items:center; gap:.7rem; }
+    .mrisk-dot { width:10px; height:10px; border-radius:50%; flex-shrink:0; }
+    .mdot-greenmd { background:var(--green-md); }
+    .mrisk-level { font-size:.66rem; font-weight:700; letter-spacing:.15em; text-transform:uppercase; color:var(--muted); }
+    .mrisk-title { font-family:'Syne',sans-serif; font-size:1.05rem; font-weight:700; line-height:1.3; color:var(--dark); }
+    .mrisk-desc { font-size:.88rem; color:var(--mid); line-height:1.65; }
+    .mrisk-list { list-style:none; margin-top:.35rem; display:grid; gap:.4rem; }
+    .mrisk-list li { font-size:.8rem; color:var(--mid); line-height:1.5; padding-left:1.1rem; position:relative; }
+    .mrisk-list li::before { content:''; position:absolute; left:0; top:.55rem; width:.45rem; height:1px; background:var(--green-md); }
+
+    /* ── DISCLAIMER ── */
+    .ms2-disclaimer { padding:3rem 5rem; background:var(--green-lt); border-top:2px solid var(--green); display:flex; align-items:flex-start; gap:1.5rem; }
+    .ms2-disclaimer-icon { font-size:1.5rem; flex-shrink:0; margin-top:.1rem; }
+    .ms2-disclaimer-text { font-size:.85rem; color:var(--mid); line-height:1.7; }
+    .ms2-disclaimer-text strong { display:block; font-family:'Syne',sans-serif; font-weight:700; font-size:.9rem; color:var(--green); margin-bottom:.3rem; }
+
+    /* ── FOOTER ── */
+    .footer { background:var(--off); border-top:1px solid var(--border); padding:44px 5rem 32px; }
+    .footer-inner { max-width:var(--max); margin:0 auto; }
+    .footer-top { display:flex; justify-content:space-between; align-items:flex-start; flex-wrap:wrap; gap:32px; margin-bottom:32px; }
+    .footer-brand { display:flex; align-items:center; background:#fff; padding:4px 10px; border-radius:8px; align-self:flex-start; }
+    .footer-brand img { height:32px; width:auto; display:block; }
+
+    /* ── THÈME ÉVÉNEMENTIEL (piloté depuis modulimo-admin) ── */
+    body.theme-femme .topbar { background:#f8bbd0; border-bottom-color:rgba(0,0,0,.08); }
+    body.theme-terre .topbar { background:#43a047; border-bottom-color:rgba(0,0,0,.15); }
+    body.theme-femme .topbar .nav a,
+    body.theme-femme .topbar .nav a:hover,
+    body.theme-femme .topbar .nav a.active { color:#880e4f; background:transparent; border-color:#880e4f; }
+    body.theme-terre .topbar .nav a,
+    body.theme-terre .topbar .nav a:hover,
+    body.theme-terre .topbar .nav a.active,
+    body.theme-terre .menu-toggle span { color:#e53935; background:transparent; border-color:#e53935; }
+    .footer-tagline { font-size:.82rem; color:var(--muted); margin-top:8px; max-width:260px; line-height:1.6; }
+    .footer-nav h5 { font-size:.7rem; font-weight:700; letter-spacing:.1em; text-transform:uppercase; color:var(--muted); margin-bottom:12px; }
+    .footer-nav a { display:block; font-size:.84rem; color:var(--dark); margin-bottom:8px; }
+    .footer-nav a:hover { color:var(--green); }
+    .footer-bottom { border-top:1px solid var(--border); padding-top:20px; display:flex; justify-content:space-between; flex-wrap:wrap; gap:12px; }
+    .footer-bottom p { font-size:.75rem; color:var(--muted); }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width:900px) {
+      .mhero { grid-template-columns:1fr; }
+      .mhero-right { min-height:280px; order:-1; }
+      .mhero-right::after { background:linear-gradient(to bottom,transparent 60%,var(--dark) 100%); }
+      .mhero-left { padding:3.5rem 2rem; }
+      .malerts { grid-template-columns:1fr; }
+      .malert-item { border-right:none; border-bottom:1px solid var(--border); }
+      .mintrinsic { padding:4rem 2rem; }
+      .mrisks { padding:4rem 2rem; }
+      .mrisks-grid { grid-template-columns:1fr; }
+      .ms2-disclaimer { padding:2.5rem 2rem; flex-direction:column; }
+      .footer { padding:44px 2rem 32px; }
+    }
+    @media (max-width:640px) {
+      .mfeatures { grid-template-columns:1fr; }
+      .menu-toggle { display:flex; }
+      .nav { display:none; position:absolute; top:68px; left:0; right:0; background:#1a1a1a; border-bottom:1px solid rgba(255,255,255,.1); flex-direction:column; align-items:stretch; padding:8px 16px 16px; gap:2px; }
+      .nav.is-open { display:flex; }
+      .nav a { padding:12px 14px; border-bottom:1px solid rgba(255,255,255,.08); border-radius:0; }
+      .nav a.active { border-left:3px solid var(--green-md); padding-left:11px; }
+    }
+
+  /* ════════ IMMOTIQUE — sections ajoutées (préfixe mim-) ════════ */
+  .mim-intro { padding:6rem 5rem; background:var(--off); border-bottom:1px solid var(--border); }
+  .mim-wrap { max-width:var(--max); margin:0 auto; }
+  .mim-intro-grid { display:grid; grid-template-columns:1.1fr .9fr; gap:4rem; align-items:start; }
+  .mim-intro-body p { font-size:1rem; color:var(--mid); line-height:1.8; margin-bottom:1.1rem; max-width:56ch; }
+  .mim-intro-body p:last-child { margin-bottom:0; }
+  .mim-intro-body strong { color:var(--dark); font-weight:600; }
+  .mim-aside { border-left:2px solid var(--green); padding:.4rem 0 .4rem 1.6rem; }
+  .mim-aside-q { font-family:'Syne',sans-serif; font-weight:700; font-size:.95rem; color:var(--dark); margin-bottom:.5rem; line-height:1.35; }
+  .mim-aside-a { font-size:.87rem; color:var(--mid); line-height:1.7; margin-bottom:1.6rem; }
+  .mim-aside-a:last-child { margin-bottom:0; }
+
+  .mim-trip { padding:6rem 5rem; background:var(--white); border-bottom:1px solid var(--border); }
+  .mim-trip-grid { max-width:var(--max); margin:2.5rem auto 0; display:grid; grid-template-columns:repeat(3,1fr); gap:1.25rem; }
+  .mim-card { background:var(--off); border:1px solid var(--border); padding:2rem 1.75rem; display:flex; flex-direction:column; gap:.85rem; transition:border-color .2s,background .2s; }
+  .mim-card:hover { border-color:var(--green-md); background:var(--green-lt); }
+  .mim-card.mim-card-limit { background:var(--white); border-color:var(--dark); }
+  .mim-card.mim-card-limit:hover { background:var(--white); border-color:var(--dark); }
+  .mim-card-head { display:flex; align-items:center; gap:.7rem; }
+  .mim-card-dot { width:10px; height:10px; border-radius:50%; flex-shrink:0; background:var(--green-md); }
+  .mim-card-limit .mim-card-dot { background:var(--dark); }
+  .mim-card-kicker { font-size:.66rem; font-weight:700; letter-spacing:.15em; text-transform:uppercase; color:var(--muted); }
+  .mim-card-title { font-family:'Syne',sans-serif; font-size:1.05rem; font-weight:700; line-height:1.3; color:var(--dark); }
+  .mim-list { list-style:none; display:grid; gap:.55rem; margin-top:.2rem; }
+  .mim-list li { font-size:.85rem; color:var(--mid); line-height:1.55; padding-left:1.1rem; position:relative; }
+  .mim-list li::before { content:''; position:absolute; left:0; top:.6rem; width:.45rem; height:1px; background:var(--green-md); }
+  .mim-card-limit .mim-list li::before { background:var(--dark); }
+
+  .mim-benefits { padding:6rem 5rem; background:var(--off); border-bottom:1px solid var(--border); }
+  .mim-ben-grid { max-width:var(--max); margin:2.5rem auto 0; display:grid; grid-template-columns:repeat(3,1fr); gap:1px; background:var(--border); border:1px solid var(--border); }
+  .mim-ben { background:var(--off); padding:1.9rem 1.6rem; transition:background .2s; }
+  .mim-ben:hover { background:var(--green-lt); }
+  .mim-ben-icon { font-size:1.35rem; display:block; margin-bottom:.75rem; }
+  .mim-ben-name { font-family:'Syne',sans-serif; font-weight:700; font-size:.92rem; margin-bottom:.4rem; color:var(--dark); line-height:1.3; }
+  .mim-ben-desc { font-size:.83rem; color:var(--mid); line-height:1.65; }
+
+  .mim-data { padding:6rem 5rem; background:var(--white); border-bottom:1px solid var(--border); }
+  .mim-data-grid { display:grid; grid-template-columns:1fr 1fr; gap:4rem; align-items:center; }
+  .mim-flow { display:flex; align-items:stretch; gap:0; border:1px solid var(--border); background:var(--off); }
+  .mim-step { flex:1; padding:1.6rem 1.2rem; border-right:1px solid var(--border); }
+  .mim-step:last-child { border-right:none; }
+  .mim-step-n { font-size:.62rem; font-weight:700; letter-spacing:.16em; text-transform:uppercase; color:var(--green); display:block; margin-bottom:.6rem; }
+  .mim-step-t { font-family:'Syne',sans-serif; font-weight:700; font-size:.85rem; color:var(--dark); margin-bottom:.3rem; line-height:1.3; }
+  .mim-step-d { font-size:.76rem; color:var(--muted); line-height:1.55; }
+  .mim-flow-note { margin-top:1.2rem; font-size:.8rem; color:var(--muted); line-height:1.7; }
+  .mim-flow-note strong { color:var(--dark); font-weight:600; }
+
+  .mim-tie { padding:4.5rem 5rem; background:var(--green-lt); border-bottom:1px solid var(--border); }
+  .mim-tie-inner { max-width:var(--max); margin:0 auto; display:grid; grid-template-columns:auto 1fr; gap:2.5rem; align-items:center; }
+  .mim-tie-dots { display:flex; gap:.7rem; }
+  .mim-tie-dots span { width:16px; height:16px; border-radius:50%; }
+  .mim-tie-text h3 { font-family:'Syne',sans-serif; font-size:1.35rem; font-weight:800; letter-spacing:-.015em; color:var(--dark); margin-bottom:.6rem; line-height:1.25; }
+  .mim-tie-text p { font-size:.92rem; color:var(--mid); line-height:1.75; max-width:70ch; }
+
+  @media (max-width:900px) {
+    .mim-intro, .mim-trip, .mim-benefits, .mim-data { padding:4rem 2rem; }
+    .mim-tie { padding:3rem 2rem; }
+    .mim-intro-grid, .mim-data-grid { grid-template-columns:1fr; gap:2.5rem; }
+    .mim-trip-grid, .mim-ben-grid { grid-template-columns:1fr; }
+    .mim-flow { flex-direction:column; }
+    .mim-step { border-right:none; border-bottom:1px solid var(--border); }
+    .mim-step:last-child { border-bottom:none; }
+    .mim-tie-inner { grid-template-columns:1fr; gap:1.2rem; }
+  }
+  /* ════════ IMMOTIQUE — schéma et sections de contenu ════════ */
+  .mim-schema { padding:5rem 5rem 4rem; background:var(--white); border-bottom:1px solid var(--border); }
+  .mim-schema #mdl-immotique { margin:0; }
+  .mim-schema .msec-title { font-size:clamp(1.6rem,2.6vw,2.3rem); }
+  .mim-sec { padding:6rem 5rem; background:var(--white); border-bottom:1px solid var(--border); }
+  .mim-sec-alt { background:var(--off); }
+  .mim-sec-grid { display:grid; grid-template-columns:.9fr 1.1fr; gap:4rem; align-items:start; }
+  .mim-points { list-style:none; display:grid; gap:1.1rem; }
+  .mim-points li { font-size:.95rem; color:var(--mid); line-height:1.7; padding-left:1.4rem; position:relative; }
+  .mim-points li::before { content:''; position:absolute; left:0; top:.8rem; width:.6rem; height:1px; background:var(--green-md); }
+  .mim-points strong { color:var(--dark); font-weight:600; }
+  .mim-ind { margin-top:1.25rem; font-size:.78rem; color:var(--mid); }
+  .mim-prep { padding:6rem 5rem 4rem; background:var(--off); border-bottom:1px solid var(--border); }
+  .mim-prep .mgreen { color:var(--green); }
+  .mim-prep-desc { max-width:70ch; }
+  .mim-cta { background:var(--green); padding:4.5rem 2rem; text-align:center; color:#fff; }
+  .mim-cta h2 { font-family:'Syne',sans-serif; font-size:clamp(1.5rem,3vw,2rem); font-weight:800; letter-spacing:-.02em; margin-bottom:.75rem; }
+  .mim-cta p { color:#fff; max-width:52ch; margin:0 auto 1.75rem; }
+  .mim-cta-btn { display:inline-block; background:#fff; color:var(--green); font-weight:600; padding:.85rem 1.75rem; border-radius:5px; transition:opacity .15s; }
+  .mim-cta-btn:hover, .mim-cta-btn:focus-visible { opacity:.9; }
+  @media (max-width:900px) {
+    .mim-schema { padding:3.5rem 1rem 3rem; }
+    .mim-sec, .mim-prep { padding:4rem 2rem; }
+    .mim-sec-grid { grid-template-columns:1fr; gap:2rem; }
+    /* Un mot long (« concretamente, ») en Syne dépasse 375 px : on le coupe. */
+    .msec-title { hyphens:auto; overflow-wrap:break-word; }
+  }
+  </style>
+  <script src="/js/analytics.js" defer></script>
+  <script src="/js/lightbox.js" defer></script>
+  <style>html:not(.produits-ouverts) a[href$="/produits/"]{display:none!important}</style>
+  <script>window.MODULIMO_VERROU={"sel":"rmjrOmLNvaHvdRjRiZUrBA==","iv":"JdysenF0eNQekSdp","data":"Inb2KkwsqcI1FRTxAjwCipZYeeLaQ9NA","iter":600000};try{var mv=JSON.parse(localStorage.getItem('modulimo-produits')||'null');if(mv&&mv.sel===window.MODULIMO_VERROU.sel)document.documentElement.classList.add('produits-ouverts')}catch(e){}</script>
+  <script src="/js/cadenas.js" defer></script>
+</head>
+<body>
+
+  <!-- TOPBAR -->
+  <header class="topbar">
+    <div class="topbar-inner">
+      <button type="button" class="brand" data-lightbox="/images/ModulimoLogoSobre.png" data-lightbox-alt="Modulimo" aria-label="Voir le logo en grand">
+        <img src="/images/ModulimoLogoSobre.png" alt="Modulimo" />
+      </button>
+      <button class="menu-toggle" id="menuToggle" aria-expanded="false" aria-controls="siteNav" aria-label="Menu">
+        <span></span><span></span><span></span>
+      </button>
+      <nav class="nav" id="siteNav">
+        <a href="/es/"><span>Inicio</span></a>
+        <a href="/es/mobilite/"><span>Movilidad</span></a>
+        <a href="/es/inmotica/" class="active"><span>Inmótica</span></a>
+        <a href="/es/projets/"><span>Proyectos</span></a>
+        <a href="/es/produits/"><span>Productos</span></a>
+        <a href="/es/cohabitat/" class="nav-cta">CoHabitat</a>
+        <details class="lang-switch">
+          <summary class="lang-btn" aria-label="Elegir idioma"><svg viewBox="0 0 24 16" width="16" height="11" aria-hidden="true" style="display:block;border-radius:2px;flex-shrink:0;"><rect width="8" height="16" fill="#006847"/><rect x="8" width="8" height="16" fill="#fff"/><rect x="16" width="8" height="16" fill="#ce1126"/><ellipse cx="12" cy="7.4" rx="1.7" ry="2" fill="#7a5230"/><path d="M9.9,9.4 A2.7,2.7 0 0 0 14.1,9.4" fill="none" stroke="#006847" stroke-width="0.8" stroke-linecap="round"/></svg><span>ES</span><span class="lang-caret">&#9662;</span></summary>
+          <div class="lang-menu">
+            <a class="lang-item" href="/immotique/" lang="fr" hreflang="fr-CA" aria-label="Afficher en français"><svg viewBox="0 0 24 16" width="16" height="11" aria-hidden="true" style="display:block;border-radius:2px;flex-shrink:0;"><rect width="24" height="16" fill="#095797"/><g transform="translate(5.6,3.6)" fill="#fff"><path d="M0,-2.3 C1,-1.2 1,-0.2 0,0.6 C-1,-0.2 -1,-1.2 0,-2.3 Z"/><path d="M-2.1,-0.5 C-1.3,-1.3 -0.6,-0.9 -0.4,0.2 C-1.2,0.6 -1.9,0.3 -2.1,-0.5 Z"/><path d="M2.1,-0.5 C1.3,-1.3 0.6,-0.9 0.4,0.2 C1.2,0.6 1.9,0.3 2.1,-0.5 Z"/><rect x="-1.6" y="0.6" width="3.2" height="0.7"/><rect x="-0.5" y="1.3" width="1" height="1.4"/></g><g transform="translate(18.4,3.6)" fill="#fff"><path d="M0,-2.3 C1,-1.2 1,-0.2 0,0.6 C-1,-0.2 -1,-1.2 0,-2.3 Z"/><path d="M-2.1,-0.5 C-1.3,-1.3 -0.6,-0.9 -0.4,0.2 C-1.2,0.6 -1.9,0.3 -2.1,-0.5 Z"/><path d="M2.1,-0.5 C1.3,-1.3 0.6,-0.9 0.4,0.2 C1.2,0.6 1.9,0.3 2.1,-0.5 Z"/><rect x="-1.6" y="0.6" width="3.2" height="0.7"/><rect x="-0.5" y="1.3" width="1" height="1.4"/></g><g transform="translate(5.6,12.4)" fill="#fff"><path d="M0,-2.3 C1,-1.2 1,-0.2 0,0.6 C-1,-0.2 -1,-1.2 0,-2.3 Z"/><path d="M-2.1,-0.5 C-1.3,-1.3 -0.6,-0.9 -0.4,0.2 C-1.2,0.6 -1.9,0.3 -2.1,-0.5 Z"/><path d="M2.1,-0.5 C1.3,-1.3 0.6,-0.9 0.4,0.2 C1.2,0.6 1.9,0.3 2.1,-0.5 Z"/><rect x="-1.6" y="0.6" width="3.2" height="0.7"/><rect x="-0.5" y="1.3" width="1" height="1.4"/></g><g transform="translate(18.4,12.4)" fill="#fff"><path d="M0,-2.3 C1,-1.2 1,-0.2 0,0.6 C-1,-0.2 -1,-1.2 0,-2.3 Z"/><path d="M-2.1,-0.5 C-1.3,-1.3 -0.6,-0.9 -0.4,0.2 C-1.2,0.6 -1.9,0.3 -2.1,-0.5 Z"/><path d="M2.1,-0.5 C1.3,-1.3 0.6,-0.9 0.4,0.2 C1.2,0.6 1.9,0.3 2.1,-0.5 Z"/><rect x="-1.6" y="0.6" width="3.2" height="0.7"/><rect x="-0.5" y="1.3" width="1" height="1.4"/></g><rect x="10.4" y="0" width="3.2" height="16" fill="#fff"/><rect x="0" y="6.4" width="24" height="3.2" fill="#fff"/></svg><span>Français</span></a>
+            <a class="lang-item" href="/en/building-automation/" lang="en" hreflang="en" aria-label="Display in English"><svg viewBox="0 0 24 16" width="16" height="11" aria-hidden="true" style="display:block;border-radius:2px;flex-shrink:0;"><rect width="24" height="16" fill="#fff"/><rect x="0" y="0.00" width="24" height="1.2308" fill="#b22234"/><rect x="0" y="2.46" width="24" height="1.2308" fill="#b22234"/><rect x="0" y="4.92" width="24" height="1.2308" fill="#b22234"/><rect x="0" y="7.38" width="24" height="1.2308" fill="#b22234"/><rect x="0" y="9.85" width="24" height="1.2308" fill="#b22234"/><rect x="0" y="12.31" width="24" height="1.2308" fill="#b22234"/><rect x="0" y="14.77" width="24" height="1.2308" fill="#b22234"/><rect width="9.6" height="8.62" fill="#3c3b6e"/><circle cx="3.2" cy="2.2" r="0.55" fill="#fff"/><circle cx="3.2" cy="4.4" r="0.55" fill="#fff"/><circle cx="3.2" cy="6.6" r="0.55" fill="#fff"/><circle cx="6.4" cy="2.2" r="0.55" fill="#fff"/><circle cx="6.4" cy="4.4" r="0.55" fill="#fff"/><circle cx="6.4" cy="6.6" r="0.55" fill="#fff"/></svg><span>English</span></a>
+            <a class="lang-item active" href="/es/inmotica/" lang="es" hreflang="es" aria-label="Mostrar en español"><svg viewBox="0 0 24 16" width="16" height="11" aria-hidden="true" style="display:block;border-radius:2px;flex-shrink:0;"><rect width="8" height="16" fill="#006847"/><rect x="8" width="8" height="16" fill="#fff"/><rect x="16" width="8" height="16" fill="#ce1126"/><ellipse cx="12" cy="7.4" rx="1.7" ry="2" fill="#7a5230"/><path d="M9.9,9.4 A2.7,2.7 0 0 0 14.1,9.4" fill="none" stroke="#006847" stroke-width="0.8" stroke-linecap="round"/></svg><span>Español</span></a>
+            <a class="lang-item" href="/zh/immotique/" lang="zh" hreflang="zh-Hans" aria-label="显示中文"><svg viewBox="0 0 24 16" width="16" height="11" aria-hidden="true" style="display:block;border-radius:2px;flex-shrink:0;"><rect width="24" height="16" fill="#de2910"/><polygon points="4.00,1.60 4.54,3.26 6.28,3.26 4.87,4.28 5.41,5.94 4.00,4.92 2.59,5.94 3.13,4.28 1.72,3.26 3.46,3.26" fill="#ffde00"/><circle cx="8" cy="1.6" r="0.6" fill="#ffde00"/><circle cx="9.6" cy="3.2" r="0.6" fill="#ffde00"/><circle cx="9.6" cy="5.6" r="0.6" fill="#ffde00"/><circle cx="8" cy="7.2" r="0.6" fill="#ffde00"/></svg><span>中文</span></a>
+          </div>
+        </details>
+      </nav>
+    </div>
+  </header>
+
+
+  <!-- HERO -->
+  <section class="mhero">
+    <div class="mhero-left">
+      <span class="mhero-tag"><span>Inmótica · Modulimo</span></span>
+      <h1 class="mhero-title">
+        <span>Un edificio que se gestiona<br><span class="mgreen">solo.</span></span>
+      </h1>
+      <p class="mhero-desc">
+        <span>Cada edificio Modulimo gestiona por sí mismo su energía, su calor, su red y sus servicios. Sigue funcionando incluso sin internet ni electricidad de la red, y se conecta con los demás edificios mediante enlaces cifrados.</span>
+      </p>
+    </div>
+    <div class="mhero-right">
+      <img src="/images/ResidentsForme.png" alt="Residentes de Modulimo en la sala de vigilancia" loading="lazy" />
+    </div>
+  </section>
+
+  <!-- ══ SCHÉMA INTERACTIF ══ -->
+  <div class="mim-schema">
+    <div class="mim-wrap">
+      <div class="msec-tag"><span>Esquema interactivo</span></div>
+      <!-- ================================================================
+           MODULIMO — Schéma interactif immotique
+           Composant autonome : HTML + CSS + JS, aucune dépendance externe,
+           aucune requête réseau. Tous les sélecteurs sont préfixés #mdl-immotique.
+           Valeurs indicatives (immeuble type 3 × 6½ + 2 × 2½).
+           ================================================================ -->
+      <section id="mdl-immotique" aria-labelledby="mdl-im-title">
+        <style>
+          #mdl-immotique{
+            --mdl-text:#2C2C2A;--mdl-muted:#5F5E5A;--mdl-border:#D3D1C7;--mdl-panel:#F7F6F2;--mdl-accent:#2d7a4f;
+            --e-fill:#FAEEDA;--e-stroke:#BA7517;--e-title:#633806;--e-sub:#854F0B;
+            --w-fill:#E1F5EE;--w-stroke:#1D9E75;--w-title:#085041;--w-sub:#0F6E56;
+            --m-fill:#EEEDFE;--m-stroke:#7F77DD;--m-title:#3C3489;--m-sub:#534AB7;
+            --n-fill:#E6F1FB;--n-stroke:#378ADD;--n-title:#0C447C;--n-sub:#185FA5;
+            --g-fill:#F1EFE8;--g-stroke:#888780;--g-title:#444441;--g-sub:#5F5E5A;
+            --a-fill:#FCEBEB;--a-stroke:#E24B4A;--a-title:#791F1F;--a-sub:#A32D2D;
+            color:var(--mdl-text);font-family:inherit;margin:2rem 0}
+          /* Thème sombre : le site n'en a pas (il reste clair). Le composant ne suit
+             donc pas prefers-color-scheme, seulement html[data-theme="dark"] si le
+             site en ajoute un un jour. */
+          html[data-theme="dark"] #mdl-immotique{
+            --mdl-text:#F1EFE8;--mdl-muted:#B4B2A9;--mdl-border:#5F5E5A;--mdl-panel:#2C2C2A;--mdl-accent:#AFA9EC;
+            --e-fill:#633806;--e-stroke:#EF9F27;--e-title:#FAEEDA;--e-sub:#FAC775;
+            --w-fill:#085041;--w-stroke:#5DCAA5;--w-title:#E1F5EE;--w-sub:#9FE1CB;
+            --m-fill:#3C3489;--m-stroke:#AFA9EC;--m-title:#EEEDFE;--m-sub:#CECBF6;
+            --n-fill:#0C447C;--n-stroke:#85B7EB;--n-title:#E6F1FB;--n-sub:#B5D4F4;
+            --g-fill:#444441;--g-stroke:#B4B2A9;--g-title:#F1EFE8;--g-sub:#D3D1C7;
+            --a-fill:#791F1F;--a-stroke:#F09595;--a-title:#FCEBEB;--a-sub:#F7C1C1}
+          #mdl-immotique *{box-sizing:border-box}
+          #mdl-immotique .mdl-intro{color:var(--mdl-muted);max-width:60ch;line-height:1.6}
+          #mdl-immotique .mdl-scen{display:flex;flex-wrap:wrap;gap:.5rem;margin:1rem 0}
+          #mdl-immotique .mdl-scen button{font:inherit;font-size:.95rem;padding:.5rem 1rem;border-radius:999px;border:1px solid var(--mdl-border);background:transparent;color:var(--mdl-text);cursor:pointer}
+          #mdl-immotique .mdl-scen button[aria-selected="true"]{background:var(--mdl-accent);border-color:var(--mdl-accent);color:#fff}
+          #mdl-immotique .mdl-scen button:focus-visible{outline:2px solid var(--mdl-accent);outline-offset:2px}
+          #mdl-immotique .mdl-canvas{overflow-x:auto;-webkit-overflow-scrolling:touch;border:1px solid var(--mdl-border);border-radius:16px;padding:.5rem}
+          #mdl-immotique svg{display:block;width:100%;min-width:720px;height:auto}
+          #mdl-immotique .mdl-hint{font-size:.85rem;color:var(--mdl-muted);margin:.5rem 0 0}
+          #mdl-immotique .mdl-info{display:grid;gap:1rem;margin-top:1rem}
+          @media (min-width:760px){#mdl-immotique .mdl-info{grid-template-columns:1fr 1fr}}
+          #mdl-immotique .mdl-card{background:var(--mdl-panel);border-radius:12px;padding:1rem 1.25rem}
+          #mdl-immotique .mdl-card h3{margin:0 0 .5rem;font-size:1.05rem}
+          #mdl-immotique .mdl-card p{margin:0;line-height:1.6}
+          #mdl-immotique .mdl-kpis{display:grid;grid-template-columns:1fr 1fr;gap:.75rem;margin-top:.75rem}
+          #mdl-immotique .mdl-kpi span{display:block;font-size:.8rem;color:var(--mdl-muted)}
+          #mdl-immotique .mdl-kpi strong{font-size:1.05rem;font-weight:600}
+          #mdl-immotique .mdl-legend{display:flex;flex-wrap:wrap;gap:1rem;list-style:none;padding:0;margin:1rem 0 0;font-size:.85rem;color:var(--mdl-muted)}
+          #mdl-immotique .mdl-legend li{display:flex;align-items:center;gap:.4rem}
+          #mdl-immotique .mdl-legend i{display:inline-block;width:28px;border-top:2px dashed}
+          #mdl-immotique .mdl-note{font-size:.8rem;color:var(--mdl-muted);margin-top:.75rem}
+          #mdl-immotique .mdl-box{cursor:pointer;outline:none}
+          #mdl-immotique .mdl-box rect{stroke-width:1;transition:opacity .3s}
+          #mdl-immotique .mdl-box .t{font-size:14px;font-weight:600}
+          #mdl-immotique .mdl-box .s{font-size:12px}
+          #mdl-immotique .c-e rect{fill:var(--e-fill);stroke:var(--e-stroke)}#mdl-immotique .c-e .t{fill:var(--e-title)}#mdl-immotique .c-e .s{fill:var(--e-sub)}
+          #mdl-immotique .c-w rect{fill:var(--w-fill);stroke:var(--w-stroke)}#mdl-immotique .c-w .t{fill:var(--w-title)}#mdl-immotique .c-w .s{fill:var(--w-sub)}
+          #mdl-immotique .c-m rect{fill:var(--m-fill);stroke:var(--m-stroke)}#mdl-immotique .c-m .t{fill:var(--m-title)}#mdl-immotique .c-m .s{fill:var(--m-sub)}
+          #mdl-immotique .c-n rect{fill:var(--n-fill);stroke:var(--n-stroke)}#mdl-immotique .c-n .t{fill:var(--n-title)}#mdl-immotique .c-n .s{fill:var(--n-sub)}
+          #mdl-immotique .c-g rect{fill:var(--g-fill);stroke:var(--g-stroke)}#mdl-immotique .c-g .t{fill:var(--g-title)}#mdl-immotique .c-g .s{fill:var(--g-sub)}
+          #mdl-immotique .mdl-box.is-alert rect{fill:var(--a-fill);stroke:var(--a-stroke)}
+          #mdl-immotique .mdl-box.is-alert .t{fill:var(--a-title)}#mdl-immotique .mdl-box.is-alert .s{fill:var(--a-sub)}
+          #mdl-immotique .mdl-box.is-off{opacity:.4}
+          #mdl-immotique .mdl-box:hover rect{stroke-width:2}
+          #mdl-immotique .mdl-box.is-sel rect,#mdl-immotique .mdl-box:focus-visible rect{stroke-width:3}
+          #mdl-immotique .mdl-bldg{fill:none;stroke:var(--mdl-border);stroke-dasharray:6 5}
+          #mdl-immotique .mdl-lbl{fill:var(--mdl-muted);font-size:12px}
+          #mdl-immotique .mdl-flow{fill:none;stroke-width:2;stroke-dasharray:6 6;transition:opacity .3s}
+          #mdl-immotique .f-elec{stroke:#BA7517}#mdl-immotique .f-water{stroke:#1D9E75}#mdl-immotique .f-drain{stroke:#888780}
+          #mdl-immotique .f-ctrl{stroke:#7F77DD;stroke-width:1.5;stroke-dasharray:2 4}#mdl-immotique .f-net{stroke:#378ADD}
+          #mdl-immotique .mdl-flow.is-on{animation:mdl-dash 1.2s linear infinite}
+          #mdl-immotique .mdl-flow.is-rev{animation-direction:reverse}
+          #mdl-immotique .mdl-flow.is-weak{stroke-width:1}
+          #mdl-immotique .mdl-flow.is-off{opacity:.15;animation:none}
+          #mdl-immotique .mdl-flow.is-alert{stroke:#E24B4A;stroke-dasharray:3 6;animation:none}
+          @keyframes mdl-dash{to{stroke-dashoffset:-24}}
+          @media (prefers-reduced-motion:reduce){#mdl-immotique .mdl-flow.is-on{animation:none}}
+        </style>
+
+        <!-- Titre : l'intro du composant est remplacée par l'en-tête de la page -->
+        <h2 id="mdl-im-title" class="msec-title" data-i18n="title"></h2>
+
+        <div class="mdl-scen" role="tablist" aria-label=""></div>
+        <div class="mdl-canvas"><svg viewBox="0 0 960 770" role="img" aria-labelledby="mdl-svg-t mdl-svg-d"><title id="mdl-svg-t"></title><desc id="mdl-svg-d"></desc></svg></div>
+        <p class="mdl-hint" data-i18n="hint"></p>
+
+        <div class="mdl-info">
+          <div class="mdl-card" aria-live="polite"><h3 class="mdl-scen-title"></h3><p class="mdl-scen-text"></p><div class="mdl-kpis"></div></div>
+          <div class="mdl-card" aria-live="polite"><h3 class="mdl-det-title"></h3><p class="mdl-det-text"></p></div>
+        </div>
+        <ul class="mdl-legend"></ul>
+        <p class="mdl-note" data-i18n="note"></p>
+
+        <script>
+        (function(){
+          var root=document.getElementById("mdl-immotique");
+          if(!root)return;
+
+          /* ---------- Textes (fr, en, es, zh : mêmes clés) ---------- */
+          var I18N={fr:{
+            title:"L'immotique Modulimo",
+            intro:"Chaque immeuble gère son énergie, sa chaleur et ses services de façon autonome, et se relie aux autres immeubles du réseau par des liens chiffrés.",
+            hint:"Choisissez un scénario, puis cliquez sur un élément pour en voir le détail.",
+            note:"Valeurs indicatives pour un immeuble type de 5 logements (3 × 6½ + 2 × 2½).",
+            svgTitle:"Gestion de l'énergie d'un immeuble Modulimo",
+            svgDesc:"Schéma de la chaîne électrique, de la chaîne thermique et du serveur local d'un immeuble, relié à Modulimo Central et aux autres immeubles par un réseau chiffré.",
+            scenLabel:"Scénarios",
+            bldg:"Immeuble type · 3 × 6½ + 2 × 2½ · enveloppe en coffrage isolant",
+            colE:"Électricité",colW:"Eau chaude et chaleur",
+            legend:[["#BA7517","Électricité"],["#1D9E75","Eau et chaleur"],["#888780","Eaux usées (récupération)"],["#7F77DD","Commande du serveur"],["#378ADD","Réseau chiffré"],["#E24B4A","Coupure"]],
+            scen:{
+              ete:{n:"Été ensoleillé",t:"Le soleil couvre les charges critiques et recharge la batterie ; le surplus chauffe l'eau. Les ventilo-convecteurs climatisent les séjours, les planchers rafraîchissent les chambres en silence, et la chaleur retirée des logements préchauffe l'eau chaude.",
+                k:[["Production solaire","≈ 30 kWh/j"],["Eau chaude couverte","≈ 95 %"],["Climatisation","Chaleur récupérée"],["Réseau Hydro-Québec","Appoint minimal"]]},
+              hiver:{n:"Hiver",t:"La production solaire est faible : le récupérateur des douches devient la principale source gratuite. La thermopompe alimente les planchers radiants à basse température et les ventilo-convecteurs prennent les pointes de froid.",
+                k:[["Production solaire","≈ 9 kWh/j"],["Récupération douches","≈ 9 kWh/j"],["Eau chaude couverte","≈ 35 %"],["Réseau Hydro-Québec","Appoint actif"]]},
+              hydro:{n:"Panne Hydro-Québec",t:"La batterie prend le relais des fonctions essentielles et le serveur déleste le reste. L'enveloppe en coffrage isolant et la masse des dalles de béton gardent les logements tempérés longtemps, et le réservoir conserve une réserve d'eau chaude.",
+                k:[["Autonomie critique","≈ 2 jours"],["IA locale","Arrêtée (délestage)"],["Chauffage et clim","Sur génératrice"],["Accès et caméras","Maintenus"]]},
+              net:{n:"Panne internet",t:"L'immeuble continue de fonctionner à 100 % : énergie, chauffage, climatisation et eau chaude sont pilotés localement. L'IA bascule sur le modèle local, et les échanges avec les autres immeubles attendent le retour du lien.",
+                k:[["Fonctions locales","100 %"],["IA","Modèle local"],["Échanges inter-immeubles","En file d'attente"],["Synchronisation","Au retour du lien"]]}
+            },
+            box:{
+              central:{t:"Modulimo Central",s:["Licences, mises à jour"],d:"Coordonne le réseau : licences, mises à jour, certificats et compensation des transactions entre immeubles. Si Central est injoignable, chaque immeuble continue de fonctionner."},
+              immB:{t:"Immeuble B",s:["Nœud autonome"],d:"Chaque immeuble Modulimo est un nœud autonome identique, avec son serveur, son énergie et ses données. Les immeubles s'échangent des services par des tunnels chiffrés."},
+              immC:{t:"Immeuble C",s:["Nœud autonome"],d:"Chaque immeuble Modulimo est un nœud autonome identique, avec son serveur, son énergie et ses données. Les immeubles s'échangent des services par des tunnels chiffrés."},
+              pv:{t:"Panneaux solaires",s:["≈ 6 kWc, inclinés 45-60°"],d:"Installés sur le toit et inclinés pour favoriser la production d'hiver et le glissement de la neige. Production estimée : ≈ 30 kWh/jour l'été, ≈ 9 kWh/jour en décembre."},
+              ond:{t:"Onduleur hybride",s:["Cascade de priorités"],d:"Répartit l'énergie selon une cascade de priorités : charges critiques d'abord, puis batterie, puis surplus vers l'eau chaude."},
+              bat:{t:"Batterie critique",s:["LiFePO4 ≈ 10 kWh"],d:"Réservée aux fonctions essentielles. Elle couvre environ deux jours de panne pour l'informatique, la surveillance et le contrôle d'accès."},
+              hydro:{t:"Réseau Hydro-Québec",s:["Appoint et recharge"],d:"Le réseau d'Hydro-Québec sert d'appoint, surtout l'hiver, et recharge la batterie au besoin."},
+              crit:{t:"Charges critiques",s:["TI, caméras, accès"],d:"Informatique, réseau, caméras, contrôle d'accès et interphones. Ces fonctions restent alimentées pendant une panne."},
+              fw:{t:"Pare-feu + mesh",s:["WireGuard chiffré"],d:"Segmente le réseau de l'immeuble en zones isolées (résidents, caméras, capteurs, kiosques) et ouvre un tunnel chiffré vers les autres immeubles."},
+              srv:{t:"Serveur local",s:["Gestion d'énergie","Routeur PV · délestage","IA locale · CoHabitat"],d:"Le cerveau de l'immeuble : gestion de l'énergie en temps réel, routage du surplus solaire, délestage automatique en panne, IA locale et application CoHabitat servie sur place."},
+              chauf:{t:"Chauffage + climatisation",s:["Radiant · ventilo-convecteurs"],d:"Planchers radiants dans les chambres et les salles de bain, pour le silence et le confort du sommeil ; ventilo-convecteurs dans les séjours, qui réagissent vite et déshumidifient. Chaque chambre a sa sonde de température et d'humidité. En climatisation, la chaleur retirée des logements préchauffe l'eau chaude au lieu d'être rejetée dehors."},
+              vre:{t:"Ventilation VRE",s:["Air neuf déshumidifié"],d:"Le ventilateur récupérateur d'énergie renouvelle l'air de ce bâtiment très étanche en récupérant la chaleur et une partie de l'humidité. L'air neuf arrive directement dans les chambres, ce qui permet aux planchers de rafraîchir sans condensation."},
+              froide:{t:"Eau froide",s:["Aqueduc ≈ 8 °C l'hiver"],d:"L'eau de l'aqueduc arrive vers 8 °C l'hiver et 15 °C l'été. Chaque étape suivante la réchauffe un peu plus."},
+              recup:{t:"Récupérateur douches",s:["Passif, +8 à 15 °C"],d:"Un échangeur passif sur la colonne de drains de douche récupère environ 40 à 50 % de leur chaleur. Sans pompe ni entretien, il fournit ≈ 8 à 9 kWh/jour, été comme hiver."},
+              reserv:{t:"Réservoir solaire 450 L",s:["Préchauffage par surplus"],d:"Chauffé par le surplus solaire grâce au routeur piloté par le serveur. Une batterie thermique bien moins chère qu'une batterie électrique."},
+              tp:{t:"Thermopompe réversible",s:["Eau ≥ 60 °C · chaud/froid"],d:"Complète la chauffe et maintient l'eau à 60 °C ou plus pour la sécurité sanitaire. Elle chauffe les logements l'hiver et les climatise l'été, en récupérant cette chaleur pour l'eau chaude."},
+              mitig:{t:"Mitigeur + recirculation",s:["Boucle ≥ 55 °C"],d:"Le mitigeur thermostatique limite la température livrée aux logements ; la boucle de recirculation garde l'eau chaude disponible instantanément."},
+              loge:{t:"5 logements",s:["Compteurs individuels"],d:"Trois 6½ et deux 2½. Des compteurs mesurent l'eau chaude de chaque logement, et les eaux de douche retournent vers le récupérateur."}
+            }
+          }
+          ,en:{
+            title:"Modulimo building automation",
+            intro:"Each building manages its energy, heat and services on its own, and connects to the other buildings in the network through encrypted links.",
+            hint:"Pick a scenario, then click an element to see its details.",
+            note:"Indicative values for a typical 5-unit building (3 × 6½ + 2 × 2½).",
+            svgTitle:"Energy management in a Modulimo building",
+            svgDesc:"Diagram of a building's electrical chain, thermal chain and local server, connected to Modulimo Central and to the other buildings through an encrypted network.",
+            scenLabel:"Scenarios",
+            bldg:"Typical building · 3 × 6½ + 2 × 2½ · insulated concrete form envelope",
+            colE:"Electricity",colW:"Hot water and heat",
+            legend:[["#BA7517","Electricity"],["#1D9E75","Water and heat"],["#888780","Wastewater (recovery)"],["#7F77DD","Server control"],["#378ADD","Encrypted network"],["#E24B4A","Outage"]],
+            scen:{
+              ete:{n:"Sunny summer",t:"The sun covers the critical loads and charges the battery; the surplus heats water. Fan coils cool the living rooms, the floors quietly cool the bedrooms, and the heat removed from the units preheats the hot water.",
+                k:[["Solar output","≈ 30 kWh/day"],["Hot water covered","≈ 95 %"],["Air conditioning","Heat recovered"],["Hydro-Québec grid","Minimal backup"]]},
+              hiver:{n:"Winter",t:"Solar output is low: the shower heat recovery unit becomes the main free source. The heat pump feeds the radiant floors at low temperature and the fan coils handle cold snaps.",
+                k:[["Solar output","≈ 9 kWh/day"],["Shower recovery","≈ 9 kWh/day"],["Hot water covered","≈ 35 %"],["Hydro-Québec grid","Backup active"]]},
+              hydro:{n:"Hydro-Québec outage",t:"The battery takes over the essential functions and the server sheds the rest. The insulated concrete form envelope and the mass of the concrete slabs keep the units temperate for a long time, and the tank keeps a reserve of hot water.",
+                k:[["Critical autonomy","≈ 2 days"],["Local AI","Stopped (load shedding)"],["Heating and cooling","On generator"],["Access and cameras","Maintained"]]},
+              net:{n:"Internet outage",t:"The building keeps running at 100 %: energy, heating, cooling and hot water are controlled locally. The AI switches to the local model, and exchanges with the other buildings wait for the link to return.",
+                k:[["Local functions","100 %"],["AI","Local model"],["Inter-building exchanges","Queued"],["Synchronization","When the link returns"]]}
+            },
+            box:{
+              central:{t:"Modulimo Central",s:["Licences, updates"],d:"Coordinates the network: licences, updates, certificates and settlement of transactions between buildings. If Central cannot be reached, every building keeps running."},
+              immB:{t:"Building B",s:["Autonomous node"],d:"Every Modulimo building is an identical autonomous node, with its own server, energy and data. Buildings exchange services through encrypted tunnels."},
+              immC:{t:"Building C",s:["Autonomous node"],d:"Every Modulimo building is an identical autonomous node, with its own server, energy and data. Buildings exchange services through encrypted tunnels."},
+              pv:{t:"Solar panels",s:["≈ 6 kWp, tilted 45-60°"],d:"Installed on the roof and tilted to favour winter production and let snow slide off. Estimated output: ≈ 30 kWh/day in summer, ≈ 9 kWh/day in December."},
+              ond:{t:"Hybrid inverter",s:["Priority cascade"],d:"Distributes energy through a priority cascade: critical loads first, then the battery, then the surplus to hot water."},
+              bat:{t:"Critical battery",s:["LiFePO4 ≈ 10 kWh"],d:"Reserved for essential functions. It covers about two days of outage for IT, surveillance and access control."},
+              hydro:{t:"Hydro-Québec grid",s:["Backup and recharge"],d:"The Hydro-Québec grid provides backup, mostly in winter, and recharges the battery when needed."},
+              crit:{t:"Critical loads",s:["IT, cameras, access"],d:"IT, network, cameras, access control and intercoms. These functions stay powered during an outage."},
+              fw:{t:"Firewall + mesh",s:["Encrypted WireGuard"],d:"Splits the building network into isolated zones (residents, cameras, sensors, kiosks) and opens an encrypted tunnel to the other buildings."},
+              srv:{t:"Local server",s:["Energy management","PV router · load shedding","Local AI · CoHabitat"],d:"The brain of the building: real-time energy management, solar surplus routing, automatic load shedding during outages, local AI and the CoHabitat app served on site."},
+              chauf:{t:"Heating + cooling",s:["Radiant · fan coils"],d:"Radiant floors in bedrooms and bathrooms, for silence and sleeping comfort; fan coils in living rooms, which react quickly and dehumidify. Each bedroom has its own temperature and humidity sensor. When cooling, the heat removed from the units preheats the hot water instead of being released outside."},
+              vre:{t:"ERV ventilation",s:["Dehumidified fresh air"],d:"The energy recovery ventilator renews the air of this very airtight building while recovering heat and part of the humidity. Fresh air goes straight to the bedrooms, which lets the floors cool without condensation."},
+              froide:{t:"Cold water",s:["City water ≈ 8 °C in winter"],d:"City water arrives at about 8 °C in winter and 15 °C in summer. Each following step warms it a little more."},
+              recup:{t:"Shower heat recovery",s:["Passive, +8 to 15 °C"],d:"A passive exchanger on the shower drain stack recovers about 40 to 50 % of their heat. With no pump and no maintenance, it provides ≈ 8 to 9 kWh/day, summer and winter."},
+              reserv:{t:"450 L solar tank",s:["Preheated by surplus"],d:"Heated by the solar surplus through the router driven by the server. A thermal battery far cheaper than an electric one."},
+              tp:{t:"Reversible heat pump",s:["Water ≥ 60 °C · heat/cool"],d:"Finishes heating and keeps water at 60 °C or more for health safety. It heats the units in winter and cools them in summer, recovering that heat for hot water."},
+              mitig:{t:"Mixing valve + recirc.",s:["Loop ≥ 55 °C"],d:"The thermostatic mixing valve limits the temperature delivered to the units; the recirculation loop keeps hot water available instantly."},
+              loge:{t:"5 units",s:["Individual meters"],d:"Three 6½ and two 2½. Meters measure each unit's hot water, and shower water returns to the heat recovery unit."}
+            }
+          }
+          ,es:{
+            title:"La inmótica Modulimo",
+            intro:"Cada edificio gestiona su energía, su calor y sus servicios de forma autónoma, y se conecta con los demás edificios de la red mediante enlaces cifrados.",
+            hint:"Elija un escenario y luego haga clic en un elemento para ver su detalle.",
+            note:"Valores indicativos para un edificio tipo de 5 viviendas (3 × 6½ + 2 × 2½).",
+            svgTitle:"Gestión de la energía de un edificio Modulimo",
+            svgDesc:"Esquema de la cadena eléctrica, la cadena térmica y el servidor local de un edificio, conectado a Modulimo Central y a los demás edificios mediante una red cifrada.",
+            scenLabel:"Escenarios",
+            bldg:"Edificio tipo · 3 × 6½ + 2 × 2½ · envolvente de encofrado aislante",
+            colE:"Electricidad",colW:"Agua caliente y calor",
+            legend:[["#BA7517","Electricidad"],["#1D9E75","Agua y calor"],["#888780","Aguas residuales (recuperación)"],["#7F77DD","Control del servidor"],["#378ADD","Red cifrada"],["#E24B4A","Corte"]],
+            scen:{
+              ete:{n:"Verano soleado",t:"El sol cubre las cargas críticas y recarga la batería; el excedente calienta el agua. Los fancoils climatizan las salas, los suelos refrescan los dormitorios en silencio y el calor retirado de las viviendas precalienta el agua caliente.",
+                k:[["Producción solar","≈ 30 kWh/día"],["Agua caliente cubierta","≈ 95 %"],["Climatización","Calor recuperado"],["Red Hydro-Québec","Apoyo mínimo"]]},
+              hiver:{n:"Invierno",t:"La producción solar es baja: el recuperador de las duchas pasa a ser la principal fuente gratuita. La bomba de calor alimenta los suelos radiantes a baja temperatura y los fancoils cubren los picos de frío.",
+                k:[["Producción solar","≈ 9 kWh/día"],["Recuperación duchas","≈ 9 kWh/día"],["Agua caliente cubierta","≈ 35 %"],["Red Hydro-Québec","Apoyo activo"]]},
+              hydro:{n:"Corte de Hydro-Québec",t:"La batería toma el relevo de las funciones esenciales y el servidor desconecta el resto. La envolvente de encofrado aislante y la masa de las losas de hormigón mantienen las viviendas templadas mucho tiempo, y el depósito conserva una reserva de agua caliente.",
+                k:[["Autonomía crítica","≈ 2 días"],["IA local","Detenida (deslastre)"],["Calefacción y clima","Con generador"],["Accesos y cámaras","Mantenidos"]]},
+              net:{n:"Corte de internet",t:"El edificio sigue funcionando al 100 %: energía, calefacción, climatización y agua caliente se controlan localmente. La IA pasa al modelo local y los intercambios con los demás edificios esperan el regreso del enlace.",
+                k:[["Funciones locales","100 %"],["IA","Modelo local"],["Intercambios entre edificios","En cola"],["Sincronización","Al volver el enlace"]]}
+            },
+            box:{
+              central:{t:"Modulimo Central",s:["Licencias, actualizaciones"],d:"Coordina la red: licencias, actualizaciones, certificados y compensación de las transacciones entre edificios. Si Central no responde, cada edificio sigue funcionando."},
+              immB:{t:"Edificio B",s:["Nodo autónomo"],d:"Cada edificio Modulimo es un nodo autónomo idéntico, con su servidor, su energía y sus datos. Los edificios intercambian servicios mediante túneles cifrados."},
+              immC:{t:"Edificio C",s:["Nodo autónomo"],d:"Cada edificio Modulimo es un nodo autónomo idéntico, con su servidor, su energía y sus datos. Los edificios intercambian servicios mediante túneles cifrados."},
+              pv:{t:"Paneles solares",s:["≈ 6 kWp, inclinados 45-60°"],d:"Instalados en el techo e inclinados para favorecer la producción de invierno y el deslizamiento de la nieve. Producción estimada: ≈ 30 kWh/día en verano, ≈ 9 kWh/día en diciembre."},
+              ond:{t:"Inversor híbrido",s:["Cascada de prioridades"],d:"Reparte la energía según una cascada de prioridades: primero las cargas críticas, luego la batería y después el excedente hacia el agua caliente."},
+              bat:{t:"Batería crítica",s:["LiFePO4 ≈ 10 kWh"],d:"Reservada a las funciones esenciales. Cubre unos dos días de corte para la informática, la vigilancia y el control de acceso."},
+              hydro:{t:"Red Hydro-Québec",s:["Apoyo y recarga"],d:"La red de Hydro-Québec sirve de apoyo, sobre todo en invierno, y recarga la batería cuando hace falta."},
+              crit:{t:"Cargas críticas",s:["TI, cámaras, accesos"],d:"Informática, red, cámaras, control de acceso e interfonos. Estas funciones siguen alimentadas durante un corte."},
+              fw:{t:"Cortafuegos + malla",s:["WireGuard cifrado"],d:"Segmenta la red del edificio en zonas aisladas (residentes, cámaras, sensores, quioscos) y abre un túnel cifrado hacia los demás edificios."},
+              srv:{t:"Servidor local",s:["Gestión de energía","Router FV · deslastre","IA local · CoHabitat"],d:"El cerebro del edificio: gestión de la energía en tiempo real, enrutamiento del excedente solar, deslastre automático en caso de corte, IA local y la aplicación CoHabitat servida en el lugar."},
+              chauf:{t:"Calefacción + clima",s:["Radiante · fancoils"],d:"Suelos radiantes en los dormitorios y los baños, para el silencio y el confort del sueño; fancoils en las salas, que reaccionan rápido y deshumidifican. Cada dormitorio tiene su sonda de temperatura y humedad. En modo climatización, el calor retirado de las viviendas precalienta el agua caliente en lugar de expulsarse al exterior."},
+              vre:{t:"Ventilación ERV",s:["Aire nuevo deshumidificado"],d:"El ventilador recuperador de energía renueva el aire de este edificio muy hermético recuperando el calor y parte de la humedad. El aire nuevo llega directamente a los dormitorios, lo que permite a los suelos refrescar sin condensación."},
+              froide:{t:"Agua fría",s:["Red ≈ 8 °C en invierno"],d:"El agua de la red llega a unos 8 °C en invierno y 15 °C en verano. Cada etapa siguiente la calienta un poco más."},
+              recup:{t:"Recuperador duchas",s:["Pasivo, +8 a 15 °C"],d:"Un intercambiador pasivo en la columna de desagües de las duchas recupera entre el 40 y el 50 % de su calor. Sin bomba ni mantenimiento, aporta ≈ 8 a 9 kWh/día, en verano y en invierno."},
+              reserv:{t:"Depósito solar 450 L",s:["Precalentado por excedente"],d:"Calentado por el excedente solar gracias al router controlado por el servidor. Una batería térmica mucho más barata que una batería eléctrica."},
+              tp:{t:"Bomba de calor reversible",s:["Agua ≥ 60 °C · frío/calor"],d:"Completa el calentamiento y mantiene el agua a 60 °C o más por seguridad sanitaria. Calienta las viviendas en invierno y las climatiza en verano, recuperando ese calor para el agua caliente."},
+              mitig:{t:"Mezclador + recirculación",s:["Bucle ≥ 55 °C"],d:"El mezclador termostático limita la temperatura entregada a las viviendas; el bucle de recirculación mantiene el agua caliente disponible al instante."},
+              loge:{t:"5 viviendas",s:["Contadores individuales"],d:"Tres 6½ y dos 2½. Unos contadores miden el agua caliente de cada vivienda, y el agua de las duchas vuelve al recuperador."}
+            }
+          }
+          ,zh:{
+            title:"Modulimo 楼宇自动化",
+            intro:"每栋楼宇自主管理其能源、热量与服务，并通过加密链路与网络中的其他楼宇相连。",
+            hint:"选择一个场景，然后点击某个元素查看详情。",
+            note:"以下为一栋 5 户典型楼宇（3 × 6½ + 2 × 2½）的参考数值。",
+            svgTitle:"Modulimo 楼宇的能源管理",
+            svgDesc:"一栋楼宇的电力链、热力链与本地服务器示意图，并通过加密网络连接 Modulimo Central 及其他楼宇。",
+            scenLabel:"场景",
+            bldg:"典型楼宇 · 3 × 6½ + 2 × 2½ · 保温模板围护结构",
+            colE:"电力",colW:"热水与热量",
+            legend:[["#BA7517","电力"],["#1D9E75","水与热量"],["#888780","废水（热回收）"],["#7F77DD","服务器控制"],["#378ADD","加密网络"],["#E24B4A","中断"]],
+            scen:{
+              ete:{n:"晴朗夏季",t:"太阳能满足关键负载并为电池充电；多余电力用于加热水。风机盘管为起居室制冷，地板静音为卧室降温，从住户中带走的热量则用于预热热水。",
+                k:[["太阳能发电","≈ 30 kWh/天"],["热水覆盖率","≈ 95 %"],["空调","热量回收"],["Hydro-Québec 电网","少量补充"]]},
+              hiver:{n:"冬季",t:"太阳能发电量低：淋浴废水热回收器成为主要的免费热源。热泵以低温为辐射地板供热，风机盘管应对寒流高峰。",
+                k:[["太阳能发电","≈ 9 kWh/天"],["淋浴热回收","≈ 9 kWh/天"],["热水覆盖率","≈ 35 %"],["Hydro-Québec 电网","补充供电中"]]},
+              hydro:{n:"Hydro-Québec 停电",t:"电池接管基本功能，服务器切除其余负载。保温模板围护结构与混凝土楼板的蓄热质量让住户长时间保持适宜温度，储水箱也保留一份热水储备。",
+                k:[["关键负载续航","≈ 2 天"],["本地 AI","已停止（负荷切除）"],["供暖与空调","由发电机供电"],["门禁与摄像头","持续运行"]]},
+              net:{n:"互联网中断",t:"楼宇继续 100 % 运行：能源、供暖、空调与热水均在本地控制。AI 切换到本地模型，与其他楼宇的交换等待链路恢复。",
+                k:[["本地功能","100 %"],["AI","本地模型"],["楼宇间交换","排队等待"],["同步","链路恢复后进行"]]}
+            },
+            box:{
+              central:{t:"Modulimo Central",s:["许可与更新"],d:"协调整个网络：许可、更新、证书以及楼宇间交易的结算。即使无法连接 Central，每栋楼宇仍继续运行。"},
+              immB:{t:"楼宇 B",s:["自主节点"],d:"每栋 Modulimo 楼宇都是一个相同的自主节点，拥有自己的服务器、能源与数据。楼宇之间通过加密隧道交换服务。"},
+              immC:{t:"楼宇 C",s:["自主节点"],d:"每栋 Modulimo 楼宇都是一个相同的自主节点，拥有自己的服务器、能源与数据。楼宇之间通过加密隧道交换服务。"},
+              pv:{t:"太阳能板",s:["≈ 6 kWp，倾角 45-60°"],d:"安装在屋顶，倾斜角度有利于冬季发电和积雪滑落。预计发电量：夏季 ≈ 30 kWh/天，12 月 ≈ 9 kWh/天。"},
+              ond:{t:"混合逆变器",s:["优先级级联"],d:"按优先级级联分配能源：先供关键负载，再为电池充电，最后将多余电力用于热水。"},
+              bat:{t:"关键负载电池",s:["LiFePO4 ≈ 10 kWh"],d:"专供基本功能使用。可在停电时为信息系统、监控与门禁提供约两天的电力。"},
+              hydro:{t:"Hydro-Québec 电网",s:["补充与充电"],d:"Hydro-Québec 电网作为补充，主要在冬季使用，并在需要时为电池充电。"},
+              crit:{t:"关键负载",s:["IT、摄像头、门禁"],d:"信息系统、网络、摄像头、门禁与对讲。停电期间这些功能保持供电。"},
+              fw:{t:"防火墙 + 网状网络",s:["WireGuard 加密"],d:"将楼宇网络划分为相互隔离的区域（住户、摄像头、传感器、自助终端），并建立通往其他楼宇的加密隧道。"},
+              srv:{t:"本地服务器",s:["能源管理","光伏路由 · 负荷切除","本地 AI · CoHabitat"],d:"楼宇的大脑：实时能源管理、太阳能余电调配、停电时自动切除负载、本地 AI，以及在本地提供的 CoHabitat 应用。"},
+              chauf:{t:"供暖 + 空调",s:["辐射地板 · 风机盘管"],d:"卧室和浴室采用辐射地板，安静舒适，利于睡眠；起居室采用风机盘管，响应迅速并能除湿。每间卧室都有温湿度传感器。制冷时，从住户带走的热量用于预热热水，而不是排到室外。"},
+              vre:{t:"ERV 新风系统",s:["除湿新鲜空气"],d:"能量回收通风机为这栋高度气密的建筑更新空气，同时回收热量和部分湿气。新风直接送入卧室，使地板可以降温而不结露。"},
+              froide:{t:"冷水",s:["市政供水 冬季 ≈ 8 °C"],d:"市政供水冬季约 8 °C，夏季约 15 °C。后续每个环节都让水温再升高一些。"},
+              recup:{t:"淋浴热回收器",s:["被动式，+8 至 15 °C"],d:"安装在淋浴排水立管上的被动式换热器可回收约 40 % 至 50 % 的热量。无需水泵、无需维护，冬夏均可提供 ≈ 8 至 9 kWh/天。"},
+              reserv:{t:"450 L 太阳能水箱",s:["以余电预热"],d:"由服务器控制的路由器利用太阳能余电加热。这是一块比电池便宜得多的「热电池」。"},
+              tp:{t:"可逆式热泵",s:["水温 ≥ 60 °C · 冷暖两用"],d:"完成最终加热并将水温保持在 60 °C 以上，确保卫生安全。冬季为住户供暖，夏季制冷，并把这部分热量回收用于热水。"},
+              mitig:{t:"混水阀 + 循环",s:["循环回路 ≥ 55 °C"],d:"恒温混水阀限制送往住户的水温；循环回路让热水随时即开即用。"},
+              loge:{t:"5 套住宅",s:["独立计量表"],d:"三套 6½ 和两套 2½。计量表记录每户的热水用量，淋浴用水回流至热回收器。"}
+            }
+          }
+          };
+          var lang=(document.documentElement.lang||"fr").slice(0,2).toLowerCase();
+          var L=I18N[lang]||I18N.fr;
+
+          /* ---------- Géométrie ---------- */
+          var BOXES=[
+            ["central","n",380,30,200,56],["immB","n",60,36,180,50],["immC","n",720,36,180,50],
+            ["pv","e",50,205,240,56],["ond","e",50,296,240,56],["bat","e",50,390,200,56],["hydro","e",50,480,200,56],["crit","e",50,570,200,56],
+            ["fw","n",360,205,240,56],["srv","m",360,296,240,124],["chauf","g",360,452,240,56],["vre","g",360,540,240,56],
+            ["froide","w",670,205,240,56],["recup","w",670,285,240,56],["reserv","w",670,365,240,56],["tp","w",670,452,240,56],["mitig","w",670,532,240,56],["loge","g",670,612,240,56]
+          ];
+          var FLOWS=[
+            ["pv-ond","elec",0,"M170 261 L170 294"],
+            ["ond-bat","elec",1,"M150 352 L150 388"],
+            ["ond-hydro","elec",1,"M270 352 L270 508 L252 508"],
+            ["ond-crit","elec",0,"M50 324 L35 324 L35 598 L48 598"],
+            ["ond-res","elec",0,"M292 338 L315 338 L315 700 L640 700 L640 488 M640 472 L640 405 L666 405"],
+            ["srv-ond","ctrl",0,"M358 312 L294 312"],
+            ["srv-res","ctrl",0,"M602 380 L666 380"],
+            ["srv-fw","net",1,"M480 294 L480 263"],
+            ["fw-central","net",1,"M480 203 L480 88"],
+            ["fw-b","net",1,"M420 203 L420 120 L150 120 L150 88"],
+            ["fw-c","net",1,"M540 203 L540 120 L810 120 L810 88"],
+            ["w1","water",0,"M790 261 L790 283"],["w2","water",0,"M790 341 L790 363"],["w3","water",0,"M790 421 L790 450"],
+            ["w4","water",0,"M790 508 L790 530"],["w5","water",0,"M790 588 L790 610"],
+            ["tp-chauf","water",1,"M668 480 L602 480"],
+            ["drain","drain",0,"M912 640 L928 640 L928 313 L912 313"]
+          ];
+          var COLORS={elec:"#BA7517",water:"#1D9E75",drain:"#888780",ctrl:"#7F77DD",net:"#378ADD",alert:"#E24B4A"};
+
+          /* ---------- Scénarios : états des flux et des blocs (défaut : "on") ---------- */
+          var SCEN={
+            ete:{f:{"ond-hydro":"off","tp-chauf":"on rev"},b:{}},
+            hiver:{f:{"ond-res":"off","ond-hydro":"on rev","pv-ond":"on weak"},b:{}},
+            hydro:{f:{"ond-hydro":"alert","ond-bat":"on rev","ond-res":"off","tp-chauf":"off"},b:{hydro:"alert",tp:"off",chauf:"off"}},
+            net:{f:{"fw-central":"alert","fw-b":"alert","fw-c":"alert"},b:{central:"off",immB:"off",immC:"off"}}
+          };
+
+          /* ---------- Construction du SVG ---------- */
+          var NS="http://www.w3.org/2000/svg",svg=root.querySelector("svg");
+          function el(tag,attrs,parent){var e=document.createElementNS(NS,tag);for(var k in attrs)e.setAttribute(k,attrs[k]);if(parent)parent.appendChild(e);return e;}
+          root.querySelector("#mdl-svg-t").textContent=L.svgTitle;
+          root.querySelector("#mdl-svg-d").textContent=L.svgDesc;
+
+          var defs=el("defs",{},svg);
+          Object.keys(COLORS).forEach(function(c){
+            var m=el("marker",{id:"mdl-m-"+c,viewBox:"0 0 10 10",refX:"8",refY:"5",markerWidth:"10",markerHeight:"10",markerUnits:"userSpaceOnUse",orient:"auto-start-reverse"},defs);
+            el("path",{d:"M2 1L8 5L2 9",fill:"none",stroke:COLORS[c],"stroke-width":"1.6","stroke-linecap":"round","stroke-linejoin":"round"},m);
+          });
+
+          el("rect",{class:"mdl-bldg",x:20,y:160,width:920,height:590,rx:20},svg);
+          el("text",{class:"mdl-lbl",x:40,y:735},svg).textContent=L.bldg;
+          el("text",{class:"mdl-lbl",x:170,y:186,"text-anchor":"middle"},svg).textContent=L.colE;
+          el("text",{class:"mdl-lbl",x:790,y:186,"text-anchor":"middle"},svg).textContent=L.colW;
+
+          var flowEls={};
+          FLOWS.forEach(function(f){
+            var p=el("path",{class:"mdl-flow f-"+f[1],d:f[3]},svg);
+            p._type=f[1];p._bi=f[2];flowEls[f[0]]=p;
+          });
+
+          var boxEls={},selected=null;
+          BOXES.forEach(function(b){
+            var id=b[0],x=b[2],y=b[3],w=b[4],h=b[5],txt=L.box[id];
+            var g=el("g",{class:"mdl-box c-"+b[1],tabindex:"0",role:"button"},svg);
+            el("rect",{x:x,y:y,width:w,height:h,rx:10},g);
+            var cx=x+w/2,n=txt.s.length,top=y+h/2-((n)*20)/2;
+            el("text",{class:"t",x:cx,y:top,"text-anchor":"middle","dominant-baseline":"central"},g).textContent=txt.t;
+            txt.s.forEach(function(s,i){el("text",{class:"s",x:cx,y:top+20+i*20,"text-anchor":"middle","dominant-baseline":"central"},g).textContent=s;});
+            function pick(){
+              if(selected)selected.classList.remove("is-sel");
+              selected=g;g.classList.add("is-sel");
+              root.querySelector(".mdl-det-title").textContent=txt.t;
+              root.querySelector(".mdl-det-text").textContent=txt.d;
+            }
+            g.addEventListener("click",pick);
+            g.addEventListener("keydown",function(e){if(e.key==="Enter"||e.key===" "){e.preventDefault();pick();}});
+            boxEls[id]=g;
+          });
+
+          /* ---------- Interface ---------- */
+          root.querySelectorAll("[data-i18n]").forEach(function(n){n.textContent=L[n.getAttribute("data-i18n")]||"";});
+          var tabs=root.querySelector(".mdl-scen");tabs.setAttribute("aria-label",L.scenLabel);
+          var leg=root.querySelector(".mdl-legend");
+          L.legend.forEach(function(it){var li=document.createElement("li");var i=document.createElement("i");i.style.borderColor=it[0];li.appendChild(i);li.appendChild(document.createTextNode(it[1]));leg.appendChild(li);});
+
+          function apply(key){
+            var s=SCEN[key],txt=L.scen[key];
+            Object.keys(flowEls).forEach(function(id){
+              var p=flowEls[id],st=(s.f[id]||"on").split(" ");
+              p.setAttribute("class","mdl-flow f-"+p._type+" "+st.map(function(c){return "is-"+c;}).join(" "));
+              var m="url(#mdl-m-"+(st.indexOf("alert")>-1?"alert":p._type)+")";
+              if(st.indexOf("alert")>-1&&p._type==="net"){p.removeAttribute("marker-end");p.removeAttribute("marker-start");return;}
+              p.setAttribute("marker-end",m);
+              if(p._bi)p.setAttribute("marker-start",m);else p.removeAttribute("marker-start");
+            });
+            Object.keys(boxEls).forEach(function(id){
+              var g=boxEls[id];g.classList.remove("is-off","is-alert");
+              if(s.b[id])g.classList.add("is-"+s.b[id]);
+            });
+            root.querySelector(".mdl-scen-title").textContent=txt.n;
+            root.querySelector(".mdl-scen-text").textContent=txt.t;
+            var k=root.querySelector(".mdl-kpis");k.innerHTML="";
+            txt.k.forEach(function(kv){var d=document.createElement("div");d.className="mdl-kpi";var a=document.createElement("span");a.textContent=kv[0];var b=document.createElement("strong");b.textContent=kv[1];d.appendChild(a);d.appendChild(b);k.appendChild(d);});
+            tabs.querySelectorAll("button").forEach(function(btn){btn.setAttribute("aria-selected",btn.dataset.k===key?"true":"false");btn.tabIndex=btn.dataset.k===key?0:-1;});
+          }
+
+          var keys=Object.keys(SCEN);
+          keys.forEach(function(key){
+            var b=document.createElement("button");b.type="button";b.role="tab";b.setAttribute("role","tab");b.dataset.k=key;b.textContent=L.scen[key].n;
+            b.addEventListener("click",function(){apply(key);});
+            b.addEventListener("keydown",function(e){
+              var i=keys.indexOf(key);
+              if(e.key==="ArrowRight"||e.key==="ArrowLeft"){e.preventDefault();var n=keys[(i+(e.key==="ArrowRight"?1:keys.length-1))%keys.length];apply(n);tabs.querySelector('[data-k="'+n+'"]').focus();}
+            });
+            tabs.appendChild(b);
+          });
+
+          apply("ete");
+          boxEls.srv.dispatchEvent(new Event("click"));
+        })();
+        </script>
+      </section>
+    </div>
+  </div>
+
+  <!-- ══ AUTONOMIE ══ -->
+  <section class="mim-sec mim-sec-alt" id="autonomie">
+    <div class="mim-wrap mim-sec-grid">
+      <div>
+        <div class="msec-tag"><span>Autonomía</span></div>
+        <h2 class="msec-title"><span>Sigue funcionando,<br>incluso aislado del mundo.</span></h2>
+        <p class="msec-body"><span>Todo lo que hace funcionar el edificio se decide dentro del edificio. La red Modulimo se suma por encima; no sustituye nada.</span></p>
+      </div>
+      <ul class="mim-points">
+        <li><strong><span>Un servidor en cada edificio.</span></strong> <span>Gestiona la energía en tiempo real, sirve la aplicación CoHabitat en el lugar y ejecuta una IA local.</span></li>
+        <li><strong><span>Corte de internet:</span></strong> <span>el edificio funciona al 100 % — calefacción, climatización, agua caliente, accesos y aplicación. Los intercambios entre edificios se reanudan al volver el enlace.</span></li>
+        <li><strong><span>Corte de electricidad:</span></strong> <span>una batería mantiene la informática, las cámaras y el control de acceso durante unos dos días. El resto se desconecta automáticamente.</span></li>
+        <li><strong><span>Modulimo Central coordina,</span></strong> <span>licencias y actualizaciones, pero ningún edificio depende de él para funcionar.</span></li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- ══ ÉNERGIE ══ -->
+  <section class="mim-sec" id="energie">
+    <div class="mim-wrap mim-sec-grid">
+      <div>
+        <div class="msec-tag"><span>Energía</span></div>
+        <h2 class="msec-title"><span>Primero el sol,<br>la red como apoyo.</span></h2>
+        <p class="msec-body"><span>Cada kilovatio hora producido en el techo tiene su lugar, en un orden fijado de antemano.</span></p>
+      </div>
+      <div>
+        <ul class="mim-points">
+          <li><strong><span>Paneles solares en el techo</span></strong> <span>— unos 6 kWp para un edificio tipo, inclinados para producir en invierno y dejar deslizar la nieve.</span></li>
+          <li><strong><span>Una cascada de prioridades:</span></strong> <span>primero las funciones esenciales, luego la batería y después el excedente calienta el agua.</span></li>
+          <li><strong><span>Una «batería térmica».</span></strong> <span>El excedente se almacena en forma de agua caliente, mucho más barato que una batería eléctrica.</span></li>
+        </ul>
+        <p class="mim-ind"><span>Valores indicativos para un edificio tipo.</span></p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ EAU CHAUDE ══ -->
+  <section class="mim-sec mim-sec-alt" id="eau-chaude">
+    <div class="mim-wrap mim-sec-grid">
+      <div>
+        <div class="msec-tag"><span>Agua caliente y recuperación</span></div>
+        <h2 class="msec-title"><span>El calor de la ducha<br>ya no se va por el desagüe.</span></h2>
+        <p class="msec-body"><span>Un único sistema de agua caliente para el edificio, y cada etapa calienta un poco más el agua fría que entra.</span></p>
+      </div>
+      <div>
+        <ul class="mim-points">
+          <li><strong><span>Un sistema central,</span></strong> <span>con un contador de agua caliente para cada vivienda.</span></li>
+          <li><strong><span>Se recupera el calor de las duchas:</span></strong> <span>el agua fría que entra se precalienta, en verano y en invierno.</span></li>
+          <li><strong><span>≈ 95 % en verano, ≈ 35 % en invierno:</span></strong> <span>la parte del agua caliente cubierta por el sol y la recuperación.</span></li>
+          <li><strong><span>Seguridad sanitaria:</span></strong> <span>el agua se mantiene a 60 °C o más, y un mezclador termostático limita la temperatura antes de la distribución.</span></li>
+        </ul>
+        <p class="mim-ind"><span>Valores indicativos para un edificio tipo.</span></p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ CONFORT ══ -->
+  <section class="mim-sec" id="confort">
+    <div class="mim-wrap mim-sec-grid">
+      <div>
+        <div class="msec-tag"><span>Confort</span></div>
+        <h2 class="msec-title"><span>Cálido en invierno, fresco en verano,<br>y silencioso de noche.</span></h2>
+        <p class="msec-body"><span>Cada estancia recibe el modo de calefacción y climatización que le conviene.</span></p>
+      </div>
+      <ul class="mim-points">
+        <li><strong><span>Una bomba de calor central reversible:</span></strong> <span>calefacción en invierno, climatización en verano.</span></li>
+        <li><strong><span>Suelos radiantes en dormitorios y baños:</span></strong> <span>silencio total y confort para el sueño.</span></li>
+        <li><strong><span>Fancoils en las salas:</span></strong> <span>reaccionan rápido y deshumidifican.</span></li>
+        <li><strong><span>Nada se pierde:</span></strong> <span>en modo climatización, el calor retirado de las viviendas precalienta el agua caliente en lugar de expulsarse al exterior.</span></li>
+        <li><strong><span>Ventilación con recuperación de energía (ERV):</span></strong> <span>aire nuevo filtrado y deshumidificado, distribuido en los dormitorios.</span></li>
+        <li><strong><span>Una envolvente de encofrado aislante y losas de hormigón:</span></strong> <span>muy buen aislamiento, hermeticidad, inercia térmica y aislamiento acústico.</span></li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- ══ RÉSEAU ET SÉCURITÉ ══ -->
+  <section class="mim-sec mim-sec-alt" id="reseau-securite">
+    <div class="mim-wrap mim-sec-grid">
+      <div>
+        <div class="msec-tag"><span>Red y seguridad</span></div>
+        <h2 class="msec-title"><span>Cada cosa<br>en su zona.</span></h2>
+        <p class="msec-body"><span>La red del edificio está diseñada para que un problema se quede donde aparece.</span></p>
+      </div>
+      <ul class="mim-points">
+        <li><strong><span>Zonas aisladas:</span></strong> <span>residentes, cámaras, sensores, terminales comunes. Un aparato comprometido no puede alcanzar las demás zonas.</span></li>
+        <li><strong><span>Cada vivienda está aislada de las demás</span></strong> <span>en el Wi-Fi.</span></li>
+        <li><strong><span>Las cámaras no tienen acceso a internet;</span></strong> <span>las imágenes se quedan en el edificio.</span></li>
+        <li><strong><span>Túneles cifrados (WireGuard)</span></strong> <span>conectan los edificios entre sí.</span></li>
+        <li><strong><span>La IA aconseja; no controla los sistemas de seguridad.</span></strong> <span>Las funciones de seguridad del edificio siguen bajo el control de autómatas dedicados.</span></li>
+        <li><strong><span>Ley 25 de Quebec:</span></strong> <span>los datos de los residentes se quedan en el edificio.</span></li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- ══ PRÉPARATION AUX URGENCES (contenu de l'ancienne page Sécurité) ══ -->
+  <section class="mim-prep">
+    <div class="mim-wrap">
+      <div class="msec-tag"><span>Preparación · Modulimo</span></div>
+      <h2 class="msec-title"><span>Un entorno que asume<br><span class="mgreen">la gestión de riesgos.</span></span></h2>
+      <p class="msec-body mim-prep-desc">
+        <span>En Modulimo, la preparación ante los riesgos cotidianos la asume el edificio, no los residentes. Los escenarios se identifican con antelación, los protocolos se redactan y los simulacros se realizan cada año — siguiendo el programa «Get Prepared» del gobierno de Canadá.</span> <strong style="color:var(--dark);font-weight:600;"><span>Un enfoque atento y responsable, donde nada se deja al azar.</span></strong>
+      </p>
+    </div>
+  </section>
+
+  <!-- NIVEAUX D'ALERTE -->
+  <div class="malerts">
+    <div class="malert-item">
+      <div class="malert-dot mdot-green"></div>
+      <div class="malert-text">
+        <strong><span>Nivel verde — Cotidiano</span></strong>
+        <span><span>Vigilancia y mantenimiento continuos</span></span>
+      </div>
+    </div>
+    <div class="malert-item">
+      <div class="malert-dot mdot-blue"></div>
+      <div class="malert-text">
+        <strong><span>Nivel azul — Preparación</span></strong>
+        <span><span>Kit de 72 h, plan familiar y simulacros anuales</span></span>
+      </div>
+    </div>
+    <div class="malert-item">
+      <div class="malert-dot mdot-orange"></div>
+      <div class="malert-text">
+        <strong><span>Nivel naranja — Refugio</span></strong>
+        <span><span>Protocolos de emergencia y directrices oficiales</span></span>
+      </div>
+    </div>
+  </div>
+  <div class="malerts-note"><span>Indicadores <strong>intermitentes</strong> durante un simulacro anunciado · indicadores <strong>fijos</strong> en situación real.</span></div>
+
+  <!-- SÉCURITÉ INTRINSÈQUE -->
+  <section class="mintrinsic">
+    <div class="msec-tag"><span>Seguridad intrínseca</span></div>
+    <h2 class="msec-title"><span>Un edificio diseñado</span><br><span>para la tranquilidad.</span></h2>
+    <p class="msec-body"><span>La seguridad en Modulimo no es un añadido: está integrada en la arquitectura del edificio. Cada acceso, cada espacio común y cada protocolo busca la tranquilidad cotidiana de los residentes, sin convertirla en motivo de inquietud.</span></p>
+    <div class="mfeatures">
+      <div class="mfeature">
+        <span class="mfeature-icon">📹</span>
+        <div class="mfeature-name"><span>Cámaras en los accesos comunes</span></div>
+        <div class="mfeature-desc"><span>Los accesos y los espacios comunes se muestran en directo. Ninguna cámara dentro de las viviendas ni en los pasillos privativos, y la conservación de las imágenes es limitada y está por escrito.</span></div>
+      </div>
+      <div class="mfeature">
+        <span class="mfeature-icon">🪪</span>
+        <div class="mfeature-name"><span>Acceso magnético</span></div>
+        <div class="mfeature-desc"><span>Tarjetas magnéticas para la entrada, los equipamientos compartidos y las zonas comunes.</span></div>
+      </div>
+      <div class="mfeature">
+        <span class="mfeature-icon">🔒</span>
+        <div class="mfeature-name"><span>Terreno cercado</span></div>
+        <div class="mfeature-desc"><span>Perímetro seguro con acceso controlado para residentes y visitantes.</span></div>
+      </div>
+      <div class="mfeature">
+        <span class="mfeature-icon">🎓</span>
+        <div class="mfeature-name"><span>Formación de los residentes</span></div>
+        <div class="mfeature-desc"><span>Cada residente recibe formación sobre los protocolos de emergencia del edificio al mudarse.</span></div>
+      </div>
+      <div class="mfeature">
+        <span class="mfeature-icon">🌿</span>
+        <div class="mfeature-name"><span>Asignación de las viviendas</span></div>
+        <div class="mfeature-desc"><span>Criterios objetivos e iguales para todos: capacidad de pago, referencias de alquiler y compromiso de respetar el reglamento del edificio.</span></div>
+      </div>
+      <div class="mfeature">
+        <span class="mfeature-icon">🗓️</span>
+        <div class="mfeature-name"><span>Simulacros anuales</span></div>
+        <div class="mfeature-desc"><span>Simulacros y revisiones de protocolos realizados cada año con los residentes.</span></div>
+      </div>
+      <div class="mfeature">
+        <span class="mfeature-icon">🎤</span>
+        <div class="mfeature-name"><span>Conferencias temáticas</span></div>
+        <div class="mfeature-desc"><span>Sesiones informativas sobre preparación para emergencias, inspiradas en el programa «Get Prepared».</span></div>
+      </div>
+      <div class="mfeature">
+        <span class="mfeature-icon">📋</span>
+        <div class="mfeature-name"><span>Plan de evacuación o de confinamiento</span></div>
+        <div class="mfeature-desc"><span>Según el escenario, evacuación hacia un punto de reunión exterior o refugio en el área central. El plan se entrega a cada residente y se exhibe en cada planta.</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- RISQUES PRIS EN CHARGE -->
+  <section class="mrisks">
+    <div class="mrisks-header">
+      <div class="msec-tag"><span>Riesgos cubiertos</span></div>
+      <h2 class="msec-title"><span>Tres vertientes,</span><br><span>un marco común.</span></h2>
+      <p class="msec-body"><span>Modulimo prepara a sus residentes para las situaciones corrientes previstas por las autoridades canadienses, siguiendo un marco inspirado en los Plans Particuliers de Mise en Sûreté (PPMS) franceses. Todo se apoya en una célula de coordinación identificada, un maletín de puesta a salvo accesible en cada planta y un programa anual de simulacros y actualización.</span></p>
+    </div>
+    <div class="mrisks-grid">
+      <article class="mrisk-card">
+        <div class="mrisk-card-head">
+          <span class="mrisk-dot mdot-blue"></span>
+          <span class="mrisk-level"><span>Nivel azul · Preparación</span></span>
+        </div>
+        <h3 class="mrisk-title"><span>Kit de 72 h y plan familiar</span></h3>
+        <p class="mrisk-desc"><span>Un mismo protocolo cubre la emergencia radiológica, el fenómeno natural (tormenta, evento climático) y el desorden social en los alrededores. Tríptico oficial del gobierno de Canadá: <strong>QUÉDESE</strong> dentro, <strong>ESCUCHE</strong> los medios oficiales, <strong>SIGA</strong> las directrices provinciales y municipales.</span></p>
+        <ul class="mrisk-list">
+          <li><span>Refugio central (núcleo del edificio)</span></li>
+          <li><span>Sellado de puertas, ventanas y rejillas de ventilación</span></li>
+          <li><span>Alejamiento de ventanas y muros exteriores</span></li>
+          <li><span>Escucha de las frecuencias de radio oficiales</span></li>
+        </ul>
+      </article>
+    </div>
+  </section>
+
+  <!-- DISCLAIMER -->
+  <!-- ══ 1 · INTRODUCTION ══ -->
+  <section class="mim-intro">
+    <div class="mim-wrap">
+      <div class="msec-tag"><span>Inm&#243;tica &#183; prevista desde el primer plano</span></div>
+      <h2 class="msec-title"><span>Un edificio que vela<br>cuando nadie mira.</span></h2>
+      <div class="mim-intro-grid" style="margin-top:2.5rem">
+        <div class="mim-intro-body">
+          <p><span>Los protocolos, los simulacros y el kit de 72 horas cubren lo excepcional. <strong>La inm&#243;tica cubre lo cotidiano</strong> &#8212; la fuga bajo el calentador un martes por la tarde, la calefacci&#243;n que falla durante las vacaciones, la puerta del garaje que qued&#243; abierta. Son esas cosas las que cuestan caro y despiertan a la gente a las tres de la madrugada.</span></p>
+          <p><span>La inm&#243;tica es la dom&#243;tica a escala del edificio: sensores, algunos automatismos y un ordenador en el cuarto t&#233;cnico que lo une todo. En Modulimo no es un a&#241;adido de &#250;ltima hora: <strong>est&#225; prevista en el proyecto desde el principio</strong>, igual que la escalera pensada para envejecer bien o el hueco central listo para recibir una plataforma elevadora. Los conductos, las esperas y los sensores se colocan durante la construcci&#243;n, porque despu&#233;s hay que volver a abrir los muros.</span></p>
+          <p><span>Para un residente se resume en una frase: <strong>el edificio se encarga de lo que puede encargarse</strong>, y le deja a usted el resto.</span></p>
+        </div>
+        <div class="mim-aside">
+          <div class="mim-aside-q"><span>&#191;Significa una aplicaci&#243;n m&#225;s?</span></div>
+          <div class="mim-aside-a"><span>No. Todo pasa por CoHabitat, la aplicaci&#243;n que ya se usa para las reservas, la movilidad compartida y los espacios comunes. Nada que instalar: se abre en un navegador.</span></div>
+          <div class="mim-aside-q"><span>&#191;Tengo que ocuparme de ello?</span></div>
+          <div class="mim-aside-a"><span>Tampoco. En funcionamiento normal no se ve. Solo se hace visible cuando algo se sale de lo habitual.</span></div>
+          <div class="mim-aside-q"><span>&#191;Y dentro de mi vivienda?</span></div>
+          <div class="mim-aside-a"><span>Su vivienda sigue siendo suya. El edificio se ocupa de las zonas comunes y de la infraestructura; lo que usted a&#241;ada en casa es decisi&#243;n suya.</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+  
+  <!-- ══ 2 · OBSERVE / AGIT / NE FERA JAMAIS ══ -->
+  <section class="mim-trip">
+    <div class="mim-wrap">
+      <div class="msec-tag"><span>Lo que hace el edificio</span></div>
+      <h2 class="msec-title"><span>Tres listas, y la tercera<br>cuenta tanto como las otras dos.</span></h2>
+      <div class="mim-trip-grid">
+        <div class="mim-card">
+          <div class="mim-card-head"><span class="mim-card-dot"></span><span class="mim-card-kicker"><span>Observa</span></span></div>
+          <div class="mim-card-title"><span>De forma continua, sin imagen ni micr&#243;fono</span></div>
+          <ul class="mim-list">
+            <li><span>El agua: fugas, caudal anormal, riesgo de congelaci&#243;n</span></li>
+            <li><span>El humo y el mon&#243;xido de carbono</span></li>
+            <li><span>La temperatura y la humedad de los espacios comunes</span></li>
+            <li><span>La electricidad: corte, restablecimiento, consumo del edificio</span></li>
+            <li><span>Las puertas y los accesos del terreno y del garaje</span></li>
+            <li><span>Los equipos compartidos: cargadores, lavander&#237;a, invernadero</span></li>
+          </ul>
+        </div>
+        <div class="mim-card">
+          <div class="mim-card-head"><span class="mim-card-dot"></span><span class="mim-card-kicker"><span>Act&#250;a solo</span></span></div>
+          <div class="mim-card-title"><span>Sin esperar a que alguien decida</span></div>
+          <ul class="mim-list">
+            <li><span>Cierra la v&#225;lvula de agua a los primeros mililitros</span></li>
+            <li><span>Mantiene las zonas comunes sin congelaci&#243;n durante un corte</span></li>
+            <li><span>Enciende la se&#241;alizaci&#243;n de planta en el nivel correcto</span></li>
+            <li><span>Avisa a la persona indicada &#8212; no a todo el edificio</span></li>
+            <li><span>Desplaza la recarga y el agua caliente a las horas valle</span></li>
+            <li><span>Guarda un registro de lo ocurrido y de cu&#225;ndo</span></li>
+          </ul>
+        </div>
+        <div class="mim-card mim-card-limit">
+          <div class="mim-card-head"><span class="mim-card-dot"></span><span class="mim-card-kicker"><span>Nunca har&#225; esto</span></span></div>
+          <div class="mim-card-title"><span>Los l&#237;mites forman parte del sistema</span></div>
+          <ul class="mim-list">
+            <li><span>Ninguna c&#225;mara dentro de las viviendas</span></li>
+            <li><span>Ning&#250;n dato de residentes que salga del edificio</span></li>
+            <li><span>Ning&#250;n control de su vivienda por parte del operador</span></li>
+            <li><span>Ning&#250;n vecino puede ver su consumo</span></li>
+            <li><span>Ninguna conservaci&#243;n indefinida: los plazos est&#225;n por escrito</span></li>
+            <li><span>Ninguna funci&#243;n vital confiada al software: la alarma de incendios y el elevador siguen siendo sistemas certificados e independientes</span></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+  
+  <!-- ══ 3 · BÉNÉFICES RÉSIDENTS ══ -->
+  <section class="mim-benefits">
+    <div class="mim-wrap">
+      <div class="msec-tag"><span>En el d&#237;a a d&#237;a</span></div>
+      <h2 class="msec-title"><span>Lo que cambia,<br>concretamente, para usted.</span></h2>
+      <p class="msec-body" style="margin-top:1rem"><span>Ninguno de estos puntos es un capricho: cada uno le quita a un hogar una tarea, un riesgo o un gasto.</span></p>
+      <div class="mim-ben-grid">
+        <div class="mim-ben">
+          <span class="mim-ben-icon">&#128167;</span>
+          <div class="mim-ben-name"><span>El agua se corta antes del da&#241;o</span></div>
+          <div class="mim-ben-desc"><span>Los da&#241;os por agua son la primera causa de reclamaci&#243;n en el seguro de hogar en Quebec. Aqu&#237; un sensor lo detecta al primer litro y una v&#225;lvula se cierra &#8212; est&#233; usted en casa o no.</span></div>
+        </div>
+        <div class="mim-ben">
+          <span class="mim-ben-icon">&#128267;</span>
+          <div class="mim-ben-name"><span>El coche est&#225; cargado a la hora de salir</span></div>
+          <div class="mim-ben-desc"><span>Los cargadores se reparten la potencia disponible seg&#250;n las reservas previstas, no por orden de llegada. Usted reserva, est&#225; listo.</span></div>
+        </div>
+        <div class="mim-ben">
+          <span class="mim-ben-icon">&#10052;</span>
+          <div class="mim-ben-name"><span>El invierno trabaja en horas valle</span></div>
+          <div class="mim-ben-desc"><span>El agua caliente y la recarga se desplazan fuera de las horas punta mientras usted duerme. No cambia nada en sus h&#225;bitos; el edificio se encarga.</span></div>
+        </div>
+        <div class="mim-ben">
+          <span class="mim-ben-icon">&#127968;</span>
+          <div class="mim-ben-name"><span>La sala com&#250;n est&#225; lista al llegar</span></div>
+          <div class="mim-ben-desc"><span>Climatizada e iluminada un cuarto de hora antes de su reserva, en reposo el resto del tiempo. Un espacio agradable sin calentar una sala vac&#237;a toda la semana.</span></div>
+        </div>
+        <div class="mim-ben">
+          <span class="mim-ben-icon">&#128273;</span>
+          <div class="mim-ben-name"><span>Dejar entrar a alguien sin estar all&#237;</span></div>
+          <div class="mim-ben-desc"><span>Un permiso de acceso temporal para el fontanero, una entrega o la cuidadora, v&#225;lido el tiempo necesario y revocable en un gesto. Se acab&#243; la llave bajo la maceta.</span></div>
+        </div>
+        <div class="mim-ben">
+          <span class="mim-ben-icon">&#128663;</span>
+          <div class="mim-ben-name"><span>La plaza de visitante se reserva con antelaci&#243;n</span></div>
+          <div class="mim-ben-desc"><span>Su invitado tiene una plaza, y sigue libre cuando llega. La duraci&#243;n se acuerda al reservar, lo que evita lo &#250;nico que arruina una plaza de visitante.</span></div>
+        </div>
+        <div class="mim-ben">
+          <span class="mim-ben-icon">&#127793;</span>
+          <div class="mim-ben-name"><span>El invernadero se vigila solo</span></div>
+          <div class="mim-ben-desc"><span>La temperatura y los niveles de los dep&#243;sitos se registran de forma continua y se muestran en la aplicaci&#243;n &#8212; ya est&#225; en funcionamiento, y demuestra que el resto se sostiene.</span></div>
+        </div>
+        <div class="mim-ben">
+          <span class="mim-ben-icon">&#128276;</span>
+          <div class="mim-ben-name"><span>Una alerta, no cien notificaciones</span></div>
+          <div class="mim-ben-desc"><span>Cada evento llega a la persona implicada: el residente para su vivienda, la coordinaci&#243;n para el edificio. El silencio es el funcionamiento normal.</span></div>
+        </div>
+        <div class="mim-ben">
+          <span class="mim-ben-icon">&#128202;</span>
+          <div class="mim-ben-name"><span>Usted ve lo que consume</span></div>
+          <div class="mim-ben-desc"><span>Su curva, su comparaci&#243;n con la media del edificio, el efecto de un gesto. Para informarse y decidir &#8212; nunca para refacturarle nada.</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+  
+  <!-- ══ 4 · DONNÉES ══ -->
+  <section class="mim-data">
+    <div class="mim-wrap">
+      <div class="mim-data-grid">
+        <div>
+          <div class="msec-tag"><span>Sus datos</span></div>
+          <h2 class="msec-title"><span>Todo se queda<br>dentro del edificio.</span></h2>
+          <p class="msec-body" style="margin-top:1.25rem"><span>En esta historia no hay nube. Los sensores hablan con una m&#225;quina instalada en el cuarto t&#233;cnico, y es esa m&#225;quina la que muestra la informaci&#243;n en su aplicaci&#243;n. Sus datos nunca salen del edificio: <strong>solo circulan, cifrados, las actualizaciones, las licencias y los intercambios de servicios entre edificios</strong>.</span></p>
+          <p class="msec-body" style="margin-top:1rem"><span>Cuando est&#225; fuera, llega a esa misma m&#225;quina por un t&#250;nel privado &#8212; cambia el trayecto, no el destino.</span></p>
+        </div>
+        <div>
+          <div class="mim-flow">
+            <div class="mim-step"><span class="mim-step-n">1</span><div class="mim-step-t"><span>Los sensores</span></div><div class="mim-step-d"><span>Agua, temperatura, puertas, cargadores, invernadero. Sin imagen, sin sonido.</span></div></div>
+            <div class="mim-step"><span class="mim-step-n">2</span><div class="mim-step-t"><span>La m&#225;quina del cuarto t&#233;cnico</span></div><div class="mim-step-d"><span>Registra, decide, alerta. Est&#225; aqu&#237;, no en otro sitio.</span></div></div>
+            <div class="mim-step"><span class="mim-step-n">3</span><div class="mim-step-t"><span>Su pantalla</span></div><div class="mim-step-d"><span>En CoHabitat, en la red del edificio o por t&#250;nel privado desde fuera.</span></div></div>
+          </div>
+          <p class="mim-flow-note"><span><strong>Qui&#233;n ve qu&#233;.</strong> Los datos detallados de su vivienda solo son visibles para usted. El edificio trabaja &#250;nicamente con totales. Los plazos de conservaci&#243;n est&#225;n escritos y limitados, conforme a la ley quebequense de protecci&#243;n de la informaci&#243;n personal.</span></p>
+        </div>
+      </div>
+    </div>
+  </section>
+  
+  <!-- ══ 5 · RETOUR AUX NIVEAUX ══ -->
+  <section class="mim-tie">
+    <div class="mim-tie-inner">
+      <div class="mim-tie-dots"><span class="mdot-green"></span><span class="mdot-blue"></span><span class="mdot-orange"></span></div>
+      <div class="mim-tie-text">
+        <h3><span>Los tres niveles, m&#225;s arriba en esta p&#225;gina, son la pantalla de todo esto.</span></h3>
+        <p><span>Verde, azul, naranja: no son carteles, son estados del edificio. La inm&#243;tica los mantiene al d&#237;a, enciende los pilotos de planta &#8212; parpadeantes durante un simulacro anunciado, fijos en una situaci&#243;n real &#8212; y muestra la consigna del momento en la aplicaci&#243;n. El resto del tiempo no se ve. Es exactamente lo que se le pide.</span></p>
+      </div>
+    </div>
+  </section>
+
+  <div class="ms2-disclaimer">
+    <div class="ms2-disclaimer-icon">ℹ️</div>
+    <div class="ms2-disclaimer-text">
+      <strong><span>Alineado con estándares reconocidos</span></strong>
+      Ces protocoles s'inspirent du programme <a href="https://www.preparez-vous.gc.ca" target="_blank" rel="noopener" style="color:var(--green);text-decoration:underline;">Préparez-vous</a> <span>del gobierno de Canadá y del marco de los</span> <em>Plans Particuliers de Mise en Sûreté (PPMS)</em> <span>utilizado en Francia para los establecimientos abiertos al público. En caso de emergencia real, las directrices oficiales de las autoridades provinciales y municipales siempre prevalecen. Los residentes reciben formación sobre todos los procedimientos antes de la mudanza y durante los simulacros anuales.</span>
+    </div>
+  </div>
+
+
+  <!-- ══ APPEL À L'ACTION ══ -->
+  <section class="mim-cta">
+    <h2><span>¿Le gustaría vivir en un edificio Modulimo?</span></h2>
+    <p><span>Deje sus datos para recibir información sobre los proyectos en preparación.</span></p>
+    <a class="mim-cta-btn" href="/es/projets/#contact"><span>Quiero información</span></a>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="footer-inner">
+      <div class="footer-top">
+        <div>
+          <div class="footer-brand">
+            <img src="/images/ModulimoLogoSobre.png" alt="Modulimo" />
+          </div>
+          <p class="footer-tagline"><span>Ecosistema residencial integrado — vivienda, movilidad, servicios y software.</span></p>
+        </div>
+        <div class="footer-nav">
+          <h5><span>Navegación</span></h5>
+          <a href="/es/cohabitat/">CoHabitat</a>
+          <a href="/es/mobilite/"><span>Movilidad</span></a>
+          <a href="/es/inmotica/"><span>Inmótica</span></a>
+          <a href="/es/projets/"><span>Proyectos</span></a>
+          <a href="/es/produits/"><span>Productos</span></a>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p><span>© 2026 Modulimo inc. — Todos los derechos reservados</span></p>
+        <p><a href="/es/confidentialite/"><span>Política de privacidad</span></a></p>
+        <p>Pointe-aux-Trembles, Montréal</p>
+      </div>
+    </div>
+  <p class="avis-traduction" lang="es">Esta página es una traducción facilitada únicamente a título informativo. No constituye promesa, compromiso ni garantía alguna, y puede modificarse sin previo aviso. En caso de discrepancia, la versión francesa prevalece en todos sus términos.</p>
+  </footer>
+
+  <script>
+    const toggle = document.getElementById('menuToggle');
+    const nav = document.getElementById('siteNav');
+    if (toggle && nav) {
+      toggle.addEventListener('click', function() {
+        const open = nav.classList.toggle('is-open');
+        toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+      });
+      document.querySelectorAll('#siteNav a').forEach(function(a) {
+        a.addEventListener('click', function() {
+          nav.classList.remove('is-open');
+          toggle.setAttribute('aria-expanded', 'false');
+        });
+      });
+    }
+  </script>
+  <script type="module" src="/js/theme.js"></script>
+
+</body>
+</html>

@@ -30,8 +30,9 @@ const ALT = LANGS.join('|');
 const ALT_TRAD = LANGS.filter((l) => l !== 'fr').join('|');
 
 // Pages générées. `route` est le chemin public FR (préfixé /en/ ou /es/
-// pour les autres langues). title/desc remplacent <title> et la meta
-// description par langue.
+// pour les autres langues). `routes`, facultatif, donne un chemin propre à
+// une langue (ex. /en/building-automation/) ; une langue absente reprend
+// `route`. title/desc remplacent <title> et la meta description par langue.
 const PAGES = [
   {
     src: 'src/index.html', route: '',
@@ -64,18 +65,22 @@ const PAGES = [
     },
   },
   {
-    src: 'src/securite/index.html', route: 'securite/',
+    src: 'src/immotique/index.html', route: 'immotique/',
+    routes: { en: 'building-automation/', es: 'inmotica/' },
+    // Ancien chemin de la page : une page de redirection y est générée
+    // dans chaque langue (voir pageRedirection).
+    anciennes: ['securite/'],
     title: {
-      fr: 'Sécurité — Modulimo',
-      en: 'Security — Modulimo',
-      es: 'Seguridad — Modulimo',
-      zh: '安全 — Modulimo',
+      fr: 'Immotique — Énergie, confort et sécurité | Modulimo',
+      en: 'Building automation — Energy, comfort and security | Modulimo',
+      es: 'Inmótica — Energía, confort y seguridad | Modulimo',
+      zh: '楼宇自动化 — 能源、舒适与安全 | Modulimo',
     },
     desc: {
-      fr: "La sécurité des résidents au cœur du modèle Modulimo — prévention, surveillance et résilience du milieu de vie.",
-      en: "Resident safety at the core of the Modulimo model — prevention, monitoring and resilience of the living environment.",
-      es: "La seguridad de los residentes en el centro del modelo Modulimo — prevención, vigilancia y resiliencia del entorno de vida.",
-      zh: "住户安全是 Modulimo 模式的核心 — 预防、监控与生活环境的韧性。",
+      fr: "Chaque immeuble Modulimo gère lui-même son énergie, sa chaleur, son réseau et ses services, et reste fonctionnel sans internet ni électricité du réseau. Schéma interactif.",
+      en: "Each Modulimo building manages its own energy, heat, network and services, and keeps running without internet or grid power. Interactive diagram.",
+      es: "Cada edificio Modulimo gestiona por sí mismo su energía, su calor, su red y sus servicios, y sigue funcionando sin internet ni electricidad de la red. Esquema interactivo.",
+      zh: "每栋 Modulimo 楼宇自行管理能源、热量、网络与服务，即使没有互联网或电网供电也能继续运行。交互式示意图。",
     },
   },
   {
@@ -158,7 +163,21 @@ const PAGES = [
 
 // Slugs internes réécrits avec préfixe de langue (le reste — /postuler,
 // /images, /js, ancres, externes — ne change pas).
-const ROUTE_SLUGS = ['mobilite', 'securite', 'projets/pointe-est', 'projets', 'produits', 'confidentialite', 'cohabitat'];
+const ROUTE_SLUGS = ['mobilite', 'immotique', 'projets/pointe-est', 'projets', 'produits', 'confidentialite', 'cohabitat'];
+
+// Chemin public d'une page dans une langue, de la racine du site :
+// « / », « /en/mobilite/ », « /en/building-automation/ »…
+function chemin(page, lang) {
+  const route = (page.routes && page.routes[lang]) || page.route;
+  return (lang === 'fr' ? '' : '/' + lang) + '/' + route;
+}
+
+// Slug FR (tel qu'écrit dans les liens des sources) → slug de la langue.
+function slugLocal(slug, lang) {
+  const page = PAGES.find((p) => p.route === slug + '/');
+  const route = page && page.routes && page.routes[lang];
+  return route ? route.replace(/\/$/, '') : slug;
+}
 
 // ------------------------------------------------------------
 // Extraction d'une langue. Les éléments data-lang consécutifs
@@ -255,7 +274,7 @@ function rewriteLinks(html, lang) {
   const slugAlt = ROUTE_SLUGS.join('|');
   // href="/slug", href="/slug/", href="/slug#ancre"
   html = html.replace(new RegExp(`href="/(${slugAlt})(/?)(#[^"]*)?"`, 'g'),
-    (full, slug, slash, anchor) => `href="${prefix}/${slug}/${anchor || ''}"`);
+    (full, slug, slash, anchor) => `href="${prefix}/${slugLocal(slug, lang)}/${anchor || ''}"`);
   // accueil : href="/" (pas /images, /js, /postuler…)
   html = html.replace(/href="\/"/g, `href="${prefix || ''}/"`);
   return html;
@@ -385,9 +404,9 @@ function avisTraduction(lang) {
 //
 // Ajouter une langue, c'est l'ajouter à LANGS, HREFLANG, NOMS, DRAPEAUX et
 // aux deux libellés d'ARIA. Le menu suit tout seul.
-function langSwitcher(route, lang) {
+function langSwitcher(page, lang) {
   const items = LANGS.map((l) => {
-    const url = (l === 'fr' ? '' : '/' + l) + '/' + route;
+    const url = chemin(page, l);
     const active = l === lang ? ' active' : '';
     return `<a class="lang-item${active}" href="${url}" lang="${l}" hreflang="${HREFLANG[l]}" aria-label="${ARIA.aller[l]}">${DRAPEAUX[l]}<span>${NOMS[l]}</span></a>`;
   }).join('\n            ');
@@ -399,8 +418,8 @@ function langSwitcher(route, lang) {
         </details>`;
 }
 
-function headLinks(route, lang) {
-  const urlFor = (l) => SITE + (l === 'fr' ? '' : '/' + l) + '/' + route;
+function headLinks(page, lang) {
+  const urlFor = (l) => SITE + chemin(page, l);
   return [
     `<link rel="canonical" href="${urlFor(lang)}" />`,
     ...LANGS.map((l) => `<link rel="alternate" hreflang="${HREFLANG[l]}" href="${urlFor(l)}" />`),
@@ -416,7 +435,7 @@ const OG_LOCALE = { fr: 'fr_CA', en: 'en_CA', es: 'es_MX', zh: 'zh_CN' };
 const OG_IMAGE_DEFAUT = '/images/ModulimoLogoSobre.png';
 
 function ogTags(page, lang) {
-  const url = SITE + (lang === 'fr' ? '' : '/' + lang) + '/' + page.route;
+  const url = SITE + chemin(page, lang);
   const image = SITE + (page.image || OG_IMAGE_DEFAUT);
   return [
     `<meta property="og:title" content="${esc(page.title[lang])}" />`,
@@ -467,14 +486,14 @@ function buildPage(page, lang, verrou) {
   }
 
   // canonical + hreflang juste après la meta description
-  html = html.replace(desc, desc + '\n' + headLinks(page.route, lang) + '\n' + ogTags(page, lang));
+  html = html.replace(desc, desc + '\n' + headLinks(page, lang) + '\n' + ogTags(page, lang));
   // og:title / og:description éventuellement écrits dans la source : les
   // nôtres, localisés, font foi.
   html = html.replace(/\n\s*<meta property="og:(?:type|site_name)"[^>]*>/g, '');
   html = html.replace('</title>', '</title>\n  <meta property="og:type" content="website" />\n  <meta property="og:site_name" content="Modulimo" />');
 
   // sélecteur de langue par URL
-  html = html.replace(/<div class="lang-switch">[\s\S]*?<\/div>/, langSwitcher(page.route, lang));
+  html = html.replace(/<div class="lang-switch">[\s\S]*?<\/div>/, langSwitcher(page, lang));
 
   // cadenas de l'onglet Produits (voir js/cadenas.js)
   if (verrou) html = html.replace('</head>', teteCadenas(verrou) + '</head>');
@@ -664,11 +683,40 @@ function pagePorte(page, lang, paquet) {
 `;
 }
 
-function writeOut(route, lang, html) {
-  const dir = path.join(lang === 'fr' ? '.' : lang, route);
+function writeOut(chemin, html) {
+  const dir = path.join('.', chemin);
   fs.mkdirSync(dir, { recursive: true });
   fs.writeFileSync(path.join(dir, 'index.html'), html);
   return path.join(dir, 'index.html');
+}
+
+// Pages de redirection (anciens chemins). GitHub Pages ne fait pas de
+// redirection côté serveur et le site n'utilise pas Jekyll : une page
+// minimale renvoie aussitôt vers le nouveau chemin, déclare celui-ci comme
+// canonique pour les moteurs et n'est pas indexée. Le lien visible sert si
+// le rafraîchissement automatique est bloqué. Hors sitemap.
+const REDIR = {
+  titre: { fr: 'Page déplacée', en: 'Page moved', es: 'Página trasladada', zh: '页面已迁移' },
+  texte: { fr: 'Cette page a déménagé :', en: 'This page has moved:', es: 'Esta página se ha trasladado:', zh: '本页面已迁移至：' },
+};
+
+function pageRedirection(page, lang) {
+  const url = chemin(page, lang);
+  return `<!DOCTYPE html>
+<html lang="${lang}">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="robots" content="noindex" />
+  <meta http-equiv="refresh" content="0; url=${url}" />
+  <link rel="canonical" href="${SITE + url}" />
+  <title>${esc(REDIR.titre[lang])} — Modulimo</title>
+</head>
+<body style="font-family:sans-serif;padding:2rem;">
+  <p>${esc(REDIR.texte[lang])} <a href="${url}">${esc(page.title[lang].split(' — ')[0])}</a></p>
+</body>
+</html>
+`;
 }
 
 function buildSitemap() {
@@ -677,10 +725,10 @@ function buildSitemap() {
   for (const page of PAGES) {
     if (page.protege) continue; // derrière un NIP : rien à indexer
     for (const lang of LANGS) {
-      const loc = SITE + (lang === 'fr' ? '' : '/' + lang) + '/' + page.route;
+      const loc = SITE + chemin(page, lang);
       const alts = LANGS.map((l) =>
-        `    <xhtml:link rel="alternate" hreflang="${HREFLANG[l]}" href="${SITE + (l === 'fr' ? '' : '/' + l) + '/' + page.route}"/>`
-      ).join('\n') + `\n    <xhtml:link rel="alternate" hreflang="x-default" href="${SITE}/${page.route}"/>`;
+        `    <xhtml:link rel="alternate" hreflang="${HREFLANG[l]}" href="${SITE + chemin(page, l)}"/>`
+      ).join('\n') + `\n    <xhtml:link rel="alternate" hreflang="x-default" href="${SITE + chemin(page, 'fr')}"/>`;
       urls.push(`  <url>\n    <loc>${loc}</loc>\n    <lastmod>${today}</lastmod>\n${alts}\n  </url>`);
     }
   }
@@ -706,9 +754,13 @@ function main() {
       if (page.protege) {
         if (!cle) { sautees.push(page.route); break; }
         const html = buildPage(page, lang, verrou);
-        written.push(writeOut(page.route, lang, pagePorte(page, lang, chiffrer(html, cle, sel))));
+        written.push(writeOut(chemin(page, lang), pagePorte(page, lang, chiffrer(html, cle, sel))));
       } else {
-        written.push(writeOut(page.route, lang, buildPage(page, lang, verrou)));
+        written.push(writeOut(chemin(page, lang), buildPage(page, lang, verrou)));
+      }
+      for (const ancienne of page.anciennes || []) {
+        const de = (lang === 'fr' ? '' : '/' + lang) + '/' + ancienne;
+        written.push(writeOut(de, pageRedirection(page, lang)));
       }
     }
   }
