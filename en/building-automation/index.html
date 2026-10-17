@@ -478,11 +478,11 @@
               immB:{t:"Immeuble B",s:["Nœud autonome"],d:"Chaque immeuble Modulimo est un nœud autonome identique, avec son serveur, son énergie et ses données. Les immeubles s'échangent des services par des tunnels chiffrés."},
               immC:{t:"Immeuble C",s:["Nœud autonome"],d:"Chaque immeuble Modulimo est un nœud autonome identique, avec son serveur, son énergie et ses données. Les immeubles s'échangent des services par des tunnels chiffrés."},
               pv:{t:"Panneaux solaires",s:["≈ 6 kWc, inclinés 45-60°"],d:"Installés sur le toit et inclinés pour favoriser la production d'hiver et le glissement de la neige. Production estimée : ≈ 30 kWh/jour l'été, ≈ 9 kWh/jour en décembre."},
-              ond:{t:"Onduleur hybride",s:["Cascade de priorités"],d:"Répartit l'énergie selon une cascade de priorités : charges critiques d'abord, puis batterie, puis surplus vers l'eau chaude."},
+              ond:{t:"Onduleur hybride",s:["Cascade de priorités"],d:"Répartit l'énergie selon une cascade de priorités : charges critiques d'abord, puis batterie, puis surplus vers l'eau chaude et les dalles de béton."},
               bat:{t:"Batterie critique",s:["LiFePO4 ≈ 10 kWh"],d:"Réservée aux fonctions essentielles. Elle couvre environ deux jours de panne pour l'informatique, la surveillance et le contrôle d'accès."},
               hydro:{t:"Réseau Hydro-Québec",s:["Appoint et recharge"],d:"Le réseau d'Hydro-Québec sert d'appoint, surtout l'hiver, et recharge la batterie au besoin."},
               crit:{t:"Charges critiques",s:["TI, caméras, accès"],d:"Informatique, réseau, caméras, contrôle d'accès et interphones. Ces fonctions restent alimentées pendant une panne."},
-              fw:{t:"Pare-feu + mesh",s:["WireGuard chiffré"],d:"Segmente le réseau de l'immeuble en zones isolées (résidents, caméras, capteurs, kiosques) et ouvre un tunnel chiffré vers les autres immeubles."},
+              fw:{t:"Pare-feu + mesh",s:["Tunnel chiffré"],d:"Segmente le réseau de l'immeuble en zones isolées (résidents, caméras, capteurs, kiosques) et ouvre un tunnel chiffré vers les autres immeubles."},
               srv:{t:"Serveur local",s:["Gestion d'énergie","Routeur PV · délestage","IA locale · CoHabitat"],d:"Le cerveau de l'immeuble : gestion de l'énergie en temps réel, routage du surplus solaire, délestage automatique en panne, IA locale et application CoHabitat servie sur place."},
               chauf:{t:"Chauffage + climatisation",s:["Radiant · ventilo-convecteurs"],d:"Planchers radiants dans les chambres et les salles de bain, pour le silence et le confort du sommeil ; ventilo-convecteurs dans les séjours, qui réagissent vite et déshumidifient. Chaque chambre a sa sonde de température et d'humidité. En climatisation, la chaleur retirée des logements préchauffe l'eau chaude au lieu d'être rejetée dehors."},
               vre:{t:"Ventilation VRE",s:["Air neuf déshumidifié"],d:"Le ventilateur récupérateur d'énergie renouvelle l'air de ce bâtiment très étanche en récupérant la chaleur et une partie de l'humidité. L'air neuf arrive directement dans les chambres, ce qui permet aux planchers de rafraîchir sans condensation."},
@@ -520,11 +520,11 @@
               immB:{t:"Building B",s:["Autonomous node"],d:"Every Modulimo building is an identical autonomous node, with its own server, energy and data. Buildings exchange services through encrypted tunnels."},
               immC:{t:"Building C",s:["Autonomous node"],d:"Every Modulimo building is an identical autonomous node, with its own server, energy and data. Buildings exchange services through encrypted tunnels."},
               pv:{t:"Solar panels",s:["≈ 6 kWp, tilted 45-60°"],d:"Installed on the roof and tilted to favour winter production and let snow slide off. Estimated output: ≈ 30 kWh/day in summer, ≈ 9 kWh/day in December."},
-              ond:{t:"Hybrid inverter",s:["Priority cascade"],d:"Distributes energy through a priority cascade: critical loads first, then the battery, then the surplus to hot water."},
+              ond:{t:"Hybrid inverter",s:["Priority cascade"],d:"Distributes energy through a priority cascade: critical loads first, then the battery, then the surplus to hot water and the concrete slabs."},
               bat:{t:"Critical battery",s:["LiFePO4 ≈ 10 kWh"],d:"Reserved for essential functions. It covers about two days of outage for IT, surveillance and access control."},
               hydro:{t:"Hydro-Québec grid",s:["Backup and recharge"],d:"The Hydro-Québec grid provides backup, mostly in winter, and recharges the battery when needed."},
               crit:{t:"Critical loads",s:["IT, cameras, access"],d:"IT, network, cameras, access control and intercoms. These functions stay powered during an outage."},
-              fw:{t:"Firewall + mesh",s:["Encrypted WireGuard"],d:"Splits the building network into isolated zones (residents, cameras, sensors, kiosks) and opens an encrypted tunnel to the other buildings."},
+              fw:{t:"Firewall + mesh",s:["Encrypted tunnel"],d:"Splits the building network into isolated zones (residents, cameras, sensors, kiosks) and opens an encrypted tunnel to the other buildings."},
               srv:{t:"Local server",s:["Energy management","PV router · load shedding","Local AI · CoHabitat"],d:"The brain of the building: real-time energy management, solar surplus routing, automatic load shedding during outages, local AI and the CoHabitat app served on site."},
               chauf:{t:"Heating + cooling",s:["Radiant · fan coils"],d:"Radiant floors in bedrooms and bathrooms, for silence and sleeping comfort; fan coils in living rooms, which react quickly and dehumidify. Each bedroom has its own temperature and humidity sensor. When cooling, the heat removed from the units preheats the hot water instead of being released outside."},
               vre:{t:"ERV ventilation",s:["Dehumidified fresh air"],d:"The energy recovery ventilator renews the air of this very airtight building while recovering heat and part of the humidity. Fresh air goes straight to the bedrooms, which lets the floors cool without condensation."},
@@ -562,11 +562,11 @@
               immB:{t:"Edificio B",s:["Nodo autónomo"],d:"Cada edificio Modulimo es un nodo autónomo idéntico, con su servidor, su energía y sus datos. Los edificios intercambian servicios mediante túneles cifrados."},
               immC:{t:"Edificio C",s:["Nodo autónomo"],d:"Cada edificio Modulimo es un nodo autónomo idéntico, con su servidor, su energía y sus datos. Los edificios intercambian servicios mediante túneles cifrados."},
               pv:{t:"Paneles solares",s:["≈ 6 kWp, inclinados 45-60°"],d:"Instalados en el techo e inclinados para favorecer la producción de invierno y el deslizamiento de la nieve. Producción estimada: ≈ 30 kWh/día en verano, ≈ 9 kWh/día en diciembre."},
-              ond:{t:"Inversor híbrido",s:["Cascada de prioridades"],d:"Reparte la energía según una cascada de prioridades: primero las cargas críticas, luego la batería y después el excedente hacia el agua caliente."},
+              ond:{t:"Inversor híbrido",s:["Cascada de prioridades"],d:"Reparte la energía según una cascada de prioridades: primero las cargas críticas, luego la batería y después el excedente hacia el agua caliente y las losas de hormigón."},
               bat:{t:"Batería crítica",s:["LiFePO4 ≈ 10 kWh"],d:"Reservada a las funciones esenciales. Cubre unos dos días de corte para la informática, la vigilancia y el control de acceso."},
               hydro:{t:"Red Hydro-Québec",s:["Apoyo y recarga"],d:"La red de Hydro-Québec sirve de apoyo, sobre todo en invierno, y recarga la batería cuando hace falta."},
               crit:{t:"Cargas críticas",s:["TI, cámaras, accesos"],d:"Informática, red, cámaras, control de acceso e interfonos. Estas funciones siguen alimentadas durante un corte."},
-              fw:{t:"Cortafuegos + malla",s:["WireGuard cifrado"],d:"Segmenta la red del edificio en zonas aisladas (residentes, cámaras, sensores, quioscos) y abre un túnel cifrado hacia los demás edificios."},
+              fw:{t:"Cortafuegos + malla",s:["Túnel cifrado"],d:"Segmenta la red del edificio en zonas aisladas (residentes, cámaras, sensores, quioscos) y abre un túnel cifrado hacia los demás edificios."},
               srv:{t:"Servidor local",s:["Gestión de energía","Router FV · deslastre","IA local · CoHabitat"],d:"El cerebro del edificio: gestión de la energía en tiempo real, enrutamiento del excedente solar, deslastre automático en caso de corte, IA local y la aplicación CoHabitat servida en el lugar."},
               chauf:{t:"Calefacción + clima",s:["Radiante · fancoils"],d:"Suelos radiantes en los dormitorios y los baños, para el silencio y el confort del sueño; fancoils en las salas, que reaccionan rápido y deshumidifican. Cada dormitorio tiene su sonda de temperatura y humedad. En modo climatización, el calor retirado de las viviendas precalienta el agua caliente en lugar de expulsarse al exterior."},
               vre:{t:"Ventilación ERV",s:["Aire nuevo deshumidificado"],d:"El ventilador recuperador de energía renueva el aire de este edificio muy hermético recuperando el calor y parte de la humedad. El aire nuevo llega directamente a los dormitorios, lo que permite a los suelos refrescar sin condensación."},
@@ -604,11 +604,11 @@
               immB:{t:"楼宇 B",s:["自主节点"],d:"每栋 Modulimo 楼宇都是一个相同的自主节点，拥有自己的服务器、能源与数据。楼宇之间通过加密隧道交换服务。"},
               immC:{t:"楼宇 C",s:["自主节点"],d:"每栋 Modulimo 楼宇都是一个相同的自主节点，拥有自己的服务器、能源与数据。楼宇之间通过加密隧道交换服务。"},
               pv:{t:"太阳能板",s:["≈ 6 kWp，倾角 45-60°"],d:"安装在屋顶，倾斜角度有利于冬季发电和积雪滑落。预计发电量：夏季 ≈ 30 kWh/天，12 月 ≈ 9 kWh/天。"},
-              ond:{t:"混合逆变器",s:["优先级级联"],d:"按优先级级联分配能源：先供关键负载，再为电池充电，最后将多余电力用于热水。"},
+              ond:{t:"混合逆变器",s:["优先级级联"],d:"按优先级级联分配能源：先供关键负载，再为电池充电，最后将多余电力用于热水和混凝土楼板。"},
               bat:{t:"关键负载电池",s:["LiFePO4 ≈ 10 kWh"],d:"专供基本功能使用。可在停电时为信息系统、监控与门禁提供约两天的电力。"},
               hydro:{t:"Hydro-Québec 电网",s:["补充与充电"],d:"Hydro-Québec 电网作为补充，主要在冬季使用，并在需要时为电池充电。"},
               crit:{t:"关键负载",s:["IT、摄像头、门禁"],d:"信息系统、网络、摄像头、门禁与对讲。停电期间这些功能保持供电。"},
-              fw:{t:"防火墙 + 网状网络",s:["WireGuard 加密"],d:"将楼宇网络划分为相互隔离的区域（住户、摄像头、传感器、自助终端），并建立通往其他楼宇的加密隧道。"},
+              fw:{t:"防火墙 + 网状网络",s:["加密隧道"],d:"将楼宇网络划分为相互隔离的区域（住户、摄像头、传感器、自助终端），并建立通往其他楼宇的加密隧道。"},
               srv:{t:"本地服务器",s:["能源管理","光伏路由 · 负荷切除","本地 AI · CoHabitat"],d:"楼宇的大脑：实时能源管理、太阳能余电调配、停电时自动切除负载、本地 AI，以及在本地提供的 CoHabitat 应用。"},
               chauf:{t:"供暖 + 空调",s:["辐射地板 · 风机盘管"],d:"卧室和浴室采用辐射地板，安静舒适，利于睡眠；起居室采用风机盘管，响应迅速并能除湿。每间卧室都有温湿度传感器。制冷时，从住户带走的热量用于预热热水，而不是排到室外。"},
               vre:{t:"ERV 新风系统",s:["除湿新鲜空气"],d:"能量回收通风机为这栋高度气密的建筑更新空气，同时回收热量和部分湿气。新风直接送入卧室，使地板可以降温而不结露。"},
@@ -774,8 +774,8 @@
       <div>
         <ul class="mim-points">
           <li><strong><span>Rooftop solar panels</span></strong> <span>— about 6 kWp for a typical building, tilted to produce in winter and let snow slide off.</span></li>
-          <li><strong><span>A priority cascade:</span></strong> <span>essential functions first, then the battery, then the surplus heats water.</span></li>
-          <li><strong><span>A “thermal battery”.</span></strong> <span>The surplus is stored as hot water, far cheaper than an electric battery.</span></li>
+          <li><strong><span>A priority cascade:</span></strong> <span>essential functions first, then the battery, then the surplus heats the water and the concrete slabs.</span></li>
+          <li><strong><span>“Thermal batteries”.</span></strong> <span>The surplus is stored in the tank's hot water and in the mass of the concrete slabs, which release their heat for hours. Far cheaper than an electric battery.</span></li>
         </ul>
         <p class="mim-ind"><span>Indicative values for a typical building.</span></p>
       </div>
@@ -833,7 +833,7 @@
         <li><strong><span>Isolated zones:</span></strong> <span>residents, cameras, sensors, shared kiosks. A compromised device cannot reach the other zones.</span></li>
         <li><strong><span>Each unit is isolated from the others</span></strong> <span>on the Wi-Fi.</span></li>
         <li><strong><span>Cameras have no internet access;</span></strong> <span>footage stays inside the building.</span></li>
-        <li><strong><span>Encrypted tunnels (WireGuard)</span></strong> <span>connect the buildings to one another.</span></li>
+        <li><strong><span>Encrypted tunnels</span></strong> <span>connect the buildings to one another.</span></li>
         <li><strong><span>The AI advises; it does not control safety systems.</span></strong> <span>The building's safety functions remain under the control of dedicated controllers.</span></li>
         <li><strong><span>Quebec Law 25:</span></strong> <span>residents' data stays inside the building.</span></li>
       </ul>
