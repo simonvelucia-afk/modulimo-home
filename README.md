@@ -7,7 +7,7 @@ Chaque langue a ses propres URLs :
 
 | Langue | URLs |
 |---|---|
-| Français (principale) | `/`, `/mobilite/`, `/securite/`, `/projets/`, `/projets/pointe-est/`, `/produits/` |
+| Français (principale) | `/`, `/mobilite/`, `/immotique/`, `/projets/`, `/projets/pointe-est/`, `/produits/` |
 | Anglais | `/en/`, `/en/mobilite/`, … |
 | Espagnol | `/es/`, `/es/mobilite/`, … |
 
@@ -38,6 +38,19 @@ Sans dépendance (Node ≥ 16). Génère :
 
 Titres et meta descriptions par langue : voir le tableau `PAGES` en tête
 de `build.js`.
+
+### Chemins propres à une langue et redirections
+
+Une page peut avoir un chemin différent selon la langue (`routes` dans
+`PAGES`) : la page Immotique est servie à `/immotique/`,
+`/en/building-automation/`, `/es/inmotica/` et `/zh/immotique/`. Les liens
+des sources s'écrivent toujours avec le slug français (`href="/immotique"`),
+le build les traduit.
+
+Les anciens chemins d'une page (`anciennes` dans `PAGES`) reçoivent une page
+de redirection dans chaque langue (`meta refresh`, `canonical` vers le
+nouveau chemin, `noindex`, lien visible) : `/securite/` et ses versions
+`/en/`, `/es/`, `/zh/` renvoient vers la page Immotique.
 
 ### Pages protégées par NIP (`/produits/`)
 
@@ -73,12 +86,12 @@ GitHub. Le NIP protège le site, pas le dépôt.
 ├── src/                    ← pages SOURCES trilingues (à éditer)
 │   ├── index.html
 │   ├── mobilite/index.html
-│   ├── securite/index.html
+│   ├── immotique/index.html
 │   ├── projets/index.html
 │   ├── projets/pointe-est/index.html
 │   └── produits/index.html
 ├── index.html              ← GÉNÉRÉ (français)
-├── mobilite/ securite/ projets/ produits/   ← GÉNÉRÉS (français)
+├── mobilite/ immotique/ projets/ produits/  ← GÉNÉRÉS (français)
 ├── en/  es/                ← GÉNÉRÉS (anglais, espagnol)
 ├── postuler/               ← formulaire de candidature (hors build, FR)
 ├── js/                     ← scripts partagés (lead-form, analytics, …)
