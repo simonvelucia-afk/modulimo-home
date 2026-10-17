@@ -116,6 +116,15 @@
     .mod-ico { font-size:1.5rem; display:block; margin-bottom:.7rem; }
     .mod-name { font-family:'Syne',sans-serif; font-weight:700; font-size:.9rem; margin-bottom:.35rem; }
     .mod-desc { font-size:.8rem; color:var(--muted); line-height:1.55; }
+    /* Module à venir : pleine largeur, pour ne pas laisser une carte seule
+       sur la dernière ligne de la grille. */
+    .mod-card.mod-soon { grid-column:1 / -1; display:grid; grid-template-columns:auto 1fr auto; gap:.4rem 1.2rem; align-items:center; border-style:dashed; }
+    .mod-soon .mod-ico { margin-bottom:0; grid-column:1; grid-row:1 / span 2; }
+    .mod-soon .mod-desc { grid-column:2; }
+    .mod-soon .mod-name { grid-column:2; margin-bottom:0; display:flex; align-items:center; gap:.6rem; flex-wrap:wrap; }
+    .mod-tag { font-family:'DM Sans',sans-serif; font-size:.62rem; font-weight:700; letter-spacing:.12em; text-transform:uppercase; color:var(--green); border:1px solid var(--green); border-radius:999px; padding:.1rem .55rem; }
+    .mod-link { grid-column:3; grid-row:1 / span 2; font-size:.82rem; font-weight:600; color:var(--green); white-space:nowrap; }
+    .mod-link:hover { text-decoration:underline; }
 
     .shots-grid { display:grid; grid-template-columns:1fr 1fr; gap:24px; }
     .shot { margin:0; }
@@ -237,6 +246,9 @@
       .proof { border-bottom:1px solid var(--border); }
       .ben-grid, .deploy-grid { grid-template-columns:1fr; }
       .mod-grid { grid-template-columns:1fr 1fr; }
+      .mod-card.mod-soon { grid-template-columns:auto 1fr; }
+      .mod-soon .mod-ico { grid-row:1 / span 3; }
+      .mod-soon .mod-link { grid-row:3; grid-column:2; }
       .footer { padding:44px 2rem 32px; }
     }
     @media (max-width:640px) {
@@ -398,6 +410,12 @@
           <span class="mod-ico" aria-hidden="true">📊</span>
           <div class="mod-name"><span>统计</span></div>
           <div class="mod-desc"><span>为管理员提供使用报告与 CSV 导出。</span></div>
+        </div>
+        <div class="mod-card mod-soon">
+          <span class="mod-ico" aria-hidden="true">⚡</span>
+          <div class="mod-name"><span>能源与舒适</span> <span class="mod-tag"><span>即将推出</span></span></div>
+          <div class="mod-desc"><span>楼宇自动化的显示界面：您住户的热水用量与楼宇平均值对比，警报（渗漏、结冰、停电）发送给相应的人，以及停电或断网期间楼宇的运行状态。</span></div>
+          <a class="mod-link" href="/zh/immotique/"><span>了解楼宇自动化 →</span></a>
         </div>
     </div>
   </section>
