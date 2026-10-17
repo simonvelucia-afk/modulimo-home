@@ -448,6 +448,11 @@ function ogTags(page, lang) {
   ].map((l) => '  ' + l).join('\n');
 }
 
+// Favicon : celui de la page d'accueil, posé par le build sur toutes les
+// pages. Les sources en déclaraient chacune un (ou aucun) et le site
+// affichait deux logos différents selon la page.
+const FAVICON = '<link rel="icon" type="image/png" href="/images/favicon_Modulimo.png" />';
+
 function esc(s) {
   return s.replace(/&/g, '&amp;').replace(/"/g, '&quot;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
 }
@@ -475,6 +480,10 @@ function buildPage(page, lang, verrou) {
   // de page du site n'ont pas la même forme, mais tous ferment sur </footer>.
   const avis = avisTraduction(lang);
   if (avis) html = html.replace('</footer>', avis + '\n  </footer>');
+
+  // favicon unique : ceux des sources sont retirés
+  html = html.replace(/\n?[ \t]*<link rel="(?:icon|shortcut icon|apple-touch-icon)"[^>]*>/gi, '');
+  html = html.replace('</title>', '</title>\n  ' + FAVICON);
 
   // titre + meta description localisés
   html = html.replace(/<title>[^<]*<\/title>/i, `<title>${esc(page.title[lang]).replace(/&quot;/g, '"')}</title>`);
@@ -587,6 +596,7 @@ function pagePorte(page, lang, paquet) {
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="robots" content="noindex, nofollow" />
   <title>${esc(t('titre'))} — Modulimo</title>
+  ${FAVICON}
   <link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=DM+Sans:wght@400;500&display=swap" rel="stylesheet">
   <style>
     :root { --off:#f7f5f0; --dark:#1a1a1a; --mid:#4a4a4a; --green:#2d7a4f; --border:#e0ddd8; --err:#b3261e; }
@@ -711,6 +721,7 @@ function pageRedirection(page, lang) {
   <meta http-equiv="refresh" content="0; url=${url}" />
   <link rel="canonical" href="${SITE + url}" />
   <title>${esc(REDIR.titre[lang])} — Modulimo</title>
+  ${FAVICON}
 </head>
 <body style="font-family:sans-serif;padding:2rem;">
   <p>${esc(REDIR.texte[lang])} <a href="${url}">${esc(page.title[lang].split(' — ')[0])}</a></p>
