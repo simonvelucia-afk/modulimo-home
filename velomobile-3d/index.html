@@ -127,10 +127,10 @@ body.epure .coin button:hover, body.epure .coin button:focus-visible { opacity: 
     <h1>Vélomobile 1:12</h1>
     <div class="sous">Maquette 200 mm · véhicule réel 2,4 m</div>
   </div>
-  <div class="etat"><i class="puce"></i><span>Un 6 pi pédale sur tout le tour sans sortir de la coque ni toucher les roues, même roue avant braquée à 45°.</span></div>
+  <div class="etat"><i class="puce"></i><span>Un 6 pi pédale sur tout le tour sans sortir de la coque ni toucher les roues, même roue avant braquée à 60°.</span></div>
   <div class="etat"><i class="puce"></i><span>Le nez recouvre la roue avant comme un garde-boue, avec 45 mm de jeu au pneu sur tout le braquage.</span></div>
   <div class="etat"><i class="puce"></i><span>Éclairage : bande avant, feu arrière, quatre clignotants.</span></div>
-  <div class="etat"><i class="puce"></i><span>Siège monté de 4 po. Volant papillon et roue avant à ±45° (demi-tour dans ≈ 3,1 m) : renvoi par courroie puis double cardan.</span></div>
+  <div class="etat"><i class="puce"></i><span>Siège monté de 4 po. Volant papillon ±45°, roue avant ±60° (demi-tour dans ≈ 1,8 m) : courroie démultipliée (poulies Ø70 / Ø52,5) puis double cardan.</span></div>
   <div class="etat"><i class="puce"></i><span>Petites roues escamotables : le bras pivote vers l'arrière et vers le haut, et la roue se range debout dans le flanc arrière.</span></div>
   <div class="etat"><i class="puce"></i><span>Mannequin habillé confortablement (coton ouaté à capuchon, jogging, espadrilles) : toutes les vérifications sont faites avec les vêtements.</span></div>
   <div class="etat"><i class="puce"></i><span>Grandes portes vitrées à charnières avant : de devant les orteils à derrière la tête, du seuil jusqu'au toit opaque.</span></div>
@@ -150,8 +150,9 @@ body.epure .coin button:hover, body.epure .coin button:focus-visible { opacity: 
       <dt>Pivot de direction</dt><dd>72°</dd>
       <dt>Chasse au sol</dt><dd>60 mm</dd>
       <dt>Angles des cardans</dt><dd>28° et 33°</dd>
-      <dt>Braquage de la roue</dt><dd>±45°</dd>
-      <dt>Rayon de braquage</dt><dd>≈ 1,5 m</dd>
+      <dt>Volant</dt><dd>±45°</dd>
+      <dt>Braquage de la roue</dt><dd>±60°</dd>
+      <dt>Rayon de braquage</dt><dd>≈ 0,9 m</dd>
       <dt>Ouverture de porte</dt><dd>1 230 × 1 420 mm</dd>
       <dt>Seuil de porte</dt><dd>300 mm</dd>
       <dt>Bas du toit</dt><dd>1 720 mm</dd>
@@ -449,12 +450,13 @@ function clignoter(t) {
 const rVolant = document.getElementById("r-volant"), oVolant = document.getElementById("o-volant");
 function diriger(deg) {
   volantArt.tourner(deg);
-  avant.tourner(deg / P.rapport);  // courroie crantée : la roue tourne 1,8 fois moins
-  const ib = Math.round((deg + 45) / 5);
+  avant.tourner(deg / P.rapport);  // courroie crantée : roue = volant / rapport des poulies
+  const ib = Math.round((deg + P.volant_max) / 5);
   bras.forEach((g, i) => (g.visible = i === ib));
   const roue = Math.round(deg / P.rapport);
   oVolant.textContent = (deg > 0 ? "+" : "") + deg + "° → roue " + (roue > 0 ? "+" : "") + roue + "°";
 }
+rVolant.min = -P.volant_max; rVolant.max = P.volant_max;   // course réelle du volant (parametres.json)
 rVolant.addEventListener("input", () => diriger(+rVolant.value));
 diriger(+rVolant.value);
 
