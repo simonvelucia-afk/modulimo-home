@@ -124,3 +124,11 @@ Enregistrements `A` (racine `@`) pointant vers GitHub Pages :
 Enregistrement `CNAME` pour le sous-domaine `www` :
 Nom : `www`
 Valeur : `simonvelucia-afk.github.io`
+
+## Page Produits (privée)
+
+Les sources de `/produits/` et de la visionneuse `/velomobile-3d/` ne sont **pas** dans ce
+dépôt public : elles vivent dans le dépôt privé des sources Produits, dont une GitHub Action
+lance `node build.js` avec le code d'accès (`MODULIMO_PIN`) et pousse ici seulement les
+versions **chiffrées** (`produits/`, `velomobile-3d/data/modele.chiffre.json`).
+Un `node build.js` lancé ici sans ce code laisse ces pages telles quelles.

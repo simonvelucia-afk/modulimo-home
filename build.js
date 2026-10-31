@@ -529,6 +529,27 @@ function buildPage(page, lang, verrou) {
 // GitHub. Ce chiffrement protège le site, pas le dépôt.
 const PBKDF2_ITER = 600000;
 
+// Code d'accès : un mot + des chiffres (ou tout texte d'au moins NIP_MIN
+// caractères). Normalisé de la même façon au build et dans le navigateur :
+// minuscules, sans espaces — « Velo 2026… » et « velo2026… » ouvrent pareil.
+const NIP_MIN = 10;
+function normaliserNip(s) { return String(s).normalize('NFC').toLowerCase().replace(/\s+/g, ''); }
+
+// Visionneuse 3D du vélomobile (dossier du kit CAO : index.html + data/modele.json).
+// Le modèle est chiffré avec la même clé que les pages protégées ;
+// js/velo3d-cle.js le déchiffre dans le navigateur une fois le cadenas ouvert.
+function publierVelo3d(dossier, cle, sel) {
+  const sortie = 'velomobile-3d';
+  fs.mkdirSync(path.join(sortie, 'data'), { recursive: true });
+  let page = fs.readFileSync(path.join(dossier, 'index.html'), 'utf-8');
+  if (!page.includes('<head>')) throw new Error('visionneuse 3D : <head> introuvable');
+  page = page.replace('<head>', '<head>\n<meta name="robots" content="noindex, nofollow">\n<script src="/js/velo3d-cle.js"></script>');
+  fs.writeFileSync(path.join(sortie, 'index.html'), page);
+  const modele = fs.readFileSync(path.join(dossier, 'data', 'modele.json'), 'utf-8');
+  fs.writeFileSync(path.join(sortie, 'data', 'modele.chiffre.json'), JSON.stringify(chiffrer(modele, cle, sel)));
+  return [path.join(sortie, 'index.html'), path.join(sortie, 'data', 'modele.chiffre.json')];
+}
+
 function chiffrer(html, cle, sel) {
   const iv = crypto.randomBytes(12);
   const c = crypto.createCipheriv('aes-256-gcm', cle, iv);
@@ -538,12 +559,12 @@ function chiffrer(html, cle, sel) {
 
 const PORTE = {
   titre:  { fr: 'Accès réservé', en: 'Restricted access', es: 'Acceso reservado', zh: '限制访问' },
-  texte:  { fr: 'Cette section est réservée. Entrez le NIP à 10 chiffres qui vous a été remis.', en: 'This section is restricted. Enter the 10-digit PIN you were given.', es: 'Esta sección es reservada. Introduzca el PIN de 10 dígitos que se le entregó.', zh: '此栏目仅限授权访问。请输入您获得的 10 位数字 PIN 码。' },
-  champ:  { fr: 'NIP (10 chiffres)', en: 'PIN (10 digits)', es: 'PIN (10 dígitos)', zh: 'PIN 码（10 位数字）' },
+  texte:  { fr: 'Cette section est réservée. Entrez le code d’accès qui vous a été remis.', en: 'This section is restricted. Enter the access code you were given.', es: 'Esta sección es reservada. Introduzca el código de acceso que se le entregó.', zh: '此栏目仅限授权访问。请输入您获得的访问码。' },
+  champ:  { fr: 'Code d’accès', en: 'Access code', es: 'Código de acceso', zh: '访问码' },
   bouton: { fr: 'Entrer', en: 'Enter', es: 'Entrar', zh: '进入' },
   attente:{ fr: 'Vérification…', en: 'Checking…', es: 'Verificando…', zh: '验证中…' },
-  erreur: { fr: 'NIP incorrect.', en: 'Incorrect PIN.', es: 'PIN incorrecto.', zh: 'PIN 码错误。' },
-  format: { fr: 'Le NIP compte exactement 10 chiffres.', en: 'The PIN is exactly 10 digits.', es: 'El PIN tiene exactamente 10 dígitos.', zh: 'PIN 码必须为 10 位数字。' },
+  erreur: { fr: 'Code d’accès incorrect.', en: 'Incorrect access code.', es: 'Código de acceso incorrecto.', zh: '访问码错误。' },
+  format: { fr: 'Code d’accès trop court.', en: 'Access code too short.', es: 'Código de acceso demasiado corto.', zh: '访问码太短。' },
   retour: { fr: '← Retour à l\'accueil', en: '← Back to home', es: '← Volver al inicio', zh: '← 返回首页' },
 };
 
@@ -624,7 +645,7 @@ function pagePorte(page, lang, paquet) {
     <p>${esc(t('texte'))}</p>
     <form id="porte" autocomplete="off" novalidate>
       <label for="nip">${esc(t('champ'))}</label>
-      <input id="nip" type="password" inputmode="numeric" pattern="[0-9]{10}" maxlength="10" autocomplete="off" required autofocus />
+      <input id="nip" type="password" autocapitalize="none" autocorrect="off" spellcheck="false" autocomplete="off" required autofocus />
       <button type="submit" id="go">${esc(t('bouton'))}</button>
       <div class="msg" id="msg" role="alert" aria-live="polite"></div>
     </form>
@@ -636,6 +657,8 @@ function pagePorte(page, lang, paquet) {
     var CLE = 'modulimo-produits';
     var b64 = function (s) { return Uint8Array.from(atob(s), function (c) { return c.charCodeAt(0); }); };
     var hex = function (u) { return Array.prototype.map.call(u, function (x) { return ('0' + x.toString(16)).slice(-2); }).join(''); };
+    var NIP_MIN = ${NIP_MIN};
+    var normaliserNip = ${normaliserNip.toString()};
     var dehex = function (h) { return new Uint8Array(h.match(/../g).map(function (x) { return parseInt(x, 16); })); };
 
     function deriver(nip) {
@@ -675,11 +698,11 @@ function pagePorte(page, lang, paquet) {
 
     var f = document.getElementById('porte'), champ = document.getElementById('nip'),
         go = document.getElementById('go'), msg = document.getElementById('msg');
-    champ.addEventListener('input', function () { champ.value = champ.value.replace(/\\D/g, '').slice(0, 10); msg.textContent = ''; });
+    champ.addEventListener('input', function () { msg.textContent = ''; });
     f.addEventListener('submit', function (e) {
       e.preventDefault();
-      var nip = champ.value;
-      if (!/^[0-9]{10}$/.test(nip)) { msg.textContent = ${JSON.stringify(t('format'))}; return; }
+      var nip = normaliserNip(champ.value);
+      if (nip.length < NIP_MIN) { msg.textContent = ${JSON.stringify(t('format'))}; return; }
       go.disabled = true; go.textContent = ${JSON.stringify(t('attente'))};
       deriver(nip).then(ouvrir).catch(function () {
         go.disabled = false; go.textContent = ${JSON.stringify(t('bouton'))};
@@ -751,9 +774,10 @@ function buildSitemap() {
 function main() {
   process.chdir(__dirname);
   const written = [];
-  const nip = process.env.MODULIMO_PIN;
-  if (nip !== undefined && !/^[0-9]{10}$/.test(nip)) {
-    throw new Error('MODULIMO_PIN doit compter exactement 10 chiffres.');
+  const nipBrut = process.env.MODULIMO_PIN;
+  const nip = nipBrut === undefined ? undefined : normaliserNip(nipBrut);
+  if (nip !== undefined && nip.length < NIP_MIN) {
+    throw new Error('MODULIMO_PIN doit compter au moins ' + NIP_MIN + ' caractères.');
   }
   // Un seul sel (celui de verrou.json) : la clé dérivée sert au cadenas et
   // à toutes les pages protégées, on ne ressaisit pas le NIP de l'une à l'autre.
@@ -763,7 +787,9 @@ function main() {
   for (const page of PAGES) {
     for (const lang of LANGS) {
       if (page.protege) {
-        if (!cle) { sautees.push(page.route); break; }
+        // Sources des pages protégées : dans le dépôt privé, copiées ici seulement
+        // le temps du build (voir .github/workflows du dépôt privé).
+        if (!cle || !fs.existsSync(page.src)) { sautees.push(page.route); break; }
         const html = buildPage(page, lang, verrou);
         written.push(writeOut(chemin(page, lang), pagePorte(page, lang, chiffrer(html, cle, sel))));
       } else {
@@ -776,9 +802,10 @@ function main() {
     }
   }
   if (sautees.length) {
-    console.warn('⚠️  MODULIMO_PIN absent : pages protégées NON régénérées (' + sautees.join(', ')
-      + ').\n   Relancez avec  MODULIMO_PIN=xxxxxxxxxx node build.js  si elles ont changé.');
+    console.warn('⚠️  Pages protégées NON régénérées (' + sautees.join(', ') + ') : code d’accès'
+      + ' (MODULIMO_PIN) ou sources absents.\n   Elles sont publiées par le dépôt privé des sources.');
   }
+  if (cle && process.env.MODULIMO_VELO3D) written.push(...publierVelo3d(process.env.MODULIMO_VELO3D, cle, sel));
   fs.writeFileSync('sitemap.xml', buildSitemap());
   fs.writeFileSync('robots.txt', `User-agent: *\nAllow: /\n\nSitemap: ${SITE}/sitemap.xml\n`);
   written.push('sitemap.xml', 'robots.txt');

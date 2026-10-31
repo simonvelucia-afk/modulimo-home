@@ -2,7 +2,7 @@
 // MODULIMO — cadenas de l'onglet Produits
 // ============================================================
 // L'onglet Produits est caché par défaut. Un cadenas, en haut à droite de
-// l'en-tête, demande le NIP à 10 chiffres ; une fois ouvert, l'onglet (et
+// l'en-tête, demande le code d'accès (un mot + des chiffres) ; une fois ouvert, l'onglet (et
 // tout lien vers /produits/) réapparaît sur tout le site, et la page
 // Produits — chiffrée, voir build.js — s'ouvre sans nouvelle saisie.
 // Refermer le cadenas retire l'accès : l'onglet disparaît et, si l'on est
@@ -25,11 +25,11 @@
     fermer:  { fr: 'Refermer le cadenas (retirer l\'accès à Produits)', en: 'Lock again (remove access to Products)', es: 'Cerrar el candado (retirar el acceso a Productos)', zh: '重新上锁（取消产品页访问）' },
     ouvrir:  { fr: 'Ouvrir le cadenas (accès à Produits)', en: 'Unlock (access to Products)', es: 'Abrir el candado (acceso a Productos)', zh: '解锁（访问产品页）' },
     titre:   { fr: 'Accès Produits', en: 'Products access', es: 'Acceso a Productos', zh: '产品页访问' },
-    champ:   { fr: 'NIP (10 chiffres)', en: 'PIN (10 digits)', es: 'PIN (10 dígitos)', zh: 'PIN 码（10 位数字）' },
+    champ:   { fr: 'Code d’accès', en: 'Access code', es: 'Código de acceso', zh: '访问码' },
     ok:      { fr: 'Ouvrir', en: 'Unlock', es: 'Abrir', zh: '解锁' },
     attente: { fr: 'Vérification…', en: 'Checking…', es: 'Verificando…', zh: '验证中…' },
-    erreur:  { fr: 'NIP incorrect.', en: 'Incorrect PIN.', es: 'PIN incorrecto.', zh: 'PIN 码错误。' },
-    format:  { fr: 'Le NIP compte exactement 10 chiffres.', en: 'The PIN is exactly 10 digits.', es: 'El PIN tiene exactamente 10 dígitos.', zh: 'PIN 码必须为 10 位数字。' },
+    erreur:  { fr: 'Code d’accès incorrect.', en: 'Incorrect access code.', es: 'Código de acceso incorrecto.', zh: '访问码错误。' },
+    format:  { fr: 'Code d’accès trop court.', en: 'Access code too short.', es: 'Código de acceso demasiado corto.', zh: '访问码太短。' },
   };
   var t = function (k) { return T[k][lang] || T[k].fr; };
 
@@ -84,7 +84,7 @@
   pop.innerHTML =
     '<strong></strong>' +
     '<label for="cadenas-nip"></label>' +
-    '<input id="cadenas-nip" type="password" inputmode="numeric" maxlength="10" autocomplete="off" />' +
+    '<input id="cadenas-nip" type="password" autocapitalize="none" autocorrect="off" spellcheck="false" autocomplete="off" />' +
     '<button type="submit"></button>' +
     '<div class="cadenas-msg" role="alert" aria-live="polite"></div>';
   pop.querySelector('strong').textContent = t('titre');
@@ -135,14 +135,14 @@
   });
 
   champ.addEventListener('input', function () {
-    champ.value = champ.value.replace(/\D/g, '').slice(0, 10);
     msg.textContent = '';
   });
 
   pop.addEventListener('submit', function (e) {
     e.preventDefault();
-    var nip = champ.value;
-    if (!/^[0-9]{10}$/.test(nip)) { msg.textContent = t('format'); return; }
+    // même normalisation que build.js (normaliserNip)
+    var nip = champ.value.normalize('NFC').toLowerCase().replace(/\s+/g, '');
+    if (nip.length < 10) { msg.textContent = t('format'); return; }
     go.disabled = true; go.textContent = t('attente');
     var brute;
     crypto.subtle.importKey('raw', new TextEncoder().encode(nip), 'PBKDF2', false, ['deriveBits'])
