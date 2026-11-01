@@ -127,7 +127,7 @@ body.epure .coin button:hover, body.epure .coin button:focus-visible { opacity: 
     <h1>Vélomobile 1:12</h1>
     <div class="sous">Maquette 200 mm · véhicule réel 2,4 m</div>
   </div>
-  <div class="etat"><i class="puce"></i><span>Quand il pédale, le vélomobile roule et suit le volant. Un 6 pi pédale sur tout le tour sans sortir de la coque ni toucher les roues, même roue avant braquée à 60°.</span></div>
+  <div class="etat"><i class="puce"></i><span>Hybride série : le pédalage charge les condensateurs, le moteur fait rouler (simulation sur la page Produits). Un 6 pi pédale sur tout le tour sans sortir de la coque ni toucher les roues, même roue avant braquée à 60°.</span></div>
   <div class="etat"><i class="puce"></i><span>Le nez recouvre la roue avant comme un garde-boue, avec 45 mm de jeu au pneu sur tout le braquage.</span></div>
   <div class="etat"><i class="puce"></i><span>Éclairage : bande avant, feu arrière, quatre clignotants.</span></div>
   <div class="etat"><i class="puce"></i><span>Siège monté de 4 po. Volant papillon ±45°, roue avant ±60° (demi-tour dans ≈ 1,8 m) : courroie démultipliée (poulies Ø70 / Ø52,5) puis double cardan.</span></div>
@@ -436,9 +436,9 @@ const DEVELOPPEMENT = 4200 / 12;                         // ≈ 4,2 m par tour d
 const EMPATTEMENT = P.essieu_ar[0] - P.essieu_av[0];
 const AR = new THREE.Vector3(P.essieu_ar[0], 0, 0);      // essieu arrière, repère du véhicule (Y vers le haut)
 let cap = 0, roulement = 0, inclinaison = 0, vitesseReelle = 0;
-// Vitesse : imposée par la page qui contient la visionneuse (window.veloVitesse, m/s réels,
-// simulation hybride série : les pédales chargent les condensateurs, le moteur fait rouler) ;
-// sinon, la visionneuse seule roule au rythme du pédalage.
+// Vitesse : imposée par la page qui contient la visionneuse (window.veloVitesse, m/s réels).
+// Hybride série : les pédales chargent les condensateurs, seul le moteur fait rouler ;
+// la visionneuse seule (sans simulation) ne roule donc pas quand le mannequin pédale.
 // Inclinaison en virage, petites roues relevées : comme un vélo, tan(φ) = v² / (g · R), R = empattement / tan(braquage).
 const V_REELLE = (200 / 360) * DEVELOPPEMENT * 12 / 1000;   // m/s au rythme de pédalage de la visionneuse (≈ 2,3 m/s)
 const EMPATTEMENT_REEL = EMPATTEMENT * 12 / 1000;            // m
@@ -657,7 +657,7 @@ let dernier = performance.now();
   const dt = Math.min(((t || dernier) - dernier) / 1000, 0.1);
   dernier = t || dernier;
   if (pedaler) poser(angle - dt * 200);                       // le pied va vers le nez
-  vitesseReelle = typeof window.veloVitesse === "number" ? window.veloVitesse : pedaler ? V_REELLE : 0;
+  vitesseReelle = typeof window.veloVitesse === "number" ? window.veloVitesse : 0;
   if (vitesseReelle > 0) rouler((vitesseReelle * 1000 / 12) * dt);   // m/s réels -> mm maquette
   clignoter(t || 0);
   const cible = ouvrir ? P.porte_ouverture : 0;
