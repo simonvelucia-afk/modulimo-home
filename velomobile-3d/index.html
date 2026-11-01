@@ -645,6 +645,8 @@ function taille() {
   const w = canvas.clientWidth, h = canvas.clientHeight;
   renderer.setSize(w, h, false);
   camera.aspect = w / h;
+  // cadre étroit (aperçu dans une page, téléphone en portrait) : dézoomer pour garder le véhicule entier
+  camera.zoom = Math.min(1, camera.aspect / 1.5);
   camera.updateProjectionMatrix();
 }
 window.addEventListener("resize", taille);
