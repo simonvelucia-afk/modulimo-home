@@ -127,7 +127,7 @@ body.epure .coin button:hover, body.epure .coin button:focus-visible { opacity: 
     <h1>Vélomobile 1:12</h1>
     <div class="sous">Maquette 200 mm · véhicule réel 2,4 m</div>
   </div>
-  <div class="etat"><i class="puce"></i><span>Un 6 pi pédale sur tout le tour sans sortir de la coque ni toucher les roues, même roue avant braquée à 60°.</span></div>
+  <div class="etat"><i class="puce"></i><span>Quand il pédale, le vélomobile roule et suit le volant. Un 6 pi pédale sur tout le tour sans sortir de la coque ni toucher les roues, même roue avant braquée à 60°.</span></div>
   <div class="etat"><i class="puce"></i><span>Le nez recouvre la roue avant comme un garde-boue, avec 45 mm de jeu au pneu sur tout le braquage.</span></div>
   <div class="etat"><i class="puce"></i><span>Éclairage : bande avant, feu arrière, quatre clignotants.</span></div>
   <div class="etat"><i class="puce"></i><span>Siège monté de 4 po. Volant papillon ±45°, roue avant ±60° (demi-tour dans ≈ 1,8 m) : courroie démultipliée (poulies Ø70 / Ø52,5) puis double cardan.</span></div>
@@ -251,7 +251,10 @@ scene.add(sun);
 // La maquette est en Z vers le haut ; three.js est en Y vers le haut.
 const modele = new THREE.Group();
 modele.rotation.x = -Math.PI / 2;
-scene.add(modele);
+// Tout le véhicule roule sur le sol quand le mannequin pédale (voir rouler()).
+const vehicule = new THREE.Group();
+vehicule.add(modele);
+scene.add(vehicule);
 
 function geometrie(d) {
   const b = (s) => Uint8Array.from(atob(s), (c) => c.charCodeAt(0)).buffer;
@@ -295,19 +298,21 @@ const ajouter = (nom, matiere, parent = modele) => {
   return objets[nom];
 };
 // Groupe qui tourne autour d'un axe passant par un point (coordonnées maquette)
-function articulation(point, axe) {
+function articulation(point, axe, parent = modele) {
   const ext = new THREE.Group(), int = new THREE.Group();
   ext.position.set(...point);
   int.position.set(...point).negate();
   ext.add(int);
-  modele.add(ext);
+  parent.add(ext);
   const a = new THREE.Vector3(...axe).normalize();
   return { int, tourner: (deg) => ext.setRotationFromAxisAngle(a, THREE.MathUtils.degToRad(deg)) };
 }
 ajouter("coque", mat.coque);
 ajouter("toit", mat.coque);
 ajouter("fenetres", mat.bulle);
-ajouter("roue_ar", mat.roues);
+// Roues : chacune tourne sur son essieu (axe transversal) quand le véhicule roule
+const rotationAr = articulation(P.essieu_ar, [0, 1, 0]);
+ajouter("roue_ar", mat.roues, rotationAr.int);
 // Roues stabilisatrices escamotables : bras + roue tournent ensemble autour du pivot (axe transversal)
 const stabs = ["gauche", "droite"].map((cote) => {
   const art = articulation(P.stab.pivot, [0, -1, 0]);
@@ -326,7 +331,8 @@ ajouter("courroie", mat.volant);
 const avant = articulation(P.pivot.point, P.pivot.axe);
 ajouter("fourche", mat.metal, avant.int);
 ajouter("pivot", mat.metal, avant.int);
-ajouter("roue_av", mat.roues, avant.int);
+const rotationAv = articulation(P.essieu_av, [0, 1, 0], avant.int);  // dans la fourche : suit le braquage
+ajouter("roue_av", mat.roues, rotationAv.int);
 const volantArt = articulation(P.colonne.point, P.colonne.axe);
 ajouter("volant", mat.volant, volantArt.int);
 // Contour net des portes : arêtes dessinées en foncé, visibles même coque transparente
@@ -392,7 +398,7 @@ function poser(a) {
 }
 poser(angle);
 
-const sol = new THREE.GridHelper(400, 40);
+const sol = new THREE.GridHelper(1600, 160);   // cases de 10 mm ; recalée sous le véhicule quand il roule
 sol.position.set(100, 0, 0);
 scene.add(sol);
 function couleursTheme() {
@@ -408,9 +414,41 @@ new MutationObserver(couleursTheme).observe(document.documentElement, { attribut
 const vues = { "34": [-110, 150, 250], cote: [100, 70, 360], dessus: [100, 400, 1] };
 function vue(n) {
   const [x, y, z] = vues[n];
-  camera.position.set(x, y, z);
-  controls.target.set(100, n === "dessus" ? 0 : 65, 0);
+  const c = centreVehicule();
+  camera.position.set(x - 100 + c.x, y, z + c.z);
+  controls.target.set(c.x, n === "dessus" ? 0 : 65, c.z);
   controls.update();
+}
+// Centre du véhicule (x = 100 en coordonnées maquette), en coordonnées de la scène
+function centreVehicule() { vehicule.updateMatrixWorld(true); return vehicule.localToWorld(new THREE.Vector3(100, 0, 0)); }
+
+// --- Rouler : modèle de bicyclette (roue arrière motrice, roue avant directrice) ---
+// Vitesse liée à la cadence : un tour de pédalier (360°) fait avancer de DEVELOPPEMENT mm réels.
+const DEVELOPPEMENT = 4200 / 12;                         // ≈ 4,2 m par tour de pédalier, à l'échelle 1:12
+const EMPATTEMENT = P.essieu_ar[0] - P.essieu_av[0];
+const AR = new THREE.Vector3(P.essieu_ar[0], 0, 0);      // essieu arrière, repère du véhicule (Y vers le haut)
+let cap = 0, roulement = 0;
+const posAr = AR.clone();                                // essieu arrière dans la scène
+function rouler(degPedalier) {
+  const d = (degPedalier / 360) * DEVELOPPEMENT;         // distance parcourue (mm maquette)
+  const avant0 = centreVehicule();
+  // le cap tourne selon le braquage (positif = vers la gauche du pilote)
+  cap += (d * Math.tan(THREE.MathUtils.degToRad(roueDeg))) / EMPATTEMENT;
+  posAr.x -= d * Math.cos(cap);                          // l'avant du véhicule est vers -x
+  posAr.z += d * Math.sin(cap);
+  vehicule.rotation.y = cap;
+  vehicule.position.copy(posAr).sub(AR.clone().applyAxisAngle(new THREE.Vector3(0, 1, 0), cap));
+  // les roues tournent : vers l'avant, le haut de la roue va vers le nez
+  roulement -= THREE.MathUtils.radToDeg(d / P.rayon_roue);
+  rotationAr.tourner(roulement);
+  rotationAv.tourner(roulement);
+  // la caméra suit le véhicule (on garde l'angle de vue choisi)
+  const delta = centreVehicule().sub(avant0);
+  camera.position.add(delta);
+  controls.target.add(delta);
+  // le sol « défile » : la grille se recale sous le véhicule, par pas d'une case
+  const c = centreVehicule();
+  sol.position.set(Math.round(c.x / 10) * 10, 0, Math.round(c.z / 10) * 10);
 }
 vue("34");
 document.querySelectorAll("[data-vue]").forEach((b) => b.addEventListener("click", () => vue(b.dataset.vue)));
@@ -448,7 +486,9 @@ function clignoter(t) {
 }
 
 const rVolant = document.getElementById("r-volant"), oVolant = document.getElementById("o-volant");
+let roueDeg = 0;   // angle de la roue avant, pour la trajectoire
 function diriger(deg) {
+  roueDeg = deg / P.rapport;
   volantArt.tourner(deg);
   avant.tourner(deg / P.rapport);  // courroie crantée : roue = volant / rapport des poulies
   const ib = Math.round((deg + P.volant_max) / 5);
@@ -592,7 +632,7 @@ let dernier = performance.now();
 (function boucle(t) {
   const dt = Math.min(((t || dernier) - dernier) / 1000, 0.1);
   dernier = t || dernier;
-  if (pedaler) poser(angle - dt * 200); // vers l'avant : en haut de course, le pied va vers le nez
+  if (pedaler) { poser(angle - dt * 200); rouler(dt * 200); } // le pied va vers le nez, et le véhicule avance
   clignoter(t || 0);
   const cible = ouvrir ? P.porte_ouverture : 0;
   ouverture += Math.sign(cible - ouverture) * Math.min(Math.abs(cible - ouverture), dt * 90);
