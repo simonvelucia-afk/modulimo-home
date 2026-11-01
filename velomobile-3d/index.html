@@ -334,8 +334,9 @@ ajouter("roue_ar", mat.roues, rotationAr.int);
 // Propulsion hybride série : moteur-roue (tourne avec la roue arrière), génératrice au pédalier,
 // pack de supercondensateurs derrière le siège (s'éclaire selon sa charge : window.veloTableau.charge)
 const matProp = {
-  moteur: new THREE.MeshStandardMaterial({ color: 0x5b6670, roughness: 0.35, metalness: 0.6 }),
-  generatrice: new THREE.MeshStandardMaterial({ color: 0x5b6670, roughness: 0.35, metalness: 0.6 }),
+  // aluminium clair : bien visibles contre les roues et le pédalier (sombres)
+  moteur: new THREE.MeshStandardMaterial({ color: 0xc9d1d8, roughness: 0.3, metalness: 0.75, emissive: 0x30363c, emissiveIntensity: 0.4 }),
+  generatrice: new THREE.MeshStandardMaterial({ color: 0xc9d1d8, roughness: 0.3, metalness: 0.75, emissive: 0x30363c, emissiveIntensity: 0.4 }),
   condensateurs: new THREE.MeshStandardMaterial({ color: 0x2f6fd6, emissive: 0x3d8bff, emissiveIntensity: 0.3, roughness: 0.4 }),
 };
 if (MESHES.moteur_roue) ajouter("moteur_roue", matProp.moteur, rotationAr.int);
