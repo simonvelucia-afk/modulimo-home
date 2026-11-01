@@ -341,6 +341,32 @@ const matProp = {
 if (MESHES.moteur_roue) ajouter("moteur_roue", matProp.moteur, rotationAr.int);
 if (MESHES.generatrice) ajouter("generatrice", matProp.generatrice);
 if (MESHES.condensateurs) ajouter("condensateurs", matProp.condensateurs);
+// Panneau solaire souple sur le toit ; prise d'air filtrée en haut à l'arrière (filtre + ventilateur), sortie basse à l'avant ;
+// (tourne quand la page le met en marche : window.veloVentil, 0 à 1)
+const matSol = {
+  panneau: new THREE.MeshStandardMaterial({ color: 0x14244a, roughness: 0.18, metalness: 0.4 }),
+  grille: new THREE.MeshStandardMaterial({ color: 0x1d2124, roughness: 0.8 }),
+  ventilateur: new THREE.MeshStandardMaterial({ color: 0x4a5258, roughness: 0.5, metalness: 0.3 }),
+};
+if (MESHES.panneau_solaire) ajouter("panneau_solaire", matSol.panneau);
+if (MESHES.aeration_entree) { ajouter("aeration_entree", matSol.grille); ajouter("aeration_sortie", matSol.grille); }
+if (MESHES.filtre) ajouter("filtre", new THREE.MeshStandardMaterial({ color: 0xe4ddc8, roughness: 0.9 }));   // filtre d'habitacle
+const helice = P.ventilateur && MESHES.ventilateur ? articulation(P.ventilateur.centre, P.ventilateur.axe) : null;
+if (helice) {
+  ajouter("ventilateur", matSol.ventilateur);                    // cadre fixe
+  const r = (P.ventilateur.d || 10) / 2 - 0.8, c = new THREE.Vector3(...P.ventilateur.centre);
+  const moyeu = new THREE.Mesh(new THREE.CylinderGeometry(r * 0.28, r * 0.28, 1.6, 20), matSol.ventilateur);
+  moyeu.rotation.z = Math.PI / 2; moyeu.position.copy(c); helice.int.add(moyeu);
+  for (let i = 0; i < 5; i++) {                                    // 5 pales qui tournent autour de l'axe x
+    const pale = new THREE.Mesh(new THREE.BoxGeometry(0.3, r * 0.75, r * 0.38), matSol.ventilateur);
+    const a = (i / 5) * Math.PI * 2;
+    pale.position.set(c.x, c.y + Math.cos(a) * r * 0.6, c.z + Math.sin(a) * r * 0.6);
+    pale.rotation.set(a, 0, 0);   // pale radiale…
+    pale.rotateY(0.5);            // …vrillée autour de son axe
+    helice.int.add(pale);
+  }
+}
+let heliceAngle = 0;
 // Roues stabilisatrices escamotables : bras + roue tournent ensemble autour du pivot (axe transversal)
 // Petites roues : descendues, elles sont au sol (10 mm de garde, invisible à l'échelle) et
 // tournent quand le véhicule roule ; relevées dans le flanc, elles s'arrêtent.
@@ -783,6 +809,7 @@ let dernier = performance.now();
   vitesseReelle = typeof window.veloVitesse === "number" ? window.veloVitesse : 0;
   if (vitesseReelle > 0) rouler((vitesseReelle * 1000 / 12) * dt);   // m/s réels -> mm maquette
   clignoter(t || 0);
+  if (helice && window.veloVentil > 0) { heliceAngle += dt * 1500 * window.veloVentil; helice.tourner(heliceAngle); }
   if (window.veloTableau && typeof window.veloTableau.charge === "number") matProp.condensateurs.emissiveIntensity = 0.08 + 0.7 * window.veloTableau.charge / 100;
   if ((t || 0) - dernierEcran > 150) { dessinerEcran(t || 0); dernierEcran = t || 0; }
   const tb = window.veloTableau;
