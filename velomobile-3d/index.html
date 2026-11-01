@@ -343,6 +343,80 @@ const rotationAv = articulation(P.essieu_av, [0, 1, 0], avant.int);  // dans la 
 ajouter("roue_av", mat.roues, rotationAv.int);
 const volantArt = articulation(P.colonne.point, P.colonne.axe);
 ajouter("volant", mat.volant, volantArt.int);
+// --- Interface de pilotage finale sur le volant : palettes + écran 5 po (tableau de bord en direct) ---
+// Données : window.veloTableau (posé par la page Produits : vitesse, puissance, consigne, charge,
+// clignotant, feux, accel, frein) ; seule, la visionneuse affiche un tableau de bord au repos.
+const matPalette = {
+  accel: new THREE.MeshStandardMaterial({ color: 0xc98a2c, emissive: 0xffb84d, emissiveIntensity: 0, roughness: 0.5 }),
+  frein: new THREE.MeshStandardMaterial({ color: 0x9c2a24, emissive: 0xff5f57, emissiveIntensity: 0, roughness: 0.5 }),
+};
+if (MESHES.palette_accel) {
+  ajouter("palette_accel", matPalette.accel, volantArt.int);
+  ajouter("palette_frein", matPalette.frein, volantArt.int);
+}
+const ecran = (() => {
+  if (!P.ecran) return null;
+  const cv = document.createElement("canvas");
+  cv.width = 800; cv.height = 450;
+  const tex = new THREE.CanvasTexture(cv);
+  tex.anisotropy = 4;
+  const m = new THREE.Mesh(new THREE.PlaneGeometry(P.ecran.largeur, P.ecran.hauteur),
+    new THREE.MeshBasicMaterial({ map: tex, toneMapped: false }));
+  const X = new THREE.Vector3(...P.ecran.droite), Y = new THREE.Vector3(...P.ecran.haut), Z = new THREE.Vector3(...P.ecran.normale);
+  m.matrixAutoUpdate = false;
+  m.matrix.makeBasis(X, Y, Z).setPosition(new THREE.Vector3(...P.ecran.centre));
+  volantArt.int.add(m);
+  return { cv, ctx: cv.getContext("2d"), tex };
+})();
+function cadran(c, cx, cy, r, val, min, max, couleur, titre, unite, graduations) {
+  const a0 = Math.PI * 0.75, a1 = Math.PI * 2.25, t = (Math.max(min, Math.min(max, val)) - min) / (max - min);
+  c.lineCap = "round";
+  c.strokeStyle = "rgba(87,255,182,.12)"; c.lineWidth = 16; c.beginPath(); c.arc(cx, cy, r, a0, a1); c.stroke();
+  c.strokeStyle = couleur; c.beginPath(); c.arc(cx, cy, r, min < 0 ? Math.PI * 1.5 : a0, a0 + t * (a1 - a0), min < 0 && t < 0.5); c.stroke();
+  c.fillStyle = "#8fb8a6"; c.font = "500 15px system-ui, sans-serif"; c.textAlign = "center"; c.textBaseline = "middle";
+  graduations.forEach((g) => { const a = a0 + ((g - min) / (max - min)) * (a1 - a0); c.fillText(String(g), cx + Math.cos(a) * (r - 34), cy + Math.sin(a) * (r - 34)); });
+  const a = a0 + t * (a1 - a0);
+  c.strokeStyle = "#ffffff"; c.lineWidth = 4; c.beginPath(); c.moveTo(cx, cy); c.lineTo(cx + Math.cos(a) * (r - 14), cy + Math.sin(a) * (r - 14)); c.stroke();
+  c.fillStyle = couleur; c.beginPath(); c.arc(cx, cy, 9, 0, Math.PI * 2); c.fill();
+  c.fillStyle = "#97e7c5"; c.font = "600 14px system-ui, sans-serif"; c.fillText(titre, cx, cy - r - 22);
+  c.fillStyle = "#ffffff"; c.font = "900 40px system-ui, sans-serif"; c.fillText((val > 0 && min < 0 ? "+" : "") + Math.round(val), cx, cy + r * 0.62);
+  c.fillStyle = "#8fb8a6"; c.font = "500 14px system-ui, sans-serif"; c.fillText(unite, cx, cy + r * 0.62 + 30);
+}
+function dessinerEcran(t) {
+  if (!ecran) return;
+  const d = Object.assign({ vitesse: 0, puissance: 0, consigne: 0, charge: 50 }, window.veloTableau || {});
+  d.clignotant = clign;                                              // clignotants de la maquette
+  d.feux = window.veloFeux || { avant: true, arriere: true };       // feux de la maquette
+  const c = ecran.ctx, W = 800, H = 450, allume = Math.floor(t / 420) % 2 === 0;
+  c.fillStyle = "#020809"; c.fillRect(0, 0, W, H);
+  // en-tête : logo, consigne, condensateurs
+  c.fillStyle = "#3a3f44"; c.beginPath(); c.arc(36, 30, 18, 0, Math.PI * 2); c.fill();
+  c.strokeStyle = "#ff8c1a"; c.lineWidth = 3; c.stroke();
+  c.fillStyle = "#b7f21a"; c.font = "900 20px system-ui, sans-serif"; c.textAlign = "center"; c.textBaseline = "middle"; c.fillText("M", 36, 31);
+  c.fillStyle = "#57ffb6"; c.font = "900 24px system-ui, sans-serif"; c.textAlign = "left"; c.fillText("MODULIMO", 64, 31);
+  c.fillStyle = "#8fb8a6"; c.font = "600 12px system-ui, sans-serif"; c.fillText("CONSIGNE", 330, 31);
+  c.fillStyle = "#ffffff"; c.font = "900 22px system-ui, sans-serif"; c.fillText(Math.round(d.consigne) + " km/h", 404, 31);
+  c.fillStyle = "#8fb8a6"; c.font = "600 12px system-ui, sans-serif"; c.fillText("CONDENSATEURS", 530, 31);
+  c.strokeStyle = "rgba(87,255,182,.5)"; c.lineWidth = 2; c.strokeRect(650, 22, 100, 18);
+  c.fillStyle = d.charge < 15 ? "#ff6b4a" : "#3ee39a"; c.fillRect(652, 24, 96 * Math.max(0, Math.min(100, d.charge)) / 100, 14);
+  c.fillStyle = "#ffffff"; c.font = "800 15px system-ui, sans-serif"; c.fillText(Math.round(d.charge) + " %", 756, 31);
+  // feu avant (haut) et feu arrière (bas)
+  c.fillStyle = d.feux && d.feux.avant ? "#fff6d8" : "#1b2624"; c.fillRect(30, 62, W - 60, 8);
+  c.fillStyle = d.feux && d.feux.arriere ? "#ff2a36" : "#2a1b1d"; c.fillRect(30, H - 22, W - 60, 8);
+  // cadrans
+  cadran(c, 262, 250, 112, d.puissance, -300, 300, "#38a8ff", "PUISSANCE", "watts", [-300, -200, -100, 0, 100, 200, 300]);
+  cadran(c, 538, 250, 112, d.vitesse, 0, 90, "#57ffb6", "VITESSE", "km / h", [0, 10, 20, 30, 40, 50, 60, 70, 80, 90]);
+  // clignotants
+  const fleche = (x, dir, on) => {
+    c.fillStyle = on ? "#ffb21a" : "rgba(87,255,182,.25)";
+    c.beginPath(); c.moveTo(x + dir * 22, 250); c.lineTo(x - dir * 14, 226); c.lineTo(x - dir * 14, 274); c.closePath(); c.fill();
+  };
+  const g = d.clignotant === "gauche" || d.clignotant === "urgence", dr = d.clignotant === "droite" || d.clignotant === "urgence";
+  fleche(60, -1, g && allume); fleche(W - 60, 1, dr && allume);
+  ecran.tex.needsUpdate = true;
+}
+let dernierEcran = -1e9;
+
 // Contour net des portes : arêtes dessinées en foncé, visibles même coque transparente
 const matContour = new THREE.LineBasicMaterial({ color: 0x1c2420, transparent: true, opacity: 0.9 });
 function contour(mesh) {
@@ -660,6 +734,10 @@ let dernier = performance.now();
   vitesseReelle = typeof window.veloVitesse === "number" ? window.veloVitesse : 0;
   if (vitesseReelle > 0) rouler((vitesseReelle * 1000 / 12) * dt);   // m/s réels -> mm maquette
   clignoter(t || 0);
+  if ((t || 0) - dernierEcran > 150) { dessinerEcran(t || 0); dernierEcran = t || 0; }
+  const tb = window.veloTableau;
+  matPalette.accel.emissiveIntensity = tb && tb.accel ? 0.25 + 0.6 * tb.accel / 100 : 0;
+  matPalette.frein.emissiveIntensity = tb && tb.frein ? 0.25 + 0.6 * tb.frein / 100 : 0;
   // feux avant / arrière : imposés par la page qui contient la visionneuse (window.veloFeux) ; seule, allumés
   const feux = window.veloFeux;
   if (feux) { mat.phare.emissiveIntensity = feux.avant ? 0.9 : 0; mat.feu_arriere.emissiveIntensity = feux.arriere ? 0.6 : 0; }
