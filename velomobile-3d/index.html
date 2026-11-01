@@ -435,21 +435,23 @@ function centreVehicule() { vehicule.updateMatrixWorld(true); return vehicule.lo
 const DEVELOPPEMENT = 4200 / 12;                         // ≈ 4,2 m par tour de pédalier, à l'échelle 1:12
 const EMPATTEMENT = P.essieu_ar[0] - P.essieu_av[0];
 const AR = new THREE.Vector3(P.essieu_ar[0], 0, 0);      // essieu arrière, repère du véhicule (Y vers le haut)
-let cap = 0, roulement = 0, inclinaison = 0;
+let cap = 0, roulement = 0, inclinaison = 0, vitesseReelle = 0;
+// Vitesse : imposée par la page qui contient la visionneuse (window.veloVitesse, m/s réels,
+// simulation hybride série : les pédales chargent les condensateurs, le moteur fait rouler) ;
+// sinon, la visionneuse seule roule au rythme du pédalage.
 // Inclinaison en virage, petites roues relevées : comme un vélo, tan(φ) = v² / (g · R), R = empattement / tan(braquage).
 const V_REELLE = (200 / 360) * DEVELOPPEMENT * 12 / 1000;   // m/s au rythme de pédalage de la visionneuse (≈ 2,3 m/s)
 const EMPATTEMENT_REEL = EMPATTEMENT * 12 / 1000;            // m
 function penchement(dt) {
-  const releveeEnRoulant = pedaler && releve >= P.stab.course - 1;
+  const releveeEnRoulant = vitesseReelle > 0.3 && releve >= P.stab.course - 1;
   const cible = releveeEnRoulant
-    ? Math.atan((V_REELLE ** 2 * Math.tan(THREE.MathUtils.degToRad(roueDeg))) / (9.81 * EMPATTEMENT_REEL))
+    ? THREE.MathUtils.clamp(Math.atan((vitesseReelle ** 2 * Math.tan(THREE.MathUtils.degToRad(roueDeg))) / (9.81 * EMPATTEMENT_REEL)), -Math.PI / 4, Math.PI / 4)
     : 0;                                                       // petites roues au sol ou arrêt : droit
   inclinaison += (cible - inclinaison) * Math.min(1, dt * 2.5);  // le pilote s'incline progressivement
   vehicule.rotation.set(inclinaison, cap, 0, "YXZ");
 }
 const posAr = AR.clone();                                // essieu arrière dans la scène
-function rouler(degPedalier) {
-  const d = (degPedalier / 360) * DEVELOPPEMENT;         // distance parcourue (mm maquette)
+function rouler(d) {                                     // d : distance parcourue (mm maquette)
   const avant0 = centreVehicule();
   // le cap tourne selon le braquage (positif = vers la gauche du pilote)
   cap += (d * Math.tan(THREE.MathUtils.degToRad(roueDeg))) / EMPATTEMENT;
@@ -652,7 +654,9 @@ let dernier = performance.now();
 (function boucle(t) {
   const dt = Math.min(((t || dernier) - dernier) / 1000, 0.1);
   dernier = t || dernier;
-  if (pedaler) { poser(angle - dt * 200); rouler(dt * 200); } // le pied va vers le nez, et le véhicule avance
+  if (pedaler) poser(angle - dt * 200);                       // le pied va vers le nez
+  vitesseReelle = typeof window.veloVitesse === "number" ? window.veloVitesse : pedaler ? V_REELLE : 0;
+  if (vitesseReelle > 0) rouler((vitesseReelle * 1000 / 12) * dt);   // m/s réels -> mm maquette
   clignoter(t || 0);
   const cible = ouvrir ? P.porte_ouverture : 0;
   ouverture += Math.sign(cible - ouverture) * Math.min(Math.abs(cible - ouverture), dt * 90);
