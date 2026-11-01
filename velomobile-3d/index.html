@@ -314,8 +314,8 @@ ajouter("fenetres", mat.bulle);
 const rotationAr = articulation(P.essieu_ar, [0, 1, 0]);
 ajouter("roue_ar", mat.roues, rotationAr.int);
 // Roues stabilisatrices escamotables : bras + roue tournent ensemble autour du pivot (axe transversal)
-// Petites roues : descendues, elles restent à 10 mm du sol (le véhicule roule sur ses deux
-// grandes roues). En virage, il penche vers l'extérieur : seule la roue extérieure touche et tourne.
+// Petites roues : descendues, elles sont au sol (10 mm de garde, invisible à l'échelle) et
+// tournent quand le véhicule roule ; relevées dans le flanc, elles s'arrêtent.
 const rouesStab = [];
 const stabs = ["gauche", "droite"].map((cote) => {
   const art = articulation(P.stab.pivot, [0, -1, 0]);
@@ -435,7 +435,18 @@ function centreVehicule() { vehicule.updateMatrixWorld(true); return vehicule.lo
 const DEVELOPPEMENT = 4200 / 12;                         // ≈ 4,2 m par tour de pédalier, à l'échelle 1:12
 const EMPATTEMENT = P.essieu_ar[0] - P.essieu_av[0];
 const AR = new THREE.Vector3(P.essieu_ar[0], 0, 0);      // essieu arrière, repère du véhicule (Y vers le haut)
-let cap = 0, roulement = 0;
+let cap = 0, roulement = 0, inclinaison = 0;
+// Inclinaison en virage, petites roues relevées : comme un vélo, tan(φ) = v² / (g · R), R = empattement / tan(braquage).
+const V_REELLE = (200 / 360) * DEVELOPPEMENT * 12 / 1000;   // m/s au rythme de pédalage de la visionneuse (≈ 2,3 m/s)
+const EMPATTEMENT_REEL = EMPATTEMENT * 12 / 1000;            // m
+function penchement(dt) {
+  const releveeEnRoulant = pedaler && releve >= P.stab.course - 1;
+  const cible = releveeEnRoulant
+    ? Math.atan((V_REELLE ** 2 * Math.tan(THREE.MathUtils.degToRad(roueDeg))) / (9.81 * EMPATTEMENT_REEL))
+    : 0;                                                       // petites roues au sol ou arrêt : droit
+  inclinaison += (cible - inclinaison) * Math.min(1, dt * 2.5);  // le pilote s'incline progressivement
+  vehicule.rotation.set(inclinaison, cap, 0, "YXZ");
+}
 const posAr = AR.clone();                                // essieu arrière dans la scène
 function rouler(degPedalier) {
   const d = (degPedalier / 360) * DEVELOPPEMENT;         // distance parcourue (mm maquette)
@@ -444,17 +455,13 @@ function rouler(degPedalier) {
   cap += (d * Math.tan(THREE.MathUtils.degToRad(roueDeg))) / EMPATTEMENT;
   posAr.x -= d * Math.cos(cap);                          // l'avant du véhicule est vers -x
   posAr.z += d * Math.sin(cap);
-  vehicule.rotation.y = cap;
+  vehicule.rotation.set(inclinaison, cap, 0, "YXZ");   // cap, puis inclinaison autour de l'axe long (au sol)
   vehicule.position.copy(posAr).sub(AR.clone().applyAxisAngle(new THREE.Vector3(0, 1, 0), cap));
   // les roues tournent : vers l'avant, le haut de la roue va vers le nez
   roulement -= THREE.MathUtils.radToDeg(d / P.rayon_roue);
   rotationAr.tourner(roulement);
   rotationAv.tourner(roulement);
-  // braquage positif = virage à gauche : la roue extérieure est la droite
-  const exterieure = Math.abs(roueDeg) < 5 ? null : roueDeg > 0 ? "droite" : "gauche";
-  if (releve < 1) rouesStab.forEach((s) => {
-    if (s.cote === exterieure) s.rot.tourner((s.a -= THREE.MathUtils.radToDeg(d / s.r)));
-  });
+  if (releve < 1) rouesStab.forEach((s) => s.rot.tourner((s.a -= THREE.MathUtils.radToDeg(d / s.r))));
   // la caméra suit le véhicule (on garde l'angle de vue choisi)
   const delta = centreVehicule().sub(avant0);
   camera.position.add(delta);
@@ -653,6 +660,7 @@ let dernier = performance.now();
   const cibleStab = relever ? P.stab.course : 0;
   releve += Math.sign(cibleStab - releve) * Math.min(Math.abs(cibleStab - releve), dt * 110);
   stabs.forEach((s) => s.tourner(releve));
+  penchement(dt);
   controls.update();
   renderer.render(scene, camera);
   requestAnimationFrame(boucle);
