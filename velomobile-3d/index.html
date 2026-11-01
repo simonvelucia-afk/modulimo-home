@@ -211,6 +211,7 @@ body.epure .coin button:hover, body.epure .coin button:focus-visible { opacity: 
     <button id="v-34" data-vue="34">3/4</button>
     <button id="v-cote" data-vue="cote">Côté</button>
     <button id="v-dessus" data-vue="dessus">Dessus</button>
+    <button id="v-pilote" data-vue="pilote">Pilote</button>
   </div>
 </nav>
 
@@ -279,6 +280,7 @@ const mat = {
   stabilisateurs: new THREE.MeshStandardMaterial({ color: 0x45494e, roughness: 0.8, flatShading: true }),
   metal: new THREE.MeshStandardMaterial({ color: 0xa9b0b6, roughness: 0.35, metalness: 0.6 }),
   volant: new THREE.MeshStandardMaterial({ color: 0x2b2f33, roughness: 0.5 }),
+  volantPapillon: new THREE.MeshStandardMaterial({ color: 0x8a949c, roughness: 0.45, metalness: 0.25 }),
   porte: new THREE.MeshStandardMaterial({ color: 0x6fb337, roughness: 0.5, side: THREE.DoubleSide }),
   phare: new THREE.MeshStandardMaterial({ color: 0xfffbe8, emissive: 0xfff3c4, emissiveIntensity: 0.9, roughness: 0.3 }),
   feu_arriere: new THREE.MeshStandardMaterial({ color: 0xb3121b, emissive: 0xff2030, emissiveIntensity: 0.6, roughness: 0.3 }),
@@ -291,6 +293,22 @@ const matFeu = (n) => mat[n] || mat[n.endsWith("gauche") ? "clignotant_gauche" :
 for (const nom of FEUX) {
   objets[nom] = new THREE.Mesh(geometrie(MESHES[nom]), matFeu(nom));
   modele.add(objets[nom]);
+}
+const halos = { phare: halo("phare", "rgba(255,244,214,A)", 46), feu_arriere: halo("feu_arriere", "rgba(255,40,50,A)", 40) };
+// Halos des feux : dégradé radial en sprite additif, posé au centre du feu
+function halo(nom, couleur, taille) {
+  const cv = document.createElement("canvas"); cv.width = cv.height = 128;
+  const c = cv.getContext("2d"), g = c.createRadialGradient(64, 64, 0, 64, 64, 64);
+  g.addColorStop(0, couleur.replace("A", "0.95")); g.addColorStop(0.25, couleur.replace("A", "0.55"));
+  g.addColorStop(0.6, couleur.replace("A", "0.15")); g.addColorStop(1, couleur.replace("A", "0"));
+  c.fillStyle = g; c.fillRect(0, 0, 128, 128);
+  const sp = new THREE.Sprite(new THREE.SpriteMaterial({ map: new THREE.CanvasTexture(cv), blending: THREE.AdditiveBlending, depthWrite: false, transparent: true }));
+  objets[nom].geometry.computeBoundingBox();
+  sp.position.copy(objets[nom].geometry.boundingBox.getCenter(new THREE.Vector3()));
+  sp.scale.set(taille, taille, 1);
+  sp.renderOrder = 5;
+  modele.add(sp);
+  return sp;
 }
 const ajouter = (nom, matiere, parent = modele) => {
   objets[nom] = new THREE.Mesh(geometrie(MESHES[nom]), matiere);
@@ -342,7 +360,7 @@ ajouter("pivot", mat.metal, avant.int);
 const rotationAv = articulation(P.essieu_av, [0, 1, 0], avant.int);  // dans la fourche : suit le braquage
 ajouter("roue_av", mat.roues, rotationAv.int);
 const volantArt = articulation(P.colonne.point, P.colonne.axe);
-ajouter("volant", mat.volant, volantArt.int);
+ajouter("volant", mat.volantPapillon, volantArt.int);
 // --- Interface de pilotage finale sur le volant : palettes + écran 5 po (tableau de bord en direct) ---
 // Données : window.veloTableau (posé par la page Produits : vitesse, puissance, consigne, charge,
 // clignotant, feux, accel, frein) ; seule, la visionneuse affiche un tableau de bord au repos.
@@ -494,7 +512,18 @@ matchMedia("(prefers-color-scheme: dark)").addEventListener("change", couleursTh
 new MutationObserver(couleursTheme).observe(document.documentElement, { attributes: true, attributeFilter: ["data-theme"] });
 
 const vues = { "34": [-110, 150, 250], cote: [100, 70, 360], dessus: [100, 400, 1] };
+let vueCourante = "34";
+// Vue du pilote : derrière la tête, vers l'écran du volant ; elle suit le véhicule (virages compris)
+const PILOTE = { oeil: [152, 135, 0], cible: P.ecran ? [P.ecran.centre[0], P.ecran.centre[2], -P.ecran.centre[1]] : [131, 112, 0] };
 function vue(n) {
+  vueCourante = n;
+  if (n === "pilote") {
+    vehicule.updateMatrixWorld(true);
+    camera.position.copy(vehicule.localToWorld(new THREE.Vector3(...PILOTE.oeil)));
+    controls.target.copy(vehicule.localToWorld(new THREE.Vector3(...PILOTE.cible)));
+    controls.update();
+    return;
+  }
   const [x, y, z] = vues[n];
   const c = centreVehicule();
   camera.position.set(x - 100 + c.x, y, z + c.z);
@@ -527,6 +556,9 @@ function penchement(dt) {
 const posAr = AR.clone();                                // essieu arrière dans la scène
 function rouler(d) {                                     // d : distance parcourue (mm maquette)
   const avant0 = centreVehicule();
+  // vue du pilote : la caméra est attachée au véhicule (elle tourne avec lui)
+  let camLocal = null, cibleLocal = null;
+  if (vueCourante === "pilote") { camLocal = vehicule.worldToLocal(camera.position.clone()); cibleLocal = vehicule.worldToLocal(controls.target.clone()); }
   // le cap tourne selon le braquage (positif = vers la gauche du pilote)
   cap += (d * Math.tan(THREE.MathUtils.degToRad(roueDeg))) / EMPATTEMENT;
   posAr.x -= d * Math.cos(cap);                          // l'avant du véhicule est vers -x
@@ -539,9 +571,15 @@ function rouler(d) {                                     // d : distance parcour
   rotationAv.tourner(roulement);
   if (releve < 1) rouesStab.forEach((s) => s.rot.tourner((s.a -= THREE.MathUtils.radToDeg(d / s.r))));
   // la caméra suit le véhicule (on garde l'angle de vue choisi)
-  const delta = centreVehicule().sub(avant0);
-  camera.position.add(delta);
-  controls.target.add(delta);
+  if (camLocal) {
+    vehicule.updateMatrixWorld(true);
+    camera.position.copy(vehicule.localToWorld(camLocal));
+    controls.target.copy(vehicule.localToWorld(cibleLocal));
+  } else {
+    const delta = centreVehicule().sub(avant0);
+    camera.position.add(delta);
+    controls.target.add(delta);
+  }
   // le sol « défile » : la grille se recale sous le véhicule, par pas d'une case
   const c = centreVehicule();
   sol.position.set(Math.round(c.x / 10) * 10, 0, Math.round(c.z / 10) * 10);
@@ -740,7 +778,15 @@ let dernier = performance.now();
   matPalette.frein.emissiveIntensity = tb && tb.frein ? 0.25 + 0.6 * tb.frein / 100 : 0;
   // feux avant / arrière : imposés par la page qui contient la visionneuse (window.veloFeux) ; seule, allumés
   const feux = window.veloFeux;
-  if (feux) { mat.phare.emissiveIntensity = feux.avant ? 0.9 : 0; mat.feu_arriere.emissiveIntensity = feux.arriere ? 0.6 : 0; }
+  // allumés : couleur inchangée, mais lueur et grand halo ; éteints : sans halo
+  const fx = feux || { avant: true, arriere: true };
+  mat.phare.emissiveIntensity = fx.avant ? 0.9 : 0;
+  // feu stop (window.veloStop, posé par la page) : plus fort et plus grand halo, même feux éteints
+  const stop = !!window.veloStop;
+  mat.feu_arriere.emissiveIntensity = stop ? 1.8 : fx.arriere ? 0.6 : 0;
+  halos.phare.visible = fx.avant;
+  halos.feu_arriere.visible = fx.arriere || stop;
+  halos.feu_arriere.scale.setScalar(stop ? 64 : 40);
   const cible = ouvrir ? P.porte_ouverture : 0;
   ouverture += Math.sign(cible - ouverture) * Math.min(Math.abs(cible - ouverture), dt * 90);
   portes.forEach((p) => p.tourner(ouverture));
