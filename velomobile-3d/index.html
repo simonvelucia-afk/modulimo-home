@@ -660,6 +660,9 @@ let dernier = performance.now();
   vitesseReelle = typeof window.veloVitesse === "number" ? window.veloVitesse : 0;
   if (vitesseReelle > 0) rouler((vitesseReelle * 1000 / 12) * dt);   // m/s réels -> mm maquette
   clignoter(t || 0);
+  // feux avant / arrière : imposés par la page qui contient la visionneuse (window.veloFeux) ; seule, allumés
+  const feux = window.veloFeux;
+  if (feux) { mat.phare.emissiveIntensity = feux.avant ? 0.9 : 0; mat.feu_arriere.emissiveIntensity = feux.arriere ? 0.6 : 0; }
   const cible = ouvrir ? P.porte_ouverture : 0;
   ouverture += Math.sign(cible - ouverture) * Math.min(Math.abs(cible - ouverture), dt * 90);
   portes.forEach((p) => p.tourner(ouverture));
