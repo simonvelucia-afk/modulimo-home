@@ -31,7 +31,9 @@
     var memo = null;
     try { memo = JSON.parse(localStorage.getItem(CLE) || 'null'); } catch (e) {}
     if (!memo || !memo.cle) return Promise.reject(new Error(MSG.ferme[lang]));
-    return natif(url.replace(/modele\.json$/, 'modele.chiffre.json'), opts)
+    // revalider auprès du serveur à chaque ouverture : le modèle évolue, une copie en cache
+    // afficherait une ancienne version (GitHub Pages renvoie 304 si rien n'a changé)
+    return natif(url.replace(/modele\.json$/, 'modele.chiffre.json'), Object.assign({ cache: 'no-cache' }, opts))
       .then(function (r) { if (!r.ok) throw new Error(MSG.erreur[lang]); return r.json(); })
       .then(function (P) {
         if (P.sel !== memo.sel) throw new Error(MSG.erreur[lang]);
