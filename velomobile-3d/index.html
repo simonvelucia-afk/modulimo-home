@@ -314,10 +314,18 @@ ajouter("fenetres", mat.bulle);
 const rotationAr = articulation(P.essieu_ar, [0, 1, 0]);
 ajouter("roue_ar", mat.roues, rotationAr.int);
 // Roues stabilisatrices escamotables : bras + roue tournent ensemble autour du pivot (axe transversal)
+// Petites roues : descendues, elles restent à 10 mm du sol (le véhicule roule sur ses deux
+// grandes roues). En virage, il penche vers l'extérieur : seule la roue extérieure touche et tourne.
+const rouesStab = [];
 const stabs = ["gauche", "droite"].map((cote) => {
   const art = articulation(P.stab.pivot, [0, -1, 0]);
   ajouter("bras_stab_" + cote, mat.metal, art.int);
-  ajouter("roue_stab_" + cote, mat.stabilisateurs, art.int);
+  const roue = ajouter("roue_stab_" + cote, mat.stabilisateurs, art.int);
+  roue.geometry.computeBoundingBox();
+  const bb = roue.geometry.boundingBox;
+  const rot = articulation(bb.getCenter(new THREE.Vector3()).toArray(), [0, 1, 0], art.int);
+  rot.int.add(roue);
+  rouesStab.push({ cote, rot, r: (bb.max.z - bb.min.z) / 2, a: 0 });
   return art;
 });
 ajouter("colonne", mat.metal);
@@ -442,6 +450,11 @@ function rouler(degPedalier) {
   roulement -= THREE.MathUtils.radToDeg(d / P.rayon_roue);
   rotationAr.tourner(roulement);
   rotationAv.tourner(roulement);
+  // braquage positif = virage à gauche : la roue extérieure est la droite
+  const exterieure = Math.abs(roueDeg) < 5 ? null : roueDeg > 0 ? "droite" : "gauche";
+  if (releve < 1) rouesStab.forEach((s) => {
+    if (s.cote === exterieure) s.rot.tourner((s.a -= THREE.MathUtils.radToDeg(d / s.r)));
+  });
   // la caméra suit le véhicule (on garde l'angle de vue choisi)
   const delta = centreVehicule().sub(avant0);
   camera.position.add(delta);
