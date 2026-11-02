@@ -127,7 +127,7 @@ body.epure .coin button:hover, body.epure .coin button:focus-visible { opacity: 
     <h1>Vélomobile 1:12</h1>
     <div class="sous">Maquette 200 mm · véhicule réel 2,4 m</div>
   </div>
-  <div class="etat"><i class="puce"></i><span>Hybride série : le pédalage charge les condensateurs, le moteur fait rouler (simulation sur la page Produits). Un 6 pi pédale sur tout le tour sans sortir de la coque ni toucher les roues, même roue avant braquée à 60°.</span></div>
+  <div class="etat"><i class="puce"></i><span>Hybride série : le pédalage (réducteur 1:19 et génératrice sous le pédalier) charge les condensateurs (pack 48 V, 20 Wh), le moteur-roue 48 V à entraînement direct fait rouler et récupère au freinage (simulation sur la page Produits). Un 6 pi pédale sur tout le tour sans sortir de la coque ni toucher les roues, même roue avant braquée à 60°.</span></div>
   <div class="etat"><i class="puce"></i><span>Cadre monotube en aluminium 1 × 2 po (paroi 1/8 po) : douille, tube diagonal, pédalier, sous le siège, bases et haubans doubles, rails du pack et supports des petites roues — ≈ 5 m, ≈ 6,3 kg, sans toucher pilote, roues ni direction.</span></div>
   <div class="etat"><i class="puce"></i><span>Le nez recouvre la roue avant comme un garde-boue, avec 45 mm de jeu au pneu sur tout le braquage.</span></div>
   <div class="etat"><i class="puce"></i><span>Éclairage : bande avant, feu arrière, quatre clignotants.</span></div>
@@ -344,6 +344,8 @@ const matProp = {
 if (MESHES.cadre) ajouter("cadre", new THREE.MeshStandardMaterial({ color: 0xd4dae0, roughness: 0.4, metalness: 0.35, emissive: 0x3a4148, emissiveIntensity: 0.4 }));
 if (MESHES.moteur_roue) ajouter("moteur_roue", matProp.moteur, rotationAr.int);
 if (MESHES.generatrice) ajouter("generatrice", matProp.generatrice);
+// réducteur à engrenages (carter plat) entre le pédalier et la génératrice
+if (MESHES.reducteur) ajouter("reducteur", new THREE.MeshStandardMaterial({ color: 0x8d969e, roughness: 0.45, metalness: 0.5, emissive: 0x23282c, emissiveIntensity: 0.35 }));
 if (MESHES.condensateurs) ajouter("condensateurs", matProp.condensateurs);
 // Panneau solaire souple sur le toit ; prise d'air filtrée en haut à l'arrière (filtre + ventilateur), sortie basse à l'avant ;
 // (tourne quand la page le met en marche : window.veloVentil, 0 à 1)
