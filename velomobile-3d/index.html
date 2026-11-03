@@ -130,10 +130,11 @@ body.epure .coin button:hover, body.epure .coin button:focus-visible { opacity: 
   <div class="etat"><i class="puce"></i><span>Hybride série : le pédalage (réducteur 1:28 et génératrice sous le pédalier) charge les condensateurs (pack 48 V, 20 Wh), le moteur-roue 48 V à entraînement direct fait rouler et récupère au freinage (simulation sur la page Produits). Un 6 pi pédale sur tout le tour sans sortir de la coque ni toucher les roues, même roue avant braquée à 60°.</span></div>
   <div class="etat"><i class="puce"></i><span>Cadre monotube en aluminium 1 × 2 po (paroi 1/8 po) : douille, tube diagonal, pédalier, sous le siège, bases et haubans doubles, rails du pack et supports des petites roues — ≈ 5 m, ≈ 6,3 kg, sans toucher pilote, roues ni direction.</span></div>
   <div class="etat"><i class="puce"></i><span>Coque mince de 24 mm (2 mm sur la maquette) : l'habitacle est vide, avec un renfoncement du plancher sous les pieds. Siège baquet en toile tendue sur cadre en tube, posé sur le tube sous le siège : dessus de l'assise à 747 mm, dossier à 15°.</span></div>
-  <div class="etat"><i class="puce"></i><span>Le nez recouvre la roue avant comme un garde-boue, avec 45 mm de jeu au pneu sur tout le braquage.</span></div>
+  <div class="etat"><i class="puce"></i><span>Le nez recouvre la roue avant comme un garde-boue, avec 45 mm de jeu au pneu sur tout le braquage. Garde-boue intérieurs avant et arrière : les passages de roues sont fermés côté habitacle.</span></div>
+  <div class="etat"><i class="puce"></i><span>Pneus 26 × 2,35 po arrondis à crampons, jantes à 32 rayons. Freins à disque Ø180 côté gauche (étrier sur la fourche et sur la base du cadre), en plus du freinage régénératif du moteur-roue.</span></div>
   <div class="etat"><i class="puce"></i><span>Éclairage : bande avant, feu arrière, quatre clignotants.</span></div>
   <div class="etat"><i class="puce"></i><span>Siège monté de 4 po. Volant papillon ±45°, roue avant ±60° (demi-tour dans ≈ 1,8 m) : courroie démultipliée (poulies Ø70 / Ø52,5) puis double cardan.</span></div>
-  <div class="etat"><i class="puce"></i><span>Petites roues escamotables : le bras pivote vers l'arrière et vers le haut, et la roue se range debout dans le flanc arrière.</span></div>
+  <div class="etat"><i class="puce"></i><span>Petites roues escamotables : le bras pivote vers l'arrière et vers le haut, et la roue se range debout dans un caisson du flanc arrière, fermé côté habitacle.</span></div>
   <div class="etat"><i class="puce"></i><span>Mannequin habillé confortablement (coton ouaté à capuchon, jogging, espadrilles) : toutes les vérifications sont faites avec les vêtements.</span></div>
   <div class="etat"><i class="puce"></i><span>Grandes portes vitrées à charnières avant : de devant les orteils à derrière la tête, du seuil jusqu'au toit opaque.</span></div>
   <details>
@@ -159,7 +160,8 @@ body.epure .coin button:hover, body.epure .coin button:focus-visible { opacity: 
       <dt>Seuil de porte</dt><dd>300 mm</dd>
       <dt>Bas du toit</dt><dd>1 720 mm</dd>
       <dt>Empattement</dt><dd>1 540 mm</dd>
-      <dt>Roues</dt><dd>26 po</dd>
+      <dt>Roues</dt><dd>26 × 2,35 po, crampons</dd>
+      <dt>Freins</dt><dd>disques Ø180</dd>
       <dt>Jeu pneu / garde-boue</dt><dd>45 mm</dd>
       <dt>Bande lumineuse avant</dt><dd>320 × 40 mm</dd>
       <dt>Feu arrière</dt><dd>300 × 50 mm</dd>
@@ -280,6 +282,11 @@ const mat = {
   souliers: new THREE.MeshStandardMaterial({ color: 0xf2f2ee, roughness: 0.6 }),
   roues: new THREE.MeshStandardMaterial({ color: 0x24272a, roughness: 0.85, flatShading: true }),
   stabilisateurs: new THREE.MeshStandardMaterial({ color: 0x45494e, roughness: 0.8, flatShading: true }),
+  pneu: new THREE.MeshStandardMaterial({ color: 0x1f2225, roughness: 0.9 }),
+  jante: new THREE.MeshStandardMaterial({ color: 0x8f979e, roughness: 0.3, metalness: 0.7 }),
+  disque: new THREE.MeshStandardMaterial({ color: 0xd8dde2, roughness: 0.25, metalness: 0.85, side: THREE.DoubleSide }),
+  etrier: new THREE.MeshStandardMaterial({ color: 0xc23a2b, roughness: 0.45, metalness: 0.3 }),
+  gardeBoue: new THREE.MeshStandardMaterial({ color: 0x33383d, roughness: 0.8, side: THREE.DoubleSide }),
   metal: new THREE.MeshStandardMaterial({ color: 0xa9b0b6, roughness: 0.35, metalness: 0.6 }),
   volant: new THREE.MeshStandardMaterial({ color: 0x2b2f33, roughness: 0.5 }),
   volantPapillon: new THREE.MeshStandardMaterial({ color: 0x8a949c, roughness: 0.45, metalness: 0.25 }),
@@ -332,7 +339,15 @@ ajouter("toit", mat.coque);
 ajouter("fenetres", mat.bulle);
 // Roues : chacune tourne sur son essieu (axe transversal) quand le véhicule roule
 const rotationAr = articulation(P.essieu_ar, [0, 1, 0]);
-ajouter("roue_ar", mat.roues, rotationAr.int);
+// Roues détaillées (pneu arrondi à crampons, jante à rayons, disque Ø180) ; étriers fixes
+if (MESHES.pneu_ar) {
+  ajouter("pneu_ar", mat.pneu, rotationAr.int);
+  ajouter("jante_ar", mat.jante, rotationAr.int);
+  ajouter("disque_ar", mat.disque, rotationAr.int);
+  ajouter("etrier_ar", mat.etrier);                       // sur la base gauche du cadre
+} else ajouter("roue_ar", mat.roues, rotationAr.int);
+// Garde-boue intérieurs et caissons des petites roues : ferment les passages côté habitacle
+for (const n of ["garde_boue_av", "garde_boue_ar", "caissons_petites_roues"]) if (MESHES[n]) ajouter(n, mat.gardeBoue);
 // Propulsion hybride série : moteur-roue (tourne avec la roue arrière), génératrice au pédalier,
 // pack de supercondensateurs derrière le siège (s'éclaire selon sa charge : window.veloTableau.charge)
 const matProp = {
@@ -406,7 +421,12 @@ const avant = articulation(P.pivot.point, P.pivot.axe);
 ajouter("fourche", mat.metal, avant.int);
 ajouter("pivot", mat.metal, avant.int);
 const rotationAv = articulation(P.essieu_av, [0, 1, 0], avant.int);  // dans la fourche : suit le braquage
-ajouter("roue_av", mat.roues, rotationAv.int);
+if (MESHES.pneu_av) {
+  ajouter("pneu_av", mat.pneu, rotationAv.int);
+  ajouter("jante_av", mat.jante, rotationAv.int);
+  ajouter("disque_av", mat.disque, rotationAv.int);
+  ajouter("etrier_av", mat.etrier, avant.int);            // sur le fourreau gauche : suit le braquage
+} else ajouter("roue_av", mat.roues, rotationAv.int);
 const volantArt = articulation(P.colonne.point, P.colonne.axe);
 ajouter("volant", mat.volantPapillon, volantArt.int);
 // --- Interface de pilotage finale sur le volant : palettes + écran 5 po (tableau de bord en direct) ---
