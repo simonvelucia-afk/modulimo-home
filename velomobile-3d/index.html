@@ -129,6 +129,7 @@ body.epure .coin button:hover, body.epure .coin button:focus-visible { opacity: 
   </div>
   <div class="etat"><i class="puce"></i><span>Hybride série : le pédalage (réducteur 1:28 et génératrice sous le pédalier) charge les condensateurs (pack 48 V, 20 Wh), le moteur-roue 48 V à entraînement direct fait rouler et récupère au freinage (simulation sur la page Produits). Un 6 pi pédale sur tout le tour sans sortir de la coque ni toucher les roues, même roue avant braquée à 60°.</span></div>
   <div class="etat"><i class="puce"></i><span>Cadre monotube en aluminium 1 × 2 po (paroi 1/8 po) : douille, tube diagonal, pédalier, sous le siège, bases et haubans doubles, rails du pack et supports des petites roues — ≈ 5 m, ≈ 6,3 kg, sans toucher pilote, roues ni direction.</span></div>
+  <div class="etat"><i class="puce"></i><span>Coque mince de 24 mm (2 mm sur la maquette) : l'habitacle est vide, avec un renfoncement du plancher sous les pieds. Siège baquet en toile tendue sur cadre en tube, posé sur le tube sous le siège : dessus de l'assise à 747 mm, dossier à 15°.</span></div>
   <div class="etat"><i class="puce"></i><span>Le nez recouvre la roue avant comme un garde-boue, avec 45 mm de jeu au pneu sur tout le braquage.</span></div>
   <div class="etat"><i class="puce"></i><span>Éclairage : bande avant, feu arrière, quatre clignotants.</span></div>
   <div class="etat"><i class="puce"></i><span>Siège monté de 4 po. Volant papillon ±45°, roue avant ±60° (demi-tour dans ≈ 1,8 m) : courroie démultipliée (poulies Ø70 / Ø52,5) puis double cardan.</span></div>
@@ -342,6 +343,11 @@ const matProp = {
 };
 // Cadre en tube d'aluminium 1 × 2 po (fixe, suit la coque)
 if (MESHES.cadre) ajouter("cadre", new THREE.MeshStandardMaterial({ color: 0xd4dae0, roughness: 0.4, metalness: 0.35, emissive: 0x3a4148, emissiveIntensity: 0.4 }));
+// Siège baquet : toile tendue sur un cadre en tube, posé sur le tube « sous le siège » du cadre
+if (MESHES.siege_toile) {
+  ajouter("siege_toile", new THREE.MeshStandardMaterial({ color: 0x2a2f35, roughness: 0.95, side: THREE.DoubleSide }));
+  ajouter("siege_cadre", new THREE.MeshStandardMaterial({ color: 0xc9d1d8, roughness: 0.35, metalness: 0.6, emissive: 0x30363c, emissiveIntensity: 0.3 }));
+}
 if (MESHES.moteur_roue) ajouter("moteur_roue", matProp.moteur, rotationAr.int);
 if (MESHES.generatrice) ajouter("generatrice", matProp.generatrice);
 // réducteur à engrenages (carter plat) entre le pédalier et la génératrice
