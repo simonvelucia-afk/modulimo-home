@@ -619,15 +619,30 @@ function penchement(dt) {
   const cible = releveeEnRoulant
     ? THREE.MathUtils.clamp(Math.atan((vitesseReelle ** 2 * Math.tan(THREE.MathUtils.degToRad(roueDeg))) / (9.81 * EMPATTEMENT_REEL)), -Math.PI / 4, Math.PI / 4)
     : 0;                                                       // petites roues au sol ou arrêt : droit
+  // vue du pilote : la caméra reste attachée au véhicule pendant qu'il se penche.
+  // Sans cela, chaque image d'inclinaison décalait la caméra par rapport à la
+  // coque, et le décalage s'accumulait en virage jusqu'à sortir du véhicule.
+  const suivre = vueCourante === "pilote";
+  let camLocal = null, cibleLocal = null;
+  if (suivre) {
+    vehicule.updateMatrixWorld(true);
+    camLocal = vehicule.worldToLocal(camera.position.clone());
+    cibleLocal = vehicule.worldToLocal(controls.target.clone());
+  }
   inclinaison += (cible - inclinaison) * Math.min(1, dt * 2.5);  // le pilote s'incline progressivement
   vehicule.rotation.set(inclinaison, cap, 0, "YXZ");
+  if (suivre) {
+    vehicule.updateMatrixWorld(true);
+    camera.position.copy(vehicule.localToWorld(camLocal));
+    controls.target.copy(vehicule.localToWorld(cibleLocal));
+  }
 }
 const posAr = AR.clone();                                // essieu arrière dans la scène
 function rouler(d) {                                     // d : distance parcourue (mm maquette)
   const avant0 = centreVehicule();
   // vue du pilote : la caméra est attachée au véhicule (elle tourne avec lui)
   let camLocal = null, cibleLocal = null;
-  if (vueCourante === "pilote") { camLocal = vehicule.worldToLocal(camera.position.clone()); cibleLocal = vehicule.worldToLocal(controls.target.clone()); }
+  if (vueCourante === "pilote") { vehicule.updateMatrixWorld(true); camLocal = vehicule.worldToLocal(camera.position.clone()); cibleLocal = vehicule.worldToLocal(controls.target.clone()); }
   // le cap tourne selon le braquage (positif = vers la gauche du pilote)
   cap += (d * Math.tan(THREE.MathUtils.degToRad(roueDeg))) / EMPATTEMENT;
   posAr.x -= d * Math.cos(cap);                          // l'avant du véhicule est vers -x
