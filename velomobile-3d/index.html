@@ -159,7 +159,7 @@ body.epure .coin button:hover, body.epure .coin button:focus-visible { opacity: 
   <div class="etat"><i class="puce"></i><span>Hybride série : le pédalage (réducteur 1:28 et génératrice sous le pédalier) charge les condensateurs (pack 48 V, 20 Wh), le moteur-roue 48 V à entraînement direct fait rouler et récupère au freinage (simulation sur la page Produits). Un 6 pi pédale sur tout le tour sans sortir de la coque ni toucher les roues, même roue avant braquée à 60°.</span></div>
   <div class="etat"><i class="puce"></i><span>Cadre monotube en aluminium 1 × 2 po (paroi 1/8 po) : douille, tube diagonal, pédalier, sous le siège, bases et haubans doubles, rails du pack et supports des petites roues — ≈ 5 m, ≈ 6,3 kg, sans toucher pilote, roues ni direction.</span></div>
   <div class="etat"><i class="puce"></i><span>Coque mince de 24 mm (2 mm sur la maquette) : l'habitacle est vide, avec un renfoncement du plancher sous les pieds. Siège baquet en toile tendue sur cadre en tube, posé sur le tube sous le siège : dessus de l'assise à 747 mm, dossier à 15°.</span></div>
-  <div class="etat"><i class="puce"></i><span>La roue avant peut pivoter sur 360° : la coque est dégagée tout autour (45 mm de jeu à la roue, au frein et à la fourche), et son garde-boue, monté sur la fourche, tourne avec elle. Une cloison fixe (bac de 3 mm) referme l'habitacle autour de la roue ; la direction la traverse par un soufflet. Garde-boue intérieur à l'arrière.</span></div>
+  <div class="etat"><i class="puce"></i><span>La roue avant peut pivoter sur 360° : la coque forme d'elle-même un passage de roue fermé, à 40 mm de la roue, du frein et de la fourche ; la direction le traverse par un soufflet. Garde-boue intérieur à l'arrière.</span></div>
   <div class="etat"><i class="puce"></i><span>Pneus 26 × 2,35 po arrondis à crampons, jantes à 32 rayons. Freins à disque Ø180 côté gauche (étrier sur la fourche et sur la base du cadre), en plus du freinage régénératif du moteur-roue.</span></div>
   <div class="etat"><i class="puce"></i><span>Éclairage : bande avant, feu arrière, quatre clignotants.</span></div>
   <div class="etat"><i class="puce"></i><span>Siège monté de 4 po. Volant papillon ±45°, roue avant ±60° (demi-tour dans ≈ 1,8 m) : courroie démultipliée (poulies Ø70 / Ø52,5) puis double cardan.</span></div>
@@ -191,8 +191,7 @@ body.epure .coin button:hover, body.epure .coin button:focus-visible { opacity: 
       <dt>Empattement</dt><dd>1 540 mm</dd>
       <dt>Roues</dt><dd>26 × 2,35 po, crampons</dd>
       <dt>Freins</dt><dd>disques Ø180</dd>
-      <dt>Jeu roue avant / coque (360°)</dt><dd>45 mm</dd>
-      <dt>Jeu pneu / garde-boue avant</dt><dd>20 mm</dd>
+      <dt>Jeu roue avant / coque (360°)</dt><dd>40 mm</dd>
       <dt>Bande lumineuse avant</dt><dd>320 × 40 mm</dd>
       <dt>Feu arrière</dt><dd>300 × 50 mm</dd>
       <dt>Clignotants</dt><dd>100 × 40 mm</dd>
@@ -402,7 +401,7 @@ if (MESHES.pneu_ar) {
   ajouter("etrier_ar", mat.etrier);                       // sur la base gauche du cadre
 } else ajouter("roue_ar", mat.roues, rotationAr.int);
 // Garde-boue intérieurs et caissons des petites roues : ferment les passages côté habitacle
-for (const n of ["garde_boue_ar", "caissons_petites_roues", "cloison_avant"]) if (MESHES[n]) ajouter(n, mat.gardeBoue);
+for (const n of ["garde_boue_ar", "caissons_petites_roues"]) if (MESHES[n]) ajouter(n, mat.gardeBoue);
 // Propulsion hybride série : moteur-roue (tourne avec la roue arrière), génératrice au pédalier,
 // pack de supercondensateurs derrière le siège (s'éclaire selon sa charge : window.veloTableau.charge)
 const matProp = {
@@ -432,6 +431,8 @@ const matSol = {
 };
 if (MESHES.panneau_solaire) ajouter("panneau_solaire", matSol.panneau);
 if (MESHES.aeration_entree) { ajouter("aeration_entree", matSol.grille); ajouter("aeration_sortie", matSol.grille); }
+// grille de la prise d'air avant, au ras de la coque (cad/grille_aeration.py)
+if (MESHES.grille_aeration) ajouter("grille_aeration", new THREE.MeshStandardMaterial({ color: 0x8f969c, roughness: 0.45, metalness: 0.35 }));
 if (MESHES.filtre) ajouter("filtre", new THREE.MeshStandardMaterial({ color: 0xe4ddc8, roughness: 0.9 }));   // filtre d'habitacle
 const helice = P.ventilateur && MESHES.ventilateur ? articulation(P.ventilateur.centre, P.ventilateur.axe) : null;
 if (helice) {
@@ -474,8 +475,6 @@ ajouter("poulie_pivot", mat.metal);
 ajouter("courroie", mat.volant);
 const avant = articulation(P.pivot.point, P.pivot.axe);
 ajouter("fourche", mat.metal, avant.int);
-// garde-boue avant monté sur la fourche : il tourne avec la direction (roue pivotant sur 360°)
-if (MESHES.garde_boue_av) ajouter("garde_boue_av", mat.gardeBoue, avant.int);
 ajouter("pivot", mat.metal, avant.int);
 const rotationAv = articulation(P.essieu_av, [0, 1, 0], avant.int);  // dans la fourche : suit le braquage
 if (MESHES.pneu_av) {
@@ -738,8 +737,8 @@ document.querySelectorAll("[data-vue]").forEach((b) => b.addEventListener("click
 const boutonsCoque = document.querySelectorAll("[data-mode]");
 function modeCoque(m) {
   boutonsCoque.forEach((b) => b.setAttribute("aria-pressed", String(b.dataset.mode === m)));
-  ["coque", "toit", "fenetres", "porte_gauche", "porte_droite", "vitre_porte_gauche", "vitre_porte_droite"]
-    .forEach((n) => (objets[n].visible = m !== "cache"));
+  ["coque", "toit", "fenetres", "porte_gauche", "porte_droite", "vitre_porte_gauche", "vitre_porte_droite", "grille_aeration"]
+    .forEach((n) => objets[n] && (objets[n].visible = m !== "cache"));
   FEUX.forEach((n) => (objets[n].visible = m !== "cache"));
   const t = m === "trans";
   // les portes restent plus opaques que la coque pour qu'on les repère
