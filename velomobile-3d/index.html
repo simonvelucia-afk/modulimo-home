@@ -76,6 +76,10 @@ details summary { cursor: pointer; font-size: 12px; color: var(--muted); text-tr
   font-family: var(--f-mono); font-size: 12px; color: var(--fg); background: var(--panel); border: 1px solid var(--line);
   border-radius: 6px; padding: 4px 10px; white-space: nowrap; pointer-events: none; max-width: calc(100% - 32px); overflow: hidden; text-overflow: ellipsis; }
 body.epure .etat-sim, body.pilote-externe .etat-sim { display: none; }
+/* Pilotée par une page (volant de la page Produits) : ses commandes de conduite,
+   portes, petites roues et feux seraient des doublons du volant ; seules les vues
+   restent (et le panneau Couleurs du coin). */
+body.pilote-externe .commandes .groupe:not(.vues) { display: none; }
 details[open] summary { margin-bottom: 8px; }
 .commandes {
   position: absolute; left: 0; right: 0;
@@ -260,7 +264,7 @@ body.epure .coin button:hover, body.epure .coin button:focus-visible { opacity: 
     <button id="k-urgence" data-clign="urgence" aria-pressed="false">Urgence</button>
     <button id="b-feux" type="button" aria-pressed="false" title="Feux avant et arrière">Phares</button>
   </div>
-  <div class="groupe" role="group" aria-label="Vues">
+  <div class="groupe vues" role="group" aria-label="Vues">
     <span>Vue</span>
     <button id="v-34" data-vue="34">3/4</button>
     <button id="v-cote" data-vue="cote">Côté</button>
