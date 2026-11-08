@@ -164,7 +164,7 @@ body.epure .coin button:hover, body.epure .coin button:focus-visible { opacity: 
   <div class="etat"><i class="puce"></i><span>Éclairage : bande avant, feu arrière, quatre clignotants.</span></div>
   <div class="etat"><i class="puce"></i><span>Siège monté de 4 po. Volant papillon ±45°, roue avant ±60° (demi-tour dans ≈ 1,8 m) : courroie démultipliée (poulies Ø70 / Ø52,5) puis double cardan.</span></div>
   <div class="etat"><i class="puce"></i><span>Forme : plancher droit, parallèle au sol, jusqu'à l'arrondi bombé de la poupe ; vu de dessus, l'arrière se termine en œuf. Carrosserie allongée de 198 mm, toit solaire entier ; roue arrière reculée, le pneu finit à l'aplomb de la pointe, dans un passage de roue formé par la coque. Passages de roue ouverts sur les flancs (Ø 711 mm, coque et portes).</span></div>
-  <div class="etat"><i class="puce"></i><span>Petites roues escamotables : chaque bras pivote dans un palier soudé à la base du cadre, 96 mm devant l'axe de la roue arrière (laissé libre pour boulonner la roue) ; relevées par l'arrière dans le passage de roue, à 2 po de la voûte, bas des roues à 426 mm du sol. Le tube sous le siège, prolongé jusqu'à l'arrière au-dessus de la roue, porte la plateforme du coffre au niveau du siège.</span></div>
+  <div class="etat"><i class="puce"></i><span>Petites roues : toujours au sol, chaque bras pivote dans un palier soudé à la base du cadre, 96 mm devant l'axe de la roue arrière (laissé libre pour boulonner la roue). Un frein électromagnétique à manque de courant les bloque à l'arrêt, sous 10 km/h, à l'arrêt d'urgence et en cas de panne ; libérées au-dessus de 10 km/h, elles laissent le véhicule pencher en virage, la roue du côté intérieur remonte dans le passage de roue. Le tube sous le siège, prolongé jusqu'à l'arrière au-dessus de la roue, porte la plateforme du coffre au niveau du siège.</span></div>
   <div class="etat"><i class="puce"></i><span>Mannequin habillé confortablement (coton ouaté à capuchon, jogging, espadrilles) : toutes les vérifications sont faites avec les vêtements.</span></div>
   <div class="etat"><i class="puce"></i><span>Grandes portes vitrées à charnières avant : de devant les orteils à derrière la tête, du seuil jusqu'au toit opaque.</span></div>
   <details>
@@ -193,7 +193,7 @@ body.epure .coin button:hover, body.epure .coin button:focus-visible { opacity: 
       <dt>Roues</dt><dd>26 × 2,35 po, crampons</dd>
       <dt>Freins</dt><dd>disques Ø180</dd>
       <dt>Jeu roue avant / coque (360°)</dt><dd>40 mm</dd>
-      <dt>Petites roues relevées</dt><dd>dans le passage de roue arrière, à 426 mm du sol</dd>
+      <dt>Petites roues</dt><dd>bloquées sous 10 km/h, libres au-dessus (inclinaison ≤ 45°)</dd>
       <dt>Plateforme du coffre</dt><dd>≈ 403 × 541 mm, à 737 mm du sol</dd>
       <dt>Bande lumineuse avant</dt><dd>320 × 40 mm</dd>
       <dt>Feu arrière</dt><dd>300 × 50 mm</dd>
@@ -205,7 +205,7 @@ body.epure .coin button:hover, body.epure .coin button:focus-visible { opacity: 
     <div class="etat"><i class="puce"></i><span>Hybride série : les pédales entraînent une génératrice qui charge les condensateurs, même à l’arrêt. Pédalez avant de partir pour un boost au démarrage.</span></div>
     <div class="etat"><i class="puce"></i><span>Accélérer et Freiner : tenir appuyé (↑ / ↓ au clavier). Double-tap sur Accélérer pour le verrouiller ; un tap ou un freinage le libère. Le frein recharge d’abord les condensateurs.</span></div>
     <div class="etat"><i class="puce"></i><span>Sans accélérateur, le véhicule n’avance pas seul : il s’arrête en rechargeant sur le plat et roule en rechargeant en descente. La consigne est la vitesse maximale.</span></div>
-    <div class="etat"><i class="puce"></i><span>Volant : curseur ou ← / → ; il revient au centre quand on le lâche. Les petites roues descendent seules sous 10 km/h ; on les relève au-dessus.</span></div>
+    <div class="etat"><i class="puce"></i><span>Volant : curseur ou ← / → ; il revient au centre quand on le lâche. Les petites roues se bloquent seules sous 10 km/h ; on les libère au-dessus pour pencher en virage.</span></div>
   </details>
   </div>
  </details>
@@ -226,6 +226,7 @@ body.epure .coin button:hover, body.epure .coin button:focus-visible { opacity: 
     <button id="c-pleine" data-mode="pleine" aria-pressed="false">Pleine</button>
     <button id="c-trans" data-mode="trans" aria-pressed="true">Transparente</button>
     <button id="c-cache" data-mode="cache" aria-pressed="false">Masquée</button>
+    <button id="c-portes" type="button" aria-pressed="false">Masquer les portes</button>
   </div>
   <div class="groupe couleurs" role="group" aria-label="Couleurs">
     <span>Couleurs</span>
@@ -258,7 +259,7 @@ body.epure .coin button:hover, body.epure .coin button:focus-visible { opacity: 
     <button id="b-portes" aria-pressed="false">Ouvrir les portes</button>
   </div>
   <div class="groupe" role="group" aria-label="Roues stabilisatrices">
-    <button id="b-stab" aria-pressed="false">Relever les petites roues</button>
+    <button id="b-stab" aria-pressed="false">Libérer les petites roues</button>
   </div>
   <div class="groupe" role="group" aria-label="Clignotants">
     <span>Feux</span>
@@ -455,9 +456,9 @@ if (helice) {
   }
 }
 let heliceAngle = 0;
-// Roues stabilisatrices escamotables : bras + roue tournent ensemble autour du pivot (axe transversal)
-// Petites roues : descendues, elles sont au sol (10 mm de garde, invisible à l'échelle) et
-// tournent quand le véhicule roule ; relevées dans le flanc, elles s'arrêtent.
+// Petites roues : chaque bras pivote sur la base du cadre (axe transversal). Bloquées (frein serré,
+// à l'arrêt et sous 10 km/h) elles tiennent le véhicule droit ; libérées, le bras pivote librement :
+// quand le véhicule penche, la roue du côté intérieur remonte en suivant le sol, l'autre décolle.
 const rouesStab = [];
 const stabs = ["gauche", "droite"].map((cote) => {
   const art = articulation(P.stab.pivot, P.stab.axe || [0, -1, 0]);
@@ -467,7 +468,7 @@ const stabs = ["gauche", "droite"].map((cote) => {
   const bb = roue.geometry.boundingBox;
   const rot = articulation(bb.getCenter(new THREE.Vector3()).toArray(), [0, 1, 0], art.int);
   rot.int.add(roue);
-  rouesStab.push({ cote, rot, r: (bb.max.z - bb.min.z) / 2, a: 0 });
+  rouesStab.push({ cote, rot, r: (bb.max.z - bb.min.z) / 2, a: 0, centre: bb.getCenter(new THREE.Vector3()) });
   return art;
 });
 ajouter("colonne", mat.metal);
@@ -687,12 +688,12 @@ let cap = 0, roulement = 0, inclinaison = 0, vitesseReelle = 0;
 // Vitesse : imposée par la page qui contient la visionneuse (window.veloVitesse, m/s réels).
 // Hybride série : les pédales chargent les condensateurs, seul le moteur fait rouler ;
 // la visionneuse seule (sans simulation) ne roule donc pas quand le mannequin pédale.
-// Inclinaison en virage, petites roues relevées : comme un vélo, tan(φ) = v² / (g · R), R = empattement / tan(braquage).
+// Inclinaison en virage, petites roues libérées : comme un vélo, tan(φ) = v² / (g · R), R = empattement / tan(braquage).
 const V_REELLE = (200 / 360) * DEVELOPPEMENT * 12 / 1000;   // m/s au rythme de pédalage de la visionneuse (≈ 2,3 m/s)
 const EMPATTEMENT_REEL = EMPATTEMENT * 12 / 1000;            // m
 function penchement(dt) {
-  const releveeEnRoulant = vitesseReelle > 0.3 && releve >= P.stab.course - 1;
-  const cible = releveeEnRoulant
+  const libresEnRoulant = vitesseReelle > 0.3 && liberer;
+  const cible = libresEnRoulant
     ? THREE.MathUtils.clamp(Math.atan((vitesseReelle ** 2 * Math.tan(THREE.MathUtils.degToRad(roueDeg))) / (9.81 * EMPATTEMENT_REEL)), -Math.PI / 4, Math.PI / 4)
     : 0;                                                       // petites roues au sol ou arrêt : droit
   // vue du pilote : la caméra reste attachée au véhicule pendant qu'il se penche.
@@ -729,7 +730,7 @@ function rouler(d) {                                     // d : distance parcour
   roulement -= THREE.MathUtils.radToDeg(d / P.rayon_roue);
   rotationAr.tourner(roulement);
   rotationAv.tourner(roulement);
-  if (releve < 1) rouesStab.forEach((s) => s.rot.tourner((s.a -= THREE.MathUtils.radToDeg(d / s.r))));
+  rouesStab.forEach((s) => s.rot.tourner((s.a -= THREE.MathUtils.radToDeg(d / s.r))));
   // la caméra suit le véhicule (on garde l'angle de vue choisi)
   if (camLocal) {
     vehicule.updateMatrixWorld(true);
@@ -748,10 +749,14 @@ vue("34");
 document.querySelectorAll("[data-vue]").forEach((b) => b.addEventListener("click", () => vue(b.dataset.vue)));
 
 const boutonsCoque = document.querySelectorAll("[data-mode]");
+const PORTES = ["porte_gauche", "porte_droite", "vitre_porte_gauche", "vitre_porte_droite"];
+let portesCachees = false, modeCourant = "trans";
 function modeCoque(m) {
+  modeCourant = m;
   boutonsCoque.forEach((b) => b.setAttribute("aria-pressed", String(b.dataset.mode === m)));
-  ["coque", "toit", "fenetres", "porte_gauche", "porte_droite", "vitre_porte_gauche", "vitre_porte_droite", "grille_aeration"]
-    .forEach((n) => objets[n] && (objets[n].visible = m !== "cache"));
+  ["coque", "toit", "fenetres", "grille_aeration"].forEach((n) => objets[n] && (objets[n].visible = m !== "cache"));
+  // portes et leurs vitres : suivent la coque, sauf si on les a masquées à part
+  PORTES.forEach((n) => objets[n] && (objets[n].visible = m !== "cache" && !portesCachees));
   FEUX.forEach((n) => (objets[n].visible = m !== "cache"));
   const t = m === "trans";
   // les portes restent plus opaques que la coque pour qu'on les repère
@@ -765,6 +770,14 @@ function modeCoque(m) {
   mat.coque.needsUpdate = true;
 }
 boutonsCoque.forEach((b) => b.addEventListener("click", () => modeCoque(b.dataset.mode)));
+// Masquer les portes seules (on voit l'habitacle, le cadre et le pilote de côté)
+const bCachePortes = document.getElementById("c-portes");
+bCachePortes.addEventListener("click", () => {
+  portesCachees = !portesCachees;
+  bCachePortes.setAttribute("aria-pressed", String(portesCachees));
+  bCachePortes.textContent = portesCachees ? "Afficher les portes" : "Masquer les portes";
+  modeCoque(modeCourant);
+});
 modeCoque("trans");
 
 let clign = null;
@@ -874,13 +887,28 @@ for (const cible of Object.keys(DEFAUTS)) {
   choisir(cible, memo || DEFAUTS[cible]);
 }
 
-let releve = 0, relever = false;
+let liberer = false;
 const bStab = document.getElementById("b-stab");
 bStab.addEventListener("click", () => {
-  relever = !relever;
-  bStab.setAttribute("aria-pressed", String(relever));
-  bStab.textContent = relever ? "Descendre les petites roues" : "Relever les petites roues";
+  liberer = !liberer;
+  bStab.setAttribute("aria-pressed", String(liberer));
+  bStab.textContent = liberer ? "Bloquer les petites roues" : "Libérer les petites roues";
 });
+// Petites roues libérées : chaque bras prend le plus petit angle qui garde sa roue au-dessus du sol
+// (le véhicule penché pousse la roue du côté intérieur vers le haut) ; bloquées : bras au repos.
+const AXE_STAB = new THREE.Vector3(...(P.stab.axe || [0, -1, 0])).normalize();
+const PIVOT_STAB = new THREE.Vector3(...P.stab.pivot);
+function angleStab(s) {
+  if (!liberer) return 0;
+  const bas0 = s.centre.z - s.r;                          // garde au sol au repos (maquette)
+  const v = new THREE.Vector3(), cosPhi = Math.cos(inclinaison);
+  for (let a = 0; a <= P.stab.course; a += 1) {
+    v.copy(s.centre).sub(PIVOT_STAB).applyAxisAngle(AXE_STAB, THREE.MathUtils.degToRad(a)).add(PIVOT_STAB);
+    modele.localToWorld(v);
+    if (v.y - s.r * cosPhi >= bas0 - 0.05) return a;
+  }
+  return P.stab.course;
+}
 
 // Interface masquable pour ne garder que le rendu (bouton ou touche H)
 const bInterface = document.getElementById("b-interface");
@@ -1071,9 +1099,9 @@ bPedale.addEventListener("click", () => {
     bFeux.setAttribute("aria-pressed", String(on));
   });
 
-  // Petites roues : elles descendent seules sous 10 km/h ; on ne les relève qu'au-dessus
+  // Petites roues : bloquées d'elles-mêmes sous 10 km/h ; on ne les libère qu'au-dessus
   bStab.addEventListener("click", (e) => {
-    if (!externe() && !relever && v * 3.6 < STAB_BAS) {
+    if (!externe() && !liberer && v * 3.6 < STAB_BAS) {
       e.stopImmediatePropagation();
       bStab.classList.add("refus"); setTimeout(() => bStab.classList.remove("refus"), 600);
     }
@@ -1088,7 +1116,7 @@ bPedale.addEventListener("click", () => {
     if (frein > 0) txt += " · frein " + Math.round(frein) + " %";
     if (pCond > 1) txt += " · recharge"; else if (reserveAtteinte) txt += " · réserve de freinage (85 %)";
     if (freinMeca < -1) txt += " · freins";
-    txt += relever ? " · petites roues relevées" : " · petites roues au sol";
+    txt += liberer ? " · petites roues libres" : " · petites roues bloquées";
     etat.textContent = txt;
   }
 
@@ -1100,7 +1128,7 @@ bPedale.addEventListener("click", () => {
     if (externe()) { etat.hidden = true; document.body.classList.add("pilote-externe"); return; }
     palettes(reste); volant(reste);
     while (reste > 0) { const h = Math.min(reste, 0.05); simuler(h); reste -= h; }
-    if (relever && v * 3.6 < STAB_BAS) bStab.click();
+    if (liberer && v * 3.6 < STAB_BAS) bStab.click();
     if ((tEtat += 1) % 5 === 0) afficherEtat();
   }, 50);
   if (!externe()) { simuler(0); afficherEtat(); }
@@ -1145,10 +1173,9 @@ let dernier = performance.now();
   const cible = ouvrir ? P.porte_ouverture : 0;
   ouverture += Math.sign(cible - ouverture) * Math.min(Math.abs(cible - ouverture), dt * 90);
   portes.forEach((p) => p.tourner(ouverture));
-  const cibleStab = relever ? P.stab.course : 0;
-  releve += Math.sign(cibleStab - releve) * Math.min(Math.abs(cibleStab - releve), dt * 110);
-  stabs.forEach((s) => s.tourner(releve));
   penchement(dt);
+  vehicule.updateMatrixWorld(true);
+  stabs.forEach((s, i) => s.tourner(angleStab(rouesStab[i])));
   controls.update();
   renderer.render(scene, camera);
   requestAnimationFrame(boucle);
