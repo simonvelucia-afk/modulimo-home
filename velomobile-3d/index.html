@@ -164,7 +164,7 @@ body.epure .coin button:hover, body.epure .coin button:focus-visible { opacity: 
   <div class="etat"><i class="puce"></i><span>Éclairage : bande avant, feu arrière, quatre clignotants.</span></div>
   <div class="etat"><i class="puce"></i><span>Siège monté de 4 po. Volant papillon ±45°, roue avant ±60° (demi-tour dans ≈ 1,8 m) : courroie démultipliée (poulies Ø70 / Ø52,5) puis double cardan.</span></div>
   <div class="etat"><i class="puce"></i><span>Forme : plancher droit, parallèle au sol, jusqu'à l'arrondi bombé de la poupe ; vu de dessus, l'arrière se termine en œuf. Carrosserie allongée de 198 mm, toit solaire entier ; roue arrière reculée, le pneu finit à l'aplomb de la pointe, dans un passage de roue formé par la coque. Passages de roue ouverts sur les flancs (Ø 711 mm, coque et portes).</span></div>
-  <div class="etat"><i class="puce"></i><span>Petites roues escamotables : le bras pivote vers l'arrière et vers le haut. La coque n'a plus de logement pour elles (arrière refermé) : leur rangement est à revoir.</span></div>
+  <div class="etat"><i class="puce"></i><span>Petites roues escamotables : le bras pivote sur l'axe de la roue arrière ; relevées, elles tournent par l'avant dans le passage de roue jusqu'à la verticale de l'axe, à 2 po de la voûte, à 435 mm du sol.</span></div>
   <div class="etat"><i class="puce"></i><span>Mannequin habillé confortablement (coton ouaté à capuchon, jogging, espadrilles) : toutes les vérifications sont faites avec les vêtements.</span></div>
   <div class="etat"><i class="puce"></i><span>Grandes portes vitrées à charnières avant : de devant les orteils à derrière la tête, du seuil jusqu'au toit opaque.</span></div>
   <details>
@@ -456,7 +456,7 @@ let heliceAngle = 0;
 // tournent quand le véhicule roule ; relevées dans le flanc, elles s'arrêtent.
 const rouesStab = [];
 const stabs = ["gauche", "droite"].map((cote) => {
-  const art = articulation(P.stab.pivot, [0, -1, 0]);
+  const art = articulation(P.stab.pivot, P.stab.axe || [0, -1, 0]);
   ajouter("bras_stab_" + cote, mat.metal, art.int);
   const roue = ajouter("roue_stab_" + cote, mat.stabilisateurs, art.int);
   roue.geometry.computeBoundingBox();
