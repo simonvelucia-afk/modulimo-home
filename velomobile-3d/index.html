@@ -163,8 +163,8 @@ body.epure .coin button:hover, body.epure .coin button:focus-visible { opacity: 
   <div class="etat"><i class="puce"></i><span>Pneus 26 × 2,35 po arrondis à crampons, jantes à 32 rayons. Freins à disque Ø180 côté gauche (étrier sur la fourche et sur la base du cadre), en plus du freinage régénératif du moteur-roue.</span></div>
   <div class="etat"><i class="puce"></i><span>Éclairage : bande avant, feu arrière, quatre clignotants.</span></div>
   <div class="etat"><i class="puce"></i><span>Siège monté de 4 po. Volant papillon ±45°, roue avant ±60° (demi-tour dans ≈ 1,8 m) : courroie démultipliée (poulies Ø70 / Ø52,5) puis double cardan.</span></div>
-  <div class="etat"><i class="puce"></i><span>Coffre arrière en forme d'œuf : l'enveloppe convexe arrondie de l'ancienne poupe et des petites roues relevées, continue avec la coque dans tous les sens ; feu et clignotants arrière au bout.</span></div>
-  <div class="etat"><i class="puce"></i><span>Petites roues escamotables : le bras pivote vers l'arrière et vers le haut (85°) ; relevées, les roues se rangent sous le coffre arrière, cachées de côté par ses jupes, dans un logement ouvert par-dessous, à 25 mm de tout ce qu'elles balaient.</span></div>
+  <div class="etat"><i class="puce"></i><span>Forme : plancher droit, parallèle au sol, jusqu'à l'arrondi bombé de la poupe ; vu de dessus, l'arrière se termine en œuf. Carrosserie allongée de 198 mm, toit solaire entier ; roue arrière reculée, le pneu finit à l'aplomb de la pointe, dans un passage de roue formé par la coque.</span></div>
+  <div class="etat"><i class="puce"></i><span>Petites roues escamotables : le bras pivote vers l'arrière et vers le haut. La coque n'a plus de logement pour elles (arrière refermé) : leur rangement est à revoir.</span></div>
   <div class="etat"><i class="puce"></i><span>Mannequin habillé confortablement (coton ouaté à capuchon, jogging, espadrilles) : toutes les vérifications sont faites avec les vêtements.</span></div>
   <div class="etat"><i class="puce"></i><span>Grandes portes vitrées à charnières avant : de devant les orteils à derrière la tête, du seuil jusqu'au toit opaque.</span></div>
   <details>
@@ -189,13 +189,10 @@ body.epure .coin button:hover, body.epure .coin button:focus-visible { opacity: 
       <dt>Ouverture de porte</dt><dd>1 230 × 1 420 mm</dd>
       <dt>Seuil de porte</dt><dd>300 mm</dd>
       <dt>Bas du toit</dt><dd>1 720 mm</dd>
-      <dt>Empattement</dt><dd>1 540 mm</dd>
+      <dt>Empattement</dt><dd>1 898 mm</dd>
       <dt>Roues</dt><dd>26 × 2,35 po, crampons</dd>
       <dt>Freins</dt><dd>disques Ø180</dd>
       <dt>Jeu roue avant / coque (360°)</dt><dd>40 mm</dd>
-      <dt>Jeu petites roues / logements</dt><dd>25 mm</dd>
-      <dt>Petites roues relevées</dt><dd>sous le coffre, cachées de côté (85°)</dd>
-      <dt>Coffre arrière</dt><dd>+ 330 mm (longueur hors tout ≈ 2 690 mm)</dd>
       <dt>Bande lumineuse avant</dt><dd>320 × 40 mm</dd>
       <dt>Feu arrière</dt><dd>300 × 50 mm</dd>
       <dt>Clignotants</dt><dd>100 × 40 mm</dd>
@@ -404,8 +401,7 @@ if (MESHES.pneu_ar) {
   ajouter("disque_ar", mat.disque, rotationAr.int);
   ajouter("etrier_ar", mat.etrier);                       // sur la base gauche du cadre
 } else ajouter("roue_ar", mat.roues, rotationAr.int);
-// Garde-boue intérieur arrière : ferme le passage de roue côté habitacle (les caissons des petites
-// roues font partie de la coque : cad/caissons_arriere.py)
+// Garde-boue intérieur arrière : ferme le passage de roue côté habitacle
 for (const n of ["garde_boue_ar", "caissons_petites_roues"]) if (MESHES[n]) ajouter(n, mat.gardeBoue);
 // Propulsion hybride série : moteur-roue (tourne avec la roue arrière), génératrice au pédalier,
 // pack de supercondensateurs derrière le siège (s'éclaire selon sa charge : window.veloTableau.charge)
