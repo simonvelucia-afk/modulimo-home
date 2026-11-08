@@ -99,6 +99,7 @@ button:focus-visible { outline: 2px solid var(--accent); outline-offset: -2px; }
 .direction { align-items: center; gap: 8px; padding: 0 10px; }
 .direction label { font-size: 11px; text-transform: uppercase; letter-spacing: 0.08em; color: var(--muted); }
 .direction input { width: 120px; accent-color: var(--accent); }
+.vitres output { min-width: 8ch !important; }
 .direction output { font-family: var(--f-mono); font-size: 12px; min-width: 15ch; text-align: right; font-variant-numeric: tabular-nums; }
 .couleurs .choix { display: flex; align-items: center; gap: 6px; }
 .temoin { width: 18px; height: 18px; border-radius: 4px; border: 1px solid var(--line); display: inline-block; }
@@ -227,6 +228,15 @@ body.epure .coin button:hover, body.epure .coin button:focus-visible { opacity: 
     <button id="c-trans" data-mode="trans" aria-pressed="true">Transparente</button>
     <button id="c-cache" data-mode="cache" aria-pressed="false">Masquée</button>
     <button id="c-portes" type="button" aria-pressed="false">Masquer les portes</button>
+  </div>
+  <div class="groupe direction vitres" role="group" aria-label="Vitres des portes">
+    <span>Vitres</span>
+    <label for="r-vitre-gauche">Gauche</label>
+    <input id="r-vitre-gauche" type="range" min="0" max="100" step="1" value="0">
+    <output id="o-vitre-gauche" for="r-vitre-gauche">fermée</output>
+    <label for="r-vitre-droite">Droite</label>
+    <input id="r-vitre-droite" type="range" min="0" max="100" step="1" value="0">
+    <output id="o-vitre-droite" for="r-vitre-droite">fermée</output>
   </div>
   <div class="groupe couleurs" role="group" aria-label="Couleurs">
     <span>Couleurs</span>
@@ -579,12 +589,37 @@ function contour(mesh) {
   l.renderOrder = 5;
   mesh.add(l);
 }
+// Vitres des portes : elles descendent dans la porte (curseurs « Vitres ») ; la partie entrée dans la
+// porte est coupée au ras du haut de la porte (plan de coupe recalé à chaque image : le véhicule bouge).
+renderer.localClippingEnabled = true;
+const PLAN_PORTE = new THREE.Plane();
+const vitres = {};
 const portes = ["gauche", "droite"].map((cote) => {
   const art = articulation(P.charnieres[cote], [0, 0, cote === "droite" ? 1 : -1]);
   contour(ajouter("porte_" + cote, mat.porte, art.int));
-  contour(ajouter("vitre_porte_" + cote, mat.bulle, art.int));
+  const v = ajouter("vitre_porte_" + cote, mat.bulle.clone(), art.int);
+  v.material.clippingPlanes = [PLAN_PORTE];
+  contour(v);
+  v.children.forEach((l) => { l.material = matContour.clone(); l.material.clippingPlanes = [PLAN_PORTE]; });
+  v.geometry.computeBoundingBox();
+  vitres[cote] = { mesh: v, hauteur: v.geometry.boundingBox.max.z - v.geometry.boundingBox.min.z, ouverte: 0 };
   return art;
 });
+objets.porte_gauche.geometry.computeBoundingBox();
+const DESSUS_PORTE = objets.porte_gauche.geometry.boundingBox.max.z;
+function recalerVitres() {
+  modele.updateMatrixWorld(true);
+  const n = new THREE.Vector3(0, 0, 1).transformDirection(modele.matrixWorld);
+  PLAN_PORTE.setFromNormalAndCoplanarPoint(n, modele.localToWorld(new THREE.Vector3(0, 0, DESSUS_PORTE)));
+}
+for (const cote of ["gauche", "droite"]) {
+  const r = document.getElementById("r-vitre-" + cote), o = document.getElementById("o-vitre-" + cote);
+  r.addEventListener("input", () => {
+    const f = +r.value / 100;
+    vitres[cote].mesh.position.z = -f * vitres[cote].hauteur;   // descend dans la porte
+    o.textContent = f === 0 ? "fermée" : f === 1 ? "ouverte" : Math.round(f * 100) + " %";
+  });
+}
 objets.coque.renderOrder = objets.toit.renderOrder = 2;
 objets.fenetres.renderOrder = 3;
 for (const [habit, d] of Object.entries(MESHES.haut)) modele.add(new THREE.Mesh(geometrie(d), mat[habit]));
@@ -1175,6 +1210,7 @@ let dernier = performance.now();
   portes.forEach((p) => p.tourner(ouverture));
   penchement(dt);
   vehicule.updateMatrixWorld(true);
+  recalerVitres();
   stabs.forEach((s, i) => s.tourner(angleStab(rouesStab[i])));
   controls.update();
   renderer.render(scene, camera);
