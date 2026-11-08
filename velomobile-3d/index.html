@@ -164,7 +164,7 @@ body.epure .coin button:hover, body.epure .coin button:focus-visible { opacity: 
   <div class="etat"><i class="puce"></i><span>Éclairage : bande avant, feu arrière, quatre clignotants.</span></div>
   <div class="etat"><i class="puce"></i><span>Siège monté de 4 po. Volant papillon ±45°, roue avant ±60° (demi-tour dans ≈ 1,8 m) : courroie démultipliée (poulies Ø70 / Ø52,5) puis double cardan.</span></div>
   <div class="etat"><i class="puce"></i><span>Forme : plancher droit, parallèle au sol, jusqu'à l'arrondi bombé de la poupe ; vu de dessus, l'arrière se termine en œuf. Carrosserie allongée de 198 mm, toit solaire entier ; roue arrière reculée, le pneu finit à l'aplomb de la pointe, dans un passage de roue formé par la coque. Passages de roue ouverts sur les flancs (Ø 711 mm, coque et portes).</span></div>
-  <div class="etat"><i class="puce"></i><span>Petites roues escamotables : le bras pivote sur l'axe de la roue arrière ; relevées, elles tournent par l'avant dans le passage de roue jusqu'à la verticale de l'axe, à 2 po de la voûte, à 435 mm du sol.</span></div>
+  <div class="etat"><i class="puce"></i><span>Petites roues escamotables : chaque bras pivote dans un palier soudé à la base du cadre, 96 mm devant l'axe de la roue arrière (laissé libre pour boulonner la roue) ; relevées par l'arrière dans le passage de roue, à 2 po de la voûte, bas des roues à 426 mm du sol. Le tube sous le siège, prolongé jusqu'à l'arrière au-dessus de la roue, porte la plateforme du coffre au niveau du siège.</span></div>
   <div class="etat"><i class="puce"></i><span>Mannequin habillé confortablement (coton ouaté à capuchon, jogging, espadrilles) : toutes les vérifications sont faites avec les vêtements.</span></div>
   <div class="etat"><i class="puce"></i><span>Grandes portes vitrées à charnières avant : de devant les orteils à derrière la tête, du seuil jusqu'au toit opaque.</span></div>
   <details>
@@ -193,6 +193,8 @@ body.epure .coin button:hover, body.epure .coin button:focus-visible { opacity: 
       <dt>Roues</dt><dd>26 × 2,35 po, crampons</dd>
       <dt>Freins</dt><dd>disques Ø180</dd>
       <dt>Jeu roue avant / coque (360°)</dt><dd>40 mm</dd>
+      <dt>Petites roues relevées</dt><dd>dans le passage de roue arrière, à 426 mm du sol</dd>
+      <dt>Plateforme du coffre</dt><dd>≈ 403 × 541 mm, à 737 mm du sol</dd>
       <dt>Bande lumineuse avant</dt><dd>320 × 40 mm</dd>
       <dt>Feu arrière</dt><dd>300 × 50 mm</dd>
       <dt>Clignotants</dt><dd>100 × 40 mm</dd>
@@ -423,6 +425,8 @@ if (MESHES.generatrice) ajouter("generatrice", matProp.generatrice);
 // réducteur à engrenages (carter plat) entre le pédalier et la génératrice
 if (MESHES.reducteur) ajouter("reducteur", new THREE.MeshStandardMaterial({ color: 0x8d969e, roughness: 0.45, metalness: 0.5, emissive: 0x23282c, emissiveIntensity: 0.35 }));
 if (MESHES.condensateurs) ajouter("condensateurs", matProp.condensateurs);
+// plateforme du coffre arrière, sur le tube sous le siège prolongé au-dessus de la roue arrière
+if (MESHES.plateforme_coffre) ajouter("plateforme_coffre", new THREE.MeshStandardMaterial({ color: 0xb8c0c7, roughness: 0.5, metalness: 0.5, emissive: 0x2a3036, emissiveIntensity: 0.35 }));
 // Panneau solaire souple sur le toit ; prise d'air filtrée en haut à l'arrière (filtre + ventilateur), sortie basse à l'avant ;
 // (tourne quand la page le met en marche : window.veloVentil, 0 à 1)
 const matSol = {
