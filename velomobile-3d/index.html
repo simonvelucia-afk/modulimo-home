@@ -153,7 +153,7 @@ body.epure .coin button:hover, body.epure .coin button:focus-visible { opacity: 
  <details class="fiche-pli">
   <summary class="fiche-titre" title="Afficher ou replier la description">
     <h1>Vélomobile 1:12</h1>
-    <div class="sous">Maquette 200 mm · véhicule réel 2,4 m</div>
+    <div class="sous">Maquette 213 mm · véhicule réel 2,56 m</div>
   </summary>
   <div class="fiche-corps">
   <div class="etat"><i class="puce"></i><span>Hybride série : le pédalage (réducteur 1:28 et génératrice sous le pédalier) charge les condensateurs (pack 48 V, 20 Wh), le moteur-roue 48 V à entraînement direct fait rouler et récupère au freinage (simulation sur la page Produits). Un 6 pi pédale sur tout le tour sans sortir de la coque ni toucher les roues, même roue avant braquée à 60°.</span></div>
@@ -659,12 +659,20 @@ function vue(n) {
   }
   const [x, y, z] = vues[n];
   const c = centreVehicule();
-  camera.position.set(x - 100 + c.x, y, z + c.z);
+  // côté : vrai profil, au téléobjectif (presque sans perspective) ; les autres vues gardent 35°
+  camera.fov = n === "cote" ? FOV_PROFIL : 35;
+  const recul = n === "cote" ? Math.tan(THREE.MathUtils.degToRad(35 / 2)) / Math.tan(THREE.MathUtils.degToRad(FOV_PROFIL / 2)) : 1;
+  camera.far = 5000 * recul;
+  camera.updateProjectionMatrix();
+  camera.position.set(x - 100 + c.x, n === "cote" ? 65 : y, n === "cote" ? z * recul + c.z : z + c.z);
   controls.target.set(c.x, n === "dessus" ? 0 : 65, c.z);
   controls.update();
 }
-// Centre du véhicule (x = 100 en coordonnées maquette), en coordonnées de la scène
-function centreVehicule() { vehicule.updateMatrixWorld(true); return vehicule.localToWorld(new THREE.Vector3(100, 0, 0)); }
+const FOV_PROFIL = 6;           // vue de côté : objectif de 6° (même cadrage que 35°, de beaucoup plus loin)
+// Centre du véhicule, en coordonnées de la scène
+// (milieu de la longueur du véhicule, d'après la coque)
+const MILIEU_X = (() => { const g = objets.coque.geometry; g.computeBoundingBox(); return (g.boundingBox.min.x + g.boundingBox.max.x) / 2; })();
+function centreVehicule() { vehicule.updateMatrixWorld(true); return vehicule.localToWorld(new THREE.Vector3(MILIEU_X, 0, 0)); }
 
 // --- Rouler : modèle de bicyclette (roue arrière motrice, roue avant directrice) ---
 // Vitesse liée à la cadence : un tour de pédalier (360°) fait avancer de DEVELOPPEMENT mm réels.
