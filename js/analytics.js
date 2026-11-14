@@ -11,6 +11,18 @@
   window._gaConsent = localStorage.getItem(STORAGE_KEY);
   window._gaLoaded = false;
 
+  // Trafic interne : visiter n'importe quelle page avec ?interne=1 marque ce
+  // navigateur comme interne (?interne=0 retire la marque). Les hits portent
+  // alors traffic_type=internal, que le filtre « Trafic interne » de GA4
+  // exclut des rapports. A faire une fois par appareil / navigateur.
+  var INTERNE_KEY = 'ga_interne';
+  try {
+    var q = new URLSearchParams(window.location.search).get('interne');
+    if (q === '1') localStorage.setItem(INTERNE_KEY, '1');
+    else if (q === '0') localStorage.removeItem(INTERNE_KEY);
+    window._gaInterne = localStorage.getItem(INTERNE_KEY) === '1';
+  } catch (e) { window._gaInterne = false; }
+
   function loadGA() {
     if (window._gaLoaded) return;
     window._gaLoaded = true;
@@ -20,11 +32,13 @@
     document.head.appendChild(s);
     s.onload = function () {
       window.gtag('js', new Date());
-      window.gtag('config', GA_ID, {
+      var cfg = {
         page_path: window.location.pathname,
         page_title: document.title,
         anonymize_ip: true
-      });
+      };
+      if (window._gaInterne) cfg.traffic_type = 'internal';
+      window.gtag('config', GA_ID, cfg);
     };
   }
 
@@ -38,6 +52,7 @@
       page_title: document.title,
       timestamp: Date.now()
     };
+    if (window._gaInterne) payload.traffic_type = 'internal';
     if (details) {
       for (var k in details) if (Object.prototype.hasOwnProperty.call(details, k)) payload[k] = details[k];
     }
