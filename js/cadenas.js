@@ -9,9 +9,8 @@
 // sur la page Produits, on revient à l'accueil.
 //
 // Cadenas ouvert, un bouton « Démo VR » apparaît aussi dans le menu, à côté
-// de CoHabitat. Il mène à la visite 3D/VR de Pointe Est (VR_URL), qui a son
-// propre cadenas côté serveur : il faut en plus un code temporaire, remis
-// par Modulimo. Ce bouton ne fait que le rendre visible aux initiés.
+// de CoHabitat. Il mène à la visite 3D/VR de Pointe Est (/vr/), chiffrée
+// avec la même clé : elle s'ouvre directement (voir js/vr-cle.js).
 //
 // L'état vit dans localStorage ('modulimo-produits' = { sel, cle }) : il
 // dure jusqu'à ce que le visiteur referme le cadenas. Le NIP est vérifié
@@ -39,9 +38,9 @@
   var t = function (k) { return T[k][lang] || T[k].fr; };
 
   // Bouton « Démo VR » (visible seulement cadenas ouvert)
-  var VR_URL = 'https://vr.modulimo.com/';
+  var VR_URL = '/vr/';
   var VR_TXT = { fr: 'Démo VR', en: 'VR demo', es: 'Demo RV', zh: 'VR 演示' };
-  var VR_TITRE = { fr: 'Visite 3D / VR de Pointe Est (code d’accès temporaire requis)', en: 'Pointe Est 3D / VR tour (temporary access code required)', es: 'Visita 3D / RV de Pointe Est (se requiere un código temporal)', zh: 'Pointe Est 3D / VR 参观（需临时访问码）' };
+  var VR_TITRE = { fr: 'Visite 3D / VR de Pointe Est', en: 'Pointe Est 3D / VR tour', es: 'Visita 3D / RV de Pointe Est', zh: 'Pointe Est 3D / VR 参观' };
 
   var b64 = function (s) { return Uint8Array.from(atob(s), function (c) { return c.charCodeAt(0); }); };
   var hex = function (u) { return Array.prototype.map.call(u, function (x) { return ('0' + x.toString(16)).slice(-2); }).join(''); };
@@ -114,8 +113,6 @@
     demo = document.createElement('a');
     demo.className = 'nav-cta demo-vr';
     demo.href = VR_URL;
-    demo.target = '_blank';
-    demo.rel = 'noopener';
     demo.textContent = VR_TXT[lang] || VR_TXT.fr;
     demo.title = VR_TITRE[lang] || VR_TITRE.fr;
     demo.hidden = true;

@@ -550,6 +550,48 @@ function publierVelo3d(dossier, cle, sel) {
   return [path.join(sortie, 'index.html'), path.join(sortie, 'data', 'modele.chiffre.json')];
 }
 
+// Visite 3D / VR de Pointe Est (dépôt PRIVÉ modulimo-vr) → /vr/
+// Tout le code JavaScript de la visite est chiffré en un seul paquet
+// (vr/app.chiffre.json) avec la même clé que les pages protégées ;
+// js/vr-cle.js le déchiffre dans le navigateur une fois le cadenas ouvert
+// (ou demande le code), puis lance la visite. Les imports relatifs entre
+// modules deviennent des noms « @pe/… » que vr-cle.js relie, par une
+// importmap, aux modules déchiffrés. Rien d'autre n'est publié du dépôt
+// privé que la coquille HTML, la feuille de style et le logo — jamais
+// assets/reference, README ni CLAUDE.md.
+function publierVr(dossier, cle, sel, verrou) {
+  const sortie = 'vr';
+  fs.rmSync(sortie, { recursive: true, force: true });
+  const modules = {};
+  const parcourir = (rel) => {
+    for (const nom of fs.readdirSync(path.join(dossier, rel))) {
+      const r = path.posix.join(rel, nom);
+      if (fs.statSync(path.join(dossier, r)).isDirectory()) parcourir(r);
+      else if (nom.endsWith('.js') && nom !== 'keys.local.js') {
+        modules[r] = fs.readFileSync(path.join(dossier, r), 'utf-8').replace(
+          /(\bfrom\s*|\bimport\s*\(\s*|\bimport\s+)(['"])(\.{1,2}\/[^'"]+)\2/g,
+          (m, avant, q, spec) => avant + q + '@pe/' + path.posix.normalize(path.posix.join(path.posix.dirname(r), spec)) + q);
+      }
+    }
+  };
+  parcourir('src');
+  if (!modules['src/main.js']) throw new Error('visite VR : src/main.js introuvable dans ' + dossier);
+  fs.mkdirSync(path.join(sortie, 'src', 'ui'), { recursive: true });
+  fs.mkdirSync(path.join(sortie, 'assets', 'brand'), { recursive: true });
+  fs.writeFileSync(path.join(sortie, 'app.chiffre.json'), JSON.stringify(chiffrer(JSON.stringify(modules), cle, sel)));
+  // Coquille : index.html sans importmap ni module (vr-cle.js les recrée)
+  let page = fs.readFileSync(path.join(dossier, 'index.html'), 'utf-8');
+  const im = /<script type="importmap">([\s\S]*?)<\/script>/.exec(page);
+  if (!im) throw new Error('visite VR : importmap introuvable');
+  const imports = JSON.parse(im[1]).imports;
+  page = page.replace(im[0], '').replace(/\s*<script type="module" src="src\/main\.js"><\/script>/, '');
+  page = page.replace('</head>', `  <script>window.MODULIMO_VERROU=${JSON.stringify(verrou)};window.PE_IMPORTS=${JSON.stringify(imports)};</script>\n  <script src="/js/vr-cle.js" defer></script>\n</head>`);
+  fs.writeFileSync(path.join(sortie, 'index.html'), page);
+  fs.copyFileSync(path.join(dossier, 'src', 'ui', 'style.css'), path.join(sortie, 'src', 'ui', 'style.css'));
+  for (const f of ['logo_main.webp', 'favicon.png']) fs.copyFileSync(path.join(dossier, 'assets', 'brand', f), path.join(sortie, 'assets', 'brand', f));
+  return [path.join(sortie, 'index.html'), path.join(sortie, 'app.chiffre.json'), path.join(sortie, 'src/ui/style.css'), path.join(sortie, 'assets/brand/*')];
+}
+
 function chiffrer(html, cle, sel) {
   const iv = crypto.randomBytes(12);
   const c = crypto.createCipheriv('aes-256-gcm', cle, iv);
@@ -806,6 +848,7 @@ function main() {
       + ' (MODULIMO_PIN) ou sources absents.\n   Elles sont publiées par le dépôt privé des sources.');
   }
   if (cle && process.env.MODULIMO_VELO3D) written.push(...publierVelo3d(process.env.MODULIMO_VELO3D, cle, sel));
+  if (cle && process.env.MODULIMO_VR) written.push(...publierVr(process.env.MODULIMO_VR, cle, sel, verrou));
   fs.writeFileSync('sitemap.xml', buildSitemap());
   fs.writeFileSync('robots.txt', `User-agent: *\nAllow: /\n\nSitemap: ${SITE}/sitemap.xml\n`);
   written.push('sitemap.xml', 'robots.txt');
