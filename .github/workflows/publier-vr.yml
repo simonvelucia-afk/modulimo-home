@@ -7,7 +7,8 @@
 #   VR_TOKEN      jeton GitHub « fine-grained » : accès au seul dépôt
 #                 simonvelucia-afk/modulimo-vr, permission Contents = Read-only
 #
-# Lancement : onglet Actions → « Publier la visite VR » → Run workflow.
+# Lancement : onglet Actions → « Publier la visite VR » → Run workflow
+# (un « Re-run » fonctionne aussi : le build part toujours du dernier main).
 # Garde-fou : si MODULIMO_PIN ne correspond pas au cadenas actuel, build.js
 # régénérerait verrou.json (nouveau sel) et casserait Produits : le workflow
 # s'arrête alors sans rien publier.
@@ -30,19 +31,22 @@ jobs:
   publier:
     runs-on: ubuntu-latest
     steps:
-      - name: Site modulimo-home
-        uses: actions/checkout@v4
+      - name: Site modulimo-home (toujours la dernière version de main, même en « Re-run »)
+        uses: actions/checkout@v5
+        with:
+          ref: main
+          fetch-depth: 0
 
       - name: Source privée de la visite (modulimo-vr)
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
         with:
           repository: simonvelucia-afk/modulimo-vr
           token: ${{ secrets.VR_TOKEN }}
           path: _modulimo-vr
 
-      - uses: actions/setup-node@v4
+      - uses: actions/setup-node@v5
         with:
-          node-version: 20
+          node-version: 22
 
       - name: Générer vr/ (chiffré)
         env:
@@ -65,4 +69,14 @@ jobs:
           git add vr
           if git diff --cached --quiet; then echo "Visite déjà à jour."; exit 0; fi
           git commit -m "Visite VR : publication chiffrée (modulimo-vr@${VR_SHA})"
-          git push
+          # Si main a bougé pendant le build : on se remet à jour avant de pousser.
+          # En cas de conflit sur vr/, notre nouvelle publication l'emporte (-X theirs
+          # = le commit rejoué pendant le rebase). Jusqu'à 3 essais.
+          for essai in 1 2 3; do
+            git pull --rebase -X theirs origin main && git push origin HEAD:main && exit 0
+            echo "Push refusé (essai $essai), nouvel essai dans 5 s…"
+            git rebase --abort 2>/dev/null || true
+            sleep 5
+          done
+          echo "::error::Impossible de pousser vers main après 3 essais."
+          exit 1
