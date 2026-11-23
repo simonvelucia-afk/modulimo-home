@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, user-scalable=no">
+  <meta name="robots" content="noindex, nofollow">
+  <title>Pointe Est · Modulimo</title>
+  <link rel="icon" type="image/png" href="assets/brand/favicon.png">
+  <link rel="stylesheet" href="src/ui/style.css">
+  <!-- Three.js épinglé (CDN), sans étape de build -->
+  
+  <script>window.MODULIMO_VERROU={"sel":"MzrqMQs80z/fWjxlxJ8LVg==","iv":"WyGKHJqEirKfI4L5","data":"kS/GET3gyI9P5IA7Nr0FPPcGvUBCsxFh","iter":600000};window.PE_IMPORTS={"three":"https://cdn.jsdelivr.net/npm/three@0.170.0/build/three.module.js","three/addons/":"https://cdn.jsdelivr.net/npm/three@0.170.0/examples/jsm/"};</script>
+  <script src="/js/vr-cle.js" defer></script>
+</head>
+<body>
+  <canvas id="scene" aria-label="Maquette 3D du projet Pointe Est"></canvas>
+
+  <!-- Écran de chargement -->
+  <div id="loader" class="loader">
+    <img src="assets/brand/logo_main.webp" alt="Modulimo" class="loader-logo">
+    <p class="loader-text" data-i18n="loading">Préparation de la maquette…</p>
+    <div class="loader-bar"><span></span></div>
+  </div>
+
+  <!-- En-tête -->
+  <header class="brand">
+    <img id="logo" src="assets/brand/logo_main.webp" alt="Modulimo">
+    <div class="brand-text">
+      <strong data-i18n="title">Pointe Est</strong>
+      <span data-i18n="subtitle">Modulimo · rue Bureau, Pointe-aux-Trembles</span>
+    </div>
+  </header>
+
+  <!-- Commandes principales -->
+  <nav class="controls" aria-label="Commandes">
+    <div class="segmented" role="tablist">
+      <button id="btn-tour" role="tab" aria-selected="true" data-i18n="modeTour">Visite guidée</button>
+      <button id="btn-free" role="tab" aria-selected="false" data-i18n="modeFree">Exploration libre</button>
+    </div>
+    <button id="btn-daynight" class="pill" aria-pressed="false">
+      <span class="ico" aria-hidden="true">☾</span><span class="lbl" data-i18n="night">Nuit</span>
+    </button>
+    <button id="btn-sound" class="pill icon-only" aria-pressed="true" hidden title="Son">🔊</button>
+    <button id="btn-lang" class="pill icon-only" data-i18n="language">EN</button>
+    <button id="btn-vr" class="pill vr" hidden>
+      <span class="ico" aria-hidden="true">◉</span><span data-i18n="enterVR">Entrer en VR</span>
+    </button>
+  </nav>
+
+  <!-- Barre du parcours guidé -->
+  <div id="tourbar" class="tourbar">
+    <button id="btn-prev" class="round" aria-label="Précédent"><span aria-hidden="true">‹</span><span class="sr" data-i18n="prev">Précédent</span></button>
+    <div class="tour-info">
+      <span id="tour-count">1 / 7</span>
+      <strong id="tour-title">Vue d’ensemble</strong>
+      <div id="tour-dots" class="dots"></div>
+    </div>
+    <button id="btn-next" class="round primary" aria-label="Suivant"><span class="sr" data-i18n="next">Suivant</span><span aria-hidden="true">›</span></button>
+  </div>
+
+  <!-- Indice en exploration libre -->
+  <p id="hint" class="hint" hidden></p>
+
+  <!-- Panneau d'information -->
+  <aside id="panel" class="panel" hidden aria-live="polite">
+    <button id="panel-close" class="panel-close" aria-label="Fermer">×</button>
+    <p id="panel-kicker" class="panel-kicker"></p>
+    <h2 id="panel-title"></h2>
+    <div id="panel-body"></div>
+  </aside>
+
+  <!-- Avis permanent -->
+  <p class="notice" data-i18n="notice">Représentation conceptuelle – sujet à changement</p>
+
+  <!-- Mode debug (?debug=1) -->
+  <pre id="debug" class="debug" hidden></pre>
+
+  <noscript>Cette expérience nécessite JavaScript.</noscript>
+</body>
+</html>
