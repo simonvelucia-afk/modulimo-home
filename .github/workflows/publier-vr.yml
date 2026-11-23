@@ -1,0 +1,68 @@
+# =============================================================================
+# Publie la visite 3D / VR de Pointe Est sur modulimo.com/vr/, CHIFFRÉE avec
+# le code du cadenas (même clé que la page Produits). Voir build.js → publierVr.
+#
+# Secrets requis (Settings → Secrets and variables → Actions) :
+#   MODULIMO_PIN  le code d'accès actuel du cadenas
+#   VR_TOKEN      jeton GitHub « fine-grained » : accès au seul dépôt
+#                 simonvelucia-afk/modulimo-vr, permission Contents = Read-only
+#
+# Lancement : onglet Actions → « Publier la visite VR » → Run workflow.
+# Garde-fou : si MODULIMO_PIN ne correspond pas au cadenas actuel, build.js
+# régénérerait verrou.json (nouveau sel) et casserait Produits : le workflow
+# s'arrête alors sans rien publier.
+# =============================================================================
+name: Publier la visite VR
+
+on:
+  workflow_dispatch:
+  repository_dispatch:
+    types: [publier-vr]
+
+permissions:
+  contents: write
+
+concurrency:
+  group: publier-vr
+  cancel-in-progress: false
+
+jobs:
+  publier:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Site modulimo-home
+        uses: actions/checkout@v4
+
+      - name: Source privée de la visite (modulimo-vr)
+        uses: actions/checkout@v4
+        with:
+          repository: simonvelucia-afk/modulimo-vr
+          token: ${{ secrets.VR_TOKEN }}
+          path: _modulimo-vr
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Générer vr/ (chiffré)
+        env:
+          MODULIMO_PIN: ${{ secrets.MODULIMO_PIN }}
+          MODULIMO_VR: _modulimo-vr
+        run: |
+          if [ -z "$MODULIMO_PIN" ]; then echo "::error::Secret MODULIMO_PIN manquant"; exit 1; fi
+          node build.js
+          if ! git diff --quiet -- verrou.json; then
+            echo "::error::MODULIMO_PIN ne correspond pas au cadenas actuel (verrou.json aurait changé). Rien n'est publié."
+            exit 1
+          fi
+          echo "VR_SHA=$(git -C _modulimo-vr rev-parse --short HEAD)" >> "$GITHUB_ENV"
+          rm -rf _modulimo-vr
+
+      - name: Publier (seulement vr/)
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898299+github-actions[bot]@users.noreply.github.com"
+          git add vr
+          if git diff --cached --quiet; then echo "Visite déjà à jour."; exit 0; fi
+          git commit -m "Visite VR : publication chiffrée (modulimo-vr@${VR_SHA})"
+          git push
