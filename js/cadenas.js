@@ -8,6 +8,11 @@
 // Refermer le cadenas retire l'accès : l'onglet disparaît et, si l'on est
 // sur la page Produits, on revient à l'accueil.
 //
+// Cadenas ouvert, un bouton « Démo VR » apparaît aussi dans le menu, à côté
+// de CoHabitat. Il mène à la visite 3D/VR de Pointe Est (VR_URL), qui a son
+// propre cadenas côté serveur : il faut en plus un code temporaire, remis
+// par Modulimo. Ce bouton ne fait que le rendre visible aux initiés.
+//
 // L'état vit dans localStorage ('modulimo-produits' = { sel, cle }) : il
 // dure jusqu'à ce que le visiteur referme le cadenas. Le NIP est vérifié
 // en déchiffrant le témoin de window.MODULIMO_VERROU (verrou.json), injecté
@@ -32,6 +37,11 @@
     format:  { fr: 'Code d’accès trop court.', en: 'Access code too short.', es: 'Código de acceso demasiado corto.', zh: '访问码太短。' },
   };
   var t = function (k) { return T[k][lang] || T[k].fr; };
+
+  // Bouton « Démo VR » (visible seulement cadenas ouvert)
+  var VR_URL = 'https://vr.modulimo.com/';
+  var VR_TXT = { fr: 'Démo VR', en: 'VR demo', es: 'Demo RV', zh: 'VR 演示' };
+  var VR_TITRE = { fr: 'Visite 3D / VR de Pointe Est (code d’accès temporaire requis)', en: 'Pointe Est 3D / VR tour (temporary access code required)', es: 'Visita 3D / RV de Pointe Est (se requiere un código temporal)', zh: 'Pointe Est 3D / VR 参观（需临时访问码）' };
 
   var b64 = function (s) { return Uint8Array.from(atob(s), function (c) { return c.charCodeAt(0); }); };
   var hex = function (u) { return Array.prototype.map.call(u, function (x) { return ('0' + x.toString(16)).slice(-2); }).join(''); };
@@ -67,7 +77,8 @@
     '.cadenas-pop button{margin-top:.6rem;width:100%;font:inherit;font-weight:600;padding:.6rem;border:none;border-radius:4px;background:#2d7a4f;color:#fff;cursor:pointer}' +
     '.cadenas-pop button:disabled{opacity:.6;cursor:wait}' +
     '.cadenas-msg{min-height:1.2em;margin-top:.45rem;font-size:.8rem;color:#b3261e}' +
-    '@media (max-width:640px){.cadenas-pop{right:16px}}';
+    '@media (max-width:640px){.cadenas-pop{right:16px}}' +
+    'html:not(.produits-ouverts) .demo-vr{display:none!important}';
   document.head.appendChild(style);
 
   var btn = document.createElement('button');
@@ -97,9 +108,25 @@
   bar.appendChild(btn);
   bar.appendChild(pop);
 
+  var nav = document.getElementById('siteNav') || bar.querySelector('nav');
+  var demo = null;
+  if (nav) {
+    demo = document.createElement('a');
+    demo.className = 'nav-cta demo-vr';
+    demo.href = VR_URL;
+    demo.target = '_blank';
+    demo.rel = 'noopener';
+    demo.textContent = VR_TXT[lang] || VR_TXT.fr;
+    demo.title = VR_TITRE[lang] || VR_TITRE.fr;
+    demo.hidden = true;
+    var cohab = nav.querySelector('a[href*="cohabitat"]');
+    nav.insertBefore(demo, cohab || nav.querySelector('.lang-switch, details') || null);
+  }
+
   function rafraichir() {
     var ouvert = estOuvert();
     racine.classList.toggle('produits-ouverts', ouvert);
+    if (demo) demo.hidden = !ouvert;
     btn.classList.toggle('est-ouvert', ouvert);
     btn.innerHTML = ouvert ? ICONE.ouvert : ICONE.ferme;
     btn.setAttribute('aria-label', ouvert ? t('fermer') : t('ouvrir'));
