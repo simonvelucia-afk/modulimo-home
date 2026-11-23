@@ -69,6 +69,10 @@ jobs:
           git add vr
           if git diff --cached --quiet; then echo "Visite déjà à jour."; exit 0; fi
           git commit -m "Visite VR : publication chiffrée (modulimo-vr@${VR_SHA})"
+          # build.js régénère aussi les autres pages et sitemap.xml (date du jour) :
+          # on ne publie que vr/, on jette donc le reste avant de se synchroniser.
+          git reset -q --hard HEAD
+          git clean -fdq
           # Si main a bougé pendant le build : on se remet à jour avant de pousser.
           # En cas de conflit sur vr/, notre nouvelle publication l'emporte (-X theirs
           # = le commit rejoué pendant le rebase). Jusqu'à 3 essais.
