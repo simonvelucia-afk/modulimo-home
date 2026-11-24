@@ -37,6 +37,9 @@
       <button id="btn-tour" role="tab" aria-selected="true" data-i18n="modeTour">Visite guidée</button>
       <button id="btn-free" role="tab" aria-selected="false" data-i18n="modeFree">Exploration libre</button>
     </div>
+    <button id="btn-dest" class="pill" aria-expanded="false" aria-controls="destinations">
+      <span class="ico" aria-hidden="true">📍</span><span class="lbl" data-i18n="destinations">Destinations</span>
+    </button>
     <button id="btn-daynight" class="pill" aria-pressed="false">
       <span class="ico" aria-hidden="true">☾</span><span class="lbl" data-i18n="night">Nuit</span>
     </button>
@@ -60,6 +63,12 @@
 
   <!-- Indice en exploration libre -->
   <p id="hint" class="hint" hidden></p>
+
+  <!-- Menu des destinations (exploration libre du quartier) -->
+  <aside id="destinations" class="dest" hidden aria-label="Destinations">
+    <header><strong data-i18n="destinations">Destinations</strong><button id="dest-close" class="dest-close" aria-label="Fermer">×</button></header>
+    <div id="dest-list"></div>
+  </aside>
 
   <!-- Panneau d'information -->
   <aside id="panel" class="panel" hidden aria-live="polite">
