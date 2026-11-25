@@ -187,3 +187,5 @@ body.is-night #panel-body .stats b { color: #f1c98d; }
   font-family: var(--font); font-size: 15px; transition: opacity .5s; pointer-events: none;
 }
 .annonce.partir { opacity: 0; }
+.choix.video { width: min(720px, calc(100vw - 32px)); bottom: auto; top: 50%; transform: translate(-50%, -50%); animation: none; }
+.choix.video video { display: block; width: 100%; border-radius: 10px; background: #000; }
