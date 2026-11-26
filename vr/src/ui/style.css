@@ -163,7 +163,7 @@ body.is-night #panel-body .stats b { color: #f1c98d; }
 .dest-item small { color: #6a665c; font-size: 12px; }
 @media (max-width: 720px) { .dest { top: 120px; left: 14px; right: 14px; width: auto; } }
 
-/* --- Cartes de choix (promenade à deux, rencontre à la plage) et annonces --- */
+/* --- Cartes de choix (promenade à deux, visite, escalier) et annonces --- */
 .choix {
   position: fixed; left: 50%; bottom: calc(96px + var(--safe-b)); transform: translateX(-50%);
   width: min(460px, calc(100vw - 32px)); z-index: 60;
