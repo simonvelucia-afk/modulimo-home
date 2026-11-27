@@ -192,3 +192,40 @@ body.is-night #panel-body .stats b { color: #f1c98d; }
 
 /* bouton ♪ : barré quand la musique est coupée */
 #btn-music[aria-pressed="false"] { opacity: 0.55; text-decoration: line-through; }
+
+/* --- Poste de pilotage du vélomobile (promenade en vélomobile, écran) : comme la barre de la maquette --- */
+#pilotage {
+  position: fixed; left: 12px; right: 12px; bottom: calc(66px + var(--safe-b)); z-index: 30;
+  display: flex; flex-direction: column; align-items: center; gap: 8px; pointer-events: none;
+}
+#pilotage[hidden] { display: none; }
+#pilotage .pil-etat {
+  padding: 6px 14px; font-size: 12.5px; color: var(--ink-soft); background: var(--paper); border-radius: 999px;
+  box-shadow: var(--shadow); max-width: 100%; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+}
+#pilotage .pil-commandes {
+  pointer-events: auto; display: flex; flex-wrap: wrap; justify-content: center; gap: 8px; padding: 8px;
+  background: var(--paper); border-radius: var(--radius); box-shadow: var(--shadow); max-width: 100%;
+}
+#pilotage .pil-groupe { display: flex; align-items: center; gap: 6px; padding: 0 6px; font-size: 13px; color: var(--ink-soft); }
+#pilotage .pil-groupe + .pil-groupe { border-left: 1px solid var(--line); }
+#pilotage button {
+  font: inherit; font-size: 14px; font-weight: 600; color: var(--brand); background: rgba(18, 55, 49, 0.08);
+  border: 0; border-radius: 999px; padding: 10px 14px; min-height: 44px; cursor: pointer;
+  touch-action: none; user-select: none; -webkit-user-select: none;
+}
+#pilotage button[aria-pressed="true"] { background: var(--brand); color: #fff; }
+#pilotage .pil-frein[aria-pressed="true"] { background: #ff5f57; color: #fff; }
+#pilotage .pil-accel[aria-pressed="true"] { background: #ffb84d; color: #1d1d1b; }
+#pilotage .pil-accel.verrou { box-shadow: 0 0 0 3px var(--brand); }
+#pilotage .pil-phares[aria-pressed="true"] { background: #fff3c4; color: #1d1d1b; }
+#pilotage .pil-stab.refus, #pilotage .pil-portes.refus { background: #b3261e; color: #fff; }
+#pilotage .pil-descendre[aria-pressed="true"] { background: var(--warm); color: #1d1d1b; }
+#pilotage .pil-curseur input { width: 110px; }
+#pilotage .pil-curseur output { min-width: 58px; color: var(--ink); font-weight: 600; }
+@media (max-width: 640px) {
+  #pilotage { left: 6px; right: 6px; }
+  #pilotage .pil-groupe + .pil-groupe { border-left: 0; }
+  #pilotage button { padding: 8px 10px; font-size: 13px; }
+  #pilotage .pil-curseur input { width: 80px; }
+}
