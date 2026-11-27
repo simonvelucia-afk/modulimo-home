@@ -192,6 +192,10 @@ body.is-night #panel-body .stats b { color: #f1c98d; }
 
 /* bouton ♪ : barré quand la musique est coupée */
 #btn-music[aria-pressed="false"] { opacity: 0.55; text-decoration: line-through; }
+/* bouton HD : discret en définition normale */
+#btn-hd { font-size: 12px; font-weight: 700; letter-spacing: 0.02em; }
+#btn-hd[aria-pressed="false"] { opacity: 0.6; }
+#btn-hd[aria-pressed="true"] { color: var(--brand); }
 
 /* --- Poste de pilotage du vélomobile (promenade en vélomobile, écran) : comme la barre de la maquette --- */
 #pilotage {
