@@ -189,3 +189,6 @@ body.is-night #panel-body .stats b { color: #f1c98d; }
 .annonce.partir { opacity: 0; }
 .choix.video { width: min(720px, calc(100vw - 32px)); bottom: auto; top: 50%; transform: translate(-50%, -50%); animation: none; }
 .choix.video video { display: block; width: 100%; border-radius: 10px; background: #000; }
+
+/* bouton ♪ : barré quand la musique est coupée */
+#btn-music[aria-pressed="false"] { opacity: 0.55; text-decoration: line-through; }
